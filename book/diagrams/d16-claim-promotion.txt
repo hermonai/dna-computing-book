@@ -1,0 +1,44 @@
+D16 — CLAIM PROMOTION, REJECTION, AND CORRECTION
+Scope: defines the gates by which a hypothesis may earn narrowly stronger language.
+
+LEGEND
+  ┌─┐ artifact/gate    ⇒ passed evidential gate    ⊣ failure    ↺ correction/re-entry
+
+┌──────────────────────────┐
+│ HYPOTHESIS               │ reverse-complement equivariance may improve task X
+└────────────┬─────────────┘
+             ▼
+┌──────────────────────────┐     ⊣ ambiguous transform
+│ FORMAL CONTRACT          │──────→ correction record ↺
+│ symmetry + invariants    │
+└────────────┬─────────────┘
+             ⇒ parity and metamorphic tests
+┌──────────────────────────┐     ⊣ leakage or semantic mismatch
+│ IMPLEMENTATION           │──────→ quarantine artifacts ↺
+│ baseline + one mechanism │
+└────────────┬─────────────┘
+             ⇒ code identity fixed
+┌──────────────────────────┐     ⊣ hidden capacity or budget confound
+│ FROZEN EXPERIMENT        │──────→ redesign comparison ↺
+│ data · splits · budgets  │
+│ seeds · metrics · stops  │
+└────────────┬─────────────┘
+             ⇒ per-seed outcomes + uncertainty
+┌──────────────────────────┐     ⊣ unstable, negative, or mechanism-falsifying result
+│ INTERVENTION / ABLATION  │──────→ reject or narrow claim ↺
+└────────────┬─────────────┘
+             ⇒ effect survives declared controls
+┌──────────────────────────┐     ⊣ independent failure
+│ REPLICATION              │──────→ reopen claim ↺
+│ new dataset or code path │
+└────────────┬─────────────┘
+             ⇒
+┌──────────────────────────┐
+│ SCOPED CONCLUSION        │ mechanism M improved metric Y on task X under budget B;
+│ + artifact manifest      │ no biological-causation or universal-superiority claim
+└──────────────────────────┘
+
+READING NOTES
+1. Promotion changes wording, not truth status forever; later evidence can reopen the claim.
+2. Negative results and failed gates are durable outputs, not missing outputs.
+3. Replication must vary a meaningful dependency, not merely rerun the same cached artifact.

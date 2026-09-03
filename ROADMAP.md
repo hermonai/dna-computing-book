@@ -9,11 +9,12 @@
 
 ## Phase 1 - Foundations manuscript
 
-- **In progress:** Chapters 1-2 now have complete first drafts.
-- Next: Chapter 3 on reproducible claims, then Chapters 4-5 on strands and complementarity.
+- **In progress:** Chapters 1-3 now have complete first drafts.
+- Next: Chapters 4-5 on strands and complementarity.
 - Draft Parts I-III from primary literature.
 - Expand MiniDNA through reactions and splicing.
 - Add exercises whose answers can be checked by code.
+- Integrate the completed D02-D12 text graphs into their chapters and audit their primary sources.
 
 ## Phase 2 - Classical models
 

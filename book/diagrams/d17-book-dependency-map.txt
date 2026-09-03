@@ -1,0 +1,57 @@
+D17 — BOOK KNOWLEDGE DEPENDENCY MAP
+Scope: shows which foundations must be stable before the two AI research lines can be compared.
+
+LEGEND
+  ┌─┐ topic cluster   → prerequisite flow   ╔═╗ shared validation boundary   ⇢ future synthesis
+
+┌───────────────────┐      ┌──────────────────┐      ┌──────────────────────┐
+│ EVIDENCE DISCIPLINE│─────►│ DNA STRUCTURE    │─────►│ SEQUENCE ALGEBRA     │
+│ claims + records   │      │ polarity + bases │      │ complement + reverse │
+└─────────┬─────────┘      └────────┬─────────┘      └──────────┬───────────┘
+          │                         │                           │
+          │                         ▼                           ▼
+          │               ┌──────────────────┐      ┌──────────────────────┐
+          ├──────────────►│ MOLECULAR OPS    │─────►│ HYBRIDIZATION        │
+          │               │ cut/join/copy/read│     │ matching + kinetics  │
+          │               └──────┬─────┬─────┘      └──────────┬───────────┘
+          │                      │     │                       │
+          │        ┌─────────────┘     └─────────────┐         │
+          ▼        ▼                                 ▼         ▼
+┌──────────────────────┐                  ┌──────────────────────────────┐
+│ CLASSICAL COMPUTATION│                  │ MOLECULAR PROGRAMMING        │
+│ search + automata    │                  │ displacement + CRNs + tiles  │
+└──────────┬───────────┘                  └──────────────┬───────────────┘
+           └───────────────────┬─────────────────────────┘
+                               ▼
+                    ┌────────────────────────┐
+                    │ FORMAL COMPLEXITY      │
+                    │ time · material · error│
+                    └───────────┬────────────┘
+                                │
+┌───────────────────┐           │           ┌──────────────────────────┐
+│ DNA REGULATION    │───────────┴──────────►│ MINIDNA SIMULATION       │
+│ feedback + state  │──────► regulated      │ declared exact semantics │
+└───────────────────┘       expression      └────────────┬─────────────┘
+                                                        ▼
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║ SHARED DIFFERENTIABLE + EVALUATION FOUNDATION                                       ║
+║ tensors · causality · leakage controls · capacity views · manifests · uncertainty    ║
+╚═══════════════════════════════════╤══════════════════════════════════════════════════╝
+                                    │ same protocol, distinct mechanisms
+                      ┌─────────────┴─────────────┐
+                      ▼                           ▼
+        ┌─────────────────────────┐   ┌─────────────────────────┐
+        │ TRANSFORMER DNA LINE    │   │ NON-TRANSFORMER DNA LINE│
+        │ attention + KV state    │   │ recurrence + GCS state  │
+        └─────────────┬───────────┘   └─────────────┬───────────┘
+                      └─────────────┬───────────────┘
+                                    ⇢
+                         ┌────────────────────────┐
+                         │ GENOMIC COMPUTATION    │
+                         │ falsifiable synthesis │
+                         └────────────────────────┘
+
+READING NOTES
+1. Regulation and molecular programming meet only after their costs and states are formalized.
+2. MiniDNA is a semantic bridge, not proof of physical realizability.
+3. The two neural lines share evaluation infrastructure but must not be collapsed into one engine.

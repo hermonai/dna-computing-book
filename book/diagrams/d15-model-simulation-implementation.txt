@@ -1,0 +1,36 @@
+D15 — MODEL, SIMULATION, AND PHYSICAL IMPLEMENTATION
+Scope: distinguishes a formal transition system from two different realizations of it.
+
+LEGEND
+  ┌─┐ artifact    → realization mapping    ⇒ conformance evidence    ⇢ empirical adequacy claim
+
+                            ┌────────────────────────────────┐
+                            │ ABSTRACT MODEL                 │
+                            │ state · operators · scheduler  │
+                            │ readout · cost · assumptions   │
+                            └──────────┬───────────┬─────────┘
+                                       │           │
+                         software map  │           │ physical encoding map
+                                       ▼           ▼
+                    ┌──────────────────────┐   ╔════════════════════════════╗
+                    │ DIGITAL SIMULATOR    │   ║ MOLECULAR IMPLEMENTATION   ║
+                    │ data structures      │   ║ strands, reactions, assay  ║
+                    │ transition executor  │   ║ environment and protocol   ║
+                    │ trace and tests      │   ╚══════════════╤═════════════╝
+                    └──────────┬───────────┘                  │
+                               │                              │ measurements
+                  trace parity ⇒                              ▼
+                               └──────────────┐   ┌─────────────────────────┐
+                                              ├──►│ OBSERVATION MODEL       │
+                               predicted data ┘   │ calibration + uncertainty│
+                                                  └────────────┬────────────┘
+                                                               ⇢
+                                                  ┌─────────────────────────┐
+                                                  │ EMPIRICAL ADEQUACY       │
+                                                  │ scoped conditions only  │
+                                                  └─────────────────────────┘
+
+READING NOTES
+1. The simulator conforms to rules; the molecular system is tested through noisy observations.
+2. Simulator agreement with itself cannot validate the physical encoding or observation model.
+3. Physical agreement supports the model only under the protocol and calibration that produced it.

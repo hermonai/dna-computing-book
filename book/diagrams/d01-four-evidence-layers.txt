@@ -1,0 +1,58 @@
+D01 — FOUR EVIDENCE LAYERS
+Scope: separates physical execution, exact simulation, differentiable computation, and AI evaluation.
+
+LEGEND
+  ╔═╗  evidence domain          ┌─┐  artifact or gate
+   →   representation/data      ⇒   scoped evidential support
+   ⇢   unvalidated bridge       ⊣   boundary that blocks claim promotion
+
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║ L1  MOLECULAR EXECUTION                                                             ║
+║ strands · concentrations · temperature · enzymes · reaction time · physical assay   ║
+╚══════════════════════════════════════╤═══════════════════════════════════════════════╝
+                                       │ measurements + protocol
+                                       ▼
+                          ┌──────────────────────────────┐
+                          │ ABSTRACTION / MEASUREMENT    │
+                          │ observables, omissions,      │
+                          │ uncertainty, calibration     │
+                          └──────────────┬───────────────┘
+                                         ⇢ model adequacy must be validated
+╔════════════════════════════════════════▼══════════════════════════════════════════════╗
+║ L2  DIGITAL SIMULATION                                                              ║
+║ declared state · transition rules · scheduler · randomness · digital readout         ║
+╚══════════════════════════════════════╤════════════════════════════════════════════════╝
+                                       │ state/trace conformance
+                                       ▼
+                          ┌──────────────────────────────┐
+                          │ RELAXATION / PARAMETERIZATION│
+                          │ tensors, smooth surrogates,  │
+                          │ learnable parameters         │
+                          └──────────────┬───────────────┘
+                                         ⇢ semantic parity is an obligation
+╔════════════════════════════════════════▼══════════════════════════════════════════════╗
+║ L3  DIFFERENTIABLE MODEL                                                            ║
+║ tensor program · objective · optimizer · training data · learned parameters          ║
+╚══════════════════════════════════════╤════════════════════════════════════════════════╝
+                                       │ frozen architecture hypothesis
+                                       ▼
+                          ┌──────────────────────────────┐
+                          │ CONTROLLED EVALUATION        │
+                          │ baselines, budgets, seeds,   │
+                          │ interventions, uncertainty   │
+                          └──────────────┬───────────────┘
+                                         ⇒ only the measured task-scoped claim
+╔════════════════════════════════════════▼══════════════════════════════════════════════╗
+║ L4  DNA-INSPIRED AI ARCHITECTURE                                                    ║
+║ prediction · generation · retrieval · control · inference state · runtime behavior   ║
+╚═══════════════════════════════════════════════════════════════════════════════════════╝
+
+BOUNDARY RULES
+  L2 success ⊣ proof that chemistry realizes the model.
+  L3 trainability ⊣ proof of biological faithfulness.
+  L4 benchmark improvement ⊣ a universal architecture claim.
+
+READING NOTES
+1. Downward movement is a research program: every bridge introduces assumptions and validation work.
+2. Upward support requires a bridge artifact: assays, conformance tests, experiment manifests, or parity records.
+3. A layer may be valuable without promotion. An exact toy simulator is useful even when it predicts no wet-lab yield.

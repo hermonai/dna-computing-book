@@ -1,0 +1,45 @@
+D03 — HYBRIDIZATION STATE, SCORE, AND PHYSICAL BOUNDARY
+Scope: makes the assumptions of an aligned digital complementarity score explicit.
+
+LEGEND
+  ┌─┐ digital artifact   ╔═╗ physical system   → computation/measurement
+   ⇢ calibration bridge  ⊣ excluded inference
+
+┌──────────────────────────────┐     ┌──────────────────────────────┐
+│ INPUT STRAND a, 5′→3′        │     │ INPUT STRAND b, 5′→3′        │
+│ alphabet {A,C,G,T}           │     │ alphabet {A,C,G,T}           │
+└──────────────┬───────────────┘     └──────────────┬───────────────┘
+               │                                     │
+               └──────────────────┬──────────────────┘
+                                  ▼
+                     ┌──────────────────────────────┐
+                     │ DECLARED ALIGNMENT          │
+                     │ compare a_i with RC(b)_i    │
+                     │ no gaps or offsets          │
+                     └──────────────┬───────────────┘
+                                    ▼
+                     ┌──────────────────────────────┐
+                     │ MATCH VECTOR m_i            │
+                     │ 1 if canonical complement   │
+                     │ 0 otherwise                 │
+                     └──────────────┬───────────────┘
+                                    ▼
+                     ┌──────────────────────────────┐
+                     │ TOY SCORE                   │
+                     │ q = (Σ_i m_i) / n           │
+                     │ output: matches, fraction   │
+                     └──────────────┬───────────────┘
+                                    ⇢ fit/compare to measured observables
+╔═══════════════════════════════════▼══════════════════════════════════════════════════╗
+║ PHYSICAL HYBRIDIZATION                                                             ║
+║ concentrations · temperature · salt · sequence context · secondary structure       ║
+║ kinetic pathways · mismatches · dangling ends · enzymes/surfaces · measurement     ║
+╚═══════════════════════════════════════════════════════════════════════════════════════╝
+
+BOUNDARY RULE
+  q is an exact statistic of the declared alignment ⊣ binding probability or free energy.
+
+READING NOTES
+1. The digital state deliberately omits nearly every variable that controls physical hybridization.
+2. Calibration would require named experiments and an observation model; a biological label is not calibration.
+3. The toy score remains useful for testing sequence algebra and software interfaces.

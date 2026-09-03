@@ -1,0 +1,42 @@
+D08 — TILE ATTACHMENT, LOCAL MATCHING, AND GLOBAL GROWTH
+Scope: makes the local rule, assembly frontier, nondeterminism, and readout of abstract tile assembly explicit.
+
+LEGEND
+  ┌─┐ tile/assembly state   → legal transition   ⊣ rejected attachment
+   ↺ repeated growth        ⇢ physical realization
+
+┌──────────────────────────────┐       ┌──────────────────────────────┐
+│ TILE TYPE t                  │       │ ASSEMBLY A                  │
+│ north/east/south/west glues  │       │ occupied coordinates + glues│
+│ glue labels + strengths      │       │ exposed frontier F(A)       │
+└──────────────┬───────────────┘       └──────────────┬───────────────┘
+               └──────────────────────┬────────────────┘
+                                      ▼
+                         ┌──────────────────────────────┐
+                         │ LOCAL ATTACHMENT TEST        │
+                         │ choose p ∈ F(A); align t;    │
+                         │ sum matching glue strengths  │
+                         └────────┬──────────────┬──────┘
+                                  │ score ≥ τ     │ score < τ / overlap
+                                  ▼               └──⊣ reject
+                         ┌──────────────────────────────┐
+                         │ NEW ASSEMBLY A′ = A ∪ {(p,t)}│
+                         │ update frontier and glues    │
+                         └──────────────┬───────────────┘
+                                        ↺ choose next legal attachment
+                                        ▼
+                         ┌──────────────────────────────┐
+                         │ TERMINAL / OBSERVED ASSEMBLY │
+                         │ shape, pattern, encoded output│
+                         └──────────────────────────────┘
+
+NONDETERMINISM
+  multiple legal (p,t) choices → multiple assembly sequences → possibly one or many terminal outcomes.
+
+PHYSICAL BRIDGE
+  abstract tile + glue rule ⇢ DNA tile geometry + sticky ends + concentration + temperature + error control.
+
+READING NOTES
+1. Global computation emerges from repeated local attachment; the scheduler determines how choices are modeled.
+2. Time, tile count, frontier size, assembly yield, and error are different resource measures.
+3. Abstract universality does not imply that a particular molecular construction grows reliably.

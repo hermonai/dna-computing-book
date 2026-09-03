@@ -1,0 +1,40 @@
+D11 — TRANSFORMER TRAINING AND KV-CACHED INFERENCE
+Scope: distinguishes full-sequence causal training from incremental decoding with growing attention state.
+
+LEGEND
+  ┌─┐ tensor/process   → data flow   ↺ cached state   ⇒ parity gate
+
+┌──────────────────────────────┐
+│ TOKEN IDS [B,T]              │
+└──────────────┬───────────────┘
+               ▼
+┌──────────────────────────────┐
+│ EMBEDDING + POSITION         │
+└──────────────┬───────────────┘
+               ▼
+┌──────────────────────────────┐
+│ CAUSAL ATTENTION + MLP STACK │ future positions masked
+└─────────┬─────────────┬──────┘
+          │ training     │ inference prefill
+          ▼              ▼
+┌────────────────────┐  ┌──────────────────────────────┐
+│ LOGITS [B,T,V]     │  │ PER-LAYER KV CACHE          │
+│ shifted loss       │  │ keys/values for positions 1…t│
+│ autograd + update  │  └──────────────┬───────────────┘
+└────────────────────┘                 │ new token
+                                       ▼
+                            ┌──────────────────────────┐
+                            │ DECODE STEP              │
+                            │ attend cache → logits    │
+                            │ append K_t,V_t ↺         │
+                            └────────────┬─────────────┘
+                                         ⇒ full-prefix / cached-logit parity
+
+MEASURED RESOURCES
+  training: tokens, parameters, FLOPs, activation memory;
+  inference: prefill latency, decode latency, KV bytes by context/layer/dtype.
+
+READING NOTES
+1. KV caching changes execution and memory, not the intended causal function.
+2. An optimized cache path is accepted only after parity with the semantic reference.
+3. Retrieval ability, runtime speed, and biological relevance are separate claims.

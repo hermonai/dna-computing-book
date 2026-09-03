@@ -103,25 +103,9 @@ The test establishes a software invariant. It does not establish a molecular bin
 
 The modern DNA-computing field is often dated to Leonard Adleman's 1994 experiment, which used DNA molecules and laboratory operations to solve a small directed Hamiltonian-path instance. The important conceptual move was not that DNA resembled a graph. Candidate paths were represented by molecular strands; molecular operations generated and filtered a population; the surviving material encoded an answer. The primary report is [Adleman, 1994](https://doi.org/10.1126/science.7973651).
 
-At a high level, the computation had a generate-filter-read shape:
+At a high level, the computation had a generate-filter-read shape. [D04 — Adleman generate–filter–read pipeline](../diagrams/d04-adleman-generate-filter-read.txt) separates the graph encoding, molecular candidate population, filter cascade, depletion paths, assay, and resource ledger.
 
-```text
-problem graph
-     |
-     v
-encode vertices and edges as designed strands
-     |
-     v
-generate a population of candidate paths
-     |
-     v
-filter by start, end, length, and vertex coverage
-     |
-     v
-read surviving molecular material
-```
-
-This diagram is not a laboratory recipe. It identifies the algorithmic roles. Each arrow expands into physical steps with finite yield and possible error. The experiment demonstrated that molecular biology operations could realize a computation. It did not demonstrate that DNA is an efficient general replacement for electronic computers.
+The graph is not a laboratory recipe. It identifies algorithmic roles and the physical costs hidden by a purely logical account. Each material-flow edge expands into steps with finite yield and possible error. The experiment demonstrated that molecular biology operations could realize a computation. It did not demonstrate that DNA is an efficient general replacement for electronic computers.
 
 ## 1.5 Deterministic, nondeterministic, and stochastic transitions
 
@@ -149,15 +133,7 @@ There is no single correct cost metric. There is a correct discipline: report th
 
 ## 1.7 Computation, simulation, and implementation
 
-Three relationships are easy to conflate:
-
-```text
-abstract model -------- describes --------> allowed transitions
-      |
-      +---- simulated by ----> digital program
-      |
-      +-- implemented by ----> physical molecular system
-```
+Three relationships are easy to conflate. [D15 — Model, simulation, and physical implementation](../diagrams/d15-model-simulation-implementation.txt) shows two realization mappings, the observation model, and the separate conformance and empirical-adequacy obligations.
 
 A simulator is valuable because it makes assumptions inspectable and produces reproducible traces. It may simulate the abstract rules exactly while poorly predicting wet-lab kinetics. A physical implementation may approximate the abstract rules with leakage reactions and measurement noise. Agreement between the simulator and the abstraction is not automatically agreement between either one and chemistry.
 
@@ -196,4 +172,3 @@ The template prevents a common rhetorical shortcut: moving from “biology perfo
 - MiniDNA's current hybridization score has not been connected to thermodynamic measurements.
 - The later genomic-AI branches have not earned performance or biological-faithfulness claims.
 - Historical priority and mechanism details beyond the cited primary sources still require chapter-specific review.
-

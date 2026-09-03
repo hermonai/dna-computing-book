@@ -1,0 +1,45 @@
+D18 — TWO DNA SEQUENCE-MODEL BRANCHES UNDER ONE PROTOCOL
+Scope: compares the information paths of the Transformer and non-Transformer research lines.
+
+LEGEND
+  ╔═╗ shared contract   ┌─┐ branch-specific mechanism   → tensor/data flow
+   ↺ persistent/incremental state   ⇒ comparable measured output   ⊣ forbidden evidence transfer
+
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║ SHARED EXPERIMENT CONTRACT                                                         ║
+║ sequence IDs · reverse-complement transform · leakage-aware splits · shifted loss   ║
+║ seeds · budgets · causal interventions · artifact manifest · metric definitions     ║
+╚══════════════════════════════════════╤═══════════════════════════════════════════════╝
+                                       │ identical batch semantics [B,T]
+                      ┌────────────────┴────────────────┐
+                      ▼                                 ▼
+┌──────────────────────────────────────┐  ┌───────────────────────────────────────────┐
+│ TRANSFORMER DNA LINE                │  │ NON-TRANSFORMER DNA LINE                  │
+│ tokens → embeddings + positions    │  │ tokens → embeddings                      │
+│        → causal attention blocks   │  │        → recurrent/state-space update    │
+│        → normalization → logits    │  │        → regulated/structured state      │
+│                                    │  │        → logits                          │
+│ incremental path: KV memory ↺      │  │ incremental path: carried state ↺        │
+│ addressable history grows by layer │  │ state shape fixed or explicitly bounded │
+└──────────────────┬───────────────────┘  └──────────────────┬────────────────────────┘
+                   │ [B,T,V] / decode step                  │ [B,T,V] / recurrent step
+                   └──────────────────┬──────────────────────┘
+                                      ⇒
+                         ┌─────────────────────────────┐
+                         │ CONTROLLED RESULT MATRIX    │
+                         │ quality · causality · FLOPs │
+                         │ latency · memory · scaling  │
+                         └─────────────┬───────────────┘
+                                       │
+                 ┌─────────────────────┴─────────────────────┐
+                 ▼                                           ▼
+      exact retrieval / KV growth                  streaming aggregate / state cap
+
+EVIDENCE FIREWALL
+  A result from one branch ⊣ a mechanism claim about the other branch.
+  A shared tokenizer       ⊣ architectural equivalence.
+
+READING NOTES
+1. Common inputs and outputs make tests comparable; internal state remains deliberately different.
+2. Parameter, width, compute, and state-capacity matching answer different questions and are all recorded.
+3. A global winner is not expected; conclusions are tied to task, budget, context length, and machine.

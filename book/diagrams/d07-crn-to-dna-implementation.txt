@@ -1,0 +1,49 @@
+D07 — CHEMICAL REACTION NETWORK SEMANTICS TO DNA IMPLEMENTATION
+Scope: shows the compilation and validation obligations between an abstract CRN and strand-displacement chemistry.
+
+LEGEND
+  ┌─┐ formal/digital artifact   ╔═╗ physical artifact   → compilation/data
+   ⇒ validated correspondence   ⇢ unvalidated bridge    ⊣ failure
+
+┌────────────────────────────────┐
+│ ABSTRACT CRN                   │
+│ species X_i; reactions r_j;    │
+│ stoichiometry N; rate law k_j  │
+└───────────────┬────────────────┘
+                │ choose signal encoding and reaction templates
+                ▼
+┌────────────────────────────────┐
+│ COMPILER / CONSTRUCTION        │
+│ signal strands · gates · fuels │
+│ waste species · sequence map   │
+└───────────────┬────────────────┘
+                │ generated domain-level reaction system
+                ▼
+┌────────────────────────────────┐      ┌────────────────────────────────┐
+│ DIGITAL DNA-REACTION MODEL     │─────►│ ERROR / ROBUSTNESS ANALYSIS    │
+│ intended + leak reactions      │      │ crosstalk, depletion, timescale│
+│ mass action / stochastic trace │      │ truncation, sequence constraints│
+└───────────────┬────────────────┘      └───────────────┬────────────────┘
+                │ predicted trajectories                │ acceptance envelope
+                └──────────────────────┬─────────────────┘
+                                       ⇢
+╔══════════════════════════════════════▼═══════════════════════════════════════════════╗
+║ PHYSICAL DNA SYSTEM                                                               ║
+║ synthesized complexes + concentrations + buffer + temperature + measurement        ║
+╚══════════════════════════════════════╤═══════════════════════════════════════════════╝
+                                       │ time-series observations + controls
+                                       ⇒
+                          ┌────────────────────────────────┐
+                          │ SCOPED IMPLEMENTATION CLAIM    │
+                          │ selected CRN observables are   │
+                          │ approximated in an error bound │
+                          └────────────────────────────────┘
+
+FAILURE PATHS
+  invalid sequence design ⊣ construction; leak/depletion outside envelope ⊣ correspondence;
+  matching one endpoint ⊣ trajectory-level kinetic equivalence.
+
+READING NOTES
+1. The compiler adds fuels, intermediates, and wastes absent from the abstract CRN.
+2. Validation compares named observables over a time and concentration range, not vocabulary.
+3. Formal CRN correctness and physical implementation accuracy are distinct claims.

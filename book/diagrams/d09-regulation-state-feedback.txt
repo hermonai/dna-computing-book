@@ -1,0 +1,43 @@
+D09 — REGULATION, PERSISTENT STATE, AND FEEDBACK
+Scope: decomposes a regulated computation into sensing, gate decisions, expression, state update, and feedback.
+
+LEGEND
+  ┌─┐ state/process   → signal/data   ↺ feedback across steps
+   ⊣ suppressed path  ⇢ biological-to-software hypothesis
+
+┌──────────────────────────────┐      ┌──────────────────────────────┐
+│ EXTERNAL CONTEXT x_t         │      │ PERSISTENT STATE m_t        │
+│ inputs, environment, request │      │ memory, concentrations, store│
+└──────────────┬───────────────┘      └──────────────┬───────────────┘
+               └─────────────────────┬────────────────┘
+                                      ▼
+                         ┌──────────────────────────────┐
+                         │ SENSING / REGULATORY LOGIC  │
+                         │ g_t = Reg(x_t, m_t, θ)      │
+                         └────────┬──────────────┬──────┘
+                                  │ enabled plan  │ disabled + reason
+                                  ▼               └──⊣ suppress
+                         ┌──────────────────────────────┐
+                         │ SELECTIVE EXPRESSION        │
+                         │ y_t, events e_t, cost κ_t   │
+                         └────────┬──────────────┬──────┘
+                                  │ output y_t    │ state effects e_t
+                                  ▼               ▼
+                         ┌──────────────┐  ┌────────────────────────┐
+                         │ OBSERVABLE   │  │ STATE UPDATE           │
+                         │ RESPONSE     │  │ m_{t+1}=U(m_t,e_t,x_t) │
+                         └──────────────┘  └───────────┬────────────┘
+                                                       ↺ next regulatory decision
+
+FEEDBACK MODES
+  negative feedback → stabilizing tendency; positive feedback → amplification/memory;
+  feed-forward control → context-dependent response without recurrent state.
+
+EVIDENCE BOUNDARY
+  biological regulatory motif ⇢ precise software operator ⇢ controlled advantage;
+  neither bridge is automatic.
+
+READING NOTES
+1. Regulation has a cost even when expression is suppressed.
+2. Persistent state makes decisions history-dependent; feed-forward gates do not automatically provide memory.
+3. Similar feedback diagrams may hide different deterministic, stochastic, or learned semantics.

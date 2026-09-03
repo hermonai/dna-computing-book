@@ -1,0 +1,43 @@
+D06 — TOEHOLD-MEDIATED STRAND DISPLACEMENT
+Scope: separates domain-level state transitions from kinetic and experimental evidence.
+
+LEGEND
+  ┌─┐ domain-level complex   → reaction progress   ↔ reversible binding
+   ⇒ observed product support   ⊣ omitted physical claim
+
+DOMAIN KEY
+  t = exposed toehold; a = branch-migration domain; * = complementary domain.
+
+STATE 0 — AVAILABLE GATE
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ substrate:        ───── t* ───────── a* ─────                                │
+│ incumbent output:       └─────────── a ─────                                 │
+│ invader input:    t ──────────────── a ─────                                 │
+└───────────────────────────────┬───────────────────────────────────────────────┘
+                                │ toehold association: t ↔ t*
+                                ▼
+STATE 1 — TOEHOLD-BOUND INTERMEDIATE
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ invader is anchored at t/t*; incumbent remains paired over a/a*              │
+└───────────────────────────────┬───────────────────────────────────────────────┘
+                                │ branch point random walk across a/a*
+                                ↺ forward/backward migration steps
+                                ▼
+STATE 2 — DISPLACED PRODUCT
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ invader paired to substrate over t+a; incumbent output released              │
+└───────────────────────────────┬───────────────────────────────────────────────┘
+                                │ assay + controls
+                                ⇒ observed release under named conditions
+
+KINETIC / PHYSICAL VARIABLES
+  domain sequences · toehold length · temperature · salt · concentration · leaks
+  secondary structures · mismatch positions · competing complexes · assay response
+
+BOUNDARY RULE
+  domain transition diagram ⊣ a quantitative rate, yield, orthogonality, or leak prediction.
+
+READING NOTES
+1. Toehold binding changes the accessibility of a branch point; migration exchanges pairing partners.
+2. A reaction-network abstraction may collapse the intermediate but must state that omission.
+3. Quantitative claims require a kinetic model calibrated against experimental observations.

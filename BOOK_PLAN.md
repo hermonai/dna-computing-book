@@ -8,32 +8,7 @@ The title foregrounds established DNA computing. The final parts form a bridge t
 
 ## Reader contract
 
-Every mechanism follows the same explanatory ladder:
-
-```text
-biological phenomenon
-        |
-        v
-computational intuition
-        |
-        v
-formal abstraction
-        |
-        v
-mathematical model
-        |
-        v
-algorithm
-        |
-        v
-Python / PyTorch experiment
-        |
-        v
-limitations and evidence boundary
-        |
-        v
-possible genomic-AI interpretation
-```
+Every mechanism follows the same explanatory ladder. [D14 — Pedagogical and evidential ladder](book/diagrams/d14-pedagogical-ladder.txt) makes the construction path, failure gates, omission ledger, and correction return explicit.
 
 ## Proposed macro table of contents
 
@@ -129,49 +104,12 @@ possible genomic-AI interpretation
 
 ## Dependency graph
 
-```text
-evidence discipline
-      |
-      +--> DNA structure --> sequence algebra --> complementarity
-      |                                            |
-      |                                            v
-      |                                      hybridization
-      |                                            |
-      +--> molecular operations ------------------+
-      |                |
-      |                +--> search / separation / amplification
-      |                +--> rewrite systems / automata
-      |                +--> strand displacement / CRNs
-      |                                   |
-      |                                   v
-      +---------------------------- formal complexity
-                                           |
-DNA regulation --> state / feedback -------+
-      |                                    |
-      v                                    v
-regulated expression                  MiniDNA simulation
-      |                                    |
-      +----------------------+-------------+
-                             v
-                    differentiable bridge
-                             |
-                    shared evaluation rules
-                             |
-                 +-----------+-----------+
-                 |                       |
-                 v                       v
-         Transformer DNA line    Non-Transformer DNA line
-                 |                       |
-                 +-----------+-----------+
-                             v
-                    genomic computation
-```
+[D17 — Book knowledge dependency map](book/diagrams/d17-book-dependency-map.txt) is the canonical dependency graph. It distinguishes prerequisites, the shared validation boundary, branch-specific mechanisms, and the future synthesis point.
 
 ## Diagram inventory
 
-Text diagrams are canonical during bootstrap. Planned diagrams include strand polarity and antiparallel pairing; the molecular-operation pipeline; Adleman filtering; splicing semantics; strand-displacement state transitions; CRN species/reaction flow; tile growth; regulation and feedback; the four evidence layers; symbolic-to-tensor complement; training versus inference for each model family; long-context capability map; architecture lineage; and the common comparison harness.
+UTF-8 `.txt` graphs are canonical during bootstrap. They follow the [TXT graph standard](book/diagrams/TXT_GRAPH_STANDARD.md): stable IDs, legends, named nodes, typed edges, failure paths, evidence boundaries, and reading notes. Planned diagrams include strand polarity and antiparallel pairing; the molecular-operation pipeline; Adleman filtering; splicing semantics; strand-displacement state transitions; CRN species/reaction flow; tile growth; regulation and feedback; symbolic-to-tensor complement; training versus inference for each model family; and the long-context capability map. See the [inventory](book/diagrams/INVENTORY.md).
 
 ## Chapter completion gate
 
 A chapter is not complete until its terms are in the terminology file, nontrivial claims are classified, equations use the notation standard, code is tested where applicable, references point to primary sources, and the closing sections state both what was established and what remains unverified.
-

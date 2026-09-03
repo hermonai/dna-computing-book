@@ -1,0 +1,40 @@
+D10 — SYMBOLIC COMPLEMENT TO TENSOR PERMUTATION
+Scope: proves the exact correspondence between a four-symbol complement map and one-hot tensor multiplication.
+
+LEGEND
+  ┌─┐ representation/operation   → exact map   ⇒ tested correspondence
+   ⊣ excluded interpretation
+
+┌──────────────────────────────┐
+│ SYMBOLIC ALPHABET            │
+│ order: [A, C, G, T]          │
+│ c: A↔T, C↔G                  │
+└──────────────┬───────────────┘
+               │ one-hot encoding φ
+               ▼
+┌──────────────────────────────┐      ┌──────────────────────────────┐
+│ BASIS VECTORS                │      │ PERMUTATION MATRIX C_DNA     │
+│ A=e₁, C=e₂, G=e₃, T=e₄       │      │ columns send e₁↔e₄, e₂↔e₃  │
+└──────────────┬───────────────┘      └──────────────┬───────────────┘
+               └──────────────────────┬───────────────┘
+                                      ▼
+                         ┌──────────────────────────────┐
+                         │ TENSOR COMPLEMENT           │
+                         │ φ(c(b)) = C_DNA φ(b)        │
+                         │ C_DNA² = I                  │
+                         └──────────────┬───────────────┘
+                                        │ reverse sequence axis for RC
+                                        ▼
+                         ┌──────────────────────────────┐
+                         │ TENSOR REVERSE COMPLEMENT   │
+                         │ RC(X)_i=C_DNA X_{n+1-i}     │
+                         └──────────────┬───────────────┘
+                                        ⇒ symbolic/tensor parity tests
+
+BOUNDARY RULE
+  exact representation equivalence ⊣ learned biological mechanism or molecular energetics.
+
+READING NOTES
+1. Matrix exactness follows from a declared basis order; changing the order changes the matrix.
+2. Reverse complement combines a channel permutation with a position reversal.
+3. A trainable compatibility matrix is a different object and needs different interpretation.

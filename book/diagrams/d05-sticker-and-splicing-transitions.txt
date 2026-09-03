@@ -1,0 +1,43 @@
+D05 — STICKER AND SPLICING TRANSITION SYSTEMS
+Scope: compares two symbolic DNA-computing families without treating either abstraction as a wet-lab protocol.
+
+LEGEND
+  ┌─┐ formal state   → permitted transition   ↺ repeated computation
+   ⊣ invalid transition   ╔═╗ physical-realization boundary
+
+PANEL A — STICKER STATE
+
+┌────────────────────────────────────┐    anneal sticker at enabled position
+│ MEMORY STRAND POSITIONS 1…n        │────────────────────────────────────────→
+│ occupancy vector z ∈ {0,1}^n       │
+└────────────────────────────────────┘
+                                                ┌───────────────────────────────┐
+                                                │ UPDATED OCCUPANCY z′          │
+             remove sticker at allowed position│ read occupied/unoccupied bits │
+                         ◄───────────────────────│ selection by pattern          │
+                                                └───────────────────────────────┘
+  incompatible sticker / occupied conflict ⊣ transition
+
+PANEL B — SPLICING STATE
+
+┌──────────────────────┐     recognize sites α│β and γ│δ     ┌──────────────────────┐
+│ WORDS u α β v, x γ δ y│────────────────────────────────────►│ CUT FRAGMENTS         │
+└──────────────────────┘                                     │ uα · βv · xγ · δy    │
+                                                             └──────────┬───────────┘
+                                                                        │ recombine by rule
+                                                                        ▼
+                                                             ┌──────────────────────┐
+                                                             │ PRODUCTS uαδy, xγβv  │
+                                                             │ added to language    │
+                                                             └──────────┬───────────┘
+                                                                        ↺ rule closure
+
+╔════════════════════════════════ PHYSICAL-REALIZATION BOUNDARY ═══════════════════════╗
+║ sequence design · enzyme recognition · kinetics · concentrations · separation       ║
+║ and readout must be supplied before either formal transition predicts an experiment.║
+╚═══════════════════════════════════════════════════════════════════════════════════════╝
+
+READING NOTES
+1. Sticker systems encode state through occupancy; splicing systems transform a language through cut/recombine rules.
+2. Their formal transitions have different state and cost models even when both use DNA vocabulary.
+3. A physical construction must implement rule applicability and reject unintended transitions.

@@ -1,0 +1,38 @@
+D13 — ARCHITECTURE LINEAGE AND EVIDENCE FIREWALL
+Scope: keeps historical implementations distinct from proposed DNA-model research lines.
+
+LEGEND
+  ┌─┐ named lineage       → documented implementation relation
+   ⇢ proposed migration   ║ evidence firewall   ⊣ evidence may not cross by name alone
+
+┌────────────────────────────────┐               ┌────────────────────────────────┐
+│ HISTORICAL / CURRENT DOGMA-R   │               │ HISTORICAL HERMON ENGINE       │
+│ recurrent, non-Transformer     │               │ Transformer-oriented serving   │
+│ recurrent state measurements   │               │ attention and paged-KV work    │
+└────────────────┬───────────────┘               └────────────────┬───────────────┘
+                 │ provenance                                    │ provenance
+                 ▼                                               ▼
+══════════════════════════════════ EVIDENCE FIREWALL ═══════════════════════════════════
+  old result + old architecture ID + old commit ⊣ automatic transfer to a new target
+════════════════════════════════════════════════════════════════════════════════════════
+                 │                                               │
+                 │ proposed reassociation                        │ proposed reassociation
+                 ⇢                                               ⇢
+┌────────────────▼───────────────┐               ┌────────────────▼───────────────┐
+│ TARGET DOGMA-T                 │               │ TARGET HERMON DNA-R            │
+│ Transformer DNA research line  │               │ non-Transformer DNA line       │
+│ attention / retrieval / KV     │               │ recurrence / state / GCS       │
+└────────────────┬───────────────┘               └────────────────┬───────────────┘
+                 └──────────────────────┬─────────────────────────┘
+                                        │ shared protocol only
+                                        ▼
+                         ┌────────────────────────────────┐
+                         │ CONTROLLED COMPARISON HARNESS  │
+                         │ data · objectives · budgets ·  │
+                         │ seeds · metrics · artifacts    │
+                         └────────────────────────────────┘
+
+READING NOTES
+1. Names are provenance keys, not mechanisms. A rename cannot carry measurements across the firewall.
+2. The two target lines may share data and evaluation rules while retaining different inference state.
+3. Every checkpoint should carry an architecture ID and source commit independent of branding.

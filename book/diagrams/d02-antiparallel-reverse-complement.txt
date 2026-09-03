@@ -1,0 +1,41 @@
+D02 — ANTIPARALLEL STRANDS AND REVERSE COMPLEMENT
+Scope: connects strand orientation, canonical base pairing, and the exact digital reverse-complement transform.
+
+LEGEND
+  ╔═╗ molecular representation   ┌─┐ digital operation   ↔ canonical pair
+   → ordered transform           ⊣ omitted physical mechanism
+
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║ MOLECULAR ORIENTATION                                                              ║
+║                                                                                    ║
+║ top strand:       5′  A   A   C   G  3′                                            ║
+║                       ↕   ↕   ↕   ↕     canonical Watson–Crick pairing              ║
+║ bottom strand:    3′  T   T   G   C  5′                                            ║
+║                                                                                    ║
+║ same bottom strand written in the 5′→3′ convention:  5′  C   G   T   T  3′         ║
+╚══════════════════════════════════════╤═══════════════════════════════════════════════╝
+                                       │ retain only ordered symbols + complement rule
+                                       ▼
+                         ┌──────────────────────────────┐
+                         │ DIGITAL TRANSFORM RC        │
+                         │ input  s = A A C G           │
+                         │ reverse   G C A A            │
+                         │ complement C G T T           │
+                         │ output RC(s) = C G T T       │
+                         └──────────────┬───────────────┘
+                                        │ algebraic invariants
+                                        ▼
+                         ┌──────────────────────────────┐
+                         │ RC(RC(s)) = s               │
+                         │ |RC(s)| = |s|               │
+                         │ RC(uv) = RC(v)RC(u)         │
+                         └──────────────────────────────┘
+
+EVIDENCE BOUNDARY
+  RC(s) ⊣ prediction of duplex yield, melting temperature, kinetics, mismatch tolerance,
+          secondary structure, salt dependence, or assay response.
+
+READING NOTES
+1. Complement alone changes bases; reverse complement also restores the conventional 5′→3′ reading direction.
+2. The digital transform is exact under its alphabet and orientation convention.
+3. Molecular pairing motivates the transform but requires additional physical variables for prediction.

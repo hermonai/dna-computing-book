@@ -13,18 +13,7 @@ Biological vocabulary is never evidence that a software mechanism is biologicall
 
 ## Research branches
 
-The shared foundations feed two independent research lines:
-
-```text
-                         DNA / GENOMIC COMPUTATION
-                                  |
-                  +---------------+---------------+
-                  |                               |
-                  v                               v
-          Transformer DNA line          Non-Transformer DNA line
-          proposed name: DOGMA?         proposed name: Hermon DNA?
-          attention / KV state          recurrence / state / GCS
-```
+The shared foundations feed two independent research lines. [D18 — Two DNA sequence-model branches under one protocol](book/diagrams/d18-dna-llm-branch-map.txt) shows their shared experimental boundary, distinct state paths, comparison outputs, and evidence firewall.
 
 Those proposed names do not rewrite history. The current local `dogma` engine is recurrent, while the current `hermon` engine is transformer-oriented. See [architecture lineage](research/architecture-lineage.md).
 
@@ -33,6 +22,8 @@ Those proposed names do not rewrite history. The current local `dogma` engine is
 - [Book plan](BOOK_PLAN.md)
 - [Chapter 1 - What Counts as Computation?](book/chapters/01-what-counts-as-computation.md)
 - [Chapter 2 - Four Evidence Layers](book/chapters/02-four-evidence-layers.md)
+- [Chapter 3 - Experimental Claims and Reproducible Records](book/chapters/03-experimental-claims-and-reproducible-records.md)
+- [TXT graph standard](book/diagrams/TXT_GRAPH_STANDARD.md)
 - [Roadmap](ROADMAP.md)
 - [Source map](research/source-map.md)
 - [Notation](book/NOTATION.md)
@@ -48,7 +39,7 @@ PyTorch is the semantic reference layer. Optimized kernels and custom runtimes a
 
 ## Manuscript status
 
-Chapters 1 and 2 have complete first drafts. Chapter 3 will turn the evidence policy into concrete experiment manifests and reproducibility records before the book enters the DNA biology sequence.
+Chapters 1 through 3 have complete first drafts. Chapter 4 begins the DNA biology sequence with nucleotides, polarity, and strands.
 
 ## Source policy
 

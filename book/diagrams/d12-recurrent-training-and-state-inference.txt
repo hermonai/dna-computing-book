@@ -1,0 +1,37 @@
+D12 — RECURRENT TRAINING AND STATEFUL INFERENCE
+Scope: distinguishes a full unrolled recurrence from repeated one-token execution with carried state.
+
+LEGEND
+  ┌─┐ tensor/process   → data flow   ↺ persistent inference state   ⇒ parity gate
+
+┌──────────────────────────────┐
+│ TOKEN IDS [B,T]              │
+└──────────────┬───────────────┘
+               ▼
+┌──────────────────────────────┐
+│ EMBEDDING [B,T,D]            │
+└──────────────┬───────────────┘
+               ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ RECURRENCE h_t = F(h_{t-1}, e_t)                                           │
+│ explicit state contract: layers × batch × state-width × dtype               │
+└─────────┬────────────────────────────────┬───────────────────────────────────┘
+          │ training/full scan             │ inference step
+          ▼                                ▼
+┌──────────────────────┐       ┌────────────────────────────────┐
+│ LOGITS [B,T,V]       │       │ input token + h_{t-1}         │
+│ shifted loss         │       │ → next logits + h_t ↺         │
+│ backprop through scan│       └──────────────┬─────────────────┘
+└──────────────────────┘                      ⇒ full-scan / step parity
+
+MEASURED RESOURCES
+  training: unroll length, activation strategy, tokens, FLOPs;
+  inference: step latency, explicit state bytes, batch-state ownership.
+
+CAPACITY RULE
+  state width is a primary experimental variable; a silent cap invalidates the comparison.
+
+READING NOTES
+1. Fixed-shaped carried state does not mean that all historical information is recoverable.
+2. Running summaries and exact content retrieval require different evaluation tasks.
+3. Recurrent and Transformer paths can share an output contract without sharing memory semantics.

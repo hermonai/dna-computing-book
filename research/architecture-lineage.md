@@ -21,19 +21,8 @@ The inspected `hermon` repository contains `hermon-paged-kv`, attention kernels,
 
 ## Target taxonomy
 
-The supplied execution prompt proposes:
-
-```text
-shared biological and computational foundations
-                    |
-        +-----------+-----------+
-        |                       |
-        v                       v
-target DOGMA               target Hermon DNA
-Transformer DNA line       non-Transformer DNA line
-```
+The supplied execution prompt proposes two target lines. [D13 — Architecture lineage and evidence firewall](../book/diagrams/d13-architecture-lineage.txt) records both historical implementations, both proposed targets, and the rule that prevents a reused name from carrying evidence across architectures.
 
 ## Migration rule
 
 Do not rename source repositories or rewrite old documents during bootstrap. New writing uses qualified names until a migration RFC maps repositories, packages, checkpoint metadata, artifact schemas, and claims. Historical measurements remain attached to the architecture that produced them, even if the brand later moves.
-

@@ -1,0 +1,50 @@
+D04 — ADLEMAN GENERATE–FILTER–READ PIPELINE
+Scope: separates the abstract Hamiltonian-path computation from its molecular resources and evidence gates.
+
+LEGEND
+  ┌─┐ operation/state    → material or information flow    ↺ repeated selection
+  ╔═╗ physical boundary ⇒ measured support                 ⊣ rejection/depletion path
+
+┌─────────────────────────┐     ┌────────────────────────────┐
+│ GRAPH INSTANCE          │  →  │ ENCODING SPECIFICATION     │
+│ vertices, directed edges│     │ vertex/edge oligos,        │
+│ start, end, path length │     │ complement interfaces      │
+└─────────────────────────┘     └──────────────┬─────────────┘
+                                               │ synthesis design
+                                               ▼
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║ PHYSICAL CANDIDATE GENERATION                                                       ║
+║ synthesized strands + annealing/ligation → heterogeneous molecular population       ║
+╚══════════════════════════════════════╤═══════════════════════════════════════════════╝
+                                       │ aliquot containing intended and unintended products
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│ FILTER CASCADE                                                                      │
+│                                                                                     │
+│  start/end selection → length selection → vertex-coverage selections ↺              │
+│          │                  │                         │                               │
+│          └──────⊣ nonsurvivors, loss, contamination, false binding ───────────────┐  │
+└───────────────────────────────────────────┬─────────────────────────────────────────┘
+                                            │ enriched survivors
+                                            ▼
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║ READOUT                                                                             ║
+║ amplification / separation / sequencing or probe assay → interpreted survivor       ║
+╚══════════════════════════════════════╤═══════════════════════════════════════════════╝
+                                       │ measured signal + controls
+                                       ⇒
+                            ┌──────────────────────────┐
+                            │ SCOPED COMPUTATIONAL CLAIM│
+                            │ a valid path was encoded, │
+                            │ selected, and detected    │
+                            └──────────────────────────┘
+
+RESOURCE LEDGER
+  Logical parallelism → molecular population size → material volume and synthesis burden.
+  Filter depth        → laboratory stages          → yield loss, error accumulation, and human work.
+  Readout resolution  → assay design               → false-positive/false-negative uncertainty.
+
+READING NOTES
+1. “Generate” does not enumerate candidates for free; the population is a physical resource.
+2. Each filter is both a logical predicate and a noisy laboratory operation with depletion risk.
+3. The final claim depends on controls for contamination, assay specificity, and sequence identity.

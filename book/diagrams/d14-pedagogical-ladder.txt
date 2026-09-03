@@ -1,0 +1,50 @@
+D14 — PEDAGOGICAL AND EVIDENTIAL LADDER
+Scope: shows how each mechanism travels from observation to a bounded AI hypothesis.
+
+LEGEND
+  ┌─┐ knowledge artifact   → construction/decomposition   ⇒ validation support
+   ⇢ research hypothesis  ↺ correction return            ⊣ failed completion gate
+
+┌──────────────────────────┐
+│ BIOLOGICAL PHENOMENON    │ observation + source scope
+└─────────────┬────────────┘
+              │ retain a selected causal or structural feature
+              ▼
+┌──────────────────────────┐     omitted mechanisms ───────────────→ ┌──────────────────┐
+│ COMPUTATIONAL INTUITION  │                                        │ OMISSION LEDGER  │
+└─────────────┬────────────┘                                        └─────────┬────────┘
+              │ define symbols, state, and permitted changes                  │ constrains prose
+              ▼                                                              │
+┌──────────────────────────┐                                                   │
+│ FORMAL ABSTRACTION       │◄──────────────────────────────────────────────────┘
+└─────────────┬────────────┘
+              │ equations + cost assumptions
+              ▼
+┌──────────────────────────┐
+│ MATHEMATICAL MODEL       │ ──⊣ undefined state / cost / scheduler
+└─────────────┬────────────┘
+              │ executable semantics
+              ▼
+┌──────────────────────────┐     tests + counterexamples
+│ ALGORITHM / REFERENCE    │────────────────────────────⇒ semantic confidence
+└─────────────┬────────────┘
+              │ controlled implementation
+              ▼
+┌──────────────────────────┐
+│ PYTHON / PYTORCH STUDY   │ ──⊣ leakage / confound / non-reproduction
+└─────────────┬────────────┘
+              │ bounded result + recorded limitations
+              ▼
+┌──────────────────────────┐
+│ EVIDENCE BOUNDARY        │↺ returns defects to the earliest invalid artifact
+└─────────────┬────────────┘
+              │ only after gates pass
+              ⇢
+┌──────────────────────────┐
+│ GENOMIC-AI HYPOTHESIS    │ task-, budget-, and implementation-scoped
+└──────────────────────────┘
+
+READING NOTES
+1. The ladder is not an inevitability: work may stop productively at any rung.
+2. A defect returns to the artifact that introduced it; later results are then re-evaluated.
+3. The omission ledger prevents biological language from silently restoring discarded mechanisms.

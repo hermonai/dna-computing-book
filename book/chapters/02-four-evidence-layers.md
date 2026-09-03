@@ -6,27 +6,7 @@ After this chapter, you will be able to tell what kind of evidence a DNA-computi
 
 DNA is simultaneously biological material, an information-bearing polymer, a substrate for engineered molecular systems, and a source of ideas for software. The proximity of these subjects makes them easy to blend. A description may begin with Watson-Crick pairing, pass through a tensor operation, and end by claiming a new form of intelligence without marking where established science ended.
 
-This book uses four evidence layers to stop that drift:
-
-```text
-MOLECULAR EXECUTION
-physical strands, reactions, concentrations, temperature, assays
-        |
-        | abstraction and measurement model
-        v
-DIGITAL SIMULATION
-software state that executes declared molecular or formal transitions
-        |
-        | optional relaxation / parameterization
-        v
-DIFFERENTIABLE MODEL
-tensor computation trained by gradients
-        |
-        | architecture hypothesis and evaluation
-        v
-DNA-INSPIRED AI ARCHITECTURE
-model for prediction, generation, retrieval, or control
-```
+This book uses four evidence layers to stop that drift. [D01 — Four evidence layers](../diagrams/d01-four-evidence-layers.txt) shows the bridge artifacts, validation obligations, and boundary rules between them.
 
 The arrows are research programs, not implications. Success at one layer does not prove success at the next.
 
@@ -96,25 +76,7 @@ The labels constrain prose:
 
 ## 2.7 How a claim earns promotion
 
-Consider the hypothesis: “reverse-complement equivariance improves genomic sequence modeling.” A disciplined evidence path is:
-
-```text
-define the symmetry exactly
-        |
-implement the transform and parity tests
-        |
-build a plain baseline
-        |
-add one equivariant mechanism
-        |
-freeze data, splits, budgets, metrics, and seeds
-        |
-run intervention and leakage checks
-        |
-compare per-seed outcomes and uncertainty
-        |
-replicate on an independent dataset or implementation
-```
+Consider the hypothesis: “reverse-complement equivariance improves genomic sequence modeling.” [D16 — Claim promotion, rejection, and correction](../diagrams/d16-claim-promotion.txt) gives the disciplined evidence path. It includes rejection exits and correction returns, because promotion is not a one-way success ladder.
 
 Even a positive result would remain scoped to the tasks, data, budgets, and model sizes tested. It would not prove that biological double strands explain the improvement.
 
@@ -160,4 +122,3 @@ Public work can still be wrong. The promise is not infallibility; it is traceabi
 - No DNA-specific neural mechanism has yet beaten a controlled generic baseline in this repository.
 - The proposed future DOGMA/Hermon DNA naming remains a migration proposal.
 - Independent scientific and editorial review of these evidence rules is still required.
-
