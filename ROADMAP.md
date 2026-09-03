@@ -9,6 +9,8 @@
 
 ## Phase 1 - Foundations manuscript
 
+- **In progress:** Chapters 1-2 now have complete first drafts.
+- Next: Chapter 3 on reproducible claims, then Chapters 4-5 on strands and complementarity.
 - Draft Parts I-III from primary literature.
 - Expand MiniDNA through reactions and splicing.
 - Add exercises whose answers can be checked by code.
@@ -36,4 +38,3 @@
 - Complete technical review and reference audit.
 - Build a reproducible HTML/PDF pipeline only after the Markdown sources stabilize.
 - Publish code/data licenses and source-material permissions deliberately.
-

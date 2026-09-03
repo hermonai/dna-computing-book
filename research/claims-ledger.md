@@ -21,6 +21,6 @@ Allowed classes: `ESTABLISHED BIOLOGY`, `ESTABLISHED COMPUTER SCIENCE`, `ESTABLI
 | C015 | Hermon DNA should become the target name for the non-transformer DNA line. | OUR INTERPRETATION | user-provided target taxonomy; collision with current Hermon must be managed | proposed, not historical |
 | C016 | One DNA-LLM family is generally superior for long context. | OPEN QUESTION | decompose retrieval, streaming, counting, motif, and regulation tasks | do not claim |
 | C017 | A biological name makes a neural operator biologically faithful. | CONJECTURE | rejected as an invalid inference without experimental validation | prohibited claim |
+| C018 | Enzyme-free nucleic-acid logic circuits have been constructed experimentally using strand-displacement principles. | ESTABLISHED DNA-COMPUTING RESULT | DOI 10.1126/science.1132493; preserve the paper's actual scale and conditions | verified bibliographically |
 
 New claims must be added before publication. Quantitative entries must include source revision, dataset/split, checkpoint, evaluation code, budget, seeds, and uncertainty.
-

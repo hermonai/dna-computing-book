@@ -31,6 +31,8 @@ Those proposed names do not rewrite history. The current local `dogma` engine is
 ## Start here
 
 - [Book plan](BOOK_PLAN.md)
+- [Chapter 1 - What Counts as Computation?](book/chapters/01-what-counts-as-computation.md)
+- [Chapter 2 - Four Evidence Layers](book/chapters/02-four-evidence-layers.md)
 - [Roadmap](ROADMAP.md)
 - [Source map](research/source-map.md)
 - [Notation](book/NOTATION.md)
@@ -44,7 +46,10 @@ python3 -m pytest
 
 PyTorch is the semantic reference layer. Optimized kernels and custom runtimes are intentionally out of scope until the algorithms and their tests are stable.
 
+## Manuscript status
+
+Chapters 1 and 2 have complete first drafts. Chapter 3 will turn the evidence policy into concrete experiment manifests and reproducibility records before the book enters the DNA biology sequence.
+
 ## Source policy
 
 The source PDFs and unpublished Evolutor papers are referenced from their local locations during research; they are not copied into this repository. This repository currently has no open-source license.
-
