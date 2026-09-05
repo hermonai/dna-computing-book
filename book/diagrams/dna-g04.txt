@@ -1,0 +1,23 @@
+ID: DNA-G04
+TITLE: Learning path: mechanism before generalization
+SUBTITLE: The next layer uses concepts already made concrete
+EVIDENCE: Editorial model; arrows specify relationships, not measured superiority.
+LEGEND: DATA → transformation or dependency; CONTROL ⇢ condition or review; HYPOTHESIS ⇢ unverified proposal.
+
+NODE n1 | Molecular foundations | Composition, polarity, pairing and environment.
+NODE n2 | Operations and algorithms | Generate, transform, filter and read molecular data.
+NODE n3 | Models and limits | CRNs, rewriting, assembly and cost accounting.
+NODE n4 | Worked physical example | Explain one observed process without hidden chemistry.
+NODE n5 | Executable abstraction | Run a small model and expose what it omits.
+NODE n6 | Frontier judgment | Separate demonstrated systems from research directions.
+
+EDGE n1 → n2 | DATA | prerequisite
+EDGE n2 → n3 | DATA | generalize
+EDGE n1 → n4 | CONTROL | illustrate
+EDGE n2 → n5 | CONTROL | implement
+EDGE n3 → n6 | CONTROL | evaluate
+EDGE n4 → n5 | DATA | abstract cautiously
+EDGE n5 → n6 | DATA | compare
+
+READING: Exercises alternate physical explanation, formal derivation and code so none substitutes for the others.
+FAILURE: Stop a derivation when it relies on a mechanism or mathematical prerequisite not yet introduced.

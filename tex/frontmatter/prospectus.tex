@@ -1,0 +1,76 @@
+\chapter*{Research prospectus}
+\renewcommand{\thefigure}{P.\arabic{figure}}
+\renewcommand{\thedefinition}{P.\arabic{definition}}
+\renewcommand{\theproposition}{P.\arabic{proposition}}
+\addcontentsline{toc}{chapter}{Research prospectus}
+\section*{The book's question}
+DNA computing is the deliberate encoding, transformation and readout of information in molecular systems. Its achievements become understandable only when abstract algorithms are connected to chemistry, resource costs and experimental evidence.
+
+A programmer with no molecular biology background is the primary reader. Graduate students get formal models and proofs; experimentalists get precise accounts of what the simulations omit.
+\section*{Evidence and reading order}
+The historical experiment of \citet{adleman1994} and the reaction-network
+construction of \citet{soloveichik2010} illustrate why encoding, operations and
+readout belong together. \citet{zhu2026} is a recent preprint in the frontier
+reading queue, not a result reproduced by this book.
+
+The new organization is a candidate dependency structure. Detailed methods,
+quantitative claims and proof statements require chapter-level full-text review.
+The present literature work is a scoping review, not an exhaustive survey.
+
+\section*{How the repository is read}
+Start with ASTRA\_REDESIGN.md, then BOOK\_PLAN.md and the source register.
+Historical text is kept separately. Existing code is available for regression
+tests and critical inspection; it does not define the new theory.
+The \gls{provenance}\index{provenance} of each future result must identify the
+implementation, configuration, data and evaluation.
+
+\section*{Next publication gate}
+Research and write one chapter at a time. Include a worked example, the smallest
+useful executable model, source-reviewed diagrams, limitations and exercises.
+Do not turn planned experiments into result tables.
+
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth]{../build/figures/dna-g01.pdf}
+\caption{The abstraction ladder: physical validation and digital execution have different evidentiary roles. Canonical source: DNA-G01.}
+\label{fig:research-map}
+\end{figure}
+\clearpage
+\chapter*{Publication verification card}
+\addcontentsline{toc}{chapter}{Publication verification card}
+This page exercises equation labels, theorem/proof typography, code, Unicode
+graph text, index and glossary hooks. It is an editorial build check, not a new
+manuscript chapter or research contribution.
+
+\begin{definition}[Canonical complement]
+On \(\Sigma=\{A,C,G,T\}\), set \(c(A)=T\), \(c(T)=A\),
+\(c(C)=G\) and \(c(G)=C\).
+\end{definition}
+For a finite sequence \(s=s_1\cdots s_n\), define
+\begin{equation}
+RC(s)=c(s_n)\cdots c(s_1).
+\label{eq:reverse-complement}
+\end{equation}
+\begin{proposition}[An elementary identity]
+Under the canonical string model, \(RC(RC(s))=s\).
+\end{proposition}
+\begin{proof}
+Reversal applied twice restores order; the base map applied twice restores
+each symbol. These two operations commute.
+\end{proof}
+Equation~\eqref{eq:reverse-complement} describes a symbolic operation, not
+molecular kinetics. It cannot establish an advantage for a neural architecture.
+\index{reverse complement}
+
+\section*{Code style and UTF-8 graph inclusion}
+\begin{Verbatim}[fontsize=\small,frame=single]
+python3 -m pytest
+make pdf
+make check-pdf
+\end{Verbatim}
+The excerpt below is included directly from the canonical TXT graph, not
+transcribed into the manuscript.
+\VerbatimInput[firstline=1,lastline=1,fontsize=\small]{../book/diagrams/dna-g01.txt}
+\VerbatimInput[firstline=13,lastline=14,fontsize=\footnotesize]{../book/diagrams/dna-g01.txt}
+See Figure~\ref{fig:research-map} for the graphical reading of the source.

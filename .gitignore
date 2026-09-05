@@ -1,4 +1,6 @@
 __pycache__/
+output/
+tmp/
 *.py[cod]
 .pytest_cache/
 .ruff_cache/
@@ -9,4 +11,3 @@ build/
 .DS_Store
 book/_build/
 notebooks/.ipynb_checkpoints/
-

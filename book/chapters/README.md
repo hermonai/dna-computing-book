@@ -1,9 +1,3 @@
-# Chapter sources
+# Active manuscript
 
-| Chapter | Title | Status |
-| --- | --- | --- |
-| 1 | [What Counts as Computation?](01-what-counts-as-computation.md) | first complete draft |
-| 2 | [Four Evidence Layers](02-four-evidence-layers.md) | first complete draft |
-| 3 | Experimental Claims and Reproducible Records | planned |
-
-Later chapters remain mapped in `BOOK_PLAN.md`. A first complete draft is ready for technical and editorial review; it is not publication-final.
+No new chapters are included in the research-reset milestone. The publication shell contains only an editorial prospectus and build checks. Planned chapters are listed in BOOK_PLAN.md; prior chapters are historical material, not active drafts.

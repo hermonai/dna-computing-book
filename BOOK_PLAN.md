@@ -1,115 +1,52 @@
-# Book plan
+# DNA Computing: candidate table of contents
 
-## Working title
+Status: redesigned from zero; edition 2 development. Chapters below are planned, not written. Stable IDs survive later title or ordering changes.
 
-**DNA Computing: Foundations, Models, and the Road to Genomic Computation**
+## I. Molecules that carry information
 
-The title foregrounds established DNA computing. The final parts form a bridge to two AI research programs without implying that digital models execute molecular biology.
+1. **DNA-01 — Why compute with molecules?**
+2. **DNA-02 — Atoms, nucleotides and oriented strands**
+3. **DNA-03 — Pairing, free energy and molecular recognition**
+4. **DNA-04 — From physical state to strings and information**
 
-## Reader contract
+## II. Operations and the first algorithms
 
-Every mechanism follows the same explanatory ladder. [D14 — Pedagogical and evidential ladder](book/diagrams/d14-pedagogical-ladder.txt) makes the construction path, failure gates, omission ledger, and correction return explicit.
+5. **DNA-05 — Copying, cutting, joining and reading**
+6. **DNA-06 — Adleman: a complete experiment reconstruction**
+7. **DNA-07 — From SAT proposals to finite-state machines**
+8. **DNA-08 — Laboratory resources, errors and readout**
 
-## Proposed macro table of contents
+## III. Formal molecular programs
 
-### Part I - Information, computation, and evidence
+9. **DNA-09 — Strand, sticker and Watson–Crick models**
+10. **DNA-10 — Splicing and insertion–deletion systems**
+11. **DNA-11 — Chemical reaction networks and stochastic computation**
+12. **DNA-12 — Strand displacement: domains, kinetics and leakage**
+13. **DNA-13 — Composing digital and analog molecular circuits**
 
-1. What counts as computation?
-2. Four evidence layers: molecule, simulation, differentiable model, architecture
-3. Experimental claims and reproducible records
+## IV. Computation through assembly and regulation
 
-### Part II - DNA from first principles
+14. **DNA-14 — Tile assembly and local rules**
+15. **DNA-15 — Origami as geometry and addressability**
+16. **DNA-16 — Synthetic gene circuits and feedback**
+17. **DNA-17 — Molecular pattern recognition**
 
-4. Nucleotides, polarity, and strands
-5. Complementarity and the reverse complement
-6. Replication, transcription, translation, and regulation
-7. Mutation, recombination, repair, and selection
+## V. Information engineering and limits
 
-### Part III - Molecular operations as algorithms
+18. **DNA-18 — DNA storage, coding and random access**
+19. **DNA-19 — Storage–computation interfaces**
+20. **DNA-20 — Complexity: time, molecules, volume and readout**
+21. **DNA-21 — Energy accounting and reliability**
+22. **DNA-22 — Design tools and executable molecular models**
 
-8. Hybridization, annealing, and melting
-9. Cutting, ligation, PCR, separation, and sequencing
-10. State, operators, stochasticity, and error
+## VI. A measured frontier
 
-### Part IV - Classical DNA computing
+23. **DNA-23 — Programmable and reusable circuits: the evidence through 2026**
+24. **DNA-24 — DNA sequence models are a different kind of computation**
+25. **DNA-25 — What molecules teach computer science**
 
-11. Adleman's Hamiltonian-path experiment
-12. Lipton-style parallel search and its resource accounting
-13. Sticker, splicing, and insertion-deletion systems
-14. Restriction-enzyme automata and Watson-Crick automata
+## Pedagogical contract
 
-### Part V - Molecular programming
+Each major case connects problem, representation, molecular operation, formal model, resource accounting and measured readout. Exercises cover mechanism, proof, implementation and experimental interpretation. No prior biology text is assumed.
 
-15. Strand-displacement systems
-16. Chemical reaction networks
-17. DNA circuits and finite-state machines
-18. Tile assembly and algorithmic self-assembly
-
-### Part VI - Formal models and complexity
-
-19. Languages, automata, rewrite systems, and graphs
-20. Parallelism versus material volume
-21. Time, space, energy, yield, error, and laboratory work
-22. Universality claims and their assumptions
-
-### Part VII - Regulation and expression
-
-23. Gene regulation as conditional dynamics
-24. Regulatory networks, feedback, and persistent state
-25. When the program and the machine cannot be separated cleanly
-
-### Part VIII - Exact digital simulation with MiniDNA
-
-26. Sequence algebra and invariants
-27. A transparent hybridization model
-28. Cutting, ligation, and rewrite systems
-29. Reaction and regulatory toy systems
-
-### Part IX - Differentiable models in PyTorch
-
-30. One-hot sequence tensors
-31. Exact complement as a permutation matrix
-32. Soft matching and differentiable hybridization
-33. Trainable regulation without biological overclaiming
-
-### Part X - From DNA computing to sequence learning
-
-34. Tokenization, objectives, splits, and leakage
-35. Reverse-complement symmetry and strand-aware representations
-36. What transfers from molecular computing - and what does not
-
-### Part XI - Transformer DNA research line
-
-37. A standard causal Transformer baseline
-38. DNA-specific inductive biases as testable hypotheses
-39. Attention, retrieval, KV state, and long context
-
-### Part XII - Non-Transformer DNA research line
-
-40. GRU and state-space baselines
-41. Regulation, expression, and structured state
-42. Recurrent inference and its limits
-
-### Part XIII - Controlled comparisons
-
-43. Causality by intervention
-44. Parameter-, width-, state-, and compute-matched comparisons
-45. Negative results, correction records, and replication
-
-### Part XIV - Toward genomic computation
-
-46. Shared foundations, distinct machines
-47. Evolutor and Genomic Computation Systems
-48. Open problems and falsifiable research programs
-
-## Dependency graph
-
-[D17 — Book knowledge dependency map](book/diagrams/d17-book-dependency-map.txt) is the canonical dependency graph. It distinguishes prerequisites, the shared validation boundary, branch-specific mechanisms, and the future synthesis point.
-
-## Diagram inventory
-
-UTF-8 `.txt` graphs are canonical during bootstrap. They follow the [TXT graph standard](book/diagrams/TXT_GRAPH_STANDARD.md): stable IDs, legends, named nodes, typed edges, failure paths, evidence boundaries, and reading notes. Planned diagrams include strand polarity and antiparallel pairing; the molecular-operation pipeline; Adleman filtering; splicing semantics; strand-displacement state transitions; CRN species/reaction flow; tile growth; regulation and feedback; symbolic-to-tensor complement; training versus inference for each model family; and the long-context capability map. See the [inventory](book/diagrams/INVENTORY.md).
-
-## Chapter completion gate
-
-A chapter is not complete until its terms are in the terminology file, nontrivial claims are classified, equations use the notation standard, code is tested where applicable, references point to primary sources, and the closing sections state both what was established and what remains unverified.
+Appendices: mathematical prerequisites; biological terminology; reproducibility contracts; worked exercise solutions; glossary and index. Chapter count is subordinate to teaching quality.

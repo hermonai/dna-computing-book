@@ -1,0 +1,23 @@
+ID: DNA-G02
+TITLE: A field with several computational models
+SUBTITLE: Classify by state, transformation and readout
+EVIDENCE: Editorial model; arrows specify relationships, not measured superiority.
+LEGEND: DATA → transformation or dependency; CONTROL ⇢ condition or review; HYPOTHESIS ⇢ unverified proposal.
+
+NODE n1 | Molecular representations | Sequences, complexes, concentrations and geometry.
+NODE n2 | Computational formalisms | Strings, automata, CRNs and assembly rules.
+NODE n3 | Resource accounting | Time, copies, fuel, volume, errors and readout.
+NODE n4 | Strands and reactions | Selection, enzymes and strand displacement.
+NODE n5 | Spatial and cellular state | Tile attachment and regulatory feedback.
+NODE n6 | Experimental outcomes | Observed products or signals under stated conditions.
+
+EDGE n1 → n2 | DATA | choose a state space
+EDGE n2 → n3 | DATA | define cost semantics
+EDGE n1 → n4 | CONTROL | instantiate
+EDGE n2 → n5 | CONTROL | interpret local rules
+EDGE n3 → n6 | CONTROL | compare resources
+EDGE n4 → n5 | DATA | extend the substrate
+EDGE n5 → n6 | DATA | measure
+
+READING: One experiment may admit multiple formal descriptions. A proof transfers only with a justified mapping.
+FAILURE: Formal universality does not guarantee practical scale, composability or reliable readout.

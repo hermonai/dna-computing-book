@@ -1,0 +1,15 @@
+{
+  "title": "DNA Computing",
+  "subtitle": "From Molecules to Algorithms",
+  "edition": "2-development",
+  "status": "research-reset",
+  "chapters": [],
+  "prospectus": "tex/dna-computing.tex",
+  "graphs": [
+    "DNA-G01",
+    "DNA-G02",
+    "DNA-G03",
+    "DNA-G04"
+  ],
+  "historicalSnapshot": "3e10fc84bd81e733351da539e28b729eb1f007cf"
+}

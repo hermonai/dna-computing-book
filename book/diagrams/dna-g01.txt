@@ -1,0 +1,23 @@
+ID: DNA-G01
+TITLE: The DNA abstraction ladder
+SUBTITLE: Physical evidence and digital semantics are different routes
+EVIDENCE: Editorial model; arrows specify relationships, not measured superiority.
+LEGEND: DATA → transformation or dependency; CONTROL ⇢ condition or review; HYPOTHESIS ⇢ unverified proposal.
+
+NODE n1 | Physical molecular state | Chemistry, geometry, concentration and environment.
+NODE n2 | Sequence representation | Canonical bases with explicit written orientation.
+NODE n3 | Tensor encoding | An array representing selected sequence information.
+NODE n4 | Physical validation | Measure products, uncertainty and omitted effects.
+NODE n5 | Formal operation | Declare the alphabet, domain and transformation.
+NODE n6 | Digital execution | Compute on the representation, not the molecule.
+
+EDGE n1 → n2 | DATA | abstract; lose physical state
+EDGE n2 → n3 | DATA | encode; choose axes
+EDGE n1 → n4 | CONTROL | measure
+EDGE n2 → n5 | CONTROL | define
+EDGE n3 → n6 | CONTROL | execute
+EDGE n4 → n5 | DATA | bound assumptions
+EDGE n5 → n6 | DATA | implement
+
+READING: Returning from a numerical output to a molecular prediction requires a validated physical model.
+FAILURE: Wrong orientation or omitted physics can invalidate the return to experiment; tensor parity cannot repair it.

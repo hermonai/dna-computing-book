@@ -1,41 +1,21 @@
-# Roadmap
+# Research-reset roadmap
 
-## Phase 0 - Bootstrap (current)
+## Completed in this milestone
 
-- Build the source and claim map.
-- Freeze the historical/current/target architecture naming distinction.
-- Establish book structure, notation, diagram policy, and evaluation controls.
-- Implement MiniDNA milestones M0-M4 and the exact PyTorch complement bridge.
+- Preserve the public edition and unfinished work on an archival branch.
+- Separate historical manuscript/research from the active publication manifest.
+- Rebuild thesis, audience, candidate TOC and source map.
+- Screen old chapters, diagrams, code and claims; record unresolved proof/benchmark audits.
+- Establish and test a LaTeX publication shell and canonical graph sources.
 
-## Phase 1 - Foundations manuscript
+## Next: one chapter, reviewed deeply
 
-- **In progress:** Chapters 1-3 now have complete first drafts.
-- Next: Chapters 4-5 on strands and complementarity.
-- Draft Parts I-III from primary literature.
-- Expand MiniDNA through reactions and splicing.
-- Add exercises whose answers can be checked by code.
-- Integrate the completed D02-D12 text graphs into their chapters and audit their primary sources.
+Research the first chapter's specific claims using full papers and authoritative biology sources. Write an outline and claim list first; then draft, implement the smallest example, test it, and create verified illustrations. Review math, citations, semantics and rendered pages before committing. Do not bulk-generate planned chapters.
 
-## Phase 2 - Classical models
+## Research gates still open
 
-- Draft Parts IV-VI using the common model-analysis template.
-- Add explicit resource accounting: molecules, volume, rounds, yield, and error.
-- Implement small digital witnesses for automata, splicing, and reaction systems.
+The field map is not a complete systematic review. Full-text audits of formal-model variants and contemporary experimental protocols remain open. Laboratory replication is not performed by this repository. Thermodynamic models require parameter provenance and units before use.
 
-## Phase 3 - Regulation and differentiable bridge
+## Later
 
-- Draft Parts VII-IX.
-- Add soft hybridization and trainable regulatory examples in PyTorch.
-- Require symbolic/tensor parity tests wherever an exact mapping exists.
-
-## Phase 4 - Two DNA-LLM lines
-
-- Freeze a common tokenizer, datasets, splits, metrics, and checkpoint metadata.
-- Establish an ordinary Transformer baseline and ordinary GRU/SSM baselines first.
-- Add DNA-specific mechanisms one at a time with intervention tests and ablations.
-
-## Phase 5 - Book production
-
-- Complete technical review and reference audit.
-- Build a reproducible HTML/PDF pipeline only after the Markdown sources stabilize.
-- Publish code/data licenses and source-material permissions deliberately.
+Add chapter-based releases, full index/glossary, accessible figure alternatives, reproducible measured tables and an HTML edition if useful. Optimize only after a semantic reference and measured workload exist.

@@ -1,46 +1,19 @@
-# DNA Computing: Foundations, Models, and the Road to Genomic Computation
+# DNA Computing
 
-This repository is the source for an evidence-disciplined book about molecular DNA computing, its formal models, and the careful bridge from those ideas to digital sequence models.
+## From Molecules to Algorithms
 
-The book keeps four layers distinct:
+Publication reboot • edition 2 development • branch `astra-rewrite`.
 
-1. molecular execution in a laboratory;
-2. exact digital simulation of a molecular or formal model;
-3. differentiable approximation in PyTorch;
-4. a DNA-inspired AI architecture.
+DNA computing is the deliberate encoding, transformation and readout of information in molecular systems. Its achievements become understandable only when abstract algorithms are connected to chemistry, resource costs and experimental evidence.
 
-Biological vocabulary is never evidence that a software mechanism is biologically faithful. Claims are classified in [the claims ledger](research/claims-ledger.md), and unresolved facts stay visibly unresolved.
+This is the **research-reset milestone**, not a completed book. No new manuscript chapters have been drafted in this reset. Start with [the redesign](ASTRA_REDESIGN.md), [the candidate contents](BOOK_PLAN.md), and [the execution report](RESET_REPORT.md).
 
-## Research branches
+- [Research source register](research/primary-sources.md)
+- [Publication plan and build commands](PUBLICATION_PLAN.md)
+- [Reference implementation design](REFERENCE_IMPLEMENTATION.md)
+- [Diagram standard](book/GRAPH_STANDARD.md)
+- [Historical edition and audit](historical/README.md)
 
-The shared foundations feed two independent research lines. [D18 — Two DNA sequence-model branches under one protocol](book/diagrams/d18-dna-llm-branch-map.txt) shows their shared experimental boundary, distinct state paths, comparison outputs, and evidence firewall.
+The old manuscript and research notes are quarantined under `historical/pre-reboot/` and excluded from the publication build. Existing code remains runnable for regression and audit, not as the definition of the new theory. The earlier public edition remains on `main`; no force-push or automatic default-branch change is used.
 
-Those proposed names do not rewrite history. The current local `dogma` engine is recurrent, while the current `hermon` engine is transformer-oriented. See [architecture lineage](research/architecture-lineage.md).
-
-## Start here
-
-- [Book plan](BOOK_PLAN.md)
-- [Chapter 1 - What Counts as Computation?](book/chapters/01-what-counts-as-computation.md)
-- [Chapter 2 - Four Evidence Layers](book/chapters/02-four-evidence-layers.md)
-- [Chapter 3 - Experimental Claims and Reproducible Records](book/chapters/03-experimental-claims-and-reproducible-records.md)
-- [TXT graph standard](book/diagrams/TXT_GRAPH_STANDARD.md)
-- [Roadmap](ROADMAP.md)
-- [Source map](research/source-map.md)
-- [Notation](book/NOTATION.md)
-- [MiniDNA](code/minidna/README.md)
-
-## Development
-
-```bash
-python3 -m pytest
-```
-
-PyTorch is the semantic reference layer. Optimized kernels and custom runtimes are intentionally out of scope until the algorithms and their tests are stable.
-
-## Manuscript status
-
-Chapters 1 through 3 have complete first drafts. Chapter 4 begins the DNA biology sequence with nucleotides, polarity, and strands.
-
-## Source policy
-
-The source PDFs and unpublished Evolutor papers are referenced from their local locations during research; they are not copied into this repository. This repository currently has no open-source license.
+No authorship or licensing change has been made. Public visibility does not grant a new reuse license. Third-party papers and supplied reference images are not redistributed.

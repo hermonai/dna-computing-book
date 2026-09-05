@@ -1,0 +1,25 @@
+ID: DNA-G03
+TITLE: From molecule to a defensible computation
+SUBTITLE: A result needs an encoding and a measurement contract
+EVIDENCE: Editorial model; arrows specify relationships, not measured superiority.
+LEGEND: DATA → transformation or dependency; CONTROL ⇢ condition or review; HYPOTHESIS ⇢ unverified proposal.
+
+NODE n1 | Specified problem | Define legal inputs and what counts as an answer.
+NODE n2 | Representation and algorithm | Choose encoding, transitions and an output rule.
+NODE n3 | Resource prediction | Account for material, timing and expected error.
+NODE n4 | Molecular construction | Specify strands, operations and physical assumptions.
+NODE n5 | Controlled experiment | Record controls, conditions and raw observations.
+NODE n6 | Claim with limits | State only what the measured experiment supports.
+
+EDGE n1 → n2 | DATA | encode
+EDGE n2 → n3 | DATA | analyze
+EDGE n1 → n4 | CONTROL | implement
+EDGE n2 → n5 | CONTROL | test mapping
+EDGE n3 → n6 | CONTROL | confront measurement
+EDGE n4 → n5 | DATA | execute
+EDGE n5 → n6 | DATA | interpret
+
+EDGE n6 → n2 | CONTROL | revise after failure
+
+READING: Unexpected products feed back into the construction and abstraction; preserve the failed record.
+FAILURE: An attractive simulation without physical controls is not an experimental demonstration.
