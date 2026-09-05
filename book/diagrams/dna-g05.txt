@@ -1,0 +1,23 @@
+ID: DNA-G05
+TITLE: Exact filtering and physical obligations
+SUBTITLE: A proof about tokens does not certify a molecular experiment
+EVIDENCE: Chapter 1 conceptual contract; exact examples are checked separately in code.
+LEGEND: DATA → transformation or dependency; CONTROL ⇢ obligation, not a measured causal effect.
+
+NODE n1 | Valid walk population | All walks of lengths 1 to n; adjacency is checked.
+NODE n2 | Ideal predicate filters | Endpoints, length n, then coverage of every vertex.
+NODE n3 | Surviving witnesses | Every survivor is valid; absence needs completeness.
+NODE n4 | Generation obligation | Can the encoding represent and produce each needed candidate?
+NODE n5 | Selection obligation | Do physical operations preserve wanted candidates and reject others?
+NODE n6 | Readout obligation | Can the measurement detect, decode and independently check a witness?
+
+EDGE n1 → n2 | DATA | apply predicates
+EDGE n2 → n3 | DATA | retain witnesses
+EDGE n1 → n4 | CONTROL | coverage
+EDGE n2 → n5 | CONTROL | selectivity
+EDGE n3 → n6 | CONTROL | sensitivity
+EDGE n4 → n5 | DATA | track loss
+EDGE n5 → n6 | DATA | bound conclusion
+
+READING: The left lane has exact semantics. Each right-lane obligation needs separate experimental evidence.
+FAILURE: A missing witness can give an empty readout even when a solution exists; ideal filter correctness is insufficient.

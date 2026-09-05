@@ -7,7 +7,7 @@ Date: 2026-09-05. Milestone: first-principles redesign and compiling publication
 - Starting public commit: `fd41e8c360d8d8698bcf8bfc90bef4314b2dd384`.
 - Historical snapshot including unfinished earlier work: `3e10fc84bd81e733351da539e28b729eb1f007cf`.
 - Working/publication branch: `astra-rewrite`; archival branch: `archive/pre-reboot-20260905`.
-- Final reset commit is the commit containing this report; resolve with `git rev-parse astra-rewrite`. Publication verification and exact final hash are also reported in the task handoff.
+- Final reset commit: `be928a628a9da9dcee58e51f3ba89aa1c65b7597`. This report records that fixed historical milestone; later chapter work is reported in CHAPTER_REPORT.md.
 - Public repository: [hermonai/dna-computing-book](https://github.com/hermonai/dna-computing-book/tree/astra-rewrite). The default branch remains main; no force-push is used.
 
 ## Delivered

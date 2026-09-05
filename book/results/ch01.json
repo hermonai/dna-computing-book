@@ -1,0 +1,35 @@
+{
+  "model": "exact token filtering; not chemistry",
+  "stages": [
+    [
+      "generated",
+      45
+    ],
+    [
+      "endpoints",
+      5
+    ],
+    [
+      "length",
+      3
+    ],
+    [
+      "coverage",
+      2
+    ]
+  ],
+  "witnesses": [
+    [
+      "s",
+      "u",
+      "v",
+      "t"
+    ],
+    [
+      "s",
+      "v",
+      "u",
+      "t"
+    ]
+  ]
+}

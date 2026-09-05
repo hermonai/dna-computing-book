@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-05 — Edition 2 Chapter 1
+
+- Drafted the first new chapter with a bounded proof, worked example, six exercises and solution notes.
+- Added exact walk-pool filtering and a permutation oracle.
+- Generated the printed table and JSON directly from the executable example.
+- Added DNA-G05 as canonical Unicode TXT with a generated SVG and included it in the PDF.
+- Replaced the reset-only prospectus in the active build with a reader preface and Chapter 1; preserved all historical sources.
+- See CHAPTER_REPORT.md for verification, evidence limits and the next chapter gate.
+
 ## 2026-09-05 — Edition 2 research reset
 
 - Preserved the earlier edition and unfinished work on archive/pre-reboot-20260905.
