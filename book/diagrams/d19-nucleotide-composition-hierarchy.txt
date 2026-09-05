@@ -1,0 +1,46 @@
+D19 — FROM CHEMICAL COMPONENTS TO A DNA DUPLEX
+Scope: distinguishes base, nucleoside, nucleotide, strand, and duplex as different objects.
+
+LEGEND
+  ┌─┐ chemical object   → composition/polymerization   ⇢ association
+  ╔═╗ representational boundary   ⊣ invalid identification
+
+                 ┌─────────────────┐
+                 │ NUCLEOBASE      │
+                 │ A, C, G, or T   │
+                 └────────┬────────┘
+                          │ covalent glycosidic bond to sugar
+                          ▼
+┌─────────────────┐    ┌──────────────────────────────────────┐
+│ 2′-DEOXYRIBOSE  │───►│ DEOXYRIBONUCLEOSIDE                 │
+│ five-carbon sugar│    │ base + sugar; no phosphate required │
+└─────────────────┘    └──────────────────┬───────────────────┘
+                                          │ one or more phosphate groups
+┌─────────────────┐                       ▼
+│ PHOSPHATE       │──────────────────────►┌──────────────────────────────────┐
+│ chemical group  │                       │ DEOXYRIBONUCLEOTIDE              │
+└─────────────────┘                       │ base + sugar + phosphate group(s)│
+                                          └──────────────────┬───────────────┘
+                                                             │ 3′–5′ phosphodiester linkage
+                                                             ▼
+                                          ┌──────────────────────────────────┐
+                                          │ POLYNUCLEOTIDE / DNA STRAND      │
+                                          │ directed sugar–phosphate backbone│
+                                          │ with an ordered base sequence    │
+                                          └──────────────────┬───────────────┘
+                                                             │ complementary association ⇢
+                                                             ▼
+                                          ┌──────────────────────────────────┐
+                                          │ DOUBLE-STRANDED DNA / DUPLEX     │
+                                          │ two antiparallel associated      │
+                                          │ strands in a physical conformation│
+                                          └──────────────────────────────────┘
+
+INVALID COLLAPSES
+  base ⊣ nucleotide; nucleotide ⊣ strand; one symbolic letter ⊣ complete molecular monomer;
+  paired sequences ⊣ a complete physical description of a duplex.
+
+READING NOTES
+1. A base becomes a nucleoside when attached to sugar; phosphorylation gives a nucleotide.
+2. Polymerization changes the object again: backbone bonds create direction and a chain.
+3. Duplex formation is association between strands, not another concatenation of symbols.

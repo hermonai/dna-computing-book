@@ -1,0 +1,34 @@
+D23 — SEQUENCE OPERATIONS AND THEIR EVIDENCE LAYERS
+Scope: classifies elementary operations before later chapters attach molecular mechanisms to them.
+
+LEGEND
+  ┌─┐ operation family   → exact formal output   ⇢ possible biological relation
+   ⊣ not established by the string operation
+
+                         ┌──────────────────────────────┐
+                         │ INPUT STRING s ∈ Σ_DNA*      │
+                         └──────────────┬───────────────┘
+          ┌───────────────┬─────────────┼──────────────┬────────────────┐
+          ▼               ▼             ▼              ▼                ▼
+┌────────────────┐ ┌────────────┐ ┌────────────┐ ┌──────────────┐ ┌──────────────┐
+│ RELATIONS      │ │ ORDER      │ │ ALPHABET   │ │ EDITS        │ │ COMPOSITION  │
+│ equality       │ │ reverse R  │ │ complement │ │ substitute   │ │ concatenate  │
+│ substring      │ │ orient     │ │ RC = R∘C   │ │ insert/delete│ │ split        │
+└────────┬───────┘ └──────┬─────┘ └──────┬─────┘ └──────┬───────┘ └──────┬───────┘
+         └────────────────┴───────────────┴──────────────┴────────────────┘
+                                          │ exact algorithms on symbols
+                                          ▼
+                         ┌──────────────────────────────┐
+                         │ DIGITAL SEQUENCE ALGEBRA    │
+                         │ deterministic unless stated │
+                         └──────────────┬───────────────┘
+                                        ⇢ molecular interpretation requires a mechanism
+╔════════════════════════════════════════▼══════════════════════════════════════════════╗
+║ POSSIBLE PHYSICAL OPERATIONS: binding, synthesis, cleavage, ligation, mutation       ║
+║ each requires conditions, stochasticity, yield, error, and readout                   ║
+╚═══════════════════════════════════════════════════════════════════════════════════════╝
+
+READING NOTES
+1. Reverse complement is a formal string operation motivated by antiparallel pairing.
+2. Concatenation is not ligation; substitution is not a complete molecular mutation model.
+3. Later chapters must specify which physical operator, if any, realizes each formal operation.

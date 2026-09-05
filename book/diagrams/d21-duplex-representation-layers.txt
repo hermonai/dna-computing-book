@@ -1,0 +1,35 @@
+D21 — IDEAL, COMPUTATIONAL, AND PHYSICAL DUPLEX REPRESENTATIONS
+Scope: shows why a double strand may require more structure than the pair (s, RC(s)).
+
+LEGEND
+  ┌─┐ formal object   ╔═╗ physical object   → refinement   ⊣ assumption violation
+   ⇢ empirical mapping
+
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│ IDEAL DUPLEX D₀ = (s⁺, RC(s⁺))                                                     │
+│ assumptions: canonical bases · equal length · perfect pairing · no overhang · no nick│
+│              no modification · one declared alignment · both sequences oriented     │
+└──────────────────────────────────────────┬──────────────────────────────────────────┘
+                                           │ relax one or more assumptions
+                                           ▼
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│ COMPUTATIONAL DUPLEX D₁                                                            │
+│ (strand⁺, strand⁻, alignment, pairing relation, overhangs, nicks, modifications)     │
+│ optional weights: mismatch score, uncertainty, provenance, observation quality      │
+└──────────────────────────────────────────┬──────────────────────────────────────────┘
+                                           │ physical encoding + environment ⇢
+                                           ▼
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║ PHYSICAL DUPLEX D_phys                                                             ║
+║ molecular ensemble with conformations, solvent, ions, temperature, concentrations, ║
+║ association/dissociation kinetics, competing structures, damage, and measurement    ║
+╚═══════════════════════════════════════════════════════════════════════════════════════╝
+
+FAILURE PATHS
+  mismatch / overhang / nick / modification ⊣ use of D₀ without an explicit approximation;
+  D₁ score agreement ⊣ physical stability unless calibrated against observations.
+
+READING NOTES
+1. D₀ is an exact and useful object inside its assumptions, especially for sequence algebra.
+2. D₁ can represent laboratory constructs more faithfully while remaining a digital model.
+3. D_phys is generally an ensemble under conditions, not a single pair of strings.

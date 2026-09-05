@@ -1,0 +1,37 @@
+D22 — DETERMINISTIC SEQUENCE REDUNDANCY VS PHYSICAL FUNCTION
+Scope: separates conditional Shannon information from the molecular utility of a complementary strand.
+
+LEGEND
+  ┌─┐ information object   → deterministic relation   ╔═╗ physical function domain
+   ⇒ mathematical consequence   ⊣ invalid inference
+
+┌──────────────────────────────┐
+│ RANDOM STRAND S⁺            │ distribution over Σ_DNA^n
+└──────────────┬───────────────┘
+               │ deterministic bijection S⁻ = RC(S⁺)
+               ▼
+┌──────────────────────────────┐
+│ COMPLEMENTARY SEQUENCE S⁻   │
+└──────────────┬───────────────┘
+               ⇒ H(S⁻ | S⁺) = 0 and H(S⁺,S⁻) = H(S⁺)
+               ▼
+┌──────────────────────────────┐
+│ SEQUENCE-ONLY CONCLUSION     │ the ideal second sequence adds no uncertainty
+│ when the first is known      │
+└──────────────┬───────────────┘
+               │ does not erase the second molecule
+               ▼
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║ PHYSICAL ROLES OF TWO STRANDS                                                       ║
+║ templating · selective recognition · reversible association · structural stability ║
+║ strand-specific binding · access control · damage detection/repair in named systems ║
+╚═══════════════════════════════════════════════════════════════════════════════════════╝
+
+BOUNDARY RULES
+  zero conditional sequence entropy ⊣ “the second strand is physically useless.”
+  two physical copies              ⊣ a universal error-correcting code without a repair model.
+
+READING NOTES
+1. Information is defined relative to random variables and what is already known.
+2. Physical function depends on embodiment, dynamics, and interacting machinery, not sequence entropy alone.
+3. Mismatches, modifications, and damage can make the observed second strand non-deterministic under a richer model.

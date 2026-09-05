@@ -1,0 +1,41 @@
+D20 — PHYSICAL DNA MOLECULE TO FORMAL STRING
+Scope: records exactly what the canonical four-letter string abstraction retains and discards.
+
+LEGEND
+  ╔═╗ physical evidence domain   ┌─┐ abstraction/gate   → retained representation
+   ⊣ omitted variable            ⇢ later enriched model
+
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║ PHYSICAL STRAND                                                                     ║
+║ atoms · covalent backbone · base chemistry · 5′/3′ termini · conformation           ║
+║ modifications · damage · ionic environment · concentration · interacting molecules  ║
+╚══════════════════════════════════════╤═══════════════════════════════════════════════╝
+                                       │ sequence observation + orientation convention
+                                       ▼
+                         ┌──────────────────────────────┐
+                         │ ABSTRACTION MAP α           │
+                         │ read canonical base identity│
+                         │ in declared 5′→3′ direction │
+                         └──────────────┬───────────────┘
+                                        │
+                 ┌──────────────────────┴──────────────────────┐
+                 ▼                                             ▼
+┌──────────────────────────────────┐          ┌──────────────────────────────────┐
+│ RETAINED                        │          │ OMITTED / EXTERNALIZED           │
+│ ordered symbols A,C,G,T         │          │ geometry and helical form        │
+│ length in symbols               │          │ energy and kinetic pathways      │
+│ orientation, if metadata kept   │          │ salt, temperature, concentration│
+│ exact equality/substrings       │          │ modifications, damage, nicks     │
+└──────────────────┬───────────────┘          │ secondary structure and mixtures│
+                   │                          └──────────────────┬───────────────┘
+                   ▼                                             ⊣ unsupported predictions
+       ┌──────────────────────────────┐
+       │ FORMAL STRING s ∈ Σ*         │
+       │ Σ_DNA = {A,C,G,T}            │
+       └──────────────┬───────────────┘
+                       ⇢ enrich with quality, modification, alignment, or physical state
+
+READING NOTES
+1. The map is useful because it removes variables; that same removal limits the claims it can support.
+2. A bare string has no intrinsic molecular concentration, temperature, or conformation.
+3. Orientation must be stated outside the letters or fixed by a convention such as 5′→3′ writing.
