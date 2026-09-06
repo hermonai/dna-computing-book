@@ -5,6 +5,7 @@ Every chapter defines its symbols locally. IDs distinguish definitions (DEF), pr
 - \(\Sigma_{\mathrm{DNA}}=\{A,C,G,T\}\): canonical base alphabet, not all chemical DNA states.
 - \(s=s_1\cdots s_n\): a sequence written \(5'\) to \(3'\); \(n=|s|\).
 - \(c\): basewise complement; \(RC\): reversal followed by basewise complement.
+- Aligned duplex rows carry opposite end labels. \(c(s)\) beneath a 5′-to-3′ row is a 3′-to-5′ view; \(RC(s)\) is that partner written 5′ to 3′. `Strand` stores standard orientation; `SequenceView` carries its direction explicitly.
 - \(x\): input; \(y\): output; \(\theta\): learned parameters.
 - \(h_t\): carried computational state; no implied biological interpretation.
 - \(G\): a candidate stored program representation, only when explicitly defined.

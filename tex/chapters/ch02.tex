@@ -1,0 +1,218 @@
+\chapter{Molecular structure and strand direction}
+\label{ch:structure}
+
+\section*{A four-letter string is not yet a molecule}
+The previous chapter assigned tokens to locations. A molecular encoding needs
+more discipline: which physical feature represents a token, and which features
+did the representation leave out? We begin with the smallest distinction that
+can invalidate an otherwise plausible design. The string \texttt{AACG} and the
+string \texttt{TTGC} have complementary letters in corresponding positions,
+but writing both from $5'$ to $3'$ does not display an ordinary fully paired
+antiparallel duplex.
+
+This chapter builds the vocabulary needed to explain why. You will distinguish
+a base from a nucleotide, a covalent backbone from pairing interactions, and
+an aligned partner from the same partner rewritten in a standard direction.
+The executable example checks these representations. It does not predict
+whether strands bind in a particular solution.
+
+\section{The parts and the connections}
+\index{nucleotide}\index{strand polarity}
+The canonical DNA bases are adenine (A), cytosine (C), guanine (G) and thymine
+(T). A base attached to a sugar is a nucleoside; adding phosphate gives a
+nucleotide. DNA uses deoxyribose, whereas RNA uses ribose. Along a DNA strand,
+phosphodiester linkages join the sugar-phosphate backbone through the $3'$ and
+$5'$ positions \citep{cooper2000composition}. The primes refer to positions
+on the sugar, not the first and last letters of a displayed string.
+
+These terms describe different levels of an object. A label A in a sequence
+usually records base identity while suppressing the associated sugar and
+backbone. A drawing can use that shorthand, but its legend should say so.
+Otherwise a reader may infer that isolated bases are covalently chained
+directly to one another, or that the written characters specify every chemical
+feature of the sample.
+
+We will use a precise drawing contract. A solid backbone stroke stands for
+covalent connectivity along a strand. A pairing mark between strands stands
+for an interaction between bases, not a phosphodiester bond. End labels specify
+polarity. The drawings do not specify terminal phosphorylation, protecting
+groups or other chemical modifications. A $5'$ label is therefore not a
+complete specification for an oligonucleotide order.
+
+\section{Pairing does not erase direction}
+In the canonical Watson--Crick pairing model, A pairs with T and C with G.
+The two backbones in a conventional duplex are \gls{antiparallel}: tracing one from
+$5'$ to $3'$ runs opposite to tracing the other. The familiar double helix has
+backbones outside and bases inside \citep{alberts2002dna}. Our flattened view
+preserves pairing and polarity but does not depict three-dimensional geometry.
+It should not be used to read off angles, distances or helical handedness.
+
+Figure~\ref{fig:polarity} uses the same four positions throughout. Its top row
+reads $5'$-AACG-$3'$ from left to right. The directly aligned lower row reads
+$3'$-TTGC-$5'$. To report that lower strand in the usual $5'$-to-$3'$ convention,
+start at its right-hand end and read leftward. The result is $5'$-CGTT-$3'$.
+Nothing about the molecule has changed; we changed the direction in which
+we wrote its sequence.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth]{../build/figures/dna-g06.pdf}
+\caption{DNA-G06. An original schematic of canonical pairing and sequence
+orientation, using the executable AACG example. Pairing-contact multiplicities
+follow the conventional A--T and G--C scheme \citep{alberts2002pairs}.
+The backbone and bases are coarse symbols, not atom-resolved structures.
+The lower panel changes written orientation, not chemical identity.}
+\label{fig:polarity}
+\end{figure}
+
+\section{Two transformations with different meanings}
+Let $s=s_1\cdots s_n$ be a nonempty canonical sequence written from $5'$ to
+$3'$. Define the symbol involution $c$ by
+\[
+ c(A)=T,\quad c(T)=A,\quad c(C)=G,\quad c(G)=C.
+\]
+Extending $c$ position by position gives $c(s)=c(s_1)\cdots c(s_n)$.
+Let $R(s)=s_n\cdots s_1$. The \gls{reverse-complement} is\index{reverse complement}
+\[
+ \operatorname{RC}(s)=R(c(s))=c(s_n)\cdots c(s_1).
+\]
+These are mathematical definitions. Their interpretation as the two written
+views in the figure depends on the canonical, fully paired, antiparallel
+model just specified. The functions alone do not establish a physical duplex.
+
+\begin{proposition}[Orientation round trip]
+On canonical sequences, $c$ and $R$ commute and are both involutions.
+Consequently $\operatorname{RC}(\operatorname{RC}(s))=s$.
+\end{proposition}
+\begin{proof}
+At position $i$, both $R(c(s))$ and $c(R(s))$ contain $c(s_{n+1-i})$.
+Thus the transformations commute. Applying $c$ twice restores each base;
+applying $R$ twice restores each position. Hence
+$(Rc)(Rc)=RRcc$ is the identity.
+\end{proof}
+
+An involution test is necessary but not sufficient to identify the intended
+transformation. Reversal alone, basewise complement alone, and even the identity
+function each pass a round-trip test. An asymmetric example provides the
+missing discrimination. For AACG, these outputs are respectively GCAA, TTGC
+and AACG, whereas the required reverse complement is CGTT. A test suite should
+check both the algebraic property and at least one independently specified
+orientation example.
+
+\section{A representation that exposes its assumptions}
+Our reference distinguishes a stored \texttt{Strand}, always written $5'$ to
+$3'$, from a \texttt{SequenceView}, whose direction is part of its data.
+A \texttt{Duplex} stores both member strands in standard orientation and
+validates that the second is the reverse complement of the first. Displaying
+the second strand beneath the first reverses its written order and labels it
+$3'$ to $5'$.
+
+\begin{minipage}{\textwidth}
+\begin{Verbatim}[fontsize=\small]
+from minidna.duplex import Duplex
+duplex = Duplex.from_sequence("AACG")
+for row in duplex.rows():
+    print(row)
+print(duplex.bottom)
+\end{Verbatim}
+\end{minipage}
+
+The records printed by this example are summarized in
+Table~\ref{tab:orientation}. Both rows of the paired view contain four
+nucleotides. The ideal duplex contains four base pairs, not eight base pairs;
+counting nucleotide residues across both strands would give eight.
+
+\begin{table}[htbp]
+\centering
+\input{../book/results/ch02-table}
+\caption{Generated views of the same ideal duplex. Direction belongs to the
+representation and must travel with the letters.}
+\label{tab:orientation}
+\end{table}
+
+This API excludes empty strands, ambiguous symbols, mismatches and overhangs.
+It normalizes case and removes whitespace, including Unicode whitespace.
+It does not parse decorated strings such as \texttt{5'-AACG-3'} as sequence
+input; those end labels belong to the view. A rejected input is not a claim
+that the corresponding chemistry is impossible. It says the input falls
+outside this deliberately small model.
+
+The earlier \texttt{Strand.complement()} method is retained for compatibility
+as a symbol substitution reinterpreted as a new standard-orientation sequence.
+It must not be used as a duplex constructor. The new
+\texttt{aligned\_complement()} method returns a direction-labeled view; the
+existing \texttt{reverse\_complement()} returns the partner in standard
+orientation. Documenting this distinction resolves the previous teaching
+ambiguity without silently changing existing callers' results.
+
+The tests enumerate all 1364 canonical sequences of lengths one through five.
+They check every displayed pairing column and both directions, then verify
+the round trip. A separate test rejects the incorrect pair of standard-form
+strands AACG and TTGC. Passing these tests certifies representation invariants,
+not affinity, reaction yield or biochemical selectivity.
+
+\section{Direction becomes a process constraint}
+For ordinary template-directed DNA primer extension, polymerase adds an
+incoming nucleotide at the primer's $3'$ hydroxyl end. New DNA grows in the
+$5'$-to-$3'$ direction while the paired template is traversed oppositely
+\citep{cooper2000replication}. These labels describe different strands and
+must never be combined into a statement that the new strand grows $3'$ to $5'$.
+
+Consider the purely symbolic alignment of a template written
+$3'$-TTGC-$5'$ and a primer written $5'$-AA-$3'$ beneath its first two
+positions. Continuing the canonical sequence would next add C and then G at
+the primer's $3'$ end, yielding AACG. Rewriting the template as CGTT in
+standard orientation does not change that answer; it changes how one locates
+the primer relative to the displayed template. This exercise specifies
+orientation only. A two-base primer here is a pedagogical token, not a
+laboratory design or a claim that extension would work under real conditions.
+
+The same care is needed when a drawing is rotated. A left-pointing synthesis
+arrow can still represent $5'$-to-$3'$ growth if the strand's $5'$ end lies to
+the right. Page coordinates and chemical polarity are different coordinate
+systems. Inspect the end labels before deciding that a leftward arrow is wrong.
+
+\section{What sequence logic leaves unresolved}
+A completely complementary sequence pair is an input to a physical question,
+not its answer. To estimate binding under specified conditions, a later model
+would need more than these letters and an equality predicate. We would have
+to declare which physical states are represented, the relevant environment,
+the measured quantity and how predictions are checked against observations.
+The present API intentionally has no method called ``binding probability.''
+
+Likewise, a mismatch is a difference from the canonical paired model, not an
+automatic impossibility declaration. A sequence validator should not turn a
+restricted alphabet into an assertion that modified bases do not exist. These
+boundaries matter because a program can be perfectly correct for its own
+domain while being an unsuitable model for the experimental question.
+
+\section{Exercises and solution notes}
+\begin{enumerate}
+\item Write the aligned partner of $5'$-AGTC-$3'$ with both end labels. Then
+write that partner in standard orientation.
+\item Why can testing only ATAT conceal a missing reversal in some operations?
+Compare identity and reverse complement on this input.
+\item Give three wrong implementations that pass the reverse-complement
+round-trip test. Which additional test rejects them for AACG?
+\item An ideal duplex has two fully paired strands of length 12. How many
+base pairs and nucleotide residues does it contain?
+\item In the symbolic primer example, identify the growing end, the next base
+and the direction in which the template is traversed.
+\item State two experimental conclusions that cannot be obtained by constructing
+our ideal duplex from the sequence AACG.
+\end{enumerate}
+
+\paragraph{Solution notes.}
+(1) The aligned row is $3'$-TCAG-$5'$; the standard-form partner is
+$5'$-GACT-$3'$. (2) ATAT equals its reverse complement, so identity can masquerade
+as RC on this example. (3) Identity, reversal and basewise complement are all
+involutions; a direct expected-value test requiring CGTT rejects all three.
+(4) Twelve base pairs and 24 nucleotide residues. (5) The primer's $3'$ end
+grows; C is next; the template is traversed $3'$ to $5'$. (6) For example,
+neither binding probability nor successful polymerase extension is established.
+
+\section*{The boundary we can now maintain}
+We can represent canonical DNA sequences without losing their direction and
+distinguish an exact string identity from a physical prediction. The next
+chapter develops molecular recognition and its energetic limits, where the
+gap between compatible letters and a successful interaction becomes central.

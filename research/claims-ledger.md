@@ -14,4 +14,8 @@ Historical D-claims are preserved separately and are not silently promoted. Conf
 | DNA-CL07 | A negative readout alone need not prove absence of a mathematical solution; ch1 | ESTABLISHED by counterexample | Incomplete pool yields no survivors despite existing witness | Physical sensitivity and generation need their own model | Incomplete-pool unit test | Original example, not experimental measurement | High for logical distinction |
 | DNA-CL08 | The toy filter counts are 45, 5, 3, 2; ch1 | REPRODUCED | Generated JSON and LaTeX table | Counts of enumerated token walks, not molecule numbers | chapter_example plus artifact freshness test | book/results/ch01.json | High for declared graph |
 
+| DNA-CL09 | Aligned complement and standard-form partner have different written orientations; ch2 | ESTABLISHED in canonical model | Explicit direction metadata and asymmetric AACG example | Does not predict duplex formation | 1364 short sequences plus negative case | D-S22 and original representation | High within model |
+| DNA-CL10 | RC is an involution; ch2 | PROVED | Commuting reversal/base-involution proof | Identity and other wrong operations also pass a round trip | Direct expected-value test and exhaustive short strings | Original elementary proof | High within domain |
+| DNA-CL11 | Ordinary primer extension grows new DNA 5′ to 3′; ch2 | SUPPORTED | Foundational biochemical account | Symbolic two-base primer is not a laboratory design | No physical experiment | D-S23 | High for scoped direction rule |
+
 No claim about molecular energy advantage, clinical efficacy or model intelligence is established by these examples.

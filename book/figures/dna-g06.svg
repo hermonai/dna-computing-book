@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="880" viewBox="0 0 1000 880" role="img" aria-labelledby="title desc">
+<title id="title">DNA-G06: Paired strands keep opposite directions</title>
+<desc id="desc">Canonical sequence model; foundational structure reviewed against Cooper 2000 and Alberts et al. 2002. Solid backbone: covalent connectivity; dashed contacts: canonical pairing; transition arrow: rewrite the same strand. The upper panel preserves pairing columns. The lower panel rewrites only the partner; it does not create a new molecule. Writing TTGC as 5′ to 3′ and treating it as the aligned partner loses polarity. Compatibility alone does not predict binding.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#23577d"/></marker><marker id="bar" markerWidth="10" markerHeight="16" refX="5" refY="8" orient="auto"><path d="M5,1 V15" stroke="#23577d" stroke-width="2"/></marker></defs>
+<rect width="1000" height="880" fill="white"/>
+<text x="30" y="35" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#23577d">DNA-G06 / MOLECULAR REPRESENTATION</text>
+<text x="30" y="78" font-family="DejaVu Sans, sans-serif" font-size="29" font-weight="bold" text-anchor="start" fill="#19324a">Paired strands keep opposite directions</text>
+<text x="30" y="111" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="normal" text-anchor="start" fill="#19324a">Base substitution and a change of written orientation are different operations</text>
+<rect x="25" y="140" width="950" height="370" rx="12" fill="#fbfdff" stroke="#adbfce" stroke-width="1.4"/>
+<text x="45" y="172" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="bold" text-anchor="start" fill="#19324a">A. Paired view: four aligned positions</text>
+<path d="M190,195 H825" fill="none" stroke="#23577d" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="850" y="200" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="start" fill="#19324a">5′ to 3′</text>
+<path d="M160,230 H840" fill="none" stroke="#23577d" stroke-width="4"/>
+<path d="M160,405 H840" fill="none" stroke="#23577d" stroke-width="4"/>
+<circle cx="300" cy="230" r="14" fill="#e9edf0" stroke="#7c97aa" stroke-width="1.3"/>
+<text x="300" y="236" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="middle" fill="#19324a">S</text>
+<circle cx="300" cy="405" r="14" fill="#e9edf0" stroke="#7c97aa" stroke-width="1.3"/>
+<text x="300" y="411" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="middle" fill="#19324a">S</text>
+<path d="M300,244 V255" fill="none" stroke="#23577d" stroke-width="2.5"/>
+<path d="M300,375 V391" fill="none" stroke="#23577d" stroke-width="2.5"/>
+<rect x="272" y="255" width="56" height="45" rx="7" fill="#dceef8" stroke="#adbfce" stroke-width="1.4"/>
+<rect x="272" y="330" width="56" height="45" rx="7" fill="#e3eee5" stroke="#adbfce" stroke-width="1.4"/>
+<text x="300" y="285" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" text-anchor="middle" fill="#19324a">A</text>
+<text x="300" y="360" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" text-anchor="middle" fill="#19324a">T</text>
+<path d="M295,302 V328" fill="none" stroke="#23577d" stroke-width="1.4" stroke-dasharray="6 5"/>
+<path d="M305,302 V328" fill="none" stroke="#23577d" stroke-width="1.4" stroke-dasharray="6 5"/>
+<circle cx="430" cy="230" r="14" fill="#e9edf0" stroke="#7c97aa" stroke-width="1.3"/>
+<text x="430" y="236" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="middle" fill="#19324a">S</text>
+<circle cx="430" cy="405" r="14" fill="#e9edf0" stroke="#7c97aa" stroke-width="1.3"/>
+<text x="430" y="411" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="middle" fill="#19324a">S</text>
+<path d="M430,244 V255" fill="none" stroke="#23577d" stroke-width="2.5"/>
+<path d="M430,375 V391" fill="none" stroke="#23577d" stroke-width="2.5"/>
+<rect x="402" y="255" width="56" height="45" rx="7" fill="#dceef8" stroke="#adbfce" stroke-width="1.4"/>
+<rect x="402" y="330" width="56" height="45" rx="7" fill="#e3eee5" stroke="#adbfce" stroke-width="1.4"/>
+<text x="430" y="285" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" text-anchor="middle" fill="#19324a">A</text>
+<text x="430" y="360" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" text-anchor="middle" fill="#19324a">T</text>
+<path d="M425,302 V328" fill="none" stroke="#23577d" stroke-width="1.4" stroke-dasharray="6 5"/>
+<path d="M435,302 V328" fill="none" stroke="#23577d" stroke-width="1.4" stroke-dasharray="6 5"/>
+<circle cx="560" cy="230" r="14" fill="#e9edf0" stroke="#7c97aa" stroke-width="1.3"/>
+<text x="560" y="236" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="middle" fill="#19324a">S</text>
+<circle cx="560" cy="405" r="14" fill="#e9edf0" stroke="#7c97aa" stroke-width="1.3"/>
+<text x="560" y="411" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="middle" fill="#19324a">S</text>
+<path d="M560,244 V255" fill="none" stroke="#23577d" stroke-width="2.5"/>
+<path d="M560,375 V391" fill="none" stroke="#23577d" stroke-width="2.5"/>
+<rect x="532" y="255" width="56" height="45" rx="7" fill="#dceef8" stroke="#adbfce" stroke-width="1.4"/>
+<rect x="532" y="330" width="56" height="45" rx="7" fill="#e3eee5" stroke="#adbfce" stroke-width="1.4"/>
+<text x="560" y="285" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" text-anchor="middle" fill="#19324a">C</text>
+<text x="560" y="360" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" text-anchor="middle" fill="#19324a">G</text>
+<path d="M551,302 V328" fill="none" stroke="#23577d" stroke-width="1.4" stroke-dasharray="6 5"/>
+<path d="M560,302 V328" fill="none" stroke="#23577d" stroke-width="1.4" stroke-dasharray="6 5"/>
+<path d="M569,302 V328" fill="none" stroke="#23577d" stroke-width="1.4" stroke-dasharray="6 5"/>
+<circle cx="690" cy="230" r="14" fill="#e9edf0" stroke="#7c97aa" stroke-width="1.3"/>
+<text x="690" y="236" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="middle" fill="#19324a">S</text>
+<circle cx="690" cy="405" r="14" fill="#e9edf0" stroke="#7c97aa" stroke-width="1.3"/>
+<text x="690" y="411" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="middle" fill="#19324a">S</text>
+<path d="M690,244 V255" fill="none" stroke="#23577d" stroke-width="2.5"/>
+<path d="M690,375 V391" fill="none" stroke="#23577d" stroke-width="2.5"/>
+<rect x="662" y="255" width="56" height="45" rx="7" fill="#dceef8" stroke="#adbfce" stroke-width="1.4"/>
+<rect x="662" y="330" width="56" height="45" rx="7" fill="#e3eee5" stroke="#adbfce" stroke-width="1.4"/>
+<text x="690" y="285" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" text-anchor="middle" fill="#19324a">G</text>
+<text x="690" y="360" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="bold" text-anchor="middle" fill="#19324a">C</text>
+<path d="M681,302 V328" fill="none" stroke="#23577d" stroke-width="1.4" stroke-dasharray="6 5"/>
+<path d="M690,302 V328" fill="none" stroke="#23577d" stroke-width="1.4" stroke-dasharray="6 5"/>
+<path d="M699,302 V328" fill="none" stroke="#23577d" stroke-width="1.4" stroke-dasharray="6 5"/>
+<text x="112" y="238" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="start" fill="#19324a">5′</text>
+<text x="875" y="238" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="start" fill="#19324a">3′</text>
+<text x="112" y="413" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="start" fill="#19324a">3′</text>
+<text x="875" y="413" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="start" fill="#19324a">5′</text>
+<path d="M825,440 H190" fill="none" stroke="#23577d" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="850" y="445" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="start" fill="#19324a">5′ to 3′</text>
+<text x="45" y="482" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="normal" text-anchor="start" fill="#19324a">S: sugar symbol   |   solid backbone: covalent chain   |   dashed: pairing contacts</text>
+<rect x="25" y="535" width="950" height="175" rx="12" fill="#f3f7f2" stroke="#adbfce" stroke-width="1.4"/>
+<text x="45" y="572" font-family="DejaVu Sans, sans-serif" font-size="21" font-weight="bold" text-anchor="start" fill="#19324a">B. Rewrite the lower strand from its 5′ end</text>
+<text x="60" y="619" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="start" fill="#19324a">3′-TTGC-5′</text>
+<path d="M340,610 H565" fill="none" stroke="#23577d" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="453" y="645" font-family="DejaVu Sans, sans-serif" font-size="17" font-weight="normal" text-anchor="middle" fill="#19324a">read right to left</text>
+<text x="625" y="619" font-family="DejaVu Sans, sans-serif" font-size="27" font-weight="bold" text-anchor="start" fill="#19324a">5′-CGTT-3′</text>
+<text x="45" y="682" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="normal" text-anchor="start" fill="#19324a">Same partner, different written order. No synthesis or chemical reversal is shown.</text>
+<text x="30" y="753" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="start" fill="#19324a">READING: The upper panel preserves pairing columns. The lower panel rewrites only the partner;</text>
+<text x="30" y="775" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="start" fill="#19324a">it does not create a new molecule.</text>
+<text x="30" y="814" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="start" fill="#19324a">BOUNDARY: Writing TTGC as 5′ to 3′ and treating it as the aligned partner loses polarity.</text>
+<text x="30" y="836" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="normal" text-anchor="start" fill="#19324a">Compatibility alone does not predict binding.</text>
+</svg>

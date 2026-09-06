@@ -1,0 +1,8 @@
+{
+  "top_5to3": "AACG",
+  "aligned_3to5": "TTGC",
+  "partner_5to3": "CGTT",
+  "length_nt_per_strand": 4,
+  "base_pairs": 4,
+  "model": "ideal canonical sequence alignment; not a binding prediction"
+}

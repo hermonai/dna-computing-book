@@ -8,7 +8,7 @@ BASE_TO_INDEX = {base: index for index, base in enumerate(DNA_ALPHABET)}
 
 
 def normalize_sequence(sequence: str) -> str:
-    """Remove ASCII whitespace and normalize a DNA sequence to uppercase."""
+    """Remove Unicode whitespace and normalize a DNA sequence to uppercase."""
 
     if not isinstance(sequence, str):
         raise TypeError("sequence must be a string")
@@ -25,4 +25,3 @@ def validate_sequence(sequence: str, *, allow_empty: bool = False) -> str:
     if invalid:
         raise ValueError(f"invalid DNA bases: {', '.join(invalid)}")
     return normalized
-

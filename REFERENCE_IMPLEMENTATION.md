@@ -4,9 +4,9 @@
 
 | Module | Classification | Decision and observed limitation |
 | --- | --- | --- |
-| alphabet.py | teaching reference | Retain concept; normalization removes Unicode whitespace despite an ASCII-only docstring. Clarify policy later. |
+| alphabet.py | teaching reference | Normalization removes Unicode whitespace and uppercases canonical bases; Chapter 2 corrects the docstring and tests this policy. |
 | complement.py | symbolic/tensor teaching reference | Exact permutation and reverse-complement operations; 22-test repository baseline includes unfinished extensions. Formal strings may be empty while current API rejects them. |
-| strand.py | prototype representation | Orientation ambiguity: complement() returns a 5′→3′-labeled Strand without reversal. Do not teach this as the physical partner. |
+| strand.py / duplex.py | sequence-only teaching reference | Chapter 2 adds direction-labeled SequenceView, aligned_complement and validated Duplex. Legacy complement() behavior is retained and explicitly documented as a new symbol-transformed 5′→3′ sequence, not its aligned partner. reverse_complement() supplies the partner in standard orientation. No thermodynamic prediction. |
 | hybridization.py | toy alignment model | Correctly disclaims thermodynamic prediction; keep as a contrast example. |
 | reactions.py | symbolic prototype | Cut may produce empty fragments that ligate then rejects; repair domain contract before exercises. |
 | splicing.py | formal crossover toy | Suffix exchange is not a complete splicing-system semantics or biochemical simulation. |

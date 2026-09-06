@@ -212,6 +212,18 @@ Supports: Coding and data recovery; storage payload and physical-density assumpt
 
 Next gate: full relevant methods/proof and supplements before quantitative chapter claims.
 
+## Chapter 2 reading upgrades — 2026-09-06
+
+D-S13 (Cooper, Molecular Composition): read the Nucleic Acids subsection and relevant figure captions for nucleotide vocabulary, backbone and written direction. Detailed chapter review is in [DNA-02 review](chapter-02-review.md). Foundational use only; dated inventories elsewhere in the source are not adopted.
+
+## D-S22 — The Structure and Function of DNA
+
+Alberts, Johnson, Lewis, Raff, Roberts and Walter. Molecular Biology of the Cell, 4th edition, 2002. Authoritative textbook, not a primary experimental report. Read the [complementary-chain section](https://www.ncbi.nlm.nih.gov/books/NBK26821/) and [Figure 4-4 caption](https://www.ncbi.nlm.nih.gov/books/NBK26821/figure/A599/). Used for canonical pairing and polarity, not helix dimensions or experimental forecasts. No source artwork copied.
+
+## D-S23 — DNA Replication
+
+Geoffrey M. Cooper, The Cell: A Molecular Approach, 2nd edition, 2000. [Source](https://www.ncbi.nlm.nih.gov/books/NBK9940/). Read polymerase/primer and fork sections for synthesis direction; do not adopt the source's dated polymerase-family inventory or unresolved historical assignments as current knowledge. The chapter uses an original symbolic orientation example, not an experimental protocol.
+
 ## Search record and exclusions
 
 Search families: classical DNA experiments; splicing/formal languages; CRN compilation; programmable DNA circuits and self-assembly; 2024–2026 molecular computing; Transformers, selective state spaces, RC equivariance, MoE, retrieval, program learning, continual learning and AGI definitions. Publisher and author records were preferred. Search-index dates were not treated as publication dates. News, social posts and secondary summaries were discovery aids only and are not evidence for technical claims. Some publisher direct opens failed; metadata/abstract access depth is marked above. No supplied model-release benchmark assertions were adopted.

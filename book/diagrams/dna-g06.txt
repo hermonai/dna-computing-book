@@ -1,0 +1,17 @@
+ID: DNA-G06
+LAYOUT: chapter02
+TITLE: Paired strands keep opposite directions
+SUBTITLE: Base substitution and a change of written orientation are different operations
+SEQUENCE: AACG
+EVIDENCE: Canonical sequence model; foundational structure reviewed against Cooper 2000 and Alberts et al. 2002.
+LEGEND: Solid backbone: covalent connectivity; dashed contacts: canonical pairing; transition arrow: rewrite the same strand.
+
+NODE n1 | Top strand | 5′-AACG-3′, written from left to right.
+NODE n2 | Aligned partner | 3′-TTGC-5′, directly below the top strand.
+NODE n3 | Partner in standard form | 5′-CGTT-3′, reading the lower strand from its right-hand 5′ end.
+
+EDGE n1 → n2 | DATA | complement each aligned base; opposite polarity
+EDGE n2 → n3 | DATA | reverse written order; no chemical transformation
+
+READING: The upper panel preserves pairing columns. The lower panel rewrites only the partner; it does not create a new molecule.
+FAILURE: Writing TTGC as 5′ to 3′ and treating it as the aligned partner loses polarity. Compatibility alone does not predict binding.

@@ -7,4 +7,6 @@
 
 - **DNA-G05 — Exact filtering and physical obligations**: [canonical TXT](dna-g05.txt), [generated SVG](../figures/dna-g05.svg). Status: Chapter 1 conceptual contract, internally reviewed; no physical or performance validation claimed.
 
-Only DNA-G05 is included in the active Chapter 1 PDF. Earlier edition-2 maps remain research aids; the reset prospectus source is retained but excluded from the current build. Historical diagrams are not active figures.
+- **DNA-G06 — Paired strands keep opposite directions**: [canonical TXT](dna-g06.txt), [generated SVG](../figures/dna-g06.svg). Scientific schematic; internal source/semantic/visual review, no empirical performance claim.
+
+DNA-G05 and DNA-G06 are included in the active two-chapter PDF. Earlier maps remain research aids; the reset prospectus and historical diagrams are excluded.

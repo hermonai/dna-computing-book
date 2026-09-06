@@ -2,12 +2,18 @@
   "title": "DNA Computing",
   "subtitle": "From Molecules to Algorithms",
   "edition": "2-development",
-  "status": "chapter-01-development",
+  "status": "chapters-01-02-development",
   "chapters": [
     {
       "id": "DNA-01",
       "title": "Why compute with molecules?",
       "source": "tex/chapters/ch01.tex",
+      "status": "internally-reviewed-draft"
+    },
+    {
+      "id": "DNA-02",
+      "title": "Molecular structure and strand direction",
+      "source": "tex/chapters/ch02.tex",
       "status": "internally-reviewed-draft"
     }
   ],
@@ -18,7 +24,8 @@
     "DNA-G02",
     "DNA-G03",
     "DNA-G04",
-    "DNA-G05"
+    "DNA-G05",
+    "DNA-G06"
   ],
   "historicalSnapshot": "3e10fc84bd81e733351da539e28b729eb1f007cf"
 }

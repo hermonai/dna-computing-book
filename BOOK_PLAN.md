@@ -1,11 +1,11 @@
 # DNA Computing: candidate table of contents
 
-Status: edition 2 development. Chapter 1 is an internally reviewed draft with executable examples; chapters 2 onward are planned, not written. Stable IDs survive later title or ordering changes.
+Status: edition 2 development. Chapters 1 and 2 are internally reviewed drafts with executable examples; chapters 3 onward are planned, not written. Stable IDs survive later title or ordering changes.
 
 ## I. Molecules that carry information
 
 1. **DNA-01 — Why compute with molecules?**
-2. **DNA-02 — Atoms, nucleotides and oriented strands**
+2. **DNA-02 — Molecular structure and strand direction**
 3. **DNA-03 — Pairing, free energy and molecular recognition**
 4. **DNA-04 — From physical state to strings and information**
 
