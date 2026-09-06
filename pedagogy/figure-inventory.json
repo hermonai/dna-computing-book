@@ -1,0 +1,650 @@
+[
+  {
+    "id": "DNAU-01-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-01",
+    "readerQuestion": "Can the same rule work with counters and a calculator?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-01-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-01",
+    "readerQuestion": "Can the same rule work with counters and a calculator?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-02-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-02",
+    "readerQuestion": "How can a mark stand for something else?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-02-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-02",
+    "readerQuestion": "How can a mark stand for something else?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-03-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-03",
+    "readerQuestion": "How can a recipe choose and remember?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-03-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-03",
+    "readerQuestion": "How can a recipe choose and remember?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-04-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-04",
+    "readerQuestion": "How do instructions on paper become a runnable program?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-04-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-04",
+    "readerQuestion": "How do instructions on paper become a runnable program?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-05-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-05",
+    "readerQuestion": "How does a city map become a graph?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-05-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-05",
+    "readerQuestion": "How does a city map become a graph?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-06-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-06",
+    "readerQuestion": "Why can a tiny choice list grow so quickly?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-06-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-06",
+    "readerQuestion": "Why can a tiny choice list grow so quickly?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-07-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-07",
+    "readerQuestion": "What holds a molecule together?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-07-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-07",
+    "readerQuestion": "What holds a molecule together?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-08-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-08",
+    "readerQuestion": "Why does the same molecule behave differently in different solutions?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-08-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-08",
+    "readerQuestion": "Why does the same molecule behave differently in different solutions?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-09-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-09",
+    "readerQuestion": "Where is DNA, and what is a genome?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-09-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-09",
+    "readerQuestion": "Where is DNA, and what is a genome?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-10-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-10",
+    "readerQuestion": "What do the letters A, C, G and T leave out?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-10-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-10",
+    "readerQuestion": "What do the letters A, C, G and T leave out?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-11-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-11",
+    "readerQuestion": "Why is a complement not yet a reverse complement?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-11-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-11",
+    "readerQuestion": "Why is a complement not yet a reverse complement?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-12-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-12",
+    "readerQuestion": "Why might a possible molecular encounter never be observed?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-12-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-12",
+    "readerQuestion": "Why might a possible molecular encounter never be observed?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-13-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-13",
+    "readerQuestion": "What is copied, and what is translated?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-13-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-13",
+    "readerQuestion": "What is copied, and what is translated?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-14-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-14",
+    "readerQuestion": "Why are the two new strands made differently?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-14-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-14",
+    "readerQuestion": "Why are the two new strands made differently?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-15-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-15",
+    "readerQuestion": "What goes into an instrument, and what comes out?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-15-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-15",
+    "readerQuestion": "What goes into an instrument, and what comes out?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-16-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-16",
+    "readerQuestion": "Why is compatible pairing not guaranteed binding?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-16-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-16",
+    "readerQuestion": "Why is compatible pairing not guaranteed binding?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-17-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-17",
+    "readerQuestion": "How can cutting and joining act like instructions?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-17-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-17",
+    "readerQuestion": "How can cutting and joining act like instructions?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-18-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-18",
+    "readerQuestion": "How can a chosen DNA region become easier to detect?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-18-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-18",
+    "readerQuestion": "How can a chosen DNA region become easier to detect?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-19-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-19",
+    "readerQuestion": "How does a physical separation implement a selection rule?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-19-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-19",
+    "readerQuestion": "How does a physical separation implement a selection rule?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-20-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-20",
+    "readerQuestion": "How does a molecular event become a reported answer?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-20-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-20",
+    "readerQuestion": "How does a molecular event become a reported answer?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-21-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-21",
+    "readerQuestion": "Can a route visit every city exactly once?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-21-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-21",
+    "readerQuestion": "Can a route visit every city exactly once?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-22-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-22",
+    "readerQuestion": "How can a molecule represent a city and a road?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-22-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-22",
+    "readerQuestion": "How can a molecule represent a city and a road?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-23-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-23",
+    "readerQuestion": "Why is one filter not enough?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-23-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-23",
+    "readerQuestion": "Why is one filter not enough?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-24-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-24",
+    "readerQuestion": "Why is a small successful experiment not a shortcut around hard search?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-24-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-24",
+    "readerQuestion": "Why is a small successful experiment not a shortcut around hard search?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-25-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-25",
+    "readerQuestion": "What does it mean for different machines to solve the same kind of problem?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-25-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-25",
+    "readerQuestion": "What does it mean for different machines to solve the same kind of problem?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-26-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-26",
+    "readerQuestion": "What changes when the allowed molecular instructions change?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-26-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-26",
+    "readerQuestion": "What changes when the allowed molecular instructions change?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-27-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-27",
+    "readerQuestion": "Can cutting and joining describe a formal language?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-27-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-27",
+    "readerQuestion": "Can cutting and joining describe a formal language?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-28-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-28",
+    "readerQuestion": "How can amounts change step by step?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-28-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-28",
+    "readerQuestion": "How can amounts change step by step?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-29-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-29",
+    "readerQuestion": "How can one strand release another without an enzyme?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-29-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-29",
+    "readerQuestion": "How can one strand release another without an enzyme?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-30-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-30",
+    "readerQuestion": "How can small reactions be connected into a larger computation?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-30-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-30",
+    "readerQuestion": "How can small reactions be connected into a larger computation?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-31-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-31",
+    "readerQuestion": "How can local attachments create a larger pattern?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-31-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-31",
+    "readerQuestion": "How can local attachments create a larger pattern?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-32-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-32",
+    "readerQuestion": "How can the same DNA support different cellular behavior?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-32-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-32",
+    "readerQuestion": "How can the same DNA support different cellular behavior?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-33-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-33",
+    "readerQuestion": "How can a message survive a damaged molecular copy?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-33-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-33",
+    "readerQuestion": "How can a message survive a damaged molecular copy?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-34-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-34",
+    "readerQuestion": "Why do sequence-analysis programs use arrays of numbers?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-34-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-34",
+    "readerQuestion": "Why do sequence-analysis programs use arrays of numbers?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-35-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-35",
+    "readerQuestion": "What must be counted before calling a design efficient?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-35-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-35",
+    "readerQuestion": "What must be counted before calling a design efficient?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-36-F1",
+    "type": "sequential teaching figure",
+    "status": "storyboard-only",
+    "chapter": "DNAU-36",
+    "readerQuestion": "What can you now build, explain and still not claim?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAU-36-F2",
+    "type": "worked-example comparison",
+    "status": "planned-not-drawn",
+    "chapter": "DNAU-36",
+    "readerQuestion": "What can you now build, explain and still not claim?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "not-drawn-not-reviewed"
+  }
+]

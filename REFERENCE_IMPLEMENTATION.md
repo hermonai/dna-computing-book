@@ -1,5 +1,7 @@
 # MiniDNA reference-stack redesign
 
+> Preserved edition-2 document. This does not describe the active undergraduate-first edition. See [PEDAGOGICAL_REDESIGN.md](PEDAGOGICAL_REDESIGN.md); the new manuscript has no drafted chapters yet.
+
 ## Audit of every implementation module
 
 | Module | Classification | Decision and observed limitation |

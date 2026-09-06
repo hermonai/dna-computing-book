@@ -1,52 +1,61 @@
-# DNA Computing: candidate table of contents
+# DNA Computing: undergraduate-first architecture
 
-Status: edition 2 development. Chapters 1 and 2 are internally reviewed drafts with executable examples; chapters 3 onward are planned, not written. Stable IDs survive later title or ordering changes.
+Status: planning only. No new chapters, finished figures, animations, experiments or reviewed learning outcomes are claimed. Generated from [pedagogy/curriculum.json](pedagogy/curriculum.json); edit that source and regenerate.
 
-## I. Molecules that carry information
+## Table of contents
 
-1. **DNA-01 — Why compute with molecules?**
-2. **DNA-02 — Molecular structure and strand direction**
-3. **DNA-03 — Pairing, free energy and molecular recognition**
-4. **DNA-04 — From physical state to strings and information**
+### I · Representing and solving small problems
 
-## II. Operations and the first algorithms
+1. **DNAU-01 — What does it mean to compute?**. Can the same rule work with counters and a calculator?
+2. **DNAU-02 — Symbols, information and representations**. How can a mark stand for something else?
+3. **DNAU-03 — Algorithms, decisions and remembered state**. How can a recipe choose and remember?
+4. **DNAU-04 — Your first small Python programs**. How do instructions on paper become a runnable program?
+5. **DNAU-05 — Cities, roads, graphs and paths**. How does a city map become a graph?
+6. **DNAU-06 — Search, counting and growing work**. Why can a tiny choice list grow so quickly?
 
-5. **DNA-05 — Copying, cutting, joining and reading**
-6. **DNA-06 — Adleman: a complete experiment reconstruction**
-7. **DNA-07 — From SAT proposals to finite-state machines**
-8. **DNA-08 — Laboratory resources, errors and readout**
+### II · DNA from zero
 
-## III. Formal molecular programs
+7. **DNAU-07 — Atoms, molecules and different kinds of bonds**. What holds a molecule together?
+8. **DNAU-08 — Solutions, amounts, temperature and change**. Why does the same molecule behave differently in different solutions?
+9. **DNAU-09 — Cells, chromosomes, genes and genomes**. Where is DNA, and what is a genome?
+10. **DNAU-10 — From a nucleotide to a DNA strand**. What do the letters A, C, G and T leave out?
+11. **DNAU-11 — Direction, pairing and reverse complement**. Why is a complement not yet a reverse complement?
+12. **DNAU-12 — Chance, encounters and repeated trials**. Why might a possible molecular encounter never be observed?
+13. **DNAU-13 — From DNA to RNA and proteins**. What is copied, and what is translated?
+14. **DNAU-14 — Enzymes and DNA replication in six frames**. Why are the two new strands made differently?
 
-9. **DNA-09 — Strand, sticker and Watson–Crick models**
-10. **DNA-10 — Splicing and insertion–deletion systems**
-11. **DNA-11 — Chemical reaction networks and stochastic computation**
-12. **DNA-12 — Strand displacement: domains, kinetics and leakage**
-13. **DNA-13 — Composing digital and analog molecular circuits**
+### III · Molecular operations and the laboratory
 
-## IV. Computation through assembly and regulation
+15. **DNAU-15 — What a laboratory operation actually does**. What goes into an instrument, and what comes out?
+16. **DNAU-16 — Hybridization as molecular recognition**. Why is compatible pairing not guaranteed binding?
+17. **DNAU-17 — Cutting and joining strands**. How can cutting and joining act like instructions?
+18. **DNAU-18 — Copying selected DNA with PCR**. How can a chosen DNA region become easier to detect?
+19. **DNAU-19 — Separating molecules and retaining candidates**. How does a physical separation implement a selection rule?
+20. **DNAU-20 — Detecting and reading a result**. How does a molecular event become a reported answer?
 
-14. **DNA-14 — Tile assembly and local rules**
-15. **DNA-15 — Origami as geometry and addressability**
-16. **DNA-16 — Synthetic gene circuits and feedback**
-17. **DNA-17 — Molecular pattern recognition**
+### IV · Understanding the first DNA computer
 
-## V. Information engineering and limits
+21. **DNAU-21 — Hamiltonian paths: a visual mini-course**. Can a route visit every city exactly once?
+22. **DNAU-22 — Adleman's idea: encode a graph in DNA**. How can a molecule represent a city and a road?
+23. **DNAU-23 — Generate, filter and read the candidates**. Why is one filter not enough?
+24. **DNAU-24 — What the experiment proved, and what it did not**. Why is a small successful experiment not a shortcut around hard search?
 
-18. **DNA-18 — DNA storage, coding and random access**
-19. **DNA-19 — Storage–computation interfaces**
-20. **DNA-20 — Complexity: time, molecules, volume and readout**
-21. **DNA-21 — Energy accounting and reliability**
-22. **DNA-22 — Design tools and executable molecular models**
+### V · Building more molecular programs
 
-## VI. A measured frontier
+25. **DNAU-25 — Languages, machines and computational models**. What does it mean for different machines to solve the same kind of problem?
+26. **DNAU-26 — Strand, sticker and paired-strand models**. What changes when the allowed molecular instructions change?
+27. **DNAU-27 — Splicing and rewriting strings**. Can cutting and joining describe a formal language?
+28. **DNAU-28 — Reaction networks and changing amounts**. How can amounts change step by step?
+29. **DNAU-29 — Strand displacement in slow motion**. How can one strand release another without an enzyme?
+30. **DNAU-30 — Digital and analog molecular circuits**. How can small reactions be connected into a larger computation?
+31. **DNAU-31 — Local assembly, tiles and DNA origami**. How can local attachments create a larger pattern?
 
-23. **DNA-23 — Programmable and reusable circuits: the evidence through 2026**
-24. **DNA-24 — DNA sequence models are a different kind of computation**
-25. **DNA-25 — What molecules teach computer science**
+### VI · From molecular systems to the next book
 
-## Pedagogical contract
+32. **DNAU-32 — Genes, regulation, development and evolution**. How can the same DNA support different cellular behavior?
+33. **DNAU-33 — DNA storage, codes and recovery**. How can a message survive a damaged molecular copy?
+34. **DNAU-34 — Many numbers at once: vectors, matrices and DNA data**. Why do sequence-analysis programs use arrays of numbers?
+35. **DNAU-35 — Resources, energy, reliability and design tools**. What must be counted before calling a design efficient?
+36. **DNAU-36 — A measured frontier and the bridge to Evolutor**. What can you now build, explain and still not claim?
 
-Each major case connects problem, representation, molecular operation, formal model, resource accounting and measured readout. Exercises cover mechanism, proof, implementation and experimental interpretation. No prior biology text is assumed.
-
-Appendices: mathematical prerequisites; biological terminology; reproducibility contracts; worked exercise solutions; glossary and index. Chapter count is subordinate to teaching quality.
+Chapter count is provisional, not a promise of one semester. These are small teaching units, not equal-length lectures. The full two-book path can span multiple courses. No chapter requires an external prerequisite textbook.

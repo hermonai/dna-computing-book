@@ -1,0 +1,641 @@
+[
+  {
+    "id": "DNAU-05-A1",
+    "chapter": "DNAU-05",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Keep four city positions fixed and remove decoration",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Replace cities with dots and roads with arrows",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Trace a walk that repeats a city",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Contrast a simple path and a closed cycle",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-05/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-10-A1",
+    "chapter": "DNAU-10",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Separate base, sugar and phosphate",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Assemble one nucleotide",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Join successive nucleotides along a backbone",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Zoom out to a schematic double helix",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-10/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-14-A1",
+    "chapter": "DNAU-14",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Start with an intact duplex",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Open a local region",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Place primers",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Extend from each primer's 3-prime end",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 5,
+        "action": "Contrast continuous and discontinuous synthesis",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 6,
+        "action": "Show two daughter duplexes",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-14/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-17-A1",
+    "chapter": "DNAU-17",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Mark a recognition site without cutting",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Cut at labeled positions",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Align compatible ends",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Join covalent backbones and show what remains unchanged",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-17/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-18-A1",
+    "chapter": "DNAU-18",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Separate paired strands",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Attach primers",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Extend new strands",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Repeat a cycle and contrast ideal versus imperfect counts",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-18/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-19-A1",
+    "chapter": "DNAU-19",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Load a labeled sample beside a reference",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Move charged molecules through a gel",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Compare bands",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Retain a marked fraction with a documented selection rule",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-19/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-20-A1",
+    "chapter": "DNAU-20",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Order symbols into a conceptual synthesis request",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Read a fluorescence signal with a control",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Decode a schematic sequence trace",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Mark an ambiguous result",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-20/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-21-A1",
+    "chapter": "DNAU-21",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Recall four cities and one-way roads",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Try a route with a missing city",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Try a repeated city",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Keep a valid all-city route",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 5,
+        "action": "Name Hamiltonian path only now",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 6,
+        "action": "Close a cycle and compare",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-21/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-22-A1",
+    "chapter": "DNAU-22",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Place city symbols beside oriented DNA words",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Align a road-encoding bridge",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Join a possible route",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Decode to the original cities",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-22/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-23-A1",
+    "chapter": "DNAU-23",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Generate several labeled candidate routes",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Retain endpoints",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Retain required length",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Retain vertex coverage",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 5,
+        "action": "Read and independently check survivors",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-23/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-25-A1",
+    "chapter": "DNAU-25",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Sort accepted and rejected symbol strings",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Follow a turnstile state diagram",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Add a read/write tape",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Translate a small logical condition into a checking task",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-25/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-27-A1",
+    "chapter": "DNAU-27",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Mark two cut contexts",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Exchange allowed suffixes",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Generate a new string",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Compare a rule-system derivation with a chemical cut",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-27/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-28-A1",
+    "chapter": "DNAU-28",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Count two species in a container",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Fire one permitted reaction",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Subtract consumed and add produced objects",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Compare many random histories",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-28/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-29-A1",
+    "chapter": "DNAU-29",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Show an intact gate and incoming strand",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Bind a toehold",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Advance branch migration in stable positions",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Release the output",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 5,
+        "action": "Contrast a leakage path",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-29/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-30-A1",
+    "chapter": "DNAU-30",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Solve a two-input logic question with cards",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Replace one gate with molecular operations",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Compose two gates",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Contrast discrete decisions with continuously varying amounts",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-30/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-31-A1",
+    "chapter": "DNAU-31",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Match edge labels on two tiles",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Grow a small pattern by local rules",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Contrast tiles with a folded scaffold",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Locate an address on the folded object",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-31/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-32-A1",
+    "chapter": "DNAU-32",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Keep DNA fixed while a control signal changes expression",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Compare two cell states",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Show a heritable sequence change",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Track variation and selection across generations",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-32/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-33-A1",
+    "chapter": "DNAU-33",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Map a short message to symbols",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Insert one substitution or missing symbol",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Use redundancy to recover or flag ambiguity",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Select a requested block",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-33/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-34-A1",
+    "chapter": "DNAU-34",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Turn three sequence features into a row of numbers",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Stack several rows into a table",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Combine two feature rows with weights",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Contrast software analyzing DNA with molecules computing",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-34/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-35-A1",
+    "chapter": "DNAU-35",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Give time, sample volume and measurement separate meters",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Trace an error through two operations",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Compare a model forecast with a supplied observation",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Mark an unmeasured quantity as unknown",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-35/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  },
+  {
+    "id": "DNAU-36-A1",
+    "chapter": "DNAU-36",
+    "status": "planned-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "Trace a small problem through representation, operation and readout",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "Place a conventional alternative alongside it",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "Mark what evidence is missing",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "Connect achieved learning outcomes to Book II entry checks",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnau-36/",
+    "motionPolicy": "Only animate changes needed to answer the reader question; provide static and reduced-motion alternatives."
+  }
+]

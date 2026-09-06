@@ -1,31 +1,15 @@
 {
   "title": "DNA Computing",
   "subtitle": "From Molecules to Algorithms",
-  "edition": "2-development",
-  "status": "chapters-01-02-development",
-  "chapters": [
-    {
-      "id": "DNA-01",
-      "title": "Why compute with molecules?",
-      "source": "tex/chapters/ch01.tex",
-      "status": "internally-reviewed-draft"
-    },
-    {
-      "id": "DNA-02",
-      "title": "Molecular structure and strand direction",
-      "source": "tex/chapters/ch02.tex",
-      "status": "internally-reviewed-draft"
-    }
-  ],
-  "main": "tex/dna-computing.tex",
-  "resetProspectus": "tex/frontmatter/prospectus.tex",
-  "graphs": [
-    "DNA-G01",
-    "DNA-G02",
-    "DNA-G03",
-    "DNA-G04",
-    "DNA-G05",
-    "DNA-G06"
-  ],
+  "edition": "3-undergraduate-planning",
+  "status": "architecture-only-no-manuscript",
+  "chapters": [],
+  "main": null,
+  "graphs": [],
+  "pedagogy": "pedagogy/curriculum.json",
+  "previousEdition": {
+    "branch": "astra-rewrite",
+    "commit": "a1fb9a6154976f903b39d0f8a26834a8336f2264"
+  },
   "historicalSnapshot": "3e10fc84bd81e733351da539e28b729eb1f007cf"
 }

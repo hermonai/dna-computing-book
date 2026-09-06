@@ -1,0 +1,2039 @@
+{
+  "schemaVersion": 1,
+  "book": "DNA Computing",
+  "subtitle": "From Molecules to Algorithms",
+  "edition": "3-undergraduate-planning",
+  "status": "architecture-only-no-manuscript",
+  "branch": "astra-undergraduate-rewrite",
+  "preservedEdition": {
+    "branch": "astra-rewrite",
+    "commit": "a1fb9a6154976f903b39d0f8a26834a8336f2264"
+  },
+  "entryAssumptions": [
+    "Basic high-school arithmetic and algebra",
+    "Ability to follow a logical explanation"
+  ],
+  "chapters": [
+    {
+      "id": "DNAU-01",
+      "number": 1,
+      "part": "I · Representing and solving small problems",
+      "title": "What does it mean to compute?",
+      "domains": [
+        "computer-science"
+      ],
+      "requires": [],
+      "book1Requires": [],
+      "introduces": [
+        "computation",
+        "input",
+        "output",
+        "rule",
+        "step"
+      ],
+      "readerQuestion": "Can the same rule work with counters and a calculator?",
+      "frames": [
+        "Lay out three counters and add two",
+        "Move the counters one at a time",
+        "Read five counters and compare with a calculator display"
+      ],
+      "mathBridge": "Count tangible objects before writing 3 + 2 = 5; no variables or code syntax.",
+      "codeLab": "Hand-execute a counter recipe; no installation or programming required.",
+      "exercise": "Identify input and output; find an ambiguous instruction; explain why the material can change while the rule stays the same.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-01-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-01-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-02",
+      "number": 2,
+      "part": "I · Representing and solving small problems",
+      "title": "Symbols, information and representations",
+      "domains": [
+        "mathematics",
+        "computer-science"
+      ],
+      "requires": [
+        "DNAU-01"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "symbol",
+        "data",
+        "information",
+        "representation",
+        "encoding",
+        "set",
+        "sequence"
+      ],
+      "readerQuestion": "How can a mark stand for something else?",
+      "frames": [
+        "Match colored counters to written labels",
+        "Put the same labels in two different orders",
+        "Compare a collection with an ordered list"
+      ],
+      "mathBridge": "Show membership by placing cards inside a ring before set braces; use numbered positions before sequence notation.",
+      "codeLab": "Encode a shopping list on paper and decode it using a supplied key.",
+      "exercise": "Recognize a sequence versus a set; expose an ambiguous encoding; supply a decoding key.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-02-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-02-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-03",
+      "number": 3,
+      "part": "I · Representing and solving small problems",
+      "title": "Algorithms, decisions and remembered state",
+      "domains": [
+        "computer-science",
+        "mathematics"
+      ],
+      "requires": [
+        "DNAU-01",
+        "DNAU-02"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "algorithm",
+        "condition",
+        "logic",
+        "and",
+        "or",
+        "not",
+        "state",
+        "loop",
+        "function",
+        "relation"
+      ],
+      "readerQuestion": "How can a recipe choose and remember?",
+      "frames": [
+        "Sort price cards using a yes/no question",
+        "Keep a running count in a labeled box",
+        "Repeat until no cards remain"
+      ],
+      "mathBridge": "Input/output pairs motivate a function; contrast with a relation permitting several outputs. Truth tables follow ordinary sentences.",
+      "codeLab": "Write readable sorting pseudocode before Python; trace all state changes.",
+      "exercise": "Complete a trace; test a boundary case; explain why an instruction must terminate.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-03-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-03-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-04",
+      "number": 4,
+      "part": "I · Representing and solving small problems",
+      "title": "Your first small Python programs",
+      "domains": [
+        "computer-science"
+      ],
+      "requires": [
+        "DNAU-03"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "source code",
+        "program",
+        "interpreter",
+        "variable",
+        "string",
+        "list",
+        "dictionary",
+        "test",
+        "error message"
+      ],
+      "readerQuestion": "How do instructions on paper become a runnable program?",
+      "frames": [
+        "Read a plain-language instruction",
+        "Match it to one Python line",
+        "Run a tiny example and inspect a deliberately wrong result"
+      ],
+      "mathBridge": "Assignment is explained separately from mathematical equality; indexing begins with numbered cards.",
+      "codeLab": "Teach installation or a browser interpreter, print, assignment, indexing, if, for, def and assertions in that order; no PyTorch.",
+      "exercise": "Predict output before running; repair an index error; write a three-case test with supplied answers.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-04-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-04-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-05",
+      "number": 5,
+      "part": "I · Representing and solving small problems",
+      "title": "Cities, roads, graphs and paths",
+      "domains": [
+        "mathematics",
+        "computer-science"
+      ],
+      "requires": [
+        "DNAU-02",
+        "DNAU-03",
+        "DNAU-04"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "graph",
+        "vertex",
+        "edge",
+        "directed edge",
+        "undirected edge",
+        "walk",
+        "path",
+        "simple path",
+        "cycle"
+      ],
+      "readerQuestion": "How does a city map become a graph?",
+      "frames": [
+        "Keep four city positions fixed and remove decoration",
+        "Replace cities with dots and roads with arrows",
+        "Trace a walk that repeats a city",
+        "Contrast a simple path and a closed cycle"
+      ],
+      "mathBridge": "Teach each visual term before G=(V,E); declare path means no repeated vertex, walk may repeat; count both edges and listed vertices.",
+      "codeLab": "Trace routes with fingers, then represent adjacency as a dictionary using Chapter 4 as an optional implementation bridge.",
+      "exercise": "Reject a backwards road; identify repeated vertices; compare path and cycle without requiring a named hard problem.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-05-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-05-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-06",
+      "number": 6,
+      "part": "I · Representing and solving small problems",
+      "title": "Search, counting and growing work",
+      "domains": [
+        "mathematics",
+        "computer-science"
+      ],
+      "requires": [
+        "DNAU-03",
+        "DNAU-04",
+        "DNAU-05"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "search",
+        "candidate",
+        "verification",
+        "permutation",
+        "factorial",
+        "growth rate",
+        "Big-O",
+        "proposition",
+        "proof",
+        "counterexample"
+      ],
+      "readerQuestion": "Why can a tiny choice list grow so quickly?",
+      "frames": [
+        "Arrange three cards in every order",
+        "Add a fourth card and count new positions",
+        "Compare ten, one hundred and one thousand items in a pair-checking table"
+      ],
+      "mathBridge": "Multiplication of choices precedes factorial; 100, 10000, 1000000 comparisons precede O(n²). Explain upper bound, not exact runtime.",
+      "codeLab": "Enumerate small arrangements; compare a candidate generator with a separate checker.",
+      "exercise": "Count a three-card case; find a checker bug; explain a small proof in words before notation.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-06-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-06-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-07",
+      "number": 7,
+      "part": "II · DNA from zero",
+      "title": "Atoms, molecules and different kinds of bonds",
+      "domains": [
+        "chemistry"
+      ],
+      "requires": [
+        "DNAU-01",
+        "DNAU-02"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "atom",
+        "molecule",
+        "chemical bond",
+        "covalent bond",
+        "hydrogen bond",
+        "charge"
+      ],
+      "readerQuestion": "What holds a molecule together?",
+      "frames": [
+        "Group labeled atoms into a molecule",
+        "Highlight a connection within a molecule",
+        "Compare a weaker interaction between molecules"
+      ],
+      "mathBridge": "No formula needed: distinguish object counts, connections and charges before chemical symbols.",
+      "codeLab": "Paper bond-key activity, not a molecular simulation.",
+      "exercise": "Identify what each line style means; explain why base-pair marks must not look like backbone bonds.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-07-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-07-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-08",
+      "number": 8,
+      "part": "II · DNA from zero",
+      "title": "Solutions, amounts, temperature and change",
+      "domains": [
+        "chemistry",
+        "mathematics"
+      ],
+      "requires": [
+        "DNAU-03",
+        "DNAU-07"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "solution",
+        "concentration",
+        "mole",
+        "pH",
+        "temperature",
+        "energy",
+        "equilibrium",
+        "kinetics",
+        "reaction rate"
+      ],
+      "readerQuestion": "Why does the same molecule behave differently in different solutions?",
+      "frames": [
+        "Keep volume fixed and change solute count",
+        "Keep amount fixed and change volume",
+        "Contrast a final balance with the speed of approaching it"
+      ],
+      "mathBridge": "Unit-labeled ratios precede concentration; introduce powers of ten and logarithm intuition before pH; energy landscapes are qualitative, not parameter predictions.",
+      "codeLab": "Unit conversion and dilution worksheets; optional Python dimensional checks.",
+      "exercise": "Distinguish rate from equilibrium; identify missing units; interpret a pH scale without an unsupported binding calculation.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-08-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-08-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-09",
+      "number": 9,
+      "part": "II · DNA from zero",
+      "title": "Cells, chromosomes, genes and genomes",
+      "domains": [
+        "biology"
+      ],
+      "requires": [
+        "DNAU-02",
+        "DNAU-07"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "cell",
+        "nucleus",
+        "chromosome",
+        "DNA",
+        "gene",
+        "genome"
+      ],
+      "readerQuestion": "Where is DNA, and what is a genome?",
+      "frames": [
+        "Show a labeled cell with scale warning",
+        "Zoom to chromosome and DNA",
+        "Mark a gene as a region, not an isolated bead"
+      ],
+      "mathBridge": "No equation; teach nested containment and distinguish a typical nucleated cell from bacteria and exceptions.",
+      "codeLab": "Build a labeled containment map on paper.",
+      "exercise": "Distinguish gene, chromosome and genome; explain why not every cell has a nucleus.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-09-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-09-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-10",
+      "number": 10,
+      "part": "II · DNA from zero",
+      "title": "From a nucleotide to a DNA strand",
+      "domains": [
+        "biology",
+        "chemistry"
+      ],
+      "requires": [
+        "DNAU-07",
+        "DNAU-09"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "base",
+        "sugar",
+        "phosphate",
+        "nucleotide",
+        "nucleoside",
+        "strand",
+        "double helix",
+        "deoxyribose",
+        "phosphodiester bond"
+      ],
+      "readerQuestion": "What do the letters A, C, G and T leave out?",
+      "frames": [
+        "Separate base, sugar and phosphate",
+        "Assemble one nucleotide",
+        "Join successive nucleotides along a backbone",
+        "Zoom out to a schematic double helix"
+      ],
+      "mathBridge": "Introduce chemical shorthand only after the object key; no atom-resolved geometry inferred from cartoons.",
+      "codeLab": "Label a sequence-to-molecule correspondence; no physical inference from letters alone.",
+      "exercise": "Distinguish base from nucleotide; locate the backbone; identify what a flattened drawing omits.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-10-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-10-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-11",
+      "number": 11,
+      "part": "II · DNA from zero",
+      "title": "Direction, pairing and reverse complement",
+      "domains": [
+        "biology",
+        "computer-science"
+      ],
+      "requires": [
+        "DNAU-02",
+        "DNAU-04",
+        "DNAU-10"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "5-prime and 3-prime",
+        "complementarity",
+        "antiparallel",
+        "duplex",
+        "reverse complement"
+      ],
+      "readerQuestion": "Why is a complement not yet a reverse complement?",
+      "frames": [
+        "Number relevant sugar positions",
+        "Pair AACG with opposite-direction TTGC",
+        "Keep the partner fixed while reading from its other end"
+      ],
+      "mathBridge": "Show directions and paired letters before c(s) or RC(s); build round-trip reasoning from an asymmetric example.",
+      "codeLab": "Plain Python character substitution, reversal and direction-labeled views, explained line by line.",
+      "exercise": "Compute AGTC and ATAT partners; reject a wrong orientation; explain why a string test does not predict binding.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-11-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-11-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-12",
+      "number": 12,
+      "part": "II · DNA from zero",
+      "title": "Chance, encounters and repeated trials",
+      "domains": [
+        "mathematics",
+        "chemistry"
+      ],
+      "requires": [
+        "DNAU-03",
+        "DNAU-08"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "probability",
+        "event",
+        "independence",
+        "conditional probability",
+        "random sample"
+      ],
+      "readerQuestion": "Why might a possible molecular encounter never be observed?",
+      "frames": [
+        "Use a bag with one success card and nine misses",
+        "Replace the card and draw again",
+        "Compare both-miss with at-least-one-success cases"
+      ],
+      "mathBridge": "Explain sample space and fractions; 0.9 × 0.9 = 0.81 precedes 1-(1-p)^M; flag independence as an assumption.",
+      "codeLab": "Enumerate two-trial outcomes before a seeded simulation; explain seed as repeatable random-number setup.",
+      "exercise": "Compute 0.19; contrast sampling with and without replacement; identify when the model is unjustified.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-12-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-12-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-13",
+      "number": 13,
+      "part": "II · DNA from zero",
+      "title": "From DNA to RNA and proteins",
+      "domains": [
+        "biology"
+      ],
+      "requires": [
+        "DNAU-09",
+        "DNAU-10",
+        "DNAU-11"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "RNA",
+        "protein",
+        "transcription",
+        "translation",
+        "codon",
+        "sequence transfer",
+        "amino acid",
+        "ribosome",
+        "transfer RNA"
+      ],
+      "readerQuestion": "What is copied, and what is translated?",
+      "frames": [
+        "Keep a DNA template fixed while an RNA strand grows",
+        "Group RNA letters in threes",
+        "Build a schematic amino-acid chain"
+      ],
+      "mathBridge": "Teach alphabet and three-letter grouping before codon notation; introduce amino acids, transfer RNA and the ribosome through a labeled translation sequence. Enzyme mechanisms follow in Chapter 14.",
+      "codeLab": "Translate a tiny supplied coding table by hand, then Python lookup; label the table deliberately incomplete.",
+      "exercise": "Distinguish copying sequence from controlling a process; recognize that some RNAs are not translated.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-13-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-13-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-14",
+      "number": 14,
+      "part": "II · DNA from zero",
+      "title": "Enzymes and DNA replication in six frames",
+      "domains": [
+        "biology",
+        "chemistry"
+      ],
+      "requires": [
+        "DNAU-08",
+        "DNAU-11",
+        "DNAU-13"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "enzyme",
+        "helicase",
+        "primer",
+        "primase",
+        "polymerase",
+        "replication",
+        "leading strand",
+        "lagging strand"
+      ],
+      "readerQuestion": "Why are the two new strands made differently?",
+      "frames": [
+        "Start with an intact duplex",
+        "Open a local region",
+        "Place primers",
+        "Extend from each primer's 3-prime end",
+        "Contrast continuous and discontinuous synthesis",
+        "Show two daughter duplexes"
+      ],
+      "mathBridge": "Teach new-strand and template directions before counting copies; distinguish an enzyme from a consumed nucleotide.",
+      "codeLab": "Annotate fixed-position replication frames; no executable or wet-lab protocol required.",
+      "exercise": "Locate the growing end; repair a reversed arrow; track parental versus newly synthesized strands.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-14-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-14-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-15",
+      "number": 15,
+      "part": "III · Molecular operations and the laboratory",
+      "title": "What a laboratory operation actually does",
+      "domains": [
+        "laboratory"
+      ],
+      "requires": [
+        "DNAU-08",
+        "DNAU-12",
+        "DNAU-14"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "pipette",
+        "test tube",
+        "centrifuge",
+        "control sample",
+        "measurement",
+        "calibration"
+      ],
+      "readerQuestion": "What goes into an instrument, and what comes out?",
+      "frames": [
+        "Transfer a labeled volume with a pipette",
+        "Separate sample components in a schematic centrifuge",
+        "Compare sample and control labels"
+      ],
+      "mathBridge": "Teach volume and instrument readings before uncertainty ranges; no hazardous or unsupervised recipe.",
+      "codeLab": "Virtual sample ledger with units and controls; physical work requires supervised training.",
+      "exercise": "Match instruments to purpose; spot a unit error; explain why an unlabeled tube invalidates interpretation.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-15-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-15-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-16",
+      "number": 16,
+      "part": "III · Molecular operations and the laboratory",
+      "title": "Hybridization as molecular recognition",
+      "domains": [
+        "chemistry",
+        "biology"
+      ],
+      "requires": [
+        "DNAU-08",
+        "DNAU-11",
+        "DNAU-12",
+        "DNAU-15"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "hybridization",
+        "melting",
+        "free energy",
+        "association",
+        "dissociation"
+      ],
+      "readerQuestion": "Why is compatible pairing not guaranteed binding?",
+      "frames": [
+        "Compare matching and mismatching partners",
+        "Show reversible encounters in solution",
+        "Vary temperature while keeping sequence labels fixed"
+      ],
+      "mathBridge": "Energy difference and units before any equilibrium formula; empirical parameters must have provenance.",
+      "codeLab": "Compare a logical match checker with a deliberately limited equilibrium model after parameters are sourced.",
+      "exercise": "Separate compatibility, occupancy and reaction speed; identify unsupported numerical predictions.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-16-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-16-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-17",
+      "number": 17,
+      "part": "III · Molecular operations and the laboratory",
+      "title": "Cutting and joining strands",
+      "domains": [
+        "biology",
+        "laboratory"
+      ],
+      "requires": [
+        "DNAU-14",
+        "DNAU-15",
+        "DNAU-16"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "restriction enzyme",
+        "recognition site",
+        "ligation",
+        "ligase"
+      ],
+      "readerQuestion": "How can cutting and joining act like instructions?",
+      "frames": [
+        "Mark a recognition site without cutting",
+        "Cut at labeled positions",
+        "Align compatible ends",
+        "Join covalent backbones and show what remains unchanged"
+      ],
+      "mathBridge": "Track sequence positions before slice notation; orientation and chemical ends remain explicit.",
+      "codeLab": "Plain Python cut-and-join model with precondition tests; explain its chemical omissions.",
+      "exercise": "Predict fragments; reject incompatible orientation; distinguish association from covalent joining.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-17-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-17-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-18",
+      "number": 18,
+      "part": "III · Molecular operations and the laboratory",
+      "title": "Copying selected DNA with PCR",
+      "domains": [
+        "laboratory",
+        "biology"
+      ],
+      "requires": [
+        "DNAU-14",
+        "DNAU-15",
+        "DNAU-16"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "polymerase chain reaction",
+        "PCR",
+        "thermal cycler",
+        "amplification"
+      ],
+      "readerQuestion": "How can a chosen DNA region become easier to detect?",
+      "frames": [
+        "Separate paired strands",
+        "Attach primers",
+        "Extend new strands",
+        "Repeat a cycle and contrast ideal versus imperfect counts"
+      ],
+      "mathBridge": "Repeated doubling precedes 2^k; efficiency, plateau and unintended products are not hidden.",
+      "codeLab": "Track ideal copy counts and then a supplied imperfect-copy scenario; not an executable bench protocol.",
+      "exercise": "Identify primer direction; calculate two cycles; explain why real yield need not double.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-18-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-18-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-19",
+      "number": 19,
+      "part": "III · Molecular operations and the laboratory",
+      "title": "Separating molecules and retaining candidates",
+      "domains": [
+        "laboratory",
+        "chemistry"
+      ],
+      "requires": [
+        "DNAU-15",
+        "DNAU-17",
+        "DNAU-18"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "gel",
+        "electrophoresis",
+        "affinity separation",
+        "size selection"
+      ],
+      "readerQuestion": "How does a physical separation implement a selection rule?",
+      "frames": [
+        "Load a labeled sample beside a reference",
+        "Move charged molecules through a gel",
+        "Compare bands",
+        "Retain a marked fraction with a documented selection rule"
+      ],
+      "mathBridge": "Teach reference size and relative migration first; no universal length-to-distance law.",
+      "codeLab": "Simulate an ideal length filter and contrast with overlapping measurement bands.",
+      "exercise": "Read a schematic gel; distinguish amount from length; explain what a blurry band cannot establish.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-19-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-19-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-20",
+      "number": 20,
+      "part": "III · Molecular operations and the laboratory",
+      "title": "Detecting and reading a result",
+      "domains": [
+        "laboratory",
+        "biology"
+      ],
+      "requires": [
+        "DNAU-15",
+        "DNAU-18",
+        "DNAU-19"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "fluorescence",
+        "sequencer",
+        "DNA synthesizer",
+        "readout",
+        "detection threshold"
+      ],
+      "readerQuestion": "How does a molecular event become a reported answer?",
+      "frames": [
+        "Order symbols into a conceptual synthesis request",
+        "Read a fluorescence signal with a control",
+        "Decode a schematic sequence trace",
+        "Mark an ambiguous result"
+      ],
+      "mathBridge": "Background and threshold before binary detection; do not convert no signal into proof of no candidate.",
+      "codeLab": "Decode supplied traces with ambiguous bases preserved rather than guessed.",
+      "exercise": "Explain synthesizer versus sequencer; reject an overconfident negative result; propose a control.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-20-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-20-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-21",
+      "number": 21,
+      "part": "IV · Understanding the first DNA computer",
+      "title": "Hamiltonian paths: a visual mini-course",
+      "domains": [
+        "mathematics",
+        "computer-science"
+      ],
+      "requires": [
+        "DNAU-05",
+        "DNAU-06"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "Hamiltonian path",
+        "Hamiltonian cycle",
+        "specified endpoint",
+        "witness",
+        "predicate"
+      ],
+      "readerQuestion": "Can a route visit every city exactly once?",
+      "frames": [
+        "Recall four cities and one-way roads",
+        "Try a route with a missing city",
+        "Try a repeated city",
+        "Keep a valid all-city route",
+        "Name Hamiltonian path only now",
+        "Close a cycle and compare"
+      ],
+      "mathBridge": "Only after valid/invalid pictures, write P=(v1,...,vn) and its conditions; explain each quantifier in words.",
+      "codeLab": "Independent Python checker follows endpoint, legal-edge and unique-visit paper checks.",
+      "exercise": "Recognition, route checking, implementation and reasoning ladder; fully work one valid and two invalid routes.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-21-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-21-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-22",
+      "number": 22,
+      "part": "IV · Understanding the first DNA computer",
+      "title": "Adleman's idea: encode a graph in DNA",
+      "domains": [
+        "computer-science",
+        "biology"
+      ],
+      "requires": [
+        "DNAU-11",
+        "DNAU-17",
+        "DNAU-20",
+        "DNAU-21"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "molecular encoding",
+        "vertex code",
+        "overlap code"
+      ],
+      "readerQuestion": "How can a molecule represent a city and a road?",
+      "frames": [
+        "Place city symbols beside oriented DNA words",
+        "Align a road-encoding bridge",
+        "Join a possible route",
+        "Decode to the original cities"
+      ],
+      "mathBridge": "Define code length and overlap only after paired illustrations; distinguish teaching instance from the historical seven-vertex experiment.",
+      "codeLab": "Encode and decode a tiny original graph; independently check adjacency.",
+      "exercise": "Spot encoding ambiguity; trace one joined candidate; explain that a correct code does not guarantee physical generation.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-22-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-22-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-23",
+      "number": 23,
+      "part": "IV · Understanding the first DNA computer",
+      "title": "Generate, filter and read the candidates",
+      "domains": [
+        "laboratory",
+        "computer-science"
+      ],
+      "requires": [
+        "DNAU-12",
+        "DNAU-18",
+        "DNAU-19",
+        "DNAU-20",
+        "DNAU-22"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "candidate population",
+        "endpoint filter",
+        "coverage filter",
+        "false positive",
+        "false negative"
+      ],
+      "readerQuestion": "Why is one filter not enough?",
+      "frames": [
+        "Generate several labeled candidate routes",
+        "Retain endpoints",
+        "Retain required length",
+        "Retain vertex coverage",
+        "Read and independently check survivors"
+      ],
+      "mathBridge": "Count retained candidates before set-filter notation; distinguish sample abundance from distinct strings.",
+      "codeLab": "Rebuild the old token example only after paper filtering; separate generator, filter and oracle.",
+      "exercise": "Keep a repeated-vertex counterexample until coverage; explain absent candidates versus missed detection.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-23-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-23-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-24",
+      "number": 24,
+      "part": "IV · Understanding the first DNA computer",
+      "title": "What the experiment proved, and what it did not",
+      "domains": [
+        "mathematics",
+        "computer-science",
+        "laboratory"
+      ],
+      "requires": [
+        "DNAU-06",
+        "DNAU-12",
+        "DNAU-23"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "soundness",
+        "completeness",
+        "resource model",
+        "parallelism"
+      ],
+      "readerQuestion": "Why is a small successful experiment not a shortcut around hard search?",
+      "frames": [
+        "Separate a valid survivor from coverage of all possible answers",
+        "Place logical assumptions beside physical failure points",
+        "Compare time, molecules and readout"
+      ],
+      "mathBridge": "Plain reasoning precedes proposition and proof; explain the assumptions separately for checking survivors and generating every possible answer. Complexity-class terminology waits for the machine and reduction foundations in Chapter 25.",
+      "codeLab": "Measure tiny enumerations; label counts as model counts, not laboratory yields or asymptotic empirical evidence.",
+      "exercise": "Find a missing completeness premise; audit exponential material demand; state the bounded historical conclusion.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-24-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-24-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-25",
+      "number": 25,
+      "part": "V · Building more molecular programs",
+      "title": "Languages, machines and computational models",
+      "domains": [
+        "computer-science",
+        "mathematics"
+      ],
+      "requires": [
+        "DNAU-03",
+        "DNAU-05",
+        "DNAU-06",
+        "DNAU-21",
+        "DNAU-24"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "alphabet",
+        "formal language",
+        "automaton",
+        "finite-state machine",
+        "transition",
+        "Turing machine",
+        "SAT",
+        "nondeterminism",
+        "decision problem",
+        "polynomial reduction",
+        "NP",
+        "NP-complete"
+      ],
+      "readerQuestion": "What does it mean for different machines to solve the same kind of problem?",
+      "frames": [
+        "Sort accepted and rejected symbol strings",
+        "Follow a turnstile state diagram",
+        "Add a read/write tape",
+        "Translate a small logical condition into a checking task"
+      ],
+      "mathBridge": "Teach Boolean variable, clause and satisfiability before SAT; accepted sets before formal-language notation. Explain decision tasks, polynomial-time checking and a concrete reduction before defining NP and NP-complete; distinguish nondeterminism from physical parallelism.",
+      "codeLab": "Implement a two-state recognizer before a tiny tape-machine interpreter.",
+      "exercise": "Trace acceptance; explain nondeterminism versus randomness; mark theorem assumptions and idealized unlimited storage.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-25-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-25-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-26",
+      "number": 26,
+      "part": "V · Building more molecular programs",
+      "title": "Strand, sticker and paired-strand models",
+      "domains": [
+        "computer-science",
+        "biology"
+      ],
+      "requires": [
+        "DNAU-11",
+        "DNAU-23",
+        "DNAU-25"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "sticker model",
+        "Watson-Crick automaton",
+        "molecular instruction set"
+      ],
+      "readerQuestion": "What changes when the allowed molecular instructions change?",
+      "frames": [
+        "Mark a strand's occupied and empty sites",
+        "Execute one sticker operation",
+        "Compare a paired-tape reading head with a physical duplex"
+      ],
+      "mathBridge": "Operation tables precede model tuples; keep variants and their computational powers separate.",
+      "codeLab": "Implement one named model variant with explicit allowed instructions.",
+      "exercise": "Recognize a model operation; trace a program; reject a theorem transferred between variants.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-26-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-26-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "static-first"
+    },
+    {
+      "id": "DNAU-27",
+      "number": 27,
+      "part": "V · Building more molecular programs",
+      "title": "Splicing and rewriting strings",
+      "domains": [
+        "computer-science",
+        "mathematics"
+      ],
+      "requires": [
+        "DNAU-17",
+        "DNAU-25"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "rewrite rule",
+        "splicing",
+        "insertion",
+        "deletion"
+      ],
+      "readerQuestion": "Can cutting and joining describe a formal language?",
+      "frames": [
+        "Mark two cut contexts",
+        "Exchange allowed suffixes",
+        "Generate a new string",
+        "Compare a rule-system derivation with a chemical cut"
+      ],
+      "mathBridge": "Concrete substitutions precede formal rewriting notation; alphabet, context and rule conditions stay visible.",
+      "codeLab": "Plain Python one-step derivation and bounded search with independent hand cases.",
+      "exercise": "Apply a rule; identify an illegal cut; distinguish formal closure from laboratory feasibility.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-27-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-27-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-28",
+      "number": 28,
+      "part": "V · Building more molecular programs",
+      "title": "Reaction networks and changing amounts",
+      "domains": [
+        "chemistry",
+        "mathematics",
+        "computer-science"
+      ],
+      "requires": [
+        "DNAU-08",
+        "DNAU-12",
+        "DNAU-25"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "chemical reaction network",
+        "recurrence",
+        "stochastic process",
+        "mass action"
+      ],
+      "readerQuestion": "How can amounts change step by step?",
+      "frames": [
+        "Count two species in a container",
+        "Fire one permitted reaction",
+        "Subtract consumed and add produced objects",
+        "Compare many random histories"
+      ],
+      "mathBridge": "Old amount minus loss plus input precedes recurrence; stoichiometric counts and units precede rate equations; introduce derivative as instantaneous rate only if needed.",
+      "codeLab": "Exact count simulator before a stochastic simulation; expose the assumptions and seed.",
+      "exercise": "Compute two updates; check conservation; distinguish one random path from an average.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-28-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-28-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-29",
+      "number": 29,
+      "part": "V · Building more molecular programs",
+      "title": "Strand displacement in slow motion",
+      "domains": [
+        "biology",
+        "chemistry"
+      ],
+      "requires": [
+        "DNAU-16",
+        "DNAU-28"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "toehold",
+        "branch migration",
+        "strand displacement",
+        "leakage"
+      ],
+      "readerQuestion": "How can one strand release another without an enzyme?",
+      "frames": [
+        "Show an intact gate and incoming strand",
+        "Bind a toehold",
+        "Advance branch migration in stable positions",
+        "Release the output",
+        "Contrast a leakage path"
+      ],
+      "mathBridge": "Teach domain labels before domain-level notation; rates require sourced parameters.",
+      "codeLab": "Domain-level symbolic simulator, then compare against a published kinetic model when audited.",
+      "exercise": "Track conserved strands; correct an orientation mistake; identify omitted side reactions.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-29-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-29-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-30",
+      "number": 30,
+      "part": "V · Building more molecular programs",
+      "title": "Digital and analog molecular circuits",
+      "domains": [
+        "computer-science",
+        "chemistry"
+      ],
+      "requires": [
+        "DNAU-03",
+        "DNAU-28",
+        "DNAU-29"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "logic gate",
+        "digital circuit",
+        "analog signal",
+        "threshold",
+        "feedback"
+      ],
+      "readerQuestion": "How can small reactions be connected into a larger computation?",
+      "frames": [
+        "Solve a two-input logic question with cards",
+        "Replace one gate with molecular operations",
+        "Compose two gates",
+        "Contrast discrete decisions with continuously varying amounts"
+      ],
+      "mathBridge": "Truth table precedes Boolean expression; scaled concentration precedes analog formula; feedback sign is explained.",
+      "codeLab": "Simulate truth-table behavior and a graded response separately, with interface contracts.",
+      "exercise": "Check all inputs; identify signal depletion; explain why correct isolated gates need not compose reliably.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-30-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-30-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-31",
+      "number": 31,
+      "part": "V · Building more molecular programs",
+      "title": "Local assembly, tiles and DNA origami",
+      "domains": [
+        "biology",
+        "computer-science"
+      ],
+      "requires": [
+        "DNAU-11",
+        "DNAU-16",
+        "DNAU-25",
+        "DNAU-30"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "tile assembly",
+        "local rule",
+        "DNA origami",
+        "addressability",
+        "geometry"
+      ],
+      "readerQuestion": "How can local attachments create a larger pattern?",
+      "frames": [
+        "Match edge labels on two tiles",
+        "Grow a small pattern by local rules",
+        "Contrast tiles with a folded scaffold",
+        "Locate an address on the folded object"
+      ],
+      "mathBridge": "Coordinates follow grid pictures; no assumption that geometric assembly computes the same function as a circuit.",
+      "codeLab": "Implement a bounded grid assembly model before inspecting a published origami design.",
+      "exercise": "Find a forbidden attachment; distinguish shape from algorithm; state the physical scale boundary.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-31-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-31-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-32",
+      "number": 32,
+      "part": "VI · From molecular systems to the next book",
+      "title": "Genes, regulation, development and evolution",
+      "domains": [
+        "biology"
+      ],
+      "requires": [
+        "DNAU-09",
+        "DNAU-13",
+        "DNAU-14",
+        "DNAU-28",
+        "DNAU-30"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "regulation",
+        "promoter",
+        "expression",
+        "mutation",
+        "inheritance",
+        "selection",
+        "adaptation",
+        "development"
+      ],
+      "readerQuestion": "How can the same DNA support different cellular behavior?",
+      "frames": [
+        "Keep DNA fixed while a control signal changes expression",
+        "Compare two cell states",
+        "Show a heritable sequence change",
+        "Track variation and selection across generations"
+      ],
+      "mathBridge": "Separate within-cell state change from inherited population change; simple frequency counts precede population notation.",
+      "codeLab": "Toy control and selection ledgers with explicit biological omissions; no claim of a living simulation.",
+      "exercise": "Identify regulatory control versus sequence transfer; distinguish adaptation, mutation and development.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-32-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-32-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-33",
+      "number": 33,
+      "part": "VI · From molecular systems to the next book",
+      "title": "DNA storage, codes and recovery",
+      "domains": [
+        "computer-science",
+        "mathematics"
+      ],
+      "requires": [
+        "DNAU-02",
+        "DNAU-04",
+        "DNAU-11",
+        "DNAU-12",
+        "DNAU-20"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "bit",
+        "error-correcting code",
+        "redundancy",
+        "random access",
+        "entropy"
+      ],
+      "readerQuestion": "How can a message survive a damaged molecular copy?",
+      "frames": [
+        "Map a short message to symbols",
+        "Insert one substitution or missing symbol",
+        "Use redundancy to recover or flag ambiguity",
+        "Select a requested block"
+      ],
+      "mathBridge": "Teach bit choices and code distance before coding bounds; probability and logarithm recall precede entropy, without claiming one universal capacity.",
+      "codeLab": "Plain Python encode, corrupt, decode, and test undecodable cases.",
+      "exercise": "Recover a toy message; measure overhead; distinguish storage from active molecular computation.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-33-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-33-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-34",
+      "number": 34,
+      "part": "VI · From molecular systems to the next book",
+      "title": "Many numbers at once: vectors, matrices and DNA data",
+      "domains": [
+        "mathematics",
+        "computer-science"
+      ],
+      "requires": [
+        "DNAU-02",
+        "DNAU-03",
+        "DNAU-04",
+        "DNAU-12",
+        "DNAU-33"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "vector",
+        "matrix",
+        "dot product",
+        "matrix multiplication",
+        "sequence model"
+      ],
+      "readerQuestion": "Why do sequence-analysis programs use arrays of numbers?",
+      "frames": [
+        "Turn three sequence features into a row of numbers",
+        "Stack several rows into a table",
+        "Combine two feature rows with weights",
+        "Contrast software analyzing DNA with molecules computing"
+      ],
+      "mathBridge": "Ordered measurements precede vector notation; row-column weighted sums precede matrix products and dimensions.",
+      "codeLab": "Plain Python vector sums and matrix multiplication on tiny examples; trained sequence models are only a destination, taught in Book II.",
+      "exercise": "Check dimensions; compute a two-row result; explain the two meanings of DNA computation.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-34-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-34-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-35",
+      "number": 35,
+      "part": "VI · From molecular systems to the next book",
+      "title": "Resources, energy, reliability and design tools",
+      "domains": [
+        "chemistry",
+        "computer-science",
+        "laboratory"
+      ],
+      "requires": [
+        "DNAU-24",
+        "DNAU-28",
+        "DNAU-30",
+        "DNAU-33",
+        "DNAU-34"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "resource budget",
+        "energy accounting",
+        "reliability",
+        "model validation",
+        "parameter provenance"
+      ],
+      "readerQuestion": "What must be counted before calling a design efficient?",
+      "frames": [
+        "Give time, sample volume and measurement separate meters",
+        "Trace an error through two operations",
+        "Compare a model forecast with a supplied observation",
+        "Mark an unmeasured quantity as unknown"
+      ],
+      "mathBridge": "Attach units to every quantity before a cost tuple; no free-energy-to-computer-energy shortcut.",
+      "codeLab": "Reproducible small model configuration and results ledger; tool versions and parameters are explicit.",
+      "exercise": "Reconcile units; design a control; distinguish software tests from physical validation.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-35-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-35-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    },
+    {
+      "id": "DNAU-36",
+      "number": 36,
+      "part": "VI · From molecular systems to the next book",
+      "title": "A measured frontier and the bridge to Evolutor",
+      "domains": [
+        "computer-science",
+        "biology",
+        "laboratory"
+      ],
+      "requires": [
+        "DNAU-26",
+        "DNAU-27",
+        "DNAU-31",
+        "DNAU-32",
+        "DNAU-34",
+        "DNAU-35"
+      ],
+      "book1Requires": [],
+      "introduces": [
+        "research claim",
+        "baseline",
+        "falsifier",
+        "reproducibility",
+        "transfer task"
+      ],
+      "readerQuestion": "What can you now build, explain and still not claim?",
+      "frames": [
+        "Trace a small problem through representation, operation and readout",
+        "Place a conventional alternative alongside it",
+        "Mark what evidence is missing",
+        "Connect achieved learning outcomes to Book II entry checks"
+      ],
+      "mathBridge": "No new advanced formula; reconstruct earlier tools in a bounded capstone.",
+      "codeLab": "Choose one simulation capstone, reproduce supplied results and record failures; no frontier performance claims without renewed sources.",
+      "exercise": "Explain a mechanism, implement its checker, critique evidence and complete the Book II readiness tasks.",
+      "status": "planned-not-drafted",
+      "figures": [
+        {
+          "id": "DNAU-36-F1",
+          "type": "sequential teaching figure",
+          "status": "storyboard-only"
+        },
+        {
+          "id": "DNAU-36-F2",
+          "type": "worked-example comparison",
+          "status": "planned-not-drawn"
+        }
+      ],
+      "animation": "candidate-keyframe-sequence"
+    }
+  ],
+  "previousChapterAudit": [
+    {
+      "id": "DNA-01",
+      "title": "Why compute with molecules?",
+      "previousStatus": "drafted",
+      "newChapters": [
+        "DNAU-06",
+        "DNAU-21",
+        "DNAU-22",
+        "DNAU-23",
+        "DNAU-24"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Graph terms, checking, formal proof and cost growth precede their teaching in the old opening."
+    },
+    {
+      "id": "DNA-02",
+      "title": "Molecular structure and strand direction",
+      "previousStatus": "drafted",
+      "newChapters": [
+        "DNAU-07",
+        "DNAU-09",
+        "DNAU-10",
+        "DNAU-11"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Atoms, bonds, sugars, molecules and sequence orientation need distinct first encounters."
+    },
+    {
+      "id": "DNA-03",
+      "title": "Pairing, free energy and molecular recognition",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-08",
+        "DNAU-12",
+        "DNAU-16"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Concentration, units, energy, equilibrium, kinetics and chance must precede binding predictions."
+    },
+    {
+      "id": "DNA-04",
+      "title": "From physical state to strings and information",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-01",
+        "DNAU-02",
+        "DNAU-33"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Information must begin with symbols and an encoding key, not physical-state formalism."
+    },
+    {
+      "id": "DNA-05",
+      "title": "Copying, cutting, joining and reading",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-14",
+        "DNAU-17",
+        "DNAU-18",
+        "DNAU-20"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Explain each instrument and enzyme before bundling operations."
+    },
+    {
+      "id": "DNA-06",
+      "title": "Adleman: a complete experiment reconstruction",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-21",
+        "DNAU-22",
+        "DNAU-23",
+        "DNAU-24"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Teach paths visually, then laboratory operations, then encoding and reconstruction."
+    },
+    {
+      "id": "DNA-07",
+      "title": "From SAT proposals to finite-state machines",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-25"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Teach logic, languages, states and machines before SAT or automata comparisons."
+    },
+    {
+      "id": "DNA-08",
+      "title": "Laboratory resources, errors and readout",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-15",
+        "DNAU-19",
+        "DNAU-20",
+        "DNAU-24"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Teach quantities, controls, measurement and probability before resource/error models."
+    },
+    {
+      "id": "DNA-09",
+      "title": "Strand, sticker and Watson–Crick models",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-25",
+        "DNAU-26"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Give each instruction-set variant an explicit operation table and prerequisites."
+    },
+    {
+      "id": "DNA-10",
+      "title": "Splicing and insertion–deletion systems",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-25",
+        "DNAU-27"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Introduce rules on concrete strings before formal closure arguments."
+    },
+    {
+      "id": "DNA-11",
+      "title": "Chemical reaction networks and stochastic computation",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-08",
+        "DNAU-12",
+        "DNAU-28"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Amounts, rates, chance and step updates must precede network equations."
+    },
+    {
+      "id": "DNA-12",
+      "title": "Strand displacement: domains, kinetics and leakage",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-16",
+        "DNAU-28",
+        "DNAU-29"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Hybridization and reaction behavior must precede domains, gates and leakage."
+    },
+    {
+      "id": "DNA-13",
+      "title": "Composing digital and analog molecular circuits",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-03",
+        "DNAU-28",
+        "DNAU-30"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Truth tables and graded quantities must precede circuit composition."
+    },
+    {
+      "id": "DNA-14",
+      "title": "Tile assembly and local rules",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-25",
+        "DNAU-31"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Graph/grid and rule vocabulary must precede assembly models."
+    },
+    {
+      "id": "DNA-15",
+      "title": "Origami as geometry and addressability",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-10",
+        "DNAU-31"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Molecular objects and scale must precede scaffold geometry."
+    },
+    {
+      "id": "DNA-16",
+      "title": "Synthetic gene circuits and feedback",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-13",
+        "DNAU-28",
+        "DNAU-30",
+        "DNAU-32"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Sequence transfer and regulation must precede synthetic control models."
+    },
+    {
+      "id": "DNA-17",
+      "title": "Molecular pattern recognition",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-30",
+        "DNAU-34",
+        "DNAU-36"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Vectors, weighted combinations and evidence boundaries must precede pattern-recognition claims."
+    },
+    {
+      "id": "DNA-18",
+      "title": "DNA storage, coding and random access",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-12",
+        "DNAU-20",
+        "DNAU-33"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Teach encoding, chance and readout before recovery and capacity."
+    },
+    {
+      "id": "DNA-19",
+      "title": "Storage–computation interfaces",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-33",
+        "DNAU-34",
+        "DNAU-35"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Teach both storage and analysis before discussing interfaces."
+    },
+    {
+      "id": "DNA-20",
+      "title": "Complexity: time, molecules, volume and readout",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-06",
+        "DNAU-12",
+        "DNAU-24",
+        "DNAU-35"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Count tiny examples before abstract time/material complexity."
+    },
+    {
+      "id": "DNA-21",
+      "title": "Energy accounting and reliability",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-08",
+        "DNAU-12",
+        "DNAU-35"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Teach energy units and uncertainty before comparing costs."
+    },
+    {
+      "id": "DNA-22",
+      "title": "Design tools and executable molecular models",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-04",
+        "DNAU-28",
+        "DNAU-35"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Teach Python and model validation before specialized design tools."
+    },
+    {
+      "id": "DNA-23",
+      "title": "Programmable and reusable circuits: the evidence through 2026",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-29",
+        "DNAU-30",
+        "DNAU-36"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Contemporary claims need foundations and renewed paper/artifact review, not a date-led survey."
+    },
+    {
+      "id": "DNA-24",
+      "title": "DNA sequence models are a different kind of computation",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-34",
+        "DNAU-36"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Teach data arrays while separating DNA as input data from DNA as computing material."
+    },
+    {
+      "id": "DNA-25",
+      "title": "What molecules teach computer science",
+      "previousStatus": "planned-only",
+      "newChapters": [
+        "DNAU-32",
+        "DNAU-35",
+        "DNAU-36"
+      ],
+      "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
+      "prerequisiteDiagnosis": "Synthesis follows demonstrated competencies rather than an advanced opening thesis."
+    }
+  ]
+}
