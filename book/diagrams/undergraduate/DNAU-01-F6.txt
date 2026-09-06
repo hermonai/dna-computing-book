@@ -1,0 +1,11 @@
+FIGURE DNAU-01-F6: The route from counting to molecules
+QUESTION: What will the rest of the book supply?
+OBJECTS: three ordered teaching stages; later chapter ranges
+RELATION: explanatory reading order, not an unlabelled physical cause
+STEP 1: Learn representations and procedures
+STEP 2: Learn molecular structure and operations
+STEP 3: Combine the ideas and test their limits
+STEP 1 → STEP 2 → STEP 3
+CAPTION: Later chapters supply missing prerequisites before difficult applications.
+LIMIT: Planned chapters must not be presented as already delivered; arrows are teaching order.
+EVIDENCE: Approved DNAU prerequisite graph.

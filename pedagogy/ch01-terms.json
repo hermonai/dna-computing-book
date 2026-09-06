@@ -1,0 +1,182 @@
+[
+  {
+    "key": "input",
+    "name": "input",
+    "firstSentenceOrHeadingPreview": "input is the starting information supplied to a computation.",
+    "definitionSentence": "input is the starting information supplied to a computation.",
+    "section": "sec:count",
+    "figure": "DNAU-01-F1",
+    "glossaryKey": "input",
+    "related": "output"
+  },
+  {
+    "key": "output",
+    "name": "output",
+    "firstSentenceOrHeadingPreview": "output is the resulting information we read from it.",
+    "definitionSentence": "output is the resulting information we read from it.",
+    "section": "sec:count",
+    "figure": "DNAU-01-F1",
+    "glossaryKey": "output",
+    "related": "input"
+  },
+  {
+    "key": "step",
+    "name": "step",
+    "firstSentenceOrHeadingPreview": "step is one specified action in a procedure.",
+    "definitionSentence": "step is one specified action in a procedure.",
+    "section": "sec:count",
+    "figure": "DNAU-01-F1",
+    "glossaryKey": "step",
+    "related": "rule"
+  },
+  {
+    "key": "computation",
+    "name": "computation",
+    "firstSentenceOrHeadingPreview": "fig:one input is the starting information supplied to a computation.",
+    "definitionSentence": "computation means carrying out specified rules on represented information to obtain a result.",
+    "section": "sec:count",
+    "figure": "DNAU-01-F1",
+    "glossaryKey": "computation",
+    "related": "rule"
+  },
+  {
+    "key": "rule",
+    "name": "rule",
+    "firstSentenceOrHeadingPreview": "By the end of this chapter, you should identify a starting value, a rule and a result; explain why a representation needs a reading convention; and say what is needed to interpret a molecular process as an answer.",
+    "definitionSentence": "rule is an explicit instruction specifying an allowed operation.",
+    "section": "sec:rule",
+    "figure": "DNAU-01-F2",
+    "glossaryKey": "rule",
+    "related": "computation"
+  },
+  {
+    "key": "program",
+    "name": "program",
+    "firstSentenceOrHeadingPreview": "program is instructions written in a form a computer can carry out.",
+    "definitionSentence": "program is instructions written in a form a computer can carry out.",
+    "section": "sec:code",
+    "figure": "code listing and generated trace",
+    "glossaryKey": "program",
+    "related": "function"
+  },
+  {
+    "key": "Python",
+    "name": "Python",
+    "firstSentenceOrHeadingPreview": "A program is instructions written in a form a computer can carry out.Python is the programming language used for these examples.",
+    "definitionSentence": "Python is the programming language used for these examples.",
+    "section": "sec:code",
+    "figure": "code listing and generated trace",
+    "glossaryKey": "Python",
+    "related": "program"
+  },
+  {
+    "key": "function",
+    "name": "function",
+    "firstSentenceOrHeadingPreview": "function is a named, reusable rule in this program.",
+    "definitionSentence": "function is a named, reusable rule in this program.",
+    "section": "sec:code",
+    "figure": "code listing and generated trace",
+    "glossaryKey": "function",
+    "related": "program"
+  },
+  {
+    "key": "information",
+    "name": "information",
+    "firstSentenceOrHeadingPreview": "fig:one input is the starting information supplied to a computation.",
+    "definitionSentence": "information here means what a chosen description tells us about the possibilities relevant to a task.",
+    "section": "sec:representation",
+    "figure": "DNAU-01-F3",
+    "glossaryKey": "information",
+    "related": "representation"
+  },
+  {
+    "key": "representation",
+    "name": "representation",
+    "firstSentenceOrHeadingPreview": "By the end of this chapter, you should identify a starting value, a rule and a result; explain why a representation needs a reading convention; and say what is needed to interpret a molecular process as an answer.",
+    "definitionSentence": "representation is a chosen way to express information through distinguishable forms.",
+    "section": "sec:representation",
+    "figure": "DNAU-01-F3",
+    "glossaryKey": "representation",
+    "related": "information"
+  },
+  {
+    "key": "physical-medium",
+    "name": "physical medium",
+    "firstSentenceOrHeadingPreview": "physical medium is the material carrier of a representation.",
+    "definitionSentence": "physical medium is the material carrier of a representation.",
+    "section": "sec:representation",
+    "figure": "DNAU-01-F3",
+    "glossaryKey": "physical-medium",
+    "related": "representation"
+  },
+  {
+    "key": "atom",
+    "name": "atom",
+    "firstSentenceOrHeadingPreview": "Anatom is a small constituent of matter, such as a carbon atom.",
+    "definitionSentence": "atom is a small constituent of matter, such as a carbon atom.",
+    "section": "sec:dna",
+    "figure": "DNAU-01-F4",
+    "glossaryKey": "atom",
+    "related": "bond"
+  },
+  {
+    "key": "bond",
+    "name": "bond",
+    "firstSentenceOrHeadingPreview": "bond is a chemical connection that holds atoms together.",
+    "definitionSentence": "bond is a chemical connection that holds atoms together.",
+    "section": "sec:dna",
+    "figure": "DNAU-01-F4",
+    "glossaryKey": "bond",
+    "related": "atom"
+  },
+  {
+    "key": "molecule",
+    "name": "molecule",
+    "firstSentenceOrHeadingPreview": "Could a molecule take part in the same kind of activity?",
+    "definitionSentence": "molecule is a group of atoms joined by chemical bonds.",
+    "section": "sec:dna",
+    "figure": "DNAU-01-F4",
+    "glossaryKey": "molecule",
+    "related": "dna"
+  },
+  {
+    "key": "dna",
+    "name": "DNA",
+    "firstSentenceOrHeadingPreview": "Before we ask what DNA can do, we need to decide what would count as computing.",
+    "definitionSentence": "DNA is deoxyribonucleic acid, a molecule that carries genetic information in living organisms.",
+    "section": "sec:dna",
+    "figure": "DNAU-01-F4",
+    "glossaryKey": "dna",
+    "related": "molecule"
+  },
+  {
+    "key": "strand",
+    "name": "strand",
+    "firstSentenceOrHeadingPreview": "strand is one connected chain in DNA.",
+    "definitionSentence": "strand is one connected chain in DNA.",
+    "section": "sec:dna",
+    "figure": "DNAU-01-F4",
+    "glossaryKey": "strand",
+    "related": "sequence"
+  },
+  {
+    "key": "sequence",
+    "name": "sequence",
+    "firstSentenceOrHeadingPreview": "Asequence is an ordered list; a DNA sequence records the order of those letter-labeled parts.",
+    "definitionSentence": "sequence is an ordered list; a DNA sequence records the order of those letter-labeled parts.",
+    "section": "sec:dna",
+    "figure": "DNAU-01-F4",
+    "glossaryKey": "sequence",
+    "related": "strand"
+  },
+  {
+    "key": "dna-computing",
+    "name": "DNA computing",
+    "firstSentenceOrHeadingPreview": "We need a connection between the task, the material and the reading.DNA computing means using designed DNA-based physical processes to carry out computational tasks.",
+    "definitionSentence": "DNA computing means using designed DNA-based physical processes to carry out computational tasks.",
+    "section": "sec:bridge",
+    "figure": "DNAU-01-F5",
+    "glossaryKey": "dna-computing",
+    "related": "dna"
+  }
+]

@@ -1,6 +1,6 @@
 # DNA Computing: undergraduate-first architecture
 
-Status: planning only. No new chapters, finished figures, animations, experiments or reviewed learning outcomes are claimed. Generated from [pedagogy/curriculum.json](pedagogy/curriculum.json); edit that source and regenerate.
+Status: Chapter 1 internally reviewed development draft; all later units remain planned. No learner study, independent expert certification or new research-model experiment is claimed. Generated from [pedagogy/curriculum.json](pedagogy/curriculum.json). See [Chapter 1 storyboard](research/undergraduate-ch01-storyboard.md) for the six produced figures.
 
 ## Figure production contract
 
@@ -10,7 +10,7 @@ Storyboard → semantic TXT companion → editable vector source → teaching ca
 
 **Reader question:** Can the same rule work with counters and a calculator?
 
-**DNAU-01-F1 (sequential teaching figure):**
+**DNAU-01-F1 (original editable teaching vector):**
 
 1. Lay out three counters and add two.
 2. Move the counters one at a time.
@@ -25,6 +25,8 @@ Keep objects in stable positions when identity is unchanged. Each frame ledger m
 **Boundary review:** Label every arrow's meaning. Biology distinguishes covalent links, pairing, sequence transfer and control; software distinguishes messages, data, ownership and state transitions. Use labels and line styles as well as color.
 
 **Animation decision:** static-first; storyboard only, no exported frames yet.
+
+**Production override:** the six figure-specific storyboards and actual assets are in [research/undergraduate-ch01-storyboard.md](research/undergraduate-ch01-storyboard.md). The original F1/F2 course sketches above are planning lineage, not final captions. Static vectors produced; animation export remains deferred.
 
 ## DNAU-02 — Symbols, information and representations
 

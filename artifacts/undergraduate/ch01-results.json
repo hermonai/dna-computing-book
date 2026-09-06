@@ -1,0 +1,17 @@
+{
+  "kind": "deterministic teaching example; not a scientific benchmark",
+  "cases": [
+    {
+      "input": 0,
+      "output": 2
+    },
+    {
+      "input": 3,
+      "output": 5
+    },
+    {
+      "input": 4,
+      "output": 6
+    }
+  ]
+}

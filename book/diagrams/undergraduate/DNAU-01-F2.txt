@@ -1,0 +1,11 @@
+FIGURE DNAU-01-F2: One rule, one intended result
+QUESTION: Why is add more not enough?
+OBJECTS: one instruction card; two interpretations; corrected instruction
+RELATION: explanatory reading order, not an unlabelled physical cause
+STEP 1: Read add more
+STEP 2: Compare adding one and adding two
+STEP 3: Replace it with add exactly two
+STEP 1 → STEP 2 → STEP 3
+CAPTION: An unclear instruction permits different results even when the start is identical.
+LIMIT: Do not imply all computation must have a unique output; this is a deterministic example.
+EVIDENCE: Original instruction-design example.

@@ -1,0 +1,11 @@
+FIGURE DNAU-01-F1: Counting by moving objects
+QUESTION: What changes when we add two?
+OBJECTS: three numbered counters; two waiting counters; a receiving tray
+RELATION: explanatory reading order, not an unlabelled physical cause
+STEP 1: Start with three in the tray
+STEP 2: Move waiting counter 4
+STEP 3: Move waiting counter 5
+STEP 1 → STEP 2 → STEP 3
+CAPTION: The output is five; moving is the operation, counting is the reading.
+LIMIT: Do not create or consume counters between panels.
+EVIDENCE: Original arithmetic example.

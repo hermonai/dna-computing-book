@@ -1,6 +1,6 @@
 # DNA Computing: undergraduate-first architecture
 
-Status: planning only. No new chapters, finished figures, animations, experiments or reviewed learning outcomes are claimed. Generated from [pedagogy/curriculum.json](pedagogy/curriculum.json); edit that source and regenerate.
+Status: Chapter 1 internally reviewed development draft; all later units remain planned. No learner study, independent expert certification or new research-model experiment is claimed. Generated from [pedagogy/curriculum.json](pedagogy/curriculum.json). See [Chapter 1 storyboard](research/undergraduate-ch01-storyboard.md) for the six produced figures.
 
 ## Exercises, code and experiments
 
@@ -12,7 +12,7 @@ Before code: picture, plain-language procedure, trace, pseudocode, then syntax e
 
 **Worked example / exercise ladder:** Identify input and output; find an ambiguous instruction; explain why the material can change while the rule stays the same.
 
-**Code or hands-on progression:** Hand-execute a counter recipe; no installation or programming required.
+**Code or hands-on progression:** Paper counter trace first; optional two-line Python add_two function imported into the printed listing. Generated exact cases and tests; no programming prerequisite.
 
 **Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
 

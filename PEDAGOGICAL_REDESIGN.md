@@ -1,6 +1,6 @@
 # Pedagogical redesign: DNA Computing
 
-Date: 2026-09-06. New branch: astra-undergraduate-rewrite. Status: architecture ready for user review; manuscript production not started.
+Date: 2026-09-06. New branch: astra-undergraduate-rewrite. Status: Chapter 1 production; later units remain planned.
 
 ## Thesis: the first course, not a compressed survey
 
@@ -60,6 +60,10 @@ This architecture adopts concrete-to-abstract bridges, paired verbal/visual expl
 
 Research registers from the old edition remain useful leads, not automatic scientific approval. Every new chapter needs renewed section-level source review and explicit observation/model/hypothesis boundaries. Current frontier chapters require fresh primary-paper and artifact review when drafted. No benchmark, experiment or contemporary taxonomy is asserted by this outline.
 
-## First execution boundary
+## Current production boundary
 
-This milestone produces architecture only. It does not draft Chapter 1, continue old Chapter 3, generate publication figures or animations, rewrite PDFs, run new scientific experiments, change licensing or authorship, or declare the new curriculum taught. The next execution prompt authorizes the first undergraduate-first chapter only after the architecture is reviewed. Existing astra-rewrite and main histories are preserved; neither is force-pushed or replaced.
+Phase 2 authorizes only the new Chapter 1, not later manuscripts. The original approved title is retained. Its visual storyboard was internally approved before prose. Six original editable figures replace the two coarse planning placeholders. A tiny optional Python example implements the paper exercise without making programming an entry prerequisite.
+
+A minimal molecule/DNA preview motivates the subject; full representations and chemistry remain later teaching.
+
+The active source is tex/undergraduate/ch01.tex. Earlier tex/chapters/ch01.tex and ch02.tex remain byte-preserved. No main merge, force push, licensing change, independent-review claim or activation of the full Book I exit contract is authorized by this production step.

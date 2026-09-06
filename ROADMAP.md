@@ -1,15 +1,16 @@
-# Undergraduate-first roadmap
+# Undergraduate production roadmap
 
-## This milestone
+## Current milestone
 
-Preserve the astra-rewrite edition; create a separate architecture-only branch; redesign both books from first principles. Deliver a new thesis, TOC, chapter dependencies, disciplinary concept maps, visual storyboards, exercise/code progression, inventories and role-based review findings. No new chapter or publication figure is drafted.
+Only the new Chapter 1 is active, with six SVG/TXT teaching figures, a tested source-linked example, exercises and answers. The earlier editions stay preserved. Internal review and PDF inspection are release checks, not independent expert or learner validation.
 
-## Next, after architecture review and the next execution prompt
+## Next exact scope
 
-Develop only new Chapter 1 under [REVIEW_GATES.md](REVIEW_GATES.md), starting with its prerequisite audit and storyboard. Do not continue old Chapter 3. Do not promote old Chapters 1–2 into the active manifest.
+DNAU-02 — Symbols, information and representations. Its required local predecessor is DNAU-01. Teach conventions and ambiguity before formal encodings.
 
-## Later
+No Chapter 2 manuscript is included in this milestone.
 
-Proceed chapter by chapter through the production loop. Activate Book I exit outcomes only after they are actually taught and reviewed. Keep Book II imports synchronized. Add reader-facing definitions, glossary links, a print index, reviewed SVG/UML, exercises, solutions and executable examples with each chapter.
 
-Independent subject review, actual novice testing, accessibility review and final source/rights checks remain open. The role simulations are not substitutes. Frontier findings and research-program names require renewed research when reached.
+## Later acceptance gates
+
+Proceed one prerequisite-complete chapter at a time. Keep source research, model versus observation, diagram semantics, tests, glossary/index, role reviews and every-page PDF inspection connected. Book I's full exit contract remains planned-not-yet-taught. Independent specialist review, actual novice testing and accessibility validation remain open.

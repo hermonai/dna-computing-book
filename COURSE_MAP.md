@@ -1,6 +1,6 @@
 # DNA Computing: undergraduate-first architecture
 
-Status: planning only. No new chapters, finished figures, animations, experiments or reviewed learning outcomes are claimed. Generated from [pedagogy/curriculum.json](pedagogy/curriculum.json); edit that source and regenerate.
+Status: Chapter 1 internally reviewed development draft; all later units remain planned. No learner study, independent expert certification or new research-model experiment is claimed. Generated from [pedagogy/curriculum.json](pedagogy/curriculum.json). See [Chapter 1 storyboard](research/undergraduate-ch01-storyboard.md) for the six produced figures.
 
 ## Teaching route and chapter opening maps
 
@@ -8,7 +8,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-01 — What does it mean to compute?
 
-**Already taught locally:** High-school arithmetic and logical reading.
+**Required earlier units (planned unless marked active):** High-school arithmetic and logical reading.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -24,7 +24,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-02 — Symbols, information and representations
 
-**Already taught locally:** DNAU-01: What does it mean to compute?.
+**Required earlier units (planned unless marked active):** DNAU-01: What does it mean to compute?.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -40,7 +40,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-03 — Algorithms, decisions and remembered state
 
-**Already taught locally:** DNAU-01: What does it mean to compute?; DNAU-02: Symbols, information and representations.
+**Required earlier units (planned unless marked active):** DNAU-01: What does it mean to compute?; DNAU-02: Symbols, information and representations.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -56,7 +56,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-04 — Your first small Python programs
 
-**Already taught locally:** DNAU-03: Algorithms, decisions and remembered state.
+**Required earlier units (planned unless marked active):** DNAU-03: Algorithms, decisions and remembered state.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -72,7 +72,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-05 — Cities, roads, graphs and paths
 
-**Already taught locally:** DNAU-02: Symbols, information and representations; DNAU-03: Algorithms, decisions and remembered state; DNAU-04: Your first small Python programs.
+**Required earlier units (planned unless marked active):** DNAU-02: Symbols, information and representations; DNAU-03: Algorithms, decisions and remembered state; DNAU-04: Your first small Python programs.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -88,7 +88,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-06 — Search, counting and growing work
 
-**Already taught locally:** DNAU-03: Algorithms, decisions and remembered state; DNAU-04: Your first small Python programs; DNAU-05: Cities, roads, graphs and paths.
+**Required earlier units (planned unless marked active):** DNAU-03: Algorithms, decisions and remembered state; DNAU-04: Your first small Python programs; DNAU-05: Cities, roads, graphs and paths.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -104,7 +104,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-07 — Atoms, molecules and different kinds of bonds
 
-**Already taught locally:** DNAU-01: What does it mean to compute?; DNAU-02: Symbols, information and representations.
+**Required earlier units (planned unless marked active):** DNAU-01: What does it mean to compute?; DNAU-02: Symbols, information and representations.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -120,7 +120,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-08 — Solutions, amounts, temperature and change
 
-**Already taught locally:** DNAU-03: Algorithms, decisions and remembered state; DNAU-07: Atoms, molecules and different kinds of bonds.
+**Required earlier units (planned unless marked active):** DNAU-03: Algorithms, decisions and remembered state; DNAU-07: Atoms, molecules and different kinds of bonds.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -136,7 +136,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-09 — Cells, chromosomes, genes and genomes
 
-**Already taught locally:** DNAU-02: Symbols, information and representations; DNAU-07: Atoms, molecules and different kinds of bonds.
+**Required earlier units (planned unless marked active):** DNAU-02: Symbols, information and representations; DNAU-07: Atoms, molecules and different kinds of bonds.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -152,7 +152,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-10 — From a nucleotide to a DNA strand
 
-**Already taught locally:** DNAU-07: Atoms, molecules and different kinds of bonds; DNAU-09: Cells, chromosomes, genes and genomes.
+**Required earlier units (planned unless marked active):** DNAU-07: Atoms, molecules and different kinds of bonds; DNAU-09: Cells, chromosomes, genes and genomes.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -168,7 +168,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-11 — Direction, pairing and reverse complement
 
-**Already taught locally:** DNAU-02: Symbols, information and representations; DNAU-04: Your first small Python programs; DNAU-10: From a nucleotide to a DNA strand.
+**Required earlier units (planned unless marked active):** DNAU-02: Symbols, information and representations; DNAU-04: Your first small Python programs; DNAU-10: From a nucleotide to a DNA strand.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -184,7 +184,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-12 — Chance, encounters and repeated trials
 
-**Already taught locally:** DNAU-03: Algorithms, decisions and remembered state; DNAU-08: Solutions, amounts, temperature and change.
+**Required earlier units (planned unless marked active):** DNAU-03: Algorithms, decisions and remembered state; DNAU-08: Solutions, amounts, temperature and change.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -200,7 +200,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-13 — From DNA to RNA and proteins
 
-**Already taught locally:** DNAU-09: Cells, chromosomes, genes and genomes; DNAU-10: From a nucleotide to a DNA strand; DNAU-11: Direction, pairing and reverse complement.
+**Required earlier units (planned unless marked active):** DNAU-09: Cells, chromosomes, genes and genomes; DNAU-10: From a nucleotide to a DNA strand; DNAU-11: Direction, pairing and reverse complement.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -216,7 +216,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-14 — Enzymes and DNA replication in six frames
 
-**Already taught locally:** DNAU-08: Solutions, amounts, temperature and change; DNAU-11: Direction, pairing and reverse complement; DNAU-13: From DNA to RNA and proteins.
+**Required earlier units (planned unless marked active):** DNAU-08: Solutions, amounts, temperature and change; DNAU-11: Direction, pairing and reverse complement; DNAU-13: From DNA to RNA and proteins.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -232,7 +232,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-15 — What a laboratory operation actually does
 
-**Already taught locally:** DNAU-08: Solutions, amounts, temperature and change; DNAU-12: Chance, encounters and repeated trials; DNAU-14: Enzymes and DNA replication in six frames.
+**Required earlier units (planned unless marked active):** DNAU-08: Solutions, amounts, temperature and change; DNAU-12: Chance, encounters and repeated trials; DNAU-14: Enzymes and DNA replication in six frames.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -248,7 +248,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-16 — Hybridization as molecular recognition
 
-**Already taught locally:** DNAU-08: Solutions, amounts, temperature and change; DNAU-11: Direction, pairing and reverse complement; DNAU-12: Chance, encounters and repeated trials; DNAU-15: What a laboratory operation actually does.
+**Required earlier units (planned unless marked active):** DNAU-08: Solutions, amounts, temperature and change; DNAU-11: Direction, pairing and reverse complement; DNAU-12: Chance, encounters and repeated trials; DNAU-15: What a laboratory operation actually does.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -264,7 +264,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-17 — Cutting and joining strands
 
-**Already taught locally:** DNAU-14: Enzymes and DNA replication in six frames; DNAU-15: What a laboratory operation actually does; DNAU-16: Hybridization as molecular recognition.
+**Required earlier units (planned unless marked active):** DNAU-14: Enzymes and DNA replication in six frames; DNAU-15: What a laboratory operation actually does; DNAU-16: Hybridization as molecular recognition.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -280,7 +280,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-18 — Copying selected DNA with PCR
 
-**Already taught locally:** DNAU-14: Enzymes and DNA replication in six frames; DNAU-15: What a laboratory operation actually does; DNAU-16: Hybridization as molecular recognition.
+**Required earlier units (planned unless marked active):** DNAU-14: Enzymes and DNA replication in six frames; DNAU-15: What a laboratory operation actually does; DNAU-16: Hybridization as molecular recognition.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -296,7 +296,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-19 — Separating molecules and retaining candidates
 
-**Already taught locally:** DNAU-15: What a laboratory operation actually does; DNAU-17: Cutting and joining strands; DNAU-18: Copying selected DNA with PCR.
+**Required earlier units (planned unless marked active):** DNAU-15: What a laboratory operation actually does; DNAU-17: Cutting and joining strands; DNAU-18: Copying selected DNA with PCR.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -312,7 +312,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-20 — Detecting and reading a result
 
-**Already taught locally:** DNAU-15: What a laboratory operation actually does; DNAU-18: Copying selected DNA with PCR; DNAU-19: Separating molecules and retaining candidates.
+**Required earlier units (planned unless marked active):** DNAU-15: What a laboratory operation actually does; DNAU-18: Copying selected DNA with PCR; DNAU-19: Separating molecules and retaining candidates.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -328,7 +328,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-21 — Hamiltonian paths: a visual mini-course
 
-**Already taught locally:** DNAU-05: Cities, roads, graphs and paths; DNAU-06: Search, counting and growing work.
+**Required earlier units (planned unless marked active):** DNAU-05: Cities, roads, graphs and paths; DNAU-06: Search, counting and growing work.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -344,7 +344,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-22 — Adleman's idea: encode a graph in DNA
 
-**Already taught locally:** DNAU-11: Direction, pairing and reverse complement; DNAU-17: Cutting and joining strands; DNAU-20: Detecting and reading a result; DNAU-21: Hamiltonian paths: a visual mini-course.
+**Required earlier units (planned unless marked active):** DNAU-11: Direction, pairing and reverse complement; DNAU-17: Cutting and joining strands; DNAU-20: Detecting and reading a result; DNAU-21: Hamiltonian paths: a visual mini-course.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -360,7 +360,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-23 — Generate, filter and read the candidates
 
-**Already taught locally:** DNAU-12: Chance, encounters and repeated trials; DNAU-18: Copying selected DNA with PCR; DNAU-19: Separating molecules and retaining candidates; DNAU-20: Detecting and reading a result; DNAU-22: Adleman's idea: encode a graph in DNA.
+**Required earlier units (planned unless marked active):** DNAU-12: Chance, encounters and repeated trials; DNAU-18: Copying selected DNA with PCR; DNAU-19: Separating molecules and retaining candidates; DNAU-20: Detecting and reading a result; DNAU-22: Adleman's idea: encode a graph in DNA.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -376,7 +376,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-24 — What the experiment proved, and what it did not
 
-**Already taught locally:** DNAU-06: Search, counting and growing work; DNAU-12: Chance, encounters and repeated trials; DNAU-23: Generate, filter and read the candidates.
+**Required earlier units (planned unless marked active):** DNAU-06: Search, counting and growing work; DNAU-12: Chance, encounters and repeated trials; DNAU-23: Generate, filter and read the candidates.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -392,7 +392,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-25 — Languages, machines and computational models
 
-**Already taught locally:** DNAU-03: Algorithms, decisions and remembered state; DNAU-05: Cities, roads, graphs and paths; DNAU-06: Search, counting and growing work; DNAU-21: Hamiltonian paths: a visual mini-course; DNAU-24: What the experiment proved, and what it did not.
+**Required earlier units (planned unless marked active):** DNAU-03: Algorithms, decisions and remembered state; DNAU-05: Cities, roads, graphs and paths; DNAU-06: Search, counting and growing work; DNAU-21: Hamiltonian paths: a visual mini-course; DNAU-24: What the experiment proved, and what it did not.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -408,7 +408,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-26 — Strand, sticker and paired-strand models
 
-**Already taught locally:** DNAU-11: Direction, pairing and reverse complement; DNAU-23: Generate, filter and read the candidates; DNAU-25: Languages, machines and computational models.
+**Required earlier units (planned unless marked active):** DNAU-11: Direction, pairing and reverse complement; DNAU-23: Generate, filter and read the candidates; DNAU-25: Languages, machines and computational models.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -424,7 +424,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-27 — Splicing and rewriting strings
 
-**Already taught locally:** DNAU-17: Cutting and joining strands; DNAU-25: Languages, machines and computational models.
+**Required earlier units (planned unless marked active):** DNAU-17: Cutting and joining strands; DNAU-25: Languages, machines and computational models.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -440,7 +440,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-28 — Reaction networks and changing amounts
 
-**Already taught locally:** DNAU-08: Solutions, amounts, temperature and change; DNAU-12: Chance, encounters and repeated trials; DNAU-25: Languages, machines and computational models.
+**Required earlier units (planned unless marked active):** DNAU-08: Solutions, amounts, temperature and change; DNAU-12: Chance, encounters and repeated trials; DNAU-25: Languages, machines and computational models.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -456,7 +456,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-29 — Strand displacement in slow motion
 
-**Already taught locally:** DNAU-16: Hybridization as molecular recognition; DNAU-28: Reaction networks and changing amounts.
+**Required earlier units (planned unless marked active):** DNAU-16: Hybridization as molecular recognition; DNAU-28: Reaction networks and changing amounts.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -472,7 +472,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-30 — Digital and analog molecular circuits
 
-**Already taught locally:** DNAU-03: Algorithms, decisions and remembered state; DNAU-28: Reaction networks and changing amounts; DNAU-29: Strand displacement in slow motion.
+**Required earlier units (planned unless marked active):** DNAU-03: Algorithms, decisions and remembered state; DNAU-28: Reaction networks and changing amounts; DNAU-29: Strand displacement in slow motion.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -488,7 +488,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-31 — Local assembly, tiles and DNA origami
 
-**Already taught locally:** DNAU-11: Direction, pairing and reverse complement; DNAU-16: Hybridization as molecular recognition; DNAU-25: Languages, machines and computational models; DNAU-30: Digital and analog molecular circuits.
+**Required earlier units (planned unless marked active):** DNAU-11: Direction, pairing and reverse complement; DNAU-16: Hybridization as molecular recognition; DNAU-25: Languages, machines and computational models; DNAU-30: Digital and analog molecular circuits.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -504,7 +504,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-32 — Genes, regulation, development and evolution
 
-**Already taught locally:** DNAU-09: Cells, chromosomes, genes and genomes; DNAU-13: From DNA to RNA and proteins; DNAU-14: Enzymes and DNA replication in six frames; DNAU-28: Reaction networks and changing amounts; DNAU-30: Digital and analog molecular circuits.
+**Required earlier units (planned unless marked active):** DNAU-09: Cells, chromosomes, genes and genomes; DNAU-13: From DNA to RNA and proteins; DNAU-14: Enzymes and DNA replication in six frames; DNAU-28: Reaction networks and changing amounts; DNAU-30: Digital and analog molecular circuits.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -520,7 +520,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-33 — DNA storage, codes and recovery
 
-**Already taught locally:** DNAU-02: Symbols, information and representations; DNAU-04: Your first small Python programs; DNAU-11: Direction, pairing and reverse complement; DNAU-12: Chance, encounters and repeated trials; DNAU-20: Detecting and reading a result.
+**Required earlier units (planned unless marked active):** DNAU-02: Symbols, information and representations; DNAU-04: Your first small Python programs; DNAU-11: Direction, pairing and reverse complement; DNAU-12: Chance, encounters and repeated trials; DNAU-20: Detecting and reading a result.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -536,7 +536,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-34 — Many numbers at once: vectors, matrices and DNA data
 
-**Already taught locally:** DNAU-02: Symbols, information and representations; DNAU-03: Algorithms, decisions and remembered state; DNAU-04: Your first small Python programs; DNAU-12: Chance, encounters and repeated trials; DNAU-33: DNA storage, codes and recovery.
+**Required earlier units (planned unless marked active):** DNAU-02: Symbols, information and representations; DNAU-03: Algorithms, decisions and remembered state; DNAU-04: Your first small Python programs; DNAU-12: Chance, encounters and repeated trials; DNAU-33: DNA storage, codes and recovery.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -552,7 +552,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-35 — Resources, energy, reliability and design tools
 
-**Already taught locally:** DNAU-24: What the experiment proved, and what it did not; DNAU-28: Reaction networks and changing amounts; DNAU-30: Digital and analog molecular circuits; DNAU-33: DNA storage, codes and recovery; DNAU-34: Many numbers at once: vectors, matrices and DNA data.
+**Required earlier units (planned unless marked active):** DNAU-24: What the experiment proved, and what it did not; DNAU-28: Reaction networks and changing amounts; DNAU-30: Digital and analog molecular circuits; DNAU-33: DNA storage, codes and recovery; DNAU-34: Many numbers at once: vectors, matrices and DNA data.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 
@@ -568,7 +568,7 @@ Each opening recalls named prior ideas, introduces only the current step, and id
 
 ## DNAU-36 — A measured frontier and the bridge to Evolutor
 
-**Already taught locally:** DNAU-26: Strand, sticker and paired-strand models; DNAU-27: Splicing and rewriting strings; DNAU-31: Local assembly, tiles and DNA origami; DNAU-32: Genes, regulation, development and evolution; DNAU-34: Many numbers at once: vectors, matrices and DNA data; DNAU-35: Resources, energy, reliability and design tools.
+**Required earlier units (planned unless marked active):** DNAU-26: Strand, sticker and paired-strand models; DNAU-27: Splicing and rewriting strings; DNAU-31: Local assembly, tiles and DNA origami; DNAU-32: Genes, regulation, development and evolution; DNAU-34: Many numbers at once: vectors, matrices and DNA data; DNAU-35: Resources, energy, reliability and design tools.
 
 **Book I bridge:** None. See the planned exit checks in the shared contract.
 

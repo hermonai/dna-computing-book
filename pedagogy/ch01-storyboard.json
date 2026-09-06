@@ -1,0 +1,117 @@
+{
+  "chapter": "DNAU-01",
+  "status": "storyboard-internally-approved-before-prose",
+  "reviewDate": "2026-09-06",
+  "reviewer": "Author-agent internal review, not independent human validation",
+  "decision": "Retain the approved chapter title. Expand the two planning placeholders into six concrete teaching figures. Optional source-linked Python illustrates the already worked rule; it is not an entry prerequisite. Book II supplies a local biological reminder and defers learned models to EVOU-03.",
+  "figures": [
+    {
+      "id": "DNAU-01-F1",
+      "title": "Counting by moving objects",
+      "question": "What changes when we add two?",
+      "concept": "input, step, output",
+      "prerequisites": "counting to five",
+      "objects": "three numbered counters; two waiting counters; a receiving tray",
+      "steps": [
+        "Start with three in the tray",
+        "Move waiting counter 4",
+        "Move waiting counter 5"
+      ],
+      "caption": "The output is five; moving is the operation, counting is the reading.",
+      "risk": "Do not create or consume counters between panels.",
+      "evidence": "Original arithmetic example.",
+      "kind": "counters",
+      "review": "Approved for drawing: all arrows must say operation, comparison, reading, or teaching order; stable objects retain identity."
+    },
+    {
+      "id": "DNAU-01-F2",
+      "title": "One rule, one intended result",
+      "question": "Why is add more not enough?",
+      "concept": "rule; ambiguous instruction",
+      "prerequisites": "counting; input and output",
+      "objects": "one instruction card; two interpretations; corrected instruction",
+      "steps": [
+        "Read add more",
+        "Compare adding one and adding two",
+        "Replace it with add exactly two"
+      ],
+      "caption": "An unclear instruction permits different results even when the start is identical.",
+      "risk": "Do not imply all computation must have a unique output; this is a deterministic example.",
+      "evidence": "Original instruction-design example.",
+      "kind": "ambiguity",
+      "review": "Approved for drawing: all arrows must say operation, comparison, reading, or teaching order; stable objects retain identity."
+    },
+    {
+      "id": "DNAU-01-F3",
+      "title": "A quantity is not its carrier",
+      "question": "Can three look different and still mean three?",
+      "concept": "information; representation; physical medium",
+      "prerequisites": "counting; explicit rule",
+      "objects": "three counters; numeral 3; three marked cells",
+      "steps": [
+        "Count objects",
+        "Read a numeral",
+        "Read a declared one-mark-per-object convention"
+      ],
+      "caption": "Representations agree only because their reading conventions are stated.",
+      "risk": "Do not equate information with physical shape or give a formal information measure.",
+      "evidence": "Original representation example.",
+      "kind": "representation",
+      "review": "Approved for drawing: all arrows must say operation, comparison, reading, or teaching order; stable objects retain identity."
+    },
+    {
+      "id": "DNAU-01-F4",
+      "title": "From molecule to written order",
+      "question": "What do the letters in DNA describe?",
+      "concept": "molecule; DNA; sequence",
+      "prerequisites": "ordered reading; representation",
+      "objects": "connected schematic DNA building blocks A C G T; written ACGT",
+      "steps": [
+        "Locate one strand segment",
+        "Identify four kinds of labeled part",
+        "Copy the displayed order to paper"
+      ],
+      "caption": "Letters describe an ordered molecular structure; they are not ink inside a cell.",
+      "risk": "Not a chemical structure, complete DNA molecule, or strand-polarity lesson. Draw no misleading helix.",
+      "evidence": "NHGRI DNA glossary; original schematic.",
+      "kind": "dna",
+      "review": "Approved for drawing: all arrows must say operation, comparison, reading, or teaching order; stable objects retain identity."
+    },
+    {
+      "id": "DNAU-01-F5",
+      "title": "What would make a physical change a computation?",
+      "question": "What must connect a molecule to an answer?",
+      "concept": "DNA computing; input rule output contract",
+      "prerequisites": "computation; representation; molecule",
+      "objects": "three labeled engineering questions; counter and DNA lanes",
+      "steps": [
+        "Declare how input is represented",
+        "Specify the permitted physical operation",
+        "Specify how the result is read"
+      ],
+      "caption": "A physical event becomes an answer to a problem through a stated representation and operation.",
+      "risk": "This is a design checklist, not a demonstrated reaction, laboratory protocol or speed claim.",
+      "evidence": "Original design abstraction; Adleman 1994 abstract supports historical possibility only.",
+      "kind": "bridge",
+      "review": "Approved for drawing: all arrows must say operation, comparison, reading, or teaching order; stable objects retain identity."
+    },
+    {
+      "id": "DNAU-01-F6",
+      "title": "The route from counting to molecules",
+      "question": "What will the rest of the book supply?",
+      "concept": "learning route and evidence boundary",
+      "prerequisites": "this chapter only",
+      "objects": "three ordered teaching stages; later chapter ranges",
+      "steps": [
+        "Learn representations and procedures",
+        "Learn molecular structure and operations",
+        "Combine the ideas and test their limits"
+      ],
+      "caption": "Later chapters supply missing prerequisites before difficult applications.",
+      "risk": "Planned chapters must not be presented as already delivered; arrows are teaching order.",
+      "evidence": "Approved DNAU prerequisite graph.",
+      "kind": "roadmap",
+      "review": "Approved for drawing: all arrows must say operation, comparison, reading, or teaching order; stable objects retain identity."
+    }
+  ]
+}

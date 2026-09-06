@@ -1,0 +1,11 @@
+FIGURE DNAU-01-F3: A quantity is not its carrier
+QUESTION: Can three look different and still mean three?
+OBJECTS: three counters; numeral 3; three marked cells
+RELATION: explanatory reading order, not an unlabelled physical cause
+STEP 1: Count objects
+STEP 2: Read a numeral
+STEP 3: Read a declared one-mark-per-object convention
+STEP 1 → STEP 2 → STEP 3
+CAPTION: Representations agree only because their reading conventions are stated.
+LIMIT: Do not equate information with physical shape or give a formal information measure.
+EVIDENCE: Original representation example.

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "book": "DNA Computing",
   "subtitle": "From Molecules to Algorithms",
-  "edition": "3-undergraduate-planning",
-  "status": "architecture-only-no-manuscript",
+  "edition": "3-undergraduate",
+  "status": "chapter-one-production",
   "branch": "astra-undergraduate-rewrite",
   "preservedEdition": {
     "branch": "astra-rewrite",
@@ -38,19 +38,39 @@
         "Read five counters and compare with a calculator display"
       ],
       "mathBridge": "Count tangible objects before writing 3 + 2 = 5; no variables or code syntax.",
-      "codeLab": "Hand-execute a counter recipe; no installation or programming required.",
+      "codeLab": "Paper counter trace first; optional two-line Python add_two function imported into the printed listing. Generated exact cases and tests; no programming prerequisite.",
       "exercise": "Identify input and output; find an ambiguous instruction; explain why the material can change while the rule stays the same.",
-      "status": "planned-not-drafted",
+      "status": "internally-reviewed-draft",
       "figures": [
         {
           "id": "DNAU-01-F1",
-          "type": "sequential teaching figure",
-          "status": "storyboard-only"
+          "type": "original editable teaching vector",
+          "status": "internally-reviewed-vector"
         },
         {
           "id": "DNAU-01-F2",
-          "type": "worked-example comparison",
-          "status": "planned-not-drawn"
+          "type": "original editable teaching vector",
+          "status": "internally-reviewed-vector"
+        },
+        {
+          "id": "DNAU-01-F3",
+          "type": "original editable teaching vector",
+          "status": "internally-reviewed-vector"
+        },
+        {
+          "id": "DNAU-01-F4",
+          "type": "original editable teaching vector",
+          "status": "internally-reviewed-vector"
+        },
+        {
+          "id": "DNAU-01-F5",
+          "type": "original editable teaching vector",
+          "status": "internally-reviewed-vector"
+        },
+        {
+          "id": "DNAU-01-F6",
+          "type": "original editable teaching vector",
+          "status": "internally-reviewed-vector"
         }
       ],
       "animation": "static-first"
@@ -2035,5 +2055,6 @@
       "disposition": "Re-sequence and rewrite; no automatic prose or figure reuse.",
       "prerequisiteDiagnosis": "Synthesis follows demonstrated competencies rather than an advanced opening thesis."
     }
-  ]
+  ],
+  "plannedChapterCount": 36
 }

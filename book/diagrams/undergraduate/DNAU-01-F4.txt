@@ -1,0 +1,11 @@
+FIGURE DNAU-01-F4: From molecule to written order
+QUESTION: What do the letters in DNA describe?
+OBJECTS: connected schematic DNA building blocks A C G T; written ACGT
+RELATION: explanatory reading order, not an unlabelled physical cause
+STEP 1: Locate one strand segment
+STEP 2: Identify four kinds of labeled part
+STEP 3: Copy the displayed order to paper
+STEP 1 → STEP 2 → STEP 3
+CAPTION: Letters describe an ordered molecular structure; they are not ink inside a cell.
+LIMIT: Not a chemical structure, complete DNA molecule, or strand-polarity lesson. Draw no misleading helix.
+EVIDENCE: NHGRI DNA glossary; original schematic.

@@ -1,0 +1,11 @@
+FIGURE DNAU-01-F5: What would make a physical change a computation?
+QUESTION: What must connect a molecule to an answer?
+OBJECTS: three labeled engineering questions; counter and DNA lanes
+RELATION: explanatory reading order, not an unlabelled physical cause
+STEP 1: Declare how input is represented
+STEP 2: Specify the permitted physical operation
+STEP 3: Specify how the result is read
+STEP 1 → STEP 2 → STEP 3
+CAPTION: A physical event becomes an answer to a problem through a stated representation and operation.
+LIMIT: This is a design checklist, not a demonstrated reaction, laboratory protocol or speed claim.
+EVIDENCE: Original design abstraction; Adleman 1994 abstract supports historical possibility only.

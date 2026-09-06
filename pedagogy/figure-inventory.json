@@ -1,21 +1,57 @@
 [
   {
     "id": "DNAU-01-F1",
-    "type": "sequential teaching figure",
-    "status": "storyboard-only",
+    "type": "original editable teaching vector",
+    "status": "internally-reviewed-vector",
     "chapter": "DNAU-01",
     "readerQuestion": "Can the same rule work with counters and a calculator?",
     "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
-    "reviewStatus": "not-drawn-not-reviewed"
+    "reviewStatus": "internally-reviewed-vector"
   },
   {
     "id": "DNAU-01-F2",
-    "type": "worked-example comparison",
-    "status": "planned-not-drawn",
+    "type": "original editable teaching vector",
+    "status": "internally-reviewed-vector",
     "chapter": "DNAU-01",
     "readerQuestion": "Can the same rule work with counters and a calculator?",
     "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
-    "reviewStatus": "not-drawn-not-reviewed"
+    "reviewStatus": "internally-reviewed-vector"
+  },
+  {
+    "id": "DNAU-01-F3",
+    "type": "original editable teaching vector",
+    "status": "internally-reviewed-vector",
+    "chapter": "DNAU-01",
+    "readerQuestion": "Can the same rule work with counters and a calculator?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "internally-reviewed-vector"
+  },
+  {
+    "id": "DNAU-01-F4",
+    "type": "original editable teaching vector",
+    "status": "internally-reviewed-vector",
+    "chapter": "DNAU-01",
+    "readerQuestion": "Can the same rule work with counters and a calculator?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "internally-reviewed-vector"
+  },
+  {
+    "id": "DNAU-01-F5",
+    "type": "original editable teaching vector",
+    "status": "internally-reviewed-vector",
+    "chapter": "DNAU-01",
+    "readerQuestion": "Can the same rule work with counters and a calculator?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "internally-reviewed-vector"
+  },
+  {
+    "id": "DNAU-01-F6",
+    "type": "original editable teaching vector",
+    "status": "internally-reviewed-vector",
+    "chapter": "DNAU-01",
+    "readerQuestion": "Can the same rule work with counters and a calculator?",
+    "sourcePlan": "Unicode TXT companion plus SVG; reproducible UML source for UML figures",
+    "reviewStatus": "internally-reviewed-vector"
   },
   {
     "id": "DNAU-02-F1",
