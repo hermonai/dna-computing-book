@@ -1,29 +1,21 @@
 {
   "title": "DNA Computing",
-  "subtitle": "From Molecules to Algorithms",
-  "edition": "3-undergraduate",
-  "status": "chapter-one-production",
-  "chapters": [
-    {
-      "id": "DNAU-01",
-      "title": "What does it mean to compute?",
-      "source": "tex/undergraduate/ch01.tex",
-      "status": "internally-reviewed-draft"
-    }
-  ],
-  "main": "tex/undergraduate-dna-computing.tex",
-  "graphs": [
-    "book/diagrams/undergraduate/DNAU-01-F1.txt",
-    "book/diagrams/undergraduate/DNAU-01-F2.txt",
-    "book/diagrams/undergraduate/DNAU-01-F3.txt",
-    "book/diagrams/undergraduate/DNAU-01-F4.txt",
-    "book/diagrams/undergraduate/DNAU-01-F5.txt",
-    "book/diagrams/undergraduate/DNAU-01-F6.txt"
-  ],
-  "pedagogy": "pedagogy/curriculum.json",
+  "subtitle": "From Molecular Biology to Algorithms and Computation",
+  "edition": "4-deep",
+  "status": "architecture-only-no-manuscript",
+  "chapters": [],
+  "main": null,
+  "graphs": [],
+  "pedagogy": "pedagogy/deep-curriculum.json",
   "previousEdition": {
     "branch": "astra-rewrite",
     "commit": "a1fb9a6154976f903b39d0f8a26834a8336f2264"
   },
-  "historicalSnapshot": "3e10fc84bd81e733351da539e28b729eb1f007cf"
+  "historicalSnapshot": "3e10fc84bd81e733351da539e28b729eb1f007cf",
+  "preservedUndergraduateEdition": {
+    "branch": "astra-undergraduate-rewrite",
+    "commit": "0779ed552b26d678e2443c0d94177faa04dc293c",
+    "source": "tex/undergraduate/ch01.tex",
+    "pdf": "output/pdf/undergraduate-dna-computing.pdf"
+  }
 }

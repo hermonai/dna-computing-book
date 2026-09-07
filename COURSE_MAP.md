@@ -1,583 +1,457 @@
-# DNA Computing: undergraduate-first architecture
+# DNA Computing: deep technical edition
 
-Status: Chapter 1 internally reviewed development draft; all later units remain planned. No learner study, independent expert certification or new research-model experiment is claimed. Generated from [pedagogy/curriculum.json](pedagogy/curriculum.json). See [Chapter 1 storyboard](research/undergraduate-ch01-storyboard.md) for the six produced figures.
+Status: architecture and detailed outlines only; no new manuscript, final figures, animation frames, models, engines or experiments are delivered. Canonical source: [deep curriculum](pedagogy/deep-curriculum.json). Prior editions remain historical references, not the active teaching level.
 
-## Teaching route and chapter opening maps
+DOGMA = non-Transformer DNA-native model + DOGMA Engine; Hermon DNA = Transformer-based DNA model + Hermon DNA Engine; Evolutor = broader genomic computation theory, research and eventual runtime above both.
 
-Each opening recalls named prior ideas, introduces only the current step, and identifies what it enables next. A dependency is a teaching requirement, not a claimed biological causal relation. Unlisted previous chapters remain available for optional practice; no later chapter may be required.
+## Chapter dependencies, mechanisms and exit tasks
 
-## DNAU-01 — What does it mean to compute?
+Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functions, sets and discrete mathematical maturity; Basic probability, vectors, matrices and first-year calculus.
 
-**Required earlier units (planned unless marked active):** High-school arithmetic and logical reading.
+### DNAD-01 — Computing with DNA
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Required earlier chapters:** Declared entry assumptions.
 
-**First encounters, in planned teaching order:** computation → input → output → rule → step.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Tangible opening:** Can the same rule work with counters and a calculator?
+**Mechanisms and concepts:** molecular computation; Hamiltonian witness; encoding and selection.
 
-**Why and how the mathematics enters:** Count tangible objects before writing 3 + 2 = 5; no variables or code syntax.
+**Formal/mathematical development:** Define G=(V,E), specified endpoints and a permutation witness; distinguish formal acceptance from physical recovery.
 
-**Observable exit task:** Identify input and output; find an ambiguous instruction; explain why the material can change while the rule stays the same.
+**Implementation / assessment:** Verify a nontrivial directed path and identify a filter-surviving invalid candidate.
 
-**Enables next:** DNAU-02, DNAU-03, DNAU-07.
+**Enables:** DNAD-02, DNAD-03, DNAD-05.
 
-## DNAU-02 — Symbols, information and representations
+### DNAD-02 — Adleman's experiment: a mechanistic reconstruction
 
-**Required earlier units (planned unless marked active):** DNAU-01: What does it mean to compute?.
+**Required earlier chapters:** DNAD-01.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**First encounters, in planned teaching order:** symbol → data → information → representation → encoding → set → sequence.
+**Mechanisms and concepts:** vertex and edge oligos; annealing and ligation; endpoint PCR; length and affinity selection; historical readout.
 
-**Tangible opening:** How can a mark stand for something else?
+**Formal/mathematical development:** Derive ideal filter soundness and list physical completeness assumptions without inventing historical measurements.
 
-**Why and how the mathematics enters:** Show membership by placing cards inside a ring before set braces; use numbered positions before sequence notation.
+**Implementation / assessment:** Reconstruct each operation from the primary paper; simulate filter losses and missing witnesses.
 
-**Observable exit task:** Recognize a sequence versus a set; expose an ambiguous encoding; supply a decoding key.
+**Enables:** DNAD-04, DNAD-12.
 
-**Enables next:** DNAU-03, DNAU-05, DNAU-07, DNAU-09, DNAU-11, DNAU-33, DNAU-34.
+### DNAD-03 — Combinatorial search and complexity
 
-## DNAU-03 — Algorithms, decisions and remembered state
+**Required earlier chapters:** DNAD-01.
 
-**Required earlier units (planned unless marked active):** DNAU-01: What does it mean to compute?; DNAU-02: Symbols, information and representations.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Mechanisms and concepts:** directed graphs; Hamiltonian paths; SAT; P; NP; reductions; verification.
 
-**First encounters, in planned teaching order:** algorithm → condition → logic → and → or → not → state → loop → function → relation.
+**Formal/mathematical development:** Distinguish decision from search; prove a verifier bound and explain NP-completeness without claiming P differs from NP.
 
-**Tangible opening:** How can a recipe choose and remember?
+**Implementation / assessment:** Build an exhaustive oracle and a polynomial witness checker; compare search and verification counts.
 
-**Why and how the mathematics enters:** Input/output pairs motivate a function; contrast with a relation permitting several outputs. Truth tables follow ordinary sentences.
+**Enables:** DNAD-04, DNAD-11, DNAD-13, DNAD-16.
 
-**Observable exit task:** Complete a trace; test a boundary case; explain why an instruction must terminate.
+### DNAD-04 — Molecular parallelism and resource accounting
 
-**Enables next:** DNAU-04, DNAU-05, DNAU-06, DNAU-08, DNAU-12, DNAU-25, DNAU-30, DNAU-34.
+**Required earlier chapters:** DNAD-02, DNAD-03.
 
-## DNAU-04 — Your first small Python programs
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Required earlier units (planned unless marked active):** DNAU-03: Algorithms, decisions and remembered state.
+**Mechanisms and concepts:** sampling; material; concentration; reaction depth; readout; energy boundaries.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Formal/mathematical development:** Derive miss probability (1-p)^M under declared independent sampling; separate factorial candidate space from physical yield.
 
-**First encounters, in planned teaching order:** source code → program → interpreter → variable → string → list → dictionary → test → error message.
+**Implementation / assessment:** Estimate a declared sampling budget and sensitivity to bias; do not assume uniform generation.
 
-**Tangible opening:** How do instructions on paper become a runnable program?
+**Enables:** DNAD-18, DNAD-24.
 
-**Why and how the mathematics enters:** Assignment is explained separately from mathematical equality; indexing begins with numbered cards.
+### DNAD-05 — DNA chemistry and sequence geometry
 
-**Observable exit task:** Predict output before running; repair an index error; write a three-case test with supplied answers.
+**Required earlier chapters:** DNAD-01.
 
-**Enables next:** DNAU-05, DNAU-06, DNAU-11, DNAU-33, DNAU-34.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-## DNAU-05 — Cities, roads, graphs and paths
+**Mechanisms and concepts:** nucleotide; phosphodiester backbone; stacking; antiparallel duplex; reverse complement.
 
-**Required earlier units (planned unless marked active):** DNAU-02: Symbols, information and representations; DNAU-03: Algorithms, decisions and remembered state; DNAU-04: Your first small Python programs.
+**Formal/mathematical development:** Map an oriented molecular diagram to strings without treating symbolic complementarity as binding prediction.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Implementation / assessment:** Implement reverse complement and test orientation, ambiguity and involution.
 
-**First encounters, in planned teaching order:** graph → vertex → edge → directed edge → undirected edge → walk → path → simple path → cycle.
+**Enables:** DNAD-06, DNAD-07, DNAD-08, DNAD-17, DNAD-22, DNAD-25, DNAD-30.
 
-**Tangible opening:** How does a city map become a graph?
+### DNAD-06 — Hybridization thermodynamics
 
-**Why and how the mathematics enters:** Teach each visual term before G=(V,E); declare path means no repeated vertex, walk may repeat; count both edges and listed vertices.
+**Required earlier chapters:** DNAD-05.
 
-**Observable exit task:** Reject a backwards road; identify repeated vertices; compare path and cycle without requiring a named hard problem.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Enables next:** DNAU-06, DNAU-21, DNAU-25.
+**Mechanisms and concepts:** free energy; nearest-neighbor models; salt; concentration; melting; mismatch.
 
-## DNAU-06 — Search, counting and growing work
+**Formal/mathematical development:** Derive equilibrium occupancy from a stated binding model with units and standard-state conventions.
 
-**Required earlier units (planned unless marked active):** DNAU-03: Algorithms, decisions and remembered state; DNAU-04: Your first small Python programs; DNAU-05: Cities, roads, graphs and paths.
+**Implementation / assessment:** Compare symbolic matches with parameterized free-energy predictions; record parameter provenance.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Enables:** DNAD-07, DNAD-09, DNAD-11, DNAD-19, DNAD-29.
 
-**First encounters, in planned teaching order:** search → candidate → verification → permutation → factorial → growth rate → Big-O → proposition → proof → counterexample.
+### DNAD-07 — Reaction kinetics and stochastic chemistry
 
-**Tangible opening:** Why can a tiny choice list grow so quickly?
+**Required earlier chapters:** DNAD-05, DNAD-06.
 
-**Why and how the mathematics enters:** Multiplication of choices precedes factorial; 100, 10000, 1000000 comparisons precede O(n²). Explain upper bound, not exact runtime.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Observable exit task:** Count a three-card case; find a checker bug; explain a small proof in words before notation.
+**Mechanisms and concepts:** mass action; stoichiometry; ODEs; stochastic trajectories; diffusion limits.
 
-**Enables next:** DNAU-21, DNAU-24, DNAU-25.
+**Formal/mathematical development:** Derive rate equations from reaction stoichiometry; separate deterministic concentration from molecule counts.
 
-## DNAU-07 — Atoms, molecules and different kinds of bonds
+**Implementation / assessment:** Simulate association; check conservation, units and stochastic versus deterministic limits.
 
-**Required earlier units (planned unless marked active):** DNAU-01: What does it mean to compute?; DNAU-02: Symbols, information and representations.
+**Enables:** DNAD-08, DNAD-19, DNAD-20, DNAD-28, DNAD-30.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+### DNAD-08 — Enzymes as molecular operators
 
-**First encounters, in planned teaching order:** atom → molecule → chemical bond → covalent bond → hydrogen bond → charge.
+**Required earlier chapters:** DNAD-05, DNAD-07.
 
-**Tangible opening:** What holds a molecule together?
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Why and how the mathematics enters:** No formula needed: distinguish object counts, connections and charges before chemical symbols.
+**Mechanisms and concepts:** polymerase; ligase; restriction; recognition; substrates; cofactors.
 
-**Observable exit task:** Identify what each line style means; explain why base-pair marks must not look like backbone bonds.
+**Formal/mathematical development:** Give typed input/output abstractions and chemical preconditions; distinguish catalysis from information creation.
 
-**Enables next:** DNAU-08, DNAU-09, DNAU-10.
+**Implementation / assessment:** Trace ligation and restriction cases including incompatible ends and incomplete reactions.
 
-## DNAU-08 — Solutions, amounts, temperature and change
+**Enables:** DNAD-09, DNAD-10, DNAD-15, DNAD-17, DNAD-26, DNAD-30.
 
-**Required earlier units (planned unless marked active):** DNAU-03: Algorithms, decisions and remembered state; DNAU-07: Atoms, molecules and different kinds of bonds.
+### DNAD-09 — PCR, amplification and selection bias
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Required earlier chapters:** DNAD-06, DNAD-08.
 
-**First encounters, in planned teaching order:** solution → concentration → mole → pH → temperature → energy → equilibrium → kinetics → reaction rate.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Tangible opening:** Why does the same molecule behave differently in different solutions?
+**Mechanisms and concepts:** primer orientation; thermal cycling; specificity; efficiency; contamination.
 
-**Why and how the mathematics enters:** Unit-labeled ratios precede concentration; introduce powers of ten and logarithm intuition before pH; energy landscapes are qualitative, not parameter predictions.
+**Formal/mathematical development:** Derive N_k=N_0(1+e)^k for constant efficiency and explain plateau and selection bias.
 
-**Observable exit task:** Distinguish rate from equilibrium; identify missing units; interpret a pH scale without an unsupported binding calculation.
+**Implementation / assessment:** Compute amplification with variable efficiency and adversarial primer placement.
 
-**Enables next:** DNAU-12, DNAU-14, DNAU-15, DNAU-16, DNAU-28.
+**Enables:** DNAD-10, DNAD-26.
 
-## DNAU-09 — Cells, chromosomes, genes and genomes
+### DNAD-10 — Separation, detection and experimental logic
 
-**Required earlier units (planned unless marked active):** DNAU-02: Symbols, information and representations; DNAU-07: Atoms, molecules and different kinds of bonds.
+**Required earlier chapters:** DNAD-08, DNAD-09.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**First encounters, in planned teaching order:** cell → nucleus → chromosome → DNA → gene → genome.
+**Mechanisms and concepts:** electrophoresis; affinity purification; fluorescence; sequencing; controls.
 
-**Tangible opening:** Where is DNA, and what is a genome?
+**Formal/mathematical development:** Model retention and detection separately; distinguish evidence of presence from evidence of absence.
 
-**Why and how the mathematics enters:** No equation; teach nested containment and distinguish a typical nucleated cell from bacteria and exceptions.
+**Implementation / assessment:** Interpret a synthetic gel with declared uncertainty and design positive/negative controls.
 
-**Observable exit task:** Distinguish gene, chromosome and genome; explain why not every cell has a nucleus.
+**Enables:** DNAD-11, DNAD-23, DNAD-25, DNAD-26.
 
-**Enables next:** DNAU-10, DNAU-13, DNAU-32.
+### DNAD-11 — Sequence design and graph encoding
 
-## DNAU-10 — From a nucleotide to a DNA strand
+**Required earlier chapters:** DNAD-03, DNAD-06, DNAD-10.
 
-**Required earlier units (planned unless marked active):** DNAU-07: Atoms, molecules and different kinds of bonds; DNAU-09: Cells, chromosomes, genes and genomes.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Mechanisms and concepts:** orthogonality; overlaps; reverse-complement constraints; secondary structure.
 
-**First encounters, in planned teaching order:** base → sugar → phosphate → nucleotide → nucleoside → strand → double helix → deoxyribose → phosphodiester bond.
+**Formal/mathematical development:** Formulate design constraints and demonstrate why pairwise sequence distance is insufficient.
 
-**Tangible opening:** What do the letters A, C, G and T leave out?
+**Implementation / assessment:** Construct an encoding and test orientation, off-target overlaps and hairpin risks.
 
-**Why and how the mathematics enters:** Introduce chemical shorthand only after the object key; no atom-resolved geometry inferred from cartoons.
+**Enables:** DNAD-12, DNAD-14, DNAD-15, DNAD-19, DNAD-27.
 
-**Observable exit task:** Distinguish base from nucleotide; locate the backbone; identify what a flattened drawing omits.
+### DNAD-12 — Generate–filter–verify algorithms
 
-**Enables next:** DNAU-11, DNAU-13.
+**Required earlier chapters:** DNAD-02, DNAD-11.
 
-## DNAU-11 — Direction, pairing and reverse complement
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Required earlier units (planned unless marked active):** DNAU-02: Symbols, information and representations; DNAU-04: Your first small Python programs; DNAU-10: From a nucleotide to a DNA strand.
+**Mechanisms and concepts:** candidate multisets; predicates; soundness; completeness; physical loss.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Formal/mathematical development:** Prove an ideal filtering invariant; extend it with stage-specific false-positive and false-negative events.
 
-**First encounters, in planned teaching order:** 5-prime and 3-prime → complementarity → antiparallel → duplex → reverse complement.
+**Implementation / assessment:** Compare a symbolic filter simulator with an independent graph oracle.
 
-**Tangible opening:** Why is a complement not yet a reverse complement?
+**Enables:** DNAD-13, DNAD-14, DNAD-23, DNAD-27.
 
-**Why and how the mathematics enters:** Show directions and paired letters before c(s) or RC(s); build round-trip reasoning from an asymmetric example.
+### DNAD-13 — SAT and combinatorial constructions
 
-**Observable exit task:** Compute AGTC and ATAT partners; reject a wrong orientation; explain why a string test does not predict binding.
+**Required earlier chapters:** DNAD-03, DNAD-12.
 
-**Enables next:** DNAU-13, DNAU-14, DNAU-16, DNAU-22, DNAU-26, DNAU-31, DNAU-33.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-## DNAU-12 — Chance, encounters and repeated trials
+**Mechanisms and concepts:** Lipton encoding; clauses; selection; solution extraction.
 
-**Required earlier units (planned unless marked active):** DNAU-03: Algorithms, decisions and remembered state; DNAU-08: Solutions, amounts, temperature and change.
+**Formal/mathematical development:** Derive how a clause predicate acts on assignment encodings and account for exponential material.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Implementation / assessment:** Implement a small SAT oracle and molecular abstraction; expose unsound or incomplete filters.
 
-**First encounters, in planned teaching order:** probability → event → independence → conditional probability → random sample.
+**Enables:** Research synthesis.
 
-**Tangible opening:** Why might a possible molecular encounter never be observed?
+### DNAD-14 — Sticker systems and molecular memory
 
-**Why and how the mathematics enters:** Explain sample space and fractions; 0.9 × 0.9 = 0.81 precedes 1-(1-p)^M; flag independence as an assumption.
+**Required earlier chapters:** DNAD-11, DNAD-12.
 
-**Observable exit task:** Compute 0.19; contrast sampling with and without replacement; identify when the model is unjustified.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Enables next:** DNAU-15, DNAU-16, DNAU-23, DNAU-24, DNAU-28, DNAU-33, DNAU-34.
+**Mechanisms and concepts:** memory strands; stickers; bit operations; register reuse.
 
-## DNAU-13 — From DNA to RNA and proteins
+**Formal/mathematical development:** Specify a chosen sticker-model variant and its allowed operations before any power claim.
 
-**Required earlier units (planned unless marked active):** DNAU-09: Cells, chromosomes, genes and genomes; DNAU-10: From a nucleotide to a DNA strand; DNAU-11: Direction, pairing and reverse complement.
+**Implementation / assessment:** Execute a small register program and count operations, species and memory.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Enables:** DNAD-18.
 
-**First encounters, in planned teaching order:** RNA → protein → transcription → translation → codon → sequence transfer → amino acid → ribosome → transfer RNA.
+### DNAD-15 — Splicing and insertion–deletion systems
 
-**Tangible opening:** What is copied, and what is translated?
+**Required earlier chapters:** DNAD-08, DNAD-11.
 
-**Why and how the mathematics enters:** Teach alphabet and three-letter grouping before codon notation; introduce amino acids, transfer RNA and the ribosome through a labeled translation sequence. Enzyme mechanisms follow in Chapter 14.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Observable exit task:** Distinguish copying sequence from controlling a process; recognize that some RNAs are not translated.
+**Mechanisms and concepts:** cut-and-paste rules; context; insertion; deletion; molecular interpretation.
 
-**Enables next:** DNAU-14, DNAU-32.
+**Formal/mathematical development:** Define rule application precisely; separate formal closure results from realizable enzyme operations.
 
-## DNAU-14 — Enzymes and DNA replication in six frames
+**Implementation / assessment:** Write a bounded rewrite enumerator and verify hand-derived reachable strings.
 
-**Required earlier units (planned unless marked active):** DNAU-08: Solutions, amounts, temperature and change; DNAU-11: Direction, pairing and reverse complement; DNAU-13: From DNA to RNA and proteins.
+**Enables:** DNAD-16, DNAD-18, DNAD-27.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+### DNAD-16 — Languages, automata and molecular recognition
 
-**First encounters, in planned teaching order:** enzyme → helicase → primer → primase → polymerase → replication → leading strand → lagging strand.
+**Required earlier chapters:** DNAD-03, DNAD-15.
 
-**Tangible opening:** Why are the two new strands made differently?
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Why and how the mathematics enters:** Teach new-strand and template directions before counting copies; distinguish an enzyme from a consumed nucleotide.
+**Mechanisms and concepts:** formal languages; grammars; automata; acceptance; transduction.
 
-**Observable exit task:** Locate the growing end; repair a reversed arrow; track parental versus newly synthesized strands.
+**Formal/mathematical development:** Develop formal definitions and a recognition example before molecular implementations.
 
-**Enables next:** DNAU-15, DNAU-17, DNAU-18, DNAU-32.
+**Implementation / assessment:** Build a finite-state recognizer and map its transitions to a proposed molecular scheme.
 
-## DNAU-15 — What a laboratory operation actually does
+**Enables:** DNAD-17, DNAD-18.
 
-**Required earlier units (planned unless marked active):** DNAU-08: Solutions, amounts, temperature and change; DNAU-12: Chance, encounters and repeated trials; DNAU-14: Enzymes and DNA replication in six frames.
+### DNAD-17 — Watson–Crick and biochemical automata
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Required earlier chapters:** DNAD-05, DNAD-08, DNAD-16.
 
-**First encounters, in planned teaching order:** pipette → test tube → centrifuge → control sample → measurement → calibration.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Tangible opening:** What goes into an instrument, and what comes out?
+**Mechanisms and concepts:** paired-strand automata; complementarity relation; Benenson-style systems.
 
-**Why and how the mathematics enters:** Teach volume and instrument readings before uncertainty ranges; no hazardous or unsupervised recipe.
+**Formal/mathematical development:** Distinguish mathematical automaton variants and finite experimental implementations.
 
-**Observable exit task:** Match instruments to purpose; spot a unit error; explain why an unlabeled tube invalidates interpretation.
+**Implementation / assessment:** Trace acceptance on paired inputs; audit what the biochemical experiment actually implements.
 
-**Enables next:** DNAU-16, DNAU-17, DNAU-18, DNAU-19, DNAU-20.
+**Enables:** DNAD-18, DNAD-27.
 
-## DNAU-16 — Hybridization as molecular recognition
+### DNAD-18 — Universality and complexity models
 
-**Required earlier units (planned unless marked active):** DNAU-08: Solutions, amounts, temperature and change; DNAU-11: Direction, pairing and reverse complement; DNAU-12: Chance, encounters and repeated trials; DNAU-15: What a laboratory operation actually does.
+**Required earlier chapters:** DNAD-04, DNAD-14, DNAD-15, DNAD-16, DNAD-17.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**First encounters, in planned teaching order:** hybridization → melting → free energy → association → dissociation.
+**Mechanisms and concepts:** Turing completeness; simulations; uniformity; resource vectors.
 
-**Tangible opening:** Why is compatible pairing not guaranteed binding?
+**Formal/mathematical development:** State model assumptions and sketch a valid simulation proof; no finite experiment proves unbounded universality.
 
-**Why and how the mathematics enters:** Energy difference and units before any equilibrium formula; empirical parameters must have provenance.
+**Implementation / assessment:** Critique a universality argument by finding missing resources or illegal operations.
 
-**Observable exit task:** Separate compatibility, occupancy and reaction speed; identify unsupported numerical predictions.
+**Enables:** DNAD-20, DNAD-22, DNAD-24, DNAD-32.
 
-**Enables next:** DNAU-17, DNAU-18, DNAU-29, DNAU-31.
+### DNAD-19 — Toehold-mediated strand displacement
 
-## DNAU-17 — Cutting and joining strands
+**Required earlier chapters:** DNAD-06, DNAD-07, DNAD-11.
 
-**Required earlier units (planned unless marked active):** DNAU-14: Enzymes and DNA replication in six frames; DNAU-15: What a laboratory operation actually does; DNAU-16: Hybridization as molecular recognition.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Mechanisms and concepts:** toehold binding; branch migration; release; leakage.
 
-**First encounters, in planned teaching order:** restriction enzyme → recognition site → ligation → ligase.
+**Formal/mathematical development:** Introduce domain notation, conservation and kinetic abstractions after oriented strand frames.
 
-**Tangible opening:** How can cutting and joining act like instructions?
+**Implementation / assessment:** Simulate a gate with explicit fuel and waste; test leak pathways.
 
-**Why and how the mathematics enters:** Track sequence positions before slice notation; orientation and chemical ends remain explicit.
+**Enables:** DNAD-20, DNAD-21, DNAD-23, DNAD-28.
 
-**Observable exit task:** Predict fragments; reject incompatible orientation; distinguish association from covalent joining.
+### DNAD-20 — Chemical reaction networks as programs
 
-**Enables next:** DNAU-19, DNAU-22, DNAU-27.
+**Required earlier chapters:** DNAD-07, DNAD-18, DNAD-19.
 
-## DNAU-18 — Copying selected DNA with PCR
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Required earlier units (planned unless marked active):** DNAU-14: Enzymes and DNA replication in six frames; DNAU-15: What a laboratory operation actually does; DNAU-16: Hybridization as molecular recognition.
+**Mechanisms and concepts:** species; stoichiometry; mass action; compositional encodings.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Formal/mathematical development:** Derive deterministic and stochastic semantics, then explain DNA implementation assumptions.
 
-**First encounters, in planned teaching order:** polymerase chain reaction → PCR → thermal cycler → amplification.
+**Implementation / assessment:** Implement a small CRN with independent conservation and nonnegativity checks.
 
-**Tangible opening:** How can a chosen DNA region become easier to detect?
+**Enables:** DNAD-21, DNAD-28.
 
-**Why and how the mathematics enters:** Repeated doubling precedes 2^k; efficiency, plateau and unintended products are not hidden.
+### DNAD-21 — Digital and analog DNA circuits
 
-**Observable exit task:** Identify primer direction; calculate two cycles; explain why real yield need not double.
+**Required earlier chapters:** DNAD-19, DNAD-20.
 
-**Enables next:** DNAU-19, DNAU-20, DNAU-23.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-## DNAU-19 — Separating molecules and retaining candidates
+**Mechanisms and concepts:** logic; thresholds; restoration; feedback; fan-out; depletion.
 
-**Required earlier units (planned unless marked active):** DNAU-15: What a laboratory operation actually does; DNAU-17: Cutting and joining strands; DNAU-18: Copying selected DNA with PCR.
+**Formal/mathematical development:** Derive signal conventions and explain when isolated gate behavior fails under composition.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Implementation / assessment:** Compare a truth table with concentration trajectories and resource depletion.
 
-**First encounters, in planned teaching order:** gel → electrophoresis → affinity separation → size selection.
+**Enables:** DNAD-23, DNAD-24, DNAD-31.
 
-**Tangible opening:** How does a physical separation implement a selection rule?
+### DNAD-22 — Self-assembly, tiles and geometry
 
-**Why and how the mathematics enters:** Teach reference size and relative migration first; no universal length-to-distance law.
+**Required earlier chapters:** DNAD-05, DNAD-18.
 
-**Observable exit task:** Read a schematic gel; distinguish amount from length; explain what a blurry band cannot establish.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Enables next:** DNAU-20, DNAU-23.
+**Mechanisms and concepts:** Seeman structures; Wang tiles; aTAM; glue strengths; assembly sequences; origami.
 
-## DNAU-20 — Detecting and reading a result
+**Formal/mathematical development:** Define tile attachment threshold and legal assembly; separate geometry, addressability and computation.
 
-**Required earlier units (planned unless marked active):** DNAU-15: What a laboratory operation actually does; DNAU-18: Copying selected DNA with PCR; DNAU-19: Separating molecules and retaining candidates.
+**Implementation / assessment:** Enumerate a small tile assembly and test illegal attachments and alternative growth orders.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Enables:** DNAD-24, DNAD-31.
 
-**First encounters, in planned teaching order:** fluorescence → sequencer → DNA synthesizer → readout → detection threshold.
+### DNAD-23 — Noise, crosstalk and fault models
 
-**Tangible opening:** How does a molecular event become a reported answer?
+**Required earlier chapters:** DNAD-10, DNAD-12, DNAD-19, DNAD-21.
 
-**Why and how the mathematics enters:** Background and threshold before binary detection; do not convert no signal into proof of no candidate.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Observable exit task:** Explain synthesizer versus sequencer; reject an overconfident negative result; propose a control.
+**Mechanisms and concepts:** synthesis error; mismatch; leak; PCR bias; false positives; false negatives.
 
-**Enables next:** DNAU-22, DNAU-23, DNAU-33.
+**Formal/mathematical development:** Compose error channels only under justified dependence assumptions.
 
-## DNAU-21 — Hamiltonian paths: a visual mini-course
+**Implementation / assessment:** Inject correlated faults into a filter or circuit model; quantify robust and fragile regimes.
 
-**Required earlier units (planned unless marked active):** DNAU-05: Cities, roads, graphs and paths; DNAU-06: Search, counting and growing work.
+**Enables:** DNAD-24, DNAD-25, DNAD-26, DNAD-28.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+### DNAD-24 — Scaling and resource limits
 
-**First encounters, in planned teaching order:** Hamiltonian path → Hamiltonian cycle → specified endpoint → witness → predicate.
+**Required earlier chapters:** DNAD-04, DNAD-18, DNAD-21, DNAD-22, DNAD-23.
 
-**Tangible opening:** Can a route visit every city exactly once?
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Why and how the mathematics enters:** Only after valid/invalid pictures, write P=(v1,...,vn) and its conditions; explain each quantifier in words.
+**Mechanisms and concepts:** material; species; volume; latency; energy; detection; parallelism.
 
-**Observable exit task:** Recognition, route checking, implementation and reasoning ladder; fully work one valid and two invalid routes.
+**Formal/mathematical development:** Build a multidimensional cost model with declared system boundaries.
 
-**Enables next:** DNAU-22, DNAU-25.
+**Implementation / assessment:** Compare two algorithms at matched success probability, not only reaction-step count.
 
-## DNAU-22 — Adleman's idea: encode a graph in DNA
+**Enables:** DNAD-26, DNAD-31, DNAD-32.
 
-**Required earlier units (planned unless marked active):** DNAU-11: Direction, pairing and reverse complement; DNAU-17: Cutting and joining strands; DNAU-20: Detecting and reading a result; DNAU-21: Hamiltonian paths: a visual mini-course.
+### DNAD-25 — Synthesis, sequencing and DNA storage
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Required earlier chapters:** DNAD-05, DNAD-10, DNAD-23.
 
-**First encounters, in planned teaching order:** molecular encoding → vertex code → overlap code.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Tangible opening:** How can a molecule represent a city and a road?
+**Mechanisms and concepts:** writing; coding; redundancy; access; sequencing channels; storage versus computation.
 
-**Why and how the mathematics enters:** Define code length and overlap only after paired illustrations; distinguish teaching instance from the historical seven-vertex experiment.
+**Formal/mathematical development:** Derive a toy coding overhead and error model without conflating stored bits with executed operations.
 
-**Observable exit task:** Spot encoding ambiguity; trace one joined candidate; explain that a correct code does not guarantee physical generation.
+**Implementation / assessment:** Recover a synthetic message under insertion/deletion/substitution errors.
 
-**Enables next:** DNAU-23.
+**Enables:** DNAD-29.
 
-## DNAU-23 — Generate, filter and read the candidates
+### DNAD-26 — Laboratory workflows and reproducibility
 
-**Required earlier units (planned unless marked active):** DNAU-12: Chance, encounters and repeated trials; DNAU-18: Copying selected DNA with PCR; DNAU-19: Separating molecules and retaining candidates; DNAU-20: Detecting and reading a result; DNAU-22: Adleman's idea: encode a graph in DNA.
+**Required earlier chapters:** DNAD-08, DNAD-09, DNAD-10, DNAD-23, DNAD-24.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**First encounters, in planned teaching order:** candidate population → endpoint filter → coverage filter → false positive → false negative.
+**Mechanisms and concepts:** oligo design; purification; mixing; reaction; controls; measurement; provenance.
 
-**Tangible opening:** Why is one filter not enough?
+**Formal/mathematical development:** Connect operational checklists to statistical inference and measurement uncertainty.
 
-**Why and how the mathematics enters:** Count retained candidates before set-filter notation; distinguish sample abundance from distinct strings.
+**Implementation / assessment:** Design a documented non-operational experiment plan with controls and failure interpretation.
 
-**Observable exit task:** Keep a repeated-vertex counterexample until coverage; explain absent candidates versus missed detection.
+**Enables:** DNAD-31.
 
-**Enables next:** DNAU-24, DNAU-26.
+### DNAD-27 — Symbolic molecular simulation
 
-## DNAU-24 — What the experiment proved, and what it did not
+**Required earlier chapters:** DNAD-11, DNAD-12, DNAD-15, DNAD-17.
 
-**Required earlier units (planned unless marked active):** DNAU-06: Search, counting and growing work; DNAU-12: Chance, encounters and repeated trials; DNAU-23: Generate, filter and read the candidates.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Mechanisms and concepts:** strings; multisets; rule interpreters; bounded search; independent oracles.
 
-**First encounters, in planned teaching order:** soundness → completeness → resource model → parallelism.
+**Formal/mathematical development:** Specify interpreter semantics and prove a small invariant before optimization.
 
-**Tangible opening:** Why is a small successful experiment not a shortcut around hard search?
+**Implementation / assessment:** Build a tested symbolic core shared by graph filters and rewriting systems.
 
-**Why and how the mathematics enters:** Plain reasoning precedes proposition and proof; explain the assumptions separately for checking survivors and generating every possible answer. Complexity-class terminology waits for the machine and reduction foundations in Chapter 25.
+**Enables:** DNAD-28.
 
-**Observable exit task:** Find a missing completeness premise; audit exponential material demand; state the bounded historical conclusion.
+### DNAD-28 — Kinetic and stochastic simulation
 
-**Enables next:** DNAU-25, DNAU-35.
+**Required earlier chapters:** DNAD-07, DNAD-19, DNAD-20, DNAD-23, DNAD-27.
 
-## DNAU-25 — Languages, machines and computational models
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Required earlier units (planned unless marked active):** DNAU-03: Algorithms, decisions and remembered state; DNAU-05: Cities, roads, graphs and paths; DNAU-06: Search, counting and growing work; DNAU-21: Hamiltonian paths: a visual mini-course; DNAU-24: What the experiment proved, and what it did not.
+**Mechanisms and concepts:** ODE integration; stochastic simulation; parameter fitting; model validation.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Formal/mathematical development:** Derive event propensities and discuss stiffness, identifiability and approximation error.
 
-**First encounters, in planned teaching order:** alphabet → formal language → automaton → finite-state machine → transition → Turing machine → SAT → nondeterminism → decision problem → polynomial reduction → NP → NP-complete.
+**Implementation / assessment:** Compare deterministic and stochastic trajectories under reproducible seeds and fitted uncertainty.
 
-**Tangible opening:** What does it mean for different machines to solve the same kind of problem?
+**Enables:** DNAD-29, DNAD-31.
 
-**Why and how the mathematics enters:** Teach Boolean variable, clause and satisfiability before SAT; accepted sets before formal-language notation. Explain decision tasks, polynomial-time checking and a concrete reduction before defining NP and NP-complete; distinguish nondeterminism from physical parallelism.
+### DNAD-29 — Differentiable molecular and sequence models
 
-**Observable exit task:** Trace acceptance; explain nondeterminism versus randomness; mark theorem assumptions and idealized unlimited storage.
+**Required earlier chapters:** DNAD-06, DNAD-25, DNAD-28.
 
-**Enables next:** DNAU-26, DNAU-27, DNAU-28, DNAU-31.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-## DNAU-26 — Strand, sticker and paired-strand models
+**Mechanisms and concepts:** sensitivity; inverse design; tensors; gradients; DNA representations.
 
-**Required earlier units (planned unless marked active):** DNAU-11: Direction, pairing and reverse complement; DNAU-23: Generate, filter and read the candidates; DNAU-25: Languages, machines and computational models.
+**Formal/mathematical development:** Derive a simple differentiable objective and distinguish surrogate accuracy from physical validation.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Implementation / assessment:** Use NumPy or PyTorch only where gradients or tensors serve the model; check finite differences.
 
-**First encounters, in planned teaching order:** sticker model → Watson-Crick automaton → molecular instruction set.
+**Enables:** DNAD-31, DNAD-32.
 
-**Tangible opening:** What changes when the allowed molecular instructions change?
+### DNAD-30 — Genomic organization, regulation and development
 
-**Why and how the mathematics enters:** Operation tables precede model tuples; keep variants and their computational powers separate.
+**Required earlier chapters:** DNAD-05, DNAD-07, DNAD-08.
 
-**Observable exit task:** Recognize a model operation; trace a program; reject a theorem transferred between variants.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Enables next:** DNAU-36.
+**Mechanisms and concepts:** genes; RNA; proteins; promoters; regulatory networks; development; inheritance; selection.
 
-## DNAU-27 — Splicing and rewriting strings
+**Formal/mathematical development:** Separate molecular mechanisms, dynamical state, parameter change and population evolution.
 
-**Required earlier units (planned unless marked active):** DNAU-17: Cutting and joining strands; DNAU-25: Languages, machines and computational models.
+**Implementation / assessment:** Analyze a small regulatory model and identify what it omits about a living system.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+**Enables:** DNAD-32.
 
-**First encounters, in planned teaching order:** rewrite rule → splicing → insertion → deletion.
+### DNAD-31 — Modern molecular programming and evidence
 
-**Tangible opening:** Can cutting and joining describe a formal language?
+**Required earlier chapters:** DNAD-21, DNAD-22, DNAD-24, DNAD-26, DNAD-28, DNAD-29.
 
-**Why and how the mathematics enters:** Concrete substitutions precede formal rewriting notation; alphabet, context and rule conditions stay visible.
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Observable exit task:** Apply a rule; identify an illegal cut; distinguish formal closure from laboratory feasibility.
+**Mechanisms and concepts:** circuits; assembly; sensing; in-vitro and in-vivo boundaries; current literature.
 
-**Enables next:** DNAU-36.
+**Formal/mathematical development:** Reconstruct selected primary results with assumptions, controls, resources and uncertainty.
 
-## DNAU-28 — Reaction networks and changing amounts
+**Implementation / assessment:** Produce a reproducible evidence comparison; refresh literature at drafting time.
 
-**Required earlier units (planned unless marked active):** DNAU-08: Solutions, amounts, temperature and change; DNAU-12: Chance, encounters and repeated trials; DNAU-25: Languages, machines and computational models.
+**Enables:** DNAD-32.
 
-**Book I bridge:** None. See the planned exit checks in the shared contract.
+### DNAD-32 — From molecular computation to genomic computation
 
-**First encounters, in planned teaching order:** chemical reaction network → recurrence → stochastic process → mass action.
+**Required earlier chapters:** DNAD-18, DNAD-24, DNAD-29, DNAD-30, DNAD-31.
 
-**Tangible opening:** How can amounts change step by step?
+**Book I imports:** None. All imports are future teaching dependencies, not completed outcomes.
 
-**Why and how the mathematics enters:** Old amount minus loss plus input precedes recurrence; stoichiometric counts and units precede rate equations; introduce derivative as instantaneous rate only if needed.
+**Mechanisms and concepts:** physical molecule; formal string; simulator; learned representation; computational analogy.
 
-**Observable exit task:** Compute two updates; check conservation; distinguish one random path from an average.
+**Formal/mathematical development:** Define cross-layer mappings and identify which properties survive abstraction.
 
-**Enables next:** DNAU-29, DNAU-30, DNAU-32, DNAU-35.
+**Implementation / assessment:** Complete the Book II handoff by formalizing one mechanism and rejecting an unsupported analogy.
 
-## DNAU-29 — Strand displacement in slow motion
-
-**Required earlier units (planned unless marked active):** DNAU-16: Hybridization as molecular recognition; DNAU-28: Reaction networks and changing amounts.
-
-**Book I bridge:** None. See the planned exit checks in the shared contract.
-
-**First encounters, in planned teaching order:** toehold → branch migration → strand displacement → leakage.
-
-**Tangible opening:** How can one strand release another without an enzyme?
-
-**Why and how the mathematics enters:** Teach domain labels before domain-level notation; rates require sourced parameters.
-
-**Observable exit task:** Track conserved strands; correct an orientation mistake; identify omitted side reactions.
-
-**Enables next:** DNAU-30.
-
-## DNAU-30 — Digital and analog molecular circuits
-
-**Required earlier units (planned unless marked active):** DNAU-03: Algorithms, decisions and remembered state; DNAU-28: Reaction networks and changing amounts; DNAU-29: Strand displacement in slow motion.
-
-**Book I bridge:** None. See the planned exit checks in the shared contract.
-
-**First encounters, in planned teaching order:** logic gate → digital circuit → analog signal → threshold → feedback.
-
-**Tangible opening:** How can small reactions be connected into a larger computation?
-
-**Why and how the mathematics enters:** Truth table precedes Boolean expression; scaled concentration precedes analog formula; feedback sign is explained.
-
-**Observable exit task:** Check all inputs; identify signal depletion; explain why correct isolated gates need not compose reliably.
-
-**Enables next:** DNAU-31, DNAU-32, DNAU-35.
-
-## DNAU-31 — Local assembly, tiles and DNA origami
-
-**Required earlier units (planned unless marked active):** DNAU-11: Direction, pairing and reverse complement; DNAU-16: Hybridization as molecular recognition; DNAU-25: Languages, machines and computational models; DNAU-30: Digital and analog molecular circuits.
-
-**Book I bridge:** None. See the planned exit checks in the shared contract.
-
-**First encounters, in planned teaching order:** tile assembly → local rule → DNA origami → addressability → geometry.
-
-**Tangible opening:** How can local attachments create a larger pattern?
-
-**Why and how the mathematics enters:** Coordinates follow grid pictures; no assumption that geometric assembly computes the same function as a circuit.
-
-**Observable exit task:** Find a forbidden attachment; distinguish shape from algorithm; state the physical scale boundary.
-
-**Enables next:** DNAU-36.
-
-## DNAU-32 — Genes, regulation, development and evolution
-
-**Required earlier units (planned unless marked active):** DNAU-09: Cells, chromosomes, genes and genomes; DNAU-13: From DNA to RNA and proteins; DNAU-14: Enzymes and DNA replication in six frames; DNAU-28: Reaction networks and changing amounts; DNAU-30: Digital and analog molecular circuits.
-
-**Book I bridge:** None. See the planned exit checks in the shared contract.
-
-**First encounters, in planned teaching order:** regulation → promoter → expression → mutation → inheritance → selection → adaptation → development.
-
-**Tangible opening:** How can the same DNA support different cellular behavior?
-
-**Why and how the mathematics enters:** Separate within-cell state change from inherited population change; simple frequency counts precede population notation.
-
-**Observable exit task:** Identify regulatory control versus sequence transfer; distinguish adaptation, mutation and development.
-
-**Enables next:** DNAU-36.
-
-## DNAU-33 — DNA storage, codes and recovery
-
-**Required earlier units (planned unless marked active):** DNAU-02: Symbols, information and representations; DNAU-04: Your first small Python programs; DNAU-11: Direction, pairing and reverse complement; DNAU-12: Chance, encounters and repeated trials; DNAU-20: Detecting and reading a result.
-
-**Book I bridge:** None. See the planned exit checks in the shared contract.
-
-**First encounters, in planned teaching order:** bit → error-correcting code → redundancy → random access → entropy.
-
-**Tangible opening:** How can a message survive a damaged molecular copy?
-
-**Why and how the mathematics enters:** Teach bit choices and code distance before coding bounds; probability and logarithm recall precede entropy, without claiming one universal capacity.
-
-**Observable exit task:** Recover a toy message; measure overhead; distinguish storage from active molecular computation.
-
-**Enables next:** DNAU-34, DNAU-35.
-
-## DNAU-34 — Many numbers at once: vectors, matrices and DNA data
-
-**Required earlier units (planned unless marked active):** DNAU-02: Symbols, information and representations; DNAU-03: Algorithms, decisions and remembered state; DNAU-04: Your first small Python programs; DNAU-12: Chance, encounters and repeated trials; DNAU-33: DNA storage, codes and recovery.
-
-**Book I bridge:** None. See the planned exit checks in the shared contract.
-
-**First encounters, in planned teaching order:** vector → matrix → dot product → matrix multiplication → sequence model.
-
-**Tangible opening:** Why do sequence-analysis programs use arrays of numbers?
-
-**Why and how the mathematics enters:** Ordered measurements precede vector notation; row-column weighted sums precede matrix products and dimensions.
-
-**Observable exit task:** Check dimensions; compute a two-row result; explain the two meanings of DNA computation.
-
-**Enables next:** DNAU-35, DNAU-36.
-
-## DNAU-35 — Resources, energy, reliability and design tools
-
-**Required earlier units (planned unless marked active):** DNAU-24: What the experiment proved, and what it did not; DNAU-28: Reaction networks and changing amounts; DNAU-30: Digital and analog molecular circuits; DNAU-33: DNA storage, codes and recovery; DNAU-34: Many numbers at once: vectors, matrices and DNA data.
-
-**Book I bridge:** None. See the planned exit checks in the shared contract.
-
-**First encounters, in planned teaching order:** resource budget → energy accounting → reliability → model validation → parameter provenance.
-
-**Tangible opening:** What must be counted before calling a design efficient?
-
-**Why and how the mathematics enters:** Attach units to every quantity before a cost tuple; no free-energy-to-computer-energy shortcut.
-
-**Observable exit task:** Reconcile units; design a control; distinguish software tests from physical validation.
-
-**Enables next:** DNAU-36.
-
-## DNAU-36 — A measured frontier and the bridge to Evolutor
-
-**Required earlier units (planned unless marked active):** DNAU-26: Strand, sticker and paired-strand models; DNAU-27: Splicing and rewriting strings; DNAU-31: Local assembly, tiles and DNA origami; DNAU-32: Genes, regulation, development and evolution; DNAU-34: Many numbers at once: vectors, matrices and DNA data; DNAU-35: Resources, energy, reliability and design tools.
-
-**Book I bridge:** None. See the planned exit checks in the shared contract.
-
-**First encounters, in planned teaching order:** research claim → baseline → falsifier → reproducibility → transfer task.
-
-**Tangible opening:** What can you now build, explain and still not claim?
-
-**Why and how the mathematics enters:** No new advanced formula; reconstruct earlier tools in a bounded capstone.
-
-**Observable exit task:** Explain a mechanism, implement its checker, critique evidence and complete the Book II readiness tasks.
-
-**Enables next:** Capstone completion and further research.
+**Enables:** Research synthesis.

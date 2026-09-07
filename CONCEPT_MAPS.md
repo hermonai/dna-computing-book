@@ -1,101 +1,76 @@
-# DNA Computing: undergraduate-first architecture
+# DNA Computing: deep technical edition
 
-Status: Chapter 1 internally reviewed development draft; all later units remain planned. No learner study, independent expert certification or new research-model experiment is claimed. Generated from [pedagogy/curriculum.json](pedagogy/curriculum.json). See [Chapter 1 storyboard](research/undergraduate-ch01-storyboard.md) for the six produced figures.
+Status: architecture and detailed outlines only; no new manuscript, final figures, animation frames, models, engines or experiments are delivered. Canonical source: [deep curriculum](pedagogy/deep-curriculum.json). Prior editions remain historical references, not the active teaching level.
 
-## Just-in-time disciplinary maps
+DOGMA = non-Transformer DNA-native model + DOGMA Engine; Hermon DNA = Transformer-based DNA model + Hermon DNA Engine; Evolutor = broader genomic computation theory, research and eventual runtime above both.
 
-These maps index where each discipline enters the course; arrows follow the reading order. Exact required edges are in PREREQUISITE_GRAPH.md. They are not detached prerequisite courses.
+## Knowledge organization and reading routes
 
-## biology
+### I · Origins and computational strategy
 
-DNAU-09 → DNAU-10 → DNAU-11 → DNAU-13 → DNAU-14 → DNAU-16 → DNAU-17 → DNAU-18 → DNAU-20 → DNAU-22 → DNAU-26 → DNAU-29 → DNAU-31 → DNAU-32 → DNAU-36
+DNAD-01 → DNAD-02 → DNAD-03 → DNAD-04
 
-- **DNAU-09**: cell; nucleus; chromosome; DNA; gene; genome.
-- **DNAU-10**: base; sugar; phosphate; nucleotide; nucleoside; strand; double helix; deoxyribose; phosphodiester bond.
-- **DNAU-11**: 5-prime and 3-prime; complementarity; antiparallel; duplex; reverse complement.
-- **DNAU-13**: RNA; protein; transcription; translation; codon; sequence transfer; amino acid; ribosome; transfer RNA.
-- **DNAU-14**: enzyme; helicase; primer; primase; polymerase; replication; leading strand; lagging strand.
-- **DNAU-16**: hybridization; melting; free energy; association; dissociation.
-- **DNAU-17**: restriction enzyme; recognition site; ligation; ligase.
-- **DNAU-18**: polymerase chain reaction; PCR; thermal cycler; amplification.
-- **DNAU-20**: fluorescence; sequencer; DNA synthesizer; readout; detection threshold.
-- **DNAU-22**: molecular encoding; vertex code; overlap code.
-- **DNAU-26**: sticker model; Watson-Crick automaton; molecular instruction set.
-- **DNAU-29**: toehold; branch migration; strand displacement; leakage.
-- **DNAU-31**: tile assembly; local rule; DNA origami; addressability; geometry.
-- **DNAU-32**: regulation; promoter; expression; mutation; inheritance; selection; adaptation; development.
-- **DNAU-36**: research claim; baseline; falsifier; reproducibility; transfer task.
+- DNAD-01: molecular computation; Hamiltonian witness; encoding and selection.
+- DNAD-02: vertex and edge oligos; annealing and ligation; endpoint PCR; length and affinity selection; historical readout.
+- DNAD-03: directed graphs; Hamiltonian paths; SAT; P; NP; reductions; verification.
+- DNAD-04: sampling; material; concentration; reaction depth; readout; energy boundaries.
 
-## chemistry
+### II · Molecular foundations and operators
 
-DNAU-07 → DNAU-08 → DNAU-10 → DNAU-12 → DNAU-14 → DNAU-16 → DNAU-19 → DNAU-28 → DNAU-29 → DNAU-30 → DNAU-35
+DNAD-05 → DNAD-06 → DNAD-07 → DNAD-08 → DNAD-09 → DNAD-10
 
-- **DNAU-07**: atom; molecule; chemical bond; covalent bond; hydrogen bond; charge.
-- **DNAU-08**: solution; concentration; mole; pH; temperature; energy; equilibrium; kinetics; reaction rate.
-- **DNAU-10**: base; sugar; phosphate; nucleotide; nucleoside; strand; double helix; deoxyribose; phosphodiester bond.
-- **DNAU-12**: probability; event; independence; conditional probability; random sample.
-- **DNAU-14**: enzyme; helicase; primer; primase; polymerase; replication; leading strand; lagging strand.
-- **DNAU-16**: hybridization; melting; free energy; association; dissociation.
-- **DNAU-19**: gel; electrophoresis; affinity separation; size selection.
-- **DNAU-28**: chemical reaction network; recurrence; stochastic process; mass action.
-- **DNAU-29**: toehold; branch migration; strand displacement; leakage.
-- **DNAU-30**: logic gate; digital circuit; analog signal; threshold; feedback.
-- **DNAU-35**: resource budget; energy accounting; reliability; model validation; parameter provenance.
+- DNAD-05: nucleotide; phosphodiester backbone; stacking; antiparallel duplex; reverse complement.
+- DNAD-06: free energy; nearest-neighbor models; salt; concentration; melting; mismatch.
+- DNAD-07: mass action; stoichiometry; ODEs; stochastic trajectories; diffusion limits.
+- DNAD-08: polymerase; ligase; restriction; recognition; substrates; cofactors.
+- DNAD-09: primer orientation; thermal cycling; specificity; efficiency; contamination.
+- DNAD-10: electrophoresis; affinity purification; fluorescence; sequencing; controls.
 
-## computer-science
+### III · Encoding and molecular algorithms
 
-DNAU-01 → DNAU-02 → DNAU-03 → DNAU-04 → DNAU-05 → DNAU-06 → DNAU-11 → DNAU-21 → DNAU-22 → DNAU-23 → DNAU-24 → DNAU-25 → DNAU-26 → DNAU-27 → DNAU-28 → DNAU-30 → DNAU-31 → DNAU-33 → DNAU-34 → DNAU-35 → DNAU-36
+DNAD-11 → DNAD-12 → DNAD-13 → DNAD-14 → DNAD-15
 
-- **DNAU-01**: computation; input; output; rule; step.
-- **DNAU-02**: symbol; data; information; representation; encoding; set; sequence.
-- **DNAU-03**: algorithm; condition; logic; and; or; not; state; loop; function; relation.
-- **DNAU-04**: source code; program; interpreter; variable; string; list; dictionary; test; error message.
-- **DNAU-05**: graph; vertex; edge; directed edge; undirected edge; walk; path; simple path; cycle.
-- **DNAU-06**: search; candidate; verification; permutation; factorial; growth rate; Big-O; proposition; proof; counterexample.
-- **DNAU-11**: 5-prime and 3-prime; complementarity; antiparallel; duplex; reverse complement.
-- **DNAU-21**: Hamiltonian path; Hamiltonian cycle; specified endpoint; witness; predicate.
-- **DNAU-22**: molecular encoding; vertex code; overlap code.
-- **DNAU-23**: candidate population; endpoint filter; coverage filter; false positive; false negative.
-- **DNAU-24**: soundness; completeness; resource model; parallelism.
-- **DNAU-25**: alphabet; formal language; automaton; finite-state machine; transition; Turing machine; SAT; nondeterminism; decision problem; polynomial reduction; NP; NP-complete.
-- **DNAU-26**: sticker model; Watson-Crick automaton; molecular instruction set.
-- **DNAU-27**: rewrite rule; splicing; insertion; deletion.
-- **DNAU-28**: chemical reaction network; recurrence; stochastic process; mass action.
-- **DNAU-30**: logic gate; digital circuit; analog signal; threshold; feedback.
-- **DNAU-31**: tile assembly; local rule; DNA origami; addressability; geometry.
-- **DNAU-33**: bit; error-correcting code; redundancy; random access; entropy.
-- **DNAU-34**: vector; matrix; dot product; matrix multiplication; sequence model.
-- **DNAU-35**: resource budget; energy accounting; reliability; model validation; parameter provenance.
-- **DNAU-36**: research claim; baseline; falsifier; reproducibility; transfer task.
+- DNAD-11: orthogonality; overlaps; reverse-complement constraints; secondary structure.
+- DNAD-12: candidate multisets; predicates; soundness; completeness; physical loss.
+- DNAD-13: Lipton encoding; clauses; selection; solution extraction.
+- DNAD-14: memory strands; stickers; bit operations; register reuse.
+- DNAD-15: cut-and-paste rules; context; insertion; deletion; molecular interpretation.
 
-## laboratory
+### IV · Formal molecular computation
 
-DNAU-15 → DNAU-17 → DNAU-18 → DNAU-19 → DNAU-20 → DNAU-23 → DNAU-24 → DNAU-35 → DNAU-36
+DNAD-16 → DNAD-17 → DNAD-18
 
-- **DNAU-15**: pipette; test tube; centrifuge; control sample; measurement; calibration.
-- **DNAU-17**: restriction enzyme; recognition site; ligation; ligase.
-- **DNAU-18**: polymerase chain reaction; PCR; thermal cycler; amplification.
-- **DNAU-19**: gel; electrophoresis; affinity separation; size selection.
-- **DNAU-20**: fluorescence; sequencer; DNA synthesizer; readout; detection threshold.
-- **DNAU-23**: candidate population; endpoint filter; coverage filter; false positive; false negative.
-- **DNAU-24**: soundness; completeness; resource model; parallelism.
-- **DNAU-35**: resource budget; energy accounting; reliability; model validation; parameter provenance.
-- **DNAU-36**: research claim; baseline; falsifier; reproducibility; transfer task.
+- DNAD-16: formal languages; grammars; automata; acceptance; transduction.
+- DNAD-17: paired-strand automata; complementarity relation; Benenson-style systems.
+- DNAD-18: Turing completeness; simulations; uniformity; resource vectors.
 
-## mathematics
+### V · Molecular programming
 
-DNAU-02 → DNAU-03 → DNAU-05 → DNAU-06 → DNAU-08 → DNAU-12 → DNAU-21 → DNAU-24 → DNAU-25 → DNAU-27 → DNAU-28 → DNAU-33 → DNAU-34
+DNAD-19 → DNAD-20 → DNAD-21 → DNAD-22
 
-- **DNAU-02**: symbol; data; information; representation; encoding; set; sequence.
-- **DNAU-03**: algorithm; condition; logic; and; or; not; state; loop; function; relation.
-- **DNAU-05**: graph; vertex; edge; directed edge; undirected edge; walk; path; simple path; cycle.
-- **DNAU-06**: search; candidate; verification; permutation; factorial; growth rate; Big-O; proposition; proof; counterexample.
-- **DNAU-08**: solution; concentration; mole; pH; temperature; energy; equilibrium; kinetics; reaction rate.
-- **DNAU-12**: probability; event; independence; conditional probability; random sample.
-- **DNAU-21**: Hamiltonian path; Hamiltonian cycle; specified endpoint; witness; predicate.
-- **DNAU-24**: soundness; completeness; resource model; parallelism.
-- **DNAU-25**: alphabet; formal language; automaton; finite-state machine; transition; Turing machine; SAT; nondeterminism; decision problem; polynomial reduction; NP; NP-complete.
-- **DNAU-27**: rewrite rule; splicing; insertion; deletion.
-- **DNAU-28**: chemical reaction network; recurrence; stochastic process; mass action.
-- **DNAU-33**: bit; error-correcting code; redundancy; random access; entropy.
-- **DNAU-34**: vector; matrix; dot product; matrix multiplication; sequence model.
+- DNAD-19: toehold binding; branch migration; release; leakage.
+- DNAD-20: species; stoichiometry; mass action; compositional encodings.
+- DNAD-21: logic; thresholds; restoration; feedback; fan-out; depletion.
+- DNAD-22: Seeman structures; Wang tiles; aTAM; glue strengths; assembly sequences; origami.
+
+### VI · Engineering and evidence
+
+DNAD-23 → DNAD-24 → DNAD-25 → DNAD-26
+
+- DNAD-23: synthesis error; mismatch; leak; PCR bias; false positives; false negatives.
+- DNAD-24: material; species; volume; latency; energy; detection; parallelism.
+- DNAD-25: writing; coding; redundancy; access; sequencing channels; storage versus computation.
+- DNAD-26: oligo design; purification; mixing; reaction; controls; measurement; provenance.
+
+### VII · Executable models and modern research
+
+DNAD-27 → DNAD-28 → DNAD-29 → DNAD-30 → DNAD-31 → DNAD-32
+
+- DNAD-27: strings; multisets; rule interpreters; bounded search; independent oracles.
+- DNAD-28: ODE integration; stochastic simulation; parameter fitting; model validation.
+- DNAD-29: sensitivity; inverse design; tensors; gradients; DNA representations.
+- DNAD-30: genes; RNA; proteins; promoters; regulatory networks; development; inheritance; selection.
+- DNAD-31: circuits; assembly; sensing; in-vitro and in-vivo boundaries; current literature.
+- DNAD-32: physical molecule; formal string; simulator; learned representation; computational analogy.
+
+Arrows here indicate reading order, not extra hard prerequisites. Use PREREQUISITE_GRAPH.md for minimal dependency closure. Domain abstractions are deliberate: explain the mapping, preserved properties and omitted phenomena.

@@ -1,0 +1,1354 @@
+{
+  "schemaVersion": 1,
+  "book": "DNA Computing",
+  "subtitle": "From Molecular Biology to Algorithms and Computation",
+  "edition": "4-deep",
+  "status": "architecture-only-no-manuscript",
+  "branch": "astra-deep-rewrite",
+  "startingCommit": "0779ed552b26d678e2443c0d94177faa04dc293c",
+  "entryAssumptions": [
+    "Basic programming and algorithmic reasoning",
+    "Algebra, functions, sets and discrete mathematical maturity",
+    "Basic probability, vectors, matrices and first-year calculus"
+  ],
+  "depthPrinciple": "Full scientific and technical depth with straightforward explanation. Useful abstraction is welcome: motivate it, define it, work through it, and show what it preserves and omits. No artificial university-level ceiling.",
+  "plannedChapterCount": 32,
+  "architectureTaxonomy": {
+    "DOGMA": {
+      "family": "non-Transformer DNA-native",
+      "engine": "DOGMA Engine"
+    },
+    "Hermon DNA": {
+      "family": "Transformer-based DNA",
+      "engine": "Hermon DNA Engine"
+    },
+    "Evolutor": {
+      "role": "genomic computation theory, research and eventual runtime above both"
+    }
+  },
+  "chapters": [
+    {
+      "id": "DNAD-01",
+      "number": 1,
+      "part": "I · Origins and computational strategy",
+      "title": "Computing with DNA",
+      "status": "planned-not-drafted",
+      "requires": [],
+      "book1Requires": [],
+      "topics": [
+        "molecular computation",
+        "Hamiltonian witness",
+        "encoding and selection"
+      ],
+      "math": "Define G=(V,E), specified endpoints and a permutation witness; distinguish formal acceptance from physical recovery.",
+      "exercise": "Verify a nontrivial directed path and identify a filter-surviving invalid candidate.",
+      "visual": "Graph, strand encoding and selection panels",
+      "frames": [
+        "graph",
+        "candidate witness",
+        "molecular strategy"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-02",
+      "number": 2,
+      "part": "I · Origins and computational strategy",
+      "title": "Adleman's experiment: a mechanistic reconstruction",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-01"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "vertex and edge oligos",
+        "annealing and ligation",
+        "endpoint PCR",
+        "length and affinity selection",
+        "historical readout"
+      ],
+      "math": "Derive ideal filter soundness and list physical completeness assumptions without inventing historical measurements.",
+      "exercise": "Reconstruct each operation from the primary paper; simulate filter losses and missing witnesses.",
+      "visual": "Oriented oligos, tube ledger and gel interpretation",
+      "frames": [
+        "encoded strands",
+        "ligated pool",
+        "selected molecules",
+        "historical readout"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-03",
+      "number": 3,
+      "part": "I · Origins and computational strategy",
+      "title": "Combinatorial search and complexity",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-01"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "directed graphs",
+        "Hamiltonian paths",
+        "SAT",
+        "P",
+        "NP",
+        "reductions",
+        "verification"
+      ],
+      "math": "Distinguish decision from search; prove a verifier bound and explain NP-completeness without claiming P differs from NP.",
+      "exercise": "Build an exhaustive oracle and a polynomial witness checker; compare search and verification counts.",
+      "visual": "Search tree with pruning and witness checks",
+      "frames": [
+        "candidate extension",
+        "rejection",
+        "surviving witness"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-04",
+      "number": 4,
+      "part": "I · Origins and computational strategy",
+      "title": "Molecular parallelism and resource accounting",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-02",
+        "DNAD-03"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "sampling",
+        "material",
+        "concentration",
+        "reaction depth",
+        "readout",
+        "energy boundaries"
+      ],
+      "math": "Derive miss probability (1-p)^M under declared independent sampling; separate factorial candidate space from physical yield.",
+      "exercise": "Estimate a declared sampling budget and sensitivity to bias; do not assume uniform generation.",
+      "visual": "Resource curves with units and assumptions",
+      "frames": [
+        "candidate space",
+        "sampled population",
+        "recovered evidence"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-05",
+      "number": 5,
+      "part": "II · Molecular foundations and operators",
+      "title": "DNA chemistry and sequence geometry",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-01"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "nucleotide",
+        "phosphodiester backbone",
+        "stacking",
+        "antiparallel duplex",
+        "reverse complement"
+      ],
+      "math": "Map an oriented molecular diagram to strings without treating symbolic complementarity as binding prediction.",
+      "exercise": "Implement reverse complement and test orientation, ambiguity and involution.",
+      "visual": "Chemical zoom and strand orientation",
+      "frames": [
+        "nucleotide",
+        "backbone",
+        "antiparallel duplex"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-06",
+      "number": 6,
+      "part": "II · Molecular foundations and operators",
+      "title": "Hybridization thermodynamics",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-05"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "free energy",
+        "nearest-neighbor models",
+        "salt",
+        "concentration",
+        "melting",
+        "mismatch"
+      ],
+      "math": "Derive equilibrium occupancy from a stated binding model with units and standard-state conventions.",
+      "exercise": "Compare symbolic matches with parameterized free-energy predictions; record parameter provenance.",
+      "visual": "Duplex populations and energy landscape",
+      "frames": [
+        "separate strands",
+        "competing duplexes",
+        "equilibrium population"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-07",
+      "number": 7,
+      "part": "II · Molecular foundations and operators",
+      "title": "Reaction kinetics and stochastic chemistry",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-05",
+        "DNAD-06"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "mass action",
+        "stoichiometry",
+        "ODEs",
+        "stochastic trajectories",
+        "diffusion limits"
+      ],
+      "math": "Derive rate equations from reaction stoichiometry; separate deterministic concentration from molecule counts.",
+      "exercise": "Simulate association; check conservation, units and stochastic versus deterministic limits.",
+      "visual": "Reaction events and concentration trajectories",
+      "frames": [
+        "collision opportunity",
+        "reaction event",
+        "population evolution"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-08",
+      "number": 8,
+      "part": "II · Molecular foundations and operators",
+      "title": "Enzymes as molecular operators",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-05",
+        "DNAD-07"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "polymerase",
+        "ligase",
+        "restriction",
+        "recognition",
+        "substrates",
+        "cofactors"
+      ],
+      "math": "Give typed input/output abstractions and chemical preconditions; distinguish catalysis from information creation.",
+      "exercise": "Trace ligation and restriction cases including incompatible ends and incomplete reactions.",
+      "visual": "Bond-change panels with enzyme identities",
+      "frames": [
+        "substrates",
+        "enzyme-mediated change",
+        "products"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-09",
+      "number": 9,
+      "part": "II · Molecular foundations and operators",
+      "title": "PCR, amplification and selection bias",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-06",
+        "DNAD-08"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "primer orientation",
+        "thermal cycling",
+        "specificity",
+        "efficiency",
+        "contamination"
+      ],
+      "math": "Derive N_k=N_0(1+e)^k for constant efficiency and explain plateau and selection bias.",
+      "exercise": "Compute amplification with variable efficiency and adversarial primer placement.",
+      "visual": "PCR cycle and competing amplicons",
+      "frames": [
+        "denature",
+        "anneal",
+        "extend",
+        "biased population"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-10",
+      "number": 10,
+      "part": "II · Molecular foundations and operators",
+      "title": "Separation, detection and experimental logic",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-08",
+        "DNAD-09"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "electrophoresis",
+        "affinity purification",
+        "fluorescence",
+        "sequencing",
+        "controls"
+      ],
+      "math": "Model retention and detection separately; distinguish evidence of presence from evidence of absence.",
+      "exercise": "Interpret a synthetic gel with declared uncertainty and design positive/negative controls.",
+      "visual": "Sample provenance, gel lanes and readout",
+      "frames": [
+        "mixed sample",
+        "selected fraction",
+        "measured signal"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-11",
+      "number": 11,
+      "part": "III · Encoding and molecular algorithms",
+      "title": "Sequence design and graph encoding",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-03",
+        "DNAD-06",
+        "DNAD-10"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "orthogonality",
+        "overlaps",
+        "reverse-complement constraints",
+        "secondary structure"
+      ],
+      "math": "Formulate design constraints and demonstrate why pairwise sequence distance is insufficient.",
+      "exercise": "Construct an encoding and test orientation, off-target overlaps and hairpin risks.",
+      "visual": "Graph edge to antiparallel overlap mapping",
+      "frames": [
+        "graph constraint",
+        "sequence constraint",
+        "candidate design"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-12",
+      "number": 12,
+      "part": "III · Encoding and molecular algorithms",
+      "title": "Generate–filter–verify algorithms",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-02",
+        "DNAD-11"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "candidate multisets",
+        "predicates",
+        "soundness",
+        "completeness",
+        "physical loss"
+      ],
+      "math": "Prove an ideal filtering invariant; extend it with stage-specific false-positive and false-negative events.",
+      "exercise": "Compare a symbolic filter simulator with an independent graph oracle.",
+      "visual": "Candidate-survival ledger",
+      "frames": [
+        "generate",
+        "endpoint selection",
+        "size selection",
+        "coverage",
+        "verify"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-13",
+      "number": 13,
+      "part": "III · Encoding and molecular algorithms",
+      "title": "SAT and combinatorial constructions",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-03",
+        "DNAD-12"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "Lipton encoding",
+        "clauses",
+        "selection",
+        "solution extraction"
+      ],
+      "math": "Derive how a clause predicate acts on assignment encodings and account for exponential material.",
+      "exercise": "Implement a small SAT oracle and molecular abstraction; expose unsound or incomplete filters.",
+      "visual": "Assignment tree and clause selection",
+      "frames": [
+        "assignment population",
+        "clause filters",
+        "verified assignment"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-14",
+      "number": 14,
+      "part": "III · Encoding and molecular algorithms",
+      "title": "Sticker systems and molecular memory",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-11",
+        "DNAD-12"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "memory strands",
+        "stickers",
+        "bit operations",
+        "register reuse"
+      ],
+      "math": "Specify a chosen sticker-model variant and its allowed operations before any power claim.",
+      "exercise": "Execute a small register program and count operations, species and memory.",
+      "visual": "Molecular bit registers",
+      "frames": [
+        "blank register",
+        "selective marking",
+        "readout"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-15",
+      "number": 15,
+      "part": "III · Encoding and molecular algorithms",
+      "title": "Splicing and insertion–deletion systems",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-08",
+        "DNAD-11"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "cut-and-paste rules",
+        "context",
+        "insertion",
+        "deletion",
+        "molecular interpretation"
+      ],
+      "math": "Define rule application precisely; separate formal closure results from realizable enzyme operations.",
+      "exercise": "Write a bounded rewrite enumerator and verify hand-derived reachable strings.",
+      "visual": "Cut sites and rewrite derivation",
+      "frames": [
+        "input words",
+        "permitted cuts",
+        "recombined words"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-16",
+      "number": 16,
+      "part": "IV · Formal molecular computation",
+      "title": "Languages, automata and molecular recognition",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-03",
+        "DNAD-15"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "formal languages",
+        "grammars",
+        "automata",
+        "acceptance",
+        "transduction"
+      ],
+      "math": "Develop formal definitions and a recognition example before molecular implementations.",
+      "exercise": "Build a finite-state recognizer and map its transitions to a proposed molecular scheme.",
+      "visual": "Automaton and reaction correspondence",
+      "frames": [
+        "input symbol",
+        "transition",
+        "acceptance state"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-17",
+      "number": 17,
+      "part": "IV · Formal molecular computation",
+      "title": "Watson–Crick and biochemical automata",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-05",
+        "DNAD-08",
+        "DNAD-16"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "paired-strand automata",
+        "complementarity relation",
+        "Benenson-style systems"
+      ],
+      "math": "Distinguish mathematical automaton variants and finite experimental implementations.",
+      "exercise": "Trace acceptance on paired inputs; audit what the biochemical experiment actually implements.",
+      "visual": "Paired inputs and transition reactions",
+      "frames": [
+        "paired input",
+        "permitted transition",
+        "accepted or rejected"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-18",
+      "number": 18,
+      "part": "IV · Formal molecular computation",
+      "title": "Universality and complexity models",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-04",
+        "DNAD-14",
+        "DNAD-15",
+        "DNAD-16",
+        "DNAD-17"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "Turing completeness",
+        "simulations",
+        "uniformity",
+        "resource vectors"
+      ],
+      "math": "State model assumptions and sketch a valid simulation proof; no finite experiment proves unbounded universality.",
+      "exercise": "Critique a universality argument by finding missing resources or illegal operations.",
+      "visual": "Simulation map and resource ledger",
+      "frames": [
+        "source machine",
+        "molecular encoding",
+        "simulated transition"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-19",
+      "number": 19,
+      "part": "V · Molecular programming",
+      "title": "Toehold-mediated strand displacement",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-06",
+        "DNAD-07",
+        "DNAD-11"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "toehold binding",
+        "branch migration",
+        "release",
+        "leakage"
+      ],
+      "math": "Introduce domain notation, conservation and kinetic abstractions after oriented strand frames.",
+      "exercise": "Simulate a gate with explicit fuel and waste; test leak pathways.",
+      "visual": "Six molecular keyframes",
+      "frames": [
+        "gate",
+        "encounter",
+        "binding",
+        "migration",
+        "displacement",
+        "release"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-20",
+      "number": 20,
+      "part": "V · Molecular programming",
+      "title": "Chemical reaction networks as programs",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-07",
+        "DNAD-18",
+        "DNAD-19"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "species",
+        "stoichiometry",
+        "mass action",
+        "compositional encodings"
+      ],
+      "math": "Derive deterministic and stochastic semantics, then explain DNA implementation assumptions.",
+      "exercise": "Implement a small CRN with independent conservation and nonnegativity checks.",
+      "visual": "Reaction graph and stoichiometric matrix",
+      "frames": [
+        "reaction specification",
+        "rate equations",
+        "DNA realization"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-21",
+      "number": 21,
+      "part": "V · Molecular programming",
+      "title": "Digital and analog DNA circuits",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-19",
+        "DNAD-20"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "logic",
+        "thresholds",
+        "restoration",
+        "feedback",
+        "fan-out",
+        "depletion"
+      ],
+      "math": "Derive signal conventions and explain when isolated gate behavior fails under composition.",
+      "exercise": "Compare a truth table with concentration trajectories and resource depletion.",
+      "visual": "Gate cascade with concentration traces",
+      "frames": [
+        "input concentrations",
+        "gate reaction",
+        "restored output"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-22",
+      "number": 22,
+      "part": "V · Molecular programming",
+      "title": "Self-assembly, tiles and geometry",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-05",
+        "DNAD-18"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "Seeman structures",
+        "Wang tiles",
+        "aTAM",
+        "glue strengths",
+        "assembly sequences",
+        "origami"
+      ],
+      "math": "Define tile attachment threshold and legal assembly; separate geometry, addressability and computation.",
+      "exercise": "Enumerate a small tile assembly and test illegal attachments and alternative growth orders.",
+      "visual": "Tiles, glues and molecular scaffold zoom",
+      "frames": [
+        "seed",
+        "legal attachment",
+        "growing assembly"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-23",
+      "number": 23,
+      "part": "VI · Engineering and evidence",
+      "title": "Noise, crosstalk and fault models",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-10",
+        "DNAD-12",
+        "DNAD-19",
+        "DNAD-21"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "synthesis error",
+        "mismatch",
+        "leak",
+        "PCR bias",
+        "false positives",
+        "false negatives"
+      ],
+      "math": "Compose error channels only under justified dependence assumptions.",
+      "exercise": "Inject correlated faults into a filter or circuit model; quantify robust and fragile regimes.",
+      "visual": "Fault propagation across layers",
+      "frames": [
+        "local fault",
+        "propagated effect",
+        "observed error"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-24",
+      "number": 24,
+      "part": "VI · Engineering and evidence",
+      "title": "Scaling and resource limits",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-04",
+        "DNAD-18",
+        "DNAD-21",
+        "DNAD-22",
+        "DNAD-23"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "material",
+        "species",
+        "volume",
+        "latency",
+        "energy",
+        "detection",
+        "parallelism"
+      ],
+      "math": "Build a multidimensional cost model with declared system boundaries.",
+      "exercise": "Compare two algorithms at matched success probability, not only reaction-step count.",
+      "visual": "Resource budget and Pareto frontier",
+      "frames": [
+        "design size",
+        "resource demand",
+        "feasible regime"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-25",
+      "number": 25,
+      "part": "VI · Engineering and evidence",
+      "title": "Synthesis, sequencing and DNA storage",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-05",
+        "DNAD-10",
+        "DNAD-23"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "writing",
+        "coding",
+        "redundancy",
+        "access",
+        "sequencing channels",
+        "storage versus computation"
+      ],
+      "math": "Derive a toy coding overhead and error model without conflating stored bits with executed operations.",
+      "exercise": "Recover a synthetic message under insertion/deletion/substitution errors.",
+      "visual": "Write–store–read channel",
+      "frames": [
+        "encoding",
+        "synthesis/storage",
+        "noisy readout",
+        "decoding"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-26",
+      "number": 26,
+      "part": "VI · Engineering and evidence",
+      "title": "Laboratory workflows and reproducibility",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-08",
+        "DNAD-09",
+        "DNAD-10",
+        "DNAD-23",
+        "DNAD-24"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "oligo design",
+        "purification",
+        "mixing",
+        "reaction",
+        "controls",
+        "measurement",
+        "provenance"
+      ],
+      "math": "Connect operational checklists to statistical inference and measurement uncertainty.",
+      "exercise": "Design a documented non-operational experiment plan with controls and failure interpretation.",
+      "visual": "Sample lineage and instrument workflow",
+      "frames": [
+        "design",
+        "prepare",
+        "react",
+        "separate",
+        "measure",
+        "interpret"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-27",
+      "number": 27,
+      "part": "VII · Executable models and modern research",
+      "title": "Symbolic molecular simulation",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-11",
+        "DNAD-12",
+        "DNAD-15",
+        "DNAD-17"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "strings",
+        "multisets",
+        "rule interpreters",
+        "bounded search",
+        "independent oracles"
+      ],
+      "math": "Specify interpreter semantics and prove a small invariant before optimization.",
+      "exercise": "Build a tested symbolic core shared by graph filters and rewriting systems.",
+      "visual": "Interpreter state and transitions",
+      "frames": [
+        "model",
+        "interpreter step",
+        "trace",
+        "oracle comparison"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-28",
+      "number": 28,
+      "part": "VII · Executable models and modern research",
+      "title": "Kinetic and stochastic simulation",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-07",
+        "DNAD-19",
+        "DNAD-20",
+        "DNAD-23",
+        "DNAD-27"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "ODE integration",
+        "stochastic simulation",
+        "parameter fitting",
+        "model validation"
+      ],
+      "math": "Derive event propensities and discuss stiffness, identifiability and approximation error.",
+      "exercise": "Compare deterministic and stochastic trajectories under reproducible seeds and fitted uncertainty.",
+      "visual": "Reaction trace and simulation comparison",
+      "frames": [
+        "parameters",
+        "simulation",
+        "measured discrepancy"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-29",
+      "number": 29,
+      "part": "VII · Executable models and modern research",
+      "title": "Differentiable molecular and sequence models",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-06",
+        "DNAD-25",
+        "DNAD-28"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "sensitivity",
+        "inverse design",
+        "tensors",
+        "gradients",
+        "DNA representations"
+      ],
+      "math": "Derive a simple differentiable objective and distinguish surrogate accuracy from physical validation.",
+      "exercise": "Use NumPy or PyTorch only where gradients or tensors serve the model; check finite differences.",
+      "visual": "Forward model and gradient path",
+      "frames": [
+        "design parameters",
+        "prediction",
+        "loss",
+        "update"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-30",
+      "number": 30,
+      "part": "VII · Executable models and modern research",
+      "title": "Genomic organization, regulation and development",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-05",
+        "DNAD-07",
+        "DNAD-08"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "genes",
+        "RNA",
+        "proteins",
+        "promoters",
+        "regulatory networks",
+        "development",
+        "inheritance",
+        "selection"
+      ],
+      "math": "Separate molecular mechanisms, dynamical state, parameter change and population evolution.",
+      "exercise": "Analyze a small regulatory model and identify what it omits about a living system.",
+      "visual": "Genome–expression–phenotype zoom",
+      "frames": [
+        "stored sequence",
+        "cellular regulation",
+        "expression",
+        "phenotype"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-31",
+      "number": 31,
+      "part": "VII · Executable models and modern research",
+      "title": "Modern molecular programming and evidence",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-21",
+        "DNAD-22",
+        "DNAD-24",
+        "DNAD-26",
+        "DNAD-28",
+        "DNAD-29"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "circuits",
+        "assembly",
+        "sensing",
+        "in-vitro and in-vivo boundaries",
+        "current literature"
+      ],
+      "math": "Reconstruct selected primary results with assumptions, controls, resources and uncertainty.",
+      "exercise": "Produce a reproducible evidence comparison; refresh literature at drafting time.",
+      "visual": "Historical mechanism map and evidence comparison",
+      "frames": [
+        "research claim",
+        "mechanism",
+        "experiment",
+        "bounded conclusion"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    },
+    {
+      "id": "DNAD-32",
+      "number": 32,
+      "part": "VII · Executable models and modern research",
+      "title": "From molecular computation to genomic computation",
+      "status": "planned-not-drafted",
+      "requires": [
+        "DNAD-18",
+        "DNAD-24",
+        "DNAD-29",
+        "DNAD-30",
+        "DNAD-31"
+      ],
+      "book1Requires": [],
+      "topics": [
+        "physical molecule",
+        "formal string",
+        "simulator",
+        "learned representation",
+        "computational analogy"
+      ],
+      "math": "Define cross-layer mappings and identify which properties survive abstraction.",
+      "exercise": "Complete the Book II handoff by formalizing one mechanism and rejecting an unsupported analogy.",
+      "visual": "Four-layer bridge",
+      "frames": [
+        "molecule",
+        "formal model",
+        "digital implementation",
+        "research hypothesis"
+      ],
+      "evidenceGate": "Read primary sources and declare assumptions before drafting; no results or final figures produced in this milestone."
+    }
+  ],
+  "previousChapterAudit": [
+    {
+      "id": "DNAU-01",
+      "title": "What does it mean to compute?",
+      "previousStatus": "internally-reviewed-draft",
+      "action": "ARCHIVE",
+      "destinations": [
+        "DNAD-01"
+      ],
+      "reason": "Preserve the complete beginner prototype; replace its intellectual entrance with a fresh technical Chapter 1. No prose is moved automatically."
+    },
+    {
+      "id": "DNAU-02",
+      "title": "Symbols, information and representations",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-05",
+        "DNAD-11"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-03",
+      "title": "Algorithms, decisions and remembered state",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-03",
+        "DNAD-16"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-04",
+      "title": "Your first small Python programs",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-27"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-05",
+      "title": "Cities, roads, graphs and paths",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-01",
+        "DNAD-03"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-06",
+      "title": "Search, counting and growing work",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-03",
+        "DNAD-04"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-07",
+      "title": "Atoms, molecules and different kinds of bonds",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-05"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-08",
+      "title": "Solutions, amounts, temperature and change",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-06",
+        "DNAD-07"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-09",
+      "title": "Cells, chromosomes, genes and genomes",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-30"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-10",
+      "title": "From a nucleotide to a DNA strand",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-05"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-11",
+      "title": "Direction, pairing and reverse complement",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-05",
+        "DNAD-06"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-12",
+      "title": "Chance, encounters and repeated trials",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-04",
+        "DNAD-07"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-13",
+      "title": "From DNA to RNA and proteins",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-30"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-14",
+      "title": "Enzymes and DNA replication in six frames",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-08"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-15",
+      "title": "What a laboratory operation actually does",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-26"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-16",
+      "title": "Hybridization as molecular recognition",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-06"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-17",
+      "title": "Cutting and joining strands",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-08"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-18",
+      "title": "Copying selected DNA with PCR",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-09"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-19",
+      "title": "Separating molecules and retaining candidates",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-10"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-20",
+      "title": "Detecting and reading a result",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-10",
+        "DNAD-25"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-21",
+      "title": "Hamiltonian paths: a visual mini-course",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-01",
+        "DNAD-03"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-22",
+      "title": "Adleman's idea: encode a graph in DNA",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-01",
+        "DNAD-02",
+        "DNAD-11"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-23",
+      "title": "Generate, filter and read the candidates",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-02",
+        "DNAD-12"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-24",
+      "title": "What the experiment proved, and what it did not",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-04",
+        "DNAD-24"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-25",
+      "title": "Languages, machines and computational models",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-03",
+        "DNAD-16",
+        "DNAD-18"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-26",
+      "title": "Strand, sticker and paired-strand models",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-14",
+        "DNAD-17"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-27",
+      "title": "Splicing and rewriting strings",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-15"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-28",
+      "title": "Reaction networks and changing amounts",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-07",
+        "DNAD-20",
+        "DNAD-28"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-29",
+      "title": "Strand displacement in slow motion",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-19"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-30",
+      "title": "Digital and analog molecular circuits",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-21"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-31",
+      "title": "Local assembly, tiles and DNA origami",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-22"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-32",
+      "title": "Genes, regulation, development and evolution",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-30"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-33",
+      "title": "DNA storage, codes and recovery",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-25"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-34",
+      "title": "Many numbers at once: vectors, matrices and DNA data",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-29"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-35",
+      "title": "Resources, energy, reliability and design tools",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-23",
+        "DNAD-24",
+        "DNAD-26"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    },
+    {
+      "id": "DNAU-36",
+      "title": "A measured frontier and the bridge to Evolutor",
+      "previousStatus": "planned-not-drafted",
+      "action": "MERGE",
+      "destinations": [
+        "DNAD-31",
+        "DNAD-32"
+      ],
+      "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
+    }
+  ]
+}

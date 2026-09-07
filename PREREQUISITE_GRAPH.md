@@ -1,125 +1,189 @@
-# DNA Computing: undergraduate-first architecture
+# DNA Computing: deep technical edition
 
-Status: Chapter 1 internally reviewed development draft; all later units remain planned. No learner study, independent expert certification or new research-model experiment is claimed. Generated from [pedagogy/curriculum.json](pedagogy/curriculum.json). See [Chapter 1 storyboard](research/undergraduate-ch01-storyboard.md) for the six produced figures.
+Status: architecture and detailed outlines only; no new manuscript, final figures, animation frames, models, engines or experiments are delivered. Canonical source: [deep curriculum](pedagogy/deep-curriculum.json). Prior editions remain historical references, not the active teaching level.
 
-## Canonical Unicode TXT dependency graph
+DOGMA = non-Transformer DNA-native model + DOGMA Engine; Hermon DNA = Transformer-based DNA model + Hermon DNA Engine; Evolutor = broader genomic computation theory, research and eventual runtime above both.
 
-Read A → B as: teach A before requiring it in B. Multiple incoming arrows mean all listed prerequisites. ENTRY means only the declared entry assumptions. Book I IDs are explicitly prefixed DNAU; they describe planned teaching, not competence already delivered by the old draft.
+## Semantic TXT prerequisite graph
 
-```text
-ENTRY → DNAU-01 : prerequisite for What does it mean to compute?
-DNAU-01 → DNAU-02 : prerequisite for Symbols, information and representations
-DNAU-01 → DNAU-03 : prerequisite for Algorithms, decisions and remembered state
-DNAU-02 → DNAU-03 : prerequisite for Algorithms, decisions and remembered state
-DNAU-03 → DNAU-04 : prerequisite for Your first small Python programs
-DNAU-02 → DNAU-05 : prerequisite for Cities, roads, graphs and paths
-DNAU-03 → DNAU-05 : prerequisite for Cities, roads, graphs and paths
-DNAU-04 → DNAU-05 : prerequisite for Cities, roads, graphs and paths
-DNAU-03 → DNAU-06 : prerequisite for Search, counting and growing work
-DNAU-04 → DNAU-06 : prerequisite for Search, counting and growing work
-DNAU-05 → DNAU-06 : prerequisite for Search, counting and growing work
-DNAU-01 → DNAU-07 : prerequisite for Atoms, molecules and different kinds of bonds
-DNAU-02 → DNAU-07 : prerequisite for Atoms, molecules and different kinds of bonds
-DNAU-03 → DNAU-08 : prerequisite for Solutions, amounts, temperature and change
-DNAU-07 → DNAU-08 : prerequisite for Solutions, amounts, temperature and change
-DNAU-02 → DNAU-09 : prerequisite for Cells, chromosomes, genes and genomes
-DNAU-07 → DNAU-09 : prerequisite for Cells, chromosomes, genes and genomes
-DNAU-07 → DNAU-10 : prerequisite for From a nucleotide to a DNA strand
-DNAU-09 → DNAU-10 : prerequisite for From a nucleotide to a DNA strand
-DNAU-02 → DNAU-11 : prerequisite for Direction, pairing and reverse complement
-DNAU-04 → DNAU-11 : prerequisite for Direction, pairing and reverse complement
-DNAU-10 → DNAU-11 : prerequisite for Direction, pairing and reverse complement
-DNAU-03 → DNAU-12 : prerequisite for Chance, encounters and repeated trials
-DNAU-08 → DNAU-12 : prerequisite for Chance, encounters and repeated trials
-DNAU-09 → DNAU-13 : prerequisite for From DNA to RNA and proteins
-DNAU-10 → DNAU-13 : prerequisite for From DNA to RNA and proteins
-DNAU-11 → DNAU-13 : prerequisite for From DNA to RNA and proteins
-DNAU-08 → DNAU-14 : prerequisite for Enzymes and DNA replication in six frames
-DNAU-11 → DNAU-14 : prerequisite for Enzymes and DNA replication in six frames
-DNAU-13 → DNAU-14 : prerequisite for Enzymes and DNA replication in six frames
-DNAU-08 → DNAU-15 : prerequisite for What a laboratory operation actually does
-DNAU-12 → DNAU-15 : prerequisite for What a laboratory operation actually does
-DNAU-14 → DNAU-15 : prerequisite for What a laboratory operation actually does
-DNAU-08 → DNAU-16 : prerequisite for Hybridization as molecular recognition
-DNAU-11 → DNAU-16 : prerequisite for Hybridization as molecular recognition
-DNAU-12 → DNAU-16 : prerequisite for Hybridization as molecular recognition
-DNAU-15 → DNAU-16 : prerequisite for Hybridization as molecular recognition
-DNAU-14 → DNAU-17 : prerequisite for Cutting and joining strands
-DNAU-15 → DNAU-17 : prerequisite for Cutting and joining strands
-DNAU-16 → DNAU-17 : prerequisite for Cutting and joining strands
-DNAU-14 → DNAU-18 : prerequisite for Copying selected DNA with PCR
-DNAU-15 → DNAU-18 : prerequisite for Copying selected DNA with PCR
-DNAU-16 → DNAU-18 : prerequisite for Copying selected DNA with PCR
-DNAU-15 → DNAU-19 : prerequisite for Separating molecules and retaining candidates
-DNAU-17 → DNAU-19 : prerequisite for Separating molecules and retaining candidates
-DNAU-18 → DNAU-19 : prerequisite for Separating molecules and retaining candidates
-DNAU-15 → DNAU-20 : prerequisite for Detecting and reading a result
-DNAU-18 → DNAU-20 : prerequisite for Detecting and reading a result
-DNAU-19 → DNAU-20 : prerequisite for Detecting and reading a result
-DNAU-05 → DNAU-21 : prerequisite for Hamiltonian paths: a visual mini-course
-DNAU-06 → DNAU-21 : prerequisite for Hamiltonian paths: a visual mini-course
-DNAU-11 → DNAU-22 : prerequisite for Adleman's idea: encode a graph in DNA
-DNAU-17 → DNAU-22 : prerequisite for Adleman's idea: encode a graph in DNA
-DNAU-20 → DNAU-22 : prerequisite for Adleman's idea: encode a graph in DNA
-DNAU-21 → DNAU-22 : prerequisite for Adleman's idea: encode a graph in DNA
-DNAU-12 → DNAU-23 : prerequisite for Generate, filter and read the candidates
-DNAU-18 → DNAU-23 : prerequisite for Generate, filter and read the candidates
-DNAU-19 → DNAU-23 : prerequisite for Generate, filter and read the candidates
-DNAU-20 → DNAU-23 : prerequisite for Generate, filter and read the candidates
-DNAU-22 → DNAU-23 : prerequisite for Generate, filter and read the candidates
-DNAU-06 → DNAU-24 : prerequisite for What the experiment proved, and what it did not
-DNAU-12 → DNAU-24 : prerequisite for What the experiment proved, and what it did not
-DNAU-23 → DNAU-24 : prerequisite for What the experiment proved, and what it did not
-DNAU-03 → DNAU-25 : prerequisite for Languages, machines and computational models
-DNAU-05 → DNAU-25 : prerequisite for Languages, machines and computational models
-DNAU-06 → DNAU-25 : prerequisite for Languages, machines and computational models
-DNAU-21 → DNAU-25 : prerequisite for Languages, machines and computational models
-DNAU-24 → DNAU-25 : prerequisite for Languages, machines and computational models
-DNAU-11 → DNAU-26 : prerequisite for Strand, sticker and paired-strand models
-DNAU-23 → DNAU-26 : prerequisite for Strand, sticker and paired-strand models
-DNAU-25 → DNAU-26 : prerequisite for Strand, sticker and paired-strand models
-DNAU-17 → DNAU-27 : prerequisite for Splicing and rewriting strings
-DNAU-25 → DNAU-27 : prerequisite for Splicing and rewriting strings
-DNAU-08 → DNAU-28 : prerequisite for Reaction networks and changing amounts
-DNAU-12 → DNAU-28 : prerequisite for Reaction networks and changing amounts
-DNAU-25 → DNAU-28 : prerequisite for Reaction networks and changing amounts
-DNAU-16 → DNAU-29 : prerequisite for Strand displacement in slow motion
-DNAU-28 → DNAU-29 : prerequisite for Strand displacement in slow motion
-DNAU-03 → DNAU-30 : prerequisite for Digital and analog molecular circuits
-DNAU-28 → DNAU-30 : prerequisite for Digital and analog molecular circuits
-DNAU-29 → DNAU-30 : prerequisite for Digital and analog molecular circuits
-DNAU-11 → DNAU-31 : prerequisite for Local assembly, tiles and DNA origami
-DNAU-16 → DNAU-31 : prerequisite for Local assembly, tiles and DNA origami
-DNAU-25 → DNAU-31 : prerequisite for Local assembly, tiles and DNA origami
-DNAU-30 → DNAU-31 : prerequisite for Local assembly, tiles and DNA origami
-DNAU-09 → DNAU-32 : prerequisite for Genes, regulation, development and evolution
-DNAU-13 → DNAU-32 : prerequisite for Genes, regulation, development and evolution
-DNAU-14 → DNAU-32 : prerequisite for Genes, regulation, development and evolution
-DNAU-28 → DNAU-32 : prerequisite for Genes, regulation, development and evolution
-DNAU-30 → DNAU-32 : prerequisite for Genes, regulation, development and evolution
-DNAU-02 → DNAU-33 : prerequisite for DNA storage, codes and recovery
-DNAU-04 → DNAU-33 : prerequisite for DNA storage, codes and recovery
-DNAU-11 → DNAU-33 : prerequisite for DNA storage, codes and recovery
-DNAU-12 → DNAU-33 : prerequisite for DNA storage, codes and recovery
-DNAU-20 → DNAU-33 : prerequisite for DNA storage, codes and recovery
-DNAU-02 → DNAU-34 : prerequisite for Many numbers at once: vectors, matrices and DNA data
-DNAU-03 → DNAU-34 : prerequisite for Many numbers at once: vectors, matrices and DNA data
-DNAU-04 → DNAU-34 : prerequisite for Many numbers at once: vectors, matrices and DNA data
-DNAU-12 → DNAU-34 : prerequisite for Many numbers at once: vectors, matrices and DNA data
-DNAU-33 → DNAU-34 : prerequisite for Many numbers at once: vectors, matrices and DNA data
-DNAU-24 → DNAU-35 : prerequisite for Resources, energy, reliability and design tools
-DNAU-28 → DNAU-35 : prerequisite for Resources, energy, reliability and design tools
-DNAU-30 → DNAU-35 : prerequisite for Resources, energy, reliability and design tools
-DNAU-33 → DNAU-35 : prerequisite for Resources, energy, reliability and design tools
-DNAU-34 → DNAU-35 : prerequisite for Resources, energy, reliability and design tools
-DNAU-26 → DNAU-36 : prerequisite for A measured frontier and the bridge to Evolutor
-DNAU-27 → DNAU-36 : prerequisite for A measured frontier and the bridge to Evolutor
-DNAU-31 → DNAU-36 : prerequisite for A measured frontier and the bridge to Evolutor
-DNAU-32 → DNAU-36 : prerequisite for A measured frontier and the bridge to Evolutor
-DNAU-34 → DNAU-36 : prerequisite for A measured frontier and the bridge to Evolutor
-DNAU-35 → DNAU-36 : prerequisite for A measured frontier and the bridge to Evolutor
-```
+A → B means that A supplies knowledge required by B; all incoming edges are required. It is not a molecular causal arrow. ENTRY is the explicit technical entry contract. Chapter 1 roadmaps preview later material without requiring it. DNAD imports are one-way from Book I; no reverse dependencies exist.
 
-## Cross-book handoff
+ENTRY → DNAD-01 : prerequisite for Computing with DNA
 
-The versioned [Book I exit contract](pedagogy/book-i-contract.json) lists chapter-specific terms and exit tasks. Evolutor imports only those explicit chapter outcomes, and recalls them in a short bridge before use. Its present status is planned-not-yet-taught. Neither unit tests nor this graph activate that contract. If an imported outcome is removed, either restore it in Book I or teach it locally before use in Book II.
+DNAD-01 → DNAD-02 : prerequisite for Adleman's experiment: a mechanistic reconstruction
+
+DNAD-01 → DNAD-03 : prerequisite for Combinatorial search and complexity
+
+DNAD-02 → DNAD-04 : prerequisite for Molecular parallelism and resource accounting
+
+DNAD-03 → DNAD-04 : prerequisite for Molecular parallelism and resource accounting
+
+DNAD-01 → DNAD-05 : prerequisite for DNA chemistry and sequence geometry
+
+DNAD-05 → DNAD-06 : prerequisite for Hybridization thermodynamics
+
+DNAD-05 → DNAD-07 : prerequisite for Reaction kinetics and stochastic chemistry
+
+DNAD-06 → DNAD-07 : prerequisite for Reaction kinetics and stochastic chemistry
+
+DNAD-05 → DNAD-08 : prerequisite for Enzymes as molecular operators
+
+DNAD-07 → DNAD-08 : prerequisite for Enzymes as molecular operators
+
+DNAD-06 → DNAD-09 : prerequisite for PCR, amplification and selection bias
+
+DNAD-08 → DNAD-09 : prerequisite for PCR, amplification and selection bias
+
+DNAD-08 → DNAD-10 : prerequisite for Separation, detection and experimental logic
+
+DNAD-09 → DNAD-10 : prerequisite for Separation, detection and experimental logic
+
+DNAD-03 → DNAD-11 : prerequisite for Sequence design and graph encoding
+
+DNAD-06 → DNAD-11 : prerequisite for Sequence design and graph encoding
+
+DNAD-10 → DNAD-11 : prerequisite for Sequence design and graph encoding
+
+DNAD-02 → DNAD-12 : prerequisite for Generate–filter–verify algorithms
+
+DNAD-11 → DNAD-12 : prerequisite for Generate–filter–verify algorithms
+
+DNAD-03 → DNAD-13 : prerequisite for SAT and combinatorial constructions
+
+DNAD-12 → DNAD-13 : prerequisite for SAT and combinatorial constructions
+
+DNAD-11 → DNAD-14 : prerequisite for Sticker systems and molecular memory
+
+DNAD-12 → DNAD-14 : prerequisite for Sticker systems and molecular memory
+
+DNAD-08 → DNAD-15 : prerequisite for Splicing and insertion–deletion systems
+
+DNAD-11 → DNAD-15 : prerequisite for Splicing and insertion–deletion systems
+
+DNAD-03 → DNAD-16 : prerequisite for Languages, automata and molecular recognition
+
+DNAD-15 → DNAD-16 : prerequisite for Languages, automata and molecular recognition
+
+DNAD-05 → DNAD-17 : prerequisite for Watson–Crick and biochemical automata
+
+DNAD-08 → DNAD-17 : prerequisite for Watson–Crick and biochemical automata
+
+DNAD-16 → DNAD-17 : prerequisite for Watson–Crick and biochemical automata
+
+DNAD-04 → DNAD-18 : prerequisite for Universality and complexity models
+
+DNAD-14 → DNAD-18 : prerequisite for Universality and complexity models
+
+DNAD-15 → DNAD-18 : prerequisite for Universality and complexity models
+
+DNAD-16 → DNAD-18 : prerequisite for Universality and complexity models
+
+DNAD-17 → DNAD-18 : prerequisite for Universality and complexity models
+
+DNAD-06 → DNAD-19 : prerequisite for Toehold-mediated strand displacement
+
+DNAD-07 → DNAD-19 : prerequisite for Toehold-mediated strand displacement
+
+DNAD-11 → DNAD-19 : prerequisite for Toehold-mediated strand displacement
+
+DNAD-07 → DNAD-20 : prerequisite for Chemical reaction networks as programs
+
+DNAD-18 → DNAD-20 : prerequisite for Chemical reaction networks as programs
+
+DNAD-19 → DNAD-20 : prerequisite for Chemical reaction networks as programs
+
+DNAD-19 → DNAD-21 : prerequisite for Digital and analog DNA circuits
+
+DNAD-20 → DNAD-21 : prerequisite for Digital and analog DNA circuits
+
+DNAD-05 → DNAD-22 : prerequisite for Self-assembly, tiles and geometry
+
+DNAD-18 → DNAD-22 : prerequisite for Self-assembly, tiles and geometry
+
+DNAD-10 → DNAD-23 : prerequisite for Noise, crosstalk and fault models
+
+DNAD-12 → DNAD-23 : prerequisite for Noise, crosstalk and fault models
+
+DNAD-19 → DNAD-23 : prerequisite for Noise, crosstalk and fault models
+
+DNAD-21 → DNAD-23 : prerequisite for Noise, crosstalk and fault models
+
+DNAD-04 → DNAD-24 : prerequisite for Scaling and resource limits
+
+DNAD-18 → DNAD-24 : prerequisite for Scaling and resource limits
+
+DNAD-21 → DNAD-24 : prerequisite for Scaling and resource limits
+
+DNAD-22 → DNAD-24 : prerequisite for Scaling and resource limits
+
+DNAD-23 → DNAD-24 : prerequisite for Scaling and resource limits
+
+DNAD-05 → DNAD-25 : prerequisite for Synthesis, sequencing and DNA storage
+
+DNAD-10 → DNAD-25 : prerequisite for Synthesis, sequencing and DNA storage
+
+DNAD-23 → DNAD-25 : prerequisite for Synthesis, sequencing and DNA storage
+
+DNAD-08 → DNAD-26 : prerequisite for Laboratory workflows and reproducibility
+
+DNAD-09 → DNAD-26 : prerequisite for Laboratory workflows and reproducibility
+
+DNAD-10 → DNAD-26 : prerequisite for Laboratory workflows and reproducibility
+
+DNAD-23 → DNAD-26 : prerequisite for Laboratory workflows and reproducibility
+
+DNAD-24 → DNAD-26 : prerequisite for Laboratory workflows and reproducibility
+
+DNAD-11 → DNAD-27 : prerequisite for Symbolic molecular simulation
+
+DNAD-12 → DNAD-27 : prerequisite for Symbolic molecular simulation
+
+DNAD-15 → DNAD-27 : prerequisite for Symbolic molecular simulation
+
+DNAD-17 → DNAD-27 : prerequisite for Symbolic molecular simulation
+
+DNAD-07 → DNAD-28 : prerequisite for Kinetic and stochastic simulation
+
+DNAD-19 → DNAD-28 : prerequisite for Kinetic and stochastic simulation
+
+DNAD-20 → DNAD-28 : prerequisite for Kinetic and stochastic simulation
+
+DNAD-23 → DNAD-28 : prerequisite for Kinetic and stochastic simulation
+
+DNAD-27 → DNAD-28 : prerequisite for Kinetic and stochastic simulation
+
+DNAD-06 → DNAD-29 : prerequisite for Differentiable molecular and sequence models
+
+DNAD-25 → DNAD-29 : prerequisite for Differentiable molecular and sequence models
+
+DNAD-28 → DNAD-29 : prerequisite for Differentiable molecular and sequence models
+
+DNAD-05 → DNAD-30 : prerequisite for Genomic organization, regulation and development
+
+DNAD-07 → DNAD-30 : prerequisite for Genomic organization, regulation and development
+
+DNAD-08 → DNAD-30 : prerequisite for Genomic organization, regulation and development
+
+DNAD-21 → DNAD-31 : prerequisite for Modern molecular programming and evidence
+
+DNAD-22 → DNAD-31 : prerequisite for Modern molecular programming and evidence
+
+DNAD-24 → DNAD-31 : prerequisite for Modern molecular programming and evidence
+
+DNAD-26 → DNAD-31 : prerequisite for Modern molecular programming and evidence
+
+DNAD-28 → DNAD-31 : prerequisite for Modern molecular programming and evidence
+
+DNAD-29 → DNAD-31 : prerequisite for Modern molecular programming and evidence
+
+DNAD-18 → DNAD-32 : prerequisite for From molecular computation to genomic computation
+
+DNAD-24 → DNAD-32 : prerequisite for From molecular computation to genomic computation
+
+DNAD-29 → DNAD-32 : prerequisite for From molecular computation to genomic computation
+
+DNAD-30 → DNAD-32 : prerequisite for From molecular computation to genomic computation
+
+DNAD-31 → DNAD-32 : prerequisite for From molecular computation to genomic computation
+
+The [deep Book I contract](pedagogy/deep-book-i-contract.json) contains exact exit tasks. A planned link does not establish that a chapter has been taught. Qualified readers may demonstrate equivalent knowledge; otherwise follow the named chapters.

@@ -1,0 +1,466 @@
+[
+  {
+    "id": "DNAD-01-A1",
+    "chapter": "DNAD-01",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "encode vertices",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "mix molecules",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "form candidates",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "select endpoints",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 5,
+        "action": "select length",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 6,
+        "action": "select vertices",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 7,
+        "action": "verify recovered witness",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-01/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-02-A1",
+    "chapter": "DNAD-02",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "encoded strands",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "ligated pool",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "selected molecules",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "historical readout",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-02/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-07-A1",
+    "chapter": "DNAD-07",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "collision opportunity",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "reaction event",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "population evolution",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-07/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-08-A1",
+    "chapter": "DNAD-08",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "substrates",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "enzyme-mediated change",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "products",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-08/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-09-A1",
+    "chapter": "DNAD-09",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "denature",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "anneal",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "extend",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "biased population",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-09/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-12-A1",
+    "chapter": "DNAD-12",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "generate",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "endpoint selection",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "size selection",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "coverage",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 5,
+        "action": "verify",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-12/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-15-A1",
+    "chapter": "DNAD-15",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "input words",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "permitted cuts",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "recombined words",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-15/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-17-A1",
+    "chapter": "DNAD-17",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "paired input",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "permitted transition",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "accepted or rejected",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-17/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-19-A1",
+    "chapter": "DNAD-19",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "gate",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "encounter",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "binding",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "migration",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 5,
+        "action": "displacement",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 6,
+        "action": "release",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-19/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-20-A1",
+    "chapter": "DNAD-20",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "reaction specification",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "rate equations",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "DNA realization",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-20/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-21-A1",
+    "chapter": "DNAD-21",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "input concentrations",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "gate reaction",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "restored output",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-21/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-22-A1",
+    "chapter": "DNAD-22",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "seed",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "legal attachment",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "growing assembly",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-22/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-26-A1",
+    "chapter": "DNAD-26",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "design",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "prepare",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "react",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "separate",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 5,
+        "action": "measure",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 6,
+        "action": "interpret",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-26/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-27-A1",
+    "chapter": "DNAD-27",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "model",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "interpreter step",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "trace",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "oracle comparison",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-27/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-28-A1",
+    "chapter": "DNAD-28",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "parameters",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "simulation",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "measured discrepancy",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-28/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  },
+  {
+    "id": "DNAD-30-A1",
+    "chapter": "DNAD-30",
+    "status": "storyboard-candidate-no-assets",
+    "frames": [
+      {
+        "number": 1,
+        "action": "stored sequence",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 2,
+        "action": "cellular regulation",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 3,
+        "action": "expression",
+        "sourceStatus": "not-created"
+      },
+      {
+        "number": 4,
+        "action": "phenotype",
+        "sourceStatus": "not-created"
+      }
+    ],
+    "plannedDirectory": "animation/dnad-30/",
+    "policy": "Decide at chapter storyboard review whether motion adds information; preserve static and reduced-motion versions."
+  }
+]

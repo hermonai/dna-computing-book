@@ -1,0 +1,582 @@
+[
+  {
+    "id": "DNAD-01-F1",
+    "title": "Adleman's core idea",
+    "grammar": "Three aligned lanes: graph instance, molecular experiment, interpreted witness.",
+    "frames": [
+      "graph instance",
+      "encoded molecules",
+      "physical operations",
+      "observation",
+      "checked witness"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-01",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-01-F2",
+    "title": "Hamiltonian path and counterexamples",
+    "grammar": "One stable graph with three candidate overlays and a small search tree; edge direction is invariant.",
+    "frames": [
+      "graph",
+      "candidate route",
+      "edge check",
+      "coverage/uniqueness check",
+      "witness"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-01",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-01-F3",
+    "title": "Graph-to-DNA encoding",
+    "grammar": "Graph above oriented molecular strands; zoom from edge to sequence domains; separate base pairing from backbone bonds.",
+    "frames": [
+      "vertex identities",
+      "oriented vertex codes",
+      "edge overlap",
+      "paired complex",
+      "covalent candidate"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-01",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-01-F4",
+    "title": "Candidate molecular pool",
+    "grammar": "Stable candidate identities with differing multiplicities; incomplete generation is visible.",
+    "frames": [
+      "designed species",
+      "mixed strands",
+      "associations",
+      "ligated candidates",
+      "biased pool"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-01",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-01-F5",
+    "title": "Selection pipeline",
+    "grammar": "Seven static keyframes; candidate identities remain stable; rejection is not creation.",
+    "frames": [
+      "encode vertices",
+      "mix molecules",
+      "form candidates",
+      "select endpoints",
+      "select length",
+      "select vertices",
+      "verify recovered witness"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-01",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-01-F6",
+    "title": "Operations, measurements and inference",
+    "grammar": "Operation-to-predicate table paired with sample lineage and gel lanes.",
+    "frames": [
+      "input sample",
+      "laboratory operation",
+      "selected fraction",
+      "instrument signal",
+      "bounded interpretation"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-01",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-01-F7",
+    "title": "Scaling challenge",
+    "grammar": "Analytical curves with axes, units and assumptions; a separate physical-resource ledger, no invented measurements.",
+    "frames": [
+      "candidate count",
+      "sampling assumptions",
+      "required molecules",
+      "selection loss",
+      "readout limit"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-01",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-01-F8",
+    "title": "Mechanism and history map",
+    "grammar": "Technical field map with source-linked milestones and cross-links to later chapters, not a universal progress arrow.",
+    "frames": [
+      "historical experiment",
+      "formal models and molecular operators",
+      "programming systems",
+      "engineering constraints",
+      "research frontier"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-01",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-02-F1",
+    "title": "Oriented oligos, tube ledger and gel interpretation",
+    "grammar": "Oriented oligos, tube ledger and gel interpretation",
+    "frames": [
+      "encoded strands",
+      "ligated pool",
+      "selected molecules",
+      "historical readout"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-03-F1",
+    "title": "Search tree with pruning and witness checks",
+    "grammar": "Search tree with pruning and witness checks",
+    "frames": [
+      "candidate extension",
+      "rejection",
+      "surviving witness"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-03",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-04-F1",
+    "title": "Resource curves with units and assumptions",
+    "grammar": "Resource curves with units and assumptions",
+    "frames": [
+      "candidate space",
+      "sampled population",
+      "recovered evidence"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-04",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-05-F1",
+    "title": "Chemical zoom and strand orientation",
+    "grammar": "Chemical zoom and strand orientation",
+    "frames": [
+      "nucleotide",
+      "backbone",
+      "antiparallel duplex"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-05",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-06-F1",
+    "title": "Duplex populations and energy landscape",
+    "grammar": "Duplex populations and energy landscape",
+    "frames": [
+      "separate strands",
+      "competing duplexes",
+      "equilibrium population"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-06",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-07-F1",
+    "title": "Reaction events and concentration trajectories",
+    "grammar": "Reaction events and concentration trajectories",
+    "frames": [
+      "collision opportunity",
+      "reaction event",
+      "population evolution"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-07",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-08-F1",
+    "title": "Bond-change panels with enzyme identities",
+    "grammar": "Bond-change panels with enzyme identities",
+    "frames": [
+      "substrates",
+      "enzyme-mediated change",
+      "products"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-08",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-09-F1",
+    "title": "PCR cycle and competing amplicons",
+    "grammar": "PCR cycle and competing amplicons",
+    "frames": [
+      "denature",
+      "anneal",
+      "extend",
+      "biased population"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-09",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-10-F1",
+    "title": "Sample provenance, gel lanes and readout",
+    "grammar": "Sample provenance, gel lanes and readout",
+    "frames": [
+      "mixed sample",
+      "selected fraction",
+      "measured signal"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-10",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-11-F1",
+    "title": "Graph edge to antiparallel overlap mapping",
+    "grammar": "Graph edge to antiparallel overlap mapping",
+    "frames": [
+      "graph constraint",
+      "sequence constraint",
+      "candidate design"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-11",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-12-F1",
+    "title": "Candidate-survival ledger",
+    "grammar": "Candidate-survival ledger",
+    "frames": [
+      "generate",
+      "endpoint selection",
+      "size selection",
+      "coverage",
+      "verify"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-12",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-13-F1",
+    "title": "Assignment tree and clause selection",
+    "grammar": "Assignment tree and clause selection",
+    "frames": [
+      "assignment population",
+      "clause filters",
+      "verified assignment"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-13",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-14-F1",
+    "title": "Molecular bit registers",
+    "grammar": "Molecular bit registers",
+    "frames": [
+      "blank register",
+      "selective marking",
+      "readout"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-14",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-15-F1",
+    "title": "Cut sites and rewrite derivation",
+    "grammar": "Cut sites and rewrite derivation",
+    "frames": [
+      "input words",
+      "permitted cuts",
+      "recombined words"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-15",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-16-F1",
+    "title": "Automaton and reaction correspondence",
+    "grammar": "Automaton and reaction correspondence",
+    "frames": [
+      "input symbol",
+      "transition",
+      "acceptance state"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-16",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-17-F1",
+    "title": "Paired inputs and transition reactions",
+    "grammar": "Paired inputs and transition reactions",
+    "frames": [
+      "paired input",
+      "permitted transition",
+      "accepted or rejected"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-17",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-18-F1",
+    "title": "Simulation map and resource ledger",
+    "grammar": "Simulation map and resource ledger",
+    "frames": [
+      "source machine",
+      "molecular encoding",
+      "simulated transition"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-18",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-19-F1",
+    "title": "Six molecular keyframes",
+    "grammar": "Six molecular keyframes",
+    "frames": [
+      "gate",
+      "encounter",
+      "binding",
+      "migration",
+      "displacement",
+      "release"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-19",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-20-F1",
+    "title": "Reaction graph and stoichiometric matrix",
+    "grammar": "Reaction graph and stoichiometric matrix",
+    "frames": [
+      "reaction specification",
+      "rate equations",
+      "DNA realization"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-20",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-21-F1",
+    "title": "Gate cascade with concentration traces",
+    "grammar": "Gate cascade with concentration traces",
+    "frames": [
+      "input concentrations",
+      "gate reaction",
+      "restored output"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-21",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-22-F1",
+    "title": "Tiles, glues and molecular scaffold zoom",
+    "grammar": "Tiles, glues and molecular scaffold zoom",
+    "frames": [
+      "seed",
+      "legal attachment",
+      "growing assembly"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-22",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-23-F1",
+    "title": "Fault propagation across layers",
+    "grammar": "Fault propagation across layers",
+    "frames": [
+      "local fault",
+      "propagated effect",
+      "observed error"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-23",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-24-F1",
+    "title": "Resource budget and Pareto frontier",
+    "grammar": "Resource budget and Pareto frontier",
+    "frames": [
+      "design size",
+      "resource demand",
+      "feasible regime"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-24",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-25-F1",
+    "title": "Write–store–read channel",
+    "grammar": "Write–store–read channel",
+    "frames": [
+      "encoding",
+      "synthesis/storage",
+      "noisy readout",
+      "decoding"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-25",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-26-F1",
+    "title": "Sample lineage and instrument workflow",
+    "grammar": "Sample lineage and instrument workflow",
+    "frames": [
+      "design",
+      "prepare",
+      "react",
+      "separate",
+      "measure",
+      "interpret"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-26",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-27-F1",
+    "title": "Interpreter state and transitions",
+    "grammar": "Interpreter state and transitions",
+    "frames": [
+      "model",
+      "interpreter step",
+      "trace",
+      "oracle comparison"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-27",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-28-F1",
+    "title": "Reaction trace and simulation comparison",
+    "grammar": "Reaction trace and simulation comparison",
+    "frames": [
+      "parameters",
+      "simulation",
+      "measured discrepancy"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-28",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-29-F1",
+    "title": "Forward model and gradient path",
+    "grammar": "Forward model and gradient path",
+    "frames": [
+      "design parameters",
+      "prediction",
+      "loss",
+      "update"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-29",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-30-F1",
+    "title": "Genome–expression–phenotype zoom",
+    "grammar": "Genome–expression–phenotype zoom",
+    "frames": [
+      "stored sequence",
+      "cellular regulation",
+      "expression",
+      "phenotype"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-30",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-31-F1",
+    "title": "Historical mechanism map and evidence comparison",
+    "grammar": "Historical mechanism map and evidence comparison",
+    "frames": [
+      "research claim",
+      "mechanism",
+      "experiment",
+      "bounded conclusion"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-31",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  },
+  {
+    "id": "DNAD-32-F1",
+    "title": "Four-layer bridge",
+    "grammar": "Four-layer bridge",
+    "frames": [
+      "molecule",
+      "formal model",
+      "digital implementation",
+      "research hypothesis"
+    ],
+    "status": "planned-no-assets",
+    "chapter": "DNAD-32",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "not-drawn-not-reviewed"
+  }
+]

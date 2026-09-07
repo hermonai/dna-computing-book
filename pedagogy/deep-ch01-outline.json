@@ -1,0 +1,188 @@
+{
+  "chapter": "DNAD-01",
+  "title": "Computing with DNA",
+  "status": "detailed-outline-only",
+  "scope": "Next execution writes this chapter; this milestone creates no manuscript, finished artwork or animation frames.",
+  "sizePolicy": "Let the argument determine length; a substantial 30–50-page treatment is acceptable, not a quota. The opening establishes the field and exact worked mechanisms without duplicating later full treatments.",
+  "sections": [
+    {
+      "number": 1,
+      "title": "The molecular-computation idea",
+      "purpose": "Begin with Adleman's 1994 Hamiltonian-path demonstration, not elementary arithmetic. Explain instance, physical representation, operation and measured answer; distinguish a molecule, a formal string and a simulator.",
+      "formalism": "Define an encoding map and a decoding relation only after the experimental sketch.",
+      "workedExample": "Follow one candidate through problem → molecule → observation; mark which assertions are historical and which belong to our simplified teaching model.",
+      "figure": {
+        "id": "DNAD-01-F1",
+        "title": "Adleman's core idea",
+        "grammar": "Three aligned lanes: graph instance, molecular experiment, interpreted witness.",
+        "frames": [
+          "graph instance",
+          "encoded molecules",
+          "physical operations",
+          "observation",
+          "checked witness"
+        ],
+        "status": "planned-no-assets"
+      },
+      "sourceGate": "Read relevant primary sources in full for the claims used; distinguish historical details, original teaching examples and research proposals."
+    },
+    {
+      "number": 2,
+      "title": "A graph problem precise enough to compute",
+      "purpose": "Introduce directed vertices and edges in a nontrivial original graph. Distinguish walk, simple path, Hamiltonian path and specified endpoints. Explain decision versus witness recovery.",
+      "formalism": "G=(V,E); P=(v_1,...,v_n); every v_i in V, all distinct, every consecutive pair in E, with declared start/end. Verification can be polynomial without search being known polynomial.",
+      "workedExample": "Check one valid route, one nonexistent edge and one repeated vertex. An independent enumeration must verify the chosen teaching graph before illustration.",
+      "figure": {
+        "id": "DNAD-01-F2",
+        "title": "Hamiltonian path and counterexamples",
+        "grammar": "One stable graph with three candidate overlays and a small search tree; edge direction is invariant.",
+        "frames": [
+          "graph",
+          "candidate route",
+          "edge check",
+          "coverage/uniqueness check",
+          "witness"
+        ],
+        "status": "planned-no-assets"
+      },
+      "sourceGate": "Read relevant primary sources in full for the claims used; distinguish historical details, original teaching examples and research proposals."
+    },
+    {
+      "number": 3,
+      "title": "From graph edges to oriented DNA",
+      "purpose": "Preview only the chemistry required: sequence identity, antiparallel matching, vertex oligos, overlapping edge encodings and covalent joining. Full chemistry follows in Part II.",
+      "formalism": "Specify a symbolic encoding with oriented domains; distinguish complement from reverse complement. Do not transplant the historical oligo sequences without source verification.",
+      "workedExample": "Work one edge bridge with 5′/3′ labels and a deliberately reversed incorrect bridge; explain what the symbolic match does not guarantee physically.",
+      "figure": {
+        "id": "DNAD-01-F3",
+        "title": "Graph-to-DNA encoding",
+        "grammar": "Graph above oriented molecular strands; zoom from edge to sequence domains; separate base pairing from backbone bonds.",
+        "frames": [
+          "vertex identities",
+          "oriented vertex codes",
+          "edge overlap",
+          "paired complex",
+          "covalent candidate"
+        ],
+        "status": "planned-no-assets"
+      },
+      "sourceGate": "Read relevant primary sources in full for the claims used; distinguish historical details, original teaching examples and research proposals."
+    },
+    {
+      "number": 4,
+      "title": "A candidate pool, not an exhaustive oracle",
+      "purpose": "Explain annealing and ligation as probabilistic candidate generation. The mixture contains multiplicities and unwanted products; intended candidates may be absent.",
+      "formalism": "Represent the pool as a multiset, not an automatically complete set. Define per-candidate sampling probability without assuming it is uniform.",
+      "workedExample": "Trace several intended and unintended walks into a symbolic pool; keep multiplicity distinct from chemical concentration.",
+      "figure": {
+        "id": "DNAD-01-F4",
+        "title": "Candidate molecular pool",
+        "grammar": "Stable candidate identities with differing multiplicities; incomplete generation is visible.",
+        "frames": [
+          "designed species",
+          "mixed strands",
+          "associations",
+          "ligated candidates",
+          "biased pool"
+        ],
+        "status": "planned-no-assets"
+      },
+      "sourceGate": "Read relevant primary sources in full for the claims used; distinguish historical details, original teaching examples and research proposals."
+    },
+    {
+      "number": 5,
+      "title": "Generate, filter and verify",
+      "purpose": "Explain endpoint, length and vertex-coverage predicates and the physical operations intended to implement them. Distinguish ideal predicate correctness from imperfect retention.",
+      "formalism": "Prove: n vertex positions plus coverage of all n distinct vertices implies each appears exactly once; adjacency and endpoints are separate conditions.",
+      "workedExample": "Carry one repeated-vertex candidate through the filter ledger until the coverage test rejects it; test a true witness lost by imperfect selection.",
+      "figure": {
+        "id": "DNAD-01-F5",
+        "title": "Selection pipeline",
+        "grammar": "Seven static keyframes; candidate identities remain stable; rejection is not creation.",
+        "frames": [
+          "encode vertices",
+          "mix molecules",
+          "form candidates",
+          "select endpoints",
+          "select length",
+          "select vertices",
+          "verify recovered witness"
+        ],
+        "status": "planned-no-assets"
+      },
+      "sourceGate": "Read relevant primary sources in full for the claims used; distinguish historical details, original teaching examples and research proposals."
+    },
+    {
+      "number": 6,
+      "title": "What the laboratory actually observes",
+      "purpose": "Relate PCR, electrophoresis, affinity selection and readout to their computational roles. Verify the historical readout method from the paper; do not substitute modern sequencing into the historical narrative.",
+      "formalism": "Separate molecule count, length, signal and sequence evidence; distinguish failed detection from proof of no solution.",
+      "workedExample": "Read a clearly synthetic gel sketch with controls and uncertainty; label it as teaching data, not a replication.",
+      "figure": {
+        "id": "DNAD-01-F6",
+        "title": "Operations, measurements and inference",
+        "grammar": "Operation-to-predicate table paired with sample lineage and gel lanes.",
+        "frames": [
+          "input sample",
+          "laboratory operation",
+          "selected fraction",
+          "instrument signal",
+          "bounded interpretation"
+        ],
+        "status": "planned-no-assets"
+      },
+      "sourceGate": "Read relevant primary sources in full for the claims used; distinguish historical details, original teaching examples and research proposals."
+    },
+    {
+      "number": 7,
+      "title": "Parallelism and the resources it consumes",
+      "purpose": "Introduce exponential combinatorial growth, NP and NP-completeness at a useful first level. No claim that P differs from NP or that molecular parallelism removes material costs.",
+      "formalism": "Under independent draws, miss probability is (1-p)^M; derive required M for a specified tolerance. For fixed endpoints in a complete directed graph there are (n-2)! internal orders; this is not a universal yield model.",
+      "workedExample": "Compare a declared uniform toy bound with biased sampling; include species, molecules, volume, reaction stages, loss and readout in the ledger.",
+      "figure": {
+        "id": "DNAD-01-F7",
+        "title": "Scaling challenge",
+        "grammar": "Analytical curves with axes, units and assumptions; a separate physical-resource ledger, no invented measurements.",
+        "frames": [
+          "candidate count",
+          "sampling assumptions",
+          "required molecules",
+          "selection loss",
+          "readout limit"
+        ],
+        "status": "planned-no-assets"
+      },
+      "sourceGate": "Read relevant primary sources in full for the claims used; distinguish historical details, original teaching examples and research proposals."
+    },
+    {
+      "number": 8,
+      "title": "The field after the first experiment",
+      "purpose": "Provide a mechanism-based map: combinatorial selection, molecular automata, reaction networks, strand displacement, circuits, self-assembly and simulation. Place storage and learned DNA models at distinct boundaries.",
+      "formalism": "Summarize which abstraction each branch uses and what implementation evidence would support it; leave detailed universality proofs for Part IV.",
+      "workedExample": "Compare two research claims by mechanism, resource and evidence rather than a chronology of names; include derivation/coding/experimental-design exercises.",
+      "figure": {
+        "id": "DNAD-01-F8",
+        "title": "Mechanism and history map",
+        "grammar": "Technical field map with source-linked milestones and cross-links to later chapters, not a universal progress arrow.",
+        "frames": [
+          "historical experiment",
+          "formal models and molecular operators",
+          "programming systems",
+          "engineering constraints",
+          "research frontier"
+        ],
+        "status": "planned-no-assets"
+      },
+      "sourceGate": "Read relevant primary sources in full for the claims used; distinguish historical details, original teaching examples and research proposals."
+    }
+  ],
+  "exercisePolicy": "Include a fully solved technical example, derivation, algorithm or proof task, implementation check, experimental/systems design task and research critique. Open problems get a rubric, not fabricated solutions.",
+  "codePlan": "Implement a symbolic graph/path checker and filter simulator with an independent exhaustive oracle. Include actual tested files, not elementary Python lessons. No wet-lab experiment or thermodynamic validity is implied.",
+  "acceptance": [
+    "Chapter starts with the actual subject, not counters or a thermostat.",
+    "Definitions and abstraction boundaries are explicit; useful abstraction is not prohibited.",
+    "Every displayed formula has defined symbols, assumptions and interpretation.",
+    "Every figure has editable source and a Unicode TXT companion; scientific and final-page reviews remain required.",
+    "No novelty, performance, biomedical or AGI conclusion without corresponding evidence."
+  ]
+}

@@ -1,35 +1,48 @@
-# DNA Computing: undergraduate-first architecture
+# DNA Computing: deep technical edition
 
-Status: Chapter 1 internally reviewed development draft; all later units remain planned. No learner study, independent expert certification or new research-model experiment is claimed. Generated from [pedagogy/curriculum.json](pedagogy/curriculum.json). See [Chapter 1 storyboard](research/undergraduate-ch01-storyboard.md) for the six produced figures.
+Status: architecture and detailed outlines only; no new manuscript, final figures, animation frames, models, engines or experiments are delivered. Canonical source: [deep curriculum](pedagogy/deep-curriculum.json). Prior editions remain historical references, not the active teaching level.
 
-## Complete previous-outline disposition
+DOGMA = non-Transformer DNA-native model + DOGMA Engine; Hermon DNA = Transformer-based DNA model + Hermon DNA Engine; Evolutor = broader genomic computation theory, research and eventual runtime above both.
 
-Compared against immutable commit `a1fb9a6154976f903b39d0f8a26834a8336f2264` on astra-rewrite. Only its first two chapters were drafted. Planned titles are not treated as existing manuscript content. Every prior planned topic has an explicit destination, but reuse requires a new prerequisite, scientific and figure audit.
+## Complete preceding-outline disposition
 
-| Previous chapter | Previous status | Prerequisite diagnosis | New destinations |
-|---|---|---|---|
-| DNA-01 — Why compute with molecules? | drafted | Graph terms, checking, formal proof and cost growth precede their teaching in the old opening. | DNAU-06, DNAU-21, DNAU-22, DNAU-23, DNAU-24 |
-| DNA-02 — Molecular structure and strand direction | drafted | Atoms, bonds, sugars, molecules and sequence orientation need distinct first encounters. | DNAU-07, DNAU-09, DNAU-10, DNAU-11 |
-| DNA-03 — Pairing, free energy and molecular recognition | planned-only | Concentration, units, energy, equilibrium, kinetics and chance must precede binding predictions. | DNAU-08, DNAU-12, DNAU-16 |
-| DNA-04 — From physical state to strings and information | planned-only | Information must begin with symbols and an encoding key, not physical-state formalism. | DNAU-01, DNAU-02, DNAU-33 |
-| DNA-05 — Copying, cutting, joining and reading | planned-only | Explain each instrument and enzyme before bundling operations. | DNAU-14, DNAU-17, DNAU-18, DNAU-20 |
-| DNA-06 — Adleman: a complete experiment reconstruction | planned-only | Teach paths visually, then laboratory operations, then encoding and reconstruction. | DNAU-21, DNAU-22, DNAU-23, DNAU-24 |
-| DNA-07 — From SAT proposals to finite-state machines | planned-only | Teach logic, languages, states and machines before SAT or automata comparisons. | DNAU-25 |
-| DNA-08 — Laboratory resources, errors and readout | planned-only | Teach quantities, controls, measurement and probability before resource/error models. | DNAU-15, DNAU-19, DNAU-20, DNAU-24 |
-| DNA-09 — Strand, sticker and Watson–Crick models | planned-only | Give each instruction-set variant an explicit operation table and prerequisites. | DNAU-25, DNAU-26 |
-| DNA-10 — Splicing and insertion–deletion systems | planned-only | Introduce rules on concrete strings before formal closure arguments. | DNAU-25, DNAU-27 |
-| DNA-11 — Chemical reaction networks and stochastic computation | planned-only | Amounts, rates, chance and step updates must precede network equations. | DNAU-08, DNAU-12, DNAU-28 |
-| DNA-12 — Strand displacement: domains, kinetics and leakage | planned-only | Hybridization and reaction behavior must precede domains, gates and leakage. | DNAU-16, DNAU-28, DNAU-29 |
-| DNA-13 — Composing digital and analog molecular circuits | planned-only | Truth tables and graded quantities must precede circuit composition. | DNAU-03, DNAU-28, DNAU-30 |
-| DNA-14 — Tile assembly and local rules | planned-only | Graph/grid and rule vocabulary must precede assembly models. | DNAU-25, DNAU-31 |
-| DNA-15 — Origami as geometry and addressability | planned-only | Molecular objects and scale must precede scaffold geometry. | DNAU-10, DNAU-31 |
-| DNA-16 — Synthetic gene circuits and feedback | planned-only | Sequence transfer and regulation must precede synthetic control models. | DNAU-13, DNAU-28, DNAU-30, DNAU-32 |
-| DNA-17 — Molecular pattern recognition | planned-only | Vectors, weighted combinations and evidence boundaries must precede pattern-recognition claims. | DNAU-30, DNAU-34, DNAU-36 |
-| DNA-18 — DNA storage, coding and random access | planned-only | Teach encoding, chance and readout before recovery and capacity. | DNAU-12, DNAU-20, DNAU-33 |
-| DNA-19 — Storage–computation interfaces | planned-only | Teach both storage and analysis before discussing interfaces. | DNAU-33, DNAU-34, DNAU-35 |
-| DNA-20 — Complexity: time, molecules, volume and readout | planned-only | Count tiny examples before abstract time/material complexity. | DNAU-06, DNAU-12, DNAU-24, DNAU-35 |
-| DNA-21 — Energy accounting and reliability | planned-only | Teach energy units and uncertainty before comparing costs. | DNAU-08, DNAU-12, DNAU-35 |
-| DNA-22 — Design tools and executable molecular models | planned-only | Teach Python and model validation before specialized design tools. | DNAU-04, DNAU-28, DNAU-35 |
-| DNA-23 — Programmable and reusable circuits: the evidence through 2026 | planned-only | Contemporary claims need foundations and renewed paper/artifact review, not a date-led survey. | DNAU-29, DNAU-30, DNAU-36 |
-| DNA-24 — DNA sequence models are a different kind of computation | planned-only | Teach data arrays while separating DNA as input data from DNA as computing material. | DNAU-34, DNAU-36 |
-| DNA-25 — What molecules teach computer science | planned-only | Synthesis follows demonstrated competencies rather than an advanced opening thesis. | DNAU-32, DNAU-35, DNAU-36 |
+Preserved undergraduate branch: astra-undergraduate-rewrite at 0779ed552b26d678e2443c0d94177faa04dc293c. Only Chapter 1 was drafted; the other rows are plans, not manuscripts. ARCHIVE preserves the old opening and rewrites the new opening from scratch; MERGE retains the topic in a deeper treatment, not automatic prose reuse. Earlier astra-rewrite and pre-reboot snapshots remain untouched.
+
+| Prior ID / title | Prior status | Disposition | New destinations | Reason |
+|---|---|---|---|---|
+| DNAU-01 — What does it mean to compute? | internally-reviewed-draft | ARCHIVE | DNAD-01 | Preserve the complete beginner prototype; replace its intellectual entrance with a fresh technical Chapter 1. No prose is moved automatically. |
+| DNAU-02 — Symbols, information and representations | planned-not-drafted | MERGE | DNAD-05, DNAD-11 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-03 — Algorithms, decisions and remembered state | planned-not-drafted | MERGE | DNAD-03, DNAD-16 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-04 — Your first small Python programs | planned-not-drafted | MERGE | DNAD-27 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-05 — Cities, roads, graphs and paths | planned-not-drafted | MERGE | DNAD-01, DNAD-03 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-06 — Search, counting and growing work | planned-not-drafted | MERGE | DNAD-03, DNAD-04 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-07 — Atoms, molecules and different kinds of bonds | planned-not-drafted | MERGE | DNAD-05 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-08 — Solutions, amounts, temperature and change | planned-not-drafted | MERGE | DNAD-06, DNAD-07 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-09 — Cells, chromosomes, genes and genomes | planned-not-drafted | MERGE | DNAD-30 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-10 — From a nucleotide to a DNA strand | planned-not-drafted | MERGE | DNAD-05 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-11 — Direction, pairing and reverse complement | planned-not-drafted | MERGE | DNAD-05, DNAD-06 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-12 — Chance, encounters and repeated trials | planned-not-drafted | MERGE | DNAD-04, DNAD-07 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-13 — From DNA to RNA and proteins | planned-not-drafted | MERGE | DNAD-30 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-14 — Enzymes and DNA replication in six frames | planned-not-drafted | MERGE | DNAD-08 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-15 — What a laboratory operation actually does | planned-not-drafted | MERGE | DNAD-26 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-16 — Hybridization as molecular recognition | planned-not-drafted | MERGE | DNAD-06 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-17 — Cutting and joining strands | planned-not-drafted | MERGE | DNAD-08 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-18 — Copying selected DNA with PCR | planned-not-drafted | MERGE | DNAD-09 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-19 — Separating molecules and retaining candidates | planned-not-drafted | MERGE | DNAD-10 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-20 — Detecting and reading a result | planned-not-drafted | MERGE | DNAD-10, DNAD-25 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-21 — Hamiltonian paths: a visual mini-course | planned-not-drafted | MERGE | DNAD-01, DNAD-03 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-22 — Adleman's idea: encode a graph in DNA | planned-not-drafted | MERGE | DNAD-01, DNAD-02, DNAD-11 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-23 — Generate, filter and read the candidates | planned-not-drafted | MERGE | DNAD-02, DNAD-12 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-24 — What the experiment proved, and what it did not | planned-not-drafted | MERGE | DNAD-04, DNAD-24 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-25 — Languages, machines and computational models | planned-not-drafted | MERGE | DNAD-03, DNAD-16, DNAD-18 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-26 — Strand, sticker and paired-strand models | planned-not-drafted | MERGE | DNAD-14, DNAD-17 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-27 — Splicing and rewriting strings | planned-not-drafted | MERGE | DNAD-15 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-28 — Reaction networks and changing amounts | planned-not-drafted | MERGE | DNAD-07, DNAD-20, DNAD-28 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-29 — Strand displacement in slow motion | planned-not-drafted | MERGE | DNAD-19 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-30 — Digital and analog molecular circuits | planned-not-drafted | MERGE | DNAD-21 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-31 — Local assembly, tiles and DNA origami | planned-not-drafted | MERGE | DNAD-22 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-32 — Genes, regulation, development and evolution | planned-not-drafted | MERGE | DNAD-30 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-33 — DNA storage, codes and recovery | planned-not-drafted | MERGE | DNAD-25 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-34 — Many numbers at once: vectors, matrices and DNA data | planned-not-drafted | MERGE | DNAD-29 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-35 — Resources, energy, reliability and design tools | planned-not-drafted | MERGE | DNAD-23, DNAD-24, DNAD-26 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |
+| DNAU-36 — A measured frontier and the bridge to Evolutor | planned-not-drafted | MERGE | DNAD-31, DNAD-32 | Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting. |

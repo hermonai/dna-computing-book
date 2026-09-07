@@ -1,297 +1,201 @@
-# DNA Computing: undergraduate-first architecture
+# DNA Computing: deep technical edition
 
-Status: Chapter 1 internally reviewed development draft; all later units remain planned. No learner study, independent expert certification or new research-model experiment is claimed. Generated from [pedagogy/curriculum.json](pedagogy/curriculum.json). See [Chapter 1 storyboard](research/undergraduate-ch01-storyboard.md) for the six produced figures.
+Status: architecture and detailed outlines only; no new manuscript, final figures, animation frames, models, engines or experiments are delivered. Canonical source: [deep curriculum](pedagogy/deep-curriculum.json). Prior editions remain historical references, not the active teaching level.
 
-## Exercises, code and experiments
+DOGMA = non-Transformer DNA-native model + DOGMA Engine; Hermon DNA = Transformer-based DNA model + Hermon DNA Engine; Evolutor = broader genomic computation theory, research and eventual runtime above both.
 
-Progress through recognition → hand calculation/tracing → application → implementation → reasoning → research design. Early chapters stop before levels whose tools are untaught. Every introductory task gets a worked solution or a staged hint and answer check. Later research tasks get a rubric and explicit acceptable uncertainty, not a fabricated unique answer. Return to earlier concepts after a delay and interleave worked examples with new attempts.
+## Mathematics, implementation and evidence
 
-Before code: picture, plain-language procedure, trace, pseudocode, then syntax explanation. No code lab assumes an untaught library. Existing code is audit material, not automatic chapter content.
+Motivate the problem → explain the mechanism → define the abstraction → derive → interpret → work an example → implement → test → examine limits. This is a reasoning discipline, not a rigid chapter template. Basic programming is assumed; library-specific and domain-specific semantics are taught. Proofs, differential equations and formal systems are welcome.
 
-## DNAU-01
+### DNAD-01
 
-**Worked example / exercise ladder:** Identify input and output; find an ambiguous instruction; explain why the material can change while the rule stays the same.
+Define G=(V,E), specified endpoints and a permutation witness; distinguish formal acceptance from physical recovery.
 
-**Code or hands-on progression:** Paper counter trace first; optional two-line Python add_two function imported into the printed listing. Generated exact cases and tests; no programming prerequisite.
+Verify a nontrivial directed path and identify a filter-surviving invalid candidate.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+### DNAD-02
 
-## DNAU-02
+Derive ideal filter soundness and list physical completeness assumptions without inventing historical measurements.
 
-**Worked example / exercise ladder:** Recognize a sequence versus a set; expose an ambiguous encoding; supply a decoding key.
+Reconstruct each operation from the primary paper; simulate filter losses and missing witnesses.
 
-**Code or hands-on progression:** Encode a shopping list on paper and decode it using a supplied key.
+### DNAD-03
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Distinguish decision from search; prove a verifier bound and explain NP-completeness without claiming P differs from NP.
 
-## DNAU-03
+Build an exhaustive oracle and a polynomial witness checker; compare search and verification counts.
 
-**Worked example / exercise ladder:** Complete a trace; test a boundary case; explain why an instruction must terminate.
+### DNAD-04
 
-**Code or hands-on progression:** Write readable sorting pseudocode before Python; trace all state changes.
+Derive miss probability (1-p)^M under declared independent sampling; separate factorial candidate space from physical yield.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Estimate a declared sampling budget and sensitivity to bias; do not assume uniform generation.
 
-## DNAU-04
+### DNAD-05
 
-**Worked example / exercise ladder:** Predict output before running; repair an index error; write a three-case test with supplied answers.
+Map an oriented molecular diagram to strings without treating symbolic complementarity as binding prediction.
 
-**Code or hands-on progression:** Teach installation or a browser interpreter, print, assignment, indexing, if, for, def and assertions in that order; no PyTorch.
+Implement reverse complement and test orientation, ambiguity and involution.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+### DNAD-06
 
-## DNAU-05
+Derive equilibrium occupancy from a stated binding model with units and standard-state conventions.
 
-**Worked example / exercise ladder:** Reject a backwards road; identify repeated vertices; compare path and cycle without requiring a named hard problem.
+Compare symbolic matches with parameterized free-energy predictions; record parameter provenance.
 
-**Code or hands-on progression:** Trace routes with fingers, then represent adjacency as a dictionary using Chapter 4 as an optional implementation bridge.
+### DNAD-07
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Derive rate equations from reaction stoichiometry; separate deterministic concentration from molecule counts.
 
-## DNAU-06
+Simulate association; check conservation, units and stochastic versus deterministic limits.
 
-**Worked example / exercise ladder:** Count a three-card case; find a checker bug; explain a small proof in words before notation.
+### DNAD-08
 
-**Code or hands-on progression:** Enumerate small arrangements; compare a candidate generator with a separate checker.
+Give typed input/output abstractions and chemical preconditions; distinguish catalysis from information creation.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Trace ligation and restriction cases including incompatible ends and incomplete reactions.
 
-## DNAU-07
+### DNAD-09
 
-**Worked example / exercise ladder:** Identify what each line style means; explain why base-pair marks must not look like backbone bonds.
+Derive N_k=N_0(1+e)^k for constant efficiency and explain plateau and selection bias.
 
-**Code or hands-on progression:** Paper bond-key activity, not a molecular simulation.
+Compute amplification with variable efficiency and adversarial primer placement.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+### DNAD-10
 
-## DNAU-08
+Model retention and detection separately; distinguish evidence of presence from evidence of absence.
 
-**Worked example / exercise ladder:** Distinguish rate from equilibrium; identify missing units; interpret a pH scale without an unsupported binding calculation.
+Interpret a synthetic gel with declared uncertainty and design positive/negative controls.
 
-**Code or hands-on progression:** Unit conversion and dilution worksheets; optional Python dimensional checks.
+### DNAD-11
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Formulate design constraints and demonstrate why pairwise sequence distance is insufficient.
 
-## DNAU-09
+Construct an encoding and test orientation, off-target overlaps and hairpin risks.
 
-**Worked example / exercise ladder:** Distinguish gene, chromosome and genome; explain why not every cell has a nucleus.
+### DNAD-12
 
-**Code or hands-on progression:** Build a labeled containment map on paper.
+Prove an ideal filtering invariant; extend it with stage-specific false-positive and false-negative events.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Compare a symbolic filter simulator with an independent graph oracle.
 
-## DNAU-10
+### DNAD-13
 
-**Worked example / exercise ladder:** Distinguish base from nucleotide; locate the backbone; identify what a flattened drawing omits.
+Derive how a clause predicate acts on assignment encodings and account for exponential material.
 
-**Code or hands-on progression:** Label a sequence-to-molecule correspondence; no physical inference from letters alone.
+Implement a small SAT oracle and molecular abstraction; expose unsound or incomplete filters.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+### DNAD-14
 
-## DNAU-11
+Specify a chosen sticker-model variant and its allowed operations before any power claim.
 
-**Worked example / exercise ladder:** Compute AGTC and ATAT partners; reject a wrong orientation; explain why a string test does not predict binding.
+Execute a small register program and count operations, species and memory.
 
-**Code or hands-on progression:** Plain Python character substitution, reversal and direction-labeled views, explained line by line.
+### DNAD-15
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Define rule application precisely; separate formal closure results from realizable enzyme operations.
 
-## DNAU-12
+Write a bounded rewrite enumerator and verify hand-derived reachable strings.
 
-**Worked example / exercise ladder:** Compute 0.19; contrast sampling with and without replacement; identify when the model is unjustified.
+### DNAD-16
 
-**Code or hands-on progression:** Enumerate two-trial outcomes before a seeded simulation; explain seed as repeatable random-number setup.
+Develop formal definitions and a recognition example before molecular implementations.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Build a finite-state recognizer and map its transitions to a proposed molecular scheme.
 
-## DNAU-13
+### DNAD-17
 
-**Worked example / exercise ladder:** Distinguish copying sequence from controlling a process; recognize that some RNAs are not translated.
+Distinguish mathematical automaton variants and finite experimental implementations.
 
-**Code or hands-on progression:** Translate a tiny supplied coding table by hand, then Python lookup; label the table deliberately incomplete.
+Trace acceptance on paired inputs; audit what the biochemical experiment actually implements.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+### DNAD-18
 
-## DNAU-14
+State model assumptions and sketch a valid simulation proof; no finite experiment proves unbounded universality.
 
-**Worked example / exercise ladder:** Locate the growing end; repair a reversed arrow; track parental versus newly synthesized strands.
+Critique a universality argument by finding missing resources or illegal operations.
 
-**Code or hands-on progression:** Annotate fixed-position replication frames; no executable or wet-lab protocol required.
+### DNAD-19
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Introduce domain notation, conservation and kinetic abstractions after oriented strand frames.
 
-## DNAU-15
+Simulate a gate with explicit fuel and waste; test leak pathways.
 
-**Worked example / exercise ladder:** Match instruments to purpose; spot a unit error; explain why an unlabeled tube invalidates interpretation.
+### DNAD-20
 
-**Code or hands-on progression:** Virtual sample ledger with units and controls; physical work requires supervised training.
+Derive deterministic and stochastic semantics, then explain DNA implementation assumptions.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Implement a small CRN with independent conservation and nonnegativity checks.
 
-## DNAU-16
+### DNAD-21
 
-**Worked example / exercise ladder:** Separate compatibility, occupancy and reaction speed; identify unsupported numerical predictions.
+Derive signal conventions and explain when isolated gate behavior fails under composition.
 
-**Code or hands-on progression:** Compare a logical match checker with a deliberately limited equilibrium model after parameters are sourced.
+Compare a truth table with concentration trajectories and resource depletion.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+### DNAD-22
 
-## DNAU-17
+Define tile attachment threshold and legal assembly; separate geometry, addressability and computation.
 
-**Worked example / exercise ladder:** Predict fragments; reject incompatible orientation; distinguish association from covalent joining.
+Enumerate a small tile assembly and test illegal attachments and alternative growth orders.
 
-**Code or hands-on progression:** Plain Python cut-and-join model with precondition tests; explain its chemical omissions.
+### DNAD-23
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Compose error channels only under justified dependence assumptions.
 
-## DNAU-18
+Inject correlated faults into a filter or circuit model; quantify robust and fragile regimes.
 
-**Worked example / exercise ladder:** Identify primer direction; calculate two cycles; explain why real yield need not double.
+### DNAD-24
 
-**Code or hands-on progression:** Track ideal copy counts and then a supplied imperfect-copy scenario; not an executable bench protocol.
+Build a multidimensional cost model with declared system boundaries.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Compare two algorithms at matched success probability, not only reaction-step count.
 
-## DNAU-19
+### DNAD-25
 
-**Worked example / exercise ladder:** Read a schematic gel; distinguish amount from length; explain what a blurry band cannot establish.
+Derive a toy coding overhead and error model without conflating stored bits with executed operations.
 
-**Code or hands-on progression:** Simulate an ideal length filter and contrast with overlapping measurement bands.
+Recover a synthetic message under insertion/deletion/substitution errors.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+### DNAD-26
 
-## DNAU-20
+Connect operational checklists to statistical inference and measurement uncertainty.
 
-**Worked example / exercise ladder:** Explain synthesizer versus sequencer; reject an overconfident negative result; propose a control.
+Design a documented non-operational experiment plan with controls and failure interpretation.
 
-**Code or hands-on progression:** Decode supplied traces with ambiguous bases preserved rather than guessed.
+### DNAD-27
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Specify interpreter semantics and prove a small invariant before optimization.
 
-## DNAU-21
+Build a tested symbolic core shared by graph filters and rewriting systems.
 
-**Worked example / exercise ladder:** Recognition, route checking, implementation and reasoning ladder; fully work one valid and two invalid routes.
+### DNAD-28
 
-**Code or hands-on progression:** Independent Python checker follows endpoint, legal-edge and unique-visit paper checks.
+Derive event propensities and discuss stiffness, identifiability and approximation error.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Compare deterministic and stochastic trajectories under reproducible seeds and fitted uncertainty.
 
-## DNAU-22
+### DNAD-29
 
-**Worked example / exercise ladder:** Spot encoding ambiguity; trace one joined candidate; explain that a correct code does not guarantee physical generation.
+Derive a simple differentiable objective and distinguish surrogate accuracy from physical validation.
 
-**Code or hands-on progression:** Encode and decode a tiny original graph; independently check adjacency.
+Use NumPy or PyTorch only where gradients or tensors serve the model; check finite differences.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+### DNAD-30
 
-## DNAU-23
+Separate molecular mechanisms, dynamical state, parameter change and population evolution.
 
-**Worked example / exercise ladder:** Keep a repeated-vertex counterexample until coverage; explain absent candidates versus missed detection.
+Analyze a small regulatory model and identify what it omits about a living system.
 
-**Code or hands-on progression:** Rebuild the old token example only after paper filtering; separate generator, filter and oracle.
+### DNAD-31
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Reconstruct selected primary results with assumptions, controls, resources and uncertainty.
 
-## DNAU-24
+Produce a reproducible evidence comparison; refresh literature at drafting time.
 
-**Worked example / exercise ladder:** Find a missing completeness premise; audit exponential material demand; state the bounded historical conclusion.
+### DNAD-32
 
-**Code or hands-on progression:** Measure tiny enumerations; label counts as model counts, not laboratory yields or asymptotic empirical evidence.
+Define cross-layer mappings and identify which properties survive abstraction.
 
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
-
-## DNAU-25
-
-**Worked example / exercise ladder:** Trace acceptance; explain nondeterminism versus randomness; mark theorem assumptions and idealized unlimited storage.
-
-**Code or hands-on progression:** Implement a two-state recognizer before a tiny tape-machine interpreter.
-
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
-
-## DNAU-26
-
-**Worked example / exercise ladder:** Recognize a model operation; trace a program; reject a theorem transferred between variants.
-
-**Code or hands-on progression:** Implement one named model variant with explicit allowed instructions.
-
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
-
-## DNAU-27
-
-**Worked example / exercise ladder:** Apply a rule; identify an illegal cut; distinguish formal closure from laboratory feasibility.
-
-**Code or hands-on progression:** Plain Python one-step derivation and bounded search with independent hand cases.
-
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
-
-## DNAU-28
-
-**Worked example / exercise ladder:** Compute two updates; check conservation; distinguish one random path from an average.
-
-**Code or hands-on progression:** Exact count simulator before a stochastic simulation; expose the assumptions and seed.
-
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
-
-## DNAU-29
-
-**Worked example / exercise ladder:** Track conserved strands; correct an orientation mistake; identify omitted side reactions.
-
-**Code or hands-on progression:** Domain-level symbolic simulator, then compare against a published kinetic model when audited.
-
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
-
-## DNAU-30
-
-**Worked example / exercise ladder:** Check all inputs; identify signal depletion; explain why correct isolated gates need not compose reliably.
-
-**Code or hands-on progression:** Simulate truth-table behavior and a graded response separately, with interface contracts.
-
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
-
-## DNAU-31
-
-**Worked example / exercise ladder:** Find a forbidden attachment; distinguish shape from algorithm; state the physical scale boundary.
-
-**Code or hands-on progression:** Implement a bounded grid assembly model before inspecting a published origami design.
-
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
-
-## DNAU-32
-
-**Worked example / exercise ladder:** Identify regulatory control versus sequence transfer; distinguish adaptation, mutation and development.
-
-**Code or hands-on progression:** Toy control and selection ledgers with explicit biological omissions; no claim of a living simulation.
-
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
-
-## DNAU-33
-
-**Worked example / exercise ladder:** Recover a toy message; measure overhead; distinguish storage from active molecular computation.
-
-**Code or hands-on progression:** Plain Python encode, corrupt, decode, and test undecodable cases.
-
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
-
-## DNAU-34
-
-**Worked example / exercise ladder:** Check dimensions; compute a two-row result; explain the two meanings of DNA computation.
-
-**Code or hands-on progression:** Plain Python vector sums and matrix multiplication on tiny examples; trained sequence models are only a destination, taught in Book II.
-
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
-
-## DNAU-35
-
-**Worked example / exercise ladder:** Reconcile units; design a control; distinguish software tests from physical validation.
-
-**Code or hands-on progression:** Reproducible small model configuration and results ledger; tool versions and parameters are explicit.
-
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
-
-## DNAU-36
-
-**Worked example / exercise ladder:** Explain a mechanism, implement its checker, critique evidence and complete the Book II readiness tasks.
-
-**Code or hands-on progression:** Choose one simulation capstone, reproduce supplied results and record failures; no frontier performance claims without renewed sources.
-
-**Solution requirement:** Fully solve the first concrete case; give a second partially worked case, then an independent task with answer notes. Ask the learner to explain one wrong answer.
+Complete the Book II handoff by formalizing one mechanism and rejecting an unsupported analogy.

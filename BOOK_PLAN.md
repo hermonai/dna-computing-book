@@ -1,61 +1,87 @@
-# DNA Computing: undergraduate-first architecture
+# DNA Computing: deep technical edition
 
-Status: Chapter 1 internally reviewed development draft; all later units remain planned. No learner study, independent expert certification or new research-model experiment is claimed. Generated from [pedagogy/curriculum.json](pedagogy/curriculum.json). See [Chapter 1 storyboard](research/undergraduate-ch01-storyboard.md) for the six produced figures.
+Status: architecture and detailed outlines only; no new manuscript, final figures, animation frames, models, engines or experiments are delivered. Canonical source: [deep curriculum](pedagogy/deep-curriculum.json). Prior editions remain historical references, not the active teaching level.
 
-## Table of contents
+DOGMA = non-Transformer DNA-native model + DOGMA Engine; Hermon DNA = Transformer-based DNA model + Hermon DNA Engine; Evolutor = broader genomic computation theory, research and eventual runtime above both.
 
-### I · Representing and solving small problems
+## Macro table of contents
 
-1. **DNAU-01 — What does it mean to compute?**. Can the same rule work with counters and a calculator?
-2. **DNAU-02 — Symbols, information and representations**. How can a mark stand for something else?
-3. **DNAU-03 — Algorithms, decisions and remembered state**. How can a recipe choose and remember?
-4. **DNAU-04 — Your first small Python programs**. How do instructions on paper become a runnable program?
-5. **DNAU-05 — Cities, roads, graphs and paths**. How does a city map become a graph?
-6. **DNAU-06 — Search, counting and growing work**. Why can a tiny choice list grow so quickly?
+### I · Origins and computational strategy
 
-### II · DNA from zero
+1. **Computing with DNA** (DNAD-01). molecular computation; Hamiltonian witness; encoding and selection.
 
-7. **DNAU-07 — Atoms, molecules and different kinds of bonds**. What holds a molecule together?
-8. **DNAU-08 — Solutions, amounts, temperature and change**. Why does the same molecule behave differently in different solutions?
-9. **DNAU-09 — Cells, chromosomes, genes and genomes**. Where is DNA, and what is a genome?
-10. **DNAU-10 — From a nucleotide to a DNA strand**. What do the letters A, C, G and T leave out?
-11. **DNAU-11 — Direction, pairing and reverse complement**. Why is a complement not yet a reverse complement?
-12. **DNAU-12 — Chance, encounters and repeated trials**. Why might a possible molecular encounter never be observed?
-13. **DNAU-13 — From DNA to RNA and proteins**. What is copied, and what is translated?
-14. **DNAU-14 — Enzymes and DNA replication in six frames**. Why are the two new strands made differently?
+2. **Adleman's experiment: a mechanistic reconstruction** (DNAD-02). vertex and edge oligos; annealing and ligation; endpoint PCR; length and affinity selection; historical readout.
 
-### III · Molecular operations and the laboratory
+3. **Combinatorial search and complexity** (DNAD-03). directed graphs; Hamiltonian paths; SAT; P; NP; reductions; verification.
 
-15. **DNAU-15 — What a laboratory operation actually does**. What goes into an instrument, and what comes out?
-16. **DNAU-16 — Hybridization as molecular recognition**. Why is compatible pairing not guaranteed binding?
-17. **DNAU-17 — Cutting and joining strands**. How can cutting and joining act like instructions?
-18. **DNAU-18 — Copying selected DNA with PCR**. How can a chosen DNA region become easier to detect?
-19. **DNAU-19 — Separating molecules and retaining candidates**. How does a physical separation implement a selection rule?
-20. **DNAU-20 — Detecting and reading a result**. How does a molecular event become a reported answer?
+4. **Molecular parallelism and resource accounting** (DNAD-04). sampling; material; concentration; reaction depth; readout; energy boundaries.
 
-### IV · Understanding the first DNA computer
+### II · Molecular foundations and operators
 
-21. **DNAU-21 — Hamiltonian paths: a visual mini-course**. Can a route visit every city exactly once?
-22. **DNAU-22 — Adleman's idea: encode a graph in DNA**. How can a molecule represent a city and a road?
-23. **DNAU-23 — Generate, filter and read the candidates**. Why is one filter not enough?
-24. **DNAU-24 — What the experiment proved, and what it did not**. Why is a small successful experiment not a shortcut around hard search?
+5. **DNA chemistry and sequence geometry** (DNAD-05). nucleotide; phosphodiester backbone; stacking; antiparallel duplex; reverse complement.
 
-### V · Building more molecular programs
+6. **Hybridization thermodynamics** (DNAD-06). free energy; nearest-neighbor models; salt; concentration; melting; mismatch.
 
-25. **DNAU-25 — Languages, machines and computational models**. What does it mean for different machines to solve the same kind of problem?
-26. **DNAU-26 — Strand, sticker and paired-strand models**. What changes when the allowed molecular instructions change?
-27. **DNAU-27 — Splicing and rewriting strings**. Can cutting and joining describe a formal language?
-28. **DNAU-28 — Reaction networks and changing amounts**. How can amounts change step by step?
-29. **DNAU-29 — Strand displacement in slow motion**. How can one strand release another without an enzyme?
-30. **DNAU-30 — Digital and analog molecular circuits**. How can small reactions be connected into a larger computation?
-31. **DNAU-31 — Local assembly, tiles and DNA origami**. How can local attachments create a larger pattern?
+7. **Reaction kinetics and stochastic chemistry** (DNAD-07). mass action; stoichiometry; ODEs; stochastic trajectories; diffusion limits.
 
-### VI · From molecular systems to the next book
+8. **Enzymes as molecular operators** (DNAD-08). polymerase; ligase; restriction; recognition; substrates; cofactors.
 
-32. **DNAU-32 — Genes, regulation, development and evolution**. How can the same DNA support different cellular behavior?
-33. **DNAU-33 — DNA storage, codes and recovery**. How can a message survive a damaged molecular copy?
-34. **DNAU-34 — Many numbers at once: vectors, matrices and DNA data**. Why do sequence-analysis programs use arrays of numbers?
-35. **DNAU-35 — Resources, energy, reliability and design tools**. What must be counted before calling a design efficient?
-36. **DNAU-36 — A measured frontier and the bridge to Evolutor**. What can you now build, explain and still not claim?
+9. **PCR, amplification and selection bias** (DNAD-09). primer orientation; thermal cycling; specificity; efficiency; contamination.
 
-Chapter count is provisional, not a promise of one semester. These are small teaching units, not equal-length lectures. The full two-book path can span multiple courses. No chapter requires an external prerequisite textbook.
+10. **Separation, detection and experimental logic** (DNAD-10). electrophoresis; affinity purification; fluorescence; sequencing; controls.
+
+### III · Encoding and molecular algorithms
+
+11. **Sequence design and graph encoding** (DNAD-11). orthogonality; overlaps; reverse-complement constraints; secondary structure.
+
+12. **Generate–filter–verify algorithms** (DNAD-12). candidate multisets; predicates; soundness; completeness; physical loss.
+
+13. **SAT and combinatorial constructions** (DNAD-13). Lipton encoding; clauses; selection; solution extraction.
+
+14. **Sticker systems and molecular memory** (DNAD-14). memory strands; stickers; bit operations; register reuse.
+
+15. **Splicing and insertion–deletion systems** (DNAD-15). cut-and-paste rules; context; insertion; deletion; molecular interpretation.
+
+### IV · Formal molecular computation
+
+16. **Languages, automata and molecular recognition** (DNAD-16). formal languages; grammars; automata; acceptance; transduction.
+
+17. **Watson–Crick and biochemical automata** (DNAD-17). paired-strand automata; complementarity relation; Benenson-style systems.
+
+18. **Universality and complexity models** (DNAD-18). Turing completeness; simulations; uniformity; resource vectors.
+
+### V · Molecular programming
+
+19. **Toehold-mediated strand displacement** (DNAD-19). toehold binding; branch migration; release; leakage.
+
+20. **Chemical reaction networks as programs** (DNAD-20). species; stoichiometry; mass action; compositional encodings.
+
+21. **Digital and analog DNA circuits** (DNAD-21). logic; thresholds; restoration; feedback; fan-out; depletion.
+
+22. **Self-assembly, tiles and geometry** (DNAD-22). Seeman structures; Wang tiles; aTAM; glue strengths; assembly sequences; origami.
+
+### VI · Engineering and evidence
+
+23. **Noise, crosstalk and fault models** (DNAD-23). synthesis error; mismatch; leak; PCR bias; false positives; false negatives.
+
+24. **Scaling and resource limits** (DNAD-24). material; species; volume; latency; energy; detection; parallelism.
+
+25. **Synthesis, sequencing and DNA storage** (DNAD-25). writing; coding; redundancy; access; sequencing channels; storage versus computation.
+
+26. **Laboratory workflows and reproducibility** (DNAD-26). oligo design; purification; mixing; reaction; controls; measurement; provenance.
+
+### VII · Executable models and modern research
+
+27. **Symbolic molecular simulation** (DNAD-27). strings; multisets; rule interpreters; bounded search; independent oracles.
+
+28. **Kinetic and stochastic simulation** (DNAD-28). ODE integration; stochastic simulation; parameter fitting; model validation.
+
+29. **Differentiable molecular and sequence models** (DNAD-29). sensitivity; inverse design; tensors; gradients; DNA representations.
+
+30. **Genomic organization, regulation and development** (DNAD-30). genes; RNA; proteins; promoters; regulatory networks; development; inheritance; selection.
+
+31. **Modern molecular programming and evidence** (DNAD-31). circuits; assembly; sensing; in-vitro and in-vivo boundaries; current literature.
+
+32. **From molecular computation to genomic computation** (DNAD-32). physical molecule; formal string; simulator; learned representation; computational analogy.
+
+32 substantial chapters; counts follow coherent arguments rather than fixed page or lecture quotas. Chapter 1 previews the field; later chapters reconstruct mechanisms and proofs in depth. See DEEP_REDESIGN.md for assumed knowledge and reading routes.
