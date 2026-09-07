@@ -1,0 +1,8 @@
+ID: DNAD-01-F10
+TITLE: The field expanded its programming mechanisms
+PURPOSE: Map search/filter, automata, CRNs/circuits and self-assembly; keep storage and learned DNA models distinct.
+STEP 1 → STEP 2: Molecular operators → Formal models
+STEP 2 → STEP 3: Formal models → Programmable dynamics
+STEP 3 → STEP 4: Programmable dynamics → Engineering constraints
+LIMIT: Selected established directions, not an exhaustive latest survey.
+EVIDENCE: Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources.

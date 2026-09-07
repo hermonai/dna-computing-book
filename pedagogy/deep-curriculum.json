@@ -3,7 +3,7 @@
   "book": "DNA Computing",
   "subtitle": "From Molecular Biology to Algorithms and Computation",
   "edition": "4-deep",
-  "status": "architecture-only-no-manuscript",
+  "status": "chapter-one-production",
   "branch": "astra-deep-rewrite",
   "startingCommit": "0779ed552b26d678e2443c0d94177faa04dc293c",
   "entryAssumptions": [
@@ -32,7 +32,7 @@
       "number": 1,
       "part": "I · Origins and computational strategy",
       "title": "Computing with DNA",
-      "status": "planned-not-drafted",
+      "status": "internally-reviewed-draft",
       "requires": [],
       "book1Requires": [],
       "topics": [
@@ -1350,5 +1350,6 @@
       ],
       "reason": "Retain the substantive topic in the named technical treatment; remove elementary rehearsal and re-audit claims, prerequisites and examples before drafting."
     }
-  ]
+  ],
+  "canonicalEditionStrategy": "Only astra-deep-rewrite advances; undergraduate frozen for later derivatives."
 }

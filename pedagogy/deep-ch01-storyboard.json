@@ -1,0 +1,152 @@
+{
+  "chapter": "DNAD-01",
+  "status": "internally-reviewed-produced",
+  "review": "Author-agent scientific/engineering storyboard review; not independent certification. Original graphs and software examples replace elementary prose. Approved before fresh manuscript authoring.",
+  "figures": [
+    {
+      "id": "DNAD-01-F1",
+      "kind": "field",
+      "title": "Computing across three descriptions",
+      "teachingPurpose": "Keep graph constraints, molecular operations and decoded evidence in separate lanes.",
+      "limit": "A diagram of representation is not a claim that the physical process implements it perfectly.",
+      "steps": [
+        "Specify graph",
+        "Encode candidate",
+        "Operate on molecules",
+        "Observe and verify"
+      ],
+      "evidence": "Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources."
+    },
+    {
+      "id": "DNAD-01-F2",
+      "kind": "graph",
+      "title": "A directed graph with two valid witnesses",
+      "teachingPurpose": "Show six vertices and all nine directed edges; retain node positions across route overlays.",
+      "limit": "Original teaching graph, not a reproduction of Adleman's graph.",
+      "steps": [
+        "Draw vertices",
+        "Add directed edges",
+        "Highlight a valid route"
+      ],
+      "evidence": "Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources."
+    },
+    {
+      "id": "DNAD-01-F3",
+      "kind": "routes",
+      "title": "Why plausible routes fail",
+      "teachingPurpose": "Compare valid, repeated, missing and illegal-edge candidates with exact rejection reasons.",
+      "limit": "A length-and-coverage check cannot establish adjacency.",
+      "steps": [
+        "Read route",
+        "Check endpoints and length",
+        "Check coverage",
+        "Verify every edge"
+      ],
+      "evidence": "Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources."
+    },
+    {
+      "id": "DNAD-01-F4",
+      "kind": "encoding",
+      "title": "A vertex splint aligns two directed edges",
+      "teachingPurpose": "Draw 5′/3′ edge strands, adjacent domains and an antiparallel splint beneath the nick.",
+      "limit": "Symbolic domains, not designed experimental oligos; pairing and covalent joining use distinct marks.",
+      "steps": [
+        "Edge into B",
+        "Edge out of B",
+        "Complementary B splint aligns ends",
+        "Ligase closes compatible nick"
+      ],
+      "evidence": "Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources."
+    },
+    {
+      "id": "DNAD-01-F5",
+      "kind": "pool",
+      "title": "One mixture contains many candidate identities",
+      "teachingPurpose": "Use the same route IDs in pool and filtering diagrams; multiplicity is distinct from coverage.",
+      "limit": "Illustrative sample, not a molecular simulation or measured mixture.",
+      "steps": [
+        "Mixed components",
+        "Candidate assembly",
+        "Repeated identities",
+        "Absent or unwanted products"
+      ],
+      "evidence": "Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources."
+    },
+    {
+      "id": "DNAD-01-F6",
+      "kind": "pipeline",
+      "title": "From graph to a checked witness",
+      "teachingPurpose": "Nine stage panels grouped as design, chemistry and evidence; each panel is labeled by its role.",
+      "limit": "A panel need not equal one physical laboratory operation.",
+      "steps": [
+        "Graph vertices",
+        "Vertex codes",
+        "Edge overlaps",
+        "Mix",
+        "Candidate formation",
+        "Endpoint selection",
+        "Length selection",
+        "Vertex selection",
+        "Witness check"
+      ],
+      "evidence": "Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources."
+    },
+    {
+      "id": "DNAD-01-F7",
+      "kind": "lab",
+      "title": "Predicates meet laboratory operations",
+      "teachingPurpose": "Map joining, endpoints, size, vertex presence and evidence to operations and failure modes.",
+      "limit": "Operations approximate predicates; distinguish annealing, covalent ligation, amplification and measurement.",
+      "steps": [
+        "Join compatible ends",
+        "Enrich endpoint-compatible material",
+        "Select size",
+        "Retain complementary sequence",
+        "Interpret measurement"
+      ],
+      "evidence": "Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources."
+    },
+    {
+      "id": "DNAD-01-F8",
+      "kind": "readout",
+      "title": "A length profile is not automatically one route",
+      "teachingPurpose": "Draw schematic graduated-primer lanes for a known teaching route and explain mixture ambiguity.",
+      "limit": "Synthetic expected bands, not experimental data or a copied gel.",
+      "steps": [
+        "Choose start and internal primer",
+        "Predict amplicon length",
+        "Read several lanes",
+        "Check route ambiguity"
+      ],
+      "evidence": "Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources."
+    },
+    {
+      "id": "DNAD-01-F9",
+      "kind": "scaling",
+      "title": "Candidate space becomes a material budget",
+      "teachingPurpose": "Plot log10 factorial candidate counts for fixed endpoints with marked axes; pair with molecule-budget equation.",
+      "limit": "Analytical counts, not measured yield, speed or energy.",
+      "steps": [
+        "Count internal orders",
+        "Specify hit probability",
+        "Budget repeated samples",
+        "Account for losses and readout"
+      ],
+      "evidence": "Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources."
+    },
+    {
+      "id": "DNAD-01-F10",
+      "kind": "frontier",
+      "title": "The field expanded its programming mechanisms",
+      "teachingPurpose": "Map search/filter, automata, CRNs/circuits and self-assembly; keep storage and learned DNA models distinct.",
+      "limit": "Selected established directions, not an exhaustive latest survey.",
+      "steps": [
+        "Molecular operators",
+        "Formal models",
+        "Programmable dynamics",
+        "Engineering constraints"
+      ],
+      "evidence": "Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources."
+    }
+  ]
+}

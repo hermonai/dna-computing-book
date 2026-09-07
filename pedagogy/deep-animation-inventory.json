@@ -2,42 +2,61 @@
   {
     "id": "DNAD-01-A1",
     "chapter": "DNAD-01",
-    "status": "storyboard-candidate-no-assets",
+    "status": "static-keyframes-produced-not-moving-media",
     "frames": [
       {
         "number": 1,
-        "action": "encode vertices",
-        "sourceStatus": "not-created"
+        "action": "V = {A,B,C,D,E,F}; start A; finish F.|Nine edges constrain consecutive vertices.",
+        "sourceStatus": "created",
+        "source": "frame-01.svg"
       },
       {
         "number": 2,
-        "action": "mix molecules",
-        "sourceStatus": "not-created"
+        "action": "Each O_v = L_v R_v; domain lengths both h.|Codes name vertex identity, not validated sequences.",
+        "sourceStatus": "created",
+        "source": "frame-02.svg"
       },
       {
         "number": 3,
-        "action": "form candidates",
-        "sourceStatus": "not-created"
+        "action": "A→B supplies a_R b_L; B→C supplies b_R c_L.|An antiparallel B splint aligns the nick.",
+        "sourceStatus": "created",
+        "source": "frame-03.svg"
       },
       {
         "number": 4,
-        "action": "select endpoints",
-        "sourceStatus": "not-created"
+        "action": "Edge fragments + complementary splints + suitable reagents.|Amounts and physical conditions are intentionally unspecified.",
+        "sourceStatus": "created",
+        "source": "frame-04.svg"
       },
       {
         "number": 5,
-        "action": "select length",
-        "sourceStatus": "not-created"
+        "action": "106 legal walks of 1..7 vertices in the executable model.|ABCBDF repeats B; ABDEF omits C.",
+        "sourceStatus": "created",
+        "source": "frame-05.svg"
       },
       {
         "number": 6,
-        "action": "select vertices",
-        "sourceStatus": "not-created"
+        "action": "14 model candidates begin at A and finish at F.|ABCDEF, ABCBDF and ABDEF still survive.",
+        "sourceStatus": "created",
+        "source": "frame-06.svg"
       },
       {
         "number": 7,
-        "action": "verify recovered witness",
-        "sourceStatus": "not-created"
+        "action": "4 candidates contain six vertex occurrences.|ABDEF is removed; ABCBDF is still retained.",
+        "sourceStatus": "created",
+        "source": "frame-07.svg"
+      },
+      {
+        "number": 8,
+        "action": "2 candidates contain all six required identities.|ABCBDF is removed because E is absent.",
+        "sourceStatus": "created",
+        "source": "frame-08.svg"
+      },
+      {
+        "number": 9,
+        "action": "ABCDEF and ACBDEF both pass the independent verifier.|An injected ABECDF would fail adjacency here.",
+        "sourceStatus": "created",
+        "source": "frame-09.svg"
       }
     ],
     "plannedDirectory": "animation/dnad-01/",

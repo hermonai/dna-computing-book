@@ -2,10 +2,29 @@
   "title": "DNA Computing",
   "subtitle": "From Molecular Biology to Algorithms and Computation",
   "edition": "4-deep",
-  "status": "architecture-only-no-manuscript",
-  "chapters": [],
-  "main": null,
-  "graphs": [],
+  "status": "chapter-one-production",
+  "chapters": [
+    {
+      "id": "DNAD-01",
+      "number": 1,
+      "title": "Computing with DNA",
+      "source": "tex/deep/ch01.tex",
+      "status": "internally-reviewed-draft"
+    }
+  ],
+  "main": "tex/deep-dna-computing.tex",
+  "graphs": [
+    "book/figures/deep/DNAD-01-F1.svg",
+    "book/figures/deep/DNAD-01-F2.svg",
+    "book/figures/deep/DNAD-01-F3.svg",
+    "book/figures/deep/DNAD-01-F4.svg",
+    "book/figures/deep/DNAD-01-F5.svg",
+    "book/figures/deep/DNAD-01-F6.svg",
+    "book/figures/deep/DNAD-01-F7.svg",
+    "book/figures/deep/DNAD-01-F8.svg",
+    "book/figures/deep/DNAD-01-F9.svg",
+    "book/figures/deep/DNAD-01-F10.svg"
+  ],
   "pedagogy": "pedagogy/deep-curriculum.json",
   "previousEdition": {
     "branch": "astra-rewrite",

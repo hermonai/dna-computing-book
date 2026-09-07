@@ -1,0 +1,7 @@
+ID: DNAD-01-F2
+TITLE: A directed graph with two valid witnesses
+PURPOSE: Show six vertices and all nine directed edges; retain node positions across route overlays.
+STEP 1 → STEP 2: Draw vertices → Add directed edges
+STEP 2 → STEP 3: Add directed edges → Highlight a valid route
+LIMIT: Original teaching graph, not a reproduction of Adleman's graph.
+EVIDENCE: Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources.

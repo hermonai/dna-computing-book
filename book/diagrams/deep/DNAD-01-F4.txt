@@ -1,0 +1,8 @@
+ID: DNAD-01-F4
+TITLE: A vertex splint aligns two directed edges
+PURPOSE: Draw 5′/3′ edge strands, adjacent domains and an antiparallel splint beneath the nick.
+STEP 1 → STEP 2: Edge into B → Edge out of B
+STEP 2 → STEP 3: Edge out of B → Complementary B splint aligns ends
+STEP 3 → STEP 4: Complementary B splint aligns ends → Ligase closes compatible nick
+LIMIT: Symbolic domains, not designed experimental oligos; pairing and covalent joining use distinct marks.
+EVIDENCE: Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources.

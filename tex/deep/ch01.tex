@@ -1,0 +1,207 @@
+\chapter{Computing with DNA}\label{ch:computing}
+\Callout{The question}{Can a collection of molecules represent possible solutions, undergo operations that remove unsuitable candidates, and leave a readable answer? We will construct the logic, connect it to molecular mechanisms, and then count the resources the construction demands.}
+
+\section{Computation in matter}\label{sec:matter}
+A computer needs distinguishable states, rules that change those states, and an interpretation of the result. None of these requirements says that the states must be voltages. A DNA sequence can represent an object; selective binding can recognize part of that representation; a population of strands can hold many different candidates at once. The interesting step is not writing computer symbols with four letters. It is making molecular interactions perform an operation whose result has a precise computational meaning.
+
+Figure~\ref{fig:field} separates three levels that will recur throughout this book. At the formal level, a sequence of graph vertices either satisfies a predicate or does not. At the physical level, molecules associate, dissociate, react, and produce measured signals. At the interpretive level, we decide what those signals establish. Confusing these levels makes a visually persuasive demonstration look more conclusive than it is.
+\DeepFigure{DNAD-01-F1}{Three levels of a DNA computation. The formal specification defines correctness; physical mechanisms implement it imperfectly; decoding and verification connect an observation back to the specification. This is an original conceptual map, not an experimental result.}{fig:field}
+
+Write the chain as
+\[
+ X\xrightarrow{\mathrm{encode}}M
+ \xrightarrow{\mathrm{physical\ process}}O
+ \xrightarrow{\mathrm{interpret}}\text{answer about }X.
+\]
+Here $X$ is an instance, $M$ is a prepared molecular population, and $O$ is an observation. An encoding is not an implementation of the middle arrow. Conversely, an impressive chemical transformation is not yet a computation of a specified function. The design problem is to make the whole chain reliable enough for its intended use.
+
+This chapter enters the subject through graph search. We assume ordinary programming and discrete mathematics, but develop the molecular interpretation as it becomes necessary. The companion program models the predicates, not reaction kinetics.
+
+\section{Adleman's experiment: the founding idea}\label{sec:history}
+In 1994, Leonard Adleman reported a DNA implementation of a seven-vertex directed Hamiltonian-path instance. Vertex identities used 20-nucleotide codes; edge fragments and complementary vertex splints supported ligation. Endpoint PCR, a 140-base-pair size selection, and successive vertex-presence selections narrowed the material. Graduated PCR and gel patterns supported the route $0,1,2,3,4,5,6$. This was not modern sequencing and not a general efficient algorithm for arbitrary large graphs.\cite{adleman}
+
+The experiment made a change of substrate concrete: a combinatorial search could be organized as preparation, molecular transformation, selection, and interpretation. Its significance does not depend on beating an electronic computer on seven vertices. It depends on showing that the proposed mapping can survive contact with physical operations.
+
+Our six-vertex graph below is original teaching material. It is deliberately different from the historical instance: it has two Hamiltonian witnesses, a cycle, short routes, and a useful false candidate. We use it to derive the logic and expose assumptions. The symbolic domains in our figures are not validated laboratory oligonucleotides, and our numerical tables are program outputs rather than measurements.
+
+\section{The graph problem, precisely}\label{sec:graph}
+Begin with Figure~\ref{fig:graph}. An arrow from $B$ to $C$ permits that step; it does not automatically permit a step from $C$ to $B$. In this particular graph both arrows exist, so a candidate may revisit that pair indefinitely unless another constraint stops it.
+\DeepFigure{DNAD-01-F2}{The original teaching graph. Its vertices are $A$ through $F$, with fixed start $A$ and finish $F$. The separate arrows between $B$ and $C$ create a directed cycle. The graph has nine edges and exactly two Hamiltonian paths with these endpoints.}{fig:graph}
+Formally, $G=(V,E)$, where
+\[
+ V=\{A,B,C,D,E,F\},\qquad
+ E=\{AB,AC,BC,BD,CB,CD,DE,DF,EF\}.
+\]
+The shorthand $AB$ means the ordered pair $(A,B)$, not an undirected connection.
+
+\begin{definition}
+A directed \Term{walk} $P=(v_1,\ldots,v_k)$ has each $v_i\in V$ and each $(v_i,v_{i+1})\in E$. A simple directed path is a walk with no repeated vertex. A \Term{Hamiltonian path} visits every vertex exactly once. With fixed endpoints $s,t$ and $n=|V|$, it satisfies
+\[
+ k=n,\quad v_1=s,\quad v_n=t,\quad
+ v_i\ne v_j\ (i\ne j),\quad
+ (v_i,v_{i+1})\in E\ (1\le i<n).
+\]
+\end{definition}
+
+We retain the word \emph{walk} for candidates that repeat a vertex. This matters because a molecule does not know that revisiting $B$ is forbidden merely because our problem uses the word path.
+
+For $ABCDEF$, each adjacent pair is legal and all six vertices occur once. For $ABCBDF$, all adjacent pairs are still legal, the endpoints are right, and the length is six, but $B$ occurs twice and $E$ is absent. For $ABDEF$, the edges and endpoints are legal but $C$ is missing. For $ABECDF$, all vertices occur once, yet $BE$ and $EC$ are not edges.
+\DeepFigure{DNAD-01-F3}{Four candidates isolate four logical issues: a witness, a repeated vertex, insufficient length, and illegal adjacency. A presence test cannot detect an illegal edge merely by checking that every vertex occurs.}{fig:routes}
+
+The \Term{decision problem} asks whether a witness exists. The search problem asks for one. Once a candidate order is available, its verification is straightforward; finding that order without being given it is the difficult part. We must not transfer the ease of verification to the cost of producing a witness.
+
+\section{From adjacency to oriented strands}\label{sec:encoding}
+DNA's sugar--phosphate backbone has a direction, conventionally written $5'$ to $3'$. Complementary strands align antiparallel, with A paired to T and C paired to G.\cite{dna} In our diagrams, letters such as $b_L$ denote whole sequence domains, not individual bases. A domain is a contiguous sequence chosen to play a particular recognition role.
+
+Split a vertex code into two equal-length domains:
+\[
+ O_v=L_vR_v,\qquad |L_v|=|R_v|=h.
+\]
+An internal edge $u\to v$ is represented by the $5'$--$3'$ fragment $R_uL_v$. The next edge $v\to w$ uses $R_vL_w$. A complementary copy of the vertex code $L_vR_v$ can align the end of the first fragment with the beginning of the second. Figure~\ref{fig:encoding} shows this meeting at $B$.
+
+\DeepFigure{DNAD-01-F4}{Domain-level edge encoding at vertex $B$. The top fragments represent $A\to B$ and $B\to C$. The bottom complementary vertex splint runs antiparallel. Pairing positions the adjacent ends; ligation closes their nick. Domain widths are schematic, and chemical end groups are omitted.}{fig:encoding}
+This orientation prevents a common explanatory reversal. In this construction, complementary \emph{vertex} strands align \emph{edge} fragments. It is not a picture of arbitrary whole-vertex strands being glued together by a vague edge label.
+
+A domain marked with a star is shown in its paired, antiparallel orientation. If all sequences are instead listed $5'$--$3'$, the partner must be written as a \Term{reverse complement}. For example, the reverse complement of $5'$-ACGA-$3'$ is $5'$-TCGT-$3'$, not AGCT and not TGCT.
+
+Endpoint fragments need a convention too. Complete the first fragment with all of $O_s$ and the last with all of $O_t$, rather than retaining only their interior-facing half-domains. For a route with $k$ vertices, the resulting idealized single-strand code is $O_{v_1}\cdots O_{v_k}$, of length $2hk$ nucleotides. Length then becomes a proxy for the number of vertex occurrences. Without the endpoint convention, the length formula changes.
+
+This construction explains the intended correspondence, not sequence-design success. Unwanted partial matches, folded structures, and different binding strengths can break the clean symbolic picture. Later chapters on molecular representation, hybridization, thermodynamics, and sequence design will replace the domain abstraction with physical constraints.
+
+\section{A population is not an exhaustive search}\label{sec:population}
+The candidate pool is best understood as a \Term{multiset}: a route may have many molecular copies, another may have one, and a valid route may be absent. A million copies of one wrong route do not cover a million distinct possibilities.
+\DeepFigure{DNAD-01-F5}{An illustrative candidate population. Copy count, distinct-route count, and coverage of valid solutions are different quantities. The last route is an intentionally injected pseudo-path for testing the verification boundary; the pictured multiplicities are not experimental abundances.}{fig:pool}
+
+Let $N(P)$ be the number of copies of candidate $P$. The total population is $\sum_P N(P)$, whereas its support is $\{P:N(P)>0\}$. Selection can enrich a member of that support. In a pure selection model it cannot recover a witness that was never present.
+
+Our executable model generates every legal walk containing between one and seven vertices, starting from any vertex. The bound is explicit because the $B,C$ cycle allows arbitrarily long walks. There are 106 such bounded walks. This finite enumeration is exhaustive within its declared domain; a prepared physical population is a sample and should not inherit that guarantee.
+
+We will also inject one copy of $ABECDF$. This sequence is not generated by the ideal edge-valid walk generator. It stands for a representation error that local presence and length tests alone cannot exclude. Its role is logical fault injection, not a quantitative model of contamination.
+
+\section{Filtering: why the predicates fit together}\label{sec:filter}
+The intended logic is easy to state after the encoding is fixed. For a candidate $P=(v_1,\ldots,v_k)$ define
+\[
+ \begin{aligned}
+ \mathcal E(P)&=[v_1=A\ \land\ v_k=F],\\
+ \mathcal L(P)&=[k=6],\\
+ \mathcal C(P)&=[\text{every vertex in }V\text{ occurs in }P].
+ \end{aligned}
+\]
+Brackets denote a Boolean predicate, not a concentration. An ideal filter retains exactly the candidates for which its predicate is true.
+
+\begin{proposition}
+If a sequence has exactly $n$ positions and contains every member of a set of $n$ vertices, each vertex occurs exactly once and no other symbol occurs.
+\end{proposition}
+\begin{proof}
+Each of the $n$ required distinct vertices occupies at least one position. These already require all $n$ positions. A repetition or an additional symbol would require another position or displace a required vertex.
+\end{proof}
+The proposition explains why length and coverage together remove repeated vertices. It says nothing about adjacency. A final edge check is still required unless edge validity is guaranteed by the physical representation.
+
+\DeepFigure{DNAD-01-F6}{Nine conceptual stages from graph specification to a checked witness. The row-major order is the reading order; panel arrows connect adjacent stages within a row. These stages organize the explanation, not nine literal laboratory operations. The companion directory contains nine static focus frames.}{fig:pipeline}
+
+The program applies endpoint, length, and coverage predicates, then independently verifies the decoded route against $G$. Its exact output is:
+\begin{center}\input{deep/ch01-results}\end{center}
+Both populations finish with $ABCDEF$ and $ACBDEF$. The pseudo-path survives the first three filters and is rejected only by full verification. The table makes a useful distinction visible: \emph{passing selection is not the same event as satisfying the specification}.
+
+Physical selection is not Boolean. If a valid molecule survives stage $i$ with probability $q_i$ conditional on surviving the preceding stages, its overall survival probability is $\prod_i q_i$ by the probability chain rule. Independence is unnecessary for these conditional probabilities. If one instead measures isolated-stage yields and multiplies them, transferability or independence assumptions are needed. Six hypothetical stages each retaining 90 percent leave about 53.1 percent overall. This is a sensitivity calculation, not an estimate of Adleman's yield.
+
+\section{Laboratory mechanisms and readable evidence}\label{sec:readout}
+\Term{Hybridization} is complementary association. \Term{Ligation} makes a covalent backbone connection between suitable adjacent ends; T4 DNA ligase can seal a nick between a $3'$ hydroxyl and a $5'$ phosphate in a duplex.\cite{ligase} Pairing and ligation therefore do different jobs: one aligns, the other connects. A diagram with only base-pair contacts has not yet shown a continuous product strand.
+
+\Term{Polymerase chain reaction} (PCR) repeatedly separates strands and uses primers and polymerase to make copies of a selected region.\cite{pcr} Primers complementary to endpoint regions make endpoint-compatible candidates preferentially amplifiable. This is enrichment through chemistry, not a perfect software predicate. Amplification of an undesired template can also produce a strong signal.
+
+\Term{Gel electrophoresis} separates charged molecules in a gel under an electric field; fragment size is a major determinant of migration under appropriate conditions.\cite{gel} Selecting a size fraction implements a length constraint only as accurately as the separation and recovery permit. In an affinity step, a complementary probe recognizes a required subsequence and supports retention of molecules carrying it. Recognition does not reveal the complete order of the strand.
+\DeepFigure{DNAD-01-F7}{The intended operation, its physical mechanism, and a representative failure mode. The mapping is conceptual: measured specificity, yield, and readout sensitivity are needed before treating a physical step as its ideal predicate.}{fig:lab}
+
+For readout, consider a primer anchored at the start code and a second primer associated with an internal vertex. In our idealized six-vertex, 20-bases-per-vertex model, the corresponding lengths locate that vertex in a pure witness. Figure~\ref{fig:readout} draws the expected lengths for $ABCDEF$.
+\DeepFigure{DNAD-01-F8}{Synthetic graduated-PCR-style length readout for the original teaching witness. Lanes B through F indicate expected products of 40, 60, 80, 100, and 120 bases under the stated idealized encoding. These bands are neither photographed data nor a reconstruction of the historical seven-vertex gel.}{fig:readout}
+
+Now mix $ABCDEF$ with $ACBDEF$. Both $B$ and $C$ can produce lengths associated with positions two and three. The union of bands records possibilities across molecules; it does not assign every band to one molecule. Recovering a complete witness requires resolving that ambiguity, for example through further isolation and a suitable readout, followed by checking the decoded order.
+
+The historical report discusses imperfect separation and spurious paths as practical concerns.\cite{adleman} The general inference is important: a positive, independently checked witness can establish existence; absence of a detectable signal does not establish nonexistence without a model of generation, retention, and detection.
+
+\section{Parallelism and computational complexity}\label{sec:complexity}
+A candidate Hamiltonian route is a short certificate. Given an adjacency lookup and a vertex-indexing structure, a verifier scans the $n$ entries, rejects duplicates or unknown vertices, checks the endpoints, and checks $n-1$ edges. This takes $O(n)$ lookup operations. Constructing an adjacency matrix may itself cost $O(n^2)$ space; the representation and setup belong in the resource account.
+
+The class P contains decision problems solvable in polynomial time on a standard deterministic machine. NP contains those for which a yes-instance has a polynomial-size certificate checkable in polynomial time. NP-hardness means that all problems in NP reduce to the problem by an appropriate polynomial-time reduction; NP-completeness combines NP-hardness with membership in NP. Directed Hamiltonian path is NP-complete.\cite{hamilton} These definitions do not say that every instance is hard or that P has been proved unequal to NP.
+
+A tube can contain many candidates undergoing the same operation. This changes the organization of work: material is used to hold simultaneous possibilities. But a small number of filtering stages is not a bound on the amount of material needed to make the right candidate likely to exist. Complexity accounting must include population size, representation length, preparation, physical time, and readout.
+
+\section{Combinatorics becomes a material budget}\label{sec:scaling}
+Suppose the endpoints are fixed in a complete directed graph. The $n-2$ interior vertices can occur in
+\[
+ N=(n-2)!
+\]
+orders. This is a count of candidate orders, not a statement that a sparse graph produces each order. Our nine-edge graph removes many orders through adjacency; the complete-graph calculation isolates how quickly a naive permutation space grows.
+\begin{center}\input{deep/ch01-scaling}\end{center}
+
+Assume independent draws from a candidate-generation distribution. Let $p$ be the probability that one draw produces a chosen target event, such as one particular witness or any valid witness. After $M$ draws, the miss probability is $(1-p)^M$. Requiring a miss probability at most $\delta$, where $0<\delta<1$, gives
+\[
+ (1-p)^M\le\delta,\qquad
+ M\ge\frac{\ln\delta}{\ln(1-p)}\quad(0<p<1).
+\]
+The denominator is negative, which reverses the inequality when dividing. The minimum integer is the ceiling. When $p=1$, one draw suffices; when $p=0$, no finite number suffices.
+
+\DeepFigure{DNAD-01-F9}{Original factorial counts plotted on a logarithmic vertical scale, together with the independent-sampling bound. Connecting segments guide the eye; no measured chemical scaling law is fitted. Neither curve nor equation assigns a concentration, reaction time, or experimental yield.}{fig:scaling}
+For a uniform draw from the 24 interior orders of six vertices, one designated order has $p=1/24$. A 99-percent hit probability needs 109 draws. Our graph has two witnesses, so the target event \emph{either witness} has $p=2/24$ in that same hypothetical uniform space and needs 53 draws. These are different questions. The actual legal-walk generator is neither uniform over permutations nor a physical random sampler.
+
+For small $p$, $\ln(1-p)\approx-p$, giving $M\approx\ln(1/\delta)/p$. If each generated target survives independently with probability $q$, the effective per-draw success probability is $pq$. This additional model must be declared rather than smuggled into a copy count.
+
+Molecule count connects to a physical budget through
+\[
+ M=cV_{\ell}N_{\mathrm A},
+\]
+where $c$ is amount concentration in moles per litre, $V_{\ell}$ is volume in litres, and $N_{\mathrm A}=6.02214076\times10^{23}\,\mathrm{mol}^{-1}$ is the exact Avogadro constant.\cite{si} The units cancel to a count. Raising $M$ by increasing concentration or volume does not guarantee unchanged reaction behavior.
+
+A useful resource description is therefore a vector, not one speed number:
+\[
+ R=(\text{sequence inventory},\text{molecule count},\text{volume},
+       \text{time},\text{energy},\text{readout cost}).
+\]
+Energy comparisons must specify whether synthesis, temperature control, separation, and measurement are included. Parallelism relocates costs; it does not erase the accounting boundary.
+
+\section{The executable logical companion}\label{sec:code}
+The implementation in \texttt{examples/deep/ch01.py} intentionally avoids an optimized solver. A bounded walk generator exposes repeated vertices, staged filtering exposes which constraints do the work, and an independent permutation oracle checks the final answer. The excerpt below is generated from the actual source, so its line numbers and operations cannot silently diverge from the tested program.
+\input{deep/ch01-code}
+
+There are two independent routes to the expected survivors. The stage model starts with all bounded legal walks. The oracle fixes the endpoints, permutes the four interior vertices, and checks adjacency. Agreement on this graph catches omissions in either construction more effectively than hard-coding one expected route.
+
+Other tests target boundaries: a repeated vertex can pass length, a pseudo-path can pass coverage, an empty route cannot be a witness, and duplicated molecular candidates should remain duplicated until an explicitly set-valued result is requested. Converting a route itself to a set too early destroys precisely the order and multiplicity the problem asks us to reason about.
+
+The sampling helper checks its domain and is tested at the integer threshold: $M$ must meet the requested miss bound while $M-1$ must fail it. None of these tests establishes hybridization specificity or reaction yield. They establish consistency of an exact, inspectable logical model that a later physical implementation must refine.
+
+\section{From one search to a field}\label{sec:frontier}
+DNA computation is not restricted to generate-and-filter search. Benenson and colleagues demonstrated a biomolecular finite-state-machine construction.\cite{benenson} Soloveichik, Seelig, and Winfree developed a DNA realization framework for chemical reaction networks.\cite{crn} Qian and Winfree demonstrated larger strand-displacement logic circuits.\cite{circuits} Winfree and colleagues demonstrated designed two-dimensional DNA crystal self-assembly.\cite{assembly}
+\DeepFigure{DNAD-01-F10}{A mechanism map, not a performance ranking. Search emphasizes population selection; automata emphasize state transitions; reaction networks emphasize dynamics; circuits emphasize signal composition; assembly emphasizes spatial organization. Each needs its own representation and correctness argument.}{fig:frontier}
+
+The common idea is programmable physical organization. The hard questions then become specific. Can local recognition support reliable composition? Which errors accumulate with depth or population size? How do we restore signals, supply free energy, isolate unwanted interactions, and obtain an answer without spending more effort on readout than the computation saves?
+
+Adleman's example gives us a disciplined starting vocabulary: specification, encoding, population, transformation, selection, observation, and verification. Chapter 2 will reconstruct the founding experiment more closely and examine what its controls and observations support. The later molecular chapters will supply the thermodynamics and kinetics deliberately abstracted here. The corresponding Evolutor book asks a different question about genomic organization in digital systems; it must not treat this physical demonstration as evidence that a software architecture works.
+
+\section{Exercises}\label{sec:exercises}
+\begin{enumerate}
+\item Verify $ACBDEF$ against every condition in the definition. List the five directed edges used.
+\item Prove that length plus coverage excludes repetition. Give a six-symbol counterexample showing that it does not enforce adjacency.
+\item Draw the domain-level junction at $C$ for $B\to C\to D$. Mark both strand directions. Compute the reverse complement of ACGA.
+\item Identify the first ideal filter that removes $ABDEF$ and the first that removes $ABCBDF$, assuming endpoint filtering comes first.
+\item Add ten copies of $ABECDF$ to the 106 legal walks. Predict every stage count without running the program; then verify.
+\item Under uniform sampling of all fixed-endpoint interior orders, derive the draw count for a 99-percent chance of obtaining either witness.
+\item Five stages each retain a target with conditional probability 0.8. Calculate overall retention. Explain why isolated-stage measurements might not justify the same product.
+\item Design separate logical controls for candidate generation, selection loss, and readout failure. State what each can and cannot distinguish.
+\item Compare an empty result from exhaustive symbolic enumeration with an empty physical readout. Which additional assumptions would justify the same conclusion?
+\item Propose a fair resource comparison between a molecular implementation and a digital solver. Specify the instance family, success criterion, and accounting boundary.
+\end{enumerate}
+
+\section{Worked solutions and discussion}\label{sec:solutions}
+\begin{enumerate}
+\item The edges are $AC,CB,BD,DE,EF$. All belong to $E$; the six vertices are distinct, with endpoints $A,F$. Thus it is the second witness.
+\item The $n$ required identities occupy all $n$ slots, leaving no room for a duplicate. But $ABECDF$ has length six and complete coverage while $BE,EC\notin E$.
+\item The upper fragments are $b_Rc_L$ and $c_Rd_L$, both written $5'$--$3'$. A complementary $c_Lc_R$ splint runs $3'$--$5'$ underneath and aligns the nick between $c_L$ and $c_R$. ACGA has reverse complement TCGT.
+\item Both pass endpoints. $ABDEF$ fails length. $ABCBDF$ passes length but fails coverage because $E$ is absent.
+\item Counts are $116,24,14,12,2$ at generation, endpoints, length, coverage, and verification. All ten injected copies persist until the edge check.
+\item $p=2/24=1/12$; $\lceil\ln(0.01)/\ln(11/12)\rceil=53$. This is a sampling-model calculation, not a prediction of molecular yield.
+\item Retention is $0.8^5=0.32768$. The conditional formulation already accounts for the selected population reaching each stage. Isolated yields may differ after previous processing changes that population.
+\item A known distinctive target introduced before generation tests a different chain from one introduced immediately before readout. Controls entering between selection stages can help localize loss. Their behavior need not match every unknown candidate, so they bound an inference rather than prove universal recovery.
+\item Complete symbolic enumeration with a correct verifier establishes no witness in its finite search domain. A physical negative additionally needs adequate coverage, recovery, and detection sensitivity, with an explicit failure bound.
+\item Use identical mathematical instances and success requirements; include preparation, failed runs, decoding, and verification. Report distributions of total cost and success, not only the fastest central operation. No winner follows from the proposal alone.
+\end{enumerate}

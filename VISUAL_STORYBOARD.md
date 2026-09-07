@@ -1,6 +1,6 @@
 # DNA Computing: deep technical edition
 
-Status: architecture and detailed outlines only; no new manuscript, final figures, animation frames, models, engines or experiments are delivered. Canonical source: [deep curriculum](pedagogy/deep-curriculum.json). Prior editions remain historical references, not the active teaching level.
+Status: canonical deep Chapter 1 is an internally reviewed prototype; all later chapters remain plans. The undergraduate edition is frozen. No trained model, engine or wet-lab result is delivered. See [production report](DEEP_CHAPTER_1_REPORT.md) and [edition strategy](CANONICAL_EDITION_STRATEGY.md).
 
 DOGMA = non-Transformer DNA-native model + DOGMA Engine; Hermon DNA = Transformer-based DNA model + Hermon DNA Engine; Evolutor = broader genomic computation theory, research and eventual runtime above both.
 
@@ -10,71 +10,80 @@ Each primary visual below is a production brief, not a finished asset or a one-f
 
 ### DNAD-01 — Computing with DNA
 
-**DNAD-01-F1 — Adleman's core idea**. Three aligned lanes: graph instance, molecular experiment, interpreted witness.
+**DNAD-01-F1 — Computing across three descriptions**. Keep graph constraints, molecular operations and decoded evidence in separate lanes.
 
-1. graph instance.
-2. encoded molecules.
-3. physical operations.
-4. observation.
-5. checked witness.
+1. Specify graph.
+2. Encode candidate.
+3. Operate on molecules.
+4. Observe and verify.
 
-**DNAD-01-F2 — Hamiltonian path and counterexamples**. One stable graph with three candidate overlays and a small search tree; edge direction is invariant.
+**DNAD-01-F2 — A directed graph with two valid witnesses**. Show six vertices and all nine directed edges; retain node positions across route overlays.
 
-1. graph.
-2. candidate route.
-3. edge check.
-4. coverage/uniqueness check.
-5. witness.
+1. Draw vertices.
+2. Add directed edges.
+3. Highlight a valid route.
 
-**DNAD-01-F3 — Graph-to-DNA encoding**. Graph above oriented molecular strands; zoom from edge to sequence domains; separate base pairing from backbone bonds.
+**DNAD-01-F3 — Why plausible routes fail**. Compare valid, repeated, missing and illegal-edge candidates with exact rejection reasons.
 
-1. vertex identities.
-2. oriented vertex codes.
-3. edge overlap.
-4. paired complex.
-5. covalent candidate.
+1. Read route.
+2. Check endpoints and length.
+3. Check coverage.
+4. Verify every edge.
 
-**DNAD-01-F4 — Candidate molecular pool**. Stable candidate identities with differing multiplicities; incomplete generation is visible.
+**DNAD-01-F4 — A vertex splint aligns two directed edges**. Draw 5′/3′ edge strands, adjacent domains and an antiparallel splint beneath the nick.
 
-1. designed species.
-2. mixed strands.
-3. associations.
-4. ligated candidates.
-5. biased pool.
+1. Edge into B.
+2. Edge out of B.
+3. Complementary B splint aligns ends.
+4. Ligase closes compatible nick.
 
-**DNAD-01-F5 — Selection pipeline**. Seven static keyframes; candidate identities remain stable; rejection is not creation.
+**DNAD-01-F5 — One mixture contains many candidate identities**. Use the same route IDs in pool and filtering diagrams; multiplicity is distinct from coverage.
 
-1. encode vertices.
-2. mix molecules.
-3. form candidates.
-4. select endpoints.
-5. select length.
-6. select vertices.
-7. verify recovered witness.
+1. Mixed components.
+2. Candidate assembly.
+3. Repeated identities.
+4. Absent or unwanted products.
 
-**DNAD-01-F6 — Operations, measurements and inference**. Operation-to-predicate table paired with sample lineage and gel lanes.
+**DNAD-01-F6 — From graph to a checked witness**. Nine stage panels grouped as design, chemistry and evidence; each panel is labeled by its role.
 
-1. input sample.
-2. laboratory operation.
-3. selected fraction.
-4. instrument signal.
-5. bounded interpretation.
+1. Graph vertices.
+2. Vertex codes.
+3. Edge overlaps.
+4. Mix.
+5. Candidate formation.
+6. Endpoint selection.
+7. Length selection.
+8. Vertex selection.
+9. Witness check.
 
-**DNAD-01-F7 — Scaling challenge**. Analytical curves with axes, units and assumptions; a separate physical-resource ledger, no invented measurements.
+**DNAD-01-F7 — Predicates meet laboratory operations**. Map joining, endpoints, size, vertex presence and evidence to operations and failure modes.
 
-1. candidate count.
-2. sampling assumptions.
-3. required molecules.
-4. selection loss.
-5. readout limit.
+1. Join compatible ends.
+2. Enrich endpoint-compatible material.
+3. Select size.
+4. Retain complementary sequence.
+5. Interpret measurement.
 
-**DNAD-01-F8 — Mechanism and history map**. Technical field map with source-linked milestones and cross-links to later chapters, not a universal progress arrow.
+**DNAD-01-F8 — A length profile is not automatically one route**. Draw schematic graduated-primer lanes for a known teaching route and explain mixture ambiguity.
 
-1. historical experiment.
-2. formal models and molecular operators.
-3. programming systems.
-4. engineering constraints.
-5. research frontier.
+1. Choose start and internal primer.
+2. Predict amplicon length.
+3. Read several lanes.
+4. Check route ambiguity.
+
+**DNAD-01-F9 — Candidate space becomes a material budget**. Plot log10 factorial candidate counts for fixed endpoints with marked axes; pair with molecule-budget equation.
+
+1. Count internal orders.
+2. Specify hit probability.
+3. Budget repeated samples.
+4. Account for losses and readout.
+
+**DNAD-01-F10 — The field expanded its programming mechanisms**. Map search/filter, automata, CRNs/circuits and self-assembly; keep storage and learned DNA models distinct.
+
+1. Molecular operators.
+2. Formal models.
+3. Programmable dynamics.
+4. Engineering constraints.
 
 ### DNAD-02 — Adleman's experiment: a mechanistic reconstruction
 

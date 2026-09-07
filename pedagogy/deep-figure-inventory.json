@@ -1,133 +1,158 @@
 [
   {
     "id": "DNAD-01-F1",
-    "title": "Adleman's core idea",
-    "grammar": "Three aligned lanes: graph instance, molecular experiment, interpreted witness.",
+    "title": "Computing across three descriptions",
+    "grammar": "Keep graph constraints, molecular operations and decoded evidence in separate lanes.",
     "frames": [
-      "graph instance",
-      "encoded molecules",
-      "physical operations",
-      "observation",
-      "checked witness"
+      "Specify graph",
+      "Encode candidate",
+      "Operate on molecules",
+      "Observe and verify"
     ],
-    "status": "planned-no-assets",
+    "status": "internally-reviewed-produced",
     "chapter": "DNAD-01",
     "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
-    "reviewStatus": "not-drawn-not-reviewed"
+    "reviewStatus": "author-agent-reviewed"
   },
   {
     "id": "DNAD-01-F2",
-    "title": "Hamiltonian path and counterexamples",
-    "grammar": "One stable graph with three candidate overlays and a small search tree; edge direction is invariant.",
+    "title": "A directed graph with two valid witnesses",
+    "grammar": "Show six vertices and all nine directed edges; retain node positions across route overlays.",
     "frames": [
-      "graph",
-      "candidate route",
-      "edge check",
-      "coverage/uniqueness check",
-      "witness"
+      "Draw vertices",
+      "Add directed edges",
+      "Highlight a valid route"
     ],
-    "status": "planned-no-assets",
+    "status": "internally-reviewed-produced",
     "chapter": "DNAD-01",
     "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
-    "reviewStatus": "not-drawn-not-reviewed"
+    "reviewStatus": "author-agent-reviewed"
   },
   {
     "id": "DNAD-01-F3",
-    "title": "Graph-to-DNA encoding",
-    "grammar": "Graph above oriented molecular strands; zoom from edge to sequence domains; separate base pairing from backbone bonds.",
+    "title": "Why plausible routes fail",
+    "grammar": "Compare valid, repeated, missing and illegal-edge candidates with exact rejection reasons.",
     "frames": [
-      "vertex identities",
-      "oriented vertex codes",
-      "edge overlap",
-      "paired complex",
-      "covalent candidate"
+      "Read route",
+      "Check endpoints and length",
+      "Check coverage",
+      "Verify every edge"
     ],
-    "status": "planned-no-assets",
+    "status": "internally-reviewed-produced",
     "chapter": "DNAD-01",
     "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
-    "reviewStatus": "not-drawn-not-reviewed"
+    "reviewStatus": "author-agent-reviewed"
   },
   {
     "id": "DNAD-01-F4",
-    "title": "Candidate molecular pool",
-    "grammar": "Stable candidate identities with differing multiplicities; incomplete generation is visible.",
+    "title": "A vertex splint aligns two directed edges",
+    "grammar": "Draw 5′/3′ edge strands, adjacent domains and an antiparallel splint beneath the nick.",
     "frames": [
-      "designed species",
-      "mixed strands",
-      "associations",
-      "ligated candidates",
-      "biased pool"
+      "Edge into B",
+      "Edge out of B",
+      "Complementary B splint aligns ends",
+      "Ligase closes compatible nick"
     ],
-    "status": "planned-no-assets",
+    "status": "internally-reviewed-produced",
     "chapter": "DNAD-01",
     "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
-    "reviewStatus": "not-drawn-not-reviewed"
+    "reviewStatus": "author-agent-reviewed"
   },
   {
     "id": "DNAD-01-F5",
-    "title": "Selection pipeline",
-    "grammar": "Seven static keyframes; candidate identities remain stable; rejection is not creation.",
+    "title": "One mixture contains many candidate identities",
+    "grammar": "Use the same route IDs in pool and filtering diagrams; multiplicity is distinct from coverage.",
     "frames": [
-      "encode vertices",
-      "mix molecules",
-      "form candidates",
-      "select endpoints",
-      "select length",
-      "select vertices",
-      "verify recovered witness"
+      "Mixed components",
+      "Candidate assembly",
+      "Repeated identities",
+      "Absent or unwanted products"
     ],
-    "status": "planned-no-assets",
+    "status": "internally-reviewed-produced",
     "chapter": "DNAD-01",
     "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
-    "reviewStatus": "not-drawn-not-reviewed"
+    "reviewStatus": "author-agent-reviewed"
   },
   {
     "id": "DNAD-01-F6",
-    "title": "Operations, measurements and inference",
-    "grammar": "Operation-to-predicate table paired with sample lineage and gel lanes.",
+    "title": "From graph to a checked witness",
+    "grammar": "Nine stage panels grouped as design, chemistry and evidence; each panel is labeled by its role.",
     "frames": [
-      "input sample",
-      "laboratory operation",
-      "selected fraction",
-      "instrument signal",
-      "bounded interpretation"
+      "Graph vertices",
+      "Vertex codes",
+      "Edge overlaps",
+      "Mix",
+      "Candidate formation",
+      "Endpoint selection",
+      "Length selection",
+      "Vertex selection",
+      "Witness check"
     ],
-    "status": "planned-no-assets",
+    "status": "internally-reviewed-produced",
     "chapter": "DNAD-01",
     "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
-    "reviewStatus": "not-drawn-not-reviewed"
+    "reviewStatus": "author-agent-reviewed"
   },
   {
     "id": "DNAD-01-F7",
-    "title": "Scaling challenge",
-    "grammar": "Analytical curves with axes, units and assumptions; a separate physical-resource ledger, no invented measurements.",
+    "title": "Predicates meet laboratory operations",
+    "grammar": "Map joining, endpoints, size, vertex presence and evidence to operations and failure modes.",
     "frames": [
-      "candidate count",
-      "sampling assumptions",
-      "required molecules",
-      "selection loss",
-      "readout limit"
+      "Join compatible ends",
+      "Enrich endpoint-compatible material",
+      "Select size",
+      "Retain complementary sequence",
+      "Interpret measurement"
     ],
-    "status": "planned-no-assets",
+    "status": "internally-reviewed-produced",
     "chapter": "DNAD-01",
     "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
-    "reviewStatus": "not-drawn-not-reviewed"
+    "reviewStatus": "author-agent-reviewed"
   },
   {
     "id": "DNAD-01-F8",
-    "title": "Mechanism and history map",
-    "grammar": "Technical field map with source-linked milestones and cross-links to later chapters, not a universal progress arrow.",
+    "title": "A length profile is not automatically one route",
+    "grammar": "Draw schematic graduated-primer lanes for a known teaching route and explain mixture ambiguity.",
     "frames": [
-      "historical experiment",
-      "formal models and molecular operators",
-      "programming systems",
-      "engineering constraints",
-      "research frontier"
+      "Choose start and internal primer",
+      "Predict amplicon length",
+      "Read several lanes",
+      "Check route ambiguity"
     ],
-    "status": "planned-no-assets",
+    "status": "internally-reviewed-produced",
     "chapter": "DNAD-01",
     "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
-    "reviewStatus": "not-drawn-not-reviewed"
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-01-F9",
+    "title": "Candidate space becomes a material budget",
+    "grammar": "Plot log10 factorial candidate counts for fixed endpoints with marked axes; pair with molecule-budget equation.",
+    "frames": [
+      "Count internal orders",
+      "Specify hit probability",
+      "Budget repeated samples",
+      "Account for losses and readout"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-01",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-01-F10",
+    "title": "The field expanded its programming mechanisms",
+    "grammar": "Map search/filter, automata, CRNs/circuits and self-assembly; keep storage and learned DNA models distinct.",
+    "frames": [
+      "Molecular operators",
+      "Formal models",
+      "Programmable dynamics",
+      "Engineering constraints"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-01",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
   },
   {
     "id": "DNAD-02-F1",

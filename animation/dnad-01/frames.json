@@ -1,0 +1,92 @@
+[
+  {
+    "frame": 1,
+    "focus": "Graph",
+    "before": "entry assumptions",
+    "change": "V = {A,B,C,D,E,F}; start A; finish F.|Nine edges constrain consecutive vertices.",
+    "unchanged": "all stage identities and layout",
+    "motion": "none; static keyframe",
+    "creationConsumption": "not asserted at this abstraction level",
+    "source": "frame-01.svg"
+  },
+  {
+    "frame": 2,
+    "focus": "Codes",
+    "before": "V = {A,B,C,D,E,F}; start A; finish F.|Nine edges constrain consecutive vertices.",
+    "change": "Each O_v = L_v R_v; domain lengths both h.|Codes name vertex identity, not validated sequences.",
+    "unchanged": "all stage identities and layout",
+    "motion": "none; static keyframe",
+    "creationConsumption": "not asserted at this abstraction level",
+    "source": "frame-02.svg"
+  },
+  {
+    "frame": 3,
+    "focus": "Edges",
+    "before": "Each O_v = L_v R_v; domain lengths both h.|Codes name vertex identity, not validated sequences.",
+    "change": "A\u2192B supplies a_R b_L; B\u2192C supplies b_R c_L.|An antiparallel B splint aligns the nick.",
+    "unchanged": "all stage identities and layout",
+    "motion": "none; static keyframe",
+    "creationConsumption": "not asserted at this abstraction level",
+    "source": "frame-03.svg"
+  },
+  {
+    "frame": 4,
+    "focus": "Mix",
+    "before": "A\u2192B supplies a_R b_L; B\u2192C supplies b_R c_L.|An antiparallel B splint aligns the nick.",
+    "change": "Edge fragments + complementary splints + suitable reagents.|Amounts and physical conditions are intentionally unspecified.",
+    "unchanged": "all stage identities and layout",
+    "motion": "none; static keyframe",
+    "creationConsumption": "not asserted at this abstraction level",
+    "source": "frame-04.svg"
+  },
+  {
+    "frame": 5,
+    "focus": "Candidates",
+    "before": "Edge fragments + complementary splints + suitable reagents.|Amounts and physical conditions are intentionally unspecified.",
+    "change": "106 legal walks of 1..7 vertices in the executable model.|ABCBDF repeats B; ABDEF omits C.",
+    "unchanged": "all stage identities and layout",
+    "motion": "none; static keyframe",
+    "creationConsumption": "not asserted at this abstraction level",
+    "source": "frame-05.svg"
+  },
+  {
+    "frame": 6,
+    "focus": "Endpoints",
+    "before": "106 legal walks of 1..7 vertices in the executable model.|ABCBDF repeats B; ABDEF omits C.",
+    "change": "14 model candidates begin at A and finish at F.|ABCDEF, ABCBDF and ABDEF still survive.",
+    "unchanged": "all stage identities and layout",
+    "motion": "none; static keyframe",
+    "creationConsumption": "not asserted at this abstraction level",
+    "source": "frame-06.svg"
+  },
+  {
+    "frame": 7,
+    "focus": "Length",
+    "before": "14 model candidates begin at A and finish at F.|ABCDEF, ABCBDF and ABDEF still survive.",
+    "change": "4 candidates contain six vertex occurrences.|ABDEF is removed; ABCBDF is still retained.",
+    "unchanged": "all stage identities and layout",
+    "motion": "none; static keyframe",
+    "creationConsumption": "not asserted at this abstraction level",
+    "source": "frame-07.svg"
+  },
+  {
+    "frame": 8,
+    "focus": "Coverage",
+    "before": "4 candidates contain six vertex occurrences.|ABDEF is removed; ABCBDF is still retained.",
+    "change": "2 candidates contain all six required identities.|ABCBDF is removed because E is absent.",
+    "unchanged": "all stage identities and layout",
+    "motion": "none; static keyframe",
+    "creationConsumption": "not asserted at this abstraction level",
+    "source": "frame-08.svg"
+  },
+  {
+    "frame": 9,
+    "focus": "Verify",
+    "before": "2 candidates contain all six required identities.|ABCBDF is removed because E is absent.",
+    "change": "ABCDEF and ACBDEF both pass the independent verifier.|An injected ABECDF would fail adjacency here.",
+    "unchanged": "all stage identities and layout",
+    "motion": "none; static keyframe",
+    "creationConsumption": "not asserted at this abstraction level",
+    "source": "frame-09.svg"
+  }
+]

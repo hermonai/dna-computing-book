@@ -1,0 +1,13 @@
+ID: DNAD-01-F6
+TITLE: From graph to a checked witness
+PURPOSE: Nine stage panels grouped as design, chemistry and evidence; each panel is labeled by its role.
+STEP 1 → STEP 2: Graph vertices → Vertex codes
+STEP 2 → STEP 3: Vertex codes → Edge overlaps
+STEP 3 → STEP 4: Edge overlaps → Mix
+STEP 4 → STEP 5: Mix → Candidate formation
+STEP 5 → STEP 6: Candidate formation → Endpoint selection
+STEP 6 → STEP 7: Endpoint selection → Length selection
+STEP 7 → STEP 8: Length selection → Vertex selection
+STEP 8 → STEP 9: Vertex selection → Witness check
+LIMIT: A panel need not equal one physical laboratory operation.
+EVIDENCE: Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources.
