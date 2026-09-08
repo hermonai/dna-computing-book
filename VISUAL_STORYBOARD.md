@@ -1,6 +1,6 @@
 # DNA Computing: deep technical edition
 
-Status: canonical deep Chapter 1 is an internally reviewed prototype; all later chapters remain plans. The undergraduate edition is frozen. No trained model, engine or wet-lab result is delivered. See [production report](DEEP_CHAPTER_1_REPORT.md) and [edition strategy](CANONICAL_EDITION_STRATEGY.md).
+Status: canonical deep Chapters 1–2 are internally reviewed development manuscripts; Chapter 3 onward remains planned. Prior editions and the Chapter 1-only PDF are preserved. No new wet-lab result, trained model or engine benchmark is delivered. See [Chapter 2 production report](DEEP_CHAPTER_2_REPORT.md).
 
 DOGMA = non-Transformer DNA-native model + DOGMA Engine; Hermon DNA = Transformer-based DNA model + Hermon DNA Engine; Evolutor = broader genomic computation theory, research and eventual runtime above both.
 
@@ -85,14 +85,63 @@ Each primary visual below is a production brief, not a finished asset or a one-f
 3. Programmable dynamics.
 4. Engineering constraints.
 
-### DNAD-02 — Adleman's experiment: a mechanistic reconstruction
+### DNAD-02 — Adleman's experiment: from graph to molecules
 
-**DNAD-02-F1 — Oriented oligos, tube ledger and gel interpretation**. Oriented oligos, tube ledger and gel interpretation
+**DNAD-02-F1 — The historical graph, redrawn**. Seven labeled vertices; fourteen directed edges; start 0 and target 6
 
-1. encoded strands.
-2. ligated pool.
-3. selected molecules.
-4. historical readout.
+1. Read adjacency row by row; trace 0→1→2→3→4→5→6.
+
+**DNAD-02-F2 — Four routes, four logical cases**. Witness; legal short route; repeated-vertex walk; illegal-edge permutation
+
+1. Compare endpoints, adjacency, length and coverage independently.
+
+**DNAD-02-F3 — From a code to an oriented edge**. Historical O2, O3, O4; left/right ten-base domains; O23 and O34
+
+1. Split codes; concatenate R2 L3 and R3 L4; compare with printed figure.
+
+**DNAD-02-F4 — Association is not a backbone bond**. Two edge fragments; antiparallel vertex splint; 3′ OH and 5′ phosphate nick
+
+1. Separated fragments; aligned duplex with nick; continuous ligated upper backbone.
+
+**DNAD-02-F5 — A tube is a multiset, not a search tree**. Digital route enumeration; physical candidate copies; absent witness
+
+1. Enumerate one route at a time; contrast simultaneous unequal molecular copies.
+
+**DNAD-02-F6 — Endpoint amplification and information flow**. Double-stranded template; forward and reverse primers; products
+
+1. Denature; inward-facing annealing; 5′→3′ extension; selected-family enrichment.
+
+**DNAD-02-F7 — Length selects occurrences, not identities**. 120,140,160-bp conceptual products; equal-length correct/repeated routes
+
+1. Separate by size; retain target fraction; compare same-size sequence orders.
+
+**DNAD-02-F8 — Two bead operations, different retained material**. Biotinylated strand; duplex; bead; free strand; sequence probe
+
+1. Immobilize biotin strand then denature/recover other strand; bind target to probe then wash/elute.
+
+**DNAD-02-F9 — Presence filtering consumes uncertainty and material**. Exact route rows; required vertices 1–5; survival counts
+
+1. Apply successive presence predicates and expose every count.
+
+**DNAD-02-F10 — One computation, three representations**. Logical predicate; physical property; laboratory action; failure mode
+
+1. Read aligned rows from preparation through verification.
+
+**DNAD-02-F11 — A lane set is a projection of a population**. Historical witness/short/repeated routes; synthetic expected band sets
+
+1. Map occurrences to 20(j+1) bp; union bands across routes; compare mixtures.
+
+**DNAD-02-F12 — Soundness and survival pull in different directions**. True witness copies; false candidates; conditional retention; no-signal event
+
+1. Propagate expected counts; compute zero-survivor probability under stated independence.
+
+**DNAD-02-F13 — Count materials before celebrating parallelism**. Historical reagent amount; copies; species; volume; fixed-endpoint permutation space
+
+1. Convert units; separate initial oligos from complete routes; expose sampling assumptions.
+
+**DNAD-02-F14 — Several mechanisms grew beyond generate-and-filter**. SAT filtering; formal systems; automata; assembly; strand displacement
+
+1. Compare state, operation and readout across categories without a causal genealogy.
 
 ### DNAD-03 — Combinatorial search and complexity
 

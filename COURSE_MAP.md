@@ -1,6 +1,6 @@
 # DNA Computing: deep technical edition
 
-Status: canonical deep Chapter 1 is an internally reviewed prototype; all later chapters remain plans. The undergraduate edition is frozen. No trained model, engine or wet-lab result is delivered. See [production report](DEEP_CHAPTER_1_REPORT.md) and [edition strategy](CANONICAL_EDITION_STRATEGY.md).
+Status: canonical deep Chapters 1–2 are internally reviewed development manuscripts; Chapter 3 onward remains planned. Prior editions and the Chapter 1-only PDF are preserved. No new wet-lab result, trained model or engine benchmark is delivered. See [Chapter 2 production report](DEEP_CHAPTER_2_REPORT.md).
 
 DOGMA = non-Transformer DNA-native model + DOGMA Engine; Hermon DNA = Transformer-based DNA model + Hermon DNA Engine; Evolutor = broader genomic computation theory, research and eventual runtime above both.
 
@@ -12,7 +12,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** Declared entry assumptions.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** molecular computation; Hamiltonian witness; encoding and selection.
 
@@ -22,11 +22,11 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Enables:** DNAD-02, DNAD-03, DNAD-05.
 
-### DNAD-02 — Adleman's experiment: a mechanistic reconstruction
+### DNAD-02 — Adleman's experiment: from graph to molecules
 
 **Required earlier chapters:** DNAD-01.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** vertex and edge oligos; annealing and ligation; endpoint PCR; length and affinity selection; historical readout.
 
@@ -40,7 +40,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-01.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** directed graphs; Hamiltonian paths; SAT; P; NP; reductions; verification.
 
@@ -54,7 +54,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-02, DNAD-03.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** sampling; material; concentration; reaction depth; readout; energy boundaries.
 
@@ -68,7 +68,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-01.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** nucleotide; phosphodiester backbone; stacking; antiparallel duplex; reverse complement.
 
@@ -82,7 +82,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-05.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** free energy; nearest-neighbor models; salt; concentration; melting; mismatch.
 
@@ -96,7 +96,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-05, DNAD-06.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** mass action; stoichiometry; ODEs; stochastic trajectories; diffusion limits.
 
@@ -110,7 +110,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-05, DNAD-07.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** polymerase; ligase; restriction; recognition; substrates; cofactors.
 
@@ -124,7 +124,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-06, DNAD-08.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** primer orientation; thermal cycling; specificity; efficiency; contamination.
 
@@ -138,7 +138,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-08, DNAD-09.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** electrophoresis; affinity purification; fluorescence; sequencing; controls.
 
@@ -152,7 +152,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-03, DNAD-06, DNAD-10.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** orthogonality; overlaps; reverse-complement constraints; secondary structure.
 
@@ -166,7 +166,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-02, DNAD-11.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** candidate multisets; predicates; soundness; completeness; physical loss.
 
@@ -180,7 +180,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-03, DNAD-12.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** Lipton encoding; clauses; selection; solution extraction.
 
@@ -194,7 +194,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-11, DNAD-12.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** memory strands; stickers; bit operations; register reuse.
 
@@ -208,7 +208,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-08, DNAD-11.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** cut-and-paste rules; context; insertion; deletion; molecular interpretation.
 
@@ -222,7 +222,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-03, DNAD-15.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** formal languages; grammars; automata; acceptance; transduction.
 
@@ -236,7 +236,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-05, DNAD-08, DNAD-16.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** paired-strand automata; complementarity relation; Benenson-style systems.
 
@@ -250,7 +250,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-04, DNAD-14, DNAD-15, DNAD-16, DNAD-17.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** Turing completeness; simulations; uniformity; resource vectors.
 
@@ -264,7 +264,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-06, DNAD-07, DNAD-11.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** toehold binding; branch migration; release; leakage.
 
@@ -278,7 +278,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-07, DNAD-18, DNAD-19.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** species; stoichiometry; mass action; compositional encodings.
 
@@ -292,7 +292,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-19, DNAD-20.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** logic; thresholds; restoration; feedback; fan-out; depletion.
 
@@ -306,7 +306,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-05, DNAD-18.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** Seeman structures; Wang tiles; aTAM; glue strengths; assembly sequences; origami.
 
@@ -320,7 +320,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-10, DNAD-12, DNAD-19, DNAD-21.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** synthesis error; mismatch; leak; PCR bias; false positives; false negatives.
 
@@ -334,7 +334,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-04, DNAD-18, DNAD-21, DNAD-22, DNAD-23.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** material; species; volume; latency; energy; detection; parallelism.
 
@@ -348,7 +348,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-05, DNAD-10, DNAD-23.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** writing; coding; redundancy; access; sequencing channels; storage versus computation.
 
@@ -362,7 +362,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-08, DNAD-09, DNAD-10, DNAD-23, DNAD-24.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** oligo design; purification; mixing; reaction; controls; measurement; provenance.
 
@@ -376,7 +376,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-11, DNAD-12, DNAD-15, DNAD-17.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** strings; multisets; rule interpreters; bounded search; independent oracles.
 
@@ -390,7 +390,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-07, DNAD-19, DNAD-20, DNAD-23, DNAD-27.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** ODE integration; stochastic simulation; parameter fitting; model validation.
 
@@ -404,7 +404,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-06, DNAD-25, DNAD-28.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** sensitivity; inverse design; tensors; gradients; DNA representations.
 
@@ -418,7 +418,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-05, DNAD-07, DNAD-08.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** genes; RNA; proteins; promoters; regulatory networks; development; inheritance; selection.
 
@@ -432,7 +432,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-21, DNAD-22, DNAD-24, DNAD-26, DNAD-28, DNAD-29.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** circuits; assembly; sensing; in-vitro and in-vivo boundaries; current literature.
 
@@ -446,7 +446,7 @@ Entry assumptions: Basic programming and algorithmic reasoning; Algebra, functio
 
 **Required earlier chapters:** DNAD-18, DNAD-24, DNAD-29, DNAD-30, DNAD-31.
 
-**Book I imports:** None. DNAD-01 is prototype-available; later imports remain future teaching dependencies, not completed outcomes.
+**Book I imports:** None. Consult the shared contract for available chapters; planned imports are not completed outcomes.
 
 **Mechanisms and concepts:** physical molecule; formal string; simulator; learned representation; computational analogy.
 

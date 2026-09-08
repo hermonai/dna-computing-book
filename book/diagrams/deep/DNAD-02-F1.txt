@@ -1,0 +1,27 @@
+DNAD-02-F1 — The historical graph, redrawn
+
+QUESTION
+Which directed edges define the instance?
+
+OBJECTS
+• Seven labeled vertices
+• fourteen directed edges
+• start 0 and target 6
+
+RELATION / MECHANISM
+Seven labeled vertices; fourteen directed edges; start 0 and target 6
+
+STATE TRANSITION
+Read adjacency row by row; trace 0→1→2→3→4→5→6
+
+INFERENCE
+Direction, not page position, defines a route.
+
+BOUNDARY
+A new layout must not change an arrow or imply a second witness.
+
+SOURCE
+Adleman 1994 Fig. 1, visually inspected
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

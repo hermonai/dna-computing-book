@@ -156,18 +156,171 @@
   },
   {
     "id": "DNAD-02-F1",
-    "title": "Oriented oligos, tube ledger and gel interpretation",
-    "grammar": "Oriented oligos, tube ledger and gel interpretation",
+    "title": "The historical graph, redrawn",
+    "grammar": "Seven labeled vertices; fourteen directed edges; start 0 and target 6",
     "frames": [
-      "encoded strands",
-      "ligated pool",
-      "selected molecules",
-      "historical readout"
+      "Read adjacency row by row; trace 0→1→2→3→4→5→6"
     ],
-    "status": "planned-no-assets",
+    "status": "internally-reviewed-produced",
     "chapter": "DNAD-02",
     "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
-    "reviewStatus": "not-drawn-not-reviewed"
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-02-F2",
+    "title": "Four routes, four logical cases",
+    "grammar": "Witness; legal short route; repeated-vertex walk; illegal-edge permutation",
+    "frames": [
+      "Compare endpoints, adjacency, length and coverage independently"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-02-F3",
+    "title": "From a code to an oriented edge",
+    "grammar": "Historical O2, O3, O4; left/right ten-base domains; O23 and O34",
+    "frames": [
+      "Split codes; concatenate R2 L3 and R3 L4; compare with printed figure"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-02-F4",
+    "title": "Association is not a backbone bond",
+    "grammar": "Two edge fragments; antiparallel vertex splint; 3′ OH and 5′ phosphate nick",
+    "frames": [
+      "Separated fragments; aligned duplex with nick; continuous ligated upper backbone"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-02-F5",
+    "title": "A tube is a multiset, not a search tree",
+    "grammar": "Digital route enumeration; physical candidate copies; absent witness",
+    "frames": [
+      "Enumerate one route at a time; contrast simultaneous unequal molecular copies"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-02-F6",
+    "title": "Endpoint amplification and information flow",
+    "grammar": "Double-stranded template; forward and reverse primers; products",
+    "frames": [
+      "Denature; inward-facing annealing; 5′→3′ extension; selected-family enrichment"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-02-F7",
+    "title": "Length selects occurrences, not identities",
+    "grammar": "120,140,160-bp conceptual products; equal-length correct/repeated routes",
+    "frames": [
+      "Separate by size; retain target fraction; compare same-size sequence orders"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-02-F8",
+    "title": "Two bead operations, different retained material",
+    "grammar": "Biotinylated strand; duplex; bead; free strand; sequence probe",
+    "frames": [
+      "Immobilize biotin strand then denature/recover other strand; bind target to probe then wash/elute"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-02-F9",
+    "title": "Presence filtering consumes uncertainty and material",
+    "grammar": "Exact route rows; required vertices 1–5; survival counts",
+    "frames": [
+      "Apply successive presence predicates and expose every count"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-02-F10",
+    "title": "One computation, three representations",
+    "grammar": "Logical predicate; physical property; laboratory action; failure mode",
+    "frames": [
+      "Read aligned rows from preparation through verification"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-02-F11",
+    "title": "A lane set is a projection of a population",
+    "grammar": "Historical witness/short/repeated routes; synthetic expected band sets",
+    "frames": [
+      "Map occurrences to 20(j+1) bp; union bands across routes; compare mixtures"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-02-F12",
+    "title": "Soundness and survival pull in different directions",
+    "grammar": "True witness copies; false candidates; conditional retention; no-signal event",
+    "frames": [
+      "Propagate expected counts; compute zero-survivor probability under stated independence"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-02-F13",
+    "title": "Count materials before celebrating parallelism",
+    "grammar": "Historical reagent amount; copies; species; volume; fixed-endpoint permutation space",
+    "frames": [
+      "Convert units; separate initial oligos from complete routes; expose sampling assumptions"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
+  },
+  {
+    "id": "DNAD-02-F14",
+    "title": "Several mechanisms grew beyond generate-and-filter",
+    "grammar": "SAT filtering; formal systems; automata; assembly; strand displacement",
+    "frames": [
+      "Compare state, operation and readout across categories without a causal genealogy"
+    ],
+    "status": "internally-reviewed-produced",
+    "chapter": "DNAD-02",
+    "sourcePlan": "Editable SVG/TikZ/Graphviz/PlantUML as appropriate + Unicode TXT companion",
+    "reviewStatus": "author-agent-reviewed"
   },
   {
     "id": "DNAD-03-F1",

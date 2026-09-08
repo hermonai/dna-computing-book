@@ -1,0 +1,28 @@
+DNAD-02-F10 — One computation, three representations
+
+QUESTION
+How do algorithm, molecules and operations correspond?
+
+OBJECTS
+• Logical predicate
+• physical property
+• laboratory action
+• failure mode
+
+RELATION / MECHANISM
+Logical predicate; physical property; laboratory action; failure mode
+
+STATE TRANSITION
+Read aligned rows from preparation through verification
+
+INFERENCE
+Each correspondence has assumptions and a failure boundary.
+
+BOUNDARY
+Avoid asserting one procedure is an exact molecular Boolean gate.
+
+SOURCE
+Original synthesis of primary mechanism sources
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

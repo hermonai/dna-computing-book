@@ -1,0 +1,26 @@
+DNAD-02-F11 — A lane set is a projection of a population
+
+QUESTION
+Can these bands identify one molecule?
+
+OBJECTS
+• Historical witness/short/repeated routes
+• synthetic expected band sets
+
+RELATION / MECHANISM
+Historical witness/short/repeated routes; synthetic expected band sets
+
+STATE TRANSITION
+Map occurrences to 20(j+1) bp; union bands across routes; compare mixtures
+
+INFERENCE
+A lane records possible positions, not joint molecular identity.
+
+BOUNDARY
+No photographic data or intensity claim.
+
+SOURCE
+Adleman graduated-PCR explanation; original computed projection
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

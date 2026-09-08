@@ -65,27 +65,61 @@
   {
     "id": "DNAD-02-A1",
     "chapter": "DNAD-02",
-    "status": "storyboard-candidate-no-assets",
+    "status": "static-keyframes-produced-not-moving-media",
     "frames": [
       {
         "number": 1,
-        "action": "encoded strands",
-        "sourceStatus": "not-created"
+        "action": "assembly phase 1",
+        "sourceStatus": "created",
+        "source": "assembly-01.svg"
       },
       {
         "number": 2,
-        "action": "ligated pool",
-        "sourceStatus": "not-created"
+        "action": "assembly phase 2",
+        "sourceStatus": "created",
+        "source": "assembly-02.svg"
       },
       {
         "number": 3,
-        "action": "selected molecules",
-        "sourceStatus": "not-created"
+        "action": "assembly phase 3",
+        "sourceStatus": "created",
+        "source": "assembly-03.svg"
       },
       {
         "number": 4,
-        "action": "historical readout",
-        "sourceStatus": "not-created"
+        "action": "pcr phase 1",
+        "sourceStatus": "created",
+        "source": "pcr-01.svg"
+      },
+      {
+        "number": 5,
+        "action": "pcr phase 2",
+        "sourceStatus": "created",
+        "source": "pcr-02.svg"
+      },
+      {
+        "number": 6,
+        "action": "pcr phase 3",
+        "sourceStatus": "created",
+        "source": "pcr-03.svg"
+      },
+      {
+        "number": 7,
+        "action": "beads phase 1",
+        "sourceStatus": "created",
+        "source": "beads-01.svg"
+      },
+      {
+        "number": 8,
+        "action": "beads phase 2",
+        "sourceStatus": "created",
+        "source": "beads-02.svg"
+      },
+      {
+        "number": 9,
+        "action": "beads phase 3",
+        "sourceStatus": "created",
+        "source": "beads-03.svg"
       }
     ],
     "plannedDirectory": "animation/dnad-02/",

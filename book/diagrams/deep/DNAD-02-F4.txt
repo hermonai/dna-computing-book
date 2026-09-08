@@ -1,0 +1,27 @@
+DNAD-02-F4 — Association is not a backbone bond
+
+QUESTION
+What changes between annealing and ligation?
+
+OBJECTS
+• Two edge fragments
+• antiparallel vertex splint
+• 3′ OH and 5′ phosphate nick
+
+RELATION / MECHANISM
+Two edge fragments; antiparallel vertex splint; 3′ OH and 5′ phosphate nick
+
+STATE TRANSITION
+Separated fragments; aligned duplex with nick; continuous ligated upper backbone
+
+INFERENCE
+Pairing aligns ends; ligase seals the nick.
+
+BOUNDARY
+A dashed base-pair contact must not look like a covalent connection.
+
+SOURCE
+Adleman Fig. 2; Alberts DNA structure; NEB T4 ligase mechanism
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

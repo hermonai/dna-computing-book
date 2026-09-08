@@ -1,0 +1,27 @@
+DNAD-02-F9 — Presence filtering consumes uncertainty and material
+
+QUESTION
+How does each vertex test change the pool?
+
+OBJECTS
+• Exact route rows
+• required vertices 1–5
+• survival counts
+
+RELATION / MECHANISM
+Exact route rows; required vertices 1–5; survival counts
+
+STATE TRANSITION
+Apply successive presence predicates and expose every count
+
+INFERENCE
+The count ledger is computational output, not experimental yield.
+
+BOUNDARY
+Real retention is probabilistic and can lose the witness.
+
+SOURCE
+Original bounded-walk program on historical graph
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

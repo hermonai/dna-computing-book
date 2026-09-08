@@ -1,0 +1,27 @@
+DNAD-02-F6 — Endpoint amplification and information flow
+
+QUESTION
+Why do primer orientation and sites matter?
+
+OBJECTS
+• Double-stranded template
+• forward and reverse primers
+• products
+
+RELATION / MECHANISM
+Double-stranded template; forward and reverse primers; products
+
+STATE TRANSITION
+Denature; inward-facing annealing; 5′→3′ extension; selected-family enrichment
+
+INFERENCE
+PCR amplifies a compatible family rather than deciding a Boolean predicate.
+
+BOUNDARY
+Off-target amplification and internal sites are possible.
+
+SOURCE
+NHGRI PCR; historical primer identities from Adleman
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

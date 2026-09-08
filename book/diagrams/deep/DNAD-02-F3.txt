@@ -1,0 +1,27 @@
+DNAD-02-F3 — From a code to an oriented edge
+
+QUESTION
+Which sequence is actually synthesized?
+
+OBJECTS
+• Historical O2, O3, O4
+• left/right ten-base domains
+• O23 and O34
+
+RELATION / MECHANISM
+Historical O2, O3, O4; left/right ten-base domains; O23 and O34
+
+STATE TRANSITION
+Split codes; concatenate R2 L3 and R3 L4; compare with printed figure
+
+INFERENCE
+Edge fragments carry code halves; complementary vertex strands are splints.
+
+BOUNDARY
+Do not silently replace the historical encoding with vertex strands plus complementary edge bridges.
+
+SOURCE
+Adleman 1994 Fig. 2
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

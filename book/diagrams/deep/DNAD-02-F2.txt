@@ -1,0 +1,28 @@
+DNAD-02-F2 — Four routes, four logical cases
+
+QUESTION
+Why are separate predicates needed?
+
+OBJECTS
+• Witness
+• legal short route
+• repeated-vertex walk
+• illegal-edge permutation
+
+RELATION / MECHANISM
+Witness; legal short route; repeated-vertex walk; illegal-edge permutation
+
+STATE TRANSITION
+Compare endpoints, adjacency, length and coverage independently
+
+INFERENCE
+Different failures survive different filters.
+
+BOUNDARY
+An all-vertex sequence can still use a forbidden edge.
+
+SOURCE
+Original verification on the transcribed graph
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

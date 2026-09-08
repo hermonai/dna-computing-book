@@ -1,0 +1,28 @@
+DNAD-02-F12 — Soundness and survival pull in different directions
+
+QUESTION
+What can purification destroy or retain?
+
+OBJECTS
+• True witness copies
+• false candidates
+• conditional retention
+• no-signal event
+
+RELATION / MECHANISM
+True witness copies; false candidates; conditional retention; no-signal event
+
+STATE TRANSITION
+Propagate expected counts; compute zero-survivor probability under stated independence
+
+INFERENCE
+A cleaner surviving pool may come with more false negatives.
+
+BOUNDARY
+Expectations are not measured copy counts or guaranteed recovery.
+
+SOURCE
+Original probability model; historical error discussion as motivation
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

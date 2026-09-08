@@ -1,0 +1,239 @@
+{
+  "chapter": "DNAD-02",
+  "title": "Adleman's experiment: from graph to molecules",
+  "status": "storyboard-approved-before-prose",
+  "approval": "Author-agent design review, 2026-09-08; scientific acceptance remains pending.",
+  "figures": [
+    {
+      "id": "DNAD-02-F1",
+      "kind": "graph",
+      "title": "The historical graph, redrawn",
+      "readerQuestion": "Which directed edges define the instance?",
+      "mechanism": "Seven labeled vertices; fourteen directed edges; start 0 and target 6",
+      "objects": [
+        "Seven labeled vertices",
+        "fourteen directed edges",
+        "start 0 and target 6"
+      ],
+      "sequence": "Read adjacency row by row; trace 0→1→2→3→4→5→6",
+      "evidenceSource": "Adleman 1994 Fig. 1, visually inspected",
+      "captionThesis": "Direction, not page position, defines a route.",
+      "misleadingInterpretation": "A new layout must not change an arrow or imply a second witness."
+    },
+    {
+      "id": "DNAD-02-F2",
+      "kind": "routes",
+      "title": "Four routes, four logical cases",
+      "readerQuestion": "Why are separate predicates needed?",
+      "mechanism": "Witness; legal short route; repeated-vertex walk; illegal-edge permutation",
+      "objects": [
+        "Witness",
+        "legal short route",
+        "repeated-vertex walk",
+        "illegal-edge permutation"
+      ],
+      "sequence": "Compare endpoints, adjacency, length and coverage independently",
+      "evidenceSource": "Original verification on the transcribed graph",
+      "captionThesis": "Different failures survive different filters.",
+      "misleadingInterpretation": "An all-vertex sequence can still use a forbidden edge."
+    },
+    {
+      "id": "DNAD-02-F3",
+      "kind": "sequence",
+      "title": "From a code to an oriented edge",
+      "readerQuestion": "Which sequence is actually synthesized?",
+      "mechanism": "Historical O2, O3, O4; left/right ten-base domains; O23 and O34",
+      "objects": [
+        "Historical O2, O3, O4",
+        "left/right ten-base domains",
+        "O23 and O34"
+      ],
+      "sequence": "Split codes; concatenate R2 L3 and R3 L4; compare with printed figure",
+      "evidenceSource": "Adleman 1994 Fig. 2",
+      "captionThesis": "Edge fragments carry code halves; complementary vertex strands are splints.",
+      "misleadingInterpretation": "Do not silently replace the historical encoding with vertex strands plus complementary edge bridges."
+    },
+    {
+      "id": "DNAD-02-F4",
+      "kind": "assembly",
+      "title": "Association is not a backbone bond",
+      "readerQuestion": "What changes between annealing and ligation?",
+      "mechanism": "Two edge fragments; antiparallel vertex splint; 3′ OH and 5′ phosphate nick",
+      "objects": [
+        "Two edge fragments",
+        "antiparallel vertex splint",
+        "3′ OH and 5′ phosphate nick"
+      ],
+      "sequence": "Separated fragments; aligned duplex with nick; continuous ligated upper backbone",
+      "evidenceSource": "Adleman Fig. 2; Alberts DNA structure; NEB T4 ligase mechanism",
+      "captionThesis": "Pairing aligns ends; ligase seals the nick.",
+      "misleadingInterpretation": "A dashed base-pair contact must not look like a covalent connection."
+    },
+    {
+      "id": "DNAD-02-F5",
+      "kind": "population",
+      "title": "A tube is a multiset, not a search tree",
+      "readerQuestion": "What is parallel and what is sampled?",
+      "mechanism": "Digital route enumeration; physical candidate copies; absent witness",
+      "objects": [
+        "Digital route enumeration",
+        "physical candidate copies",
+        "absent witness"
+      ],
+      "sequence": "Enumerate one route at a time; contrast simultaneous unequal molecular copies",
+      "evidenceSource": "Original multiset construction, not measured abundances",
+      "captionThesis": "Multiplicity and support are different resources.",
+      "misleadingInterpretation": "Equal reagent amounts do not imply uniform routes."
+    },
+    {
+      "id": "DNAD-02-F6",
+      "kind": "pcr",
+      "title": "Endpoint amplification and information flow",
+      "readerQuestion": "Why do primer orientation and sites matter?",
+      "mechanism": "Double-stranded template; forward and reverse primers; products",
+      "objects": [
+        "Double-stranded template",
+        "forward and reverse primers",
+        "products"
+      ],
+      "sequence": "Denature; inward-facing annealing; 5′→3′ extension; selected-family enrichment",
+      "evidenceSource": "NHGRI PCR; historical primer identities from Adleman",
+      "captionThesis": "PCR amplifies a compatible family rather than deciding a Boolean predicate.",
+      "misleadingInterpretation": "Off-target amplification and internal sites are possible."
+    },
+    {
+      "id": "DNAD-02-F7",
+      "kind": "length",
+      "title": "Length selects occurrences, not identities",
+      "readerQuestion": "What does the 140-bp fraction establish?",
+      "mechanism": "120,140,160-bp conceptual products; equal-length correct/repeated routes",
+      "objects": [
+        "120,140,160-bp conceptual products",
+        "equal-length correct/repeated routes"
+      ],
+      "sequence": "Separate by size; retain target fraction; compare same-size sequence orders",
+      "evidenceSource": "Adleman size selection; NHGRI electrophoresis; original length proof",
+      "captionThesis": "Length constrains vertex occurrences under the encoding convention.",
+      "misleadingInterpretation": "Synthetic bands are not photographs or quantitative mobility predictions."
+    },
+    {
+      "id": "DNAD-02-F8",
+      "kind": "beads",
+      "title": "Two bead operations, different retained material",
+      "readerQuestion": "Which phase is kept, and why?",
+      "mechanism": "Biotinylated strand; duplex; bead; free strand; sequence probe",
+      "objects": [
+        "Biotinylated strand",
+        "duplex",
+        "bead",
+        "free strand",
+        "sequence probe"
+      ],
+      "sequence": "Immobilize biotin strand then denature/recover other strand; bind target to probe then wash/elute",
+      "evidenceSource": "Adleman note 7, read in full",
+      "captionThesis": "Preparing single strands and selecting a vertex are not the same separation.",
+      "misleadingInterpretation": "Do not label biotin as the sequence-recognition element."
+    },
+    {
+      "id": "DNAD-02-F9",
+      "kind": "capture",
+      "title": "Presence filtering consumes uncertainty and material",
+      "readerQuestion": "How does each vertex test change the pool?",
+      "mechanism": "Exact route rows; required vertices 1–5; survival counts",
+      "objects": [
+        "Exact route rows",
+        "required vertices 1–5",
+        "survival counts"
+      ],
+      "sequence": "Apply successive presence predicates and expose every count",
+      "evidenceSource": "Original bounded-walk program on historical graph",
+      "captionThesis": "The count ledger is computational output, not experimental yield.",
+      "misleadingInterpretation": "Real retention is probabilistic and can lose the witness."
+    },
+    {
+      "id": "DNAD-02-F10",
+      "kind": "mapping",
+      "title": "One computation, three representations",
+      "readerQuestion": "How do algorithm, molecules and operations correspond?",
+      "mechanism": "Logical predicate; physical property; laboratory action; failure mode",
+      "objects": [
+        "Logical predicate",
+        "physical property",
+        "laboratory action",
+        "failure mode"
+      ],
+      "sequence": "Read aligned rows from preparation through verification",
+      "evidenceSource": "Original synthesis of primary mechanism sources",
+      "captionThesis": "Each correspondence has assumptions and a failure boundary.",
+      "misleadingInterpretation": "Avoid asserting one procedure is an exact molecular Boolean gate."
+    },
+    {
+      "id": "DNAD-02-F11",
+      "kind": "readout",
+      "title": "A lane set is a projection of a population",
+      "readerQuestion": "Can these bands identify one molecule?",
+      "mechanism": "Historical witness/short/repeated routes; synthetic expected band sets",
+      "objects": [
+        "Historical witness/short/repeated routes",
+        "synthetic expected band sets"
+      ],
+      "sequence": "Map occurrences to 20(j+1) bp; union bands across routes; compare mixtures",
+      "evidenceSource": "Adleman graduated-PCR explanation; original computed projection",
+      "captionThesis": "A lane records possible positions, not joint molecular identity.",
+      "misleadingInterpretation": "No photographic data or intensity claim."
+    },
+    {
+      "id": "DNAD-02-F12",
+      "kind": "errors",
+      "title": "Soundness and survival pull in different directions",
+      "readerQuestion": "What can purification destroy or retain?",
+      "mechanism": "True witness copies; false candidates; conditional retention; no-signal event",
+      "objects": [
+        "True witness copies",
+        "false candidates",
+        "conditional retention",
+        "no-signal event"
+      ],
+      "sequence": "Propagate expected counts; compute zero-survivor probability under stated independence",
+      "evidenceSource": "Original probability model; historical error discussion as motivation",
+      "captionThesis": "A cleaner surviving pool may come with more false negatives.",
+      "misleadingInterpretation": "Expectations are not measured copy counts or guaranteed recovery."
+    },
+    {
+      "id": "DNAD-02-F13",
+      "kind": "resources",
+      "title": "Count materials before celebrating parallelism",
+      "readerQuestion": "Which budget grows, and under what assumption?",
+      "mechanism": "Historical reagent amount; copies; species; volume; fixed-endpoint permutation space",
+      "objects": [
+        "Historical reagent amount",
+        "copies",
+        "species",
+        "volume",
+        "fixed-endpoint permutation space"
+      ],
+      "sequence": "Convert units; separate initial oligos from complete routes; expose sampling assumptions",
+      "evidenceSource": "Adleman note 4; BIPM mole; original arithmetic",
+      "captionThesis": "Reagent inventory, path support and search-space size are distinct.",
+      "misleadingInterpretation": "No universal factorial lower bound for DNA computation."
+    },
+    {
+      "id": "DNAD-02-F14",
+      "kind": "aftermath",
+      "title": "Several mechanisms grew beyond generate-and-filter",
+      "readerQuestion": "What changes in the next research traditions?",
+      "mechanism": "SAT filtering; formal systems; automata; assembly; strand displacement",
+      "objects": [
+        "SAT filtering",
+        "formal systems",
+        "automata",
+        "assembly",
+        "strand displacement"
+      ],
+      "sequence": "Compare state, operation and readout across categories without a causal genealogy",
+      "evidenceSource": "Lipton; Boneh et al.; Benenson; Winfree et al.; Seelig et al.",
+      "captionThesis": "The field branches by mechanism, not a universal superiority ranking.",
+      "misleadingInterpretation": "A conceptual map is not proof that one paper caused every branch."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+DNAD-02-F14 — Several mechanisms grew beyond generate-and-filter
+
+QUESTION
+What changes in the next research traditions?
+
+OBJECTS
+• SAT filtering
+• formal systems
+• automata
+• assembly
+• strand displacement
+
+RELATION / MECHANISM
+SAT filtering; formal systems; automata; assembly; strand displacement
+
+STATE TRANSITION
+Compare state, operation and readout across categories without a causal genealogy
+
+INFERENCE
+The field branches by mechanism, not a universal superiority ranking.
+
+BOUNDARY
+A conceptual map is not proof that one paper caused every branch.
+
+SOURCE
+Lipton; Boneh et al.; Benenson; Winfree et al.; Seelig et al.
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

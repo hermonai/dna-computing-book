@@ -1,0 +1,29 @@
+DNAD-02-F8 — Two bead operations, different retained material
+
+QUESTION
+Which phase is kept, and why?
+
+OBJECTS
+• Biotinylated strand
+• duplex
+• bead
+• free strand
+• sequence probe
+
+RELATION / MECHANISM
+Biotinylated strand; duplex; bead; free strand; sequence probe
+
+STATE TRANSITION
+Immobilize biotin strand then denature/recover other strand; bind target to probe then wash/elute
+
+INFERENCE
+Preparing single strands and selecting a vertex are not the same separation.
+
+BOUNDARY
+Do not label biotin as the sequence-recognition element.
+
+SOURCE
+Adleman note 7, read in full
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

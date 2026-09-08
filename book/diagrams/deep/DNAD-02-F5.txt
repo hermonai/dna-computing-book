@@ -1,0 +1,27 @@
+DNAD-02-F5 — A tube is a multiset, not a search tree
+
+QUESTION
+What is parallel and what is sampled?
+
+OBJECTS
+• Digital route enumeration
+• physical candidate copies
+• absent witness
+
+RELATION / MECHANISM
+Digital route enumeration; physical candidate copies; absent witness
+
+STATE TRANSITION
+Enumerate one route at a time; contrast simultaneous unequal molecular copies
+
+INFERENCE
+Multiplicity and support are different resources.
+
+BOUNDARY
+Equal reagent amounts do not imply uniform routes.
+
+SOURCE
+Original multiset construction, not measured abundances
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

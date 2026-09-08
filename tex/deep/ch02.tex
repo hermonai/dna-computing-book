@@ -1,0 +1,271 @@
+\chapter{Adleman's experiment: from graph to molecules}\label{ch:adleman}
+\Callout{The problem behind the picture}{A route is an ordered mathematical object. A tube contains physical strands, not routes as such. This chapter reconstructs the mapping closely enough to ask, at every stage: what property is represented, what operation acts on it, and what would make the resulting inference wrong?}
+
+\section{A reconstruction, not a replacement history}
+Chapter~\ref{ch:computing} used an original six-vertex teaching graph. We now change instances deliberately: the vertices in this chapter are the seven numbered vertices of Adleman's 1994 experiment. The point is to carry the correspondence all the way from directed edges to oriented sequence fragments, laboratory selection, and readable evidence.
+
+The historical anchor is the original report, including its experimental notes, rather than a simplified diagram of a generic DNA computer.\cite{adleman} Our redrawn graph and the three published sequence codes preserve factual information from that report. Our route inventory, fault injection, mathematical proofs, sensitivity model and synthetic band diagrams are new teaching constructions. None is a measurement of the original reaction.
+
+Three distinctions will organize the reconstruction. First, hybridization associates complementary strands, while ligation creates a backbone bond. Second, PCR and affinity selection enrich physical populations rather than evaluate perfect Boolean predicates. Third, a readable signal is evidence to interpret, not a substitute for checking a decoded witness. These distinctions prevent a short abstract algorithm from concealing the actual work.
+
+\section{The historical graph and its unique witness}
+Let $G=(V,E)$ with $V=\{0,1,2,3,4,5,6\}$, start $s=0$, and target $t=6$. The adjacency list below is an exact transcription of the directed graph in the original Fig.~1:
+\[
+\begin{array}{c|l@{\qquad}c|l}
+0&1,3,6 & 1&2,3\\
+2&1,3 & 3&2,4\\
+4&1,5 & 5&1,2,6\\
+6&\varnothing &&
+\end{array}
+\]
+Each row lists outgoing neighbors. There are fourteen edges. In particular, both $1\to2$ and $2\to1$ exist, as do $2\to3$ and $3\to2$. No reverse arrow should be inferred merely because two vertices are connected visually.
+\DeepFigure{DNAD-02-F1}{Original redrawing of the seven-vertex historical instance. All fourteen directed edges are included; start and finish are labeled 0 and 6. The circular placement differs from the source layout and has no computational meaning.}{fig:d2graph}
+
+The sequence $P=(0,1,2,3,4,5,6)$ is a witness. It is also the only witness with these endpoints. Here is a structural argument, independent of enumeration. Vertex 4 can first be reached only from 3, and vertex 5 only from 4. A Hamiltonian route cannot enter 6 early because 6 has no outgoing edge. On reaching 5 after visiting 3 and 4, taking $5\to1$ or $5\to2$ cannot lead onward to the still-unvisited finish without revisiting 3, 4 or 5. Thus the final block must be $3,4,5,6$. Vertices 1 and 2 must precede that block. From 0, the only way to visit both before 3 is $0,1,2,3$. The program separately checks all $5!=120$ interior permutations.
+
+\section{Four predicates and four counterexamples}
+For $n=|V|$, a fixed-endpoint Hamiltonian witness $P=(v_1,\ldots,v_n)$ satisfies
+\begin{equation}
+v_1=s,\quad v_n=t,\quad
+(v_i,v_{i+1})\in E\ (i<n),\quad
+v_i\ne v_j\ (i\ne j).
+\label{eq:d2ham}
+\end{equation}
+A candidate assembled from allowed edges may be a walk with repeated vertices. The molecule has no global instruction forbidding a revisit to 3.
+\DeepFigure{DNAD-02-F2}{The witness, a legal short route, a legal repeated-vertex walk, and an illegal-edge permutation separate the predicates. The last sequence has every identity and the correct length, but contains forbidden transitions.}{fig:d2routes}
+
+The legal short route $0,1,3,4,5,6$ omits 2. The legal seven-occurrence walk $0,3,2,3,4,5,6$ repeats 3 and omits 1. The permutation $0,1,2,4,3,5,6$ has all vertices, but $2\to4$, $4\to3$, and $3\to5$ are not graph edges. These are not three ways of saying the same thing. They show why length, coverage and adjacency need separate justification.
+
+Define endpoint, occurrence-count and coverage predicates
+\[
+\mathcal E(P)=[v_1=0\land v_k=6],\qquad
+\mathcal L(P)=[k=7],\qquad
+\mathcal C(P)=\bigwedge_{v\in V}[v\in P].
+\]
+By the counting proof in Chapter~\ref{ch:computing}, $\mathcal L\land\mathcal C$ gives exactly one occurrence of every vertex. Adjacency remains an independent premise. In a perfect encoding it is supplied during generation; in an imperfect physical implementation it must also be checked after decoding.
+
+\section{Sequence codes: which strands carry the edges?}
+Write a vertex code as $O_i=L_iR_i$, with two ten-base domains. All codes in Figure~\ref{fig:d2sequence} are written $5'$ to $3'$. Only $O_2,O_3,O_4$ are shown, because these are the three vertex codes printed in the original sequence illustration. Missing historical codes are not filled in with invented sequences.
+\DeepFigure{DNAD-02-F3}{Sequence-level reconstruction using the three published codes. The internal edge fragments are $O_{23}=R_2L_3$ and $O_{34}=R_3L_4$. The complementary $O_3$ splint is printed in aligned $3'$--$5'$ orientation. Its left-to-right letters are therefore not a $5'$--$3'$ reverse-complement listing.}{fig:d2sequence}
+
+The central construction is
+\[
+O_{ij}=R_iL_j,\qquad
+O_{jk}=R_jL_k.
+\]
+The end $L_j$ of the first fragment and the beginning $R_j$ of the second together match the complementary vertex splint $O_j^*$. That splint brings the appropriate ends together. Replacing this with whole vertex strands connected by complementary edge bridges would describe a different construction.
+
+For the printed example,
+\[
+\begin{aligned}
+O_{23}&=\texttt{GTATATCCGA}\,\texttt{GCTATTCGAG},\\
+O_{34}&=\texttt{CTTAAAGCTA}\,\texttt{GGCTAGGTAC}.
+\end{aligned}
+\]
+The twenty-base junction region across the nick is $L_3R_3$, exactly $O_3$. Its aligned complement is
+\[
+3'\text{-}\texttt{CGATAAGCTCGAATTTCGAT}\text{-}5'.
+\]
+If the partner were instead listed in the conventional $5'$--$3'$ direction, its letters would have to be reversed. Direction labels are part of the information, not optional decoration.
+
+\section{Endpoint completion and the length invariant}
+Internal edges carry only code halves. The start and finish require special treatment: an edge leaving 0 carries the whole start code, and an edge entering 6 carries the whole finish code. Thus a first edge has form $O_0L_j$, a last edge $R_iO_6$, and the direct edge $0\to6$ has form $O_0O_6$.
+
+Consider a route $0,v_2,\ldots,v_{k-1},6$. After the compatible junctions are ligated, the intended upper strand is
+\[
+O_0O_{v_2}\cdots O_{v_{k-1}}O_6.
+\]
+There are $k$ complete codes, so its length is $20k$ nucleotides. After complementary copying, the corresponding double-stranded product has $20k$ base pairs. For seven occurrences this is 140 bp. The units distinguish a single-strand inventory from a duplex size fraction.
+
+This derivation depends on complete endpoints and full-length products. With only half-codes at both ends, the expression would instead be $20(k-1)$. With truncations, nonspecific ligation or unexpected internal priming, even a correct arithmetic formula need not describe the observed fragment. A length filter inherits the assumptions of the encoding that makes length meaningful.
+
+\section{Annealing positions ends; ligation connects them}
+DNA strands have directional sugar--phosphate backbones. Complementary sequences can align antiparallel through base pairing.\cite{dna} The schematic domains $L_3$ and $L_3^*$ stand for ten-base regions, not indivisible magnetic labels. Pairing may form and dissociate; partial matches and folded structures can compete with the desired junction.
+
+\DeepFigure{DNAD-02-F4}{Three states of one intended junction: separated fragments, an annealed complex with a nick, and a ligated continuous upper backbone. Dashed vertical contacts denote noncovalent pairing. Red backbone closure denotes a different chemical event. Domain widths and end-group placement are schematic.}{fig:d2assembly}
+
+At a properly aligned nick, T4 DNA ligase can join a $3'$ hydroxyl to a neighboring $5'$ phosphate through a phosphodiester bond.\cite{ligase} The splint is an alignment device; it does not become an extra vertex code inserted into the upper strand. If the duplex later separates, the ligated upper fragments remain connected because a backbone bond has been formed.
+
+A drawing can therefore be tested mechanically. Ask which two atoms' terminal groups are being brought together, which strand carries the continuous product, and which marks mean pairing rather than covalent connection. A line joining labels without a direction or bond meaning cannot answer these questions.
+
+Complementarity alone is not a quantitative prediction of productive binding. Neighboring base context and solution conditions affect duplex thermodynamics.\cite{d2santalucia} A ten-base domain does not have a universal melting temperature independent of its sequence and surroundings. Chapter 6, \emph{Hybridization thermodynamics}, develops that physics. Here the domain model establishes the intended geometry, not a validated sequence-design certificate.
+
+\section{A molecular population has multiplicity and missing members}
+The paper's preparation used edge fragments and internal complementary vertex splints. The input inventory included 50 pmol of each species in a 100-$\mu$L ligation mixture, with a four-hour room-temperature ligation step.\cite{adleman} These historical details anchor the physical scale; they are not a modern replication protocol.
+
+\DeepFigure{DNAD-02-F5}{Digital enumeration lists every candidate within a declared bound; a physical preparation contains unequal multiplicities and can miss a witness entirely. The illustrated tube is deliberately hypothetical and is not a reconstruction of measured abundance.}{fig:d2population}
+
+Let $N(P)$ count copies of route $P$. Total material, $\sum_P N(P)$, differs from support, $\{P:N(P)>0\}$. If all material occupies the wrong support, more copies do not solve the search problem. Equal input amounts of individual oligos do not make every assembled route equally likely: routes use different combinations of fragments and compete through physical processes.
+
+Our program enumerates legal walks of one through eight vertices, starting anywhere. It obtains 1,583 distinct bounded walks. The real reaction is neither that exhaustive inventory nor a uniform random draw from it. In particular, cycles in the graph permit arbitrarily long abstract walks; eight is an explicit software boundary, not a chemically enforced maximum.
+
+\section{Endpoint PCR: orientation turns recognition into enrichment}
+The historical endpoint primers were associated with $O_0$ and the complement of $O_6$.\cite{adleman} To understand their logical role, follow a double-stranded candidate. The $O_0$ primer binds a complementary start region and extends toward the interior; the complementary-$O_6$ primer binds the other strand near the finish and extends inward in the opposite direction. Both new strands grow $5'$ to $3'$.
+
+\DeepFigure{DNAD-02-F6}{Opposed template strands and inward-facing endpoint primers. Polymerase extension grows from the primer's $3'$ end. Repeated separation, annealing and extension enrich a compatible product family. This is an orientation diagram, not a thermal-cycling recipe.}{fig:d2pcr}
+
+PCR uses repeated strand separation and primer-directed copying to amplify a selected interval.\cite{pcr} Ideal doubling illustrates its power but should not be assumed for every molecule in every cycle. A template with one effective primer site, off-target binding, incomplete extension, or unequal amplification efficiency can behave differently from the ideal two-site target.
+
+The software endpoint predicate retains an existing route unchanged or removes it. PCR can create additional copies and can select an interval within a longer template. Thus endpoint filter names the intended computational role, not a literal set-intersection operation performed without representation assumptions. A strong band means that some sequence amplified successfully; it does not independently certify a Hamiltonian order.
+
+\section{Size selection: seven occurrences are not seven identities}
+Gel electrophoresis separates charged molecules in a matrix under an electric field; size is a major determinant of migration under appropriate conditions.\cite{gel} The historical workflow recovered the 140-bp fraction, with additional purification and amplification steps. Our conceptual pipeline compresses those repeated physical operations into one ideal length predicate.
+
+\DeepFigure{DNAD-02-F7}{Synthetic 120-, 140- and 160-bp bands illustrate a size fraction. The two listed seven-occurrence routes both encode 140 bases under the full-endpoint convention, despite different coverage. Positions and intensities are schematic, not experimental gel data.}{fig:d2length}
+
+A size fraction cannot distinguish $0,1,2,3,4,5,6$ from $0,3,2,3,4,5,6$ on length alone. Both contain seven code occurrences. The second needs a vertex-presence test to expose the missing 1. Conversely, presence alone does not exclude an overlong walk that includes every vertex plus a repetition.
+
+This is a useful general design pattern: two weak observables can jointly imply a stronger property. Length supplies a finite budget of positions; coverage requires every identity to occupy one. Their conjunction establishes uniqueness of occurrence only when both observables are trustworthy and the representation uses the declared fixed-length codes.
+
+\section{Two bead operations that must not be conflated}
+\index{affinity selection}\index{vertex splint}\index{biotin}
+The detailed affinity procedure has a preparatory step and a selection step. In preparation, one PCR strand was biotin-labeled through a complementary-$O_6$ primer and immobilized on streptavidin-coated particles. Denaturation released the other, unbiotinylated strand into solution. That free strand was the material needed for subsequent sequence recognition.
+
+In vertex selection, the bead carries a biotinylated complementary vertex probe. A target strand containing the corresponding code can hybridize to this probe. Unbound material is washed away; denaturation releases retained target into solution for the next selection. The sequence-recognition role belongs to the probe, not to biotin.\cite{adleman}
+
+\DeepFigure{DNAD-02-F8}{Preparation and selection retain different molecular relationships. First recover the unbiotinylated strand from an immobilized duplex. Then recognize a vertex through a complementary bead-bound probe, wash, and release the selected target. The diagram tracks which material remains attached and which returns to solution.}{fig:d2beads}
+
+The distinction can be derived without memorizing an equipment list. Ask what is covalently attached to biotin, what is held only by hybridization, and which phase is retained after separation. During preparation, the free forward strand is wanted. During washing, a target must remain associated with the probe to avoid removal. During final release, that same association must be disrupted so the target can proceed.
+
+\section{Sequential presence tests and their exact logical mirror}
+Once endpoints are established, the internal vertices 1 through 5 can be tested in sequence. An ideal coverage filter for vertex $i$ is
+\[
+\mathcal F_i(S)=\{P\in S:i\in P\}.
+\]
+These ideal filters commute because intersections commute. Laboratory versions need not have order-independent yields: losses, concentrations, carryover and differing recognition properties can make the physical sequence matter.
+
+\DeepFigure{DNAD-02-F9}{Exact counts from the bounded-walk program. The second column uses only graph-valid generation. The third injects one illegal-edge permutation. It survives coverage but fails final verification. These are digital candidate counts, not measured molecule yields.}{fig:d2capture}
+
+The clean inventory narrows from 1,583 walks to nine endpoint-compatible walks, then two seven-occurrence walks. Requiring vertex 1 removes the repeated-3 walk, leaving the unique witness. The later presence filters do not change this particular digital count, but their redundancy on this instance does not make coverage tests unnecessary in the general construction.
+
+Inject the pseudo-path $0,1,2,4,3,5,6$. The endpoint and length counts become ten and three; after testing vertex 1, two candidates remain. Both contain every required identity. Only the independent adjacency check rejects the pseudo-path. This controlled counterexample shows exactly where the soundness argument relies on generation.
+
+\section{One computation, three linked representations}
+\DeepFigure{DNAD-02-F10}{Aligned logical, molecular and laboratory descriptions. Read a row as a proposed implementation relation, not an equality of mathematical and physical operations. Sequence integrity, specificity, recovery and readout resolution are assumptions at those interfaces.}{fig:d2mapping}
+
+Let $\phi$ decode a well-formed molecule into a route, and extend it elementwise to a multiset decoder $\Phi$. For a molecular population $M$, an ideal implementation of a multiset filter $F$ would satisfy
+\[
+\Phi(\operatorname{select}(M))=F(\Phi(M))
+\]
+with suitable multiset conventions. A real operation is better represented by a distribution over outcomes: it can lose a desired molecule, retain an undesired one, amplify copies or produce unreadable material. The useful question is then the probability of a correct, recoverable result under a stated physical model.
+
+This viewpoint separates \Term{soundness} from \Term{completeness}. Soundness asks whether an accepted decoded candidate really is a witness. Completeness asks whether an existing witness is retained and detected. Strong purification may improve the fraction of valid survivors while reducing the chance that any survivor remains.
+
+\section{Graduated PCR: a position projection, not sequencing}
+\index{graduated PCR}\index{readout ambiguity}
+Graduated PCR used separate reactions combining the start-associated primer with a primer associated with each later vertex. Product lengths supported positions in the route.\cite{adleman} In our idealized code-length model, an occurrence at zero-based position $j$ gives a product of $20(j+1)$ bp from the start.
+
+\DeepFigure{DNAD-02-F11}{Synthetic graduated-PCR-style length projections. The pure witness gives 40, 60, 80, 100, 120 and 140 bp in lanes 1 through 6. A mixture of the witness, short route and repeated-3 route produces unions of possible lengths. This is not the historical gel photograph and makes no intensity or detection-efficiency claim.}{fig:d2readout}
+
+Formally, for a population support $S$ define
+\[
+B_i(S)=\bigcup_{P\in S}\{20(j+1):P_j=i\}.
+\]
+The map $S\mapsto(B_1,\ldots,B_6)$ discards molecular identity. Different multiplicities have exactly the same projection, and bands in different lanes are not tagged as belonging to the same route. Additional isolation and suitable readout may therefore be necessary before a complete order can be checked.
+
+A positive, resolved witness verifies existence by Equation~\ref{eq:d2ham}. No detectable band is a different observation: it may mean no witness, missing initial coverage, cumulative loss, or insufficient detection. Without controlling these alternatives, nothing detected cannot be promoted to a proof of nonexistence.
+
+\Needspace{230pt}
+\section{Executable reconstruction and independent checks}
+Run \texttt{python examples/deep/ch02.py}. The source exports generation, individual predicates, a staged pipeline, an independent permutation oracle, a readout projection and a retention sensitivity calculation. The code below is extracted from the tested file rather than maintained as a separate implementation.
+
+\begin{minipage}{\linewidth}
+\VerbatimInput[fontsize=\scriptsize,numbers=left,frame=single]{deep/ch02-generate_candidates.py}
+\end{minipage}
+
+The generator deliberately extends a frontier of legal walks, not permutations. Repetitions must remain possible so later filters have work to do. At successive lengths 1 through 8, the inventory contains
+\[
+7,\ 14,\ 25,\ 49,\ 99,\ 199,\ 397,\ 793
+\]
+walks. Their sum is 1,583. Counting paths by length and counting survivors by predicate test different aspects of the implementation.
+
+\VerbatimInput[fontsize=\scriptsize,numbers=left,frame=single]{deep/ch02-pipeline.py}
+
+The oracle starts from a different representation: all permutations of the five internal vertices. Agreement between two implementations is more informative when they do not share the same candidate generator. Tests additionally remove each witness edge, inject pseudo-path copies, validate orientation arithmetic, and check that multiplicity is preserved by the selection functions.
+
+This remains a logical mirror. It has no rate constants, thermodynamic ensemble, PCR efficiency, bead binding kinetics or calibrated gel resolution. Adding those would require explicit models and experimentally supported parameters, not merely more Python loops.
+
+\section{Purity can improve while recovery becomes fragile}
+Suppose there are initially $W_0$ true copies and $F_0$ false candidates. In a deliberately simple model, each surviving true copy passes each next selection with conditional probability $q$, and each false candidate with probability $f$. After $k$ stages,
+\[
+\mathbb E[W_k]=W_0q^k,\qquad
+\mathbb E[F_k]=F_0f^k.
+\]
+These expectations do not require independence across molecules. To derive the probability of losing every true copy, additionally assume independent survival across initial copies:
+\begin{equation}
+\Pr(W_k=0)=(1-q^k)^{W_0}.
+\label{eq:d2loss}
+\end{equation}
+
+\DeepFigure{DNAD-02-F12}{Original sensitivity model with $W_0=3$, $F_0=1000$, $q=0.8$ and $f=0.1$. Expected false material falls rapidly, but the probability of no true survivor after five stages is about 0.304 under independent-copy survival. Fractional expectations are not fractional physical molecules.}{fig:d2errors}
+
+After five stages, expected true copies are 0.98304 and expected false copies 0.01. A small expected false count is not a guarantee that the sample contains a witness. Nor is the ratio of expectations generally equal to the expected purity ratio: $\mathbb E[W]/\mathbb E[W+F]$ is not usually $\mathbb E[W/(W+F)]$, especially when empty outcomes are possible.
+
+Real molecules can share environmental failures, violating independent-copy survival. A failed transfer can lose many copies together. The toy calculation identifies sensitivity to cumulative retention; it does not estimate Adleman's false-negative probability.
+
+\section{Material, time and the conditional factorial argument}
+Use an engineering resource vector
+\[
+R=(N_{\mathrm{molecules}},V_{\mathrm{solution}},T_{\mathrm{lab}},
+N_{\mathrm{operations}},P_{\mathrm{error}},C_{\mathrm{readout}}).
+\]
+It is an accounting framework, not a universal complexity definition. The components have different units and cannot be collapsed into speed without a chosen application and cost model.
+
+\DeepFigure{DNAD-02-F13}{Input molecules and candidate orders belong to different accounts. The historical reagent amount converts to about $3.01\times10^{13}$ oligos per species. The factorial column counts interior permutations only for a complete directed graph with fixed endpoints; it is not an observed route distribution or a universal DNA lower bound.}{fig:d2resources}
+
+Using the exact Avogadro constant,\cite{si}
+\[
+50\times10^{-12}\ \mathrm{mol}\times
+6.02214076\times10^{23}\ \mathrm{mol}^{-1}
+=3.01107038\times10^{13}.
+\]
+There are fourteen edge species and five internal splint species in this inventory. These are reagent molecules; several edge fragments contribute to one complete route, and splints play an alignment role. Treating every oligo as an independently encoded full candidate would overstate coverage.
+
+With fixed endpoints in a complete directed graph, the interior order space has $(n-2)!$ members. Under independent uniform sampling of those orders with one witness, its miss probability after $M$ complete-route samples is $(1-1/(n-2)!)^M$. In the more realistic nonuniform abstraction, replace the reciprocal by the total probability $p$ of generating a witness:
+\[
+M\ge\frac{\ln\delta}{\ln(1-p)}
+\]
+for miss probability at most $\delta$, with $0<p,\delta<1$. Neither formula tells us $p$ for the historical chemistry. Sparse edges, unequal assembly probabilities and alternative algorithms change the account.
+
+The reported laboratory workflow took about seven days, not merely the time of one parallel chemical reaction.\cite{adleman} Preparation, transfers, amplification, recovery and readout are part of elapsed work. The demonstration does not establish asymptotically efficient NP-complete search, fault-free computation, or automatic superiority over silicon.
+
+\section{What the experiment opened, and what changed later}
+The bounded achievement is already substantial: molecular representations and selective operations participated in solving a small combinatorial instance. This links an abstract problem to physical information processing. It does not require an unsupported general claim about competitive runtime.
+
+\DeepFigure{DNAD-02-F14}{A conceptual map of later research traditions, organized by state and operation. This is neither a causal genealogy nor a ranking of superiority. The mechanisms differ; subsequent chapters must derive their own correctness and resource arguments.}{fig:d2aftermath}
+
+Lipton explored SAT-style molecular search as a proposal,\cite{d2lipton} while formal work studied computational power under specified DNA operations.\cite{d2boneh} Molecular automata used biochemical transitions;\cite{benenson} self-assembly organized local interactions into structures;\cite{assembly} strand-displacement circuits made recognition and exchange into composable signal operations.\cite{d2seelig} These are not all variants of filtering a pre-existing factorial route pool.
+
+Chapter 3, \emph{Combinatorial search and complexity}, next separates instance difficulty, verification cost, reductions and physical resource accounting. The later thermodynamic and kinetic chapters then examine whether the symbolic operations assumed here are physically reliable. The separation is intentional: a correct combinatorial proof and a workable molecular implementation must both be earned.
+
+\section{Exercises}
+\begin{enumerate}
+\item Prove uniqueness of the historical witness without enumerating 120 permutations. Identify the graph feature that forces the final block.
+\item Remove edge $3\to4$. What must happen to the independent oracle? Why cannot more copies repair this instance?
+\item Derive the lengths of the direct $0\to6$ fragment, a three-vertex route, and a seven-vertex route. Repeat with incomplete terminal half-codes.
+\item Calculate $O_{23}$ and the aligned complement of $O_3$. Explain why reversing the latter changes its direction convention.
+\item A tube retains all seven identities in a 160-base route. Give the logical reason it is not yet a Hamiltonian certificate.
+\item Explain which material is retained in strand preparation, washing during vertex capture, and target release. Identify the recognition element.
+\item Add ten copies of the illegal permutation to the Python inventory. Predict and then check all stage counts.
+\item Derive Equation~\ref{eq:d2loss}; state separately the assumptions needed for expected count and zero-survivor probability.
+\item Show that the graduated-band projection cannot recover route multiplicity. What further ambiguity arises when several routes contribute different lane positions?
+\item For fixed endpoints and $n=10$ in a complete directed graph, count interior orders. Under one uniformly sampled witness, derive the number of independent complete-route draws needed for a 99 percent hit probability.
+\item Construct a physical false positive and a false negative at different stages. Explain why independently verifying one decoded witness addresses only one of them.
+\item Propose an extension of the digital mirror with unequal generation probabilities. Specify what can be computed exactly and what would still require physical evidence.
+\end{enumerate}
+
+\section{Worked solutions and research boundaries}
+\begin{enumerate}
+\item Only 3 enters 4 and only 4 enters 5. Finishing requires 6 last. Leaving 5 for 1 or 2 after 3 and 4 have been used cannot reach 6 without revisiting the final block. Thus the suffix is 3,4,5,6. The remaining vertices force the prefix 0,1,2.
+\item The oracle becomes empty because 4 loses its only incoming edge. Additional material duplicates candidates but cannot create a graph-valid missing transition. A chemical product crossing that transition would be a representation error, not a solution.
+\item Complete endpoints give 40, 60 and 140 bases respectively: each visited vertex contributes a complete twenty-base code. If only an interior-facing half of each terminal code remains, subtract twenty bases in total, giving 20, 40 and 120. The corresponding duplex lengths use bp.
+\item Take the last ten bases of $O_2$ followed by the first ten of $O_3$: \texttt{GTATATCCGAGCTATTCGAG}. Basewise complementing $O_3$ gives \texttt{CGATAAGCTCGAATTTCGAT} when printed aligned $3'$ to $5'$. Reversal is additionally necessary to list that partner $5'$ to $3'$.
+\item At twenty bases per occurrence, 160 bases represent eight occurrences. Containing seven identities then requires at least one repetition, assuming only those identities occur. Coverage without the correct occurrence count does not imply distinctness.
+\item Preparation keeps the unbiotinylated free strand after denaturation. Washing keeps targets still hybridized to the bead-bound probe. Release keeps those selected targets in solution after disrupting that pairing. Complementary sequence provides recognition; biotin--streptavidin provides attachment.
+\item Multiplicity matters. Counts become 1,593; 19; 12; then 11 after each of the five presence tests; and finally 1 after verification. Ten identical pseudo-paths should remain ten copies until a predicate rejects them. Converting the pool to a set would conceal the test.
+\item A given true copy survives all stages with probability $q^k$ under constant conditional retention. Summing its survival indicator over $W_0$ copies gives the expectation without requiring independent copies. Independence across copies gives the product of their failure probabilities, $(1-q^k)^{W_0}$.
+\item Set union is idempotent: adding another copy of a route adds no new band positions. In a mixture, a band in lane 2 and a band in lane 3 can originate from different molecules. The projection does not retain which positions co-occur on one route.
+\item There are $8!=40{,}320$ interior orders. The exact minimum is the ceiling of $\ln(0.01)/\ln(1-1/40320)$. Use the logarithmic expression rather than subtracting an approximate expectation from one. It describes independent uniform complete-route samples, not starting oligos.
+\item Nonspecific retention of a pseudo-path can give a false positive; losing the only witness during a transfer can give a false negative. A decoded witness checked against the graph rejects the former. It cannot establish that absent material was never generated or that a negative instance has been proved.
+\item Assign probabilities to outgoing transitions and an explicit stopping rule, then propagate probability mass over bounded walks. Exact dynamic programming can compute the resulting distribution and witness mass for that model. Transition probabilities, stopping behavior and their transferability to chemistry still need measurement; a convenient probability table is not experimental validation.
+\end{enumerate}

@@ -3,7 +3,7 @@
   "book": "DNA Computing",
   "subtitle": "From Molecular Biology to Algorithms and Computation",
   "edition": "4-deep",
-  "status": "chapter-one-production",
+  "status": "chapter-two-production",
   "branch": "astra-deep-rewrite",
   "startingCommit": "0779ed552b26d678e2443c0d94177faa04dc293c",
   "entryAssumptions": [
@@ -54,8 +54,8 @@
       "id": "DNAD-02",
       "number": 2,
       "part": "I · Origins and computational strategy",
-      "title": "Adleman's experiment: a mechanistic reconstruction",
-      "status": "planned-not-drafted",
+      "title": "Adleman's experiment: from graph to molecules",
+      "status": "internally-reviewed-draft",
       "requires": [
         "DNAD-01"
       ],

@@ -1,0 +1,26 @@
+DNAD-02-F7 — Length selects occurrences, not identities
+
+QUESTION
+What does the 140-bp fraction establish?
+
+OBJECTS
+• 120,140,160-bp conceptual products
+• equal-length correct/repeated routes
+
+RELATION / MECHANISM
+120,140,160-bp conceptual products; equal-length correct/repeated routes
+
+STATE TRANSITION
+Separate by size; retain target fraction; compare same-size sequence orders
+
+INFERENCE
+Length constrains vertex occurrences under the encoding convention.
+
+BOUNDARY
+Synthetic bands are not photographs or quantitative mobility predictions.
+
+SOURCE
+Adleman size selection; NHGRI electrophoresis; original length proof
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

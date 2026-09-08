@@ -1,0 +1,74 @@
+[
+  {
+    "sequence": "assembly",
+    "phase": 1,
+    "source": "assembly-01.svg",
+    "state": "Separated fragments; aligned duplex with nick; continuous ligated upper backbone",
+    "changed": "Visible molecular associations, input suffix, grouping or messages advance with phase.",
+    "motion": "none; static editable keyframe"
+  },
+  {
+    "sequence": "assembly",
+    "phase": 2,
+    "source": "assembly-02.svg",
+    "state": "Separated fragments; aligned duplex with nick; continuous ligated upper backbone",
+    "changed": "Visible molecular associations, input suffix, grouping or messages advance with phase.",
+    "motion": "none; static editable keyframe"
+  },
+  {
+    "sequence": "assembly",
+    "phase": 3,
+    "source": "assembly-03.svg",
+    "state": "Separated fragments; aligned duplex with nick; continuous ligated upper backbone",
+    "changed": "Visible molecular associations, input suffix, grouping or messages advance with phase.",
+    "motion": "none; static editable keyframe"
+  },
+  {
+    "sequence": "pcr",
+    "phase": 1,
+    "source": "pcr-01.svg",
+    "state": "Denature; inward-facing annealing; 5\u2032\u21923\u2032 extension; selected-family enrichment",
+    "changed": "Visible molecular associations, input suffix, grouping or messages advance with phase.",
+    "motion": "none; static editable keyframe"
+  },
+  {
+    "sequence": "pcr",
+    "phase": 2,
+    "source": "pcr-02.svg",
+    "state": "Denature; inward-facing annealing; 5\u2032\u21923\u2032 extension; selected-family enrichment",
+    "changed": "Visible molecular associations, input suffix, grouping or messages advance with phase.",
+    "motion": "none; static editable keyframe"
+  },
+  {
+    "sequence": "pcr",
+    "phase": 3,
+    "source": "pcr-03.svg",
+    "state": "Denature; inward-facing annealing; 5\u2032\u21923\u2032 extension; selected-family enrichment",
+    "changed": "Visible molecular associations, input suffix, grouping or messages advance with phase.",
+    "motion": "none; static editable keyframe"
+  },
+  {
+    "sequence": "beads",
+    "phase": 1,
+    "source": "beads-01.svg",
+    "state": "Immobilize biotin strand then denature/recover other strand; bind target to probe then wash/elute",
+    "changed": "Visible molecular associations, input suffix, grouping or messages advance with phase.",
+    "motion": "none; static editable keyframe"
+  },
+  {
+    "sequence": "beads",
+    "phase": 2,
+    "source": "beads-02.svg",
+    "state": "Immobilize biotin strand then denature/recover other strand; bind target to probe then wash/elute",
+    "changed": "Visible molecular associations, input suffix, grouping or messages advance with phase.",
+    "motion": "none; static editable keyframe"
+  },
+  {
+    "sequence": "beads",
+    "phase": 3,
+    "source": "beads-03.svg",
+    "state": "Immobilize biotin strand then denature/recover other strand; bind target to probe then wash/elute",
+    "changed": "Visible molecular associations, input suffix, grouping or messages advance with phase.",
+    "motion": "none; static editable keyframe"
+  }
+]

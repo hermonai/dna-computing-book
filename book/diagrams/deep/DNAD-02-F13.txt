@@ -1,0 +1,29 @@
+DNAD-02-F13 — Count materials before celebrating parallelism
+
+QUESTION
+Which budget grows, and under what assumption?
+
+OBJECTS
+• Historical reagent amount
+• copies
+• species
+• volume
+• fixed-endpoint permutation space
+
+RELATION / MECHANISM
+Historical reagent amount; copies; species; volume; fixed-endpoint permutation space
+
+STATE TRANSITION
+Convert units; separate initial oligos from complete routes; expose sampling assumptions
+
+INFERENCE
+Reagent inventory, path support and search-space size are distinct.
+
+BOUNDARY
+No universal factorial lower bound for DNA computation.
+
+SOURCE
+Adleman note 4; BIPM mole; original arithmetic
+
+EXECUTABLE EVIDENCE
+artifacts/deep/ch02-results.json; examples/deep/ch02.py

@@ -2,7 +2,7 @@
   "title": "DNA Computing",
   "subtitle": "From Molecular Biology to Algorithms and Computation",
   "edition": "4-deep",
-  "status": "chapter-one-production",
+  "status": "chapter-two-production",
   "chapters": [
     {
       "id": "DNAD-01",
@@ -10,9 +10,16 @@
       "title": "Computing with DNA",
       "source": "tex/deep/ch01.tex",
       "status": "internally-reviewed-draft"
+    },
+    {
+      "id": "DNAD-02",
+      "number": 2,
+      "title": "Adleman's experiment: from graph to molecules",
+      "source": "tex/deep/ch02.tex",
+      "status": "internally-reviewed-draft"
     }
   ],
-  "main": "tex/deep-dna-computing.tex",
+  "main": "tex/deep-dna-computing-ch01-02.tex",
   "graphs": [
     "book/figures/deep/DNAD-01-F1.svg",
     "book/figures/deep/DNAD-01-F2.svg",
@@ -23,7 +30,21 @@
     "book/figures/deep/DNAD-01-F7.svg",
     "book/figures/deep/DNAD-01-F8.svg",
     "book/figures/deep/DNAD-01-F9.svg",
-    "book/figures/deep/DNAD-01-F10.svg"
+    "book/figures/deep/DNAD-01-F10.svg",
+    "book/figures/deep/DNAD-02-F1.svg",
+    "book/figures/deep/DNAD-02-F2.svg",
+    "book/figures/deep/DNAD-02-F3.svg",
+    "book/figures/deep/DNAD-02-F4.svg",
+    "book/figures/deep/DNAD-02-F5.svg",
+    "book/figures/deep/DNAD-02-F6.svg",
+    "book/figures/deep/DNAD-02-F7.svg",
+    "book/figures/deep/DNAD-02-F8.svg",
+    "book/figures/deep/DNAD-02-F9.svg",
+    "book/figures/deep/DNAD-02-F10.svg",
+    "book/figures/deep/DNAD-02-F11.svg",
+    "book/figures/deep/DNAD-02-F12.svg",
+    "book/figures/deep/DNAD-02-F13.svg",
+    "book/figures/deep/DNAD-02-F14.svg"
   ],
   "pedagogy": "pedagogy/deep-curriculum.json",
   "previousEdition": {
@@ -36,5 +57,11 @@
     "commit": "0779ed552b26d678e2443c0d94177faa04dc293c",
     "source": "tex/undergraduate/ch01.tex",
     "pdf": "output/pdf/undergraduate-dna-computing.pdf"
+  },
+  "preservedDeepChapterOne": {
+    "commit": "6046afc3b1ef1bee59b11176a65a3e73778c125f",
+    "source": "tex/deep/ch01.tex",
+    "main": "tex/deep-dna-computing.tex",
+    "pdf": "output/pdf/deep-dna-computing.pdf"
   }
 }
