@@ -1,0 +1,25 @@
+DNAD-03-F2: Merge prefixes only when the future agrees
+
+QUESTION
+Why can dynamic programming reuse work?
+
+OBJECTS
+Two path prefixes
+visited set S
+last vertex v
+unvisited suffix
+
+RELATION / MECHANISM
+Map both histories to (S,v); extend by unused outgoing neighbors
+
+INFERENCE
+Existence of a completion depends on (S,v), not on the order already consumed.
+
+BOUNDARY
+This state forgets counts, costs and molecular populations.
+
+SOURCE
+Original recurrence and differential tests
+
+STATUS
+Working-draft figure; not part of the accepted PDF.

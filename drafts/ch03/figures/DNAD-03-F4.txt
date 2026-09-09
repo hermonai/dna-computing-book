@@ -1,0 +1,24 @@
+DNAD-03-F4: A path as a Boolean assignment
+
+QUESTION
+What must the SAT encoding forbid?
+
+OBJECTS
+Vertex-position matrix
+row/column constraints
+forbidden transitions
+
+RELATION / MECHANISM
+Choose one vertex per slot and one slot per vertex; impose endpoints and legal adjacency
+
+INFERENCE
+Satisfying assignments and fixed-endpoint paths correspond exactly.
+
+BOUNDARY
+Reducing Hamiltonian path to SAT alone does not prove Hamiltonian path hard.
+
+SOURCE
+Original CNF encoding and exhaustive tests
+
+STATUS
+Working-draft figure; not part of the accepted PDF.

@@ -1,0 +1,212 @@
+{
+  "chapter": "DNAD-03",
+  "title": "Combinatorial search and complexity",
+  "status": "working-draft-storyboard-approved-before-prose",
+  "date": "2026-09-09",
+  "approval": "Author-agent design review; not scientific acceptance or publication approval.",
+  "figures": [
+    {
+      "id": "DNAD-03-F1",
+      "kind": "certificate",
+      "title": "Checking is not finding",
+      "readerQuestion": "What does a witness certify?",
+      "objects": [
+        "Graph instance",
+        "candidate order",
+        "verifier",
+        "decision bit"
+      ],
+      "mechanism": "Check endpoints, uniqueness and adjacency",
+      "captionThesis": "A verified path proves existence; a failed candidate does not prove absence.",
+      "evidenceSource": "MIT Sipser lecture 14; original verifier",
+      "misleadingInterpretation": "Do not label rejected candidate as a no-instance.",
+      "status": "selected-for-first-draft"
+    },
+    {
+      "id": "DNAD-03-F2",
+      "kind": "states",
+      "title": "Merge prefixes only when the future agrees",
+      "readerQuestion": "Why can dynamic programming reuse work?",
+      "objects": [
+        "Two path prefixes",
+        "visited set S",
+        "last vertex v",
+        "unvisited suffix"
+      ],
+      "mechanism": "Map both histories to (S,v); extend by unused outgoing neighbors",
+      "captionThesis": "Existence of a completion depends on (S,v), not on the order already consumed.",
+      "evidenceSource": "Original recurrence and differential tests",
+      "misleadingInterpretation": "This state forgets counts, costs and molecular populations.",
+      "status": "selected-for-first-draft"
+    },
+    {
+      "id": "DNAD-03-F3",
+      "kind": "reduction",
+      "title": "A cycle becomes a fixed-endpoint path",
+      "readerQuestion": "Which way does hardness travel?",
+      "objects": [
+        "Original pivot",
+        "split source",
+        "split sink",
+        "incoming/outgoing arcs"
+      ],
+      "mechanism": "Split the pivot, open the cycle, then identify endpoints in reverse",
+      "captionThesis": "Both directions preserve existence and the transformation is polynomial.",
+      "evidenceSource": "MIT 6.046 recitation 8 section 2",
+      "misleadingInterpretation": "The transformation does not solve either problem.",
+      "status": "selected-for-first-draft"
+    },
+    {
+      "id": "DNAD-03-F4",
+      "kind": "sat",
+      "title": "A path as a Boolean assignment",
+      "readerQuestion": "What must the SAT encoding forbid?",
+      "objects": [
+        "Vertex-position matrix",
+        "row/column constraints",
+        "forbidden transitions"
+      ],
+      "mechanism": "Choose one vertex per slot and one slot per vertex; impose endpoints and legal adjacency",
+      "captionThesis": "Satisfying assignments and fixed-endpoint paths correspond exactly.",
+      "evidenceSource": "Original CNF encoding and exhaustive tests",
+      "misleadingInterpretation": "Reducing Hamiltonian path to SAT alone does not prove Hamiltonian path hard.",
+      "status": "selected-for-first-draft"
+    },
+    {
+      "id": "DNAD-03-F5",
+      "kind": "size",
+      "title": "Bits, vertices and reagent copies",
+      "readerQuestion": "What is the input length?",
+      "objects": [
+        "Adjacency matrix",
+        "vertex labels",
+        "encoded integer",
+        "oligo inventory"
+      ],
+      "mechanism": "Count representation symbols before reporting a time bound",
+      "captionThesis": "Polynomial in numeric value can be exponential in its bit length.",
+      "evidenceSource": "MIT lecture 14; Book I Chapter 2",
+      "misleadingInterpretation": "Encoding choices and physical material are not interchangeable.",
+      "status": "planned-no-assets"
+    },
+    {
+      "id": "DNAD-03-F6",
+      "kind": "search",
+      "title": "Recovering a witness with decision queries",
+      "readerQuestion": "How can yes/no answers guide construction?",
+      "objects": [
+        "Graph",
+        "ordered edge deletions",
+        "decision oracle",
+        "minimal yes-graph"
+      ],
+      "mechanism": "Delete an edge only if existence remains; extract the surviving path",
+      "captionThesis": "At most m+1 oracle queries suffice for this search reduction.",
+      "evidenceSource": "Original edge-deletion proof and exhaustive small tests",
+      "misleadingInterpretation": "The oracle is not free and not implemented in polynomial time here.",
+      "status": "planned-no-assets"
+    },
+    {
+      "id": "DNAD-03-F7",
+      "kind": "np",
+      "title": "P, NP and coNP: track the quantifier",
+      "readerQuestion": "What changes for a no-instance?",
+      "objects": [
+        "Existential witness",
+        "deterministic verifier",
+        "complemented language"
+      ],
+      "mechanism": "Negate existence, not a single verification result",
+      "captionThesis": "Polynomial verification of yes certificates does not supply no certificates.",
+      "evidenceSource": "MIT lecture 14",
+      "misleadingInterpretation": "Do not draw P as a proven strict subset of NP.",
+      "status": "planned-no-assets"
+    },
+    {
+      "id": "DNAD-03-F8",
+      "kind": "cost",
+      "title": "Factorial enumeration versus subset states",
+      "readerQuestion": "What changes when histories are merged?",
+      "objects": [
+        "Permutation count",
+        "reachable states",
+        "transitions",
+        "storage"
+      ],
+      "mechanism": "Compare explicit algorithmic counts on the same instances",
+      "captionThesis": "An exponential algorithm can improve on factorial enumeration without becoming polynomial.",
+      "evidenceSource": "Original result artifact",
+      "misleadingInterpretation": "Operational counters are not wall-clock benchmarks.",
+      "status": "planned-no-assets"
+    },
+    {
+      "id": "DNAD-03-F9",
+      "kind": "parallel",
+      "title": "Small depth can hide large work",
+      "readerQuestion": "Where did the search cost go?",
+      "objects": [
+        "Candidate branches",
+        "parallel workers",
+        "depth",
+        "work",
+        "material"
+      ],
+      "mechanism": "Expose simultaneous branches and their total allocation",
+      "captionThesis": "Parallel depth is only one resource coordinate.",
+      "evidenceSource": "Original accounting linked to Chapter 2",
+      "misleadingInterpretation": "Do not equate Boolean circuit depth to laboratory time.",
+      "status": "planned-no-assets"
+    },
+    {
+      "id": "DNAD-03-F10",
+      "kind": "absence",
+      "title": "No signal is not a universal negative",
+      "readerQuestion": "Why is negative evidence different?",
+      "objects": [
+        "Witness support",
+        "sampling",
+        "survival",
+        "detector",
+        "no-signal outcome"
+      ],
+      "mechanism": "Trace the alternative causes of absence",
+      "captionThesis": "A missing signal needs coverage, retention and readout assumptions.",
+      "evidenceSource": "Chapter 2 model",
+      "misleadingInterpretation": "This is not a calibrated experimental error probability.",
+      "status": "planned-no-assets"
+    },
+    {
+      "id": "DNAD-03-F11",
+      "kind": "audit",
+      "title": "Reduction claims have three proof obligations",
+      "readerQuestion": "What must a construction demonstrate?",
+      "objects": [
+        "Polynomial construction",
+        "yes-to-yes proof",
+        "yes-backward proof"
+      ],
+      "mechanism": "Check size then both implication directions",
+      "captionThesis": "A plausible drawing is not a reduction proof.",
+      "evidenceSource": "Original checklist tied to worked construction",
+      "misleadingInterpretation": "Testing finite cases cannot replace proof.",
+      "status": "planned-no-assets"
+    },
+    {
+      "id": "DNAD-03-F12",
+      "kind": "boundary",
+      "title": "From complexity back to molecules",
+      "readerQuestion": "What will the next chapter add?",
+      "objects": [
+        "Digital operation",
+        "physical realization",
+        "resource vector",
+        "error model"
+      ],
+      "mechanism": "Carry logical invariants into physical budgets",
+      "captionThesis": "Computational hardness and engineering feasibility answer different questions.",
+      "evidenceSource": "Current curriculum and Chapter 2",
+      "misleadingInterpretation": "No new universal molecular lower bound is asserted.",
+      "status": "planned-no-assets"
+    }
+  ]
+}

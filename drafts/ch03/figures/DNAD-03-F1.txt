@@ -1,0 +1,25 @@
+DNAD-03-F1: Checking is not finding
+
+QUESTION
+What does a witness certify?
+
+OBJECTS
+Graph instance
+candidate order
+verifier
+decision bit
+
+RELATION / MECHANISM
+Check endpoints, uniqueness and adjacency
+
+INFERENCE
+A verified path proves existence; a failed candidate does not prove absence.
+
+BOUNDARY
+Do not label rejected candidate as a no-instance.
+
+SOURCE
+MIT Sipser lecture 14; original verifier
+
+STATUS
+Working-draft figure; not part of the accepted PDF.
