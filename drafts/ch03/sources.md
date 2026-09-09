@@ -15,6 +15,12 @@ Consulted 9 September 2026. This ledger distinguishes directly read support from
 
 ## Original derivations and computations
 
+### Second-pass source check
+
+Toronto CS 2401 (Fall 2015), instructor Toniann Pitassi, lecturer Thomas Watson, scribe Benett Axtell: [Lecture 3](https://www.cs.toronto.edu/~toni/Courses/Complexity2015/lectures/lecture3.pdf), section 4 on physical page 4. Read the definition of coNP through language complementation, its universal-certificate formulation, and the statement that P is closed under complementation. Used only for these class conventions. The manuscript supplies its own deterministic complement-closure argument. The scribe prose about “flip the bits of the witness” is imprecise and is not copied or used as a proof: it is the verifier predicate that must be negated under the changed quantifier. No interactive-proof theorem is invoked.
+
+Rechecked Sipser lecture 14's representation and complement question. The new figures show explicit counting units and quantifiers, without a separation diagram. The edge-deletion figure is generated from the actual retained-graph trace; its test replays every step against independent enumeration on all 4,096 four-vertex directed graphs.
+
 The four-vertex instance, subset recurrence proof, dense reachable-state count, elementary vertex-position CNF clause count and edge-deletion self-reduction explanation are derived explicitly in the manuscript and checked by the local reference. These are pedagogical reconstructions of standard ideas, not claims of novel algorithms.
 
 `reference.py` uses only Python's standard library. Its oracle enumerates interior permutations independently of the subset algorithm. Tests cover all 4,096 simple directed four-vertex graphs for existence agreement, all 64 three-vertex graphs with all three reduction pivots, and all 512 Boolean assignments per three-vertex CNF instance. Counts are algorithmic counters, not timing data.

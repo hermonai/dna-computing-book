@@ -19,7 +19,12 @@ def test_working_artifacts_and_diagram_contract():
         assert (ROOT / "drafts/ch03" / name).read_text() == content, name
     storyboard = json.loads((ROOT / "drafts/ch03/storyboard.json").read_text())
     assert len(storyboard["figures"]) == 12
-    for figure in storyboard["figures"][:4]:
+    produced = [f for f in storyboard["figures"] if f["status"] == "produced-draft-svg-txt"]
+    assert len(produced) == 8
+    manuscript = (ROOT / "drafts/ch03/manuscript.md").read_text()
+    assert manuscript.count("**Solution:**") == 12
+    for figure in produced:
+        assert "figures/" + figure["id"] + ".svg" in manuscript
         folder = ROOT / "drafts/ch03/figures"
         svg = ET.fromstring((folder / (figure["id"] + ".svg")).read_text())
         assert svg.attrib["aria-labelledby"] == "title desc"
@@ -95,6 +100,27 @@ def test_decision_self_reduction_all_small_graphs():
             assert result["oracle_calls"] == len(edges) + 1
         else:
             assert result["route"] is None and result["oracle_calls"] == 1
+
+
+def test_self_reduction_trace_against_independent_enumeration():
+    for edges in all_graphs(4):
+        result = M.search_via_decision(4, edges, 0, 3)
+        if not M.permutation_oracle(4, edges, 0, 3):
+            assert result["trace"] == []
+            continue
+        kept = set(edges)
+        assert len(result["trace"]) == len(edges)
+        for query, (edge, row) in enumerate(zip(sorted(edges), result["trace"]), 2):
+            assert tuple(row["edge"]) == edge and row["query"] == query
+            trial = kept - {edge}
+            yes = bool(M.permutation_oracle(4, trial, 0, 3))
+            assert row["trial_has_path"] == yes
+            assert row["action"] == ("delete" if yes else "retain")
+            if yes:
+                kept = trial
+            assert set(map(tuple, row["kept_edges"])) == kept
+            assert M.permutation_oracle(4, kept, 0, 3)
+        assert kept == set(zip(result["route"], result["route"][1:]))
 
 
 def test_dense_state_counts_have_independent_closed_form():

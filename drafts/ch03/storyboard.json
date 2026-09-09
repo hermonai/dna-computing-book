@@ -20,7 +20,7 @@
       "captionThesis": "A verified path proves existence; a failed candidate does not prove absence.",
       "evidenceSource": "MIT Sipser lecture 14; original verifier",
       "misleadingInterpretation": "Do not label rejected candidate as a no-instance.",
-      "status": "selected-for-first-draft"
+      "status": "produced-draft-svg-txt"
     },
     {
       "id": "DNAD-03-F2",
@@ -37,7 +37,7 @@
       "captionThesis": "Existence of a completion depends on (S,v), not on the order already consumed.",
       "evidenceSource": "Original recurrence and differential tests",
       "misleadingInterpretation": "This state forgets counts, costs and molecular populations.",
-      "status": "selected-for-first-draft"
+      "status": "produced-draft-svg-txt"
     },
     {
       "id": "DNAD-03-F3",
@@ -54,7 +54,7 @@
       "captionThesis": "Both directions preserve existence and the transformation is polynomial.",
       "evidenceSource": "MIT 6.046 recitation 8 section 2",
       "misleadingInterpretation": "The transformation does not solve either problem.",
-      "status": "selected-for-first-draft"
+      "status": "produced-draft-svg-txt"
     },
     {
       "id": "DNAD-03-F4",
@@ -70,7 +70,7 @@
       "captionThesis": "Satisfying assignments and fixed-endpoint paths correspond exactly.",
       "evidenceSource": "Original CNF encoding and exhaustive tests",
       "misleadingInterpretation": "Reducing Hamiltonian path to SAT alone does not prove Hamiltonian path hard.",
-      "status": "selected-for-first-draft"
+      "status": "produced-draft-svg-txt"
     },
     {
       "id": "DNAD-03-F5",
@@ -87,7 +87,7 @@
       "captionThesis": "Polynomial in numeric value can be exponential in its bit length.",
       "evidenceSource": "MIT lecture 14; Book I Chapter 2",
       "misleadingInterpretation": "Encoding choices and physical material are not interchangeable.",
-      "status": "planned-no-assets"
+      "status": "produced-draft-svg-txt"
     },
     {
       "id": "DNAD-03-F6",
@@ -100,11 +100,11 @@
         "decision oracle",
         "minimal yes-graph"
       ],
-      "mechanism": "Delete an edge only if existence remains; extract the surviving path",
+      "mechanism": "Replay six ordered trial deletions from the original six-edge graph; retain a yes-instance after every trial; reconstruct the final path",
       "captionThesis": "At most m+1 oracle queries suffice for this search reduction.",
       "evidenceSource": "Original edge-deletion proof and exhaustive small tests",
       "misleadingInterpretation": "The oracle is not free and not implemented in polynomial time here.",
-      "status": "planned-no-assets"
+      "status": "produced-draft-svg-txt"
     },
     {
       "id": "DNAD-03-F7",
@@ -118,9 +118,9 @@
       ],
       "mechanism": "Negate existence, not a single verification result",
       "captionThesis": "Polynomial verification of yes certificates does not supply no certificates.",
-      "evidenceSource": "MIT lecture 14",
+      "evidenceSource": "MIT lecture 14; Toronto CS 2401 lecture 3 section 4; explicit complement-closure derivation",
       "misleadingInterpretation": "Do not draw P as a proven strict subset of NP.",
-      "status": "planned-no-assets"
+      "status": "produced-draft-svg-txt"
     },
     {
       "id": "DNAD-03-F8",
@@ -137,7 +137,7 @@
       "captionThesis": "An exponential algorithm can improve on factorial enumeration without becoming polynomial.",
       "evidenceSource": "Original result artifact",
       "misleadingInterpretation": "Operational counters are not wall-clock benchmarks.",
-      "status": "planned-no-assets"
+      "status": "produced-draft-svg-txt"
     },
     {
       "id": "DNAD-03-F9",

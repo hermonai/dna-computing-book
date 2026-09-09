@@ -1,6 +1,6 @@
 # Chapter 3. Combinatorial search and complexity
 
-Working draft, 9 September 2026. This is the first technical core, not an accepted publication chapter. Chapters 1–2 remain the published build. Figure numbers below are stable draft asset IDs, not final LaTeX numbering.
+Working draft, 9 September 2026. This is an expanded technical core, not an accepted publication chapter. Chapters 1–2 remain the published build. Figure numbers below are stable draft asset IDs, not final LaTeX numbering.
 
 ## 3.1 A successful experiment leaves an algorithmic question
 
@@ -45,6 +45,20 @@ The usual class **P** contains decision problems decidable in polynomial time. *
 
 An important negative statement follows from logic alone: the definition supplies short certificates for yes-instances. It does not automatically supply short certificates for no-instances. Negating the entire existence statement gives \(\forall P\,\neg R(G,s,t,P)\), not the rejection of one chosen \(P\). We should not confuse that distinction with a proof that no concise negative certificate could ever exist.
 
+![An adjacency matrix, a binary integer and a strand inventory use different counting units.](figures/DNAD-03-F5.svg)
+
+**DNAD-03-F5.** Our four-vertex matrix contains 16 adjacency bits, not 16 bits for the entire instance: the representation must also supply its size and endpoints. The integer 1024 needs 11 binary digits. Six physical copies of one sequence are six molecules but only one distinct sequence design. None of these counts can substitute for another.
+
+Here is a precise way to read the integer example. For positive \(N\), its ordinary binary length is \(\lfloor\log_2 N\rfloor+1\). Setting \(N=2^k\) therefore makes a loop of \(N\) iterations exponential in the \(k+1\) input bits. By contrast, explicitly listing \(N\) objects already consumes at least \(N\) representation units. The same loop bound can have a different complexity interpretation because the input representation changed.
+
+The class **coNP** is defined by complementing languages: \(L\in\mathrm{coNP}\) exactly when \(\overline L\in\mathrm{NP}\). It is not the collection of all problems outside NP. These conventions are stated in [Toronto's complexity lecture, section 4](https://www.cs.toronto.edu/~toni/Courses/Complexity2015/lectures/lecture3.pdf).
+
+We can derive the inclusion \(P\subseteq NP\cap coNP\) without guessing which classes are equal. A deterministic polynomial-time decider is also a verifier that ignores its certificate, so \(P\subseteq NP\). Reversing the output of a deterministic decider still decides its complement in polynomial time. Thus that complement belongs to NP too, placing the original language in coNP. Reversing the answer on just one nondeterministic branch does not perform this operation on the whole existence statement.
+
+![Existential acceptance and universal rejection have different logical scopes.](figures/DNAD-03-F7.svg)
+
+**DNAD-03-F7.** The four candidate slots are a schematic finite universe, not the exhaustive orders of our running graph. The left panel needs one accepted candidate; the right panel needs all candidates rejected. Checking only the four drawn slots would not establish a negative answer for a problem with further candidates. The class definitions below the panels do not assert strict inclusions.
+
 ## 3.4 Reuse the future question, not the entire history
 
 Naive fixed-endpoint enumeration examines up to \((n-2)!\) interior orders. Many prefixes, however, lead to the same remaining problem. Suppose two valid prefixes have visited the same set \(S\) and both end at vertex \(v\). The remaining vertices are \(V\setminus S\), and the next step must use an outgoing edge from \(v\). Their internal orders no longer affect whether an unused suffix can complete the path.
@@ -85,6 +99,14 @@ For the complete directed graph with fixed endpoints and \(n\ge3\), our early-te
 reachable states. To derive this, count the initial state and final state separately. Every other state chooses one of the \(n-2\) interior vertices as its last vertex, then any subset of the other \(n-3\) interior vertices as already visited. Completeness of the graph makes every such choice reachable. At \(n=8\), the result is 194 states. This is a state-count formula for this graph family and this implementation, not a general physical-resource law.
 
 The tests compare subset search against independent permutation enumeration on **every one of the 4,096 simple directed four-vertex graphs**. This is useful fault detection. The inductive invariant is what supports correctness for arbitrary finite graph size; exhaustive testing at size four cannot replace it.
+
+![Candidate orders, reachable states and scanned neighbors are distinct algorithmic counters.](figures/DNAD-03-F8.svg)
+
+**DNAD-03-F8.** The curve uses complete directed graphs, unlike our six-edge running graph. At \(n=4\), the complete graph has 15 neighbor scans while the running graph has ten. At \(n=8\), there are 720 possible interior orders, 194 reachable states and 1,351 scans. These are generated counts, not measured execution times.
+
+Why can scans outnumber candidate orders at this small size? A neighbor scan is an attempted local extension, including extensions rejected because the neighbor was already visited or is the terminal vertex too early. An enumerated order is a whole proposed route, which itself needs edge checks. Equating one scan with one verified order compares different units. Also, a decision-only enumerator can stop at its first witness; our permutation oracle deliberately lists every witness. The comparison describes full enumeration and state exploration, not a fair early-stopping runtime contest.
+
+The asymptotic state reduction is nevertheless meaningful. With \(k=n-2\) interior vertices, full enumeration has \(k!\) orders while the dense reachable-state count is \(2+k2^{k-1}\). The ratio of successive factorial counts is \(k+1\), while the state count eventually grows by a factor close to two. This explains why merging histories matters at increasing sizes, without turning an exponential method into a polynomial one. Memory, transition work and reconstruction costs still require their own accounting.
 
 ## 3.6 A reduction has a direction and two implications
 
@@ -136,6 +158,14 @@ Why does the remaining graph reveal a path? Select any spanning witness in the f
 
 The companion implements this reduction with `subset_search` as its oracle. That oracle is exponential; calling it “an oracle” does not remove its cost. On our six-edge toy graph, seven calls leave the witness \((0,2,1,3)\). This differs from the first witness returned by subset search, without any contradiction: the task requests a witness, not a unique canonical order.
 
+![Every edge-deletion query, answer and retained edge count comes from the executable trace.](figures/DNAD-03-F6.svg)
+
+**DNAD-03-F6.** A NO answer describes the trial graph without the tested edge. It does not describe the retained graph: on NO, the algorithm keeps that edge and preserves a yes-instance. This distinction is visible at query 3, where deleting \(0\to2\) would remove the only surviving way to leave the source after \(0\to1\) has already been deleted.
+
+We can sharpen the edge-minimality argument by naming the time dependence. Let \(G_i\) be the retained graph before testing edge \(e_i\), and let \(G_f\subseteq G_i\) be the final retained graph. If \(G_i-e_i\) has no witness, neither can its subgraph \(G_f-e_i\). Therefore a retained edge never needs to be reconsidered. If the final graph had an extra edge outside a spanning witness \(P\), that edge would contradict this fact because \(P\) would survive its deletion. This proves both the one-pass rule and the final \(n-1\)-edge structure.
+
+The trace records the graph *after* each decision, rather than just a list of answers. Tests independently enumerate witnesses in both the trial and retained graph at each step. This catches a subtle implementation failure: printing correct oracle answers while accidentally retaining the wrong edge set.
+
 ## 3.9 Bring the accounting back to molecules
 
 The Boolean DP can forget alternate histories because its question is existential. A molecular population cannot always be treated that way. Copy numbers affect survival and detection, and different sequences with the same abstract future role may have different physical interactions. A proposed molecular implementation of the recurrence must explain how sets and endpoints are represented, how equivalent states are recognized, and what each transition costs.
@@ -153,6 +183,13 @@ The next resource chapter should therefore keep total work, critical-path depth,
 5. **Clause audit.** Explain the 88 toy clauses. **Solution:** Eight positive row/column clauses plus 48 pairwise exclusions plus two endpoint units plus \(3(16-6)=30\) transition exclusions total 88. The redundant self-transition exclusions are included in that total.
 6. **Oracle budget.** Why do seven oracle calls not constitute a seven-step polynomial-time path solver? **Solution:** The calls contain substantial computations. Here each call uses an exponential subset algorithm. A polynomial number of calls to a hypothetical polynomial-time oracle would imply a polynomial-time composition, but that hypothesis has not been established.
 
+7. **Input-size trap.** A routine takes \(N^2\) iterations on a binary integer \(N=2^k\). Is it polynomial-time in the input length? **Solution:** Its input has \(k+1\) bits, while the iteration count is \(2^{2k}\). A polynomial expression in the numeric value is not a polynomial in the encoded length.
+8. **Complement closure.** Why is a problem in P also in coNP? **Solution:** Flip the output of its deterministic polynomial-time decider to decide the complement. That complement is in P and therefore NP, which is exactly the required coNP condition. No claim that NP is closed under complementation is needed.
+9. **Audit the plotted graph.** Why do the two four-vertex examples report ten and fifteen scans? **Solution:** The running graph has six edges, whereas the plotted complete graph has twelve. The reachable-state count is six in both, but scanning outgoing adjacency at those states incurs different work. State count alone does not fix transition work.
+10. **Trace an invariant.** After deleting \(0\to1\), why retain \(0\to2\)? **Solution:** Removing the latter leaves no outgoing edge from source 0 and hence no spanning source-to-target path. Retaining it preserves the path \(0,2,1,3\). The oracle's NO refers to the trial deletion, not to the retained graph.
+11. **Design a differential test.** How would you test a trace without trusting the DP oracle? **Solution:** For every small graph, enumerate all interior permutations independently. Replay each proposed deletion, compare its existence answer with enumeration, and check that the retained graph still has a witness. Verify that the final edge set is exactly the returned path's consecutive pairs. Passing finite tests supplements, rather than replaces, the monotonicity proof.
+12. **A representation audit.** An experiment advertises “only \(n\) DNA designs,” with \(2^n\) copies of each. What has the headline omitted? **Solution:** It has counted distinct designs but omitted the \(n2^n\) physical copies stipulated by its own inventory. Also request strand lengths, allocation across designs, transfer losses and detection assumptions. This is an audit of that proposal, not a lower bound on every molecular algorithm.
+
 ## Publication work still required
 
-Expand the complexity-class and reduction foundations with a primary-source-reviewed hardness chain; complete the remaining eight storyboard figures, including work/depth and no-signal logic; add further research exercises; integrate LaTeX references, index and glossary; then perform scientific, mathematical and every-page publication review. The working draft is deliberately excluded from the accepted entry point and its source-hash review.
+Expand the reduction foundations with a primary-source-reviewed hardness chain; complete the remaining four storyboard figures, including work/depth and no-signal logic; integrate LaTeX references, index and glossary; then perform scientific, mathematical and every-page publication review. Twelve exercises now have worked reasoning, but this is not publication acceptance. The working draft is deliberately excluded from the accepted entry point and its source-hash review.

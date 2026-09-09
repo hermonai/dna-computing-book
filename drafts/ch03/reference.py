@@ -87,13 +87,17 @@ def search_via_decision(n, edges, start, end):
     """Self-reduction; the actual oracle is exponential subset_search."""
     kept = set(instance(n, edges, start, end))
     calls = 1
+    trace = []
     if subset_search(n, kept, start, end)["route"] is None:
-        return {"route": None, "oracle_calls": calls, "kept_edges": sorted(kept)}
+        return {"route": None, "oracle_calls": calls, "kept_edges": sorted(kept), "trace": trace}
     for edge in sorted(kept):
         trial = kept - {edge}
         calls += 1
-        if subset_search(n, trial, start, end)["route"] is not None:
+        survives = subset_search(n, trial, start, end)["route"] is not None
+        if survives:
             kept = trial
+        trace.append({"query": calls, "edge": edge, "trial_has_path": survives,
+                      "action": "delete" if survives else "retain", "kept_edges": sorted(kept)})
     # An edge-minimal yes-graph consists of exactly one spanning path.
     route = [start]
     for _ in range(n - 1):
@@ -102,7 +106,7 @@ def search_via_decision(n, edges, start, end):
             raise AssertionError("self-reduction invariant failed")
         route.append(successors[0])
     assert verify(n, kept, start, end, route) and len(kept) == n - 1
-    return {"route": tuple(route), "oracle_calls": calls, "kept_edges": sorted(kept)}
+    return {"route": tuple(route), "oracle_calls": calls, "kept_edges": sorted(kept), "trace": trace}
 
 
 def cycle_to_path(n, edges, pivot=0):

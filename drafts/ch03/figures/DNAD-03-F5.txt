@@ -1,0 +1,25 @@
+DNAD-03-F5: Bits, vertices and reagent copies
+
+QUESTION
+What is the input length?
+
+OBJECTS
+Adjacency matrix
+vertex labels
+encoded integer
+oligo inventory
+
+RELATION / MECHANISM
+Count representation symbols before reporting a time bound
+
+INFERENCE
+Polynomial in numeric value can be exponential in its bit length.
+
+BOUNDARY
+Encoding choices and physical material are not interchangeable.
+
+SOURCE
+MIT lecture 14; Book I Chapter 2
+
+STATUS
+Working-draft figure; not part of the accepted PDF.
