@@ -1,0 +1,3 @@
+5′ ACGT 3′ pairs with aligned 3′ TGCA 5′; suitable nick → ligase-dependent seal.
+Physical association / ligation ⇢ symbolic matching / concatenation ⇢ algorithm.
+The abstraction omits concentration, kinetics, mismatch, yield and readout limits.

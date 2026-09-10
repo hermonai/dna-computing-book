@@ -1,0 +1,153 @@
+{
+  "DNAD-01": [],
+  "DNAD-02": [
+    "DNAD-01"
+  ],
+  "DNAD-03": [
+    "DNAD-01"
+  ],
+  "DNAD-04": [
+    "DNAD-02",
+    "DNAD-03"
+  ],
+  "DNAD-05": [
+    "DNAD-01"
+  ],
+  "DNAD-06": [
+    "DNAD-05"
+  ],
+  "DNAD-07": [
+    "DNAD-05",
+    "DNAD-06"
+  ],
+  "DNAD-08": [
+    "DNAD-05",
+    "DNAD-07"
+  ],
+  "DNAD-09": [
+    "DNAD-06",
+    "DNAD-08"
+  ],
+  "DNAD-10": [
+    "DNAD-08",
+    "DNAD-09"
+  ],
+  "DNAD-11": [
+    "DNAD-03",
+    "DNAD-06",
+    "DNAD-10"
+  ],
+  "DNAD-12": [
+    "DNAD-02",
+    "DNAD-11"
+  ],
+  "DNAD-13": [
+    "DNAD-03",
+    "DNAD-12"
+  ],
+  "DNAD-14": [
+    "DNAD-11",
+    "DNAD-12"
+  ],
+  "DNAD-15": [
+    "DNAD-08",
+    "DNAD-11"
+  ],
+  "DNAD-16": [
+    "DNAD-03",
+    "DNAD-15"
+  ],
+  "DNAD-17": [
+    "DNAD-05",
+    "DNAD-08",
+    "DNAD-16"
+  ],
+  "DNAD-18": [
+    "DNAD-04",
+    "DNAD-14",
+    "DNAD-15",
+    "DNAD-16",
+    "DNAD-17"
+  ],
+  "DNAD-19": [
+    "DNAD-06",
+    "DNAD-07",
+    "DNAD-11"
+  ],
+  "DNAD-20": [
+    "DNAD-07",
+    "DNAD-18",
+    "DNAD-19"
+  ],
+  "DNAD-21": [
+    "DNAD-19",
+    "DNAD-20"
+  ],
+  "DNAD-22": [
+    "DNAD-05",
+    "DNAD-18"
+  ],
+  "DNAD-23": [
+    "DNAD-10",
+    "DNAD-12",
+    "DNAD-19",
+    "DNAD-21"
+  ],
+  "DNAD-24": [
+    "DNAD-04",
+    "DNAD-18",
+    "DNAD-21",
+    "DNAD-22",
+    "DNAD-23"
+  ],
+  "DNAD-25": [
+    "DNAD-05",
+    "DNAD-10",
+    "DNAD-23"
+  ],
+  "DNAD-26": [
+    "DNAD-08",
+    "DNAD-09",
+    "DNAD-10",
+    "DNAD-23",
+    "DNAD-24"
+  ],
+  "DNAD-27": [
+    "DNAD-11",
+    "DNAD-12",
+    "DNAD-15",
+    "DNAD-17"
+  ],
+  "DNAD-28": [
+    "DNAD-07",
+    "DNAD-19",
+    "DNAD-20",
+    "DNAD-23",
+    "DNAD-27"
+  ],
+  "DNAD-29": [
+    "DNAD-06",
+    "DNAD-25",
+    "DNAD-28"
+  ],
+  "DNAD-30": [
+    "DNAD-05",
+    "DNAD-07",
+    "DNAD-08"
+  ],
+  "DNAD-31": [
+    "DNAD-21",
+    "DNAD-22",
+    "DNAD-24",
+    "DNAD-26",
+    "DNAD-28",
+    "DNAD-29"
+  ],
+  "DNAD-32": [
+    "DNAD-18",
+    "DNAD-24",
+    "DNAD-29",
+    "DNAD-30",
+    "DNAD-31"
+  ]
+}
