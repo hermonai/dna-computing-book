@@ -1,0 +1,54 @@
+\section{Before scaling the experiment, name its resource}
+The preceding chapter followed molecular candidates through selective
+operations. Before making that experiment larger, pause at a simpler question:
+what exactly became faster when candidates were processed together?
+
+Consider four candidates and three dependent predicate tests. In an abstract
+machine with enough parallel test slots, all four candidates can undergo the
+first test together, then the second, then the third. The elapsed number of
+dependent stages is three, but twelve candidate-tests have still occurred.
+The illustration counts every test, including tests on candidates that might
+already have failed; early stopping would be a different work policy.
+
+\NativeFigure{work-depth}{Rows are candidates; columns are dependent test
+stages. Horizontal arrows mean precedence for the same candidate. A column
+can execute in parallel only under the declared resource model. Twelve tests
+and depth three are different counts, neither a measured reaction time.}{fig:textbook-work-depth}
+
+Let $C$ be candidate count and $S$ the number of sequential stages. Under this
+idealized all-candidates/all-stages policy,
+\begin{equation}
+W=CS\quad[\text{candidate-tests}],\qquad
+D=S\quad[\text{dependent stages}].
+\end{equation}
+The dimensions expose the mistake in equating work with time. Converting
+$D$ into seconds requires a duration model for a stage. Implementing the
+parallel columns requires capacity for the candidates and the operations.
+Neither requirement disappears when a diagram draws the column vertically.
+
+\textbf{Prediction problem.} Suppose candidate count doubles while stage count
+stays fixed. What happens to these two counts? Does that prove the physical
+experiment takes the same time?
+
+\textbf{Worked answer.} Work doubles from 12 to 24 candidate-tests and abstract
+depth remains three. Equal physical time does not follow: concentration,
+mixing, reaction completion, separation, transfers and readout may change.
+The formula is a declared abstract model. The existing companion function
+\texttt{work\_depth} computes its counts; it does not simulate chemistry.
+
+There is a second, independent scaling question. A population can have many
+copies without representing every relevant candidate. If one independently
+drawn copy produces a detectable witness with probability $q$, then $m$ copies
+miss the witness with probability $(1-q)^m$. Thus the probability of observing
+at least one witness is
+\begin{equation}
+P_{\mathrm{signal}}=1-(1-q)^m.
+\end{equation}
+This calculation assumes independent copies and a fixed per-copy probability.
+It is not a calibrated molecular yield model. Correlated synthesis failures
+or concentration-dependent reactions can invalidate it.
+
+The rest of the chapter keeps these distinctions separate: the logical
+decision problem, the algorithmic work/depth model and the physical evidence
+needed to justify a conclusion. A short sequence of stages alone cannot prove
+that an exponentially large candidate population is cheap to construct.
