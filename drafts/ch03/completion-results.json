@@ -1,0 +1,28 @@
+{
+  "status": "synthetic independent-copy model, not calibrated chemistry",
+  "work_depth": {
+    "candidates": 4,
+    "stages": 3,
+    "work": 12,
+    "depth": 3
+  },
+  "coverage": [
+    {
+      "copies": 0,
+      "signal_probability": 0.0
+    },
+    {
+      "copies": 1,
+      "signal_probability": 0.04000000000000001
+    },
+    {
+      "copies": 10,
+      "signal_probability": 0.335167364008499
+    },
+    {
+      "copies": 100,
+      "signal_probability": 0.9831296806411504
+    }
+  ],
+  "per_copy_signal_probability": 0.04
+}

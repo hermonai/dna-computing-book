@@ -1,6 +1,6 @@
 # Chapter 3. Combinatorial search and complexity
 
-Working draft, 9 September 2026. This is an expanded technical core, not an accepted publication chapter. Chapters 1–2 remain the published build. Figure numbers below are stable draft asset IDs, not final LaTeX numbering.
+Review candidate, 12 September 2026. This standalone chapter includes twelve original figures and executable checks. It is not yet an accepted cumulative publication chapter. The accepted Chapters 1–2 remain unchanged. Figure labels are stable manuscript asset IDs.
 
 ## 3.1 A successful experiment leaves an algorithmic question
 
@@ -174,7 +174,121 @@ Similarly, reducing a graph to a polynomial-size formula says that the formula i
 
 The next resource chapter should therefore keep total work, critical-path depth, material, memory and readout separate. No theorem in this draft turns all DNA Hamiltonian solvers into factorial algorithms, and no small-instance simulation proves asymptotic superiority over electronic computation.
 
-## 3.10 Exercises with worked reasoning
+## 3.10 Parallel depth is not total work
+
+A parallel algorithm has a dependency structure. If four independent candidates
+each pass through three successive abstract tests, there are twelve test
+applications but only three tests on any one candidate's critical path. With
+enough workers, the tests at each level can overlap. That does not remove the
+other nine applications; it changes when and where they are carried out.
+
+![Four candidate histories expose twelve operations across three dependency levels.](figures/DNAD-03-F9.svg)
+
+**DNAD-03-F9.** Every circle is one abstract test. Columns are dependency levels,
+not laboratory time points. Work is the total number of circles; depth is the
+length of the longest dependent chain. No reaction-rate calibration is implied.
+
+Write total work as W, dependency depth as D, and available processors as P.
+Under an ideal discrete model in which each operation occupies one processor
+for one time unit, execution time satisfies
+
+\[
+T_P\ge\max\{W/P,D\}.
+\]
+
+The work bound follows because P processors complete at most P operations per
+unit; the depth bound follows because a dependent operation cannot precede its
+input. These are lower bounds, not a scheduling guarantee. Communication,
+allocation, load imbalance and synchronization can increase time further.
+The fixture in `completion_diagnostics.py` gives W=12 and D=3. Four ideal workers
+can realize the three levels, while one worker needs at least twelve units.
+
+A test tube is not a collection of ideal processors. Molecules interact at
+concentration-dependent rates, may compete for substrates and may be lost during
+handling. Thus P cannot simply be replaced by molecule count to predict a
+reaction duration. The transferable lesson is the accounting separation: a
+short dependency chain does not imply a small allocation, small total work or
+cheap readout. Chapter 4 will add those physical coordinates rather than rename
+depth as molecular speed.
+
+## 3.11 Missing signal has several explanations
+
+There are at least three distinct ways a positive instance can produce no
+recorded witness: no witness copy enters the sample; a copy enters but does not
+survive the operations; a surviving copy does not produce a recorded signal.
+These alternatives concern physical completeness, not logical soundness.
+
+![Alternative population histories can lead to the same no-signal observation.](figures/DNAD-03-F10.svg)
+
+**DNAD-03-F10.** The panels are alternative explanations, not a serial protocol.
+Curved marks denote schematic molecules, not counted microscopic observations.
+The probability formula below them is an explicit toy model, not a fitted assay.
+
+Suppose M independent candidate copies are drawn. Let p be the probability that
+one is a witness, s the conditional probability that a witness survives, and d
+the conditional probability that a surviving witness is detected. The chain
+rule gives a per-copy recorded-witness probability q=psd; this factorization
+uses conditional probabilities and does not require the three events within a
+copy to be independent. The additional assumption is independence **across**
+copies. Only then is
+
+\[
+\Pr(\text{at least one recorded witness})=1-(1-psd)^M.
+\]
+
+For p=.1, s=.5 and d=.8, q=.04. Ten copies give about .335167 probability of a
+recorded witness, so no signal remains quite plausible even when a witness is
+possible. The implementation uses `log1p` and `expm1` to avoid avoidable
+cancellation for small q, and handles zero-copy and certain-signal boundaries
+explicitly. Tests compare it with direct binomial reasoning on small cases.
+
+Shared contamination, common reagent failure and competition can correlate
+copies. In that case the exponent formula need not hold. A positive control can
+show that some detection path functioned, but cannot prove all witness species
+were represented or retained. Conversely, this toy model cannot turn a signal
+into a valid path: that still requires decoding and the independent verifier.
+
+## 3.12 What is proved, what is imported, what is measured
+
+![Size accounting and both existence implications accompany the split-pivot construction.](figures/DNAD-03-F11.svg)
+
+**DNAD-03-F11.** Opening and closing a cycle are inverse witness constructions
+under the stated loop-free, distinct-endpoint conventions. The drawing is one
+example; the argument and encoding-size account justify the general reduction.
+
+This chapter proves its subset recurrence, path-to-CNF equivalence and
+decision-to-search construction. It proves how directed cycle hardness would
+transfer to the fixed-endpoint path problem. The upstream NP-hardness result is
+an attributed theoretical premise, not a proof reconstructed from the original
+Cook and Karp papers here. Stating that boundary is more useful than presenting
+an incomplete satisfiability gadget as if its local arrows established a theorem.
+
+Keep three evidence columns separate. A proof establishes a quantified statement
+under assumptions. Finite tests challenge an implementation of that statement.
+A laboratory measurement constrains a physical system and its measurement model.
+None can silently replace either of the others. A theorem does not certify a
+pipetting operation, and a successful reaction on one graph does not prove a
+complexity-class separation.
+
+## 3.13 The physical bridge the abstraction must preserve
+
+![A Boolean reachable state forgets physical multiplicity and chemical history.](figures/DNAD-03-F12.svg)
+
+**DNAD-03-F12.** A duplex illustrates that directed sequences have a physical
+realization, but the DP table is not an assay. One true Boolean entry does not
+distinguish one remaining molecule from many. The cartoon's four bases illustrate
+orientation; they are not a proposed stable reagent or a molecular DP design.
+
+When two histories merge into D[S,v], the algorithm preserves the future
+existence question. A proposed molecular merger must additionally preserve
+whatever physical information later operations require. Sequence identity,
+copy number and accessibility may affect those operations even if the abstract
+visited set and endpoint match. Therefore the implementer must provide a
+representation map and an error/resource contract, not just rename a molecule
+as a state. This is the precise handoff to molecular parallelism and resource
+accounting in Chapter 4.
+
+## 3.14 Exercises with worked reasoning
 
 1. **A failed certificate.** In the four-vertex example, submit \((0,1,3,2)\). Does rejection prove the instance is negative? **Solution:** It ends at 2 rather than 3 and requires absent edge \(3\to2\). This rejects that order only; either listed witness proves the instance positive.
 2. **Insufficient state.** Why not store only the visited set? **Solution:** Two prefixes using the same set may end at different vertices. Their available outgoing edges differ, so they need not admit the same completion. The last vertex must be retained unless another representation supplies equivalent information.
@@ -192,4 +306,18 @@ The next resource chapter should therefore keep total work, critical-path depth,
 
 ## Publication work still required
 
-Expand the reduction foundations with a primary-source-reviewed hardness chain; complete the remaining four storyboard figures, including work/depth and no-signal logic; integrate LaTeX references, index and glossary; then perform scientific, mathematical and every-page publication review. Twelve exercises now have worked reasoning, but this is not publication acceptance. The working draft is deliberately excluded from the accepted entry point and its source-hash review.
+All twelve storyboard figures are now produced with semantic TXT companions.
+The standalone Chapter 3 review edition includes a source list, glossary and
+tested code appendix. It does not modify the accepted cumulative edition.
+Independent subject review and cumulative LaTeX index/bibliography integration
+remain release gates; the imported upstream hardness theorem is not claimed as
+a newly reconstructed full proof.
+
+## Selected glossary
+
+**Certificate:** a proposed finite witness checked by a verifier.
+**Reduction:** an efficiently computable map preserving a decision predicate.
+**Work:** total elementary operations in the declared model.
+**Depth:** longest chain of dependent operations in that model.
+**Physical completeness:** conditions under which a logically existing witness
+is represented, retained and observed; not implied by predicate soundness.

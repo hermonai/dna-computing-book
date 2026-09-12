@@ -1,0 +1,29 @@
+DNAD-03-F12: From complexity back to molecules
+
+QUESTION
+What will the next chapter add?
+
+OBJECTS
+Digital operation
+physical realization
+resource vector
+error model
+
+RELATION / MECHANISM
+Carry logical invariants into physical budgets
+
+INFERENCE
+Computational hardness and engineering feasibility answer different questions.
+
+BOUNDARY
+No new universal molecular lower bound is asserted.
+
+SOURCE
+Current curriculum and Chapter 2
+
+STATUS
+Working-draft figure; not part of the accepted PDF.
+
+SEMANTIC TXT GRAPH
+D[S,v]=true ⇢ one or many physical realizations.
+Existence does not store copy count, yield or kinetic state; a molecular mapping adds assumptions.

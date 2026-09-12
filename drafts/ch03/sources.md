@@ -1,4 +1,21 @@
-# Chapter 3 source ledger: first technical core
+# Chapter 3 source ledger
+
+## Review-candidate extension, 12 September 2026
+
+The earlier entries below retain the access record of the first two passes.
+The new work/depth and missing-signal examples are original derivations with
+explicit assumptions, not laboratory measurements. For the signal calculation,
+survival and detection are conditional probabilities in a per-copy chain;
+independence is assumed across candidate copies only when exponentiating the
+no-signal probability. The implementation is checked against explicit two-copy
+enumeration, boundary cases and a small-probability stability case.
+
+MIT 6.046J Recitation 8 was rechecked for the split-vertex reduction. This chapter
+proves that map and explicitly imports the hardness of directed Hamiltonian
+cycle as a premise. It does not claim to supply the entire Cook-Karp hardness
+chain. Figures F9-F12 separate abstract work, molecular population, observation
+and proof obligations. All twelve figures are produced; calibrated physical
+accounting and independent scientific review remain open.
 
 Consulted 9 September 2026. This ledger distinguishes directly read support from located-but-unread material. It is not a systematic review or independent approval.
 

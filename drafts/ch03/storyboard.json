@@ -155,7 +155,7 @@
       "captionThesis": "Parallel depth is only one resource coordinate.",
       "evidenceSource": "Original accounting linked to Chapter 2",
       "misleadingInterpretation": "Do not equate Boolean circuit depth to laboratory time.",
-      "status": "planned-no-assets"
+      "status": "produced-draft-svg-txt"
     },
     {
       "id": "DNAD-03-F10",
@@ -173,7 +173,7 @@
       "captionThesis": "A missing signal needs coverage, retention and readout assumptions.",
       "evidenceSource": "Chapter 2 model",
       "misleadingInterpretation": "This is not a calibrated experimental error probability.",
-      "status": "planned-no-assets"
+      "status": "produced-draft-svg-txt"
     },
     {
       "id": "DNAD-03-F11",
@@ -189,7 +189,7 @@
       "captionThesis": "A plausible drawing is not a reduction proof.",
       "evidenceSource": "Original checklist tied to worked construction",
       "misleadingInterpretation": "Testing finite cases cannot replace proof.",
-      "status": "planned-no-assets"
+      "status": "produced-draft-svg-txt"
     },
     {
       "id": "DNAD-03-F12",
@@ -206,7 +206,7 @@
       "captionThesis": "Computational hardness and engineering feasibility answer different questions.",
       "evidenceSource": "Current curriculum and Chapter 2",
       "misleadingInterpretation": "No new universal molecular lower bound is asserted.",
-      "status": "planned-no-assets"
+      "status": "produced-draft-svg-txt"
     }
   ]
 }
