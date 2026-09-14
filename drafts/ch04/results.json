@@ -1,0 +1,107 @@
+{
+  "scope": "synthetic independent sampling; quantities are not measurements",
+  "single_witness": {
+    "q": 0.04,
+    "budget": 113,
+    "miss": 0.009923144909218988,
+    "previous_miss": 0.010336609280436445
+  },
+  "coverage": {
+    "expected_distinct_four_draws": 2.734375,
+    "all_four_union_budget": 21,
+    "bound": 0.00951363581680198
+  },
+  "finite_pool": {
+    "population": 10,
+    "witnesses": 2,
+    "sample": 3,
+    "miss": 0.4666666666666667,
+    "replacement_miss": 0.512
+  },
+  "resource_table": [
+    {
+      "vertices": 10,
+      "candidate_orders": 40320,
+      "copies_99pct_one_witness": 185679,
+      "moles": 3.0832723345377267e-19,
+      "litres": 3.083272334537727e-10,
+      "grams_ssdna_approx": 1.0174798703974499e-14
+    },
+    {
+      "vertices": 15,
+      "candidate_orders": 6227020800,
+      "copies_99pct_one_witness": 28676490534,
+      "moles": 4.7618432841148e-14,
+      "litres": 4.7618432841148005e-05,
+      "grams_ssdna_approx": 1.571408283757884e-09
+    },
+    {
+      "vertices": 20,
+      "candidate_orders": 6402373705728000,
+      "copies_99pct_one_witness": 29484020509172678,
+      "moles": 4.895936791283616e-08,
+      "litres": 48.959367912836164,
+      "grams_ssdna_approx": 0.0016156591411235933
+    },
+    {
+      "vertices": 25,
+      "candidate_orders": 25852016738884976640000,
+      "copies_99pct_one_witness": 119052936733578179152962,
+      "moles": 0.19769205250788288,
+      "litres": 197692052.5078829,
+      "grams_ssdna_approx": 6523.837732760136
+    }
+  ],
+  "miss_curves": [
+    {
+      "copies": 0,
+      "independent": 1.0,
+      "shared_failure_10pct": 1.0
+    },
+    {
+      "copies": 10,
+      "independent": 0.664832635991501,
+      "shared_failure_10pct": 0.6983493723923508
+    },
+    {
+      "copies": 25,
+      "independent": 0.36039671685801833,
+      "shared_failure_10pct": 0.4243570451722165
+    },
+    {
+      "copies": 50,
+      "independent": 0.12988579352203863,
+      "shared_failure_10pct": 0.21689721416983476
+    },
+    {
+      "copies": 100,
+      "independent": 0.01687031935884965,
+      "shared_failure_10pct": 0.11518328742296469
+    },
+    {
+      "copies": 150,
+      "independent": 0.0021912148168943967,
+      "shared_failure_10pct": 0.10197209333520496
+    },
+    {
+      "copies": 200,
+      "independent": 0.00028460767526957727,
+      "shared_failure_10pct": 0.10025614690774262
+    }
+  ],
+  "half_times_seconds": {
+    "one_nM": 693.1471805599452,
+    "ten_nM": 69.31471805599453
+  },
+  "aliquot": {
+    "fraction": 0.01,
+    "copies": 100,
+    "miss": 0.3660323412732295
+  },
+  "readout": {
+    "prior": 0.01,
+    "sensitivity": 0.9,
+    "false_positive": 0.05,
+    "positive_predictive_value": 0.15384615384615385
+  }
+}

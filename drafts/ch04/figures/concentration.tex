@@ -1,0 +1,16 @@
+\begin{tikzpicture}
+\foreach \x/\v/\c/\level in {1/1/1/2.5,8/.1/10/1}{
+ \draw[fill=Pale,draw=none] (\x+.03,.4) rectangle (\x+4.97,\level);
+ \draw[thick,gray] (\x,3.5)--(\x,.4).. controls (\x+2.5,-.5) ..(\x+5,.4)--(\x+5,3.5);
+ \draw[Blue] (\x,\level)--(\x+5,\level);
+ \foreach \i in {0,...,5}{
+  \pgfmathsetmacro{\sx}{\x+.5+mod(\i,3)*1.4}
+  \pgfmathsetmacro{\sy}{.45+floor(\i/3)*.3}
+  \draw[Blue,thick] (\sx,\sy) .. controls +(.2,.2) and +(-.2,-.2) .. +(.75,0);
+ }
+ \node[note] at (\x+2.5,4.2) {$M=6.02214076\times10^8$};
+ \node[note] at (\x+2.5,-.7) {$V=\v\,\mu\mathrm{L}$,\quad $c=\c\,\mathrm{nM}$};
+}
+\node[note] at (7,5) {Same molecule count; different concentration};
+\node[smallnote] at (7,-1.5) {Six drawn strands represent a population, not a molecule count. Volumes are annotated, not to scale.};
+\end{tikzpicture}

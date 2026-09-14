@@ -1,0 +1,278 @@
+\chapter{Molecular parallelism and resource accounting}
+\label{ch:resources}
+
+\section{Eight molecules are not eight different answers}
+
+Imagine a tube containing eight DNA molecules. Each molecule encodes a candidate answer to a small search problem. You are told that four candidate identities are possible. Before doing any calculation, predict: does the presence of eight molecules guarantee that all four identities occur?
+
+It does not. A tube containing two copies of each identity covers the whole candidate set. A tube containing four copies of one identity and two copies of each of two others has the same molecule count but misses the fourth identity entirely. An assay that measures total DNA alone cannot distinguish these two coverage claims.
+
+\Plate{population}{Multiplicity and diversity are different resources. Both populations contain eight schematic strands, but population A contains four sequence identities and population B only three. The letters denote whole candidate identities, not nucleotide bases. This is a count illustration, not a spatial simulation of a solution.}{fig:population}
+
+This distinction is the starting point for honest molecular resource accounting. \Term{Multiplicity} is the number of physical copies; \Term{diversity} is the number of different represented identities. Neither is identical to the number of useful answers recovered at the end. A molecule can encode an invalid candidate, fail to react, disappear during transfer, or remain undetected.
+
+Chapter 3 separated a computational representation from the operation performed on it. Here we ask what that representation costs when it must exist as matter. We will calculate sampling budgets, convert copies into amount and volume, and then follow a candidate through reaction and readout. The numerical examples are deliberately specified teaching models, not calibrated laboratory predictions.
+
+\section{A probability budget for one useful witness}
+
+\subsection{Start with a single copy}
+
+A \Term{witness} is a candidate whose successful recovery would establish the result we seek. Suppose one independently generated copy has probability $q$ of becoming a usable witness at the end of the pipeline. The event includes both being the right candidate and surviving the operations that matter.
+
+For example, define $p$ as the probability of generating a valid candidate, $r$ as its conditional survival probability, and $d$ as its conditional detection probability given survival. The probability chain rule gives
+\begin{equation}
+q=p\,r\,d. \label{eq:qchain}
+\end{equation}
+These are dimensionless probabilities. Equation~\ref{eq:qchain} does not require the three stages to be independent: $r$ and $d$ are conditional probabilities. What the calculation below requires is independence \emph{across copies}, with the same final success probability $q$ for each copy.
+
+Let $M$ be a nonnegative integer number of copies. Failure of every copy has probability
+\begin{equation}
+P_{\mathrm{miss}}(M)=(1-q)^M,\qquad
+P_{\mathrm{recover}}(M)=1-(1-q)^M. \label{eq:miss}
+\end{equation}
+The product appears because all $M$ independent failures must occur. This is a statement about a model of repeated opportunities, not a guarantee delivered by parallel hardware.
+
+For a declared acceptable miss probability $0<\delta<1$, solve $(1-q)^M\leq\delta$. Taking logarithms and remembering that $\ln(1-q)<0$ reverses the inequality when dividing:
+\begin{equation}
+M\geq\frac{\ln\delta}{\ln(1-q)},\qquad
+M_{\min}=\left\lceil\frac{\ln\delta}{\ln(1-q)}\right\rceil.
+\label{eq:budget}
+\end{equation}
+The ceiling matters: a fraction of a molecule is not a copy budget.
+
+\subsection{A complete worked budget}
+
+Choose, for illustration, $p=0.10$, $r=0.50$, and $d=0.80$. These assumptions give $q=0.04$. To make the modeled miss probability at most $1\%$, equation~\ref{eq:budget} requires $M=113$. The executable calculation returns
+\begin{align}
+(0.96)^{113}&=0.0099231449\ldots,\\
+(0.96)^{112}&=0.0103366093\ldots.
+\end{align}
+Checking the previous integer verifies minimality in this case. Merely reporting that 113 passes would not establish that it is the smallest passing integer.
+
+Boundary cases are informative. With no copies, failure is certain. With $q=0$, no finite number of copies can recover a witness. With $q=1$, one copy suffices. These cases should appear in software tests because the logarithmic expression itself is unsuitable at the endpoints.
+
+For small positive $q$, $\ln(1-q)\approx-q$, so $M_{\min}$ is approximately $\ln(1/\delta)/q$. The approximation explains the scaling; the reference implementation uses an 80-digit decimal logarithm and integer ceiling for its declared numerical domain. It rejects positive $q<10^{-50}$ rather than pretending that fixed precision supports arbitrary tiny probabilities. The printed factorial examples stay comfortably inside that domain.
+
+\subsection{Unknown success probability is not a number}
+
+If $q$ is estimated from data, substituting its point estimate into equation~\ref{eq:budget} does not establish the claimed confidence level. A conservative calculation needs a justified lower bound on $q$, and uncertainty in that bound must be reported separately. If no positive lower bound is defensible, there is no defensible finite worst-case copy budget from this model.
+
+Generation can also be biased. A branching synthesis or assembly procedure does not automatically sample all encoded candidates uniformly. Different path lengths, local reaction preferences, and losses can alter candidate probabilities. The relevant probability is that of the witness under the \emph{actual proposal and recovery process}, not the reciprocal of the number of names in a theoretical search space.
+
+\section{One witness, many identities, and finite sampling}
+
+\subsection{Expected diversity is not complete coverage}
+
+Suppose there are $N$ identities, each drawn with probability $1/N$, independently with replacement. Introduce an indicator $I_j$ that equals one if identity $j$ appears at least once among $M$ draws. Since $P(I_j=0)=(1-1/N)^M$,
+\begin{equation}
+\mathbb E[D]=\mathbb E\!\left[\sum_{j=1}^{N}I_j\right]
+=N\left[1-\left(1-\frac1N\right)^M\right], \label{eq:diversity}
+\end{equation}
+where $D$ is represented diversity. Linearity of expectation does not require the indicators to be independent.
+
+With four draws from four equally likely identities, the expected diversity is $2.734375$, not four. An expectation need not be an integer, even though every realized population has an integer diversity. It averages over possible populations.
+
+To bound the probability of missing \emph{any} identity, use the union bound:
+\begin{equation}
+P(D<N)\leq \min\!\left\{1,N\left(1-\frac1N\right)^M\right\}.
+\label{eq:union}
+\end{equation}
+For $N=4$ and a $1\%$ bound, $M=21$ is sufficient; the right-hand side is approximately $0.009514$. This is a sufficient budget from a bound, not a proof that 21 is the exact minimum for full coverage. Missing-identity events overlap, so adding their probabilities can overcount.
+
+For unequal identity probabilities $p_j$, the same reasoning gives $\mathbb E[D]=\sum_j[1-(1-p_j)^M]$ and a missing-any bound $\sum_j(1-p_j)^M$. Rare identities dominate stringent coverage requirements. If one required identity has probability zero, complete coverage is impossible regardless of abundance elsewhere.
+
+\subsection{Sampling without replacement}
+
+Now change the physical question. A finite pool contains exactly $P$ molecules, of which $W$ are witnesses. Draw exactly $m$ distinct molecules uniformly without replacement. There are $\binom{P}{m}$ possible samples, and $\binom{P-W}{m}$ contain no witness. Therefore
+\begin{equation}
+P_{\mathrm{miss}}=\frac{\binom{P-W}{m}}{\binom{P}{m}}, \label{eq:finite}
+\end{equation}
+with zero miss probability if $m>P-W$. All three counts are integers and $0\leq W,m\leq P$.
+
+For $P=10$, $W=2$, and $m=3$, the miss probability is $\binom83/\binom{10}3=7/15$. Independent sampling with replacement would instead give $0.8^3=0.512$. The difference is not rounding error. Removing a non-witness changes the composition of the remaining finite pool. Choosing the wrong sampling model changes the answer.
+
+An aliquot modeled by each molecule independently entering a fraction $f$ of the volume is another model again: the sampled count is random rather than fixed. Under that ideal well-mixed model, missing all $W$ witnesses has probability $(1-f)^W$. State which sampling operation a formula describes before using it.
+
+\section{Recognition does not complete the chemical operation}
+
+Probability accounting becomes useful only when its events correspond to physical mechanisms. Complementary base pairing can bring strands into a suitable arrangement. That arrangement is not itself a sealed covalent backbone.
+
+\Plate{ligation}{A nicked duplex and its ligated product. The upper strand runs from $5'$ to $3'$ and the complementary lower strand in the opposite direction. The nick separates a $3'$ hydroxyl from a neighboring $5'$ phosphate; ligation creates a phosphodiester linkage. The enzyme shape and strands are schematic, not atomistic or to scale. Recognition, correct end chemistry, and sealing are distinct conditions.}{fig:ligation}
+
+For an ATP-dependent DNA ligase example, activation involves enzyme adenylation, transfer of AMP to the nick's $5'$ phosphate, and attack by the adjacent $3'$ hydroxyl to form the linkage with AMP release. This summary concerns that reaction class; it does not imply that every ligase uses ATP or that any nearby DNA ends are acceptable substrates~\cite{neb}.
+
+The accounting consequence is simple but important. A candidate that hybridizes correctly can still fail a later covalent-joining requirement. Conversely, detecting total duplex material need not prove that the intended product was sealed. A computational encoding must specify which physical state counts as a valid output and which assay distinguishes it from intermediates.
+
+Amplification also needs careful interpretation. Copies descended from one recovered template can increase a detector's signal. They do not retroactively increase the diversity of templates present before amplification. If a required template was absent, making many copies of other templates cannot restore it. Descendants share a lineage and may share errors; treating them as independent original search attempts exaggerates the evidence.
+
+\section{Shared failures set a ceiling on reliability}
+
+Suppose an entire preparation fails with probability $\rho$. Conditional on a working preparation, copies succeed independently with probability $q$. The total miss probability is
+\begin{equation}
+P_{\mathrm{miss}}=\rho+(1-\rho)(1-q)^M. \label{eq:common}
+\end{equation}
+The first term corresponds to the preparation-wide failure event; the second to a working preparation in which every copy still fails. These events are disjoint, so their probabilities add.
+
+\Plate{miss}{Independent copies reduce the miss probability when $q=0.04$, but a preparation-wide failure probability $\rho=0.10$ creates a floor of 0.10. The vertical axis is logarithmic. The dotted horizontal line is the shared-failure floor, not a fitted experimental threshold; all plotted numbers come from the declared model.}{fig:miss}
+
+No increase in $M$ can make equation~\ref{eq:common} smaller than $\rho$. Thus a $1\%$ target is impossible in a model with a $10\%$ shared-failure floor. The right engineering response is to change the failure structure, not simply to order more copies.
+
+Multiple genuinely independent preparations can reduce the probability that all preparations suffer their shared-failure event to $\rho^R$, where $R$ is the number of preparations. However, identical contaminated reagents, one faulty instrument, or a common analysis error can correlate those preparations too. Independence is an experimental design property to justify, not a synonym for using different tubes.
+
+\section{From copies to moles, concentration, and volume}
+
+\subsection{The dimensioned conversion}
+
+The Avogadro constant is exactly $N_A=6.02214076\times10^{23}\ \mathrm{mol}^{-1}$ for specified entities~\cite{bipm}. If the entities are individual candidate strands, amount of substance $a$ and molar concentration $c$ obey
+\begin{equation}
+a=\frac{M}{N_A},\qquad c=\frac{a}{V},\qquad V=\frac{M}{N_Ac}. \label{eq:volume}
+\end{equation}
+Here $a$ is in moles, $c$ in moles per litre, and $V$ in litres. Always identify the entity: counting individual strands is not the same convention as counting duplex complexes.
+
+\Plate{concentration}{Equal molecular inventory at two concentrations. Both idealized tubes contain $6.02214076\times10^8$ specified molecules. Reducing volume from $1\,\mu\mathrm L$ to $0.1\,\mu\mathrm L$ increases concentration from 1 to 10 nM. The drawn glyphs represent the same inventory; neither glyph count nor tube dimensions are a literal scale drawing.}{fig:concentration}
+
+Holding concentration fixed makes volume proportional to copy count. Holding volume fixed makes concentration proportional to copy count. These are different experimental constraints, and either can encounter practical limits. A formula converting molecules to volume is not a claim that the resulting solution is synthesizable, mixable, or chemically well behaved.
+
+\subsection{A factorial proposal, explicitly limited}
+
+Consider a generate-and-test proposal that fixes two endpoints of an $n$-vertex ordering problem and samples all $(n-2)!$ internal orders uniformly. Assume exactly one order is a witness and recovery is lossless. Then $q=1/(n-2)!$. This counts orders proposed before validity testing; many orders may not follow edges of the actual graph.
+
+Applying the exact integer budget for 99\% modeled recovery and converting the \emph{total candidate inventory} to volume at 1 nM gives:
+
+\begin{center}\small\input{\Generated/resources.tex}\end{center}
+
+At $n=20$, the budget is 29,484,020,509,172,678 copies, corresponding to approximately 48.96 litres at that concentration. At $n=25$, the modeled volume is approximately $1.977\times10^8$ litres. These startling numbers follow from a deliberately naive uniform proposal with one witness; they are not lower bounds on every DNA algorithm or measurements of a laboratory implementation.
+
+One can also make a declared mass estimate. If every single-stranded candidate is assigned length $L=100$ nucleotides and an approximate molar mass of $330L$ grams per mole, then
+\begin{equation}
+m_{\mathrm{DNA}}\approx \frac{M}{N_A}\,(330L)\ \mathrm{g\,mol^{-1}}.
+\label{eq:mass}
+\end{equation}
+The factor 330 is an explicit rough accounting parameter, not a sequence-specific chemical formula. With the $n=25$ copy budget, this convention gives approximately 6,524 grams. It excludes auxiliary strands, enzymes, solvents, containers, waste, and synthesis losses. Fixing length at 100 nucleotides also omits any increase in encoding length with problem size. The estimate is intentionally incomplete, but its omissions are visible.
+
+\section{More concentration can change time, not just storage}
+
+To isolate one kinetic idea, assume an irreversible elementary reaction $A+B\to C$ obeying mass action. Let $B$ be in sufficient excess that its concentration $c_B$ stays constant, and let $k$ have units $\mathrm{M}^{-1}\mathrm{s}^{-1}$, where $\mathrm M$ means molar. Then
+\begin{equation}
+\frac{d[A]}{dt}=-kc_B[A],\qquad
+[A](t)=[A](0)e^{-kc_Bt}. \label{eq:kinetics}
+\end{equation}
+The product $kc_Bt$ is dimensionless. Setting $[A](t_{1/2})=[A](0)/2$ gives
+\begin{equation}
+t_{1/2}=\frac{\ln2}{kc_B}. \label{eq:halftime}
+\end{equation}
+With the \emph{chosen toy value} $k=10^6\ \mathrm{M}^{-1}\mathrm{s}^{-1}$, 1 nM excess reagent gives about 693.15 seconds, whereas 10 nM gives about 69.31 seconds. This is a consequence of the stated differential equation, not an experimentally established rate for the ligation plate or for arbitrary DNA reactions.
+
+The lesson is why inventory alone is insufficient. Spreading the same molecules through a larger volume changes encounter-dependent dynamics. If $B$ is depleted, the constant-$c_B$ solution is no longer valid; if the reaction is reversible, a backward term is needed; if mixing limits encounters, a well-mixed model may fail. Increasing concentration can also change unwanted interactions. The simple equation exposes a dependence without claiming to describe every mechanism.
+
+\section{The last bottleneck: extracting evidence}
+
+\subsection{A witness in the tube may not reach the detector}
+
+\Plate{readout}{Recovery is a chain of physical events. A well-mixed pool containing 100 witness copies is sampled with per-copy inclusion probability 0.01, followed by capture and readout. Even before capture losses, the probability of an aliquot containing no witness is $0.99^{100}\approx0.366$. Molecular glyphs indicate states and routes, not literal counts or calibrated detection efficiency.}{fig:readout}
+
+The pool in Figure~\ref{fig:readout} contains the answer, yet more than a third of idealized 1\% aliquots miss it. Counting the original pool as a successful computation would therefore answer a different question from counting recoverable, verified outputs.
+
+Readout capacity matters as well. If an assay can inspect only $K$ candidates, the proposal and enrichment stages must make that limited inspection budget useful. An operation that generates many candidate molecules but leaves the reader to distinguish nearly all of them individually can transfer the search cost into measurement and analysis.
+
+\subsection{Positive signal is not the same as a valid answer}
+
+Let $\pi$ be the fraction of inspected candidates that are truly valid, $s$ the sensitivity of a binary screening assay, and $f$ its false-positive probability on invalid candidates. Bayes' rule gives
+\begin{equation}
+P(\mathrm{valid}\mid\mathrm{positive})=
+\frac{\pi s}{\pi s+(1-\pi)f}. \label{eq:ppv}
+\end{equation}
+With $\pi=0.01$, $s=0.90$, and $f=0.05$, only about 0.15385 of positives are valid under the model. Most candidates started invalid, so a modest false-positive rate acts on a much larger population. This synthetic screening example concerns computational candidate verification, not clinical diagnosis.
+
+The appropriate final check depends on the representation. For a path candidate, decoding its sequence should still be followed by checking the required vertices and edges. A fluorescence increase might establish a biochemical event without establishing every logical condition of the encoded problem.
+
+\section{A resource ledger rather than one impressive number}
+
+An end-to-end comparison should keep several quantities separate:
+
+\begin{center}\small
+\begin{tabular}{p{.22\linewidth}p{.22\linewidth}p{.46\linewidth}}
+\toprule Quantity & Unit & What must be counted\\\midrule
+Inventory & copies, mol & Candidates and auxiliary species; before or after losses specified\\
+Encoding & nt per strand & Length distribution and representation overhead\\
+Concentration/volume & mol/L, L & Which variable is held fixed and which is scaled\\
+Reaction depth & dependent stages & Sequential prerequisites, including separation operations\\
+Readout & reads, bytes, s & Sampling, capture, instrument capacity, decoding, verification\\
+Energy & joules & Declared physical boundary and amortization rule\\\bottomrule
+\end{tabular}
+\end{center}
+
+If stages must wait for one another, end-to-end latency includes setup, reaction intervals, transfers or separations, readout, and analysis. Parallel reactions can reduce the time spent in one part without removing dependent stages elsewhere. Throughput and latency must not be interchanged: outputs per second describe a rate, while seconds to one verified output describe a delay.
+
+Likewise, energy accounting needs a boundary. A useful schematic ledger is
+\begin{equation}
+E_{\mathrm{total}}=E_{\mathrm{synthesis}}^{\mathrm{allocated}}
++E_{\mathrm{temperature}}+E_{\mathrm{instruments}}
++E_{\mathrm{handling}}+E_{\mathrm{analysis}}.
+\end{equation}
+Every term is in joules; an instrument's power in watts must be integrated over time to contribute energy. The allocation rule for reusable equipment or shared synthesis must be stated. No numerical energy advantage follows from this equation alone, and this chapter supplies no measured energy benchmark.
+
+Return to the 113-copy example. Its conclusion is narrowly but usefully stated: under the independent-copy model and declared $p,r,d$, 113 copies achieve the requested miss probability. It says nothing yet about the cost of obtaining those probabilities, the correctness of the biochemical representation, or the cost of verifying the output. A professional design makes those additional obligations explicit.
+
+\section{Exercises with worked answers}
+
+\begin{enumerate}
+\item \textbf{Prediction: abundance versus coverage.} Eight molecules occupy four possible identities. Give two populations with different diversity.\par
+\textit{Answer.} Counts $(2,2,2,2)$ have diversity four; $(4,2,2,0)$ have diversity three. Both have total count eight. Total material cannot determine support size.
+
+\item \textbf{Derivation: a target budget.} Recalculate the smallest budget for $q=0.04$, $\delta=0.01$, and verify the adjacent integer.\par
+\textit{Answer.} Equation~\ref{eq:budget} gives 113; the miss probabilities are approximately 0.009923 at 113 and 0.010337 at 112. The latter fails the stated inequality.
+
+\item \textbf{Counterexample: independent stages.} Does $q=prd$ prove that generation, survival, and detection are independent?\par
+\textit{Answer.} No. Define $r=P(S\mid G)$ and $d=P(D\mid G,S)$. The chain rule then gives the product without stage independence. Independent copies remain a separate assumption in equation~\ref{eq:miss}.
+
+\item \textbf{Exact counting.} Enumerate all $4^4$ equally likely length-four draws over four identities. What is the probability of complete coverage?\par
+\textit{Answer.} Complete coverage requires each identity exactly once, giving $4!=24$ draws. The probability is $24/256=0.09375$. This is not the expected diversity, which is 2.734375.
+
+\item \textbf{Finite pool.} Verify equation~\ref{eq:finite} by enumerating samples for $(P,W,m)=(10,2,3)$.\par
+\textit{Answer.} There are 120 samples, 56 without witnesses. Their ratio is $7/15$. The reference tests enumerate combinations independently of the formula.
+
+\item \textbf{Failure floor.} Can 10,000 copies meet a 1\% miss target when $\rho=0.10$?\par
+\textit{Answer.} No. The first term of equation~\ref{eq:common} already exceeds the target. Changing copy number cannot remove a shared failure event.
+
+\item \textbf{Units.} How much volume holds $6.02214076\times10^8$ strands at 1 nM?\par
+\textit{Answer.} The amount is $10^{-15}$ mol. Dividing by $10^{-9}$ mol/L gives $10^{-6}$ L, or $1\,\mu$L. At 10 nM, the volume is $0.1\,\mu$L.
+
+\item \textbf{Kinetic assumption.} Why does equation~\ref{eq:halftime} cease to describe the stated system if $B$ is substantially consumed?\par
+\textit{Answer.} Its derivation replaces $[B](t)$ by a constant. With depletion, $d[A]/dt=-k[A][B](t)$ and the two concentrations must be evolved together, with appropriate initial conditions and stoichiometry.
+
+\item \textbf{Sampling and detection.} A pool contains 100 witnesses. An independent 1\% per-copy aliquot is read perfectly. Is recovery probability 99\%?\par
+\textit{Answer.} No. It is $1-0.99^{100}\approx0.63397$. Perfect detection cannot detect molecules absent from the aliquot.
+
+\item \textbf{Verification.} Compute the expected number of valid and invalid positives among 10,000 candidates with the screening parameters in equation~\ref{eq:ppv}.\par
+\textit{Answer.} There are 100 valid and 9,900 invalid candidates in the stipulated composition. Expected positives are 90 valid and 495 invalid; $90/585=2/13$. These are expectations, not guaranteed realized counts.
+
+\item \textbf{Implementation.} Why store a large copy budget as an integer rather than a binary64 floating-point number?\par
+\textit{Answer.} Binary64 cannot represent every integer above $2^{53}$. The 20-vertex budget is larger than this. The reference keeps integer ceilings and counts as integers; scientific-notation tables are deliberately rounded displays, not the stored exact values.
+
+\item \textbf{Investigation.} Design a resource comparison for a proposed molecular search method and a conventional program.\par
+\textit{Rubric, ten points.} Award two points each for a common verified-output criterion; declared sampling and failure assumptions; dimensioned material and time accounting; a readout/verification budget; and a reproducible experiment with negative controls and uncertainty. Do not award an energy-efficiency conclusion based only on molecular density or reaction counts.
+\end{enumerate}
+
+\section{Executable reference and selective glossary}
+
+The companion \path{drafts/ch04/reference.py} generates the numerical results. Tests in \path{tests/test_ch04_reference.py} check boundary cases, enumerate small sample spaces, verify the large integer budget, and compare generated results with the recorded JSON. The following whole functions are extracted from that tested source at build time. They use its imported decimal types and validation helpers; the complete module, not these excerpts alone, is the runnable artifact.
+
+\subsection{Integer copy budget}
+\Listing{required_copies}
+\subsection{Finite-pool sampling}
+\Listing{finite_pool_miss}
+\subsection{Dimensioned inventory}
+\Listing{inventory}
+
+\begin{description}
+\item[Witness] A recoverable candidate satisfying the logical criterion being tested.
+\item[Multiplicity] Physical copy count, including repeated identities.
+\item[Diversity] Number of distinct identities represented in a population.
+\item[\Term{Coverage}] Representation of a specified target set, not simply large abundance.
+\item[\Term{Shared failure}] An event that can defeat many nominally parallel copies together.
+\item[\Term{Pseudo-first-order model}] A kinetic reduction in which one reactant concentration is treated as constant because it is in sufficient excess.
+\item[\Term{Readout boundary}] The declared endpoint at which a physical result becomes decoded, verified evidence.
+\end{description}
+
+The next chapter can now ask how particular molecular operations realize a useful transformation. It must carry this chapter's ledger with it: every mechanism has substrates, states, losses, timescales, and a way to tell whether it actually worked.

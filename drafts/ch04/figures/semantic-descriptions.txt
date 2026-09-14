@@ -1,0 +1,44 @@
+CHAPTER 4: SEMANTIC FIGURE COMPANIONS
+These descriptions preserve the logic of native TikZ plates without character-box diagrams.
+
+FIGURE 4.1 / population.tex
+Question: Can molecule count establish candidate diversity?
+Objects: Two populations, each containing eight candidate strands; identity labels a,b,c,d.
+States: Population A has identity counts 2,2,2,2. Population B has counts 4,2,2,0.
+Relation: The total count is invariant while represented support changes from four to three.
+Inference: Abundance does not establish complete coverage.
+Boundary: Each label is a whole candidate identity, not a DNA nucleotide; positions are not molecular dynamics.
+
+FIGURE 4.2 / ligation.tex
+Question: What changes when an aligned nicked duplex is ligated?
+Objects: Antiparallel strands; paired bases; top-strand 3-prime hydroxyl and adjacent 5-prime phosphate; ligase.
+Initial state: Complementary recognition aligns two top-strand fragments above a continuous lower template.
+Transition: An ATP-dependent ligase example seals the nick by creating a phosphodiester linkage.
+Final state: The upper covalent backbone is continuous; the lower strand remains complementary and antiparallel.
+Encodings: Solid backbones denote covalent connectivity; dashed rungs denote base-pair recognition; downward arrow denotes reaction progression.
+Inference: Recognition and covalent completion are distinct mechanistic conditions.
+Boundary: This is a substrate/product mechanism schematic, not atomistic geometry or a protocol; not every ligase uses ATP.
+
+FIGURE 4.3 / miss.tex
+Question: Does increasing independent copy count eliminate a shared failure?
+Axes: Horizontal copy count M, dimensionless integer. Vertical miss probability, logarithmic scale.
+Curves: Independent failure (1-0.04)^M; shared failure 0.10+0.90(1-0.04)^M.
+Reference: Dotted probability 0.10 line marks the shared-failure floor.
+Inference: The independent term falls while the shared event survives any copy-number increase.
+Boundary: Synthetic declared probabilities; plotted samples are computed, not measured or fitted.
+
+FIGURE 4.4 / concentration.tex
+Question: What changes when a fixed molecular inventory occupies a smaller volume?
+Invariant: Both populations have 602,214,076 specified molecules.
+States: Volume 1 microlitre at 1 nanomolar; volume 0.1 microlitre at 10 nanomolar.
+Relation: Concentration equals molecule count divided by Avogadro constant and volume.
+Inference: Inventory and concentration are not interchangeable quantities.
+Boundary: Six glyphs represent each population; tube dimensions and fill levels are not quantitative scale drawings.
+
+FIGURE 4.5 / readout.tex
+Question: Why can a pool containing the answer fail to yield evidence?
+Objects: Whole pool, sampled aliquot, capture substrate, readout.
+Sequence: A witness must enter the aliquot, survive capture, and generate a detectable result.
+Declared case: 100 witnesses; independent per-copy inclusion probability 0.01.
+Inference: Miss probability is 0.99^100, about 0.366, even before later losses.
+Boundary: Glyphs are not literal counts; capture and detection efficiencies are unspecified; logical verification remains required.

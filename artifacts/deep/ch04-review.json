@@ -1,0 +1,36 @@
+{
+  "pdf": "output/pdf/dna-computing-ch04-review.pdf",
+  "pages": 15,
+  "sha256": "7bad2a8d867d824f5c0b55991038ca557d8fcd78f8ae6f29c1069fab8fc94d8b",
+  "status": "standalone authored-LaTeX review candidate; no acceptance promotion",
+  "sources": {
+    "drafts/ch04/README.md": "807f39dea66a81de18386c00312bc352e6884edf0b57d901a18e967c0f7f7c48",
+    "drafts/ch04/STORYBOARD.md": "ecb3771b84845a16a1a4e773bdc9f13ed1663f4ac79d202b0a463198c41c1b62",
+    "drafts/ch04/build.py": "9df4efa18b6bf19a0a2dcdcb82f569db05ac56068ac05b703352089a0c774616",
+    "drafts/ch04/figures/concentration.tex": "f9b3420e797b19774073321bdf5d0f0ba9956f658c925332a2e69548a6fd1ea8",
+    "drafts/ch04/figures/ligation.tex": "14763b55a7310979384f561ba23134097e5b87f52f5eb2dcf27b780c63d81e50",
+    "drafts/ch04/figures/miss.tex": "a843a14b04473ec35535d24a45f0d636c5f4957685345fe5609a39abfdf1906e",
+    "drafts/ch04/figures/population.tex": "92ecd0a356f69a388ee45d1ec2c2d7b87129369e5990048568353141300cf2b2",
+    "drafts/ch04/figures/readout.tex": "b0bc6168edb949a296ba46b310cb00cd3a458651912476e355187cede083fb95",
+    "drafts/ch04/figures/semantic-descriptions.txt": "119d01e68c1279aa5b44350581223efc3bc677fb18667e57b04788a00fdc7f42",
+    "drafts/ch04/manuscript.tex": "8fbe4030f26e95ad5aa003c6e6ba7909196c5de39745453cdcb7bc8a95a20af7",
+    "drafts/ch04/reference.py": "ffe85cd511c77c2a98d55224e2651d60813217e99242dd7378fd1874ba91b5eb",
+    "drafts/ch04/results.json": "0bca4820366c9cf81aaf90ca02991a15f94afcb1051eb40a0c5e38af46d1ec85",
+    "drafts/ch04/review.tex": "65810de7047ad267b34e50c31a67adfe386ac03df46f50bf8d01feba8c7fd51e",
+    "drafts/ch04/sources.tex": "3646f69beeb43c22a32178d8c9bfc05b1b8f0c0f458bda1c10cd6edacdea6463"
+  },
+  "reviewedOn": "2026-09-14",
+  "reviewType": "author technical, editorial, and visual review; not independent specialist acceptance",
+  "allPagesInspected": true,
+  "grayscaleReview": "All pages rendered and inspected in grayscale contact sheets; mechanism and code pages also inspected at page scale",
+  "figures": 5,
+  "exercises": 12,
+  "pdfWordsOutsidePage": 0,
+  "unresolvedReferenceMarkers": 0,
+  "scope": "Molecular resource accounting; no calibrated laboratory performance or universal complexity bound",
+  "openGates": [
+    "independent specialist review",
+    "reader feedback",
+    "cumulative integration, cross-chapter index and bibliography"
+  ]
+}
