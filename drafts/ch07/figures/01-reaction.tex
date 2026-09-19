@@ -1,0 +1,30 @@
+\begin{tikzpicture}[font=\small\sffamily]
+\node[anchor=west,text=Blue] at (0,4.7) {1\quad Free complementary strands};
+\draw[flow] (.3,3.8)--(3.8,3.8);
+\node[anchor=east] at (.3,3.8) {$5'$}; \node[anchor=west] at (3.8,3.8) {$3'$};
+\draw[flow,Green] (3.8,1.4)--(.3,1.4);
+\node[anchor=east] at (.3,1.4) {$3'$}; \node[anchor=west] at (3.8,1.4) {$5'$};
+\foreach \x/\base/\partner in {.8/A/T,1.5/C/G,2.2/G/C,2.9/T/A}{
+\draw[Blue] (\x,3.8)--(\x,3.35);
+\node[draw=Blue,fill=Pale,inner sep=2pt] at (\x,3.35) {\base};
+\draw[Green] (\x,1.4)--(\x,1.85);
+\node[draw=Green,fill=Green!8,inner sep=2pt] at (\x,1.85) {\partner};}
+\node[smallnote] at (2,.7) {Free A and free B\\not yet a duplex};
+\draw[flow] (4.8,3.1)--node[above,smallnote] {Association}(7.3,3.1);
+\draw[flow] (7.3,2.2)--node[below,smallnote] {Dissociation}(4.8,2.2);
+\node[anchor=west,text=Blue] at (7.3,4.7) {2\quad Paired duplex D};
+\draw[flow] (7.8,3.3)--(11.3,3.3);
+\draw[flow,Green] (11.3,1.9)--(7.8,1.9);
+\node[anchor=east] at (7.8,3.3) {$5'$}; \node[anchor=west] at (11.3,3.3) {$3'$};
+\node[anchor=east] at (7.8,1.9) {$3'$}; \node[anchor=west] at (11.3,1.9) {$5'$};
+\foreach \x/\base/\partner in {8.3/A/T,9/C/G,9.7/G/C,10.4/T/A}{
+\draw[Blue] (\x,3.3)--(\x,3.0);
+\node[draw=Blue,fill=Pale,inner sep=2pt] at (\x,3.0) {\base};
+\draw[Green] (\x,1.9)--(\x,2.2);
+\node[draw=Green,fill=Green!8,inner sep=2pt] at (\x,2.2) {\partner};
+\draw[dashed,gray] (\x,2.8)--(\x,2.4);}
+\node[smallnote] at (9.5,.7) {One A and one B\\stored in each duplex};
+\node[draw=Blue,fill=Pale,rounded corners,smallnote] at (6,-.5)
+{Association: $(n_A^{\rm free},n_B^{\rm free},d)\mapsto(n_A^{\rm free}-1,n_B^{\rm free}-1,d+1)$\\
+Conserved: $n_A^{\rm free}+d$ and $n_B^{\rm free}+d$};
+\end{tikzpicture}

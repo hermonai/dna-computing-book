@@ -1,0 +1,378 @@
+\chapter{Reaction kinetics and stochastic chemistry}
+
+Two mixtures have the same predicted equilibrium: 80 nM of duplex from
+100 nM of each complementary strand. Must they produce the same signal
+after ten seconds? No. Equilibrium specifies a population balance; it does
+not specify how quickly that balance is approached. A molecular algorithm
+has a deadline as well as a desired final state.
+
+We will build three descriptions of one reaction. First, a concentration
+equation predicts a smooth trajectory. Second, a numerical integrator
+approximates that trajectory and is checked against an exact solution.
+Third, an event simulator follows integer molecule counts. The third
+description is not merely the first with decorative noise added.
+
+Chapter 6 supplies mass balance and the dissociation constant. Here the
+new prerequisites are derivatives as rates, basic probability, and Python
+loops. Every numerical rate below is an assigned teaching parameter,
+not a measured rate for a particular DNA sequence. The system is closed,
+well mixed, isothermal, and restricted to distinct strands A and B and
+their duplex D. Folding intermediates and competing complexes are absent.
+
+\section{Turn a mechanism into a conservation law}
+
+The allowed reaction channels are
+\begin{equation}
+ \mathrm{A+B}\xrightarrow{k_{\rm on}}\mathrm{D},
+ \qquad \mathrm{D}\xrightarrow{k_{\rm off}}\mathrm{A+B}.
+\end{equation}
+Association consumes one copy of each single strand. Dissociation returns
+both strands. Neither event copies a strand or changes its sequence.
+In the species order $(A,B,D)$, the \Term{stoichiometric matrix} is
+\begin{equation}
+ S=\begin{pmatrix}-1&1\\-1&1\\1&-1\end{pmatrix}.
+ \label{eq:stoich}
+\end{equation}
+Its columns describe association and dissociation. Multiplying on the left
+by $(1,0,1)$ or $(0,1,1)$ gives zero, so $[A]+[D]$ and $[B]+[D]$ are conserved.
+These are executable invariants, not just a bookkeeping introduction.
+
+\Plate{01-reaction}{Two allowed molecular events. Backbone arrows mark strand polarity, not motion; dashed rungs mark pairing. Association changes counts by $(-1,-1,+1)$ and dissociation by the reverse. The plate represents species-level events, not a resolved nucleation pathway.}{fig:reaction}
+
+Let the conserved totals be $a$ and $b$, and write $x=[D]$. Then
+$[A]=a-x$, $[B]=b-x$, and $0\leq x\leq\min(a,b)$. For ideal
+\Term{mass-action kinetics}, the forward and reverse fluxes are
+\begin{equation}
+ v_+=k_{\rm on}(a-x)(b-x),\qquad v_-=k_{\rm off}x.
+ \label{eq:flux}
+\end{equation}
+Concentrations are mol/L, $k_{\rm on}$ is L/(mol s), and $k_{\rm off}$ is
+$\mathrm{s}^{-1}$. Both fluxes therefore have units mol/(L s).
+The forward channel counts possible encounters between two distinct
+populations; the reverse channel acts on one existing duplex.
+
+\Listing{fluxes}
+
+The function checks that the proposed state respects the inventory.
+An integrator that proposes $x>a$ has failed numerically; it has not
+discovered a new chemical state. For the closed model,
+\begin{equation}
+ \frac{dx}{dt}=f(x)=k_{\rm on}(a-x)(b-x)-k_{\rm off}x.
+ \label{eq:ode}
+\end{equation}
+At $x=0$, $f(x)\geq0$; at $x=\min(a,b)$, $f(x)\leq0$.
+The exact differential equation points inward at both boundaries.
+A numerical scheme is not automatically guaranteed to preserve this property.
+
+\section{Separate equilibrium, flux, and relaxation}
+
+Setting $f(x_*)=0$ gives the equilibrium equation from Chapter 6 with
+$K_d=k_{\rm off}/k_{\rm on}$. Choose
+\begin{equation}
+ a=b=100\ {\rm nM},\quad k_{\rm on}=10^6\ {\rm M}^{-1}{\rm s}^{-1},
+ \quad k_{\rm off}=0.005\ {\rm s}^{-1}.
+\end{equation}
+Then $K_d=5$ nM and $x_*=80$ nM. Initially, with no duplex,
+$v_+=10$ nM/s and $v_-=0$. At equilibrium, both fluxes are
+$0.4$ nM/s. The net change is zero although both reaction channels remain active.
+This distinction matters when an output is sampled repeatedly or can
+subsequently react with another species.
+
+Now multiply both rate constants by ten. Their ratio is unchanged,
+but the entire right-hand side of Eq.~\ref{eq:ode} is multiplied by ten.
+If $x(t)$ is the original solution, the new solution is $x(10t)$
+for the same initial condition. No equilibrium calculation alone can detect
+this tenfold change in timing.
+
+\Plate{02-relaxation}{Computed approach to the same equilibrium under two assigned rate pairs. The dashed curve multiplies both rates by ten. The population target is identical, but the finite-time outputs differ. The trajectories are model predictions, not measurements.}{fig:relaxation}
+
+Close to equilibrium, write $x=x_*+\epsilon$. Linearizing gives
+\begin{equation}
+ \dot\epsilon\simeq-\lambda\epsilon,\qquad
+ \lambda=k_{\rm on}(a+b-2x_*)+k_{\rm off},
+ \quad \tau=\lambda^{-1}.
+\end{equation}
+For our example, $\lambda=0.045\ \mathrm{s}^{-1}$ and $\tau\approx22.22$ s.
+This is a \Term{relaxation time}: a small deviation decays by a factor $e$
+in one $\tau$. It is not a universal time for half the strands to bind,
+nor the mean lifetime of a single duplex, which here is $1/k_{\rm off}=200$ s.
+The collective return to balance depends on both channels and free-strand
+availability.
+
+\section{Build an exact trajectory before trusting an integrator}
+
+For equal totals $a=b=C$, define the two roots
+\begin{equation}
+ r_\pm=\frac{2C+K_d\pm\sqrt{K_d(4C+K_d)}}2,\qquad
+ r_-r_+=C^2.
+\end{equation}
+The physical equilibrium is $r_-$. Factorization gives
+$\dot x=k_{\rm on}(x-r_-)(x-r_+)$. Separating variables,
+\begin{equation}
+ \frac1{r_--r_+}\ln\!\left(\frac{x-r_-}{x-r_+}\right)
+   =k_{\rm on}t+\text{constant}.
+\end{equation}
+Applying $x(0)=0$ and defining
+$q=\exp[-k_{\rm on}(r_+-r_-)t]$ yields
+\begin{equation}
+ x(t)=r_-\frac{1-q}{1-(r_-/r_+)q}.
+ \label{eq:exact}
+\end{equation}
+At $t=0$ the numerator vanishes; at large $t$ the expression tends to $r_-$.
+Its initial derivative is $k_{\rm on}C^2$, as required by mass action.
+Those independent limits are stronger evidence than one plausible plot.
+
+\Listing{equal_pool_exact}
+
+The code evaluates $r_-$ as $C(C/r_+)$ to avoid subtracting similar numbers.
+It evaluates $1-e^{-z}$ as $-\operatorname{expm1}(-z)$ to avoid cancellation
+for small positive $z$. It deliberately supports positive rates and an
+initially unbound equal mixture. Unequal pools or nonzero initial duplex
+should not be silently passed through this specialized formula.
+
+For a more general initial condition, implement the classical fourth-order
+Runge--Kutta update. At each step of size $h$, evaluate four slopes:
+\begin{align}
+ k_1&=f(x),& k_2&=f(x+hk_1/2),\\
+ k_3&=f(x+hk_2/2),& k_4&=f(x+hk_3),\\
+ x_{\rm new}&=x+\frac h6(k_1+2k_2+2k_3+k_4).
+\end{align}
+The slopes have concentration/time units; multiplication by $h$ produces
+a concentration increment. Our implementation shortens the last step to
+land on the requested final time.
+
+\Listing{rk4}
+
+The following table compares the computed state at 20 s with
+Eq.~\ref{eq:exact}. The table is generated from the reference implementation.
+\begin{center}\input{\Generated/results-table.tex}\end{center}
+In the small-step regime, halving $h$ reduces fourth-order global error
+by approximately $2^4=16$. This is a convergence experiment, not a proof
+that any requested step will be safe. The tests deliberately take a very
+large step and require rejection of an invalid intermediate state.
+Clipping that state into the allowed interval would conceal the failed
+integration and alter the method.
+
+Large networks may be stiff: fast and slow processes coexist, and explicit
+steps may need to be extremely small for stability even when the desired
+output changes slowly. This chapter supplies a small transparent oracle;
+Chapter 28 will address solver choice, error tolerances, stiffness, and
+parameter inference for networks.
+
+\section{Replace concentrations with integer events}
+
+Let $N_A$ denote Avogadro's constant and $V$ the volume in liters.
+Define $\Omega=N_A V$, so a count $n$ corresponds to $n/\Omega$ mol/L.
+For total strand counts $n_A,n_B$ and duplex count $d$, the channel
+\Term{propensities}, measured in events/s, are
+\begin{equation}
+ \alpha_+(d)=\frac{k_{\rm on}}{\Omega}(n_A-d)(n_B-d),
+ \qquad \alpha_-(d)=k_{\rm off}d.
+ \label{eq:propensity}
+\end{equation}
+One association changes concentration by $1/\Omega$.
+Multiplying the forward event rate by that increment recovers the
+mass-action concentration drift at a fixed state. This explains the
+volume factor instead of adding it as a memorized conversion.
+
+\Listing{propensities}
+
+For 20 copies of each strand at 100 nM,
+$V=20/(N_A\,100\times10^{-9})\approx3.32\times10^{-16}$ L.
+Initially $\alpha_+=2$ events/s. One duplex changes the displayed
+concentration by 5 nM. A deterministic value such as 3.7 duplexes is
+an aggregate prediction, never the contents of one vessel.
+
+This is the distinct-species reaction $A+B$, not $2A$. Two identical
+reactants require unordered-pair counting, $n(n-1)/2$, and a matching
+rate-constant convention. Substituting $n^2$ without rederiving the
+convention permits a lone molecule to react with itself.
+
+\Plate{03-event-clock}{The next-event clock at a fixed molecular state. The total propensity determines the waiting time; normalized channel propensities determine which event occurs. Counts change only after the sampled event, then both propensities are recomputed.}{fig:clock}
+
+\section{Implement the stochastic simulation algorithm}
+
+At a fixed state, the probability of no reaction for duration $s$ is
+$P(T>s)=e^{-\alpha_0s}$, where $\alpha_0=\alpha_++\alpha_-$.
+Two independent uniform variates $u_1,u_2$ give
+\begin{equation}
+ \Delta t=-\frac{\ln u_1}{\alpha_0},\qquad
+ \text{associate if }u_2\alpha_0<\alpha_+.
+\end{equation}
+Otherwise dissociate. The joint density for waiting time $s$ and channel
+$j$ is $\alpha_j e^{-\alpha_0s}$: a survival factor followed by that
+channel's hazard. This is the direct stochastic simulation construction
+described by Gillespie \cite{gillespie}.
+
+\Listing{ssa}
+
+The implementation makes four boundary choices explicit. Zero total
+propensity means no further events. A sampled event beyond the horizon
+is not executed. Uniform zero is redrawn before taking its logarithm.
+Exhausting the event budget raises an error rather than returning an
+apparently complete trajectory. A local random generator keeps the seed
+from changing another experiment's global random state.
+
+The returned event list is right-continuous: after an event at $t_i$,
+its new count holds until the next event. To display a trajectory at
+regular observation times, select the latest event at or before each
+observation. Do not linearly interpolate integer reaction events into
+fictional fractional molecules.
+
+\Plate{04-trajectory}{One seeded stochastic trajectory for 20 copies of each strand. Horizontal segments are waiting periods and vertical steps are single association or dissociation events. The final horizontal extension to 120 s is an observation horizon, not an extra event.}{fig:trajectory}
+
+An exact event sampler means exact sampling of the specified continuous-time
+Markov model, apart from random-number and floating-point limitations.
+It does not mean the species list, fitted rate constants, or well-mixed
+assumption are exact descriptions of real DNA.
+
+\section{Use a distribution as a second oracle}
+
+For positive rates, $d$ ranges over $0,\ldots,\min(n_A,n_B)$.
+At stationarity, adjacent probability flows balance:
+\begin{equation}
+ \pi_d\alpha_+(d)=\pi_{d+1}\alpha_-(d+1),\qquad
+ \pi_{d+1}=\pi_d\frac{\alpha_+(d)}{\alpha_-(d+1)}.
+ \label{eq:stationary}
+\end{equation}
+Starting with an arbitrary weight at zero, recursively compute all
+relative weights and normalize their sum. Log weights prevent intermediate
+products from overflowing; subtracting their maximum does not change the
+normalized probabilities.
+
+\Listing{stationary}
+\Plate{05-distribution}{Computed stationary probabilities with 20 copies of each strand, obtained independently from detailed balance. Counts 0--9 are omitted from view but retained in normalization. This describes many possible vessel states, not an empirical histogram of the single trajectory.}{fig:distribution}
+
+An instructive exact counterexample uses only one A and one B at the
+same 100 nM total concentration per species. There are two states:
+$d=0$ and $d=1$. Their forward and reverse rates are 0.1 and 0.005
+events/s, so
+\begin{equation}
+ P(d=1)=\frac{0.1}{0.1+0.005}=\frac{20}{21}\approx0.95238.
+\end{equation}
+The stochastic mean concentration is therefore about 95.24 nM,
+not the deterministic equilibrium prediction of 80 nM. This is not
+a bug to repair by forcing the simulator's mean onto the ODE.
+
+To see why, average Eq.~\ref{eq:propensity} over the random count $D$:
+\begin{equation}
+ \frac{d\,E[D]}{dt}=
+ \frac{k_{\rm on}}{\Omega}E[(n_A-D)(n_B-D)]-k_{\rm off}E[D].
+\end{equation}
+With $\mu=E[D]$,
+\begin{equation}
+ E[(n_A-D)(n_B-D)]=(n_A-\mu)(n_B-\mu)+\operatorname{Var}(D).
+\end{equation}
+The deterministic closure drops the variance term. Averaging a nonlinear
+reaction rate is not the same operation as evaluating it at the average
+population. Increasing volume and copy numbers at fixed concentrations
+often makes relative fluctuations less important, but this needs an
+appropriate limit and cannot be assumed at one or twenty molecules.
+
+We also test the event simulator against the exact one-pair transient,
+$P(D_t=1)=\frac{20}{21}(1-e^{-0.105t})$ from an unbound start.
+Four thousand seeded runs are compared with that prediction using its
+binomial sampling error. A fixed seed makes the regression repeatable;
+the analytical oracle makes it meaningful.
+
+\section{Know when the model boundary has been crossed}
+
+Well mixed means spatial position is not part of the state. A diffusion
+time over length $\ell$ scales as $\ell^2/D_{\rm diff}$, up to geometry
+factors. If reaction and transport occur on comparable timescales,
+spatial gradients, surfaces, or local depletion can matter. A molecular
+association event may also conceal nucleation and zippering steps.
+An effective two-state rate needs evidence that these hidden processes
+can be coarse-grained for the question being asked.
+
+The chapter's rate constants are independent assigned inputs. They are
+not inferred from sequence, salt, temperature, or Chapter 6's nearest-neighbor
+table. A favorable final free energy does not specify a transition barrier.
+Adding a reporter, enzyme, fuel, or competing strand changes the reaction
+network and may invalidate the conservation laws used here.
+
+A computation should specify its readout event: crossing a threshold
+at least once, being above threshold at a deadline, or remaining above
+threshold for an interval are different observables. An equilibrium
+fraction answers none of those timing questions by itself.
+
+Run the reference and tests from the repository root:
+\begin{Verbatim}[fontsize=\small]
+python3 drafts/ch07/reference.py
+python3 -m pytest -q tests/test_ch07_reference.py
+\end{Verbatim}
+The tests cover conservation, units, exact limits, fourth-order convergence,
+seeded event integrity, detailed balance, and a distributional oracle.
+Next, Chapter 8 introduces enzymes as substrate-specific operators.
+The present inventory and timing discipline will remain necessary even
+when a diagram contains a recognizable protein.
+
+\section{Exercises with worked solutions}
+
+\subsection*{1. Audit a reaction column}
+Why is $(-1,0,+1)$ invalid for duplex formation from A and B?
+\textbf{Solution:} it creates a duplex without consuming B. Its dot
+product with the B-inventory vector $(0,1,1)$ is one rather than zero.
+
+\subsection*{2. Convert a flux}
+What is the initial association flux for 100 nM of each strand and
+$k_{\rm on}=10^6\ \mathrm{M}^{-1}\mathrm{s}^{-1}$?
+\textbf{Solution:} $10^6(10^{-7})^2=10^{-8}$ M/s, or 10 nM/s.
+Using 100 as a molar concentration would be a nine-order unit error
+in each concentration factor.
+
+\subsection*{3. Explain a moving equilibrium}
+At $x=80$ nM, are all reactions stopped?
+\textbf{Solution:} no. Forward and reverse fluxes are both 0.4 nM/s.
+Their difference is zero. Individual duplexes can still dissociate.
+
+\subsection*{4. Rescale the clock}
+Multiply both rates by three. What happens to $x(20\,\mathrm{s})$?
+\textbf{Solution:} it becomes the old trajectory's value at 60 s.
+The equilibrium root is unchanged and the relaxation time is divided by three.
+
+\subsection*{5. Distinguish two lifetimes}
+Why is $1/k_{\rm off}$ not the collective relaxation time?
+\textbf{Solution:} it concerns an isolated duplex's dissociation hazard.
+Population relaxation also includes association of available strands;
+here the two times are 200 s and approximately 22.22 s.
+
+\subsection*{6. Test numerical order}
+Errors at two step sizes are $e(h)$ and $e(h/2)$. What supports fourth order?
+\textbf{Solution:} a ratio near 16 across successive refinements before
+roundoff dominates. One ratio at a large, unstable step is not sufficient.
+
+\subsection*{7. Derive the volume factor}
+Why divide $k_{\rm on}$ by $\Omega$ for counts?
+\textbf{Solution:} the concentration flux is
+$k_{\rm on}(n_A/\Omega)(n_B/\Omega)$; multiply by $\Omega$
+to convert molar change into events/s. One factor of $\Omega$ remains below.
+
+\subsection*{8. Sample a clock}
+If $\alpha_0=2$ events/s and $u_1=e^{-1}$, find the waiting time.
+\textbf{Solution:} $-\ln(e^{-1})/2=0.5$ s.
+The next wait is redrawn after the event because the rates may change.
+
+\subsection*{9. Respect the horizon}
+The current event is at 9 s and the next sampled event at 12 s;
+the output deadline is 10 s. Which count is reported?
+\textbf{Solution:} the state after the 9 s event. The 12 s event must
+not be applied before reporting the deadline.
+
+\subsection*{10. Solve the one-pair equilibrium}
+Use forward rate 0.1 and reverse rate 0.005 to find both probabilities.
+\textbf{Solution:} $\pi_1/\pi_0=20$ and $\pi_0+\pi_1=1$,
+so $\pi_0=1/21$ and $\pi_1=20/21$.
+
+\subsection*{11. Recover the missing variance}
+Expand $E[(n-D)^2]$.
+\textbf{Solution:} $n^2-2n\mu+E[D^2]=(n-\mu)^2+\operatorname{Var}(D)$.
+The ODE mean-field closure omits the final term.
+
+\subsection*{12. Design a timing evaluation}
+How would you evaluate a threshold-based molecular output?
+\textbf{Worked rubric:} declare the species, initial inventory, volume,
+rate evidence, readout rule, deadline, and acceptable error. Separate
+first-passage probability from deadline occupancy. Test sensitivity to
+rates and competing reactions; compare measurements with uncertainty.
+A deterministic curve alone cannot establish a low-copy failure probability.

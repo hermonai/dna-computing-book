@@ -1,0 +1,3 @@
+Two random choices, one event
+
+Current integer state determines association and dissociation propensities. Their sum sets exponential waiting time. Their ratio sets channel choice independently at this state. Execute the chosen stoichiometric change only if within the horizon, then recompute. The dashed return arrow is computational feedback, not another chemical reaction.

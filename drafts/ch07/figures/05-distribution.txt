@@ -1,0 +1,3 @@
+Stationary population distribution
+
+Bars are normalized probabilities from the birth-death detailed-balance recurrence, not the histogram of one sample trajectory. Full computation covers counts zero through twenty; display shows ten through twenty and says that lower counts are omitted. All counts remain in normalization. Finite-copy stochastic means need not equal the deterministic equilibrium root.

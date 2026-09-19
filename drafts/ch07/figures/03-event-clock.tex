@@ -1,0 +1,15 @@
+\begin{tikzpicture}[font=\small\sffamily,box/.style={draw=Blue,fill=Pale,rounded corners,align=center,minimum height=1cm,text width=3.4cm}]
+\node[box] (state) at (1.8,3.5) {Current integer state\\$d;\ n_A-d,\ n_B-d$};
+\node[box] (rate) at (7,3.5) {Two channel propensities\\$\alpha_+(d),\ \alpha_-(d)$};
+\draw[flow] (state)--(rate);
+\node[box] (wait) at (3,1) {When?\\$\Delta t=-\ln u_1/\alpha_0$};
+\node[box] (which) at (9.5,1) {Which?\\$P(+)=\alpha_+/\alpha_0$};
+\draw[flow] (rate.south)--(7,2.4)-|(wait.north);
+\draw[flow] (7,2.4)-|(which.north);
+\node[box,text width=5.4cm] (event) at (6.2,-1.4) {Execute one event at $t+\Delta t$\\$d\mapsto d+1$ or $d\mapsto d-1$};
+\draw[flow] (wait.south)|-(event.west);
+\draw[flow] (which.south)|-(event.east);
+\draw[flow,dashed] (event.south)--(6.2,-2.7)--(-.7,-2.7)|-(state.west);
+\node[smallnote,fill=white] at (2,-2.7) {Recompute after every event};
+\node[smallnote] at (10.5,3.5) {$\alpha_0=\alpha_++\alpha_-$\\If zero: stop};
+\end{tikzpicture}

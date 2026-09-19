@@ -1,0 +1,3 @@
+Distinct strands and duplex inventory
+
+Free A and B are antiparallel when aligned. Association consumes one of each and forms one duplex. Dissociation reverses the count change. Backbone arrowheads specify 5-prime to 3-prime polarity; dashed rungs denote noncovalent pairing. Neither arrow implies replication. Four-base illustration is schematic, not the sequence that determines an experimentally measured rate.
