@@ -1,0 +1,1 @@
+Generated thermalduplexfractionACGTCAGT withpartnerat10,100,1000nMeach. CurvesshiftupwardinTmwithconcentration; horizontalhalf-boundline. Tm19.8798,27.1076,34.7010C. Two-state ideal modelconstantH,S at1MNaCl; fullrangeextrapolationnotvalidated.

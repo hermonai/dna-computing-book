@@ -1,0 +1,390 @@
+\chapter{Hybridization thermodynamics}
+
+Two complementary DNA strands are mixed at 100 nM each. Their dissociation
+constant under the stated conditions is 5 nM. Predict the duplex concentration.
+Is it nearly 100 nM because the strands match perfectly? Is it 95.2 nM
+because $100/(100+5)=0.952$? Neither answer respects both strand inventories.
+The equilibrium duplex concentration is 80 nM.
+
+We will derive that result, implement a numerically stable solver, and then
+connect equilibrium to a restricted sequence-dependent energy model.
+Chapter 5 established the orientation of complementary strings. This chapter
+adds concentrations, standard states, and temperature. The next chapter will
+ask how fast a reaction approaches its predicted equilibrium.
+
+The prerequisites are algebra, logarithms, elementary differentiation, and
+Python. No laboratory outcome is claimed by the examples. Our molecular
+model contains two distinct single-strand species and one duplex species,
+not every structure that real DNA can adopt.
+
+\section{Draw the molecular inventory before the equation}
+
+Call the distinct strands A and B and the duplex D. In this notation,
+A names a strand species, not the adenine base. The allowed association is
+\begin{equation}
+\mathrm{A}+\mathrm{B}\rightleftharpoons\mathrm{D}.
+\label{eq:association}
+\end{equation}
+The reverse arrow matters: an equilibrium mixture can contain both duplex
+and unbound strands even when the sequences are perfectly complementary.
+It does not mean that the populations stop exchanging molecules.
+
+\Plate{01-inventory}{The three-species model. Each duplex contains one A strand and one B strand, with antiparallel backbones. Solid paths denote strand connectivity; dashed rungs denote pairing. Association arrows change molecular populations, not covalent sequence identity. Hairpins, mismatches, aggregates, and alternative duplexes are outside this inventory.}{fig:inventory}
+
+Let $a$ and $b$ be the total concentrations of A and B strands, measured
+in mol/L, and let $x=[D]$ be the duplex concentration. Conservation gives
+\begin{equation}
+[A]=a-x,\qquad [B]=b-x,\qquad 0\leq x\leq\min(a,b).
+\label{eq:conservation}
+\end{equation}
+A duplex contributes one strand to each total. Consequently, $[D]$ is not
+the total concentration of strands residing in duplexes: that quantity is
+$2x$. A change of denominator can otherwise make two correct measurements
+appear inconsistent.
+
+For the equal-total example, $x=80$ nM leaves 20 nM of each free strand.
+The fraction of A bound is $x/a=0.8$, the fraction of B bound is $x/b=0.8$,
+and the fraction of all strands in duplexes is $2x/(a+b)=0.8$.
+For unequal totals these three fractions need not agree.
+
+\section{Connect free energy to a dimensionless equilibrium constant}
+
+In an ideal dilute solution, approximate each species activity by its
+concentration divided by a reference concentration $c^\circ=1$ M.
+The dimensionless association constant is
+\begin{equation}
+K^\circ
+=\frac{[D]/c^\circ}{([A]/c^\circ)([B]/c^\circ)}
+=\frac{c^\circ[D]}{[A][B]}.
+\end{equation}
+The concentration-form \Term{dissociation constant} is
+$K_d=[A][B]/[D]$, with units of mol/L. Thus
+\begin{equation}
+K^\circ=\frac{c^\circ}{K_d},\qquad
+\Delta G^\circ=-RT\ln K^\circ
+=RT\ln\left(\frac{K_d}{c^\circ}\right).
+\label{eq:standard}
+\end{equation}
+Here $R$ is the gas constant and $T$ is absolute temperature.
+The logarithm acts on a dimensionless ratio, never on a dimensional number
+whose meaning changes when the same concentration is written in nM.
+
+At $T=310.15$ K, take $R=1.98720425864083$ cal/(mol K).
+For $K_d=5\times10^{-9}$ M, Eq.~\ref{eq:standard} gives approximately
+$-11.78$ kcal/mol. A smaller dissociation constant corresponds to a more
+negative standard association free energy.
+
+\subsection{Standard free energy is not the free energy of every mixture}
+
+At arbitrary composition, the reaction free energy is
+\begin{equation}
+\Delta G=\Delta G^\circ+RT\ln Q,\qquad
+Q=\frac{c^\circ[D]}{[A][B]}.
+\end{equation}
+At equilibrium, $Q=K^\circ$ and $\Delta G=0$. A negative
+$\Delta G^\circ$ therefore does not mean the final equilibrium reaction
+free energy remains negative. Mixing and depletion contribute through $Q$.
+
+This also explains why complementarity and binding fraction are different
+questions. The molecular interaction model determines an equilibrium
+constant under chosen conditions; conservation and starting inventories
+then determine the populations. Neither layer can substitute for the other.
+
+\section{Solve the finite-pool problem}
+
+Substitute Eq.~\ref{eq:conservation} into the concentration-form constant:
+\begin{equation}
+K_dx=(a-x)(b-x)
+       =ab-(a+b)x+x^2.
+\end{equation}
+Hence $x$ is a root of
+\begin{equation}
+x^2-(a+b+K_d)x+ab=0.
+\end{equation}
+The larger root is outside the physical interval except at a degenerate
+complete-binding limit. With $s=a+b+K_d$, the physical root is
+\begin{equation}
+x=\frac{s-\sqrt{s^2-4ab}}{2}
+ =\frac{2ab}{s+\sqrt{s^2-4ab}}.
+\label{eq:root}
+\end{equation}
+The second form follows by multiplying numerator and denominator by
+$s+\sqrt{s^2-4ab}$. It avoids subtracting nearly equal large numbers when
+binding is weak. We additionally compute
+\begin{equation}
+s^2-4ab=(a-b)^2+K_d\{2(a+b)+K_d\},
+\end{equation}
+which is a sum of nonnegative terms.
+
+\Listing{duplex_molar}
+
+The implementation divides all three input concentrations by their maximum
+before evaluating the root, then restores concentration units. Scaling limits
+unnecessary overflow and underflow in intermediate products. It does not
+turn arbitrary floating-point inputs into exact arithmetic: the tests cover
+a declared range of concentrations and physical invariants.
+
+Check the opening example in nM units: $s=205$ nM and
+$\sqrt{s^2-4ab}=\sqrt{42025-40000}=45$ nM. Thus
+$x=(205-45)/2=80$ nM. Substituting back gives
+$[A][B]/[D]=20\cdot20/80=5$ nM.
+Our public function expects molar inputs, so the corresponding call is
+\texttt{duplex\_molar(100e-9, 100e-9, 5e-9)}.
+
+\subsection{An approximation with a missing assumption}
+
+If B is in sufficient excess that its free concentration barely changes,
+then $[B]\approx b$. From $K_d=[A][B]/[D]$ and $a=[A]+[D]$ we obtain
+\begin{equation}
+\frac{x}{a}\approx\frac{b}{K_d+b}.
+\label{eq:excess}
+\end{equation}
+This is a reservoir approximation. At $a=b=100$ nM it predicts 0.952,
+but binding would substantially deplete B; the assumption contradicts its
+own predicted outcome.
+
+\Plate{03-binding-curve}{Exact finite-pool binding versus the ligand-excess approximation, with A total fixed at 100 nM and $K_d=5$ nM. The approximation fails strongly when B is depleted. The marked equal-total point has 80 nM duplex, not 95.2 nM. Curves are computed from the declared model, not experimental data.}{fig:binding}
+
+For $b=5$ nM, Eq.~\ref{eq:excess} even predicts half of 100 nM A bound,
+requiring 50 nM B when only 5 nM exists. Conservation is a powerful
+negative control because it catches a plausible-looking curve without
+knowing any sequence parameters.
+
+The solver accepts zero inventory and returns zero duplex. It also accepts
+$K_d=0$ as the mathematical complete-binding limit, returning $\min(a,b)$;
+that is not a claim of an exactly zero measured dissociation constant.
+Negative or nonfinite concentrations are rejected.
+
+\section{Separate enthalpy and entropy, then reunite their units}
+
+Within a temperature range where heat-capacity differences are neglected,
+\begin{equation}
+\Delta G^\circ(T)=\Delta H^\circ-T\Delta S^\circ.
+\label{eq:gibbs}
+\end{equation}
+For duplex formation, the net energetic and configurational contributions
+often compete. A favorable enthalpy alone is not the full free-energy change.
+Nor should the net entropy change be identified solely with DNA chain
+ordering: solvent and ions are part of the physical system too.
+
+\Plate{02-free-energy}{A signed energy balance for the chapter's sequence model at 37 degrees Celsius. A favorable enthalpy and opposing $-T\Delta S^\circ$ term combine into the standard free energy. These are net model terms, not separately measured hydrogen-bond and stacking energies. The actual mixture additionally contributes $RT\ln Q$.}{fig:energy}
+
+We store enthalpy in kcal/mol but entropy and $R$ in cal/(mol K).
+The factor 1000 in the implementation is therefore essential:
+\begin{equation}
+K_d(T)=c^\circ\exp\left[
+\frac{1000\Delta H^\circ_{\mathrm{kcal}}-T\Delta S^\circ_{\mathrm{cal}}}
+{RT}\right].
+\end{equation}
+
+\Listing{kd_from_thermo}
+
+Temperature enters in kelvin, not Celsius. The function rejects nonpositive
+temperatures and exponential arguments outside its numerical budget.
+It does not silently return an infinity or an exact zero and present that
+as a physical prediction.
+
+The error sensitivity is exponential:
+\begin{equation}
+\frac{K_{d,\mathrm{perturbed}}}{K_d}
+=\exp\left(\frac{\delta G^\circ}{RT}\right).
+\end{equation}
+At 310.15 K, an assumed $+1$ kcal/mol shift multiplies $K_d$ by about 5.07.
+This is a sensitivity calculation, not a universal mismatch penalty.
+
+\section{Build a restricted nearest-neighbor model}
+
+An isolated base-pair count ignores sequence order. A
+\Term{nearest-neighbor model} assigns contributions to adjacent paired
+layers, with additional end terms. SantaLucia's 1998 Table 2 gives a
+specific parameter convention at 1 M NaCl \cite{santalucia}.
+We use that table consistently rather than mixing initiation terms from
+one parameterization with step energies from another.
+
+\Plate{04-neighbors}{A sequence is decomposed into overlapping adjacent duplex steps. AC/TG means upper $5'$--AC--$3'$ above lower $3'$--TG--$5'$; the slash does not put both strands in stored $5'$-to-$3'$ order. End corrections are counted once at each end. Overlapping steps are energy-model terms, not separate molecules.}{fig:neighbors}
+
+The ten representative upper-strand steps and their parameters are:
+\begin{center}\small\input{\Generated/parameters.tex}\end{center}
+For a step absent from this list, use its reverse complement: AC is the
+same duplex-step orientation class as GT. A length-$L$ perfectly matched
+duplex has $L-1$ such terms. The terminal contribution at each end is
+$(2.3,4.1)$ for A/T and $(0.1,-2.8)$ for G/C, in the table's enthalpy
+and entropy units. We reject self-complementary sequences because their
+symmetry and species accounting need a separate treatment.
+
+\Listing{nn_parameters}
+
+Walk through our original sequence \texttt{ACGTCAGT}. Its seven upper
+steps are AC, CG, GT, TC, CA, AG, GT. Mapping to table representatives gives
+three GT terms and one each of CG, GA, CA, and CT. Both ends are A/T.
+The enthalpy sum is therefore
+\begin{align}
+\Delta H^\circ
+&=3(-8.4)-10.6-8.2-8.5-7.8+2(2.3)\\
+&=-55.7\ \mathrm{kcal/mol}.
+\end{align}
+The entropy calculation gives $-152.1$ cal/(mol K).
+At 310.15 K, $\Delta G^\circ=-8.526185$ kcal/mol and
+$K_d\approx981.909$ nM. These values describe our restricted calculation,
+not a new experimental measurement.
+
+Compare it with \texttt{AGCTACGT}. Both sequences contain two occurrences
+of each base and have the same terminal identities; their neighbor counts differ.
+\begin{center}\small\input{\Generated/results-table.tex}\end{center}
+Here enthalpy is kcal/mol, entropy is cal/(mol K), $K_d$ is evaluated at
+37 degrees Celsius, and $T_m$ uses 100 nM of each strand. Equal GC content
+does not force equal model free energies. The approximately 0.65-degree
+difference in predicted melting points is not evidence that experiments
+could reliably resolve that difference under unspecified conditions.
+
+\section{Derive the concentration term in melting temperature}
+
+For equal totals $a=b=C$, define the \Term{melting temperature} as the
+temperature where half of each strand population is duplex-bound:
+$x=C/2$. Substitution into mass balance gives
+\begin{equation}
+K_d(T_m)=\frac{(C/2)^2}{C/2}=\frac C2.
+\end{equation}
+Combining this with Eq.~\ref{eq:standard} and Eq.~\ref{eq:gibbs},
+\begin{equation}
+1000\Delta H^\circ
+=T_m\left[\Delta S^\circ+R\ln\left(\frac{C}{2c^\circ}\right)\right],
+\end{equation}
+so
+\begin{equation}
+T_m=
+\frac{1000\Delta H^\circ}
+{\Delta S^\circ+R\ln(C/(2c^\circ))}.
+\label{eq:tm}
+\end{equation}
+If $C_T=a+b=2C$ denotes the total of both strand species, the logarithm
+contains $C_T/(4c^\circ)$. That familiar factor of four follows from the
+concentration definition; it is not an empirical adjustment.
+
+\Listing{melting_kelvin}
+
+\Plate{05-melting}{Calculated duplex fractions for ACGTCAGT and its distinct reverse-complement partner at three equal strand totals. The half-bound line identifies $T_m$; increasing concentration shifts it upward in this model. Constant enthalpy/entropy extrapolation and a three-species inventory are assumptions, not experimentally established validity over the full plotted range.}{fig:melting}
+
+The computed melting temperatures are 19.88, 27.11, and 34.70 degrees Celsius
+for 10, 100, and 1000 nM of \emph{each} strand. Tests independently evaluate
+$K_d(T_m)$ and the mass-balance root and require a bound fraction of 0.5.
+A function returning a plausible temperature is not enough.
+
+For unequal totals, the two strand-specific bound fractions differ.
+If $a\geq b$ and melting is defined by half of the limiting B being bound,
+$x=b/2$ gives $K_d=a-b/2$. Half of \emph{all} strands bound can even be
+unattainable at strongly unequal totals. Always state the fraction being measured.
+
+\section{Know where this model ends}
+
+Salt conditions, mismatch identities, alternative structures, and parameter
+versions are part of a physical-model specification. NUPACK's documentation
+exposes material, temperature, ensemble, and ionic settings separately
+\cite{nupack}. Our implementation intentionally accepts only the declared
+1 M NaCl convention. Entering a different sodium concentration raises an
+error rather than applying an unreviewed correction.
+
+A mismatch is not modeled by deleting one canonical pair contribution or
+adding an arbitrary fixed penalty. It changes the relevant local contexts;
+end mismatches, internal mismatches, bulges, and dangling ends need the
+appropriate parameter and structural treatment. Similarly, a single-strand
+hairpin would consume strand inventory that our three-species model assumes
+is available for duplex association.
+
+The two-state approximation groups many molecular configurations into
+single-strand and duplex states. A real melting curve can include partially
+paired states and competing complexes. Measured absorbance also requires
+a signal model and baseline treatment before it becomes a bound fraction.
+Our generated curves are population predictions, not simulated instrument traces.
+
+Finally, $K_d$ does not determine a reaction time. In a compatible simple
+mass-action kinetic model, $K_d=k_{\mathrm{off}}/k_{\mathrm{on}}$.
+Multiplying both rates by the same positive factor leaves equilibrium
+unchanged while changing relaxation speed. Chapter 7 develops this distinction
+instead of using a low free energy as a synonym for a fast computation.
+
+\section{Reproduce, challenge, and extend}
+
+Run the examples and their regression tests from the repository root:
+\begin{Verbatim}[fontsize=\small]
+python3 drafts/ch06/reference.py
+python3 -m pytest tests/test_ch06_reference.py
+\end{Verbatim}
+The tests include an independent bisection solution, conservation over
+log-spaced concentration ranges, strand-exchange symmetry, fixed expected
+step counts, reverse-complement invariance, and melting-point consistency.
+The PDF's tables and curves are generated from the same reference results.
+
+The conceptual pipeline is now explicit: oriented sequence, specified
+energy model, equilibrium constant, conserved totals, and predicted population.
+Each arrow introduces an assumption. Extending the model means revisiting
+those assumptions and tests, not merely appending a more complicated formula.
+
+\Needspace{10\baselineskip}
+\section{Exercises with worked solutions}
+
+\subsection*{1. Check the inventory}
+With $a=100$ nM, $b=30$ nM and $x=20$ nM, find the free concentrations.
+\textbf{Solution:} A is 80 nM and B is 10 nM; the implied $K_d$ is 40 nM.
+The fractions of A and B bound are 0.2 and $2/3$, respectively.
+
+\subsection*{2. Identify a forbidden prediction}
+An approximation predicts 60 nM duplex from 100 nM A and 20 nM B.
+\textbf{Solution:} it exceeds the B inventory. No favorable energy can
+create the missing strands.
+
+\subsection*{3. Recover the stable root}
+Rationalize $(s-\sqrt{s^2-4ab})/2$.
+\textbf{Solution:} multiply by the conjugate; the numerator becomes
+$s^2-(s^2-4ab)=4ab$, giving Eq.~\ref{eq:root}. This avoids cancellation
+in the small root.
+
+\subsection*{4. Audit units}
+Why not compute $\ln(5)$ for a dissociation constant of 5 nM?
+\textbf{Solution:} the ratio to 1 M is $5\times10^{-9}$, not 5.
+Changing display units must not change the physical free energy.
+
+\subsection*{5. Explain equilibrium free energy}
+If $\Delta G^\circ<0$, why is $\Delta G=0$ at equilibrium?
+\textbf{Solution:} the composition term $RT\ln Q$ compensates the standard
+term when $Q=K^\circ$. The standard state is not the final mixture.
+
+\subsection*{6. Count overlapping steps}
+How many nearest-neighbor terms occur in an eight-base duplex?
+\textbf{Solution:} seven, plus the separately specified end terms.
+The overlap shares layers; it does not count seven separate duplex molecules.
+
+\subsection*{7. Verify an orientation class}
+Why is upper AC looked up as GT?
+\textbf{Solution:} reversing and complementing AC gives GT, representing
+the same oriented Watson--Crick duplex step after exchanging the reading direction.
+Plain reversal CA is not the same transformation.
+
+\subsection*{8. Recover the factor of four}
+If each strand is 100 nM, what $C_T$ belongs in the $C_T/4$ convention?
+\textbf{Solution:} $C_T=200$ nM. Its quarter is 50 nM, matching
+$K_d(T_m)=C/2$.
+
+\subsection*{9. Inspect the complete-binding limit}
+What does $K_d\to0$ imply for unequal totals?
+\textbf{Solution:} $x\to\min(a,b)$. Excess strands remain free;
+complete binding of the limiting species does not mean all strands are paired.
+
+\subsection*{10. Perturb an energy}
+Estimate the $K_d$ multiplier for a $+1$ kcal/mol free-energy perturbation
+at 310.15 K. \textbf{Solution:} $\exp[1000/(R\cdot310.15)]\approx5.07$.
+The number quantifies sensitivity, not the effect of every mismatch.
+
+\subsection*{11. Distinguish equilibrium and rate}
+Two systems have identical $K_d$ but both rate constants in the second
+are ten times larger. \textbf{Solution:} their equilibrium populations
+match under the same totals; their time evolution generally does not.
+An equilibrium calculation cannot determine which reaches the endpoint first.
+
+\subsection*{12. Design a validation study}
+How would you challenge this restricted model?
+\textbf{Worked rubric:} specify sequences, ionic conditions, strand totals,
+temperature protocol, instrument baselines, independent replicates, and
+competing-structure checks. Compare predictions with measurements and
+uncertainty; do not fit parameters and report validation on the same examples.
+Separate equilibrium disagreement from failure to equilibrate.

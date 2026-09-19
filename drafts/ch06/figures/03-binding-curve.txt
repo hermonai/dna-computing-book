@@ -1,0 +1,1 @@
+Generated finitepool binding curve: Atotal100nM,Kd5nM,Btotal1..1000nM. Solid exact massbalance; dashed b/(b+Kd) excess approximation. Equal100nM inventoriesgivefraction0.8versus0.95238approximation. AtlowB approximationviolatesstoichiometry. Curvesnotmeasurements.

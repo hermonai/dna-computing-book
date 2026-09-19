@@ -1,0 +1,1 @@
+Eightbase upperACGTCAGT alignedlowerTGCAGTCA, antiparallel5'/3' ends. Sevenoverlappingneighborbrackets;highlightfirstAC/TGstep mappedtoGT/CArepresentative. Oneendcorrectionat eachterminalpair. Overlayannotation describesstepclass;covalenbackbonesseparatefrompairing. Terms arenotindependentphysicalmolecules.

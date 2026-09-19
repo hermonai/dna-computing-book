@@ -1,0 +1,1 @@
+Signed model contributions at310.15K for ACGTCAGT at1MNaCl. Enthalpy-55.7kcal/mol; entropy contribution+47.173815kcal/mol; sum-8.526185kcal/mol. Bars generated fromreferenceparameters. Net terms, not separate bond measurements. Actual composition contributesRTlnQ.
