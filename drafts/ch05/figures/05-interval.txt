@@ -1,0 +1,1 @@
+Length-nine sequence ACGTAGCTA with highlighted GTAG at half-open interval [2,6). Reverse complement TAGCTACGT highlights CTAC at [3,7). Boundary ticks 0 through 9, not base indices. Crossing arrows map old left boundary to new right boundary and vice versa. Interval lengths remain four.

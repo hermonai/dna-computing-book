@@ -1,0 +1,1 @@
+Three conceptual base-pair layers A-T, G-C, T-A. Solid outer paths show covalent backbones; two/three dashed cross-pair marks recall canonical hydrogen-bond counts without atom-level geometry. Gold regions between layers show stacking. This is an unwound schematic, not a quantitative energy or structure model.

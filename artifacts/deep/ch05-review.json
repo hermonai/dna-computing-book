@@ -1,0 +1,42 @@
+{
+  "pdf": "output/pdf/dna-computing-ch05-review.pdf",
+  "pages": 13,
+  "sha256": "c3eba3e0ee98d4843fd1bea23b06e3ff127d292682aeffe78d249feccd422438",
+  "status": "standalone authored-LaTeX review candidate; no acceptance promotion",
+  "sources": {
+    "drafts/ch05/README.md": "c66ca154838d7fbe6609ee9e5f359ecf0a457b545f6fb308550376d4f6f2025b",
+    "drafts/ch05/STORYBOARD.md": "2e91fbe619d9cec6273915068bf524c9bce9792d5ccf8584fb2a960ead52611f",
+    "drafts/ch05/build.py": "83e680b4913689f58dba92b7b773e30f15d3f8716ccf9bca4f938dbfda0e0af3",
+    "drafts/ch05/figures/01-nucleotide.tex": "2d88ab79660557a181d5ae3941bf3dfc841a2c8363393fdf29306f5ba50292d5",
+    "drafts/ch05/figures/01-nucleotide.txt": "533c70ed8e9228d1540d6245b633db577e3141993947289409a4d487a6354419",
+    "drafts/ch05/figures/02-backbone.tex": "259f2e9b70c7fc2952a435441f3630dfe999fb85800b51d53b1e2fb37103dcfc",
+    "drafts/ch05/figures/02-backbone.txt": "d36a6dc65e20c095e6e28de017290176a9999151dda7c7ea2eac09d837676cfb",
+    "drafts/ch05/figures/03-oriented-duplex.tex": "7d403e29166561286decd82a8f8529db5c54ba040ee9b218720c625b9665164b",
+    "drafts/ch05/figures/03-oriented-duplex.txt": "76f1dd7d2feb56f5cfc2333c1020053c950779427b05a6dd0c0fc349b2735d83",
+    "drafts/ch05/figures/04-pairing-stacking.tex": "4af4a6995bf8062e9157d871dbb2d823117d23cd776107187f9ce9dbc33e3140",
+    "drafts/ch05/figures/04-pairing-stacking.txt": "9a32bf195dc6dd9dbaf4c782674a1cfb9c1cf1d7daa3a7095c9e33fcd854b3c7",
+    "drafts/ch05/figures/05-interval.tex": "cd09ab0ecdc911835fdf06a4f4d2233d05708dd3db259b16a02ed4aa84b342c3",
+    "drafts/ch05/figures/05-interval.txt": "5f1e3f86dbbb471c5bd4565d00992a4956aba39426133359ad9d9baf99c09c5b",
+    "drafts/ch05/manuscript.tex": "32a771e79e5d43660f43972e98501e676756bc9b93dfa9b89ff7fbf82b88c01d",
+    "drafts/ch05/reference.py": "84e09d807ad77f5807c0da92208b05c24ead75ee71f240c60fd6e005e451884f",
+    "drafts/ch05/results.json": "c0a0cd40f90b49fc030148088d9b078a4e995a7a56f2e24b9ac60288ad55b88f",
+    "drafts/ch05/review.tex": "5a92cfc98d8affd505ce53eb85717e62f9ca0bc3960ed4b4d73ffed2c1ca718b",
+    "drafts/ch05/sources.tex": "0f9edb31dc87c9eae199847211d26194293797f3a2d998b3caabcaa6e9a31693"
+  },
+  "reviewedOn": "2026-09-19",
+  "validation": {"fullSuitePassed": 285, "fullSuiteSkipped": 2, "generatedArtifactsCheck": "passed", "priorEditionPreservationTests": "passed"},
+  "reviewType": "author technical, editorial, and visual review; not independent specialist acceptance",
+  "allPagesInspected": true,
+  "grayscaleReview": "All pages inspected in grayscale contact sheets; color pages and mechanism/code pages also inspected at page scale. Orphan heading and crowded molecular annotations corrected before final review.",
+  "figures": 5,
+  "exercises": 12,
+  "pdfWordsOutsidePage": 0,
+  "unresolvedReferenceMarkers": 0,
+  "scope": "Symbolic DNA orientation, uncertainty sets, and coordinates; not thermodynamic or structure prediction",
+  "pedagogicalReference": "Raschka author companion overview and chapter map inspected on 2026-09-15; general implementation-first approach only, original prose/code/figures",
+  "openGates": [
+    "independent specialist review",
+    "reader feedback",
+    "cumulative integration, cross-chapter index and bibliography"
+  ]
+}

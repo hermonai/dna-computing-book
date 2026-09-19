@@ -1,0 +1,355 @@
+\chapter{DNA chemistry and sequence geometry}
+\label{ch:chemistry}
+
+You receive two sequence files. One says \texttt{ACGTA}; the other says
+\texttt{TACGT}. Are they complementary? A comparison of letters at the same
+positions says no. A correctly oriented molecular drawing says yes. The
+disagreement is not a biological mystery: the files and the drawing use
+different coordinate conventions.
+
+This chapter builds the missing translation layer. We start with the atoms
+that give a DNA strand its direction, draw an antiparallel duplex, and then
+implement the corresponding string operations. Our endpoint is a small
+tested library for orientation, uncertainty symbols, and interval coordinates.
+It predicts neither binding strength nor molecular structure. That boundary
+is part of the implementation, not a disclaimer added after the calculation.
+
+\section{Predict before you compute}
+
+Write \texttt{ACGTA} from left to right, label its left end $5'$ and its
+right end $3'$, and place a complementary strand beneath it. Predict:
+\begin{enumerate}
+\item the lower strand as it appears left to right in the drawing;
+\item the lower strand recorded in the usual $5'$-to-$3'$ convention;
+\item the original upper strand read backward without changing its bases.
+\end{enumerate}
+These are respectively \texttt{TGCAT}, \texttt{TACGT}, and \texttt{ATGCA}.
+Only the second is the \Term{reverse complement}. Keeping these answers
+separate prevents errors in alignment, tokenization, and annotation.
+We need strings, zero-based indices, sets, and the idea of a covalent bond.
+The chemistry explains why the string conventions exist.
+
+\section{Where direction comes from}
+
+\subsection{A nucleotide is more than a letter}
+
+A \Term{nucleoside} contains a sugar attached to a nitrogenous base.
+A \Term{nucleotide} also contains phosphate. In DNA the sugar is
+2-deoxyribose. Prime marks distinguish its numbered atoms from atoms in the
+base: $C1'$ belongs to the sugar, whereas an unprimed number refers to the
+base's numbering system. The base attaches at $C1'$; the ring also contains
+an oxygen, $O4'$. The $C5'$ carbon lies outside the five-membered sugar ring
+\cite{iupac-conformation,iupac-symbols}.
+
+\Plate{01-nucleotide}{Connectivity map of a DNA nucleotide. The sugar ring has four carbons and one oxygen; the fifth sugar carbon is outside it. The blue attachment is to a base, not another sugar. This is a topological projection: bond angles, stereochemistry, protonation, and most hydrogens are not specified.}{fig:nucleotide}
+
+The deoxy distinction is local: DNA's $C2'$ has hydrogen where RNA's
+corresponding position has a hydroxyl group. In unmodified DNA, $C2'$ is a
+methylene carbon with two hydrogens. DNA does not lack oxygen everywhere:
+the sugar ring, backbone, and some bases all contain oxygen.
+
+The letter \texttt{A} records a base identity. It does not record sugar atom
+coordinates, phosphate charge states, terminal phosphate occupancy, or
+whether the molecule is free, paired, damaged, or chemically modified.
+A sequence file is a useful projection, not a complete molecular specification.
+
+\subsection{The phosphodiester backbone is an oriented path}
+
+In an ordinary DNA backbone, a phosphate connects the $3'$ oxygen of one
+sugar to the $5'$ oxygen associated with the next sugar. Follow the path:
+\begin{equation}
+C3'_i-O3'_i-P-O5'_{i+1}-C5'_{i+1}.
+\label{eq:backbone}
+\end{equation}
+The two ester connections give the name \Term{phosphodiester}. This repeated
+asymmetric connection makes the chain directional. Reading $5'$ to $3'$
+is tied to chemical structure rather than to the left edge of a page.
+
+\Plate{02-backbone}{Two nucleotide residues connected through a phosphodiester. The emphasized path is $C3'-O-P-O-C5'$; base attachments branch from the sugars. Nonbridging oxygen bonds use a conventional connectivity representation, not a unique localized electronic structure. Terminal groups cannot be inferred from sequence letters.}{fig:backbone}
+
+A terminal $3'$ hydroxyl and a terminal $5'$ phosphate are common drawing
+choices, not facts recoverable from every bare sequence string. A $5'$ end
+can carry a hydroxyl or an engineered group. Likewise, a residue inside DNA
+is not an isolated deoxynucleoside triphosphate: the latter has a different
+phosphate inventory and is a substrate in polymerase-catalyzed synthesis.
+Counting three phosphates per internal residue confuses precursor and product.
+
+Our software deliberately omits this chemistry metadata. If an experiment
+depends on terminal groups, store them explicitly beside the sequence.
+Do not silently change what a base letter means.
+
+\section{Pairing, stacking, and the limit of a string}
+
+In a canonical Watson--Crick duplex, A pairs with T and G pairs with C.
+The two strands run antiparallel \cite{nhgri}. A mechanism drawing should
+distinguish covalent connectivity along each backbone, hydrogen-bond
+interactions across a base pair, and stacking between neighboring layers.
+
+\Plate{04-pairing-stacking}{Three interactions that a ladder drawing can blur. Solid side paths represent backbone connectivity; dashed cross-pair marks indicate pairing; shaded interlayer regions indicate stacking. Two A--T marks and three G--C marks recall canonical hydrogen-bond counts, but this plate does not resolve donor/acceptor atoms, helical twist, or free energies.}{fig:stacking}
+
+It is tempting to assign two stability points to A--T and three to G--C,
+add the points, and call the result a melting temperature. That calculation
+has no temperature units and ignores neighboring bases, salt conditions,
+strand concentration, and competing structures. It cannot deliver the
+quantity it claims to predict.
+
+Experimental work separating stacking and pairing contributions reinforces
+why they should not be collapsed into a bond-count story
+\cite{stacking,stacking-correction}. We use that work qualitatively:
+no numerical energy decomposition or corrected figure is reproduced.
+Chapter 6 will introduce a thermodynamic model with explicit assumptions.
+
+Three questions must stay separate. Are the symbols complements? Can these
+strands form this proposed duplex? What fraction is bound under specified
+conditions? The first is a discrete relation; the second needs structural
+and chemical assumptions; the third needs a physical model or measurement.
+Passing the first test is not an answer to the third.
+
+\Needspace{10\baselineskip}
+\section{Build the reverse complement}
+
+\subsection{The drawing and the stored sequence}
+
+Let $s=s_0s_1\ldots s_{L-1}$ be stored $5'$ to $3'$. Define
+\begin{equation}
+c(A)=T,\quad c(T)=A,\quad c(C)=G,\quad c(G)=C.
+\end{equation}
+The aligned partner under position $i$ has identity $c(s_i)$, but its own
+reading direction runs opposite to the upper strand. Its stored form is
+\begin{equation}
+\operatorname{rc}(s)_j=c(s_{L-1-j}),\qquad 0\leq j<L.
+\label{eq:rc}
+\end{equation}
+
+\Plate{03-oriented-duplex}{One duplex, two reading directions. The lower row is \texttt{TGCAT} left to right, but \texttt{TACGT} along its own $5'$-to-$3'$ arrow. The separate stored-sequence line changes the representation, not the molecule: its arrow denotes neither synthesis nor a reaction.}{fig:duplex}
+
+The complete function below is extracted from the tested reference file.
+Its helper \texttt{complement} validates the alphabet and looks up each
+symbol in a complement dictionary. Section~\ref{sec:ambiguity} derives that
+dictionary from sets.
+\Listing{reverse_complement}
+
+\subsection{Properties are useful, but examples are indispensable}
+
+Because $c(c(b))=b$, reversing and complementing twice restores every base:
+\begin{equation}
+\operatorname{rc}(\operatorname{rc}(s))=s.
+\label{eq:involution}
+\end{equation}
+This is an \Term{involution}. It is a strong regression property but an
+incomplete specification: the incorrect implementation
+\texttt{return sequence} also passes. Our tests combine it with the
+independently derived example \texttt{ACGTA} $\mapsto$ \texttt{TACGT}.
+
+Concatenation exposes another relation:
+\begin{equation}
+\operatorname{rc}(xy)=\operatorname{rc}(y)\operatorname{rc}(x).
+\label{eq:concat}
+\end{equation}
+Blocks change order as well as contents. Reverse-complementing each chunk
+while preserving chunk order violates this equation. This will matter when
+Evolutor groups bases into tokens.
+
+Reversal preserves length; complementation swaps A/T counts and C/G counts.
+GC fraction is unchanged. But several incorrect operations also preserve
+GC fraction. Tests should target the information an operation must transform,
+not just a convenient summary statistic.
+
+\section{Ambiguity is a set, not a fifth base}
+\label{sec:ambiguity}
+
+An \Term{IUPAC ambiguity symbol} represents a set of possible identities.
+R means A or G; Y means C or T; N permits all four. The official INSDC
+table supplies the symbols \cite{insdc}. Complementation acts on the set:
+\begin{equation}
+C(S)=\{c(b):b\in S\}.
+\end{equation}
+Thus $C(\{A,G\})=\{T,C\}$, so R complements to Y. This follows from base
+complementation rather than an unrelated second convention.
+
+\begin{center}\input{\Generated/ambiguity.tex}\end{center}
+
+The table is generated from the set definitions used by the tests. The
+program builds a reverse dictionary from sets to symbols and derives every
+ambiguity complement, avoiding two independent tables that could drift apart.
+
+For aligned antiparallel symbols $a$ and $b$, define existential compatibility:
+\begin{equation}
+\mathrm{compatible}(a,b)
+\quad\Longleftrightarrow\quad C(S_a)\cap S_b\ne\varnothing.
+\label{eq:compat}
+\end{equation}
+R above Y passes because A--T and G--C are possible. R above R fails.
+The first result does not mean every assignment pairs: A above C is an
+allowed R/Y assignment but not a canonical complementary pair.
+
+\Listing{compatible_aligned}
+
+The lower string must be in \emph{aligned $3'$-to-$5'$ order}.
+The docstring states this because the function name cannot carry the whole
+orientation contract. Unequal lengths return false. Two empty strings return
+true by the convention for an empty conjunction; this says nothing about
+molecular association.
+
+The expansion of \texttt{ARN} contains \texttt{AAA}, \texttt{AAC},
+\texttt{AAG}, \texttt{AAT}, \texttt{AGA}, \texttt{AGC}, \texttt{AGG}, and
+\texttt{AGT}: $1\cdot2\cdot4=8$ possibilities. No probability of $1/8$ has
+been asserted. A set is not a distribution. Nor do independent ambiguity
+symbols preserve correlations: if only \texttt{AA} and \texttt{GG} were
+observed, writing \texttt{RR} also permits \texttt{AG} and \texttt{GA}.
+
+\Listing{expansions}
+
+The expansion budget is public behavior. Seven N symbols produce
+$4^7=16{,}384$ strings, exceeding the default 4,096. Rejecting before
+allocation makes the cost explicit. For large records, retain compact sets
+or use bounded iteration instead of materializing every sequence.
+
+We reject lowercase, RNA U, gaps, and whitespace. Other applications may
+normalize them, but the policy must be declared. Lowercase can carry masking
+information in some workflows; blindly uppercasing may discard an annotation.
+
+\section{Reverse coordinates as well as letters}
+
+An annotation $[a,b)$ selects indices $a$ through $b-1$ in a length-$L$
+string. Reversal sends $i$ to $L-1-i$. The selected indices therefore run
+from $L-b$ through $L-1-a$, giving
+\begin{equation}
+[a,b)\longmapsto[L-b,L-a).
+\label{eq:interval}
+\end{equation}
+The endpoint $b$ was excluded. Treating both boundaries as included base
+indices creates an off-by-one error.
+
+\Plate{05-interval}{A length-nine annotation transformed with its strand. Ticks denote boundaries 0 through 9; bases occupy the spaces between ticks. Original \texttt{GTAG} in $[2,6)$ becomes \texttt{CTAC} in $[3,7)$ of the reverse complement. Both intervals contain four bases.}{fig:interval}
+
+\Listing{reverse_interval}
+
+For \texttt{ACGTAGCTA}, the reverse complement is \texttt{TAGCTACGT}.
+The coordinate and string operations must satisfy
+\begin{equation}
+\operatorname{rc}(s)[L-b:L-a]=\operatorname{rc}(s[a:b]).
+\label{eq:slice}
+\end{equation}
+Tests check every valid interval of a short ambiguity-containing sequence,
+including empty intervals and end boundaries. Empty $[a,a)$ maps to empty
+$[L-a,L-a)$; it must not acquire a base.
+
+This changes local strand coordinates. It does not automatically convert
+a genomic reference system, reorder transcript exons, or reinterpret
+upstream/downstream labels. A record should declare its reference, strand,
+coordinate origin, and endpoint convention. Correct formulas applied to
+different reference systems can still produce an incorrect annotation.
+
+\section{A palindrome is not a folding prediction}
+
+A reverse-complement palindrome satisfies $s=\operatorname{rc}(s)$.
+For canonical DNA of length $2m$, choosing the first $m$ bases forces the
+remaining $m$ bases. Hence
+\begin{equation}
+P(L)=
+\begin{cases}
+4^{L/2},&L\text{ even},\\
+0,&L\text{ odd}.
+\end{cases}
+\label{eq:palindrome}
+\end{equation}
+For odd length, the middle canonical base would have to complement itself;
+none does. Length zero contributes one empty string by convention.
+
+\Listing{palindrome_count}
+
+Exhaustive enumeration through length six gives counts
+$1,0,4,0,16,0,64$. The alphabet restriction matters: N is its own
+\emph{set} complement, so the one-symbol string \texttt{N} is a symbolic
+palindrome. This does not create a canonical base that pairs with itself.
+
+A hairpin requires separated segments of one strand to form a stem with a
+connecting loop. A string identity specifies neither loop geometry, steric
+constraints, competing intermolecular duplexes, nor favorable free energy.
+Self-complementarity is a sequence relation; formation of a specified
+hairpin under specified conditions is a stronger claim.
+
+\section{What the implementation establishes}
+
+Our artifact validates an alphabet, computes reverse complements, maps
+intervals, expands bounded uncertainty sets, and checks a combinatorial
+result. It does not simulate atoms or infer hybridization. Golden results
+in \path{drafts/ch05/results.json} are computed, not manually transcribed.
+
+Run \texttt{python3 drafts/ch05/reference.py} for the examples and
+\texttt{python3 -m pytest tests/test\_ch05\_reference.py} for the tests.
+The PDF builder extracts whole tested functions and generates the table
+from those same definitions.
+
+The practical lesson is to separate the molecule, its oriented representation,
+and the claims an algorithm supports. Failures then become local and
+testable. Chapter 6 can add physical parameters without silently changing
+what a sequence string means.
+
+\Needspace{10\baselineskip}
+\section{Exercises with worked solutions}
+
+\subsection*{1. Three transformations}
+For \texttt{AGTC}, write aligned complement, reversal, and reverse complement.
+\textbf{Solution:} \texttt{TCAG}, \texttt{CTGA}, and \texttt{GACT}.
+Only the final answer stores the partner $5'$ to $3'$.
+
+\subsection*{2. Locate the oxygen}
+A drawing labels five ring vertices as carbon and a branch as $C5'$.
+Repair it. \textbf{Solution:} the ring has four carbons and $O4'$.
+The branch gives five sugar carbons total. Atom identities matter more than
+a visually pleasing pentagon.
+
+\subsection*{3. Inspect a claimed backbone}
+A diagram joins a base directly to the next phosphate and calls it the
+backbone. \textbf{Solution:} the ordinary connection is
+$C3'-O3'-P-O5'-C5'$. Bases branch from sugars at $C1'$; they are not
+links in this backbone path.
+
+\subsection*{4. Defeat an insufficient test}
+Give a wrong function that passes the involution test.
+\textbf{Solution:} identity and reversal-only both pass.
+Require a known oriented duplex example as well as algebraic properties.
+
+\subsection*{5. Reverse two blocks}
+Let $x=\texttt{AC}$ and $y=\texttt{GTA}$. Check Eq.~\ref{eq:concat}.
+\textbf{Solution:} $\operatorname{rc}(xy)=\texttt{TACGT}$;
+$\operatorname{rc}(y)=\texttt{TAC}$, $\operatorname{rc}(x)=\texttt{GT}$.
+Keeping the original block order would give the incorrect \texttt{GTTAC}.
+
+\subsection*{6. Complement a set}
+Why does B complement to V? \textbf{Solution:} $\{C,G,T\}$ becomes
+$\{G,C,A\}=\{A,C,G\}$, represented by V. Set order is irrelevant.
+
+\subsection*{7. Possible versus guaranteed}
+Does aligned N/N always match? \textbf{Solution:} a complementary assignment
+exists, so the predicate returns true. A/A is also allowed and does not
+match. A probability requires a distribution over assignments.
+
+\subsection*{8. Preserve correlations}
+Encode the observations \texttt{AC} and \texttt{GT} with per-position
+ambiguity. \textbf{Solution:} \texttt{RY} also allows \texttt{AT} and
+\texttt{GC}, neither observed. Keep a joint representation if the correlation matters.
+
+\subsection*{9. Reverse an annotation}
+Map $[1,4)$ in length ten. \textbf{Solution:} $[6,9)$, still three bases.
+Mapping again restores $[1,4)$. The tempting $[5,8)$ transforms boundaries
+as if they were included indices.
+
+\subsection*{10. Count and qualify}
+How many length-eight canonical reverse-complement palindromes exist?
+\textbf{Solution:} $4^4=256$. This counts strings, not stable hairpins.
+Structure and conditions remain unspecified.
+
+\subsection*{11. Bound the expansion}
+How many strings does \texttt{NNRY} represent?
+\textbf{Solution:} $4\cdot4\cdot2\cdot2=64$, within the default budget.
+Seven N symbols exceed the budget; reject before full allocation.
+
+\subsection*{12. Design a record contract}
+Specify a modified strand with an interval annotation.
+\textbf{Worked rubric:} include sequence, alphabet policy, storage direction,
+reference identity, interval convention, strand, terminal modifications,
+and provenance. State which fields reversal transforms. Explain why a
+sequence-only function must not invent transformed chemical metadata.
