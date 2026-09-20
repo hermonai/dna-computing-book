@@ -11,9 +11,9 @@ for current authoring progress. Do not regenerate archived editions merely
 to change their progress labels.
 
 Chapters 1-2 retain their internal acceptance records. Chapter 3 has standalone
-and combined LaTeX review candidates. Chapters 4-7 have isolated authored-LaTeX
+and combined LaTeX review candidates. Chapters 4-8 have isolated authored-LaTeX
 review candidates with code, vector figures, and worked solutions.
-Chapter 8 is the next unwritten chapter in this authoring sequence.
+Chapter 9 is the next unwritten chapter in this authoring sequence.
 Independent specialist review and cumulative integration are still open.
 
 ## Give each return to a topic a new job
@@ -35,7 +35,7 @@ noise (7), then catalytic substrate transformation (8). Chapter 9 can then
 explain amplification without confusing copying, equilibrium binding, and
 computational search.
 
-## Next chapter brief: enzymes as molecular operators
+## Chapter 8 scope (standalone candidate): enzymes as molecular operators
 
 Begin with one chemically explicit substrate-to-product transformation.
 Show recognition, binding, catalytic action, product release, and a failure
@@ -48,6 +48,20 @@ what it cannot do. Provide executable inventory checks and a limiting-case
 oracle; distinguish simulated behavior from measured enzyme activity.
 Use original biology/biochemistry mechanism plates, not a generic flowchart
 with biological names substituted into boxes.
+
+## Next chapter brief: amplification and copy-number evidence
+
+Begin with one primer-extension event and track how two primers define an
+amplifiable interval across repeated cycles. Separate strand count, duplex
+count, and sequence-defined product count. Derive ideal doubling, then a
+cycle-dependent efficiency model with finite resources and background.
+Explain why amplification copies existing information and can magnify bias
+or contamination without solving an arbitrary search problem.
+
+Provide polarity-correct mechanism plates, explicit inventory checks,
+limiting-case oracles, and an observation model that distinguishes threshold
+crossing from absolute initial abundance. Assigned efficiencies must remain
+separate from measured assay performance.
 
 ## Quality gates before widening the manuscript
 

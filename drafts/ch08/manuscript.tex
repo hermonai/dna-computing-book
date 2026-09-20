@@ -1,0 +1,264 @@
+\chapter{Enzymes as molecular operators}
+\label{ch:enzymes}
+
+Take a duplex whose upper strand is $5'\text{-CCGAATTCTT-}3'$. A restriction enzyme can cut it into two fragments; a ligase can reconnect those fragments; a polymerase can extend an appropriately paired primer. These are not interchangeable ways to manipulate a string. Each recognizes a different physical substrate and changes a different part of its chemical structure.
+
+This chapter builds two connected descriptions. A \emph{substrate contract} specifies what an operation requires and what it changes. A kinetic model specifies how a population of eligible substrates changes over time. Finding a recognition sequence does not prove that every molecule has been cut, and permitting a nick to be sealed does not predict a ligation yield.
+
+Chapters 5--7 supplied orientation, conservation, and reaction-rate reasoning. Here we implement sequence-level checks, derive enzyme saturation from an explicit mechanism, and test where the reduced rate law fails. You will explain a cut in both strand coordinates, account for the material consumed by extension, and distinguish an instantaneous rate from accumulated product.
+
+\section{Represent the substrate before naming the operation}
+\index{strand polarity}
+
+A DNA sequence is only part of a molecular state. We also need orientation, pairing, covalent connectivity, and terminal chemistry. AC and GT might be separate oligonucleotides, adjacent pieces paired to a common template, or parts of a continuous strand. A ligase does not infer the missing geometry from the letters.
+
+We display a top strand from $5'$ to $3'$ and its paired bottom strand from $3'$ to $5'$, both left to right. The complement of ACGT in displayed coordinates is TGCA. The same bottom strand written in the conventional $5'$-to-$3'$ direction is ACGT. Complementing bases and reversing orientation are separate operations.
+
+A \Term{nick} is a missing phosphodiester connection between adjacent nucleotides in an otherwise continuous strand path. A \Term{gap} additionally lacks one or more nucleotides. Sealing a nick reconnects an existing backbone; filling a gap requires adding material before the last connection can be sealed.
+
+\begin{center}
+\begin{tabular}{p{.18\linewidth}p{.35\linewidth}p{.35\linewidth}}
+\toprule
+Operator & Required substrate in our model & State changed\\
+\midrule
+Restriction & Paired duplex containing a recognized site & Backbone connectivity at two bonds\\
+Ligation & Aligned nick with suitable termini and cofactor & One missing backbone connection\\
+Extension & Paired primer with an extendable $3'$ end & Strand length and nucleotide inventory\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The table is deliberately narrower than the full biochemical repertoire of these enzyme families. It is an executable specification, not a claim that every member of a family has the same substrate tolerance.
+
+\section{Restriction: a site determines two cut coordinates}
+\index{EcoRI}
+
+EcoRI recognizes the duplex site GAATTC and cuts after the first G on the strand read $5'$ to $3'$ \cite{ecori}. On our displayed top strand, a site beginning at zero-based index $i$ gives
+\begin{equation}
+c_{\mathrm{top}}=i+1,\qquad c_{\mathrm{bottom}}=i+5.
+\label{eq:cuts}
+\end{equation}
+A cut coordinate counts bases to the left of a bond; it is not the index of a base that disappears.
+
+\Plate{01-cleavage}{EcoRI cleavage in explicit strand coordinates. The scissions are staggered by four nucleotides, leaving complementary $5'$ overhangs. Cutting changes connectivity, not nucleotide inventory. Terminal labels distinguish newly formed $5'$ phosphate and $3'$ hydroxyl ends.}{fig:cleavage}
+
+In CCGAATTCTT the site begins at index 2, so the coordinates are $(3,7)$. The left fragment has top strand CCG and bottom strand GGCTTAA in displayed coordinates. Its protruding bottom segment reads TTAA from left to right, but starts at its $5'$ end on the right: its conventional overhang sequence is AATT. The right fragment has the complementary protrusion on the top strand. Figure~\ref{fig:cleavage} makes this orientation reversal visible.
+
+\Listing{ecori_cut_sites}
+
+The helper \texttt{dna} rejects empty strings, noncanonical letters, and lowercase input. The search returns bond positions only: downstream code can split each strand at its own coordinate. For two distinct sites in a linear duplex, two complete double-strand cuts yield three fragments. The same count does not apply to a circle: a first cut linearizes it.
+
+\subsection{What the string matcher cannot tell us}
+
+The function assumes an accessible, fully paired canonical duplex. It does not model methylation sensitivity, altered specificity, incomplete digestion, or conditions needed for a particular preparation. The product information documents relevant qualifications \cite{ecori}; those are not parameters secretly encoded in the six-letter match.
+
+The recognizer supplies eligible sites. A separate reaction model supplies fractions cut or event times. A third layer translates those events into observable fragment distributions. Returning a site list is not an experimental cleavage measurement.
+
+\section{Ligation: restore a bond, not a missing base}
+\index{adenylation}
+
+Complementary overhangs can anneal without their backbones becoming covalently continuous. Thermal dissociation can separate an annealed complex again. A \Term{DNA ligase} can seal an eligible nick, turning a base-paired arrangement into a covalently connected product.
+
+For the ATP-dependent teaching contract used here, the joining strand presents an upstream $3'$ hydroxyl and a downstream $5'$ phosphate. T4 DNA ligase is an example that joins suitable DNA ends and nicks \cite{ligase}. Its catalytic cycle can be understood as three transfers \cite{ligasemechanism}:
+
+\begin{enumerate}
+\item ATP activates the enzyme by supplying AMP; pyrophosphate is released.
+\item AMP is transferred to the nick's $5'$ phosphate, activating the DNA end.
+\item The adjacent $3'$ hydroxyl attacks the activated phosphate. A backbone bond forms and AMP leaves.
+\end{enumerate}
+
+\Plate{02-ligation}{An ATP-dependent nick-sealing cycle. AMP first activates the enzyme, then the DNA end; the final step connects existing nucleotides and releases AMP. The drawing follows reaction groups rather than depicting every atom, charge, water molecule, or catalytic residue.}{fig:ligation}
+
+The AMP intermediate is not an adenine nucleotide inserted into the DNA sequence. The sequence before and after nick sealing is unchanged; connectivity changes. This is why a ligase cannot replace the absent nucleotide in our gap model.
+
+\Listing{seal_nick}
+
+Try left = AC, right = GT, and displayed template = TGCA. Their concatenation ACGT pairs with the template and the function returns ACGT. Remove the downstream phosphate and the function rejects the operation. Use template TGACA instead: the extra template base represents a gap in the joining strand, so the perfect-pairing contract fails.
+
+The boolean flags describe eligibility, not concentrations. Setting \texttt{atp=True} does not encode an ATP reservoir, depletion, or measured efficiency. Perfect matching is a conservative boundary for this reference, not a universal theorem about ligase mismatch tolerance.
+
+\subsection{Composition can undo an earlier operation}
+
+If EcoRI-generated fragments are rejoined in their original arrangement, GAATTC is restored. A subsequent eligible EcoRI cleavage can cut that site again. Cut--join is therefore not necessarily a one-way computational transition. Specify when enzymes are active, whether products preserve recognition sites, and which competing reactions remain possible. A logical arrow must correspond to a justified chemical asymmetry.
+
+\section{Polymerase extension: a template-guided material balance}
+\index{dNTP inventory}
+
+A \Term{DNA polymerase} extends a primer at its $3'$ end, synthesizing the new strand $5'$ to $3'$. It does not append bases to the primer's $5'$ end. T4 DNA polymerase requires a primer and template and also has a distinct $3'$-to-$5'$ exonuclease activity \cite{polymerase}. Our code models ideal, correctly paired extension, not that enzyme's full activity profile.
+
+Consider displayed template $3'\text{-TGCATG-}5'$ with primer $5'\text{-AC-}3'$. The next template base is C, so the next incorporated base is G. Continuing gives ACGTAC. Each incorporation consumes one corresponding deoxynucleoside triphosphate (dNTP), adds one nucleotide residue to the strand, and releases one pyrophosphate (PPi).
+
+\Plate{03-extension}{One extension step. The primer's terminal $3'$ hydroxyl is the growing end; incoming dGTP supplies the complementary G residue and releases PPi. Repeating the operation extends the primer along the template. Proofreading and microscopic catalytic geometry are outside this schematic.}{fig:extension}
+
+\Listing{extend_primer}
+
+With one A, C, G, and T available, the four additions G, T, A, C consume the complete pool and return ACGTAC and four PPi. If G is unavailable, the first required step is blocked: the original AC primer remains and nothing is consumed. The program must not skip ahead to add an available T.
+
+The function copies the inventory, leaving the caller's dictionary unchanged. Every successful run must also satisfy
+\begin{equation}
+|{\rm product}|-|{\rm primer}|
+=\sum_b(n_b^{\rm before}-n_b^{\rm after})=n_{\rm PPi}.
+\label{eq:extensionbalance}
+\end{equation}
+This connects sequence arithmetic to chemical accounting. A program can generate a complementary string while violating the finite pool; checking only the final letters would miss that error.
+
+Stopping at a depleted pool does not simulate pause durations, misincorporation, dissociation, or proofreading. The PPi count does not model subsequent hydrolysis. These require additional states and rates, not reinterpretation of an integer counter.
+
+\section{From eligible substrates to a population rate}
+\index{mass action}
+
+The contracts answer whether a transformation is allowed. To predict a concentration trajectory we need occupancies and time. Begin with the minimal catalytic mechanism
+\begin{equation}
+E+S \mathop{\rightleftharpoons}^{k_1}_{k_{-1}} C
+\mathop{\longrightarrow}^{k_{\rm cat}} E+P.
+\label{eq:enzyme}
+\end{equation}
+Here $C$ means enzyme--substrate complex, not cytosine. We omit reverse product binding, enzyme inactivation, and cofactor depletion.
+
+Let lower-case letters denote concentrations in $\mu$M and time be in seconds. Association has units $\mu{\rm M}^{-1}{\rm s}^{-1}$; dissociation and turnover have units $\mathrm{s}^{-1}$. Mass action gives
+\begin{align}
+\dot e&=-k_1es+k_{-1}c+k_{\rm cat}c,\\
+\dot s&=-k_1es+k_{-1}c,\\
+\dot c&=k_1es-(k_{-1}+k_{\rm cat})c,\\
+\dot p&=k_{\rm cat}c.
+\label{eq:full}
+\end{align}
+Adding the appropriate equations yields exact conservation laws:
+\begin{equation}
+e+c=e_0,\qquad s+c+p=s_0.
+\label{eq:conservation}
+\end{equation}
+The second counts substrate units, including the unit temporarily bound in each complex. Requiring $s+p=s_0$ while $c$ is appreciable would be incorrect.
+
+\Listing{rhs}
+
+\subsection{Derive saturation from finite enzyme occupancy}
+\index{Michaelis constant}
+
+After an initial transient, suppose complex occupancy adjusts much faster than substrate changes. Setting $\dot c\approx0$ and using $e=e_0-c$ gives
+\begin{align}
+k_1(e_0-c)s&=(k_{-1}+k_{\rm cat})c,\\
+c&\approx\frac{e_0s}{K_M+s},
+&K_M&=\frac{k_{-1}+k_{\rm cat}}{k_1},\\
+v=\dot p&\approx\frac{V_{\max}s}{K_M+s},
+&V_{\max}&=k_{\rm cat}e_0.
+\label{eq:mm}
+\end{align}
+This is the \Term{quasi-steady-state approximation} for the stated mechanism. At low free substrate, occupancy and rate grow approximately linearly with $s$. At high substrate, most enzyme is occupied; adding substrate cannot supply more catalytic sites.
+
+\Listing{mm_rate}
+
+Use assigned values $k_1=2$, $k_{-1}=1$, $k_{\rm cat}=3$, and $e_0=0.02$ in the defined units. Then $K_M=2\,\mu$M and $V_{\max}=0.06\,\mu$M/s. These are not measured EcoRI, ligase, or polymerase parameters.
+
+\begin{center}\input{\Generated/results-table.tex}\end{center}
+
+\Plate{04-catalysis}{Finite occupancy produces a saturating rate. The curve is generated by the tested calculation using assigned rates. At free substrate $s=K_M$, the rate is half $V_{\max}$. This is a reduced rate law, not a measured enzyme dataset.}{fig:saturation}
+
+\subsection{Why the Michaelis constant is not simply affinity}
+\index{dissociation constant}
+
+The equilibrium dissociation constant for $E+S\rightleftharpoons C$ is $K_D=k_{-1}/k_1$. Our example has $K_D=0.5\,\mu$M, four times smaller than $K_M$. Catalysis is another route out of the bound state, so $K_M$ contains both escape rates. Only in the rapid-equilibrium limit $k_{\rm cat}\ll k_{-1}$ does this mechanism give $K_M\approx K_D$.
+
+The official kinetic recommendations distinguish these quantities and define the Michaelis constant through the rate relationship \cite{kinetics}. A fitted hyperbola does not prove that this minimal mechanism uniquely explains the data.
+
+\section{Expose the approximation's initial failure}
+
+Start with $c(0)=p(0)=0$. The full mechanism gives $\dot p(0)=0$: no substrate is yet bound. Equation~\ref{eq:mm}, applied immediately at positive $s_0$, gives a positive rate. The reduced equation assumes that the fast occupancy transient has already relaxed.
+
+\subsection{An exact transient under a different boundary condition}
+\index{clamped substrate}
+
+Imagine an external reservoir holding \emph{free} substrate fixed at $s$. This is not a closed tube with fixed total substrate. Define
+\begin{equation}
+\alpha=k_1s+k_{-1}+k_{\rm cat},\qquad
+c_\infty=\frac{k_1e_0s}{\alpha}.
+\end{equation}
+Then $\dot c+\alpha c=k_1e_0s$. Multiplying by $e^{\alpha t}$ and integrating from zero gives
+\begin{align}
+c(t)&=c_\infty(1-e^{-\alpha t}),\\
+p(t)&=k_{\rm cat}c_\infty
+\left[t-\frac{1-e^{-\alpha t}}{\alpha}\right].
+\label{eq:clamped}
+\end{align}
+Differentiation checks both formulas without a solver. Expanding the exponential near zero reveals
+\begin{equation}
+p(t)=\tfrac12 k_{\rm cat}k_1e_0s\,t^2+O(t^3).
+\end{equation}
+Product initially grows quadratically, not linearly, because occupancy must first accumulate.
+
+\Listing{clamped}
+
+The implementation uses \texttt{expm1} to evaluate $e^x-1$ accurately near zero. The product expression still subtracts close quantities at extremely small times; a production evaluator would switch to the series there. Our checks use the stated teaching time range, not arbitrary small-time relative accuracy.
+
+At $s=1\,\mu$M the assigned rates give $\alpha=6\,{\rm s}^{-1}$, so the relaxation time is about $0.167$ s. The initial reduced rate is $0.02\,\mu$M/s, suggesting depletion scale $s_0/v_0=50$ s. The ratio $e_0/(K_M+s_0)\approx0.00667$ and separated timescales motivate testing the approximation; neither is a universal validity certificate.
+
+\subsection{Integrate the closed system and test invariants}
+\index{Runge--Kutta integration}
+
+For the closed system we integrate all four equations with classical fourth-order Runge--Kutta (RK4). A step samples slopes at the beginning, two midpoint estimates, and the endpoint, combining them with weights $1,2,2,1$. The complete function keeps validation and failure behavior visible.
+
+\Listing{integrate}
+
+RK4 is not unconditionally positivity preserving. A large step can produce a negative intermediate concentration even when the true solution stays nonnegative. This reference rejects such a step; clipping it to zero could conceal a mass-balance error.
+
+\Plate{05-transient}{Complex accumulation from initially unbound enzyme. The solid curve solves the closed system; the dashed curve uses an externally clamped free-substrate reservoir. Their small separation reflects different boundary conditions, not automatically a numerical defect. Both show the transient omitted by an instantaneous steady-state substitution.}{fig:transient}
+
+Four checks play different roles. Conservation verifies stoichiometry. Nonnegative concentrations and nondecreasing product check physical behavior within this irreversible mechanism. Step halving tests convergence: a fourth-order global error falls by about $2^4=16$ in the asymptotic regime. Finally, lowering enzyme concentration makes short-time depletion negligible, allowing the closed solution to approach the independently derived clamped transient. One check cannot replace the others.
+
+In enzyme analysis, \emph{initial rate} often means the early quasi-steady portion before substantial depletion, not the derivative at the exact instant unbound reactants are mixed \cite{transient}. These are different quantities.
+
+\subsection{A reduced rate is not a perpetual linear yield}
+\index{substrate depletion}
+
+Even after the transient, depletion slows the reaction. If bound substrate is negligible in the material balance and Equation~\ref{eq:mm} remains valid, $\dot s=-V_{\max}s/(K_M+s)$. Separating variables gives
+\begin{equation}
+V_{\max}t=s_0-s+K_M\ln\!\left(\frac{s_0}{s}\right).
+\label{eq:integrated}
+\end{equation}
+This is not the exact four-state solution. It nevertheless exposes a common error: multiplying an initial rate by an arbitrarily long duration can predict more product than the initial inventory.
+
+\section{Connect chemistry, computation, and observation}
+
+An enzyme operator needs four interfaces. Its structural contract specifies recognized sequence, pairing, termini, and connectivity. Its material contract accounts for nucleotides, cofactors, and products. Its timing contract specifies competing reactions and rates. Its observation contract explains which measurement distinguishes intended product from unreacted or off-pathway material.
+
+For example, \texttt{seal\_nick} returns the same letters as concatenating two unsealed pieces. A sequence-only representation cannot distinguish their connectivity. A count of incorporation events says nothing about fidelity unless wrong incorporations are represented. The measurement must resolve the state property on which the computation relies.
+
+Run \texttt{python3 -m pytest tests/test\_ch08\_reference.py} and regenerate tables with \texttt{python3 drafts/ch08/build.py --assets-only}. Extending this reference should begin by adding a missing state or contract and a failing test, not by assigning new meaning to an untested flag.
+
+Chapter 9 will build on extension to study amplification: how repeated cycles change copy number, bias, and the meaning of a molecular signal.
+
+\section{Exercises with worked reasoning}
+
+\begin{enumerate}
+\item \textbf{Locate both bonds.} Find cuts in TGAATTCA.
+\emph{Solution:} the site starts at index 1, giving $(2,6)$. Neither coordinate deletes a base.
+\item \textbf{Read an overhang.} A bottom protrusion is TTAA displayed $3'$ to $5'$. Give its conventional sequence.
+\emph{Solution:} read from the right-hand $5'$ end: AATT. Reverse direction; do not complement again.
+\item \textbf{Count fragments.} What follows two distinct complete cuts in a linear duplex?
+\emph{Solution:} three fragments. A circle instead yields two fragments after two distinct cuts.
+\item \textbf{Separate nick and gap.} Why reject AC + GT against TGACA?
+\emph{Solution:} four residues cannot cover five template positions. Forming a bond cannot supply the missing residue.
+\item \textbf{Respect order.} G is needed next but only T is available. What should extension do?
+\emph{Solution:} stop at the first unavailable cognate nucleotide. Skipping the position changes the alignment contract.
+\item \textbf{Distinguish constants.} Compute $K_D$ and $K_M$ for the assigned rates.
+\emph{Solution:} $K_D=0.5\,\mu$M and $K_M=2\,\mu$M. Catalytic escape explains the difference.
+\item \textbf{Prove conservation.} Differentiate $s+c+p$.
+\emph{Solution:} association and dissociation cancel between $s$ and $c$; turnover cancels between $c$ and $p$. The sum is zero.
+\item \textbf{Find half-saturation.} Solve $v=V_{\max}/2$.
+\emph{Solution:} $2s=K_M+s$, so free substrate $s=K_M$. Total substrate need not equal this value when a significant portion is bound.
+\item \textbf{Challenge an initial rate.} Why is a positive reduced rate at $t=0$ incompatible with initially unbound enzyme?
+\emph{Solution:} turnover requires occupancy. With $c(0)=0$ the full derivative is zero; the reduced law has eliminated that transient.
+\item \textbf{Recover the early-time law.} Expand Equation~\ref{eq:clamped}.
+\emph{Solution:} substitute $1-e^{-\alpha t}=\alpha t-\alpha^2t^2/2+\cdots$. Linear terms cancel, leaving $k_{\rm cat}k_1e_0s\,t^2/2$.
+\item \textbf{Find a loop.} Why can restoring an EcoRI-cut duplex fail to create a persistent output?
+\emph{Solution:} exact rejoining restores the recognition site. If cleavage remains active and eligible, the product can be cut again.
+\item \textbf{Design an evidence test.} What is needed to turn the rate plot into a claim about a real ligase?
+\emph{Solution:} specify substrate and conditions, measure concentration--time data with controls, fit an appropriate mechanism, quantify uncertainty, and test predictions on independent data. Relabeling an assigned curve supplies none of this evidence.
+\end{enumerate}
+
+\section*{Selective glossary}
+\addcontentsline{toc}{section}{Selective glossary}
+\textbf{Nick:} a missing backbone bond without a missing nucleotide.
+\textbf{Gap:} missing nucleotides along a specified strand path.
+\textbf{Turnover:} catalytic conversion with enzyme regenerated.
+\textbf{Quasi-steady state:} an approximation in which complex occupancy changes slowly relative to its rapid adjustment dynamics.

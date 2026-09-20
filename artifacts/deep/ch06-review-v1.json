@@ -1,12 +1,12 @@
 {
-  "pdf": "output/pdf/dna-computing-ch06-review-v2.pdf",
+  "pdf": "output/pdf/dna-computing-ch06-review.pdf",
   "pages": 14,
-  "sha256": "b9ef0f0a5149d0c8dc582da77a17007e7e4091fec2f98781ea976aa4793f3193",
+  "sha256": "b1f1f6d8d3892cfed18aa7a89eaf4d8fe058d94fb8881f532e709ff7fd6824df",
   "status": "standalone authored-LaTeX review candidate; no acceptance promotion",
   "sources": {
-    "drafts/ch06/README.md": "9be325ca90f9ffd5def80500813ab01664bb3ac169a0834e846faff58490c314",
+    "drafts/ch06/README.md": "0799e281a06b384e876006ecd6fc2463141b9c18b5a929b0abed6853a95f20f4",
     "drafts/ch06/STORYBOARD.md": "337f1307dade203a1eae4a7843e4dd7fec40568092c3396ba6e9482d4f7d65ee",
-    "drafts/ch06/build.py": "beef8c297bd47f968363c7e872643e6b0b1e4e06c3422077687480a2878d9ed7",
+    "drafts/ch06/build.py": "fbba2876fe2dda15f4563b0f030a729983eb40e70a40883aab8a30bfe879c9b7",
     "drafts/ch06/figures/01-inventory.tex": "5f16d8e68b587aabd339027d90d44326f95beabb86c940fdff26c6f939a9e8a7",
     "drafts/ch06/figures/01-inventory.txt": "4c21ff7053946286c6e0139e48f44427900830a3328599615f6418d8f02c0c56",
     "drafts/ch06/figures/02-free-energy.tex": "bf71b05c038e57df8cc4264bc997ee8115f87303f7a0b4323ca4d0a74594d008",
@@ -21,12 +21,12 @@
     "drafts/ch06/reference.py": "e23f79446a622bbc32204baa809b90fd355756ee5db6705a9885394671f1f003",
     "drafts/ch06/results.json": "f3ab24cb70c78a4b26cb1a34aaaacb18c3fc21c362e00e05f8467d19ad174e5c",
     "drafts/ch06/review.tex": "945f67270042850a1e4801c42779d59707f5cde590292211a37c04611e55c4df",
-    "drafts/ch06/sources.tex": "3123b45047c173fcd70fdf52e2fd23f8214f4a2ba0edb68e997d2ceecadae4a8"
+    "drafts/ch06/sources.tex": "991580f2b3a48655d74409542f94360fcd5194d3181506da9e49f6039732b3bc"
   },
   "reviewedOn": "2026-09-20",
   "reviewType": "author technical, editorial and visual review; not independent specialist acceptance",
   "allPagesInspected": true,
-  "grayscaleReview": "All revised pages inspected in color and grayscale contact sheets; revised source page also inspected individually at page scale. Prior technical/figure checks are retained in the archived v1 review record.",
+  "grayscaleReview": "All pages inspected in grayscale contact sheets and color; all five figure pages and code pages inspected at page scale. Label collisions and exercise pagination corrected.",
   "figures": 5,
   "exercises": 12,
   "openGates": [
@@ -35,30 +35,11 @@
     "cumulative integration, cross-chapter index and bibliography"
   ],
   "validation": {
-    "generatedArtifactsCheck": "passed",
-    "pdfWordsOutsidePage": 0,
-    "unresolvedReferenceMarkers": 0,
-    "fullSuitePassed": 356,
+    "fullSuitePassed": 311,
     "fullSuiteSkipped": 2,
-    "priorEditionPreservationTests": "passed"
-  },
-  "inspectedPhysicalPages": [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14
-  ],
-  "revision": 2,
-  "supersedes": "artifacts/deep/ch06-review-v1.json",
-  "revisionReason": "Consolidate general pedagogical acknowledgment and evidence policy in book frontmatter; retain chapter-specific scientific evidence and limitations."
+    "generatedArtifactsCheck": "passed",
+    "priorEditionPreservationTests": "passed",
+    "pdfWordsOutsidePage": 0,
+    "unresolvedReferenceMarkers": 0
+  }
 }

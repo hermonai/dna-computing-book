@@ -1,0 +1,62 @@
+{
+  "pdf": "output/pdf/dna-computing-ch08-review.pdf",
+  "pages": 15,
+  "sha256": "5e88dc086d7df6bbacc0b7552ff7d18da787318887b1b4ac94811946192b854b",
+  "status": "standalone authored-LaTeX review candidate; no acceptance promotion",
+  "sources": {
+    "drafts/ch08/README.md": "4e9c2ba77731bd4dc0d32162dd849def376308f8d0693356fa516699d1141de7",
+    "drafts/ch08/STORYBOARD.md": "5d33ee75c37d61cb427e26aaae3a8b2c3359d7f06ed51d23486debf8b088e66f",
+    "drafts/ch08/build.py": "07957e717d8e7867b5a1ff8f26b2b88ba9f6bc0c93c5bf042f955822faaab894",
+    "drafts/ch08/figures/01-cleavage.tex": "c1ba4a5b057864d308735aee569cb0be3126fba3e617fe66fa220a9af7eea7b0",
+    "drafts/ch08/figures/01-cleavage.txt": "f983cfe4747006a6fc65d92c2ad580850af2ea248b5fc762508bc087cf035cac",
+    "drafts/ch08/figures/02-ligation.tex": "a8fa63baeeff4b5c30337114dcf758c6c991e4ce27a99daf0214f9f23f708bbc",
+    "drafts/ch08/figures/02-ligation.txt": "ba88738a77272085dc5ed0acda267d397ffda1efe54697a825ff2aad422add9c",
+    "drafts/ch08/figures/03-extension.tex": "0d47cb8f6dac89a69d48732548249b0b630b85ce1eb5949dea5c56cb2c1a6458",
+    "drafts/ch08/figures/03-extension.txt": "69953013a465b1259daf246a59afa396b05fa3dcabfbb7bc2dac51bce4355b87",
+    "drafts/ch08/figures/04-catalysis.tex": "17ef2d82ec2c4f8885996da6d551220b36dbbc55e95c6ad2be6df9fa836b264f",
+    "drafts/ch08/figures/04-catalysis.txt": "2b529dd0c00bfccafc3562adfe77ecab8911a2eeddf5cf0ebedca28342b37418",
+    "drafts/ch08/figures/05-transient.tex": "b8c0248e8bee35933219b765847b1533f040fcf1aa2835d8af2bdfa25bb28346",
+    "drafts/ch08/figures/05-transient.txt": "a5c870aa4e767caa72cd4d9063aee2e31c02cc38164546c3ceb1ea75d3fc2570",
+    "drafts/ch08/manuscript.tex": "4d521daed1060b0c1f1d22bf4f3a981dcc1c40325a088327804201597b746b55",
+    "drafts/ch08/reference.py": "fa4e9381eac597cb4144201c5180e6b5b3d9e04b670b54638a9431502800b41a",
+    "drafts/ch08/results.json": "65e6d72b63ac8d0946f232710a452d1232f81cc267d7260dad5b03cc734328ff",
+    "drafts/ch08/review.tex": "7151f0f7f4bba7b15c3953dffff019c05af360259b554f471858567e88e0da25",
+    "drafts/ch08/sources.tex": "2b490aaab9fdf2204b858389b4966e122ce94eaffefa209d755d5e8d6231fa7c"
+  },
+  "reviewedOn": "2026-09-20",
+  "reviewType": "author technical, editorial and visual review; not independent specialist acceptance",
+  "allPagesInspected": true,
+  "inspectedPhysicalPages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "grayscaleReview": "All pages inspected in final color and grayscale contact sheets. All five figure pages and all code-listing pages inspected individually at page scale, as were references and index. Label collisions corrected before final inspection.",
+  "figures": 5,
+  "exercises": 12,
+  "openGates": [
+    "independent specialist review",
+    "reader feedback",
+    "cumulative integration, cross-chapter index and bibliography"
+  ],
+  "validation": {
+    "generatedArtifactsCheck": "passed",
+    "pdfWordsOutsidePage": 0,
+    "unresolvedReferenceMarkers": 0,
+    "fullSuitePassed": 356,
+    "fullSuiteSkipped": 2,
+    "priorEditionPreservationTests": "passed"
+  }
+}

@@ -1,0 +1,36 @@
+\begin{tikzpicture}[font=\small\sffamily,x=.78cm,y=.72cm]
+\node[anchor=west,text=Blue] at (-1,6.2) {1\quad Recognition and the two cleavage bonds};
+\path[fill=Gold!50,draw=Gold!80!black,rounded corners=12pt] (1.3,2.7) rectangle (7.7,4.5);
+\node[smallnote] at (4.5,5.2) {EcoRI recognition region: GAATTC};
+\draw[Blue,thick] (-.5,4)--(9.5,4);
+\draw[Green,thick] (-.5,3)--(9.5,3);
+\foreach \x/\a/\b in {0/C/G,1/C/G,2/G/C,3/A/T,4/A/T,5/T/A,6/T/A,7/C/G,8/T/A,9/T/A}{
+\node[fill=white,inner sep=1pt] at (\x,4) {\a};
+\node[fill=white,inner sep=1pt] at (\x,3) {\b};
+\draw[gray,dashed] (\x,3.7)--(\x,3.3);}
+\node[anchor=east] at (-.5,4) {$5'$}; \node[anchor=west] at (9.5,4) {$3'$};
+\node[anchor=east] at (-.5,3) {$3'$}; \node[anchor=west] at (9.5,3) {$5'$};
+\draw[Red,line width=1.5pt] (2.5,3.8)--(2.5,4.2);
+\draw[Red,line width=1.5pt] (6.5,2.8)--(6.5,3.2);
+\draw[flow] (10.3,3.8)--node[right,smallnote] {Two backbone\\hydrolyses}(10.3,1.1);
+\node[anchor=west,text=Blue] at (-1,1.8) {2\quad Products separate; bases are not deleted};
+\draw[Blue,thick] (-.5,.8)--(2.2,.8);
+\draw[Green,thick] (-.5,-.2)--(6.2,-.2);
+\foreach \x/\a/\b in {0/C/G,1/C/G,2/G/C}{
+\node[fill=white,inner sep=1pt] at (\x,.8) {\a};
+\node[fill=white,inner sep=1pt] at (\x,-.2) {\b};
+\draw[dashed,gray] (\x,.5)--(\x,.1);}
+\foreach \x/\b in {3/T,4/T,5/A,6/A}{\node[fill=white,inner sep=1pt] at (\x,-.2) {\b};}
+\node[smallnote,anchor=west] at (2.25,.8) {$3'$-OH};
+\node[smallnote,anchor=west] at (6.25,-.2) {$5'$-P};
+\node[smallnote] at (4.5,-1) {Displayed TTAA reads AATT from its $5'$ end};
+\draw[Blue,thick] (3,-2.3)--(9.5,-2.3);
+\draw[Green,thick] (7,-3.3)--(9.5,-3.3);
+\foreach \x/\a in {3/A,4/A,5/T,6/T,7/C,8/T,9/T}{\node[fill=white,inner sep=1pt] at (\x,-2.3) {\a};}
+\foreach \x/\b in {7/G,8/A,9/A}{\node[fill=white,inner sep=1pt] at (\x,-3.3) {\b};\draw[dashed,gray] (\x,-2.6)--(\x,-3);}
+\node[smallnote,anchor=east] at (2.9,-2.3) {$5'$-P};
+\node[smallnote,anchor=east] at (6.9,-3.3) {$3'$-OH};
+\node[smallnote,anchor=west] at (9.5,-2.3) {$3'$};
+\node[smallnote,anchor=west] at (9.5,-3.3) {$5'$};
+\node[smallnote] at (4.5,-4.2) {Left fragment above; right fragment below.\\Both retain a complementary four-base $5'$ overhang.};
+\end{tikzpicture}

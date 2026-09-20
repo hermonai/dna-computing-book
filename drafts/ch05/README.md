@@ -20,7 +20,10 @@ Run from the repository root:
 
 Dependencies: Python 3.10+, pytest, Pillow for rendering contact sheets,
 XeLaTeX/latexmk, Poppler, and the fonts declared in review.tex.
-The build creates output/pdf/dna-computing-ch05-review.pdf and page previews
+The build creates output/pdf/dna-computing-ch05-review-v2.pdf and page previews
+
+Revision 2 centralizes the recurring pedagogy and review disclosure in
+tex/frontmatter/about-this-book.tex. Earlier PDF and review records are retained.
 under tmp/pdfs/ch05-review/; output artifacts are local, not tracked in Git.
 
 The manuscript is authored directly in LaTeX. The builder extracts whole

@@ -1,0 +1,3 @@
+Figure 8.5
+
+Transient occupancy: generated full mass-action and clamped-substrate oracle curves expose the initial boundary layer; enzyme and substrate conservation must survive integration. No assigned rate is an enzyme measurement.

@@ -14,7 +14,10 @@ From the repository root:
 
 Python 3.10+, pytest, Pillow, XeLaTeX/latexmk, Poppler, and the fonts in
 review.tex are required.
-The local gitignored PDF is output/pdf/dna-computing-ch07-review.pdf.
+The local gitignored PDF is output/pdf/dna-computing-ch07-review-v2.pdf.
+
+Revision 2 centralizes the recurring pedagogy and review disclosure in
+tex/frontmatter/about-this-book.tex. Earlier PDF and review records are retained.
 The builder generates tables and plots from reference.py and extracts whole
 functions for code listings. It does not convert Markdown into manuscript prose.
 
