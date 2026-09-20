@@ -11,9 +11,9 @@ for current authoring progress. Do not regenerate archived editions merely
 to change their progress labels.
 
 Chapters 1-2 retain their internal acceptance records. Chapter 3 has standalone
-and combined LaTeX review candidates. Chapters 4-8 have isolated authored-LaTeX
+and combined LaTeX review candidates. Chapters 4-9 have isolated authored-LaTeX
 review candidates with code, vector figures, and worked solutions.
-Chapter 9 is the next unwritten chapter in this authoring sequence.
+Chapter 10 is the next unwritten chapter in this authoring sequence.
 Independent specialist review and cumulative integration are still open.
 
 ## Give each return to a topic a new job
@@ -49,7 +49,7 @@ oracle; distinguish simulated behavior from measured enzyme activity.
 Use original biology/biochemistry mechanism plates, not a generic flowchart
 with biological names substituted into boxes.
 
-## Next chapter brief: amplification and copy-number evidence
+## Chapter 9 scope (standalone candidate): amplification and copy-number evidence
 
 Begin with one primer-extension event and track how two primers define an
 amplifiable interval across repeated cycles. Separate strand count, duplex
@@ -62,6 +62,15 @@ Provide polarity-correct mechanism plates, explicit inventory checks,
 limiting-case oracles, and an observation model that distinguishes threshold
 crossing from absolute initial abundance. Assigned efficiencies must remain
 separate from measured assay performance.
+
+## Next chapter brief: separation, readout, and measurement
+
+Start with a mixture of target and off-target products, and ask which physical
+property an instrument actually separates or measures. Explain electrophoretic
+migration and fluorescence readout without treating band intensity as exact
+molecule identity. Build an observation model with background, overlapping
+species, calibration, and uncertainty. Provide controls and a counterexample
+in which two distinct molecular mixtures produce the same observed signal.
 
 ## Quality gates before widening the manuscript
 

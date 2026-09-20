@@ -1,0 +1,235 @@
+\chapter{Amplification and copy-number evidence}
+\label{ch:amplification}
+
+Start with one long DNA duplex containing a shorter interval that we want to copy. After three ideal copying cycles, there can be eight duplexes. Are all eight copies of exactly the intended interval? No. Some strands still extend beyond a primer-defined boundary. The first question is therefore not how many times the amount doubled, but \emph{what molecular object are we counting?}
+
+Chapter 8 explained how a polymerase extends a paired primer. Here we connect those individual events across cycles, then connect population growth to resources, noise, and observation. We will derive three different results: an exact lineage count under ideal geometry, a resource-limited mean population, and a threshold-crossing observation. Keeping these models separate makes their eventual composition understandable.
+
+The reference in \texttt{drafts/ch09/reference.py} implements these abstractions. It is not a sequence-design tool or a laboratory protocol. The short sequences below are deliberately small coordinate examples, not experimentally usable primer designs.
+
+\section{Two primers define an interval through copying}
+\index{primer orientation}\index{amplicon}
+Display the upper parental strand from $5'$ to $3'$ left to right. Let the desired interval be the half-open coordinate range $[a,b)$ of that strand; its length is $L=b-a$ nucleotides. A forward primer of length $l_f$ has the same sequence as upper-strand positions $[a,a+l_f)$ and binds the lower strand. Its growing $3'$ end points right. A reverse primer of length $l_r$ is the reverse complement of upper-strand positions $[b-l_r,b)$; it binds the upper strand and grows left.
+
+For upper strand $5'$-TTACGATCGTACGG-$3'$, choose $a=2$, $b=12$, and $l_f=l_r=3$. The target is ACGATCGTAC. The forward primer is ACG; the upper-strand right site is TAC, so the reverse primer is GTA when written from its own $5'$ end. Writing TAC itself as the reverse primer would confuse the site with the oligonucleotide that binds it.
+
+\Plate{01-primers}{Primer orientation fixes the start of each extension. Solid colored segments are covalent strand backbones; short dashed rungs indicate pairing. Both extensions grow at a $3'$ end. The boundary at the opposite primer is not a command that stops a polymerase on the original long template.}{fig:primers}
+
+\Listing{primer_pair}
+The helper imposes nonoverlapping primers and canonical uppercase bases. It returns sequences and the intended interval, not binding specificity, melting behavior, secondary structure, or amplification efficiency. The two strands are antiparallel; reversing the display direction is a geometric operation, not a second complementation.
+
+\subsection{What a thermal cycle changes}
+In the usual PCR cycle, denaturation separates paired strands, annealing makes primer--template complexes available, and extension creates new covalent strands. Newly made strands can be templates in subsequent cycles \cite{neb}. Denaturation does not intentionally cut the backbone or delete the template. Annealing alone does not make a copy. Extension consumes primer and nucleotide material.
+
+This ordering creates feedback: the output of one round becomes an eligible input of another. But a new first-round strand starts at one primer and can extend beyond the other primer's site along the original template. Only when this new strand is itself copied does its primer-defined end become a physical template endpoint for the opposing extension.
+
+\Plate{02-lineage}{A selected lineage through the first three cycles. One defined end appears in cycle 1; an exact-length strand appears in cycle 2; copying that strand creates an exact-length duplex in cycle 3. The complete population contains other lineages and all surviving originals. The diagram tracks geometry, not relative reaction speed.}{fig:lineage}
+
+\section{Count strands before counting exact duplexes}
+\index{strand count}\index{duplex count}
+Begin with one long parental duplex, with both primer sites internal to it. Assume every cycle separates all strands; every eligible strand receives exactly one complete new complement; no strand is destroyed; and each newly extended strand remains paired with the template that made it at the counting instant. Arbitrary reannealing after extension is not part of this ideal count.
+
+After cycle $n$, classify single strands as:
+\begin{itemize}
+\item $O_n$: the two original long strands, with neither end defined by our primers;
+\item $U_n$: strands with one primer-defined end and one end extending beyond the target;
+\item $S_n$: exact strands whose two ends match the intended interval.
+\end{itemize}
+The letter $S$ counts \emph{single strands}, not exact duplexes. Initially $(O_0,U_0,S_0)=(2,0,0)$.
+
+Every original persists and makes a one-end strand. Every one-end strand persists and makes an exact strand. Every exact strand persists and makes another exact strand. Therefore
+\begin{align}
+O_{n+1}&=O_n=2,\\
+U_{n+1}&=U_n+O_n,\\
+S_{n+1}&=2S_n+U_n. \label{eq:lineage}
+\end{align}
+The total number of strands doubles, so $O_n+U_n+S_n=2^{n+1}$. Because $U_n=2n$, subtraction gives
+\begin{equation}
+S_n=2^{n+1}-2n-2. \label{eq:exactstrands}
+\end{equation}
+At the end of cycle $n\geq1$, an exact duplex is formed precisely when an \emph{already exact} strand was copied. There were $S_{n-1}$ such templates. Thus
+\begin{equation}
+D_n=S_{n-1}=2^n-2n,\qquad n\geq1. \label{eq:exactduplexes}
+\end{equation}
+The $n=0$ value is separately $D_0=0$; substituting zero into Equation~\ref{eq:exactduplexes} would be outside its domain. At cycle 2 there are two exact strands but no exact duplexes: each new exact strand is still paired to a longer template. At cycle 3 there are two exact duplexes, not eight.
+
+\begin{center}\input{\Generated/lineage-table.tex}\end{center}
+\Listing{lineage}
+The simultaneous update uses the old $U_n$, not its newly increased value. Reversing that timing makes exact strands appear too early. The test suite independently enumerates physical endpoint tuples $(\text{left},\text{right},\text{orientation})$ and creates each child from its parent. This checks the recurrence against explicit geometric objects rather than the same recurrence written twice.
+
+For many identical initial long duplexes, these ideal counts scale linearly. They do not become laboratory yield predictions merely by using a large initial value. Incomplete extension, damaged templates, off-target priming, and competing reannealing alter the transitions.
+
+\subsection{A fraction that approaches one is not initially one}
+The exact-duplex fraction under the stated pairing convention is
+\begin{equation}
+\frac{D_n}{2^n}=1-\frac{2n}{2^n}.
+\end{equation}
+Its limit is one because exponential growth eventually dominates the linear number of long-product lineages. The simpler doubling model can describe a mature population well while being wrong about product identity in the first cycles. Approximation is justified by the quantity of interest and regime, not by convenience alone.
+
+\section{From perfect doubling to variable efficiency}
+\index{amplification efficiency}
+For the next model, begin with a pool of \emph{mature target duplex equivalents}. We are no longer using $N_n$ to count all long-template intermediates. Let $e_n\in[0,1]$ be the mean fractional increase per cycle before resource limits. A value $e_n=1$ means a factor of two, not a factor of one:
+\begin{equation}
+N_{n+1}=N_n+e_nN_n=(1+e_n)N_n.
+\end{equation}
+Repeated substitution yields
+\begin{equation}
+N_n=N_0\prod_{i=0}^{n-1}(1+e_i),\qquad
+\log\frac{N_n}{N_0}=\sum_{i=0}^{n-1}\log(1+e_i). \label{eq:growth}
+\end{equation}
+The logarithmic expression requires $N_0>0$. With $N_0=0$, this model stays at zero directly.
+
+\Listing{amplify}
+Efficiencies compose multiplicatively. One perfect cycle followed by one failed cycle gives a factor of $2$. Replacing their efficiencies by the arithmetic mean $0.5$ gives $1.5^2=2.25$, a different answer. A single effective efficiency must instead preserve the geometric mean growth factor:
+\begin{equation}
+1+e_{\mathrm{eff}}
+=\exp\left(\frac{1}{n}\sum_i\log(1+e_i)\right).
+\end{equation}
+This describes the specified efficiency sequence; it does not establish constant assay efficiency.
+
+\subsection{Amplification can magnify small biases}
+For two noncompeting species A and B in a resource-rich regime with constant efficiencies $e_A$ and $e_B$,
+\begin{equation}
+\frac{N_{A,n}}{N_{B,n}}
+=\frac{N_{A,0}}{N_{B,0}}
+\left(\frac{1+e_A}{1+e_B}\right)^n. \label{eq:bias}
+\end{equation}
+Equal starting abundance does not imply equal endpoint abundance. Assigned efficiencies $0.9$ and $0.7$ multiply the ratio by $(1.9/1.7)^{20}$ over twenty cycles. This is not a claim about a particular primer pair; it exposes repeated multiplicative selection.
+
+The derivative $\partial\log N_n/\partial e_i=1/(1+e_i)$ shows how an error in one cycle's efficiency enters log abundance. If the same calibration error affects every cycle, its contributions accumulate. Treating these correlated errors as independent noise would understate uncertainty.
+
+\section{A material ledger prevents unlimited copying}
+\index{primer consumption}\index{resource limit}
+To copy both length-$L$ strands of a mature duplex once, extension synthesizes $(L-l_f)+(L-l_r)$ nucleotide residues, because primer residues have already been supplied in the oligonucleotides. Define
+\begin{equation}
+c=2L-l_f-l_r
+\end{equation}
+as free dNTP molecules consumed per added mature duplex equivalent. One forward primer and one reverse primer are also consumed.
+
+\Plate{03-inventory}{Copying both strands of a mature ten-base target. Each three-base primer supplies material already present before extension; the two seven-base extensions consume fourteen dNTPs. Old templates persist. This is balanced-copy bookkeeping, not a claim that both extension events always succeed together.}{fig:inventory}
+
+Let $F_n,R_n,B_n$ be remaining forward-primer, reverse-primer, and aggregate dNTP inventories. A bounded mean model uses
+\begin{align}
+\Delta_n&=\min\left(e_nN_n,F_n,R_n,\frac{B_n}{c}\right),\\
+N_{n+1}&=N_n+\Delta_n,\\
+F_{n+1}&=F_n-\Delta_n,\qquad R_{n+1}=R_n-\Delta_n,\\
+B_{n+1}&=B_n-c\Delta_n. \label{eq:budget}
+\end{align}
+All quantities are counts or count-equivalent means, not concentrations. Fractional $\Delta_n$ is allowed because this is a mean model; it is not a literal event count in one tube.
+
+\Listing{budgeted}
+The ledger implies three invariants:
+\begin{equation}
+F_n+(N_n-N_0)=F_0,\quad
+R_n+(N_n-N_0)=R_0,\quad
+B_n+c(N_n-N_0)=B_0.
+\end{equation}
+Consequently,
+\begin{equation}
+N_n\leq N_0+\min(F_0,R_0,B_0/c).
+\end{equation}
+With $N_0=10,F_0=90,R_0=120,B_0=1400,c=14$, forward primer limits the final population to $100$. Ideal doubling would predict $320$ after five cycles, violating that inventory.
+
+\begin{center}\input{\Generated/budget-table.tex}\end{center}
+This ledger aggregates four dNTP species, assumes balanced successful copying, omits partial and long early products, and excludes enzyme inactivation and product reannealing. A smooth experimental plateau cannot be identified uniquely as primer depletion from its shape. The minimum operation enforces a bound; it is not a mechanistic fit to every cause of slowing.
+
+\Plate{04-growth}{Assigned growth and bias models. Left: resource limitation separates a finite ledger from indefinite exponential extrapolation. Right: efficiency differences compound even without competition. The panels answer different questions; neither curve is measured assay performance.}{fig:growth}
+
+\section{Copying noise and the initial sampling limit}
+\index{branching process}\index{Poisson sampling}
+For a separate low-count abstraction, suppose each of $N_n$ mature copy equivalents independently produces one additional equivalent with probability $e$, while the original survives:
+\begin{equation}
+N_{n+1}=N_n+X_n,\qquad X_n\mid N_n\sim\operatorname{Binomial}(N_n,e).
+\end{equation}
+This is a branching model of successful copy events, not a detailed model of two independent strand extensions. It ignores finite resources. Conditional on $N_n$,
+\begin{equation}
+\mathbb E[N_{n+1}\mid N_n]=(1+e)N_n,\quad
+\operatorname{Var}(N_{n+1}\mid N_n)=e(1-e)N_n.
+\end{equation}
+Write $m_n=\mathbb E[N_n]$ and $v_n=\operatorname{Var}(N_n)$. Total expectation and total variance give
+\begin{align}
+m_{n+1}&=(1+e)m_n,\\
+v_{n+1}&=(1+e)^2v_n+e(1-e)m_n. \label{eq:variance}
+\end{align}
+The first variance term amplifies inherited uncertainty; the second adds new copying uncertainty. For one initial copy and $e=0.5$, the first-cycle mean is $1.5$ and variance $0.25$. A deterministic model returns a mean, not a fractional molecule observed in a particular realization.
+
+\Listing{branching_moments}
+The tests enumerate the exact finite probability distribution through four cycles and recover its moments. At $e=1$, copying adds no new randomness, but any initial variance still grows fourfold per cycle. Perfect copying does not erase uncertainty about what entered the tube.
+
+Suppose the initial aliquot has $N_0\sim\operatorname{Poisson}(\lambda)$. Then
+\begin{equation}
+P(N_0=0)=e^{-\lambda}.
+\end{equation}
+Under our no-destruction, no-contamination model, zero remains zero, while a positive starting count never becomes zero. The empty-sample probability therefore persists through any number of cycles. At $\lambda=1$, about $0.368$ of ideal aliquots start empty; at $\lambda=3$, about $0.050$ do. These are mathematical sampling probabilities, not validated assay detection limits.
+
+Replicate wells reduce uncertainty only by sampling additional material under an appropriate independence model. Re-reading an already empty well does not create an independent sample. Contamination changes the model by adding templates; amplification may then copy the contaminant extremely well.
+
+\section{A fluorescence threshold is an inverse problem}
+\index{quantification cycle}\index{identifiability}
+Let a noiseless instrument model in an exponential window be
+\begin{equation}
+Y_n=B+\alpha N_0(1+e)^n,
+\end{equation}
+where $Y_n$ and background $B$ are signal units, $\alpha>0$ is signal per copy equivalent, and $e$ is constant. For a threshold $Y_\star>B$, define the target-equivalent threshold
+$N_\star=(Y_\star-B)/\alpha$. Solving for the fractional crossing cycle gives
+\begin{equation}
+C_q=\frac{\log(N_\star/N_0)}{\log(1+e)}. \label{eq:cq}
+\end{equation}
+This assumes $0<N_0<N_\star$ and $e>0$. Starting at threshold is assigned crossing zero. Zero starting count or zero growth below threshold has no crossing. With integer observations, the first observed crossing is the ceiling of the fractional value in this ideal model; actual instruments use their own processing rules.
+
+\Listing{cq}
+At $e=1,\alpha=1,B=0,Y_\star=102400$, starting counts $100$ and $400$ cross at cycles $10$ and $8$. This reports a relative fourfold change only because efficiency, gain, and background are held equal.
+
+\begin{center}\input{\Generated/threshold-table.tex}\end{center}
+\Plate{05-threshold}{A common threshold and a separate sampling limit. The left panel uses perfect doubling with assigned gain and background. The right describes an initially empty Poisson sample. Earlier crossing and lower empty-sample probability depend on initial amount through different models, not interchangeable measurements.}{fig:threshold}
+
+\subsection{Why one crossing does not identify one starting count}
+The transformation $N_0\mapsto kN_0$ and $\alpha\mapsto\alpha/k$ leaves the whole curve unchanged. Unknown gain and initial abundance cannot be separately inferred from this fluorescence model alone. Using a wrong efficiency also biases starting amount:
+\begin{equation}
+\widehat N_0/N_0
+=\left(\frac{1+e}{1+\widehat e}\right)^{C_q}
+\end{equation}
+when threshold-equivalent gain and background are otherwise correct.
+
+For known starting amounts in a constant-efficiency calibration window,
+\begin{equation}
+C_q=A+m\log_{10}N_0,\qquad
+m=-\frac{\log 10}{\log(1+e)}.
+\end{equation}
+Here $\log_{10}N_0$ uses the numerical copy count relative to one copy. Solving yields $e=10^{-1/m}-1$. Ideal doubling has $m\approx-3.32193$. Our inverse rejects slopes implying efficiency outside $[0,1]$. That should trigger examination of calibration, background, or assumptions, not silent clipping.
+\Listing{efficiency_from_slope}
+
+Experimental estimation requires its own uncertainty analysis. Svec and colleagues studied effects of instrument choice, technical replication, and dilution handling on efficiency estimates \cite{svec}. Their measured values are not inputs to our examples. Calibration over one range does not establish validity outside that range or for another sample matrix.
+
+\section{What amplification contributes to computation}
+Amplification changes multiplicity. Ideally it preserves sequence identity. It does not generate every candidate answer, decide whether a sequence satisfies an arbitrary predicate, or make an absent solution present.
+
+For species $s$ with abundance $n_s$, an unsaturated round acts as $n_s\mapsto(1+e_s)n_s$. Uniform efficiency preserves abundance ratios. Sequence-dependent efficiency changes ratios, and intentional eligibility can enrich an already represented subset. The difficult question is how that eligibility rule physically encodes the desired predicate. Starting-library, selection, and observation costs cannot be hidden inside amplification.
+
+An evidence plan separates four questions: did target enter the sample; did the intended interval amplify; did the signal specifically reflect that product; and did calibration support the numerical inference? A no-template control probes contamination or reagent-generated signal. Product identity evidence probes specificity. Positive references and dilution behavior probe different failures. No single observation replaces the others.
+
+Chapter 10 turns to separation and readout: what the instrument measures, what remains latent, and how controls constrain competing explanations.
+
+\section{Exercises with worked reasoning}
+\begin{enumerate}
+\item \textbf{Reverse-primer identity.} The upper right site is TAC. \emph{Solution:} complement to ATG in aligned coordinates, then read from its right-hand $5'$ end: GTA.
+\item \textbf{Define the counted object.} Why are two exact strands at cycle 2 not one exact duplex? \emph{Solution:} each remains paired to its longer template; they are not paired to each other at the counting instant.
+\item \textbf{Recover the recurrence.} Derive $S_{n+1}=2S_n+U_n$. \emph{Solution:} retain $S_n$, copy each into an exact child, and add one exact child from each one-end template.
+\item \textbf{Check a boundary.} Apply the exact-duplex formula at cycle 0. \emph{Solution:} do not: its domain is $n\geq1$. The initialized count is zero.
+\item \textbf{Compare averaging rules.} From 10 copies, compare $(1,0)$ with $(0.5,0.5)$. \emph{Solution:} 20 versus 22.5. Equal arithmetic means need not preserve multiplicative growth.
+\item \textbf{Count material.} Let $L=100,l_f=l_r=20$. \emph{Solution:} a balanced new duplex consumes $200-40=160$ free dNTPs; the other 40 residues arrive in primers.
+\item \textbf{Find the constraint.} Use $N_0=10,F_0=90,R_0=120,B_0=1400,c=14$. \emph{Solution:} added equivalents are bounded by $\min(90,120,100)=90$; final total is at most 100.
+\item \textbf{Separate noise sources.} Set $e=1$ in Equation~\ref{eq:variance}. \emph{Solution:} $v_{n+1}=4v_n$. New copying noise vanishes; inherited uncertainty scales.
+\item \textbf{Do more cycles solve sampling?} An aliquot has $\lambda=1$. \emph{Solution:} no; $P(N_0=0)=e^{-1}$ persists without a template source or destruction.
+\item \textbf{Invert a cycle difference.} A target crosses two cycles earlier under shared perfect doubling. \emph{Solution:} it starts fourfold higher. Different efficiencies or gains invalidate this inference.
+\item \textbf{Expose nonidentifiability.} Compare $N_0=100,\alpha=1$ with $N_0=50,\alpha=2$. \emph{Solution:} identical modeled signals at every cycle; this curve alone cannot distinguish them.
+\item \textbf{Design an evidence test.} An endpoint signal is high. Plan an accurate target-abundance claim. \emph{Rubric:} distinguish sampling, identity, contamination/background, calibration, resource limits, and replicate uncertainty. Name observations that falsify each explanation. More cycles alone earn no evidence credit.
+\end{enumerate}
+
+\section*{Selective glossary}
+\addcontentsline{toc}{section}{Selective glossary}
+\textbf{Amplicon:} product defined by an amplification interval.
+\textbf{Efficiency:} fractional increase per cycle in the stated population model.
+\textbf{Duplex equivalent:} count or mean count of target-length paired material under an explicit convention.
+\textbf{Quantification cycle:} cycle coordinate associated with a signal criterion.
+\textbf{Identifiability:} whether distinct parameter values are distinguishable from observations.

@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+\begin{semilogyaxis}[width=.68\linewidth,height=5.7cm,xlabel={Cycle},ylabel={Assigned signal units},
+xmin=0,xmax=12,ymin=100,ymax=2e6,legend style={font=\scriptsize,at={(.02,.98)},anchor=north west}]
+\input{\Generated/signal-plot.tex}
+\legend{$N_0=100$, $N_0=400$}
+\addplot[black,densely dotted,thick] coordinates {(0,102400)(12,102400)};
+\draw[gray,dashed] (axis cs:8,100)--(axis cs:8,102400);
+\draw[gray,dashed] (axis cs:10,100)--(axis cs:10,102400);
+\node[font=\scriptsize,anchor=south east,fill=white,inner sep=2pt] at (axis cs:11.7,102400) {same threshold};
+\end{semilogyaxis}
+\end{tikzpicture}\hfill
+\begin{minipage}[b]{.29\linewidth}\centering
+{\small A separate sampling limit}\\[5pt]
+\input{\Generated/sampling-table.tex}\\[6pt]
+{\small $P(N_0=0)=e^{-\lambda}$.\\
+More cycles cannot copy an absent target.}
+\end{minipage}

@@ -1,0 +1,27 @@
+\begin{tikzpicture}[x=.64cm,y=.75cm]
+\foreach \x in {2,12}{\draw[gray,densely dashed] (\x,.8)--(\x,-5.3);}
+\node[smallnote] at (2,1.1) {$a$};\node[smallnote] at (12,1.1) {$b$};
+\node[note,anchor=west,text=Blue] at (0,2) {One descendant lineage, not the whole population};
+\draw[Green,line width=1.2pt] (0,0)--(14,0);
+\node[left] at (0,0) {$3'$};\node[right] at (14,0) {$5'$};
+\draw[Red,line width=2pt] (2,.45)--(5,.45);
+\draw[Blue,line width=1.2pt] (5,.45)--(14,.45);
+\node[left] at (2,.45) {$5'$};\node[right] at (14,.45) {$3'$};
+\node[smallnote,anchor=west] at (15,.2) {Cycle 1\\one defined end};
+\draw[flow] (7,-.4)--(7,-1.5) node[midway,right,smallnote] {separate; use new strand as template};
+\draw[Blue,line width=1.2pt] (2,-2)--(14,-2);
+\node[left] at (2,-2) {$5'$};\node[right] at (14,-2) {$3'$};
+\draw[Red,line width=2pt] (9,-2.45)--(12,-2.45);
+\draw[Green,line width=1.2pt] (2,-2.45)--(9,-2.45);
+\node[left] at (2,-2.45) {$3'$};\node[right] at (12,-2.45) {$5'$};
+\node[smallnote,anchor=west] at (15,-2.2) {Cycle 2\\first exact strand};
+\draw[flow] (7,-2.9)--(7,-4) node[midway,right,smallnote] {separate; copy the exact strand};
+\draw[Green,line width=1.2pt] (2,-5)--(12,-5);
+\draw[Red,line width=2pt] (2,-4.55)--(5,-4.55);
+\draw[Blue,line width=1.2pt] (5,-4.55)--(12,-4.55);
+\foreach \x in {2.4,3.2,...,11.6}{\draw[dashed,gray] (\x,-4.65)--(\x,-4.9);}
+\node[left] at (2,-4.55) {$5'$};\node[right] at (12,-4.55) {$3'$};
+\node[left] at (2,-5) {$3'$};\node[right] at (12,-5) {$5'$};
+\node[smallnote,anchor=west] at (15,-4.8) {Cycle 3\\exact duplex};
+\node[smallnote] at (7,-6) {Existing strands persist; red segments are incorporated primers.};
+\end{tikzpicture}

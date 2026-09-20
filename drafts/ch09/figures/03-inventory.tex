@@ -1,0 +1,21 @@
+\begin{tikzpicture}[x=.75cm,y=.8cm]
+\node[note,anchor=west,text=Blue] at (0,1.6) {Copy both strands of one mature target};
+\draw[Green,line width=1.2pt] (0,0)--(10,0);
+\node[left] at (0,0) {$3'$};\node[right] at (10,0) {$5'$};
+\draw[Red,line width=2.3pt] (0,.45)--(3,.45);
+\draw[Blue,line width=1.2pt,-{Stealth}] (3,.45)--(10,.45);
+\node[left] at (0,.45) {$5'$};\node[right] at (10,.45) {$3'$};
+\node[smallnote,above] at (1.5,.55) {$l_f=3$ primer residues};
+\node[smallnote,above] at (7,.55) {$L-l_f=7$ added residues};
+\draw[Blue,line width=1.2pt] (0,-2)--(10,-2);
+\node[left] at (0,-2) {$5'$};\node[right] at (10,-2) {$3'$};
+\draw[Red,line width=2.3pt] (7,-2.45)--(10,-2.45);
+\draw[Green,line width=1.2pt,-{Stealth}] (7,-2.45)--(0,-2.45);
+\node[left] at (0,-2.45) {$3'$};\node[right] at (10,-2.45) {$5'$};
+\node[smallnote,below] at (8.5,-2.55) {$l_r=3$ primer residues};
+\node[smallnote,below] at (3,-2.55) {$L-l_r=7$ added residues};
+\node[note,draw=Blue,fill=Pale,rounded corners,inner sep=8pt] at (5,-4.2)
+{One extra duplex equivalent:\\one F primer + one R primer + 14 dNTPs};
+\node[smallnote] at (5,-5.7) {Two old strands remain. Two new strands are made.\\
+dNTP count excludes residues already supplied in primers.};
+\end{tikzpicture}
