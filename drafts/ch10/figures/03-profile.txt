@@ -1,0 +1,1 @@
+Two species have centers 46 and 49 mm and widths 1.2 mm. Their lengths are 500 and 400 bp, counts 7 and 3, and common gain 0.002 signal per bp per equivalent. Detector bins are 0.2 mm wide. Each bin integrates the Gaussian area; blue target and dashed red other contributions sum to the third curve.

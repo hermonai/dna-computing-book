@@ -1,0 +1,1 @@
+Two equal-length duplexes have different sequence identities but identical gel response columns. Mixtures (7,3) and (10,0) both produce (10,2,5). An added calibrated response row (1,0.1) yields 7.3 versus 10, distinguishing these mixtures. Its discrimination is assigned, not a validated molecular probe. Strand polarities are antiparallel.

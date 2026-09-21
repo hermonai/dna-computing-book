@@ -1,0 +1,1 @@
+Schematic duplexes move through an agarose-like mesh toward a positive electrode. The electric field points oppositely. Short and long duplexes share backbone chemistry; migration direction does not identify sequence. Mesh strands are obstacles, not enzymes. No calibrated geometry or speed is represented.

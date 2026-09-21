@@ -1,0 +1,229 @@
+\chapter{Separation, readout, and measurement}
+\label{ch:readout}
+
+Two tubes give a single bright band at the position of a 500-base-pair standard. In the first tube, every molecule has the intended sequence. In the second, most molecules are a different 500-base-pair product. Can the image distinguish them?
+
+Not necessarily. A band is an observation of material that migrated together and generated detectable signal. It is not a sequence label. This chapter turns that distinction into a quantitative model: molecules move, their spatial distributions overlap, a detector integrates light, and an inverse calculation tries to infer the mixture. At each stage we ask which information survives.
+
+Chapter 9 counted amplification products under explicit copying assumptions. Here the question changes from how much material might exist to what an instrument can establish about it. The reference in \texttt{drafts/ch10/reference.py} uses small synthetic populations and assigned signal gains. Its output is neither a gel photograph nor a calibrated assay.
+
+\section{A gel changes position, not sequence identity}
+\index{electrophoresis}\index{migration}\index{molecular identity}
+DNA's phosphate backbone carries negative charge under ordinary electrophoresis conditions. In an electric field, the material migrates toward the positive electrode. The field direction itself is defined by the force on a positive test charge, so DNA migration and the field point in opposite directions. A porous agarose matrix makes migration depend on how a polymer moves through obstacles. Addgene's laboratory guide describes this size-separation mechanism and comparison with a DNA ladder \cite{addgene}.
+
+\Plate{01-sieve}{Separation acts on physical mobility. DNA passes through a polymer network; the matrix does not recognize a target sequence or cleave the duplex into smaller products. Charge explains direction, while matrix interactions and molecular conformation help determine mobility. Distances, pore sizes, and paths are schematic.}{fig:sieve}
+
+Let $x$ increase along DNA migration, and write the positive speed magnitude as
+\begin{equation}
+v=\mu_{\mathrm{eff}}|E|,\qquad x(t)=x(0)+v t.
+\end{equation}
+Here $E$ is field magnitude in volts per metre, $v$ is metres per second, and effective mobility $\mu_{\mathrm{eff}}$ has units $\mathrm{m^2\,V^{-1}\,s^{-1}}$. Constant $v$ is an approximation for a specified species and stable conditions, not a universal speed.
+
+Why does larger negative charge not automatically make longer DNA faster? Increasing polymer length changes both electrical driving and resistance to motion; the gel adds geometry-dependent constraints. The simple force-balance intuition $|q_{\mathrm{eff}}E|=\zeta_{\mathrm{eff}}v$ gives $\mu_{\mathrm{eff}}=|q_{\mathrm{eff}}|/\zeta_{\mathrm{eff}}$, but neither effective charge nor friction should be replaced by an arbitrary length-independent constant. We do not use this cartoon to predict a gel's mobility curve.
+
+For comparable linear fragments within a useful separation range, shorter fragments typically migrate farther. Shape remains a separate variable. A compact supercoiled plasmid and an open circular plasmid need not share the mobility of a linear molecule of the same base-pair length; NEB documents these different forms and condition-dependent relative positions \cite{neb}. Thus a linear ladder is not a universal ruler for every topology.
+
+The key distinction is between \emph{sequence}, \emph{length}, \emph{conformation}, and \emph{position}. Separation can make positions informative about length without making length identify sequence. Conversely, one sequence in several physical forms can produce several bands.
+
+\section{Calibrate a ruler before interpreting a position}
+\index{ladder calibration}\index{interpolation}
+A ladder supplies fragments of known lengths in the same image. Over a restricted interval, choose the local empirical model
+\begin{equation}
+x=a-b\log_{10}(L/\mathrm{bp}),\qquad b>0. \label{eq:ladder}
+\end{equation}
+$x$ is migration distance in millimetres, $L/\mathrm{bp}$ is the numerical length in base pairs, $a$ is in millimetres, and $b$ is millimetres per decade of length. The logarithm does not take a dimensional quantity. This model is a teaching choice to be checked against ladder residuals, not a law valid at all lengths or fields.
+
+Take assigned coefficients $a=100$ mm and $b=20$ mm per decade. The generated ladder is:
+\begin{center}\input{\Generated/ladder-table.tex}\end{center}
+
+\Plate{02-ladder}{An original synthetic ladder and its calibration coordinate system. A sample at 45 mm lies between the 500 and 1000 bp standards and gives about 562 bp under the assigned local model. The lane is a diagram of generated positions, not experimental imagery. A straight line in log-length coordinates need not remain valid outside the calibration range.}{fig:ladder}
+
+For observations $(L_i,x_i)$, set $u_i=\log_{10}(L_i/\mathrm{bp})$ and form a design matrix with rows $(1,-u_i)$. If $\theta=(a,b)^\top$, least squares minimizes $\|D\theta-x\|_2^2$. Differentiating gives
+\begin{equation}
+D^\top(D\widehat\theta-x)=0.
+\end{equation}
+The code solves the least-squares system directly and checks its rank rather than explicitly inverting $D^\top D$. Repeated copies of one ladder length cannot determine both slope and intercept. A fitted nonpositive $b$ contradicts the chosen monotone model.
+\Listing{calibrate}
+
+Rearrange Equation \ref{eq:ladder}, one step at a time:
+\begin{equation}
+b\log_{10}(L/\mathrm{bp})=a-x,\qquad
+\widehat L/\mathrm{bp}=10^{(a-x)/b}. \label{eq:size}
+\end{equation}
+At $x=45$ mm, $(a-x)/b=2.75$, giving $\widehat L\approx562.34$ bp. Linear interpolation in \emph{length} between the neighboring ladder bands would perform a different calculation. Our helper refuses positions outside the observed ladder interval.
+\Listing{infer_length}
+
+With fixed calibration coefficients, differentiate the logarithm of the estimate:
+\begin{equation}
+\frac{\partial\ln\widehat L}{\partial x}=-\frac{\ln10}{b}.
+\end{equation}
+A small distance standard deviation $\sigma_x$ therefore gives approximately
+$\sigma_L/L=(\ln10/b)\sigma_x$. For $b=20$ and $\sigma_x=0.2$ mm, this is about $2.30\%$. This number excludes calibration uncertainty. If $a$ and $b$ are estimated, their uncertainties and covariance also enter:
+\begin{equation}
+d\ln L=\frac{\ln10}{b}(da-dx)
+-\frac{\ln10(a-x)}{b^2}\,db.
+\end{equation}
+The covariance of $(a,x,b)$ must be propagated through these sensitivities. Treating a fitted ruler as exact can make the answer look more precise than the observations support.
+
+\section{A band is a distribution integrated by a detector}
+\index{band profile}\index{response matrix}\index{fluorescence}
+Even a single species need not occupy one exact coordinate. Introduce a normalized spatial density
+\begin{equation}
+k_j(x)=\frac{1}{\sqrt{2\pi}\sigma_j}
+\exp\left[-\frac{(x-c_j)^2}{2\sigma_j^2}\right],
+\qquad \int_{-\infty}^{\infty}k_j(x)\,dx=1.
+\end{equation}
+$c_j$ and $\sigma_j>0$ are the centre and width in millimetres of species $j$; $k_j$ has units $\mathrm{mm}^{-1}$. The Gaussian is a chosen blur model. It does not derive all dispersion, loading, diffusion, or imaging processes in a real gel.
+
+Suppose detector bin $i$ covers $[e_i,e_{i+1}]$. Its fraction of species $j$ is
+\begin{align}
+K_{ij}&=\int_{e_i}^{e_{i+1}}k_j(x)\,dx\\
+&=\Phi\left(\frac{e_{i+1}-c_j}{\sigma_j}\right)
+-\Phi\left(\frac{e_i-c_j}{\sigma_j}\right), \label{eq:bin}
+\end{align}
+where $\Phi$ is the standard normal cumulative distribution function.
+Using $\Phi(z)=[1+\operatorname{erf}(z/\sqrt2)]/2$ yields the implementation.
+\Listing{band_kernel}
+
+Each column sums to at most one over a finite imaging interval. Material outside that interval has not been observed. Renormalizing the column to one would silently assign its missing tails back to the recorded bins. The tests include a one-standard-deviation window, whose retained fraction is approximately $0.682689$, and a half-distribution symmetry check.
+
+Next distinguish molecule number from fluorescence. Under an explicitly assigned proportional-staining model, one molecule of length $L_j$ contributes $q_j=gL_j$ integrated signal units. Here $g$ is signal per base pair per molecule-equivalent. This approximates total stained material, not target-specific recognition. Actual dye responses and calibration ranges must be established for the chosen chemistry. For example, the Qubit dsDNA HS guide documents selectivity for double-stranded DNA over RNA and a calibrated concentration response \cite{qubit}; neither fact means the assay identifies one desired DNA sequence.
+
+Let $n_j$ denote the number or mean number of molecules of species $j$. The response matrix is
+\begin{equation}
+A_{ij}=q_jK_{ij},\qquad
+y_i=b_i+\sum_j A_{ij}n_j+\varepsilon_i. \label{eq:forward}
+\end{equation}
+$A_{ij}$ is signal per molecule-equivalent, $b_i$ is background signal, and $\varepsilon_i$ is measurement error. Matrix $A\in\mathbb R^{m\times s}$ maps $s$ species counts to $m$ observations.
+\Listing{response_matrix}
+
+\Plate{03-profile}{Generated bin-integrated profiles for two species. Seven 500 bp target equivalents are centred at 46 mm; three 400 bp other equivalents are centred at 49 mm. Both widths are 1.2 mm and the assigned gain is 0.002 signal units per bp per equivalent. The sum is observable; the colored decomposition is known here only because we constructed the example.}{fig:profile}
+
+The integrated target signal is approximately $7$ units and the other signal is $2.4$ units if essentially all tails are included. A naive signal fraction is then $7/9.4\approx0.745$, while the molecular target fraction is $7/10=0.7$. The difference is not noise: a longer molecule supplies more stained material under our model.
+
+Peak height is another distinct quantity. With fixed total area, doubling $\sigma_j$ halves the continuous peak height. Integration over a sufficiently wide region preserves area, but may also collect more background and neighboring species. A height-to-count conversion must therefore account for width.
+
+\section{Determine whether the inverse problem has an answer}
+\index{identifiability}\index{null space}
+Consider two sequence-distinct products with the same length, profile, and response per molecule. Their response columns are identical:
+\begin{equation}
+A=\begin{bmatrix}1&1\\0.2&0.2\\0.5&0.5\end{bmatrix},
+\qquad
+A\begin{bmatrix}7\\3\end{bmatrix}
+=A\begin{bmatrix}10\\0\end{bmatrix}
+=\begin{bmatrix}10\\2\\5\end{bmatrix}. \label{eq:ambiguous}
+\end{equation}
+Three observations do not determine two counts because there is only one independent response direction. The vector $h=(1,-1)^\top$ satisfies $Ah=0$. For any permitted $\lambda$, $n+\lambda h$ produces the same signal. Nonnegative counts restrict possible mixtures but do not distinguish the two displayed ones.
+
+\Plate{04-ambiguity}{A sequence difference invisible to the assigned gel response. The two columns of the gel matrix coincide, so exchanging one species for the other preserves every recorded bin. Adding a separately calibrated row with responses $(1,0.1)$ distinguishes the displayed mixtures. This is an illustrative discrimination model, not a validated sequence-specific probe or a statement of zero cross-reactivity.}{fig:ambiguity}
+
+More copies or repeated exposures cannot remove this exact ambiguity if the response map remains the same. They can reduce random error around the same uninformative constraint. To distinguish the species, change the observation: for example, an independently characterized sequence-discriminating assay can add a nonparallel response row. The proposed measurement must itself be checked for cross-reactivity, calibration drift, and compatibility with the sample.
+
+\subsection{Full rank is necessary, but precision is another question}
+\index{weighted least squares}\index{singular values}
+Assume known background has been removed and errors are independent with known standard deviations $\tau_i>0$. Define $W=\operatorname{diag}(\tau_i^{-2})$. Weighted least squares minimizes
+\begin{equation}
+Q(n)=(y-An)^\top W(y-An).
+\end{equation}
+Setting its gradient to zero yields $A^\top WA\widehat n=A^\top Wy$. If columns are independent, the covariance under this fixed linear model is
+\begin{equation}
+\operatorname{Cov}(\widehat n)=(A^\top WA)^{-1}. \label{eq:cov}
+\end{equation}
+To see why, write $\widehat n-n=(A^\top WA)^{-1}A^\top W\varepsilon$, insert $\operatorname{Cov}(\varepsilon)=W^{-1}$, and multiply. No normal-distribution assumption is needed for this covariance identity, although interval interpretations require additional assumptions.
+
+Whiten by dividing row $i$ and observation $i$ by $\tau_i$. If
+$W^{1/2}A=U\Sigma V^\top$, then
+\begin{equation}
+\widehat n=V\Sigma^{-1}U^\top W^{1/2}y,\qquad
+\operatorname{Cov}(\widehat n)=V\Sigma^{-2}V^\top.
+\end{equation}
+Small singular values amplify uncertainty. The reference uses this decomposition, rejects numerical rank deficiency, and reports the ratio of largest to smallest singular value.
+\Listing{unmix}
+
+For an independently solvable example, use
+\begin{equation}
+A_\delta=\begin{bmatrix}1&1\\0&\delta\end{bmatrix},
+\quad y=\begin{bmatrix}10\\3\delta\end{bmatrix},\quad \delta>0.
+\end{equation}
+Then $\widehat n_2=y_2/\delta=3$ and $\widehat n_1=y_1-y_2/\delta=7$. With independent equal noise SD $\tau=0.1$,
+\begin{equation}
+\operatorname{SD}(\widehat n_1)=0.1\sqrt{1+\delta^{-2}},
+\qquad \operatorname{SD}(\widehat n_2)=0.1/\delta.
+\end{equation}
+\begin{center}\input{\Generated/uncertainty-table.tex}\end{center}
+Every positive $\delta$ gives a unique noiseless solution, yet small $\delta$ makes the estimate fragile. These formulas independently test the SVD implementation.
+
+An unconstrained estimate may be negative under noise or model mismatch. The code reports it rather than silently clipping. A nonnegative fit is a different estimator, with different uncertainty behavior near the boundary. Likewise, centres, widths, gains, and background are treated as known here; uncertainty in $A$ is not included in Equation \ref{eq:cov}. A tiny residual does not establish that the assumed species list is complete.
+
+\section{Background and saturation change the information}
+\index{background subtraction}\index{saturation}
+Suppose a region contains $m$ signal pixels and a separate blank contains $k$ pixels. Estimate the common per-pixel background by $\overline B$, and report net integrated signal
+\begin{equation}
+S=\sum_{i=1}^{m}Y_i-m\overline B.
+\end{equation}
+If every raw pixel has known variance $\tau^2$ and raw pixels in both regions are mutually independent,
+\begin{equation}
+\operatorname{Var}(S)=m\tau^2+\frac{m^2}{k}\tau^2. \label{eq:blank}
+\end{equation}
+The second term contains $m^2$, not $m$, because the same estimated blank mean is subtracted from every signal pixel. The corrected pixels consequently have shared error. Our independent-noise inverse helper cannot simply treat them as independent after this operation; use the full covariance or explicitly model the shared background.
+\Listing{roi_summary}
+
+For signal pixels $(12,14,13,11)$ and four blank pixels all equal to $2$, the net signal is $42$. If the known variance of each raw pixel is $1$, its SD is $\sqrt8\approx2.8284$. Observing equal blank values does not imply zero true variance; the variance is an assigned model input, not an estimate from those four identical values.
+
+Now add a detector ceiling $M$:
+\begin{equation}
+y_i^{\mathrm{recorded}}=\min\{M,\ b_i+(An)_i\}.
+\end{equation}
+Above the ceiling, further material produces no further recorded signal. The local derivative with respect to amplitude is zero, and all larger amplitudes can collapse to one value. The following helper exposes clipping explicitly.
+\Listing{observe}
+
+Counts 20 and 30 both give 12 in a one-channel unit-response model with ceiling 12. A lower-gain exposure can separate them if it remains within a characterized response regime. The lesson is not that every assay is linear at shorter exposure; it is that saturated pixels cannot support the unsaturated inverse equation. Exclude or model them, and document the decision.
+
+\section{Collection trades target recovery against purity}
+\index{recovery}\index{purity}\index{collection window}
+Separation can also support physical selection. In an idealized collection window $[l,h]$, let
+\begin{equation}
+r_j=\int_l^h k_j(x)\,dx,\qquad n'_j=r_jn_j.
+\end{equation}
+For a target species $t$ with nonzero initial count, its recovery is $r_t$. Molecular purity is
+\begin{equation}
+\pi_t=\frac{r_tn_t}{\sum_j r_jn_j},
+\end{equation}
+provided the denominator is positive. Recovery asks how much target survives; purity asks what fraction of the collected molecules is target. Neither is the same as fluorescence fraction.
+\Listing{collect_window}
+
+\Plate{05-window}{An ideal spatial collection window on the same synthetic mixture as Figure \ref{fig:profile}. The left panel highlights a 2 mm interval centred at the target. The right panel changes its half-width and reports target recovery and molecular purity. Curves omit handling loss, extraction bias, and changes caused by collection itself.}{fig:window}
+\begin{center}\input{\Generated/window-table.tex}\end{center}
+
+Narrowing the window near the target centre improves purity in this example because the contaminant centre is displaced. It also discards target tails. If the two profiles were identical, then every window with positive material would preserve the original molecular fraction: $r_t=r_o$ cancels from the ratio. Better cutting precision cannot resolve species that the separation never distinguished.
+
+\section{Design evidence around the claim}
+An interpretable readout plan assigns each control a particular question. A blank tests background and contamination in the measurement path. A ladder tests the local position-to-length mapping. Known mixtures challenge overlap and quantitative recovery. Dilution or a changed exposure probes response-range failure. An independently characterized discriminatory channel tests whether material at the right position has the intended identity. None substitutes for all the others.
+
+For molecular computation, the readout is part of the algorithm's physical contract. It can identify an encoded answer only if distinct relevant answers induce distinguishable observations at the available precision. A formal result that leaves every candidate in one unresolved band has not specified a usable decoding procedure.
+
+Reproduce the generated numbers with \texttt{python3 drafts/ch10/build.py --assets-only}; run the numerical checks with \texttt{python3 -m pytest tests/test\_ch10\_reference.py}. Before adding the next formal encoding chapter, the Chapters 1--10 integration pass will reconcile the count, concentration, signal, and evidence conventions established so far.
+
+\section{Exercises with worked reasoning}
+\begin{enumerate}
+\item \textbf{Direction.} Does DNA move along the electric field? \emph{Solution:} its negative effective charge makes the force oppose the field; migration is toward the positive electrode in this setting.
+\item \textbf{A calibrated estimate.} Use $a=100,b=20,x=50$. \emph{Solution:} $\log_{10}(L/\mathrm{bp})=2.5$, so $L\approx316.23$ bp. Check that the position lies inside the calibration interval.
+\item \textbf{Sensitivity.} At $b=20$, what is the first-order relative error from a $+0.1$ mm distance error? \emph{Solution:} $\Delta L/L\approx-(\ln10/20)0.1=-0.01151$.
+\item \textbf{Finite window.} A normalized Gaussian is recorded only between its centre and one SD above it. \emph{Solution:} the retained fraction is $\Phi(1)-\Phi(0)\approx0.341345$, not one.
+\item \textbf{Mass versus count.} Two 500 bp molecules and one 1000 bp molecule have equal per-base gain. \emph{Solution:} each group supplies 1000 bp-equivalents of signal despite the twofold difference in molecule count.
+\item \textbf{Null direction.} Find one for Equation \ref{eq:ambiguous}. \emph{Solution:} $(1,-1)$; moving along it changes composition while preserving signal.
+\item \textbf{Near ambiguity.} Put $\delta=0.1,\tau=0.1$. \emph{Solution:} the SDs are $\sqrt{1.01}\approx1.005$ and $1$, although the noiseless counts remain 7 and 3.
+\item \textbf{Shared blank.} With $m=4,k=16,\tau^2=1$, compute net-signal variance. \emph{Solution:} $4+16/16=5$. Enlarging the blank does not eliminate signal-pixel noise.
+\item \textbf{Clipping.} Can a ceiling reading of 12 identify a true unsaturated signal of 12 rather than 20? \emph{Solution:} no; both map to 12. The clipping map is not one-to-one.
+\item \textbf{Selection limit.} Two species have identical normalized profiles. Can a spatial window increase purity? \emph{Solution:} no, under equal window capture; the same factor multiplies both counts.
+\item \textbf{Implementation check.} Propose a non-vacuous test of the inverse. \emph{Solution:} reject duplicate columns, recover a known two-channel mixture, then decrease $\delta$ and compare reported SD to the analytic formula.
+\item \textbf{Evidence plan.} A sample gives one strong band at the expected position. Design a target-count claim. \emph{Rubric:} separate length, identity, quantity and recovery; specify matched calibration, blanks, unsaturated observations, a discriminatory control, uncertainty in response parameters, and an observation that would falsify the claim.
+\end{enumerate}
+
+\section*{Selective glossary}
+\addcontentsline{toc}{section}{Selective glossary}
+\textbf{Response matrix:} map from specified species amounts to expected measurements.
+\textbf{Identifiability:} ability to distinguish parameter values through that map.
+\textbf{Recovery:} fraction of initial target material retained.
+\textbf{Purity:} target fraction of collected material under a stated counting convention.
+\textbf{Condition number:} ratio of largest to smallest singular value for the chosen scaled design.

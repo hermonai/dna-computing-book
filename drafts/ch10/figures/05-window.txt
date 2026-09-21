@@ -1,0 +1,1 @@
+An ideal collection interval centered at 46 mm retains fractions of target and contaminant Gaussian profiles. The highlighted interval spans 45 to 47 mm. Increasing half-width raises target recovery and, in this mixture, lowers molecular purity toward the starting fraction 0.7. Handling loss and extraction bias are excluded.

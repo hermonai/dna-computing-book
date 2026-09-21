@@ -1,0 +1,15 @@
+\begin{tikzpicture}
+\begin{axis}[width=6.5cm,height=5cm,xmin=40,xmax=54,ymin=0,
+xlabel={Position (mm)},ylabel={Assigned bin signal},title={Select $45$ to $47$ mm},
+title style={font=\small\sffamily}]
+\fill[Gold!60] (axis cs:45,0) rectangle (axis cs:47,.48);
+\input{\Generated/profile-plot.tex}
+\end{axis}
+\begin{axis}[at={(7cm,0)},anchor=south west,width=6.5cm,height=5cm,
+xmin=0,xmax=5,ymin=0,ymax=1.05,xlabel={Window half-width (mm)},ylabel={Fraction},
+legend style={font=\footnotesize,at={(.98,.05)},anchor=south east}]
+\input{\Generated/window-plot.tex}
+\legend{Target recovery,Molecular purity}
+\end{axis}
+\node[smallnote] at (6,-1.9) {Same underlying mixture, centered on target at 46 mm.\\Narrow collection rejects much contaminant but also loses target.};
+\end{tikzpicture}

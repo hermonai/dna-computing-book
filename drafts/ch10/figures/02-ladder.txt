@@ -1,0 +1,1 @@
+Synthetic ladder lengths 250, 500, 1000 and 2000 bp map to distances by x = 100 minus 20 log10(length in bp). A sample at 45 mm maps to 562.34 bp within the ladder interval. The lane and calibration chart depict the same generated positions, not experimental imagery.
