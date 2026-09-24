@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+\begin{axis}[width=13cm,height=6cm,xlabel={Required operations $k$},
+ylabel={Probability of remaining correct},xmin=0,xmax=500,ymin=0,ymax=1.03,
+grid=major,legend style={at={(.98,.98)},anchor=north east,font=\small},
+tick label style={font=\small},label style={font=\small}]
+\input{\Generated/reuse-plot.tex}
+\legend{$p=0.99$ (solid),$p=0.999$ (dashed)}
+\end{axis}
+\end{tikzpicture}

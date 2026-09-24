@@ -11,9 +11,9 @@ for current authoring progress. Do not regenerate archived editions merely
 to change their progress labels.
 
 Chapters 1-2 retain their internal acceptance records. Chapter 3 has standalone
-and combined LaTeX review candidates. Chapters 4-12 have isolated authored-LaTeX
+and combined LaTeX review candidates. Chapters 4-14 have isolated authored-LaTeX
 review candidates with code, vector figures, and worked solutions.
-Chapter 13 is the next unwritten chapter. Chapters 11-12 were authored at the
+Chapter 15 is the next unwritten chapter. Chapters 11-14 were authored at the
 reader's explicit request while the Chapters 1-10 integration milestone remains
 pending. These standalone candidates do not substitute for that integration.
 Independent specialist review and cumulative integration are still open.
@@ -89,11 +89,27 @@ false retention and finite-copy detection. Contrast commuting ideal predicates
 with a capacity-limited order counterexample. Mechanism plates separate
 molecular recognition from physical retention and evidence of identity.
 
+## Chapter 13 scope (standalone candidate): SAT and combinatorial constructions
+
+Build disjoint-residual clause selection with finite copy counts. Prove its
+soundness and pool-relative completeness; compare against an independent
+integer SAT oracle. Derive coverage and detection probability, expose the
+duplicate-copy OR bug, and separate a positive certificate from no-signal
+evidence. Compare the resource model cautiously with 2026 scaffolded computation.
+
+## Chapter 14 scope (standalone candidate): sticker systems and molecular memory
+
+Implement occupancy registers, count-preserving pushforward writes and
+conditional AND with explicit output clearing. Test every initial register
+and address permutation. Explain reset information loss, operation-level
+retention and state-transition errors. Draw polarity-correct memory complexes
+and distinguish abstract selective clear from demonstrated renewable computing.
+
 ## Pending milestone: integrate Chapters 1-10
 
 Audit strand/count/concentration/signal notation, units, measurement assumptions,
 source coverage, and prerequisites, including the interfaces now used by
-Chapters 11-12. Preserve the distinction between a physical separation and a formal
+Chapters 11-14. Preserve the distinction between a physical separation and a formal
 predicate.
 Build a new cumulative entry point with unified bibliography and index; retain
 standalone candidates and accepted editions unchanged. Do not promote acceptance

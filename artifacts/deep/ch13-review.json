@@ -1,0 +1,60 @@
+{
+  "pdf": "output/pdf/dna-computing-ch13-review.pdf",
+  "pages": 12,
+  "sha256": "f896f7cd972ce88ab76012c2718f50b6c2f13b0c8dc6ac34b8cdaf91a13c1736",
+  "status": "standalone authored-LaTeX review candidate; no acceptance promotion",
+  "sources": {
+    "drafts/ch13/README.md": "f0c705cc2413d8d70abb7fdbdfc4b4041bf7dff401af2f834157ae2c4f4b406c",
+    "drafts/ch13/STORYBOARD.md": "3cfab29ef2e1c6162c1fb3dedf5a071443d63646aec15126cc2dbc189f7fb677",
+    "drafts/ch13/build.py": "9676be3409b58051997d1f3d82f33e235ff4d2b189684e8f7478764864047f70",
+    "drafts/ch13/figures/01-encoding.tex": "9d374b535338e0e858ee72e8fa2b7ff2857b45f2d542363b12cd4a020520b90c",
+    "drafts/ch13/figures/01-encoding.txt": "5a4f83ce54987ece668770d6a1cfdcf12fdda9f0f7d40da82d5d40ebe04f8dea",
+    "drafts/ch13/figures/02-partition.tex": "f8d9a4ff2612a19f66d04cb42f86154d9f1008ecedc7ce5b8d062cce1f6080ad",
+    "drafts/ch13/figures/02-partition.txt": "d6e307a29eac326a02dfadf142ee7a8b62351df84271ef025b8efb2c76e07dbf",
+    "drafts/ch13/figures/03-cube.tex": "453f3cf47bb5f34d2570bf47840905c75cab46a988c2489c9d75ece1851cd489",
+    "drafts/ch13/figures/03-cube.txt": "0e9db790178903b4c6680c30a91ae2c07c2eec29992621406ab2a8d61c69d0cd",
+    "drafts/ch13/figures/04-coverage.tex": "5042d68bb78beecd71866f3a74be522242851b48c61bc42b3188f9284a4a4d21",
+    "drafts/ch13/figures/04-coverage.txt": "f2c77e2b27ae8c62af2d1ccbb16d96292f35d02a4fad0bb10c653c2b0a28d74a",
+    "drafts/ch13/figures/05-certificate.tex": "5fc713a7376abdea361b04c1215aaabea6c432ce01713c4b7b79ca18eb5bceb1",
+    "drafts/ch13/figures/05-certificate.txt": "aee8a20c49b396b597495e3022bf8f08c31d61b88603a66cb02eb4515f97333f",
+    "drafts/ch13/manuscript.tex": "7f9ac827dadc86e73523c56f8e67ed55dd29b8782043fcbeb1934b8bf0ba8786",
+    "drafts/ch13/reference.py": "1193bcf2ce89c36981169e0416c8f905dba7279051d6857b00ffffb28837d59d",
+    "drafts/ch13/results.json": "069ac07e94a8f598e0f3037163a99d39e695b022d7beaf8351748a613468681e",
+    "drafts/ch13/review.tex": "5265b7ce66b61be4d7e849cf39aa60ebc2887293ec3db5f4d134403c852bdfb2",
+    "drafts/ch13/sources.tex": "d72e7a016edf10e4a0e5ce431f6d1a7b9f5ba74946868cafec69f472447efce5"
+  },
+  "reviewedOn": "2026-09-24",
+  "reviewType": "author technical, editorial and visual review; not independent specialist acceptance",
+  "allPagesInspected": true,
+  "inspectedPhysicalPages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "grayscaleReview": "All final pages inspected in grayscale contact sheets; color contact sheets and selected final mechanism, plot and code-listing pages inspected at page scale. Corrected labels and overflowing type example re-inspected after rebuilding.",
+  "figures": 5,
+  "exercises": 12,
+  "openGates": [
+    "independent specialist review",
+    "reader feedback",
+    "cumulative integration, cross-chapter index and bibliography"
+  ],
+  "validation": {
+    "generatedArtifactsCheck": "passed",
+    "pdfWordsOutsidePage": 0,
+    "unresolvedReferenceMarkers": 0,
+    "fullSuitePassed": 739,
+    "fullSuiteSkipped": 2,
+    "priorEditionPreservationTests": "passed",
+    "python": "3.13.6"
+  }
+}

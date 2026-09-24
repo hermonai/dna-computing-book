@@ -1,0 +1,10 @@
+\begin{tikzpicture}
+\begin{axis}[width=13cm,height=6cm,xlabel={Independent sampled molecules $M$},
+ylabel={Probability of at least one witness},xmin=0,xmax=8192,ymin=0,ymax=1.05,
+grid=major,tick label style={font=\small},label style={font=\small},
+scaled x ticks=false,xtick={0,2048,4096,8192}]
+\input{\Generated/coverage-plot.tex}
+\addplot[only marks,mark=*,Green] coordinates {(1024,.632300260589)};
+\node[font=\small,anchor=west] at (axis cs:1450,.6) {$M=1024:\ 0.6323$};
+\end{axis}
+\end{tikzpicture}

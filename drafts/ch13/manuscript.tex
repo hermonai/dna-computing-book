@@ -1,0 +1,311 @@
+\chapter{SAT and combinatorial constructions}
+\label{ch:sat}
+A molecular search does not evaluate a formula by understanding its symbols.
+It changes a population so that the molecules left in one tube encode
+assignments satisfying that formula. The difficult step is not writing
+\emph{parallel} beside an arrow. It is establishing what each molecule means,
+which copies can cross that arrow, and why a detected product is evidence
+about the original problem.
+
+Our running instance has three Boolean variables and three clauses:
+\begin{equation}
+ F=(x_1\lor x_2)\land(\neg x_1\lor x_3)
+       \land(\neg x_2\lor\neg x_3).
+ \label{eq:formula}
+\end{equation}
+Before reading further, predict the surviving assignments. Would a molecule
+satisfying both literals in the first clause need to be copied twice? Would
+an empty final tube prove that the formula is unsatisfiable?
+
+Prerequisites are Chapter 11's injective encodings and Chapter 12's multiset
+semantics. We will construct an exact clause-selection algorithm, prove its
+invariant, implement it, and then remove the assumptions that make its
+conclusion reliable. No sequence library or laboratory protocol is implied.
+
+\section{From a formula to an addressable molecule}
+\index{CNF|see{conjunctive normal form}}\index{assignment encoding}
+A \Term{literal} is a variable or its negation. A \Term{clause} is a
+disjunction of literals; a formula in \Term{conjunctive normal form} (CNF) is
+a conjunction of clauses. An assignment is a vector
+$a=(a_1,\ldots,a_n)\in\{0,1\}^n$. It satisfies a positive literal $x_i$
+when $a_i=1$, and a negative literal $\neg x_i$ when $a_i=0$.
+The empty disjunction is false; the empty conjunction is true. Those are
+useful boundary cases, not syntax to discard.
+
+Choose an addressable domain $D_{i,b}$ for variable $i$ and value $b$.
+An ideal assignment strand contains
+\begin{equation}
+ E(a)=D_{1,a_1}D_{2,a_2}\cdots D_{n,a_n}.
+\end{equation}
+The ordered, fixed-width domain convention makes decoding unambiguous.
+It does not establish biochemical orthogonality. A probe for $D_{2,1}$
+must distinguish that domain from every other domain and from junctions,
+secondary structures and contaminants. Chapter 11's sequence screens are
+necessary checks, not proof that an extraction has zero error.
+
+\Plate{01-encoding}{An assignment has stable variable-value addresses.
+The probe pairs antiparallel to one address; the recognition event does not
+change the represented assignment. Domain blocks are symbolic regions,
+not individual bases or experimentally validated oligonucleotides.}{fig:satencoding}
+
+There are $2^n$ possible assignments, although the address vocabulary uses
+only $2n$ domains. Small vocabulary is not small inventory. Constructing
+every possible concatenation requires coverage of the combinatorial space;
+it does not follow from possessing one copy of every domain.
+Lipton's 1995 paper proposed DNA computations for SAT \cite{lipton}.
+The explicit algorithm below is an original finite-multiset teaching
+construction in that tradition, not a reconstruction of an uninspected
+experimental protocol.
+
+\section{Implement an OR without inventing copies}
+\index{clause partition}\index{multiset conservation}
+Let $P(a)$ be the nonnegative integer number of molecules encoding $a$.
+For a literal $\ell$, ideal separation creates two disjoint inventories:
+\begin{equation}
+ P_\ell^+(a)=P(a)\mathbf1[a\models\ell],\qquad
+ P_\ell^-(a)=P(a)\mathbf1[a\not\models\ell].
+ \label{eq:split}
+\end{equation}
+Thus $P_\ell^++P_\ell^-=P$ pointwise. Separation consumes the input tube
+as an available inventory: drawing two output tubes must not leave a
+third usable copy of the original.
+
+For clause $C=(\ell_1\lor\cdots\lor\ell_k)$, start with residual $R_0=P$.
+At step $j$, separate the residual, not the original:
+\begin{align}
+ A_j(a)&=R_{j-1}(a)\mathbf1[a\models\ell_j],\\
+ R_j(a)&=R_{j-1}(a)\mathbf1[a\not\models\ell_j],\\
+ Q(a)&=\sum_{j=1}^{k} A_j(a).
+ \label{eq:clause}
+\end{align}
+An assignment takes its first matching branch. Once captured, it cannot
+enter another branch. The final residual contains the assignments that
+make every literal false.
+
+\Plate{02-partition}{Clause selection is a disjoint decomposition of one
+inventory. Arrows carry molecules, not copies of a software variable.
+For $x_1\lor x_2$, assignment 110 is retained on the first branch and never
+retested in the residual.}{fig:partition}
+
+The common incorrect implementation extracts each literal from the full
+original pool and adds the results. Seven copies of 110 then become
+fourteen: both literals are true. It computes the right \emph{set} of
+assignments, but the wrong physical multiset. If later readout weights
+abundance, this error changes both the resource estimate and the evidence.
+Actually dividing the original tube into aliquots avoids creating mass,
+but no longer guarantees that each assignment reaches a matching branch.
+That is a different randomized algorithm requiring its own completeness
+analysis.
+
+The companion function implements Equation~\ref{eq:clause}; signed
+one-based integers encode literals. The public solver validates literal
+addresses and copy counts before invoking it.
+\Listing{clause_partition}
+
+\section{Prove the invariant, then trace every assignment}
+\index{completeness!relative to inventory}
+Let $P_0$ be the initial population and $C_1,\ldots,C_m$ the clauses.
+After $r$ clauses, the intended invariant is
+\begin{equation}
+ P_r(a)=P_0(a)\prod_{j=1}^{r}\mathbf1[a\models C_j].
+ \label{eq:invariant}
+\end{equation}
+For one clause, an assignment either has a first true literal, and exactly
+one $A_j$ receives all its copies, or has none, and remains in $R_k$.
+Therefore $Q(a)=P(a)\mathbf1[a\models C]$. Applying this identity to
+$P_{r-1}$ proves Equation~\ref{eq:invariant} by induction.
+
+This proves \Term{soundness}: any surviving assignment satisfies every
+processed clause. It proves completeness only \emph{relative to the initial
+inventory}: a satisfying assignment with $P_0(a)=0$ cannot appear.
+If each assignment begins with seven copies, our example progresses as
+follows. The table is generated by the reference, not manually transcribed.
+
+\begin{center}\input{\Generated/trace-table.tex}\end{center}
+
+\Plate{03-cube}{Each vertex is one assignment, with $x_1x_2x_3$ as its
+label. The nested survivor sets are an intersection of clause predicates;
+they are not a time-dependent molecular conformation. Only 010 and 101
+survive all three tests.}{fig:satcube}
+
+A second implementation enumerates integer bit patterns and evaluates the
+formula directly. It shares neither the sequential extraction algorithm
+nor its candidate enumeration. Agreement with this oracle is necessary,
+but not sufficient: both could still embody the same misunderstood
+specification. The complete truth table makes the specification inspectable.
+
+\begin{center}\input{\Generated/truth-table.tex}\end{center}
+\Listing{solve}
+
+An empty clause kills every assignment immediately. A repeated literal
+does not change a clause because its second branch sees no new matches.
+A clause containing both $x_i$ and $\neg x_i$ preserves the entire pool.
+With zero variables and no clauses, the empty assignment is a valid witness.
+These cases distinguish a Boolean solver from code that merely works for
+one attractive demonstration.
+
+\section{Where the exponential cost reappears}
+\index{sampling coverage}\index{SAT!resource cost}
+If every assignment has $r$ copies, the initial population contains
+$r2^n$ molecules. If each encoded strand has $n$ domains of length $d$
+bases, the assignment backbones alone contain
+\begin{equation}
+ B_{\mathrm{backbone}}=r2^n nd
+\end{equation}
+bases. Here $B$ is an inventory count, not a concentration or a mass.
+Probe strands, linkers, purification losses and control samples are omitted.
+The formula is a lower accounting boundary for this representation, not
+a universal lower bound for all DNA algorithms.
+
+For $m$ clauses with at most $k$ literals each, the ideal schedule uses at
+most $mk$ separations and $m(k-1)$ binary merges (assuming $k\geq1$).
+This is a polynomial number of bulk operations on an exponentially large
+population. It is not a polynomial-resource solution to SAT. Moreover, bulk
+operations do not have constant elapsed time independent of volume,
+transport, capacity and the required error rate.
+
+Uniform independent sampling offers a different tradeoff. With $s$
+satisfying assignments among $2^n$, one sampled molecule is a witness with
+probability $s/2^n$. If a witness survives the entire assay with probability
+$q$, its probability of yielding evidence is $u=sq/2^n$. For $M$ samples:
+\begin{align}
+ \Pr(\text{no observed witness})&=(1-u)^M,\\
+ \Pr(\text{at least one})&=1-(1-u)^M.
+ \label{eq:coverage}
+\end{align}
+These equations assume independent sampling, uniform assignment abundance,
+and independent survival with the same $q$ for every witness. Sequence bias
+can violate all three assumptions.
+
+\Listing{witness_probability}
+\Plate{04-coverage}{Computed detection probability for a unique witness
+among $2^{10}$ assignments, with perfect subsequent survival.
+One sample per possible assignment \emph{on average} is not complete
+coverage: random samples may repeat the same assignment.}{fig:coverage}
+
+For a unique witness and $q=1$, taking $M=2^n$ gives approximately
+$1-e^{-1}\approx0.632$, not certainty. To make miss probability at most
+$\delta\in(0,1)$ when $0<u<1$, require
+\begin{equation}
+ M\geq\frac{\log\delta}{\log(1-u)}.
+\end{equation}
+Round upward to an integer. When $u=0$, no finite $M$ helps; when $u=1$,
+one sample suffices. Computation uses \texttt{log1p} and \texttt{expm1}
+to avoid subtracting nearly equal floating-point numbers.
+
+\section{A positive witness and a negative result are asymmetric}
+\index{witness verification}
+The final readout should identify an assignment, not merely report bulk
+fluorescence. Decode a strand into $a$ and evaluate $F(a)$ electronically.
+This inexpensive certificate check can reject an invalid candidate caused
+by cross-hybridization or contamination. It cannot recover a true witness
+lost earlier. A verified witness proves satisfiability even if most of the
+molecular computation malfunctioned.
+
+\Plate{05-certificate}{A decoded assignment is checked against the
+original formula, not merely against the last probe. A valid witness is
+positive evidence. No signal remains compatible with either logical
+unsatisfiability or failure to sample, retain or detect a witness.}{fig:certificate}
+
+A negative claim requires stronger controls: positive recovery controls,
+blank and contamination controls, a sequence-specific loss estimate,
+a readout detection model, and evidence about initial coverage. Even then,
+the conclusion may be a statistical upper bound on abundance rather than
+a deductive UNSAT certificate. Do not convert an assay's detection threshold
+into a theorem about all assignments.
+
+Clause order is irrelevant to exact Equation~\ref{eq:invariant}, but can
+matter physically. Early selective clauses reduce later load; early
+damaging extractions may preferentially lose rare witnesses. Chapter 12's
+capacity counterexample already shows why commuting Boolean predicates
+need not yield commuting laboratory operators.
+
+\section{Current research: change the architecture, not the accounting}
+A September 2026 Scaffolded DNA Computer study reports computation through
+engineered equilibrium preference, including finite-state programs and
+25-bit addition \cite{sdc}. Its main text distinguishes short-scaffold
+fast anneals from larger computations taking hours. It is not an
+experimental demonstration of the exhaustive CNF tube algorithm above.
+
+The useful research question is architectural: can a problem's structure
+be compiled into local constraints so that one need not prepare every
+candidate explicitly? A successful answer must still account for
+preparation, degeneracy of incorrect states, equilibration and readout.
+An energetically favored correct state does not, by itself, establish a
+short path to it. Nor does a finite addition demonstration establish
+efficient solution of arbitrary NP-complete instances.
+
+\section{Exercises with worked answers}
+\begin{enumerate}
+\item \textbf{Predict.} Solve Equation~\ref{eq:formula} by cases on $x_1$.
+\textit{Answer:} If $x_1=0$, clause 1 forces $x_2=1$, and clause 3 forces
+$x_3=0$. If $x_1=1$, clause 2 forces $x_3=1$, and clause 3 forces $x_2=0$.
+The witnesses are 010 and 101.
+\item \textbf{Inventory.} A pool has seven copies of 110 and five of 000.
+Apply $x_1\lor x_2$. \textit{Answer:} The first branch captures seven;
+the second captures zero; five remain rejected. Naive independent extraction
+from the original reports fourteen retained copies and violates conservation.
+\item \textbf{Proof.} Why are the $A_j$ pairwise disjoint?
+\textit{Answer:} Membership in $A_j$ requires all earlier literals false.
+Membership in any earlier $A_i$ requires one of those literals true.
+Both cannot hold for the same assignment.
+\item \textbf{Boundary.} Compare no clauses with one empty clause.
+\textit{Answer:} No clauses impose no restriction; an empty clause is false
+for every assignment. With $n=0$, these return one empty witness and no
+witness, respectively.
+\item \textbf{Counterexample.} Can the ideal algorithm prove global
+completeness from an arbitrary nonempty initial pool?
+\textit{Answer:} No. A pool containing only 000 is nonempty, but has neither
+witness of our formula. The proof is relative to represented assignments.
+\item \textbf{Resource derivation.} With $n=20$, $r=10$, $d=15$, how many
+assignment-backbone bases are required by the explicit inventory model?
+\textit{Answer:} $10\cdot2^{20}\cdot20\cdot15=3{,}145{,}728{,}000$.
+This omits all supporting reagents and says nothing about viable sequences.
+\item \textbf{Sampling.} Explain the 0.632 limit.
+\textit{Answer:} For $M=2^n$ and one witness,
+$(1-2^{-n})^{2^n}\to e^{-1}$ is the miss probability.
+A deterministic one-copy-per-assignment construction is not IID sampling.
+\item \textbf{Loss.} A witness has ten independent retention steps of 0.9.
+What changes in Equation~\ref{eq:coverage}?
+\textit{Answer:} Substitute $q=0.9^{10}\approx0.348678$;
+the effective success probability per draw decreases by that factor.
+Correlated or sequence-dependent losses need a different model.
+\item \textbf{Implementation.} Test all ordered pairs of two-literal clauses
+over two variables, allowing repetition. \textit{Answer:} There are
+$4^2=16$ ordered clauses and $16^2=256$ formulas. Compare the solver's
+survivor keys with the integer oracle and check retained multiplicities.
+The companion tests perform this exhaustive small check.
+\item \textbf{Verification.} Does one recovered 101 certify that all
+separations worked correctly? \textit{Answer:} No. It certifies SAT after
+independent checking, not assay fidelity, yield or complete enumeration.
+\item \textbf{Experimental design.} Design a no-signal investigation.
+\textit{Rubric:} Specify a known witness spike-in, a negative sequence control,
+a process blank, independent sequence identification, replicate loss estimates
+and a coverage assumption. State what each failure would invalidate.
+\item \textbf{Research critique.} Evaluate a claimed molecular SAT speedup.
+\textit{Rubric:} Require instance distribution, full preparation and readout
+costs, success probability, molecule budget, classical baseline, repeated
+trials and failure cases. A count of separation rounds alone earns no
+performance conclusion.
+\end{enumerate}
+
+\section{What we have built}
+\textbf{Reproduce the chapter.} From the repository root, run
+\texttt{python3 drafts/ch13/build.py --assets-only}, then
+\texttt{python3 -m pytest tests/test\_ch13\_reference.py}.
+The first command regenerates \texttt{results.json}, tables, plots and literal
+code listings; the tests compare the implementation with independent
+oracles and explicit failure cases. Run the builder without
+\texttt{--assets-only} to compile this review PDF.
+
+We now have an exact CNF selector whose inventory and logical invariants
+can be checked independently. Its strength is a transparent correspondence
+between predicates and physical-copy partitions. Its limitation is that
+coverage, retention and measurement are additional obligations.
+
+\textbf{Working vocabulary.} A literal tests one variable; a clause accepts
+any of its literals; CNF requires all clauses; a witness is a satisfying
+assignment; completeness relative to a pool is weaker than coverage of
+all solutions. These distinctions recur when the stored assignment can
+itself change. Chapter 14 replaces fixed sequence choices with a mutable
+occupancy register and asks what it means to write, clear and reuse memory.

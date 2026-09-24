@@ -1,0 +1,662 @@
+{
+  "trace": [
+    {
+      "stage": 0,
+      "species": 8,
+      "copies": 56
+    },
+    {
+      "stage": 1,
+      "species": 6,
+      "copies": 42,
+      "rejected": 14,
+      "branches": [
+        28,
+        14
+      ]
+    },
+    {
+      "stage": 2,
+      "species": 4,
+      "copies": 28,
+      "rejected": 14,
+      "branches": [
+        14,
+        14
+      ]
+    },
+    {
+      "stage": 3,
+      "species": 2,
+      "copies": 14,
+      "rejected": 14,
+      "branches": [
+        7,
+        7
+      ]
+    }
+  ],
+  "witnesses": [
+    "010",
+    "101"
+  ],
+  "oracle": [
+    "010",
+    "101"
+  ],
+  "duplicate_bug": 14,
+  "coverage_curve": [
+    {
+      "samples": 0,
+      "probability": 0.0
+    },
+    {
+      "samples": 64,
+      "probability": 0.060615624038187814
+    },
+    {
+      "samples": 128,
+      "probability": 0.1175569941988367
+    },
+    {
+      "samples": 192,
+      "probability": 0.1710468276736084
+    },
+    {
+      "samples": 256,
+      "probability": 0.22129434151260807
+    },
+    {
+      "samples": 320,
+      "probability": 0.2684960709438893
+    },
+    {
+      "samples": 384,
+      "probability": 0.3128366380900117
+    },
+    {
+      "samples": 448,
+      "probability": 0.3544894740883648
+    },
+    {
+      "samples": 512,
+      "probability": 0.39361749743971736
+    },
+    {
+      "samples": 576,
+      "probability": 0.4303737512382469
+    },
+    {
+      "samples": 640,
+      "probability": 0.46490200177547253
+    },
+    {
+      "samples": 704,
+      "probability": 0.4973373008594374
+    },
+    {
+      "samples": 768,
+      "probability": 0.5278065140485625
+    },
+    {
+      "samples": 832,
+      "probability": 0.5564288168662761
+    },
+    {
+      "samples": 896,
+      "probability": 0.5833161609372841
+    },
+    {
+      "samples": 960,
+      "probability": 0.6085737118686985
+    },
+    {
+      "samples": 1024,
+      "probability": 0.6323002605887288
+    },
+    {
+      "samples": 1088,
+      "probability": 0.6545886097518221
+    },
+    {
+      "samples": 1152,
+      "probability": 0.6755259367216133
+    },
+    {
+      "samples": 1216,
+      "probability": 0.6951941345514392
+    },
+    {
+      "samples": 1280,
+      "probability": 0.7136701322961037
+    },
+    {
+      "samples": 1344,
+      "probability": 0.7310261959077471
+    },
+    {
+      "samples": 1408,
+      "probability": 0.7473302108927242
+    },
+    {
+      "samples": 1472,
+      "probability": 0.7626459478350591
+    },
+    {
+      "samples": 1536,
+      "probability": 0.7770333118250295
+    },
+    {
+      "samples": 1600,
+      "probability": 0.7905485767684834
+    },
+    {
+      "samples": 1664,
+      "probability": 0.8032446054933484
+    },
+    {
+      "samples": 1728,
+      "probability": 0.8151710565142489
+    },
+    {
+      "samples": 1792,
+      "probability": 0.8263745782639567
+    },
+    {
+      "samples": 1856,
+      "probability": 0.8368989915513805
+    },
+    {
+      "samples": 1920,
+      "probability": 0.8467854609597513
+    },
+    {
+      "samples": 1984,
+      "probability": 0.8560726558553993
+    },
+    {
+      "samples": 2048,
+      "probability": 0.8647969016368833
+    },
+    {
+      "samples": 2112,
+      "probability": 0.87299232181606
+    },
+    {
+      "samples": 2176,
+      "probability": 0.880690971486821
+    },
+    {
+      "samples": 2240,
+      "probability": 0.8879229627035372
+    },
+    {
+      "samples": 2304,
+      "probability": 0.8947165822596136
+    },
+    {
+      "samples": 2368,
+      "probability": 0.9010984023268203
+    },
+    {
+      "samples": 2432,
+      "probability": 0.9070933843881539
+    },
+    {
+      "samples": 2496,
+      "probability": 0.9127249768707419
+    },
+    {
+      "samples": 2560,
+      "probability": 0.9180152068606692
+    },
+    {
+      "samples": 2624,
+      "probability": 0.9229847662584515
+    },
+    {
+      "samples": 2688,
+      "probability": 0.9276530927121424
+    },
+    {
+      "samples": 2752,
+      "probability": 0.9320384456446288
+    },
+    {
+      "samples": 2816,
+      "probability": 0.9361579776724848
+    },
+    {
+      "samples": 2880,
+      "probability": 0.9400278016957271
+    },
+    {
+      "samples": 2944,
+      "probability": 0.9436630539208825
+    },
+    {
+      "samples": 3008,
+      "probability": 0.947077953063874
+    },
+    {
+      "samples": 3072,
+      "probability": 0.9502858559642855
+    },
+    {
+      "samples": 3136,
+      "probability": 0.9532993098285347
+    },
+    {
+      "samples": 3200,
+      "probability": 0.9561301013062922
+    },
+    {
+      "samples": 3264,
+      "probability": 0.9587893025921033
+    },
+    {
+      "samples": 3328,
+      "probability": 0.9612873147325319
+    },
+    {
+      "samples": 3392,
+      "probability": 0.9636339083082134
+    },
+    {
+      "samples": 3456,
+      "probability": 0.965838261649941
+    },
+    {
+      "samples": 3520,
+      "probability": 0.9679089967382591
+    },
+    {
+      "samples": 3584,
+      "probability": 0.969854212926981
+    },
+    {
+      "samples": 3648,
+      "probability": 0.9716815186225345
+    },
+    {
+      "samples": 3712,
+      "probability": 0.9733980610430434
+    },
+    {
+      "samples": 3776,
+      "probability": 0.9750105541735451
+    },
+    {
+      "samples": 3840,
+      "probability": 0.9765253050266841
+    },
+    {
+      "samples": 3904,
+      "probability": 0.9779482383115977
+    },
+    {
+      "samples": 3968,
+      "probability": 0.9792849196074817
+    },
+    {
+      "samples": 4032,
+      "probability": 0.9805405771324754
+    },
+    {
+      "samples": 4096,
+      "probability": 0.9817201221930134
+    },
+    {
+      "samples": 4160,
+      "probability": 0.9828281683936256
+    },
+    {
+      "samples": 4224,
+      "probability": 0.9838690496823247
+    },
+    {
+      "samples": 4288,
+      "probability": 0.9848468373021596
+    },
+    {
+      "samples": 4352,
+      "probability": 0.9857653557152414
+    },
+    {
+      "samples": 4416,
+      "probability": 0.9866281975615236
+    },
+    {
+      "samples": 4480,
+      "probability": 0.9874387377108473
+    },
+    {
+      "samples": 4544,
+      "probability": 0.9882001464632116
+    },
+    {
+      "samples": 4608,
+      "probability": 0.9889154019489033
+    },
+    {
+      "samples": 4672,
+      "probability": 0.989587301776983
+    },
+    {
+      "samples": 4736,
+      "probability": 0.9902184739776925
+    },
+    {
+      "samples": 4800,
+      "probability": 0.9908113872815805
+    },
+    {
+      "samples": 4864,
+      "probability": 0.9913683607755527
+    },
+    {
+      "samples": 4928,
+      "probability": 0.9918915729736151
+    },
+    {
+      "samples": 4992,
+      "probability": 0.9923830703377875
+    },
+    {
+      "samples": 5056,
+      "probability": 0.9928447752825175
+    },
+    {
+      "samples": 5120,
+      "probability": 0.9932784936939011
+    },
+    {
+      "samples": 5184,
+      "probability": 0.9936859219931219
+    },
+    {
+      "samples": 5248,
+      "probability": 0.9940686537717347
+    },
+    {
+      "samples": 5312,
+      "probability": 0.9944281860247475
+    },
+    {
+      "samples": 5376,
+      "probability": 0.9947659250058821
+    },
+    {
+      "samples": 5440,
+      "probability": 0.9950831917279133
+    },
+    {
+      "samples": 5504,
+      "probability": 0.9953812271296019
+    },
+    {
+      "samples": 5568,
+      "probability": 0.9956611969294318
+    },
+    {
+      "samples": 5632,
+      "probability": 0.9959241961851331
+    },
+    {
+      "samples": 5696,
+      "probability": 0.9961712535768285
+    },
+    {
+      "samples": 5760,
+      "probability": 0.9964033354305529
+    },
+    {
+      "samples": 5824,
+      "probability": 0.996621349497886
+    },
+    {
+      "samples": 5888,
+      "probability": 0.9968261485064787
+    },
+    {
+      "samples": 5952,
+      "probability": 0.997018533495363
+    },
+    {
+      "samples": 6016,
+      "probability": 0.9971992569480904
+    },
+    {
+      "samples": 6080,
+      "probability": 0.9973690257359525
+    },
+    {
+      "samples": 6144,
+      "probability": 0.9975285038827962
+    },
+    {
+      "samples": 6208,
+      "probability": 0.9976783151622485
+    },
+    {
+      "samples": 6272,
+      "probability": 0.9978190455375088
+    },
+    {
+      "samples": 6336,
+      "probability": 0.9979512454532515
+    },
+    {
+      "samples": 6400,
+      "probability": 0.9980754319886038
+    },
+    {
+      "samples": 6464,
+      "probability": 0.9981920908796186
+    },
+    {
+      "samples": 6528,
+      "probability": 0.9983016784191547
+    },
+    {
+      "samples": 6592,
+      "probability": 0.9984046232415952
+    },
+    {
+      "samples": 6656,
+      "probability": 0.998501327999382
+    },
+    {
+      "samples": 6720,
+      "probability": 0.998592170937928
+    },
+    {
+      "samples": 6784,
+      "probability": 0.9986775073750646
+    },
+    {
+      "samples": 6848,
+      "probability": 0.9987576710908109
+    },
+    {
+      "samples": 6912,
+      "probability": 0.9988329756329021
+    },
+    {
+      "samples": 6976,
+      "probability": 0.9989037155431815
+    },
+    {
+      "samples": 7040,
+      "probability": 0.998970167509655
+    },
+    {
+      "samples": 7104,
+      "probability": 0.999032591448712
+    },
+    {
+      "samples": 7168,
+      "probability": 0.9990912315217482
+    },
+    {
+      "samples": 7232,
+      "probability": 0.9991463170901637
+    },
+    {
+      "samples": 7296,
+      "probability": 0.9991980636124741
+    },
+    {
+      "samples": 7360,
+      "probability": 0.999246673487043
+    },
+    {
+      "samples": 7424,
+      "probability": 0.9992923368437303
+    },
+    {
+      "samples": 7488,
+      "probability": 0.9993352322875565
+    },
+    {
+      "samples": 7552,
+      "probability": 0.9993755275972867
+    },
+    {
+      "samples": 7616,
+      "probability": 0.9994133803816718
+    },
+    {
+      "samples": 7680,
+      "probability": 0.9994489386959098
+    },
+    {
+      "samples": 7744,
+      "probability": 0.9994823416207405
+    },
+    {
+      "samples": 7808,
+      "probability": 0.9995137198064379
+    },
+    {
+      "samples": 7872,
+      "probability": 0.9995431959838281
+    },
+    {
+      "samples": 7936,
+      "probability": 0.9995708854443315
+    },
+    {
+      "samples": 8000,
+      "probability": 0.9995968964909072
+    },
+    {
+      "samples": 8064,
+      "probability": 0.9996213308616628
+    },
+    {
+      "samples": 8128,
+      "probability": 0.9996442841277872
+    },
+    {
+      "samples": 8192,
+      "probability": 0.9996658460673616
+    }
+  ],
+  "coverage": [
+    {
+      "samples": 0,
+      "probability": 0.0
+    },
+    {
+      "samples": 256,
+      "probability": 0.22129434151260807
+    },
+    {
+      "samples": 512,
+      "probability": 0.39361749743971736
+    },
+    {
+      "samples": 1024,
+      "probability": 0.6323002605887288
+    },
+    {
+      "samples": 2048,
+      "probability": 0.8647969016368833
+    },
+    {
+      "samples": 4096,
+      "probability": 0.9817201221930134
+    },
+    {
+      "samples": 8192,
+      "probability": 0.9996658460673616
+    }
+  ],
+  "truth": [
+    {
+      "assignment": "000",
+      "literals": [
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "assignment": "001",
+      "literals": [
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "assignment": "010",
+      "literals": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "assignment": "011",
+      "literals": [
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "assignment": "100",
+      "literals": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "assignment": "101",
+      "literals": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "assignment": "110",
+      "literals": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "assignment": "111",
+      "literals": [
+        1,
+        1,
+        0
+      ]
+    }
+  ]
+}

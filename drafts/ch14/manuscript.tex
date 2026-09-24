@@ -1,0 +1,292 @@
+\chapter{Sticker systems and molecular memory}
+A sequence need not change for its stored information to change. Imagine
+four address regions on one long DNA strand. Short complementary strands
+occupy addresses 1 and 3; addresses 0 and 2 remain exposed. Under an
+occupancy convention, that complex represents $0101$ when bits are printed
+in increasing address order. Removing the sticker at address 1 changes the
+register without shortening the backbone.
+
+Can this representation compute $c=a\land b$ while preserving $a$ and $b$?
+Can it reuse $c$? If two distinct registers become identical after a clear,
+have molecules disappeared, or only distinguishable information?
+Those questions lead from representation to a small executable machine.
+
+Chapter 13 used fixed assignment sequences and selection. This chapter
+keeps a common backbone and changes occupancy. We assume familiarity with
+antiparallel pairing, strand domains, multiset counts and ideal separation.
+Our exact model describes logical operations; it does not prescribe
+selective sticker removal in a laboratory.
+
+\section{Separate the memory strand from its current contents}
+\index{occupancy register}
+The sticker model distinguishes a long \Term{memory strand}, address-specific
+short \Term{stickers}, and a \Term{memory complex} consisting of the strand
+plus its bound stickers \cite{stickers}. We use $w$ non-overlapping domains
+$D_0,\ldots,D_{w-1}$ as addresses. Bit $b_i=1$ means its complementary
+sticker is present; $b_i=0$ means it is absent. One address is a designed
+sequence region, not a single nucleotide.
+
+\Plate{01-memory}{A four-address memory complex stores occupancy 0101
+in increasing address order. The long backbone is continuous and runs
+$5'$ to $3'$; each separate sticker runs antiparallel. Dashed rungs denote
+pairing, not covalent joins.}{fig:memory}
+
+The physical and computational objects must not be conflated. In the
+software reference, the state is an integer
+\begin{equation}
+ s=\sum_{i=0}^{w-1}b_i2^i,\qquad 0\leq s<2^w.
+ \label{eq:register}
+\end{equation}
+Address 0 is the least significant bit. The printed order $b_0b_1b_2$
+is therefore the reverse of conventional most-significant-bit-first
+binary formatting. We write explicit tuples whenever that distinction
+could confuse a trace.
+
+A tube is a multiset $P(s)$ of memory complexes. Two complexes can have
+identical backbones and different occupancies. Two identical occupancies
+can have many physical copies. Sequence identity, logical state and copy
+identity are three different notions.
+
+\section{A write is a map on states and a pushforward on counts}
+\index{selective clear}\index{copy conservation}
+At one address $i$, the ideal set and clear maps are
+\begin{equation}
+ S_i(s)=s\mathbin{\mathrm{OR}}2^i,\qquad
+ C_i(s)=s\mathbin{\mathrm{AND}}\neg 2^i.
+ \label{eq:write}
+\end{equation}
+The second expression is evaluated on a fixed-width register; equivalently,
+subtract $2^i$ only when bit $i$ is one. Python's unbounded signed complement
+is safe here because the validated nonnegative input has no higher set bits.
+
+For any deterministic map $f$, the output population is
+\begin{equation}
+ (f_*P)(t)=\sum_{s:f(s)=t}P(s).
+ \label{eq:pushforward}
+\end{equation}
+This is a \Term{pushforward}: all input states mapping to the same output
+contribute their counts. A dictionary assignment such as
+$Q[f(s)]\leftarrow P(s)$ is wrong when states collide. It overwrites one
+count instead of adding it.
+
+\Listing{write}
+\Plate{02-write}{Set associates a complementary sticker with a vacant
+address; clear removes that address's sticker in the formal model.
+The scaffold and other addresses remain unchanged. The clear arrow states
+an assumed operation, not a validated address-selective melting recipe.}{fig:write}
+
+Logical identities help test the implementation:
+\begin{align}
+ S_iS_i&=S_i,& C_iC_i&=C_i,\\
+ C_iS_i&=C_i,& S_iC_i&=S_i.
+ \label{eq:algebra}
+\end{align}
+Composition acts rightmost first. Different addresses commute. At the
+same address, set and clear generally do not commute: their final states
+are determined by the last write. Idempotence means repeating a logical
+write changes no additional bits; it does not mean adding reagent twice
+has no chemical or economic consequences.
+
+Equation~\ref{eq:pushforward} conserves the number of memory backbones:
+$\sum_t(f_*P)(t)=\sum_sP(s)$. It does not conserve the number of bound
+stickers. Setting empty addresses consumes free stickers; clearing releases
+or otherwise removes them from the bound population. A chemical mass
+balance must include those pools and any removal mechanism.
+
+\section{Separation turns a uniform write into conditional logic}
+\index{AND gate}\index{address aliasing}
+A uniform set affects every complex in its tube. Conditional computation
+therefore separates the population, writes only one branch, and combines
+the branches. Ideal separation at address $i$ produces
+\begin{equation}
+ P_1(s)=P(s)\mathbf1[b_i=1],\qquad
+ P_0(s)=P(s)\mathbf1[b_i=0].
+\end{equation}
+Combining tubes adds multiplicities. It is not set union with duplicates
+discarded. As in Chapter 13, separation partitions one available inventory;
+it is not duplication.
+
+\Listing{separate}
+
+To compute $c:=a\land b$ at three distinct addresses:
+first clear $c$ across the population. Separate on $a$.
+Separate the $a=1$ branch on $b$.
+Set $c$ only in the $a=b=1$ branch, then merge the three disjoint branches.
+The input bits are never written.
+
+\Plate{03-and}{Conditional writing implements an AND gate over an entire
+population. Each row begins with five copies of the labeled input register.
+Only the 11 branch acquires the output sticker; all twenty memory
+backbones return to the final tube.}{fig:and}
+
+\Listing{and_gate}
+\begin{center}\input{\Generated/gate-table.tex}\end{center}
+
+Why clear the output first? Without that step, the algorithm computes
+$c_{\mathrm{new}}=c_{\mathrm{old}}\lor(a\land b)$, not assignment to AND.
+A stale output bit is a state-initialization bug, not an error in the truth
+table. The reference tests every initial value of $c$, every input pair
+and every permutation of the three address roles.
+
+Why forbid $c=a$ or $c=b$? Clearing the output would destroy an input
+before it was tested. An in-place gate needs a different schedule or
+scratch storage. Address aliasing changes the algorithm even when every
+individual operation remains well-defined.
+
+\section{Reset destroys distinctions, not backbones}
+\index{reset!information loss}
+Consider three copies of occupancy $(0,0,0)$ and five of $(0,0,1)$.
+Clearing address 2 maps both to $(0,0,0)$, yielding eight copies of one
+logical state. The species count falls from two to one; the copy count
+remains eight.
+
+\Plate{04-reset}{Clear is many-to-one. Without a retained history tag,
+the output does not identify which initial occupancy produced a complex.
+A history address can preserve the distinction, at the cost of additional
+storage and operations.}{fig:reset}
+
+For a random initial bit $B$ with $\Pr(B=1)=p$, the uncertainty is
+\begin{equation}
+ H(B)=-p\log_2p-(1-p)\log_2(1-p)
+\end{equation}
+bits, taking $0\log_20=0$. A deterministic clear produces a constant bit
+with entropy zero. For $p=1/2$, one bit of distinguishability is lost.
+This information statement does not specify heat dissipated by the actual
+DNA process: that would require a physical reset protocol, its environment
+and thermodynamic assumptions. Logical irreversibility and measured
+energetic cost are related questions, not interchangeable measurements.
+
+A history tag makes the larger map injective: $(b,0)\mapsto(0,b)$ retains
+the old bit elsewhere. Eventually clearing the history restores the
+original problem. Scratch memory postpones disposal of information; it
+does not make disposal disappear.
+
+Reusable also does not mean indefinitely stable. A backbone may remain
+intact while a sticker is lost, an address becomes unavailable, or an
+off-target strand occupies it. A storage claim should specify retention
+time, rewrite count, read disturbance, error definition and environment.
+
+\section{Build an error budget before scaling the register}
+\index{Markov error model}\index{memory!reuse}
+Let $p$ be the probability that one required operation preserves a correct
+memory complex, conditioned on correctness so far. With the same $p$
+at each of $k$ operations and no recovery,
+\begin{equation}
+ \Pr(\text{still correct after }k)=p^k.
+ \label{eq:retention}
+\end{equation}
+An independent equal-probability model implies this form; more generally,
+a chain of conditional success probabilities gives $\prod_jp_j$.
+The reference uses assigned values, not measurements.
+
+\Listing{retained}
+\Plate{05-reliability}{Computed survival under two illustrative constant
+per-operation probabilities. The curve counts complexes that never leave
+the correct trajectory; it is not a prediction of experimentally measured
+sticker fidelity or of error repair.}{fig:reuse}
+
+\begin{center}\input{\Generated/reuse-table.tex}\end{center}
+
+For a richer model, separate false setting from false clearing. If
+$\alpha$ is the probability that an empty address becomes incorrectly
+occupied, and $\beta$ is the probability that an occupied address loses
+its sticker during one storage interval, a row-vector distribution evolves as
+\begin{equation}
+ [p_0',p_1']=[p_0,p_1]
+ \begin{bmatrix}1-\alpha&\alpha\\ \beta&1-\beta\end{bmatrix}.
+ \label{eq:transition}
+\end{equation}
+The rows sum to one. When $\alpha+\beta>0$, a stationary occupancy
+probability is $\pi_1=\alpha/(\alpha+\beta)$. This is a property of the
+assumed Markov model, not necessarily an equilibrium binding fraction.
+The latter needs concentrations, free energies and mass balance from
+Chapter 6. In particular, repeated observations of the same address can
+be correlated, so taking a majority vote is not automatically independent
+error reduction.
+
+\section{Modern molecular memory: compare the mechanisms}
+The 1998 sticker paper separates abstract operations from proposed physical
+implementations \cite{stickers}. Our reference adopts ideal addressed writes;
+selective clear remains a physical obligation. It would be misleading to
+infer arbitrary reliable rewrites from a correct integer bitmask program.
+
+A 2026 Scaffolded DNA Computer study instead engineers a preferred
+equilibrium configuration and reports renewable computations \cite{sdc}.
+Its renewal experiments add input and blocker strands and reanneal.
+This is not a free, address-independent implementation of our clear
+primitive. The study also reports a substantial scale-dependent distinction:
+short programs can use fast anneals, whereas demonstrated larger systems
+require much longer anneals.
+
+The deeper comparison is useful: a register interface specifies what a
+programmer may assume; an energy landscape specifies how a molecular
+population may realize a result. To connect them, measure cross-address
+interference, time to a usable output, consumables, carryover and readout
+accuracy across repeated inputs. A common use of DNA scaffolds does not
+make two computational models equivalent.
+
+\section{Exercises with worked answers}
+\begin{enumerate}
+\item \textbf{Representation.} Encode $(b_0,b_1,b_2)=(1,0,1)$.
+\textit{Answer:} $s=1+0+4=5$. For $(0,1,1)$ the integer is 6;
+the printed address-order tuple must not be read as conventional binary 011.
+\item \textbf{Write.} Set address 1 in state 5, then clear address 0.
+\textit{Answer:} $5\mathbin{\mathrm{OR}}2=7$; clearing the unit bit gives 6.
+Only occupancy changes in the abstraction.
+\item \textbf{Inventory.} Clear bit 2 from $\{0:3,4:5\}$.
+\textit{Answer:} The output is $\{0:8\}$. Assigning rather than adding
+dictionary counts would incorrectly retain only one contribution.
+\item \textbf{Algebra.} Prove idempotence of setting.
+\textit{Answer:} Once bit $i$ is one, OR with $2^i$ cannot change it.
+All other bits are untouched, so $S_i(S_i(s))=S_i(s)$ for every register.
+\item \textbf{Counterexample.} Show set and clear need not commute.
+\textit{Answer:} Starting at zero, $S_0(C_0(0))=1$ but
+$C_0(S_0(0))=0$. On distinct addresses, the two affected coordinates
+are disjoint and the operations commute.
+\item \textbf{Gate.} Omit the initial clear from AND with input $(0,1,1)$.
+\textit{Answer:} The complex takes the $a=0$ branch and retains $c=1$.
+Correct assignment requires $c=0$.
+\item \textbf{Aliasing.} Explain why output address $c=a$ is forbidden.
+\textit{Answer:} The initial clear forces $a=0$ before separation;
+all complexes then bypass the only setting branch.
+\item \textbf{Reliability.} At $p=0.99$, what is the 100-operation success
+probability? \textit{Answer:} $0.99^{100}\approx0.366032$.
+A one-percent per-step failure can be unacceptable in a long uncorrected run.
+\item \textbf{Markov model.} For $\alpha=0.02$, $\beta=0.08$, compute
+stationary occupancy. \textit{Answer:} $\pi_1=0.2$; check that
+$[0.8,0.2]$ multiplied by Equation~\ref{eq:transition}'s matrix is unchanged.
+This does not identify a molecular binding constant.
+\item \textbf{Information.} Does clearing eight identical copies erase
+three bits because $\log_2 8=3$? \textit{Answer:} Not from that fact alone.
+Copy count is not the uncertainty in the logical state. Entropy requires
+a probability distribution over possible values and a specified observer.
+\item \textbf{Testing.} Extend the reference with XOR.
+\textit{Rubric:} Preserve input addresses, clear the output, partition all
+four cases without duplicated copies, set exactly 01 and 10, test arbitrary
+initial output and multiplicities, and reject address aliasing.
+\item \textbf{Experimental design.} Test selective clear.
+\textit{Rubric:} Track intended removal, off-address loss, scaffold recovery,
+released-strand carryover, rewrite accuracy and repeated-cycle readout.
+Include no-clear controls and independently identifiable addresses.
+\end{enumerate}
+
+\section{What changes in the next model?}
+\textbf{Reproduce the chapter.} From the repository root, run
+\texttt{python3 drafts/ch14/build.py --assets-only}, then
+\texttt{python3 -m pytest tests/test\_ch14\_reference.py}.
+The first command regenerates \texttt{results.json}, tables, plots and literal
+code listings; the tests compare the implementation with independent
+oracles and explicit failure cases. Run the builder without
+\texttt{--assets-only} to compile this review PDF.
+
+We have implemented finite occupancy memory with exact copy accounting.
+Set and clear change a register; separation makes a write conditional;
+combination reunites inventories; resetting a bit can merge logical states.
+
+\textbf{Working vocabulary.} The memory strand is the address-bearing
+backbone; the memory complex includes its current stickers; pushforward
+adds counts under a state transformation; aliasing means two roles share
+an address; a reset is many-to-one unless history is retained.
+Chapter 15 changes the representation again: splicing and
+insertion--deletion systems transform the strings themselves. We will need
+to track sequence boundaries and rewrite rules, not merely occupancy.
