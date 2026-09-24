@@ -1,0 +1,4 @@
+Question: What changes when a symbol is consumed?
+Objects and arrow semantics: Input cells and a cursor paired with the DFA state at each step.
+Change/invariant and caption claim: Cursor advances once and the transition table determines the next state.
+Scientific risk: Do not treat state changes as observed chemical transitions.

@@ -1,0 +1,12 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[draw,circle] (e) at (5,3) {$\varepsilon$};
+\node[draw,circle] (a) at (2.5,1.8) {0};\node[draw,circle] (b) at (7.5,1.8) {1};
+\foreach \x/\s/\id in {1/00/c,3.5/01/d,6/10/f,8.5/11/g}
+\node[draw,rounded corners,fill=Pale] (\id) at (\x,.3) {\s};
+\draw[flow] (e)--node[above left,note]{insert 0}(a);
+\draw[flow] (e)--node[above right,note]{insert 1}(b);
+\foreach \to in {c,d,f}\draw[flow] (a)--(\to);
+\foreach \to in {d,f,g}\draw[flow] (b)--(\to);
+\draw[Red,dashed] (.3,-.3)--(9.2,-.3);
+\node[note] at (5,-.8) {Depth 2 boundary: successors still exist. This is not closure.};
+\end{tikzpicture}

@@ -1,0 +1,11 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[draw,circle,minimum size=1cm] (a) at (2,1) {$c=0$};
+\node[draw,circle,minimum size=1cm] (b) at (8,1) {$c=1$};
+\draw[flow] (.5,1)--(a);
+\draw[flow] (a) edge[loop above] node[note,above]{00/0\\01/1, 10/1}(a);
+\draw[flow] (b) edge[loop above] node[note,above]{11/1\\01/0, 10/0}(b);
+\draw[flow] (a) to[bend left=20] node[above,note]{11/0}(b);
+\draw[flow] (b) to[bend left=20] node[below,note]{00/1}(a);
+\node[note] at (5,-.5) {Edge: input pair / output bit. Least-significant bits first.};
+\node[note] at (5,-1.1) {End-of-input: emit current carry once more.};
+\end{tikzpicture}

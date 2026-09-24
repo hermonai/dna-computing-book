@@ -1,0 +1,228 @@
+\chapter{Splicing and insertion-deletion systems}
+Two strings, \texttt{LABR} and \texttt{MCDN}, contain designated cut boundaries
+\texttt{LA|BR} and \texttt{MC|DN}. Exchange their right-hand pieces.
+The products are \texttt{LADN} and \texttt{MCBR}. Nothing was copied, yet
+two new sequence arrangements appeared. Now give the first parent two
+eligible cut sites. Which products are possible, and what would it mean
+to say that a computation has finished?
+
+Chapter 14 changed occupancy on a fixed backbone. Here we change the
+arrangement or length of a symbolic sequence. The prerequisites are string
+concatenation, contextual matching, and Chapter 12's distinction between
+a language of possible species and a finite molecular inventory.
+The letters in our examples are abstract symbols, not nucleotide sequences.
+
+\section{A rule is a relation, not a laboratory instruction}
+\index{splicing}\index{context}
+Let $\Sigma$ be a finite alphabet and $\Sigma^*$ the finite words over it,
+including the empty word $\varepsilon$. Concatenation $xy$ places $y$ after
+$x$; $|x|$ counts symbols, with no implied unit of time or concentration.
+Choose four context words $r=(u_1,u_2;v_1,v_2)$.
+A compatible factorization of two parents is
+\[
+ x=a u_1u_2 b,\qquad y=c v_1v_2 d.
+\]
+The cuts are between $u_1$ and $u_2$, and between $v_1$ and $v_2$.
+Our two-product teaching relation returns
+\begin{equation}
+ (x,y)\ \xRightarrow{r}\ (a u_1v_2d,\;c v_1u_2b).
+ \label{eq:splice}
+\end{equation}
+The common formal-language convention records the first recombinant;
+we explicitly retain the complementary product for inventory accounting.
+The contextual cut convention follows the P\u{a}un formulation discussed
+by Kari and Ng \cite{splicing}. Different splicing formalisms have different
+definitions; their theorems cannot be transferred without checking hypotheses.
+
+\Plate{01-splice}{Two symbolic parents exchange suffixes after contextual cuts.
+The first product alone is a language-theoretic output; both products are
+needed for the modeled material balance. Segment colors mark provenance.}{fig:splice}
+
+Write $p=au_1$, $s=u_2b$, $q=cv_1$ and $t=v_2d$. The parents are $ps,qt$
+and the products $pt,qs$. Thus
+\begin{equation}
+ |pt|+|qs|=|p|+|t|+|q|+|s|=|ps|+|qt|.
+ \label{eq:length}
+\end{equation}
+A stronger invariant is the total count of each alphabet symbol across
+both products. Neither invariant tells us that the reaction is feasible:
+end chemistry, duplex geometry, enzyme specificity and waste are absent.
+This is also not spliceosome-mediated RNA splicing.
+
+\section{Enumerate every cut, including overlapping contexts}
+\index{overlapping match}
+A word of length $n$ has $n+1$ boundaries, numbered $0,\ldots,n$.
+Boundary $i$ is eligible when its prefix ends in the left context and its
+suffix begins with the right context. Empty contexts impose no restriction.
+In \texttt{AAA}, contexts $(\texttt{A},\texttt{A})$ admit boundaries 1 and 2.
+A non-overlapping pattern search can silently miss one.
+\Listing{cuts}
+\Listing{splice}
+The return value includes both cut indices, not only product words.
+Different opportunities can produce the same sequence. Deduplicating
+those words is appropriate for language membership but erases multiplicity
+or rate information. Even retaining every site does not determine reaction rates:
+a site occurrence is not a measured binding propensity.
+
+The reference compares all cuts of all binary words of length at most three
+against an independently written boundary enumeration. It tests length
+conservation for every returned pair and checks overlapping contexts.
+A missing site is a completeness error even if every returned product looks plausible.
+
+\section{A finite tube cannot reuse a consumed parent for free}
+\index{inventory}\index{reaction transaction}
+Let $P(w)\in\mathbb N_0$ count copies of word $w$. One selected event consumes
+one copy of $x$ and one of $y$ and produces one copy of each product $z_1,z_2$:
+\begin{equation}
+ P'=P-\mathbf e_x-\mathbf e_y+\mathbf e_{z_1}+\mathbf e_{z_2}.
+ \label{eq:inventory}
+\end{equation}
+Here $\mathbf e_w$ is a unit count at species $w$. If $x=y$, two copies are
+required. If a product equals a parent or both products are identical,
+increments still accumulate rather than overwrite one another.
+\Listing{react}
+The input is checked before a copied inventory is changed; failure leaves the
+caller's pool intact. Three \texttt{LABR} and two \texttt{MCDN} become two
+\texttt{LABR}, one \texttt{MCDN}, one \texttt{LADN} and one \texttt{MCBR}:
+five copies and twenty symbols before and after.
+The event is selected by cut indices. The function neither samples which
+event occurs nor advances a physical clock.
+
+Contrast this with language closure. Given axioms $L_0$ and rules $R$, define
+\begin{equation}
+ L_{k+1}=L_k\cup
+ \{z_1,z_2:(x,y)\xRightarrow{r}(z_1,z_2),\ x,y\in L_k,\ r\in R\}.
+ \label{eq:closure}
+\end{equation}
+Parents remain available in this mathematical definition. The union records
+what can be derived, not every species simultaneously present in one tube.
+A physical implementation needs replenishment or a schedule and a copy budget.
+Treating one molecule as an inexhaustible reagent is not molecular parallelism.
+
+\section{Insertion and deletion preserve context, not length}
+\index{insertion}\index{deletion}
+For left context $\ell$, nonempty payload $p$ and right context $r$, define
+\begin{align}
+ a\ell r b&\longrightarrow a\ell p r b &&\text{(insertion)},\\
+ a\ell p r b&\longrightarrow a\ell r b &&\text{(deletion)}.
+ \label{eq:delete}
+\end{align}
+The context survives; the payload appears or disappears in the word.
+For \texttt{ABAB} and $(\ell,p,r)=(\texttt{A},\texttt{X},\texttt{B})$,
+the one-step insertion outputs are \texttt{AXBAB} and \texttt{ABAXB}.
+One step does not insert at every matching site.
+\Plate{02-context}{A local insertion changes one boundary while preserving its
+context. A separate donor emphasizes that physical insertion needs a source
+of material; the symbolic relation contains no donor budget.}{fig:context}
+\Listing{edits}
+Taking all applicable sites makes this a relation with possibly many outputs.
+Deleting $p$ from an inserted word can recover the original, but may also act
+at another eligible site. Local inverse relations do not give a unique history.
+Deleting either occurrence of \texttt{X} from \texttt{XX} with empty contexts
+gives \texttt{X}; the output does not identify the removed occurrence.
+
+Insertion raises length by $|p|$; deletion lowers it by $|p|$. An empty payload
+would introduce self-transitions, so the reference rejects it. That is a scope
+choice, not a universal prohibition. Physical deletion creates material outside
+the retained word; a chemical balance must include released fragments.
+
+\section{Explore reachability without confusing a cutoff with closure}
+\index{reachability}\index{bounded search}
+A derivation is a finite sequence of legal rewrites. Reachability asks whether
+some sequence reaches a target. Begin from $\varepsilon$ and allow insertion
+of either 0 or 1 at every boundary. Through depth $d$, every word of length at
+most $d$ is reachable, hence
+\begin{equation}
+ |L_{\leq d}|=\sum_{j=0}^{d}2^j=2^{d+1}-1.
+ \label{eq:growth}
+\end{equation}
+To prove reachability, remove one bit from a target word, construct the shorter
+word inductively, then reinsert that bit. Conversely, each step adds one bit,
+so no word longer than $d$ can appear in $d$ steps.
+\Plate{03-branch}{Alternative insertions form a derivation graph; repeated words
+merge by sequence equality. This is a graph of possibilities, not a physical
+process that creates copies without reagents.}{fig:branch}
+
+The breadth-first explorer stores a frontier and a visited set. Only the
+frontier needs expansion: older words already had their successors examined.
+A word-count cap raises an error rather than quietly dropping states.
+At the depth limit, one extra expansion checks whether the visited set is closed.
+\Listing{explore}
+\begin{center}\input{\Generated/growth.tex}\end{center}
+\Plate{05-budget}{Exact symbolic word counts for unrestricted binary insertion
+through depth five. Exponential growth in possible words is not evidence
+of an efficient molecular solver.}{fig:budget}
+
+For a unary relation, if every frontier successor is already visited, all
+visited states have successors inside the set. This proof does not justify
+a binary splicing explorer: new words must also be paired with old words.
+Our executable explorer is deliberately limited to unary edits.
+
+A target found within budget has an existence witness. A target absent
+from an incomplete search remains undecided. With insertions and deletions,
+a short target can require a longer intermediate word; a length cap can remove
+its only derivation. Report the cap alongside any negative search result.
+The one-step enumeration also costs work: every boundary is examined,
+and each context comparison and string construction costs more than zero.
+The reference favors transparency over asymptotically optimized matching.
+
+\section{Recover the molecular interface deliberately}
+\index{cohesive end}\index{ligation}
+Substring concatenation has no polarity, exposed hydroxyl or phosphate, duplex
+structure, enzyme accessibility or competing ligation partner. Restore those
+objects before interpreting a string program as chemistry.
+\Plate{04-duplex}{Generic cohesive-end association and backbone sealing.
+Dashed contacts denote pairing; solid lines denote backbone.
+Association does not itself seal nicks. Enzyme-specific recognition and cut
+distances are omitted; this is not a reaction protocol.}{fig:duplex}
+
+An interface contract should identify retained fragments, complementary ends,
+joinable backbone ends and recognition sites remaining after joining. Include
+off-target matches, circularization and inaccessible sites as failure modes.
+The same word can represent different topologies; a linear string does not
+automatically model a circular plasmid.
+
+Current Golden Gate design guidance separates Type IIS recognition sites
+from fusion overhangs that order fragments and checks orientation and internal-site
+compatibility \cite{neb}. This is an engineering comparison, not an implementation
+of arbitrary context rewriting. Combinatorial reachability proves a statement
+about chosen rules. Assembly fidelity needs a different experiment and readout.
+
+\section{Exercises with worked answers}
+\begin{enumerate}
+\item \textbf{Predict.} Apply $(A,B;C,D)$ to \texttt{LABR}, \texttt{MCDN}.
+\emph{Answer:} \texttt{LADN}, \texttt{MCBR}; both cut indices are 2.
+\item \textbf{Prove.} Strengthen Equation~\ref{eq:length} to each symbol.
+\emph{Answer:} The segments $p,s,q,t$ each occur once on each side, so their
+symbol-count vectors have identical sums.
+\item \textbf{Enumerate.} Count cut pairs for two \texttt{AAA} parents
+with $(A,A;A,A)$. \emph{Answer:} Two choices in each parent, or four ordered pairs.
+\item \textbf{Inventory.} Why cannot one \texttt{AA} copy supply both parents?
+\emph{Answer:} Consumption requires two copies; subtraction would be negative.
+\item \textbf{Counterexample.} Why does retaining only $z_1$ break conservation?
+\emph{Answer:} Fragments in $z_2$ disappear from the model, not from reality.
+\item \textbf{Implement.} Add a donor count to insertion.
+\emph{Rubric:} Consume one declared donor per event, preserve caller data on failure,
+account for discarded fragments and test zero donor. State remaining chemical omissions.
+\item \textbf{Invert.} Is deletion injective on histories?
+\emph{Answer:} No. Deleting either X from \texttt{XX} yields \texttt{X}.
+\item \textbf{Derive.} Count words through depth ten.
+\emph{Answer:} $2^{11}-1=2047$, including $\varepsilon$.
+\item \textbf{Test.} Give a closed one-word example.
+\emph{Answer:} Seed \texttt{AB} with an insertion requiring contexts X,Y has no successor.
+\item \textbf{Reason.} Does absence by depth five prove non-reachability?
+\emph{Answer:} Only if closure is established; otherwise longer derivations remain possible.
+\item \textbf{Design.} Extend exploration to binary splicing.
+\emph{Rubric:} Expand new--old, old--new and new--new pairs for asymmetric rules;
+deduplicate species, preserve a derivation witness and expose budget exhaustion.
+\item \textbf{Audit.} What is missing from a valid word rewrite?
+\emph{Rubric:} Specify polarity, end compatibility, enzyme action, inventory,
+competing reactions and a product-identity assay; distinguish these from formal proof.
+\end{enumerate}
+\section{Terms, reproduction and the next question}
+A \Term{context} restricts a site. A \Term{recombinant} joins designated parent
+segments. A \Term{closure} contains every successor of its members.
+A \Term{derivation witness} is a legal path; a \Term{copy inventory} counts
+available physical surrogates. README commands reproduce the generated listings
+and tables. The next question reverses the viewpoint: rather than generate
+words, what finite memory can recognize or transform an incoming word?

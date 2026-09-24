@@ -1,0 +1,4 @@
+Question: What memory is needed to recognize a word ending in 01?
+Objects and arrow semantics: Three-state directed graph; accepting double circle; each edge consumes exactly one bit.
+Change/invariant and caption claim: States remember the longest useful suffix, not the full input.
+Scientific risk: End-of-input is necessary before interpreting acceptance.

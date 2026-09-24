@@ -1,6 +1,6 @@
 # Editorial architecture and release roadmap
 
-Updated 24 September 2026. This is the current execution map, not a claim
+Updated 25 September 2026. This is the current execution map, not a claim
 that every planned chapter is written or independently reviewed.
 
 ## One manuscript, distinct review stages
@@ -11,9 +11,9 @@ for current authoring progress. Do not regenerate archived editions merely
 to change their progress labels.
 
 Chapters 1-2 retain their internal acceptance records. Chapter 3 has standalone
-and combined LaTeX review candidates. Chapters 4-14 have isolated authored-LaTeX
+and combined LaTeX review candidates. Chapters 4-16 have isolated authored-LaTeX
 review candidates with code, vector figures, and worked solutions.
-Chapter 15 is the next unwritten chapter. Chapters 11-14 were authored at the
+Chapter 17 is the next unwritten chapter. Chapters 11-16 were authored at the
 reader's explicit request while the Chapters 1-10 integration milestone remains
 pending. These standalone candidates do not substitute for that integration.
 Independent specialist review and cumulative integration are still open.
@@ -105,11 +105,26 @@ and address permutation. Explain reset information loss, operation-level
 retention and state-transition errors. Draw polarity-correct memory complexes
 and distinguish abstract selective clear from demonstrated renewable computing.
 
+## Chapter 15 scope (standalone candidate): splicing and insertion-deletion systems
+
+Define contextual cuts and both recombinant products before implementing a finite-copy
+reaction. Separate language closure from molecular inventory and bounded search.
+Use polarity-correct ligation schematics to identify the chemical interface
+without claiming a formal splice is an implemented laboratory operation.
+
+## Chapter 16 scope (standalone candidate): languages, automata and molecular recognition
+
+Construct and minimize an end-marked finite-state recognizer, then implement
+a least-significant-bit-first addition transducer. Prove prefix invariants,
+compare exhaustive arithmetic oracles and propagate an explicit error/loss
+channel. Relate the formal interface to current scaffolded molecular computing
+without substituting a probability model for measured chemistry.
+
 ## Pending milestone: integrate Chapters 1-10
 
 Audit strand/count/concentration/signal notation, units, measurement assumptions,
 source coverage, and prerequisites, including the interfaces now used by
-Chapters 11-14. Preserve the distinction between a physical separation and a formal
+Chapters 11-16. Preserve the distinction between a physical separation and a formal
 predicate.
 Build a new cumulative entry point with unified bibliography and index; retain
 standalone candidates and accepted editions unchanged. Do not promote acceptance

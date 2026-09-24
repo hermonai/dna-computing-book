@@ -1,0 +1,17 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\draw[Blue,very thick,-{Stealth}] (0,0)--(11,0);
+\node[note] at (-.3,0) {$5'$};\node[note] at (11.3,0) {$3'$};
+\foreach \x/\i in {1/1,4.5/2,8/3}{
+\draw[Blue,line width=5pt,opacity=.2] (\x,0)--(\x+2,0);
+\node[note] at (\x+1,-.5) {$P_{\i}$};
+\draw[Green,very thick,-{Stealth}] (\x+2,.6)--(\x,.6);
+\foreach \d in {.2,.5,.8,1.1,1.4,1.7}\draw[gray,dashed] (\x+\d,0)--(\x+\d,.6);
+\node[smallnote] at (\x+1,1) {$P_{\i}^{*}$};}
+\draw[Green,dashed,thick] (3,.6)--(3,1.7)--(4.5,1.7)--(4.5,.6);
+\node[note,fill=white] at (3.75,1.7) {$q_1/q_1^{*}$};
+\draw[Green,dashed,thick] (6.5,.6)--(6.5,2.3)--(8,2.3)--(8,.6);
+\node[note,fill=white] at (7.25,2.3) {$q_2/q_2^{*}$};
+\node[note] at (5.5,3.1) {Required state-interface matches (schematic connections)};
+\node[note,Red] at (5.5,-1.2) {Wrong interface: $q_2/r^{*}$, $r\ne q_2$ \quad $\times$};
+\node[smallnote] at (5.5,-1.8) {Dashed connectors denote matching constraints, not ligated junctions.};
+\end{tikzpicture}

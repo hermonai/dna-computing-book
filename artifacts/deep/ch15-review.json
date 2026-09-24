@@ -1,0 +1,59 @@
+{
+  "pdf": "output/pdf/dna-computing-ch15-review.pdf",
+  "pages": 11,
+  "sha256": "87103020cbaf839a0ec51e8038b341b2276e9b85ff75cb553db765d6a23986ee",
+  "status": "standalone authored-LaTeX review candidate; no acceptance promotion",
+  "sources": {
+    "drafts/ch15/README.md": "6f71e0e3b2ba109fd8bb327fb20b1c540b6e7f9d0d3351fb4ad343dfbdfd2e75",
+    "drafts/ch15/STORYBOARD.md": "a64fef72d2e6761b140849769ec6cd1ba97b785e0422e2e882b9292ec568e9da",
+    "drafts/ch15/build.py": "a16164c7cd13c10ee3bf7da985ea782dbcc8d9722d4f655cf568ed085bcfab1b",
+    "drafts/ch15/figures/01-splice.tex": "67c15435bf81fcaa77a8d77fde8d42d806b548da760f6bb85b26a7b2549c723f",
+    "drafts/ch15/figures/01-splice.txt": "7c39d7522743d9cc5aac7232d5aaa04d97bc91d2057161528bff035a3970baae",
+    "drafts/ch15/figures/02-context.tex": "e51f9a00e36cc3672379b7282e0ddf8b40eac695aaba33daf5f1ca76069812d2",
+    "drafts/ch15/figures/02-context.txt": "023bdb25077ef883568e669696e4c544dfb1a8fbc4682e57a82c31919480bffc",
+    "drafts/ch15/figures/03-branch.tex": "f1a69a9283fe211c596d4a3673aeca797edafcd544b432f9770d7546293b6472",
+    "drafts/ch15/figures/03-branch.txt": "1e49aadb3b0df7cda01c4c79c3bd9dd7ed2f826e7bb68a3d8d2ce0e8256b4957",
+    "drafts/ch15/figures/04-duplex.tex": "f27b2830667bee246f6d6694591bb11f6b60a3897db3712eacd932c769563b7a",
+    "drafts/ch15/figures/04-duplex.txt": "bd1587a9bc4e970f7d76877d68ba6d5ff7bbae478153f7b5da1c4cc40c3bfc6f",
+    "drafts/ch15/figures/05-budget.tex": "92c36598431a1d2c4a75b90958be8518b400fbd4392f69092341f7e94b2c0d2a",
+    "drafts/ch15/figures/05-budget.txt": "ed447914d476d7f9f1c8ca0a12a171f792b998d58d14200f0b5e411f3a3dcfe8",
+    "drafts/ch15/manuscript.tex": "f48c245a4059b8df04c6fb49199bce48116041ffe1ae121fb7b98bc3c4e68223",
+    "drafts/ch15/reference.py": "00febce6b99dc4e6351644de8070634b3268f6a96089aef1053448a8083c577f",
+    "drafts/ch15/results.json": "f57d55e899cf953734b1f7af42a9bef0475b3c62817219b48b4189dfb8a23bdb",
+    "drafts/ch15/review.tex": "ea60337b6e3ebd43c847880fb962a79abe51d3d85ea935bb80fc52b60809c571",
+    "drafts/ch15/sources.tex": "8f7f71cd9295a1e60e53297435b1c4b166f45b6558e507546b354d8e503a9d4d"
+  },
+  "reviewedOn": "2026-09-25",
+  "reviewType": "author technical, editorial and visual review; not independent specialist acceptance",
+  "allPagesInspected": true,
+  "inspectedPhysicalPages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "grayscaleReview": "All final pages inspected in color and grayscale contact sheets; selected mechanism, graph and code-listing pages also inspected at page scale. Corrected chart labels, annotations and runtime listing re-inspected after rebuilding.",
+  "figures": 5,
+  "exercises": 12,
+  "openGates": [
+    "independent specialist review",
+    "reader feedback",
+    "cumulative integration, cross-chapter index and bibliography"
+  ],
+  "validation": {
+    "generatedArtifactsCheck": "passed",
+    "pdfWordsOutsidePage": 0,
+    "unresolvedReferenceMarkers": 0,
+    "fullSuitePassed": 778,
+    "fullSuiteSkipped": 2,
+    "priorEditionPreservationTests": "passed",
+    "python": "3.13.6"
+  }
+}

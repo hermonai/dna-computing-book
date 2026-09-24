@@ -1,0 +1,247 @@
+\chapter{Languages, automata and molecular recognition}
+Does \texttt{1101} end in \texttt{01}? A human can inspect its final two bits.
+A streaming machine does not know which bits will be last. It must update a
+small memory after every symbol, then decide when input ends. Molecular
+recognition adds another question: which physical configuration represents that
+memory, and how do we observe it?
+
+Chapter 15 generated words by rewriting. Here we recognize a language, then
+extend the idea to a transducer that adds numbers. We assume finite sets,
+probability vectors and the earlier strand-domain conventions.
+The reference is an exact symbolic machine with a separately assigned noise
+channel, not a molecular assay simulator.
+
+\section{Remember only what a future suffix can distinguish}
+\index{finite automaton}\index{recognition}
+A deterministic finite automaton (DFA) is $A=(Q,\Sigma,\delta,q_0,F)$:
+$Q$ is a finite state set, $\Sigma$ an alphabet,
+$\delta:Q\times\Sigma\to Q$ a total transition function, $q_0$ an initial
+state, and $F\subseteq Q$ the accepting states. For $w=a_1\cdots a_n$,
+\begin{equation}
+ q_{i+1}=\delta(q_i,a_{i+1}),\qquad
+ w\in L(A)\ \Longleftrightarrow\ q_n\in F.
+ \label{eq:dfa}
+\end{equation}
+One symbol causes one transition. Acceptance during a prefix is not necessarily
+acceptance of the full word: input must finish.
+
+For words ending in 01, use three states. State $q_0$ means no useful suffix;
+$q_1$ means suffix 0; $q_2$ means suffix 01. A useful suffix is also a prefix
+of the target pattern. The complete transition table is
+\begin{center}
+\begin{tabular}{ccl}\toprule
+State & on 0 / on 1 & Meaning\\\midrule
+$q_0$ & $q_1$ / $q_0$ & no useful suffix\\
+$q_1$ & $q_1$ / $q_2$ & most recent bit is 0\\
+$q_2$ & $q_1$ / $q_0$ & most recent two bits are 01\\\bottomrule
+\end{tabular}
+\end{center}
+\Plate{01-dfa}{A complete recognizer for words ending in 01. Each edge consumes
+its labeled symbol. The double circle marks acceptance at end-of-input.
+There is exactly one outgoing transition per symbol from each state.}{fig:dfa}
+
+The meanings hold by induction on prefix length. Appending 0 always gives
+suffix 0. Appending 1 after suffix 0 completes 01. Appending 1 in either other
+state leaves no useful suffix.
+
+Three states are necessary, not just sufficient. Prefixes $\varepsilon$, 0
+and 01 must be distinguishable: the empty continuation accepts only 01;
+continuation 1 distinguishes 0 from $\varepsilon$. If two prefixes shared a
+state, every future continuation would have the same acceptance outcome from
+both, contradicting these witnesses. This is the practical core of
+state minimization.
+
+\section{Execute the rule before discussing chemistry}
+\index{state invariant}\index{end-of-input}
+\Listing{recognize}
+The constant \texttt{DELTA} contains integer state indices in the table's order.
+Validation rejects nonbinary characters; it does not silently strip whitespace,
+because that would change the language. Empty input is legal and rejected by
+this particular machine.
+\begin{center}\input{\Generated/recognition.tex}\end{center}
+\Plate{02-trace}{The cursor advances once per transition. Consuming 1,1,0,1
+takes the initial state through 0,0,1,2. A state records a useful suffix,
+not the number of processed symbols.}{fig:trace}
+
+Tests enumerate every binary word through length nine and compare with the
+independent string predicate \texttt{endswith("01")}. They also check each
+prefix invariant, not only the final answer. A correct guess at the end of one
+example cannot conceal an invalid intermediate transition.
+
+Three running states need $\lceil\log_2 3\rceil=2$ conventional binary storage
+bits. But the input has length $n$ and a full trace records $n+1$ states.
+Constant working memory is not constant total storage when inputs and traces
+are retained. Similarly, a molecular device can have few logical states while
+input strands and transition reagents scale with the task.
+
+\section{From recognition to a streaming transducer}
+\index{transducer}\index{carry}
+An automaton can emit output as well as change state. For binary addition,
+read equal-width operands least-significant bit first. At position $i$,
+$x_i,y_i,c_i\in\{0,1\}$ determine
+\begin{align}
+ t_i&=x_i+y_i+c_i,\\
+ z_i&=t_i\bmod 2,\qquad c_{i+1}=\lfloor t_i/2\rfloor.
+ \label{eq:carry}
+\end{align}
+The carry is the only persistent state. Output is now a sequence rather than
+one membership bit; a transition label is $(x_i,y_i)/z_i$.
+\Plate{03-transducer}{A carry transducer evaluates one column at a time.
+Pairs 01 and 10 preserve the carry, while their output depends on that carry.
+A final carry output is required after the last input column.}{fig:transducer}
+
+After $k$ positions the arithmetic invariant is
+\begin{equation}
+ \sum_{i=0}^{k-1}2^i(x_i+y_i)
+ =
+ \sum_{i=0}^{k-1}2^i z_i+2^k c_k.
+ \label{eq:addinv}
+\end{equation}
+At $k=0$ both sides vanish because $c_0=0$. For the induction step, substitute
+$x_k+y_k+c_k=z_k+2c_{k+1}$, multiply by $2^k$, and cancel the old carry.
+At width $n$, emitting $c_n$ as bit $n$ yields the exact sum. Dropping it yields
+only the sum modulo $2^n$.
+\Listing{add_bits}
+For $13+3$, width-four inputs are \texttt{1011} and \texttt{1100}
+in least-significant-first notation.
+\begin{center}\input{\Generated/addition.tex}\end{center}
+The output is \texttt{00001}, which reverses to conventional \texttt{10000},
+or 16. Reading the input strings with conventional significance describes
+different operands. The symbol alphabet and the number representation are
+separate parts of the contract.
+
+Exhaustive tests compare all operand pairs through width six against integer
+addition. Zero-width input returns one carry bit 0. Unequal widths are rejected;
+a caller may explicitly pad the shorter operand with high-order zero bits.
+
+\section{Compile a state path into local molecular constraints}
+\index{scaffold}\index{domain-level abstraction}
+A logical transition need not correspond to a molecule stepping along a tape.
+One can encode adjacent state consistency in an assembled structure.
+At position $i$, a compute element carries an incoming state label, an
+input-dependent transition and an outgoing state label. Neighboring elements
+must agree on the shared state. Anchoring the initial state prevents a locally
+consistent path from starting in an unintended state.
+\Plate{04-scaffold}{Conceptual position-addressed molecular constraint scheme.
+Compute strands bind antiparallel to scaffold addresses. Complementary state
+domains enforce agreement across neighboring positions. The crossed alternative
+marks an incompatible interface. This domain schematic is not a sequence design
+or a prescribed kinetic pathway.}{fig:scaffold}
+
+A forward DFA follows one path from $q_0$. An assembly interpretation may admit
+many partial configurations while constraints resolve. Final state-path relations
+can agree while kinetics, occupancy, resources and failures differ.
+Local constraint satisfaction does not imply each molecule follows the sequential
+DFA trace.
+
+The September 2026 Scaffolded DNA Computer report presents an FSM-to-scaffold
+compilation scheme and demonstrated arithmetic and nondeterministic programs
+\cite{sdc}. Its main text distinguishes domain-level bind/replace models from
+detailed pathways that are not experimentally enforced. This motivates comparing
+semantics across physical architectures; it does not validate our figure's
+domains or assigned noise parameters.
+
+Audit initial-state enforcement, unique positions, domain complementarity,
+end-of-input reporting and the meaning of each output. An accepting signal must
+depend on the complete intended word. A missing final strand is not automatically
+a logical reject state.
+
+\section{Keep transition error separate from molecule loss}
+\index{absorbing loss}\index{observation}
+Let $p_i(q)$ be the probability of state $q$ after $i$ symbols. Add state
+$\dagger$ for irrecoverable loss. At each step, loss occurs with assigned
+probability $\ell$. Conditional on survival, the intended next state occurs
+with probability $1-e$; each of the two other states receives $e/2$.
+This symmetric error rule is a teaching assumption, not a fitted mechanism.
+
+For symbol $a$, define a row-stochastic matrix
+\begin{align}
+ T_a(q,\dagger)&=\ell,\\
+ T_a(q,r)&=(1-\ell)\left[(1-e)\mathbf1_{r=\delta(q,a)}
+       +\frac e2\mathbf1_{r\ne\delta(q,a)}\right],\\
+ T_a(\dagger,\dagger)&=1.
+\end{align}
+Other entries from $\dagger$ are zero. Then $p_{i+1}=p_iT_{a_{i+1}}$.
+Every row sums to one, so total probability is conserved.
+\Listing{noisy_distribution}
+
+The loss probability after $n$ steps is
+\begin{equation}
+ p_n(\dagger)=1-(1-\ell)^n,
+ \label{eq:loss}
+\end{equation}
+because surviving paths must survive every step. This is independent of
+transition error in this specific model. Unconditional acceptance is $p_n(q_2)$;
+acceptance conditional on survival is
+$p_n(q_2)/(1-p_n(\dagger))$ when the denominator is nonzero.
+These answer different questions.
+\Plate{05-errors}{Computed unconditional accepting-state mass and absorbing
+loss for accepted words $0^{n-1}1$, with assigned $e=0.02$, $\ell=0.01$.
+These are model probabilities, not measured assay sensitivities.
+Lost material is not counted as a logical reject state.}{fig:errors}
+
+With zero error and loss, a point distribution follows the DFA exactly.
+With $\ell=1$, every nonempty input is lost. Tests check these limits,
+nonnegativity, normalization and Equation~\ref{eq:loss}.
+A chemical channel could be sequence-dependent, correlated, reversible or
+concentration-dependent. Those changes may invalidate the independent-loss formula.
+
+Readout is still missing. To connect state populations to a detector signal $Y$,
+we need $P(Y\mid q)$, calibration and a threshold. State acceptance probability
+is not experimental accuracy without an input distribution and an observation
+model. The observation lessons from Chapter 10 still apply.
+
+\section{Finite-state power and its limits}
+\index{regular language}
+A finite automaton recognizes a regular language. Fixed finite memory cannot
+remember an arbitrarily large unmatched count. For example,
+$\{0^n1^n:n\geq0\}$ has no fixed finite DFA. Suppose a recognizer had $m$ states.
+Among the $m+1$ prefixes $\varepsilon,0,\ldots,0^m$, two lengths $i<j$
+reach the same state. Appending $1^i$ must give the same acceptance outcome
+from both, but only $0^i1^i$ belongs to the language. Contradiction.
+
+This does not prohibit finite-width experiments: a larger machine can encode
+a specified maximum length. It prohibits using a bounded demonstration as
+evidence of unbounded counting with fixed memory. Physical finite-state
+machines also have finite input and reagent inventories; formal recognition
+does not eliminate fabrication or readout cost.
+
+\section{Exercises with worked answers}
+\begin{enumerate}
+\item \textbf{Predict.} Is 010 accepted? \emph{Answer:} No; the final state is
+$q_1$, despite visiting $q_2$ earlier.
+\item \textbf{Trace.} Give states for 001. \emph{Answer:} $q_0,q_1,q_1,q_2$.
+\item \textbf{Prove.} Why cannot $q_0,q_1$ merge?
+\emph{Answer:} Continuation 1 rejects from $q_0$ and accepts from $q_1$.
+\item \textbf{Implement.} Recognize words containing 01 anywhere.
+\emph{Answer:} Make $q_2$ absorbing for both symbols; test against substring
+membership, including trailing 0.
+\item \textbf{Count.} Contrast running-state and trace storage.
+\emph{Answer:} Two bits suffice for the state, while a fixed-width trace of
+$n+1$ states needs storage proportional to $n$.
+\item \textbf{Derive.} Prove Equation~\ref{eq:addinv}.
+\emph{Answer:} Use zero carry as the base case and cancel $2^kc_k$ after
+substituting the local carry identity into the next partial sum.
+\item \textbf{Overflow.} Add width-three 7 and 1.
+\emph{Answer:} LSB-first 111 plus 100 yields 0001; discarding carry gives zero modulo eight.
+\item \textbf{Boundary.} Interpret zero-width addition.
+\emph{Answer:} Both operands are zero and only initial carry 0 is emitted.
+\item \textbf{Probability.} Find survival after ten steps at $\ell=0.01$.
+\emph{Answer:} $0.99^{10}\approx0.90438$; loss is approximately 0.09562.
+\item \textbf{Counterexample.} Does zero accepting signal establish rejection?
+\emph{Answer:} No; loss and detector failure can remove an accepting signal.
+\item \textbf{Audit.} Test a state-domain compilation.
+\emph{Rubric:} Check local transitions, initial constraint, ordering, final reporting,
+mismatch controls and calibration. Symbolic parity does not validate sequences.
+\item \textbf{Limit.} Why does success on $0^n1^n$ through $n=10$ not establish
+all $n$? \emph{Answer:} A bounded counter handles those cases; repeated states
+defeat a fixed DFA over an unbounded range.
+\end{enumerate}
+\section{Terms and reproducible boundary}
+A \Term{recognizer} returns membership; a \Term{transducer} emits a sequence.
+A \Term{state invariant} explains memory at each prefix.
+A \Term{transition channel} assigns next-state probabilities.
+The \Term{end-of-input} boundary is part of interpretation, not another data bit here.
+The README reproduces code and tables. Later formal models ask which additional
+memory changes computational power; later engineering chapters ask whether
+molecular interfaces survive noise and composition.

@@ -24,7 +24,9 @@ DOGMA = non-Transformer DNA-native model + DOGMA Engine; Hermon DNA = Transforme
 
 [Chapter 13: SAT and combinatorial constructions](drafts/ch13/README.md) adds finite-copy clause selection, exhaustive small SAT oracles and coverage/resource derivations. [Chapter 14: Sticker systems and molecular memory](drafts/ch14/README.md) adds occupancy-register semantics, conditional writes, reset analysis and reuse limits. Each includes five editable mechanism figures with TXT companions and twelve worked exercises; current research comparisons have dated source-access notes.
 
-Chapters 13-14 are standalone author-reviewed candidates, not cumulative acceptance or independently validated industrial systems. Chapter 15 is next; cumulative integration remains pending.
+[Chapter 15: Splicing and insertion-deletion systems](drafts/ch15/README.md) develops contextual cuts, finite-copy reactions, bounded reachability and chemical interface limits. [Chapter 16: Languages, automata and molecular recognition](drafts/ch16/README.md) develops recognizer invariants, an exact binary transducer, scaffolded recognition and noisy transitions. Each includes five editable vector figures with semantic TXT companions, tested reference code and twelve worked exercises.
+
+Chapters 13-16 are standalone author-reviewed candidates, not cumulative acceptance or independently validated industrial systems. Chapter 17 is next; cumulative integration remains pending.
 
 ## Build and verify
 

@@ -1,0 +1,4 @@
+Question: Which search costs grow before chemistry begins?
+Objects and arrow semantics: An original calculated curve of distinct words by derivation depth and explicit bounded-search output.
+Change/invariant and caption claim: Depth and word-count caps stop the explorer without asserting language closure.
+Scientific risk: Counts are symbolic search results, not molecular yield.
