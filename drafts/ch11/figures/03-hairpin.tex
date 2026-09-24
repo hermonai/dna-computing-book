@@ -1,0 +1,14 @@
+\begin{tikzpicture}[x=.9cm,y=.7cm]
+\node[note,align=left] at (1,1.5) {$5'$--\texttt{GCGAAACGC}--$3'$\\one covalent strand};
+\draw[<->,thick,Blue] (4,1.5)--(5.1,1.5);
+\draw[very thick,Blue] (6,0)--(6,2) .. controls (6,4) and (8,4) .. (8,2)--(8,0);
+\foreach \y/\a/\b in {0/G/C,1/C/G,2/G/C}{
+ \draw[dotted,thick] (6.3,\y)--(7.7,\y);
+ \node[fill=white,font=\ttfamily] at (6,\y) {\a};
+ \node[fill=white,font=\ttfamily] at (8,\y) {\b};}
+\node[fill=white,font=\ttfamily] at (6.15,2.95) {A};
+\node[fill=white,font=\ttfamily] at (7,3.5) {A};
+\node[fill=white,font=\ttfamily] at (7.85,2.95) {A};
+\node at (5.6,-.6) {$5'$}; \node at (8.4,-.6) {$3'$};
+\node[smallnote,anchor=west] at (9,1.5) {3 base pairs\\3 unpaired bases\\no energy estimate};
+\end{tikzpicture}

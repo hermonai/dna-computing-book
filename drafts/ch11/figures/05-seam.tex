@@ -1,0 +1,12 @@
+\begin{tikzpicture}[x=.8cm,y=.8cm]
+\fill[Gold] (1.6,-.35) rectangle (5.4,.35);
+\foreach \i/\a in {0/A,1/A,2/C,3/G,4/T,5/C,6/A,7/G}
+ \node[font=\Large\ttfamily] at (\i,0) {\a};
+\draw[very thick,Blue] (-.4,.65)--(3.4,.65);
+\draw[very thick,Green] (3.6,.65)--(7.4,.65);
+\draw[dashed] (3.5,-.8)--(3.5,1.2);
+\node[note] at (1.5,1.25) {left domain};
+\node[note] at (5.5,1.25) {right domain};
+\node[note] at (3.5,-1.2) {\texttt{CGTC} exists only after concatenation};
+\node[smallnote,anchor=west] at (8.3,0) {Window $[2{:}6]$\\crosses the seam};
+\end{tikzpicture}

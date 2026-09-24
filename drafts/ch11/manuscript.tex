@@ -1,0 +1,241 @@
+\chapter{Sequence design and graph encoding}
+Suppose four vertices have four different DNA words. Does that make every
+directed edge chemically distinguishable? No. Two words may differ at every
+aligned position and still offer a long complementary segment after one strand
+slides. Two components can create a new recognition word at their junction.
+Symbolic uniqueness and molecular selectivity are different contracts.
+
+We will build a graph codec, prove what it preserves, and challenge its sequence
+screens. The eight-base words are teaching objects, not synthesis recommendations.
+Chapters 5--7 supply polarity, equilibrium and kinetics; Chapter 10 explains
+why a measured band cannot by itself establish molecular identity.
+
+\section{Choose a representation before measuring distance}
+\index{reverse complement}\index{strand polarity}
+Every sequence string is written $5'$ to $3'$. Let $c$ exchange A with T
+and C with G. For $s=s_0s_1\cdots s_{L-1}$, define
+\begin{equation}
+ \operatorname{rc}(s)_i=c(s_{L-1-i}),\qquad 0\le i<L.
+\end{equation}
+Complementation chooses the paired base; reversal puts the opposing strand
+back into the same written orientation. Since $c(c(b))=b$, applying the
+reverse complement twice returns the original word. Length is unchanged.
+\Plate{01-polarity}{The physical duplex has antiparallel backbones, while
+both stored strings use the $5'$-to-$3'$ convention. Reversing the lower
+strand's written description reconciles the two views. Dotted rungs indicate
+pairing, not backbone bonds.}{fig:polarity}
+\Listing{revcomp}
+The companion helper \texttt{dna} rejects empty strings, lowercase letters
+and ambiguous bases. This is a reference-code contract, not a claim that
+IUPAC ambiguity codes are invalid biology. Degenerate bases require different
+equality and pairing rules. Tests check the involution on all 256 four-base words.
+
+For equal-length strings, the Hamming distance is
+\begin{equation}
+ d_H(a,b)=\sum_{i=0}^{L-1}\mathbf1[a_i\ne b_i].
+\end{equation}
+It counts substitutions in a fixed alignment. It is neither a binding energy
+nor an edit distance.
+\Listing{hamming}
+
+\section{A distance guarantee has a noise model}
+\index{Hamming distance}\index{error correction}
+Let a codebook have minimum pairwise distance $d_{\min}$. Suppose a read has
+at most $t$ substitutions, with unchanged length and known reading frame.
+Nearest-codeword decoding is guaranteed to recover the original if
+$d_{\min}>2t$. To prove this, let $a$ be the original, $y$ the observation
+and $b$ another codeword. The triangle inequality gives
+\begin{equation}
+ d_H(y,b)\ge d_H(a,b)-d_H(a,y)\ge d_{\min}-t>t\ge d_H(y,a).
+\end{equation}
+At $d_{\min}=2t$, two words can tie; an arbitrary tie-break does not restore
+evidence. The proof excludes indels, mixed reads and hybridization. Our exact
+decoder below does not implement error correction: a theorem in the text
+does not add a feature to the program.
+
+Error tolerance consumes sequence space. A radius-$t$ Hamming ball around
+one length-$L$ word contains
+\begin{equation}
+ V_4(L,t)=\sum_{i=0}^t \binom{L}{i}3^i
+\end{equation}
+words: choose the changed positions, then three alternatives at each.
+Disjoint balls for $M$ codewords require $M V_4(L,t)\le4^L$.
+At $L=8,t=1$, $V_4=25$, giving $M\le2621$. This is an upper bound,
+not a construction. Folding and composition constraints can reduce the
+usable set further. Longer words buy representation space while changing
+the molecules whose chemistry must be evaluated.
+
+\section{Slide the alignment}
+\index{off-target interaction}
+Take $a=\texttt{ACGTAC}$ and $b=\texttt{TACGTA}$. Their Hamming distance
+is six, the maximum. But $b=\operatorname{rc}(b)$ and
+$a[0{:}5]=\operatorname{rc}(b)[1{:}6]=\texttt{ACGTA}$.
+Half-open slices include the starting index and exclude the ending index.
+There is a five-base complementary opportunity at an offset.
+\Plate{02-offset}{The fixed same-direction comparison has six mismatches.
+Shifting the actual opposing strand exposes five complementary positions.
+Unpaired ends protrude. This geometry is a warning, not a binding-yield
+prediction.}{fig:offset}
+Let $D_{ij}$ be the length of the common suffix ending at $a_i,b_j$:
+\begin{equation}
+ D_{ij}=\begin{cases}1+D_{i-1,j-1},&a_i=b_j,\\0,&a_i\ne b_j.\end{cases}
+\end{equation}
+Boundary values are zero. The largest cell is the longest common contiguous
+word. Comparing $a$ with $\operatorname{rc}(b)$ makes this a complementary
+segment screen.
+\Listing{longest_match}
+Only the previous row is needed: time $O(|a||b|)$, storage $O(|b|)$.
+The returned start positions expose the actual alignment. Ties retain
+the first maximum in loop order. Tests compare the dynamic program with
+explicit substring enumeration on a small alphabet.
+
+An exact-run score omits interrupted stems, bulges, loop penalties,
+concentrations and competing complexes. A low score does not certify zero
+crosstalk, and a short exact segment need not be stable under the intended
+conditions. Use the score to reject obvious conflicts or prioritize analysis,
+not to replace thermodynamics with an integer.
+
+\section{A strand can compete with its own partner}
+\index{hairpin}\index{secondary structure}
+In \texttt{GCGAAACGC}, the first three bases are reverse-complementary to the
+last three. They admit a stem separated by a three-base loop. A pairing
+drawing specifies a possible structure, not its probability.
+\Plate{03-hairpin}{An exact inverted repeat admits this hairpin-like pattern.
+One continuous backbone runs around the loop; the dotted stem rungs are
+base pairs. Atomic structure and solution populations are not represented.}{fig:hairpin}
+For stem length $k$ and minimum loop length $\ell$, arm starts $i,j$ must
+satisfy $j\ge i+k+\ell$. The screen tests
+\begin{equation}
+ s[i{:}i+k]=\operatorname{rc}(s[j{:}j+k]).
+\end{equation}
+The separation rule prevents one base from occupying both arms. Increasing
+the minimum loop length from three to four removes this particular warning,
+not every possible secondary structure.
+\Listing{hairpins}
+NUPACK distinguishes sequence constraints, structural ensembles and tube-level
+design, including intended complexes and competing species~\cite{nupack}.
+Our code does not invoke or reproduce that package. A subsequent design stage
+needs complete structures, concentrations, physical conditions and an appropriate
+thermodynamic model, followed by experimental validation.
+
+\section{Construct a small inspectable library}
+\index{sequence design}
+Choose three equal-length words from a supplied list. Require GC fraction
+between $0.375$ and $0.625$, no three-base homopolymer, no exact three-base
+hairpin warning with minimum loop three, and self reverse-complement Hamming
+distance at least three. Each distinct pair must have direct and
+reverse-complement distances at least three and a longest complementary
+run at most four.
+
+These are declared screens, not universal safety thresholds. Saying a library
+is orthogonal is incomplete unless the excluded interactions are specified.
+The reference exhaustively checks small subsets and returns the first feasible
+one in lexical order. It neither minimizes free energy nor maximizes library size.
+\Listing{choose_library}
+\begin{center}\input{\Generated/selected-table.tex}\end{center}
+The twelve-candidate example gives the displayed three words. If no subset
+works, the function returns \texttt{None}; it does not silently relax a
+constraint. With $N$ surviving candidates, choosing $M$ words can require
+$\binom{N}{M}$ subset checks. This is a transparent small-instance reference,
+not an industrial search algorithm. A faster solver must still certify the
+same stated predicates.
+
+\section{Expose a shared vertex at an edge junction}
+\index{graph encoding}\index{splint}\index{ligation}
+Use four separately specified vertex words:
+\begin{center}\input{\Generated/code-table.tex}\end{center}
+These graph-demo words are not asserted to satisfy every screen above.
+Split $C(v)=L_vR_v$ into four-base halves and represent $u\to v$ by
+\begin{equation}
+ E(u,v)=R_uL_v.
+\end{equation}
+The graph contains $A\to B,A\to C,B\to C,C\to B,B\to D,C\to D$.
+\begin{center}\input{\Generated/edge-table.tex}\end{center}
+Consecutive edges expose $R_u\,L_v\,R_v\,L_w$. A complement of $L_vR_v$
+can align their middle domains across a nick. Adleman used overlapping
+edge oligonucleotides and vertex splints, with special endpoint handling
+in the original experiment~\cite{adleman}. Our codec instead uses explicit
+digital terminal halves; it is not that laboratory recipe.
+\Plate{04-graph}{At B, consecutive edge strands expose CCTA and GTCA.
+The lower B splint pairs antiparallel across the nick. Graph arrows specify
+allowed traversal. A suitable ligation reaction can join the upper backbone;
+hybridization alone does not make that covalent bond.}{fig:graph}
+
+Distinct whole vertex words do not guarantee distinct edge words. If two
+sources share the same right half, their edges to a fixed destination collide.
+Our stronger codec contract requires every half-domain to be distinct.
+\Listing{encode_edges}
+Then $E(u,v)=E(u',v')$ implies $R_u=R_{u'}$ and $L_v=L_{v'}$,
+hence $u=u'$ and $v=v'$. This injectivity proof concerns exact strings.
+It implies neither zero partial binding nor equal reaction rates.
+
+\section{Round-trip the walk, then attack the boundaries}
+For a walk $(v_0,\ldots,v_k)$, append the leading $L_{v_0}$ and trailing
+$R_{v_k}$ to the edge words:
+\begin{align}
+ L_{v_0}\prod_{i=0}^{k-1}E(v_i,v_{i+1})R_{v_k}
+ &=L_{v_0}R_{v_0}L_{v_1}R_{v_1}\cdots L_{v_k}R_{v_k}\\
+ &=C(v_0)C(v_1)\cdots C(v_k).
+\end{align}
+The product denotes ordered concatenation, not concentration multiplication.
+There are $8(k+1)$ bases. Repeated vertices are allowed: a walk is not
+automatically Hamiltonian.
+\Listing{assemble}
+\Listing{decode}
+Encoding then decoding $A\to B\to C\to D$ returns \texttt{ABCD}.
+Tests enumerate all valid walks through five vertex visits and compare
+against direct vertex-word concatenation. This second oracle matters:
+an encoder and decoder could share the same mistake.
+
+Decoding assumes a known frame and exact words. One insertion can destroy
+every subsequent boundary. Reverse-complement reads need an explicit
+orientation policy. Neither failure is fixed by the distance proof for
+substitutions.
+
+Finally, concatenate \texttt{AACG} and \texttt{TCAG}. Neither part contains
+\texttt{CGTC}, but the composed sequence does, starting at index two.
+\Plate{05-seam}{A recognition word appears across a domain boundary.
+Screening isolated parts misses the highlighted window. Whole-construct
+validation must include junctions and terminal handles.}{fig:seam}
+The resulting design discipline has two levels: prove representation semantics,
+then examine the actual molecular constructs, including unintended interactions.
+Chapter 12 asks how finite candidate populations and imperfect filters affect
+the ability to recover a valid encoded witness.
+
+\section{Exercises with worked reasoning}
+\begin{enumerate}
+\item \textbf{Orientation.} Find $\operatorname{rc}(\texttt{AACG})$.
+ \emph{Solution:} complement TTGC, then reverse CGTT.
+\item \textbf{Correction.} Distance for two substitutions?
+ \emph{Solution:} at least five, with fixed length and known frame.
+\item \textbf{Packing.} Evaluate $V_4(8,2)$.
+ \emph{Solution:} $1+24+28\cdot9=277$, so $M\le236$; not a construction.
+\item \textbf{Offset.} Explain the six-mismatch failure.
+ \emph{Solution:} an offset reveals ACGTA in the reverse-complement comparison.
+ Binding energetics remain uncomputed.
+\item \textbf{Recurrence.} Why reset on mismatch?
+ \emph{Solution:} the common suffix must be contiguous.
+\item \textbf{Loop.} For length nine, $k=3,\ell=3$, which arm starts fit?
+ \emph{Solution:} only $(0,6)$.
+\item \textbf{Collision.} Give distinct sources that collide.
+ \emph{Solution:} AACGTCAG and CCTATCAG share their right half.
+\item \textbf{Direction.} Compute $E(B,C)$ and $E(C,B)$.
+ \emph{Solution:} GTCAGATC and TGACCCTA.
+\item \textbf{Walk length.} Encode a five-visit walk with repetition.
+ \emph{Solution:} ABCBD is valid and has 40 bases; it is not Hamiltonian.
+\item \textbf{Testing.} How can round-trip testing pass a wrong codec?
+ \emph{Solution:} shared convention bugs; add literal word and forbidden-edge oracles.
+\item \textbf{Composition.} Locate the seam-spanning word.
+ \emph{Solution:} AACGTCAG$[2{:}6]=$CGTC.
+\item \textbf{Evidence.} Design the next validation stage.
+ \emph{Rubric:} specify complete constructs, intended/competing complexes,
+ concentrations and conditions, thermodynamic and kinetic limits, controls,
+ and an identity-discriminating readout.
+\end{enumerate}
+\section*{Selective glossary}
+\addcontentsline{toc}{section}{Selective glossary}
+\textbf{Codeword:} fixed string assigned to an object.
+\textbf{Orthogonality:} exclusion of specified interactions.
+\textbf{Splint:} complementary strand aligning other strands.
+\textbf{Reading frame:} origin and width of sequence partitioning.
+\textbf{Injective encoding:} distinct objects have distinct encoded strings.

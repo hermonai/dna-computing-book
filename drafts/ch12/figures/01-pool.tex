@@ -1,0 +1,11 @@
+\begin{tikzpicture}[x=.8cm,y=.8cm]
+\foreach \n/\x/\y in {A/0/1.5,B/2/2.7,C/2/.3,D/4/1.5}
+ \node[circle,draw=Blue,fill=Pale,minimum size=7mm] (\n) at (\x,\y) {\n};
+\foreach \a/\b in {A/B,A/C,B/D,C/D}\draw[flow] (\a)--(\b);
+\draw[flow,bend left=18] (B) to (C); \draw[flow,bend left=18] (C) to (B);
+\foreach \s/\y in {ABCD/3,ACBD/2,ABD/1,ABCBD/0}
+ \node[note,anchor=west,font=\ttfamily] at (6,\y) {\s};
+\foreach \x/\y in {9/3,9.5/3,10/3,9/2,9/1,9.5/1,9/0}
+ \draw[fill=Blue!20,draw=Blue] (\x,\y) circle (.12);
+\node[smallnote] at (8,-1) {Illustrative multiplicities; generator starts with one each.};
+\end{tikzpicture}

@@ -1,6 +1,6 @@
 # Editorial architecture and release roadmap
 
-Updated 21 September 2026. This is the current execution map, not a claim
+Updated 24 September 2026. This is the current execution map, not a claim
 that every planned chapter is written or independently reviewed.
 
 ## One manuscript, distinct review stages
@@ -11,10 +11,11 @@ for current authoring progress. Do not regenerate archived editions merely
 to change their progress labels.
 
 Chapters 1-2 retain their internal acceptance records. Chapter 3 has standalone
-and combined LaTeX review candidates. Chapters 4-10 have isolated authored-LaTeX
+and combined LaTeX review candidates. Chapters 4-12 have isolated authored-LaTeX
 review candidates with code, vector figures, and worked solutions.
-Chapter 11 is the next unwritten chapter. The next milestone is the planned
-Chapters 1-10 integration candidate, before widening the manuscript.
+Chapter 13 is the next unwritten chapter. Chapters 11-12 were authored at the
+reader's explicit request while the Chapters 1-10 integration milestone remains
+pending. These standalone candidates do not substitute for that integration.
 Independent specialist review and cumulative integration are still open.
 
 ## Give each return to a topic a new job
@@ -73,11 +74,26 @@ molecule identity. Build an observation model with background, overlapping
 species, calibration, and uncertainty. Provide controls and a counterexample
 in which two distinct molecular mixtures produce the same observed signal.
 
-## Next milestone: integrate Chapters 1-10
+## Chapter 11 scope (standalone candidate): sequence design and graph encoding
+
+Derive reverse complements, offset complementarity, hairpin constraints and
+code-distance bounds before constructing an injective graph encoding. Test
+all short walks, deliberately expose a seam-created recognition site, and keep
+combinatorial screening distinct from thermodynamic or laboratory validation.
+
+## Chapter 12 scope (standalone candidate): generate-filter-verify algorithms
+
+Build exact multiset filters and an independent witness verifier. Prove the
+ideal algorithm's soundness and conditional completeness, then quantify loss,
+false retention and finite-copy detection. Contrast commuting ideal predicates
+with a capacity-limited order counterexample. Mechanism plates separate
+molecular recognition from physical retention and evidence of identity.
+
+## Pending milestone: integrate Chapters 1-10
 
 Audit strand/count/concentration/signal notation, units, measurement assumptions,
-source coverage, and prerequisites before Chapter 11 sequence design and graph
-encoding. Preserve the distinction between a physical separation and a formal
+source coverage, and prerequisites, including the interfaces now used by
+Chapters 11-12. Preserve the distinction between a physical separation and a formal
 predicate.
 Build a new cumulative entry point with unified bibliography and index; retain
 standalone candidates and accepted editions unchanged. Do not promote acceptance

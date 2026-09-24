@@ -1,0 +1,71 @@
+{
+  "code": {
+    "A": "AACGTCAG",
+    "B": "CCTAGTCA",
+    "C": "GATCTGAC",
+    "D": "TGCACAGT"
+  },
+  "edges": [
+    [
+      "AB",
+      "TCAGCCTA"
+    ],
+    [
+      "AC",
+      "TCAGGATC"
+    ],
+    [
+      "BC",
+      "GTCAGATC"
+    ],
+    [
+      "BD",
+      "GTCATGCA"
+    ],
+    [
+      "CB",
+      "TGACCCTA"
+    ],
+    [
+      "CD",
+      "TGACTGCA"
+    ]
+  ],
+  "sequence": "AACGTCAGCCTAGTCAGATCTGACTGCACAGT",
+  "decoded": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "offset": {
+    "a": "ACGTAC",
+    "b": "TACGTA",
+    "hamming": 6,
+    "match": [
+      5,
+      0,
+      1
+    ]
+  },
+  "hairpin": {
+    "sequence": "GCGAAACGC",
+    "warnings": [
+      [
+        0,
+        6
+      ]
+    ]
+  },
+  "selected": [
+    "AACGTCAG",
+    "AGCTTCGA",
+    "CCTAGTCA"
+  ],
+  "seam": {
+    "left": "AACG",
+    "right": "TCAG",
+    "target": "CGTC",
+    "position": 2
+  }
+}

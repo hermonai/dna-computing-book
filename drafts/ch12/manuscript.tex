@@ -1,0 +1,281 @@
+\chapter{Generate--filter--verify algorithms}
+Imagine that the last tube is empty. Have we proved that the graph has no
+Hamiltonian path, or did we lose its only surviving molecule? Now imagine
+a bright band in that tube. Have we found a valid path, or retained a large
+off-target population? Neither observation answers the logical question until
+generation, selection and readout have explicit contracts.
+
+Chapter 11 specified strings that encode graph objects. We now separate
+three levels: an exact multiset algorithm, a finite physical population,
+and a decision based on observations. The reference program enumerates
+small symbolic examples and evaluates assigned probability models. It does
+not simulate a complete reaction network or reproduce a laboratory experiment.
+
+\section{A population is not just a set}
+\index{multiset}\index{candidate generation}
+Let $\mathcal U$ be a finite universe of candidate walks. A multiset is a
+function $n:\mathcal U\to\mathbb N_0$; $n(w)$ is the number of copies of
+walk $w$. The support $\{w:n(w)>0\}$ contains distinct species, whereas
+$\sum_w n(w)$ counts copies. Seven copies of one correct answer are one
+distinct witness, not seven independent solutions to the graph problem.
+
+Use vertices $V=\{A,B,C,D\}$ and directed edges
+$A\to B,A\to C,B\to C,C\to B,B\to D,C\to D$.
+Start at A and finish at D. A Hamiltonian witness visits each vertex once.
+We deliberately generate walks with one through five vertex visits,
+including cycles and early termination, to make the filtering task visible.
+\Plate{01-pool}{The graph and representative candidates. ABCD and ACBD are
+valid four-vertex witnesses; ABD omits C, while ABCBD repeats B.
+The circles beside a string indicate copies, not additional vertices.
+The full generated population has 34 distinct walks.}{fig:pool}
+\Listing{walks}
+The generator extends a frontier only along edges in $E$. Induction on
+frontier length proves every emitted tuple is a directed walk. Conversely,
+every walk of the next length has a prefix in the previous frontier, so
+extension enumerates it. Since the maximum length is five, all possible
+four-visit witnesses are covered. This is a finite digital completeness
+proof, not proof that molecular assembly samples every walk.
+
+On a general graph with maximum out-degree $\Delta$, there can be up to
+$|V|\Delta^{\ell-1}$ walks with $\ell$ visits. Enumerating or physically
+representing many candidates does not remove that population cost.
+Our Counter holds one copy of each generated tuple; later tests deliberately
+increase selected multiplicities.
+
+\section{State the ideal filter algebra}
+\index{predicate}\index{soundness}\index{completeness}
+For a Boolean predicate $P$, an exact filter is
+\begin{equation}
+ (F_Pn)(w)=\mathbf1[P(w)]\,n(w).
+\end{equation}
+It neither creates candidates nor changes the multiplicity of a retained one.
+Consequently $F_P^2=F_P$ and $F_PF_Q=F_QF_P=F_{P\land Q}$.
+These identities follow species by species by multiplying indicator values.
+\Listing{retain}
+
+Filter first by endpoints, then by exactly four vertex visits, then by
+the presence of every vertex. With exactly four positions and four required
+identities, each identity occurs exactly once: if one occurred twice,
+at most three distinct identities could fit. Edge validity is inherited
+from the generator, not established by these filters.
+\Listing{filter_trace}
+\begin{center}\input{\Generated/trace-table.tex}\end{center}
+The survivors are ABCD and ACBD. Here the length filter already removes all
+remaining non-witnesses, so the coverage stages do not reduce the count.
+That redundancy is a property of this small graph, not a license to omit
+coverage on other graphs. Negative tests use malformed candidate pools so
+that a filter cannot pass merely because the generator made its job trivial.
+
+Adleman's original molecular computation combined path generation with
+endpoint, length and vertex-inclusion selection~\cite{adleman}. We use that
+logical pattern, not its quantities or performance, and add a separately
+implemented digital certificate check.
+
+\section{Verify a witness independently}
+\index{certificate verification}
+An independent verifier checks all four requirements directly:
+\begin{equation}
+ |w|=|V|,\quad w_0=A,\quad w_{|w|-1}=D,\quad
+ \operatorname{Counter}(w)=\operatorname{Counter}(V),\quad
+ (w_i,w_{i+1})\in E.
+\end{equation}
+The Counter equality establishes identities and multiplicities together.
+The edge checks are ordered: $B\to C$ and $C\to B$ are separate facts.
+\Listing{verify}
+\Plate{03-logic}{Literal counterexamples separate the requirements.
+The adjacency column is essential when the candidate source is untrusted.
+An inclusion assay alone cannot distinguish a correct ordering from an
+incorrect permutation containing the same vertex words.}{fig:logic}
+
+For \emph{soundness}, assume the generator emits only valid walks and every
+filter is exact. A survivor has the prescribed endpoints, length and coverage,
+therefore is a witness. For \emph{completeness}, additionally assume every
+valid witness has positive initial multiplicity. Since a witness satisfies
+every predicate, its multiplicity is unchanged and it survives.
+
+The assumptions do different jobs. Generating only walks through three visits
+is sound but incomplete for our four-vertex problem. Injecting ABDC and changing
+the requested endpoint to C fools endpoint/length/coverage filtering, but the
+independent verifier rejects the forbidden $D\to C$ edge. A wrong generator
+cannot be repaired by proving only the later filters.
+
+Verification is inexpensive for one candidate: traverse its vertices and
+edges, using suitable membership structures. Finding that candidate can
+still be expensive. A failed verification is evidence about the candidate
+examined, not proof that no valid candidate exists elsewhere.
+
+\section{Physical selection implements a noisy observation}
+\index{affinity capture}\index{false retention}
+A complementary tethered probe can associate with a sequence-containing
+strand. Association, retention during separation, and release are distinct
+events. Competing strands, incomplete capture and loss during handling mean
+that the physical operation is not the exact Boolean predicate.
+\Plate{02-capture}{A domain-level capture mechanism. A tethered probe pairs
+antiparallel with a complementary target domain; surrounding sequence stays
+unpaired. The second panel distinguishes desired retained material, off-target
+retention and true-target loss. Arrows represent possible outcomes, not
+measured rates or an experimental protocol.}{fig:capture}
+
+For species $w$, let $a(w)\in[0,1]$ be its probability of being retained.
+If this probability is fixed and copies behave independently, then
+\begin{equation}
+ N'(w)\mid N(w)=n(w)\sim\operatorname{Binomial}(n(w),a(w)),\qquad
+ \mathbb E[N'(w)]=a(w)n(w).
+\end{equation}
+The expectation relation itself needs only identical marginal retention
+probabilities; the binomial distribution needs independence as well.
+We explicitly keep those assumptions separate.
+\Listing{expected_pass}
+
+Take ten true copies and ten thousand false copies. An assigned filter keeps
+each true copy with probability $0.8$ and each false copy with probability
+$0.01$. Applying it twice with unchanged independent retention gives:
+\begin{center}\input{\Generated/noise-table.tex}\end{center}
+After one stage, eight expected true copies coexist with one hundred false
+copies. A one-percent false-retention rate is not a one-percent false fraction.
+The displayed fraction is the ratio of expected counts, not generally the
+expectation of the random realized fraction.
+
+For a randomly sampled input molecule with prior true fraction $\pi$,
+the probability it is true conditional on retention is
+\begin{equation}
+ \Pr(T\mid\mathrm{kept})=
+ \frac{\pi a_T}{\pi a_T+(1-\pi)a_F}.
+\end{equation}
+This follows by dividing the joint probability $\pi a_T$ by total retention
+probability. It exposes the base-rate dependence of a selected molecule.
+Large background can dominate a selective assay.
+
+\section{Expectation is not a survival guarantee}
+\index{extinction probability}\index{detection}
+Let a true molecule survive $k$ stages with conditional probabilities
+$s_1,\ldots,s_k$. Its survival probability is
+$s=\prod_i s_i$ when these are the appropriate sequential conditional
+probabilities; no extra independence assumption between its stages is needed
+for that chain rule. If stages have fixed common efficiency $0.8$ and $k=6$,
+then $s=0.262144$.
+
+Let $d$ be detection probability conditional on final survival. For $n$
+initial true copies that succeed independently, each has observed-success
+probability $q=sd$, and
+\begin{equation}
+ P_{\mathrm{detect}}=1-(1-q)^n.
+\end{equation}
+The complement event is that every copy fails. At $d=0.9$, the generated
+values are:
+\begin{center}\input{\Generated/survival-table.tex}\end{center}
+\Listing{detect_probability}
+The stable implementation evaluates
+$-\operatorname{expm1}(n\operatorname{log1p}(-q))$ and handles $q=0,1$
+explicitly. Directly subtracting $(1-q)^n$ from one loses relative precision
+for tiny $q$. The test at $q=10^{-20},n=100$ checks this limit.
+\Plate{04-loss}{Independent-copy detection probability for six assigned
+retention stages at 0.8 followed by detection at 0.9. Twenty starting true
+copies give probability about 0.9954 under this model. This is not an assay
+sensitivity measurement.}{fig:loss}
+
+To achieve failure probability at most $\epsilon$ for $0<q<1$,
+take logs of $(1-q)^n\le\epsilon$:
+\begin{equation}
+ n\ge \frac{\log\epsilon}{\log(1-q)}.
+\end{equation}
+The inequality reverses on division because the denominator is negative.
+Round up to an integer. Shared failures such as a failed separation step
+correlate copies and can invalidate the independent-copy benefit.
+
+Generation itself may be probabilistic. If each of $M$ independent assembly
+trials creates a desired witness with probability $g$, and its conditional
+survival/detection probability is $q$, then
+$1-(1-gq)^M$ is the chance of observing at least one such witness.
+When $g=0$, amplification of the resulting pool cannot restore the absent
+sequence. When there are several witness species, their generation and
+observation events require an explicitly stated joint model.
+
+\section{When filter order changes the computation}
+\index{capacity}\index{filter ordering}
+Fixed diagonal retention maps commute in expectation, just like exact masks:
+$a(w)b(w)n(w)=b(w)a(w)n(w)$. Different \emph{constant} efficiencies alone
+do not prove order dependence. It appears when an operation changes a later
+operation's inputs or admissible behavior, for example through finite capacity.
+
+Consider ordered copy IDs [bad, good]. Filter F accepts either species but
+has capacity one, using first-arrival admission. Filter G accepts only good
+and has capacity two. F then G returns nothing; G then F returns good.
+\Listing{capacity_filter}
+\Plate{05-order}{Capacity makes filter order observable. F's only slot is
+occupied by bad when it runs first. Removing bad beforehand frees the slot
+for good. The deterministic admission rule is an explicit counterexample,
+not a kinetic model of bead competition.}{fig:order}
+
+Even ideal commuting filters can have different execution costs. Let
+$c_F,c_G$ be cost per input molecule and $q_F,q_G$ be the fraction of the
+original pool passing each filter. The expected per-original-copy costs are
+$c_F+q_Fc_G$ versus $c_G+q_Gc_F$. F first is cheaper when
+\begin{equation}
+ c_F(1-q_G)\le c_G(1-q_F).
+\end{equation}
+For $c_F=1,q_F=0.1,c_G=5,q_G=0.5$, these costs are 1.5 and 5.5.
+This arithmetic omits fixed setup costs, changing chemistry and capacity;
+those can reverse the preferred ordering. Logical equivalence, expected
+recovery and practical cost require separate arguments.
+
+\section{Turn the final tube into a defensible decision}
+A useful report distinguishes a verified positive, a negative observation
+with quantified detection limits, and an inconclusive result. A verified
+decoded witness establishes existence if decoding and the independent
+certificate check are trustworthy. An empty tube establishes nonexistence
+only under a completeness argument that covers generation, survival and
+observation. Otherwise it is a negative observation under stated conditions.
+
+Controls should test the links separately: a known true witness for recovery,
+an off-target population for false retention, a blank for contamination,
+and an orthogonal identity readout for the surviving material. Repeated
+measurements of the same unresolved length band do not independently verify
+vertex ordering. This connects the Chapter 10 observation model to the
+Chapter 11 encoding contract.
+
+Reproduce the tables with \texttt{python3 drafts/ch12/build.py --assets-only}
+and run \texttt{tests/test\_ch12\_reference.py}. The tests include a
+permutation-based witness oracle, wrong-generator and truncated-generator
+failures, copy preservation, capacity order, and tiny-probability arithmetic.
+Later formal models must preserve these distinctions rather than hide finite
+populations behind an ideal set operation.
+
+\section{Exercises with worked reasoning}
+\begin{enumerate}
+\item \textbf{Copies.} Seven ABCD and two ABD copies enter exact filtering.
+ \emph{Solution:} seven copies of one witness species remain.
+\item \textbf{Coverage proof.} Why do four required identities in four positions
+ imply uniqueness? \emph{Solution:} a repeat leaves too few positions for the rest.
+\item \textbf{Generator failure.} What does a three-visit bound miss?
+ \emph{Solution:} every four-visit witness, including ABCD.
+\item \textbf{Edge check.} ABDC contains every vertex. Is it a valid A-to-C
+ witness? \emph{Solution:} no; $D\to C$ is absent.
+\item \textbf{Idempotence.} Prove $F_P^2=F_P$.
+ \emph{Solution:} $\mathbf1[P]^2=\mathbf1[P]$ for each species.
+\item \textbf{False fraction.} Compute the first noisy stage's ratio.
+ \emph{Solution:} $8/(8+100)=0.074074$ true, despite one-percent false retention.
+\item \textbf{Two stages.} Interpret the count 6.4.
+ \emph{Solution:} an expectation over repeated trials, not a fractional molecule.
+\item \textbf{Reliability.} Why are two starting copies not certain detection?
+ \emph{Solution:} both can fail; $1-(1-0.2359296)^2\approx0.416196$.
+\item \textbf{Required copies.} Obtain 99\% modeled detection.
+ \emph{Solution:} round up $\log(.01)/\log(1-.2359296)$ to 18.
+\item \textbf{Correlation.} A common failure destroys the tube with probability
+ 0.1. Can arbitrarily many copies guarantee 99\% detection?
+ \emph{Solution:} no; success is at most 0.9 under that failure model.
+\item \textbf{Order.} Trace F then G and G then F.
+ \emph{Solution:} [bad] then []; [good] then [good].
+\item \textbf{Evidence design.} Defend a negative conclusion.
+ \emph{Rubric:} specify candidate coverage, calibrated losses and readout,
+ shared failures, positive/negative controls, uncertainty, and exactly which
+ nonexistence claim the evidence can or cannot support.
+\end{enumerate}
+\section*{Selective glossary}
+\addcontentsline{toc}{section}{Selective glossary}
+\textbf{Support:} species with positive multiplicity.
+\textbf{Soundness:} every accepted candidate is valid.
+\textbf{Completeness:} every valid candidate required by the contract is retained.
+\textbf{Witness:} a candidate satisfying the full problem specification.
+\textbf{Negative observation:} absence of detected evidence, not automatically
+evidence of logical impossibility.
