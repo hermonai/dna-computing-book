@@ -11,9 +11,9 @@ for current authoring progress. Do not regenerate archived editions merely
 to change their progress labels.
 
 Chapters 1-2 retain their internal acceptance records. Chapter 3 has standalone
-and combined LaTeX review candidates. Chapters 4-16 have isolated authored-LaTeX
+and combined LaTeX review candidates. Chapters 4-18 have isolated authored-LaTeX
 review candidates with code, vector figures, and worked solutions.
-Chapter 17 is the next unwritten chapter. Chapters 11-16 were authored at the
+Chapter 19 is the next unwritten chapter. Chapters 11-18 were authored at the
 reader's explicit request while the Chapters 1-10 integration milestone remains
 pending. These standalone candidates do not substitute for that integration.
 Independent specialist review and cumulative integration are still open.
@@ -120,11 +120,24 @@ compare exhaustive arithmetic oracles and propagate an explicit error/loss
 channel. Relate the formal interface to current scaffolded molecular computing
 without substituting a probability model for measured chemistry.
 
+## Chapter 17 scope (standalone candidate): Watson–Crick and biochemical automata
+
+Prove an equal-block recognizer using independently moving heads; expose cursor
+storage, existential lower-strand costs and full-input acceptance. Separate the
+formal model from restriction/ligation-based biochemical finite automata.
+
+## Chapter 18 scope (standalone candidate): universality and complexity models
+
+Derive a tape-to-two-stack simulation invariant and test independent execution
+representations. Distinguish a fixed increment program, a universal interpreter,
+uniform device construction and finite molecular experiments. Account for
+precision, preparation and event-level reliability assumptions.
+
 ## Pending milestone: integrate Chapters 1-10
 
 Audit strand/count/concentration/signal notation, units, measurement assumptions,
 source coverage, and prerequisites, including the interfaces now used by
-Chapters 11-16. Preserve the distinction between a physical separation and a formal
+Chapters 11-18. Preserve the distinction between a physical separation and a formal
 predicate.
 Build a new cumulative entry point with unified bibliography and index; retain
 standalone candidates and accepted editions unchanged. Do not promote acceptance

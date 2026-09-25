@@ -1,0 +1,4 @@
+Question: How binary increment actually uses resources
+Objects and arrow semantics: Computed transition counts and visited tape span.
+Change/invariant and caption claim: Carry propagation changes step count while input width bounds the working region.
+Scientific risk: This machine is an incrementer, not a universal machine.

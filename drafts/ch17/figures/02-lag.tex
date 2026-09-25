@@ -1,0 +1,13 @@
+\begin{tikzpicture}[x=1.25cm,y=.8cm]
+\draw[step=1,gray!25] (0,0) grid (4,4);
+\draw[flow] (0,0)--(4.7,0) node[right,smallnote]{upper $i$};
+\draw[flow] (0,0)--(0,4.8) node[above,smallnote]{lower $j$};
+\foreach \i in {0,1,2,3,4}{\node[smallnote,below] at (\i,0){\i};\node[smallnote,left] at (0,\i){\i};}
+\draw[flow,Green,line width=1.5pt] (0,0)--(0,1)--(0,2);
+\draw[flow,line width=1.5pt] (0,2)--(1,3)--(2,4);
+\draw[flow,Red,line width=1.5pt] (2,4)--(3,4)--(4,4);
+\foreach \x/\y in {0/0,0/1,0/2,1/3,2/4,3/4,4/4}{\fill[Blue] (\x,\y) circle (2pt);}
+\node[note,anchor=west,text width=6cm] at (5,3.8){\textcolor{Green}{1. SEEK}\\Lower reads aa; upper waits.};
+\node[note,anchor=west,text width=6cm] at (5,2.2){\textcolor{Blue}{2. PAIR}\\Upper reads aa as lower reads bb.};
+\node[note,anchor=west,text width=6cm] at (5,.6){\textcolor{Red}{3. DRAIN}\\Upper reads bb; both finish.};
+\end{tikzpicture}

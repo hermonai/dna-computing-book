@@ -1,0 +1,256 @@
+\chapter{Universality and complexity models}
+A molecular machine can implement many programs without being a universal
+computer. Conversely, a mathematically universal model can be physically
+impractical. The first claim concerns which finite programs are available;
+the second concerns an unbounded family of computations. Neither specifies
+the preparation cost, failure probability or time of an experiment.
+
+Chapter 17 exposed the storage hidden in reader positions. We now make
+storage writable and reconstruct one tape step using two stacks. This gives
+a concrete simulation invariant rather than a slogan about DNA's information
+density. Our executable machine is a teaching model, not a molecular design.
+
+\section{Start with an exact configuration}
+A tape configuration is $(q,h,t)$: a control state $q$, an integer head
+position $h$, and a map $t:\mathbb Z\to\{0,1,\_\}$ with finitely many
+nonblank entries. An absent dictionary entry denotes blank. The tape is
+bi-infinite; negative addresses are legal. A transition
+\begin{equation}
+ \delta(q,t(h))=(q',b,d),\qquad d\in\{-1,0,1\},
+\end{equation}
+writes $b$ at the old head, then moves by $d$ and enters $q'$. These
+operations have an order. Moving before writing implements a different
+machine unless the address used for the write is preserved explicitly.
+
+\Plate{01-tape}{One carry transition reads 1, writes 0 at the same address,
+then advances. The next read occurs at the new head. A tape diagram must
+distinguish the control state, stored symbols and head position; an arrow
+alone cannot specify the transition.}{fig:tape}
+
+We distinguish three outcomes. \Term{Halt} means the designated halt state
+was entered. \Term{Stuck} means a required transition was absent.
+\Term{Exhausted} means the externally supplied execution budget ran out.
+Exhaustion says nothing about whether more steps would eventually halt.
+The interface starts in state \texttt{carry}, even for custom programs.
+The companion validates every transition before running it.
+
+\section{Build an incrementer, then test its contract}
+Write binary input least-significant bit first. The word 110 denotes three,
+not six. In state carry, a 1 becomes 0 and the head advances right; a 0
+becomes 1 and halts; a blank becomes 1 and halts. The blank rule handles
+overflow and also gives the empty word, interpreted as zero, an output of one.
+
+\Listing{run}
+
+For 111, four transitions produce 0001, representing eight:
+\begin{center}\input{\Generated/trace.tex}\end{center}
+Rows log the address \emph{before} the move. Tape span includes initial input
+cells and all visited head positions, even blank ones. It is not the count of
+nonblank entries, the dictionary's allocated bytes or the total history size.
+
+Let $r$ be the number of leading 1s in this least-significant-first string.
+The machine changes those $r$ bits to zero, then writes a 1 at position $r$.
+The removed value is $\sum_{i=0}^{r-1}2^i=2^r-1$; the added value is
+$2^r$. The net change is therefore exactly one. Higher positions remain
+unchanged. This proves correctness for every finite input, including the
+all-ones overflow case.
+
+\Plate{03-growth}{Generated worst-case counts for all-ones inputs. Steps
+and visited span both equal $n+1$ and therefore overlap. Equal plotted values
+do not make the quantities interchangeable: one counts transitions, the
+other counts tape addresses.}{fig:growth}
+
+The exact step count is $r+1$, at most $n+1$. A word beginning with 0
+halts after one transition even if the input is long. Reading the entire
+input into a Python dictionary still costs work proportional to $n$.
+An end-to-end runtime cannot discard that preparation just because the
+abstract transition count is one.
+
+\section{Replace the tape with two stacks}
+Represent the cells strictly left of the head in stack $L$, with its top
+nearest the head. Stack $R$ has the current cell at its top and the cells
+to its right below it. Empty tails denote indefinitely many blanks. Python
+list ends are stack tops. Initially $L$ is empty and $R$ is the reversed
+input word.
+
+After replacing the current top of $R$ with the written symbol, a right move
+pops that symbol onto $L$. A left move pops the nearest left symbol onto
+$R$, or pushes blank if $L$ is empty. A stationary move changes neither
+stack boundary. The code below is the local operation; the companion's
+\texttt{two\_stack} driver handles validation, budget and output decoding.
+\Listing{stack_step}
+
+\Plate{02-simulation}{A simulation invariant connects the tape and stack
+representations. The right stack's top is the current cell. Encoding, taking
+the stack step and decoding must agree with the tape transition, not merely
+produce the same final answer on a few increment examples.}{fig:simulation}
+
+\subsection{The invariant makes the simulation auditable}
+At head $h$, the $i$th entry down from the top of $L$ represents
+$t(h-1-i)$; the $i$th entry down from the top of $R$ represents $t(h+i)$.
+For a right move, the written current symbol becomes the new nearest-left
+symbol and the former right neighbor becomes current. For a left move,
+the old nearest-left symbol becomes current and the written cell becomes
+its immediate right neighbor. These are exactly the tape semantics.
+They preserve the invariant by induction on the number of transitions.
+
+Let $E$ encode a configuration, $D$ decode it and $F$ take a tape step.
+With $G$ the corresponding stack step, the required equation is
+\begin{equation}
+ D(G(E(c)))=F(c).
+\end{equation}
+More generally a target may use $k(c)$ microsteps for one source step,
+giving $D(G^{k(c)}(E(c)))=F(c)$. A simulation proof must specify the
+intermediate states on which decoding is allowed and bound $k(c)$ when
+making a complexity claim. Correct final answers alone do not establish this.
+
+The tests compare the dictionary-tape and two-stack implementations on 500
+seeded generated programs, including missing rules, left moves, blank writes
+and bounded nonhalting loops. They compare status, trace, tape and span,
+not only the incremented integer. This is finite differential evidence for
+two independently represented machines; the invariant explains why the
+representation works beyond those cases.
+
+\section{What a universality claim must quantify}
+\Term{Universality} requires a fixed interpreter that can simulate every
+machine in a specified source class given an effective program encoding and
+input. The incrementer's three rules are one program, not that interpreter.
+An interpreter for encoded transition tables, with unbounded writable tape
+or equivalent stacks and enough symbol encoding machinery, supplies the
+general construction. A finite Python run on finite hardware realizes only
+a bounded portion of this ideal model.
+
+The two-stack construction demonstrates storage equivalence under its stated
+operations. To carry that result into chemistry one would still need a
+representation of arbitrarily extensible stacks, reliable top access,
+transition control and a decoder. Giving a tube more distinct DNA species
+does not by itself implement those operations. A molecular proposal should
+state which part is a theorem about the model and which part is an
+experiment on a bounded instance.
+
+There is also a fundamental limit to testing. Suppose an algorithm decided
+whether any encoded program halts on any input. Construct a program that
+uses that decision on its own encoding, looping if the decision says halt
+and halting if it says loop. Either answer contradicts the constructed
+program's behavior. The contradiction concerns a general decider; it does
+not prevent proving termination for this incrementer using a bounded carry
+argument. A run budget is an engineering safeguard, not a halting oracle.
+
+\section{Uniformity prevents answers from hiding in preparation}
+For problem size $n$, let $D_n$ describe a device and let a finite constructor
+produce $D_n$ from $n$. A meaningful cost claim accounts for the constructor,
+device size, instance encoding, execution and readout. If the constructor
+already solves the instance and places the answer into a reporter, the
+subsequent one-step readout is not a one-step solution to the original problem.
+
+\Plate{04-uniform}{A resource boundary includes device construction and
+instance preparation, not just the reaction window. A red dashed path marks
+answer-dependent preparation: it can conceal the very computation being
+claimed. Uniformity must specify how the device family is generated.}{fig:uniform}
+
+A useful ledger is
+\begin{equation}
+ C=(T_{\rm construct},S_{\rm device},T_{\rm encode},
+ T_{\rm execute},V,N_{\rm species},T_{\rm readout}).
+\end{equation}
+These entries have different units and cannot be added without a model.
+If preparation and execution overlap, wall-clock cost is a schedule, not
+simply their sum. If a device is reused, amortization must state how many
+instances share its construction cost. Even a reusable device cannot
+amortize away per-instance encoding or detection.
+
+Real-number models need an additional precision ledger. A single concentration
+variable cannot serve as a free exact infinite-bit tape. The separation
+between distinguishable levels, measurement noise and the required confidence
+constrain usable information. A constant number of named chemical species
+does not imply constant physical storage at arbitrary precision.
+
+\section{Count opportunities for error}
+Assume $T$ required events, each with error probability $\epsilon$, mutually
+independent. Then the probability of no event error is
+\begin{equation}
+ P_0=(1-\epsilon)^T.
+\end{equation}
+Without independence, if every event's marginal error probability is at most
+$\epsilon$, the union bound still gives $P_0\geq\max(0,1-T\epsilon)$.
+Neither expression is automatically an output-correctness probability:
+some event errors are harmless or repaired; omitted failure modes may spoil
+the answer even when all counted events succeed.
+\Listing{reliability}
+
+\Plate{05-reliability}{Assigned error probability $\epsilon=0.001$ illustrates
+the difference between an independent no-error model and a dependence-agnostic
+union lower bound. These are calculated curves, not measured molecular
+fidelities. A zero lower bound is uninformative, not a prediction of certain
+failure.}{fig:reliability}
+
+For $T=1000$, independence gives approximately 0.3677 whereas the union
+lower bound is zero. For a target no-error probability at least $1-\delta$,
+independence requires $\epsilon\leq1-(1-\delta)^{1/T}$.
+For small $\delta$, this is roughly $\delta/T$. The union argument gives
+the sufficient condition $\epsilon\leq\delta/T$ without independence.
+Increasing problem size can therefore tighten fidelity requirements even
+when the abstract computational model remains unchanged.
+
+\section{A contemporary result and its boundary}
+Stérin and colleagues' 2026 molecular-computer paper describes compilation of
+finite-state machines into strand-displacement systems and a bounded
+experimental demonstration \cite{sterin}. Its main text distinguishes kinetic
+model conditions from experimentally enforced conditions. The relevant lesson
+here is to separate compilation, kinetics and demonstrated instances. We do
+not infer unbounded Turing universality, asymptotic advantage or arbitrary-length
+experimental reliability from that result.
+
+For a new architecture, ask for an explicit transition encoding, a simulation
+invariant, construction and execution costs, a noise model, and a test that
+could falsify the claimed mapping. A persuasive result need not solve every
+layer at once; it must say which layer it establishes.
+
+\section{Exercises with worked answers}
+\begin{enumerate}
+\item Increment 101. \textbf{Answer:} It represents five. The first 1
+becomes 0, the next 0 becomes 1, producing 011, which represents six.
+\item Increment the empty word. \textbf{Answer:} The blank rule writes 1
+at address zero and halts in one step. The span is one cell.
+\item Give a one-step long input. \textbf{Answer:} Any word beginning with
+0; only its first bit changes. Loading the input is still a separate cost.
+\item Run 111 with fuel three. \textbf{Answer:} The result is exhausted
+after three writes; the fourth transition needed to write the overflow bit
+has not happened. Exhausted must not be reported as halt.
+\item Why retain visited blank addresses in span? \textbf{Answer:} Moving
+through a blank still uses an addressable tape region. Sparse content and
+visited extent are different resources.
+\item Derive a left stack move. \textbf{Answer:} Write the current right
+top, then push the left top onto the right stack. If the left stack is
+empty, push blank. The new top is the new current cell.
+\item Is constant stack-operation overhead constant physical time?
+\textbf{Answer:} Only under the declared stack cost model. A chemical
+implementation must justify access, transport and synchronization costs.
+\item Why is the incrementer not universal? \textbf{Answer:} Its fixed
+rules only perform increment. No arbitrary program encoding is interpreted.
+\item Give a misleading constant-time claim. \textbf{Answer:} Solve an
+instance during synthesis, encode the result into one reporter, and count
+only reading that reporter. The preparation performs the omitted work.
+\item Bound no-error probability for $T=100$, $\epsilon=0.001$.
+\textbf{Answer:} The union lower bound is 0.9; independence gives about
+0.9048. The latter needs an additional assumption.
+\item Does a zero union bound predict failure? \textbf{Answer:} No. It
+says this inequality no longer gives a positive guarantee.
+\item Specify a universality evidence package. \textbf{Answer:} Define
+the source class, program encoding, target states, step simulation, decoder
+and unbounded resource assumptions; add separate construction costs and
+finite experimental validation. Neither package substitutes for the other.
+\end{enumerate}
+
+\section{Vocabulary and the next question}
+\Term{Simulation invariant}: a relation between representations preserved
+by each simulated transition. \Term{Uniform construction}: an effective
+procedure generating the device family under a stated cost bound.
+\Term{Cost model}: the operations and resources assigned prices in an analysis.
+\Term{Union bound}: an upper bound on any-error probability from a sum of
+marginal error probabilities, without an independence assumption.
+
+The next chapter begins the engineering question with toehold-mediated strand
+displacement: how do binding, branch migration and release implement a
+transition, and where can leakage break it? Universality alone cannot answer
+that question.

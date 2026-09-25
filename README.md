@@ -26,7 +26,9 @@ DOGMA = non-Transformer DNA-native model + DOGMA Engine; Hermon DNA = Transforme
 
 [Chapter 15: Splicing and insertion-deletion systems](drafts/ch15/README.md) develops contextual cuts, finite-copy reactions, bounded reachability and chemical interface limits. [Chapter 16: Languages, automata and molecular recognition](drafts/ch16/README.md) develops recognizer invariants, an exact binary transducer, scaffolded recognition and noisy transitions. Each includes five editable vector figures with semantic TXT companions, tested reference code and twelve worked exercises.
 
-Chapters 13-16 are standalone author-reviewed candidates, not cumulative acceptance or independently validated industrial systems. Chapter 17 is next; cumulative integration remains pending.
+[Chapter 17: Watson–Crick and biochemical automata](drafts/ch17/README.md) develops a proved two-head recognizer, explicit witness costs and a restriction-based molecular transition mechanism. [Chapter 18: Universality and complexity models](drafts/ch18/README.md) develops tape/two-stack simulation, uniform construction and reliability bounds.
+
+Each new chapter includes five editable vector figures with TXT companions and twelve worked exercises. Chapters 13-18 are standalone author-reviewed candidates, not cumulative acceptance or independently validated industrial systems. Chapter 19 is next; cumulative integration remains pending.
 
 ## Build and verify
 

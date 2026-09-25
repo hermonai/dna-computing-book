@@ -1,0 +1,4 @@
+Question: State count does not count head positions
+Objects and arrow semantics: Computed reachable configurations and generic grid bound.
+Change/invariant and caption claim: Termination comes from advancing heads; all branches must be examined for rejection.
+Scientific risk: A Python search counts logical configurations, not molecules.

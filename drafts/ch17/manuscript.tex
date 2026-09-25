@@ -1,0 +1,235 @@
+\chapter{Watson--Crick and biochemical automata}
+Two readers move along a double strand. One waits while the other advances.
+Can that delay store information even when the controller has only three
+states? Yes: the distance between the readers is part of the configuration.
+This observation separates a two-head formal automaton from both an ordinary
+finite-state reader and a biochemical device that consumes its input.
+
+Chapter 16 developed languages and molecular recognition. Here we ask what an
+automaton's state actually contains. We build a recognizer, prove what it
+recognizes, and then examine a molecular mechanism with a different contract.
+The Python results are calculations, not measurements of DNA reactions.
+
+\section{Three meanings of state}
+\Term{Control state} is a label such as \texttt{seek}. A complete computational
+configuration also includes reader positions and the input. A molecular state
+includes chemical species, concentrations and exposed binding sites. Confusing
+these meanings can turn a modest finite-state experiment into an unsupported
+claim about unbounded computation.
+
+Our input is a pair of equal-length words $(u,v)$ whose symbols satisfy a
+positionwise relation $\rho$. For a fixed input, a configuration is
+\begin{equation}
+ c=(q,i,j),\qquad 0\leq i,j\leq n,
+\end{equation}
+where $i$ and $j$ count consumed symbols on the upper and lower words.
+A rule $(q,x,y,q')$ consumes upper block $x$ and lower block $y$ if both
+match at their respective cursors. Either block may be empty, but not both.
+The rule changes the control state to $q'$ and advances by $(|x|,|y|)$.
+
+\Plate{01-heads}{A duplex has chemical polarity; an abstract automaton has
+coordinate conventions. Both formal readers move to the right in this chapter,
+although the illustrated DNA backbones are antiparallel. This is a reading
+model, not a depiction of two polymerases synthesizing in opposite directions.}{fig:heads}
+
+\Term{Watson--Crick automata} use paired inputs and independently moving
+readers. We adopt the positionwise pairing and full-input acceptance convention
+described by Czeizler and colleagues \cite{czeizler}, with two explicit choices:
+we include the empty word and exclude rules consuming nothing on both strands.
+Our examples use an abstract identity relation on $\{a,b\}$, not literal
+adenine--adenine base pairing. A chemical encoding would need separate design
+and validation. Formal complementarity need not mean the canonical DNA alphabet.
+
+\section{Use head lag to recognize equal blocks}
+We want the language $L=\{a^k b^k:k\geq0\}$. A one-head finite automaton
+cannot remember an arbitrarily large $k$. Two cursors can compare the two
+blocks without a growing list of control states. Set $u=v$, start at
+$(\texttt{seek},0,0)$, and use these rules:
+\begin{center}
+\begin{tabular}{llll}\toprule
+From & Upper & Lower & To\\\midrule
+seek & $\varepsilon$ & a & seek\\
+seek & a & b & pair\\
+pair & a & b & pair\\
+pair & b & $\varepsilon$ & drain\\
+drain & b & $\varepsilon$ & drain\\\bottomrule
+\end{tabular}\end{center}
+Accepting control states are \texttt{seek} and \texttt{drain}, but acceptance
+also requires $i=j=n$. The start state therefore accepts only the empty input
+without transitions. Reaching an accepting label early is not sufficient.
+
+\Plate{02-lag}{The accepting path for aabb has three phases. Lower-only
+motion first creates a lag, paired motion compares the blocks, and upper-only
+motion drains the remaining suffix. Coordinates, not the names of the three
+control states, retain the input-dependent information.}{fig:lag}
+
+\subsection{Prove both directions before writing a benchmark}
+For $a^k b^k$ with $k>0$, lower-only steps consume the first $k$ lower
+symbols. Exactly $k$ paired steps then consume upper $a$ symbols and lower
+$b$ symbols. Finally $k$ upper-only steps consume the upper $b$ suffix.
+Both cursors finish, so every desired input has an accepting run.
+
+Conversely, a nonempty accepting run must enter \texttt{pair} and then
+\texttt{drain}. The upper word contains only the $a$ symbols consumed in
+\texttt{pair}, followed by the $b$ symbols consumed in \texttt{drain}.
+The lower word contains only the $a$ symbols consumed in \texttt{seek},
+followed by the $b$ symbols consumed in \texttt{pair}. Because the words
+are identical, their $a$ counts agree and their $b$ counts agree. The paired
+steps consume one of each, forcing all three phase lengths to equal $k$.
+Thus acceptance implies membership in $L$. No appeal to a molecular speedup
+was needed for this proof.
+
+\section{Execute a configuration search}
+The reference performs breadth-first exploration. Its queue contains only
+configurations already reached by valid transitions. The parent map serves
+both as a visited set and as a certificate from which one accepting path can
+be reconstructed. The full companion file supplies \texttt{RULES}, \texttt{RHO}
+and imports; the listing is extracted directly from that tested file.
+\Listing{paired_run}
+
+For aabb, the generated certificate is
+\begin{center}\input{\Generated/trace.tex}\end{center}
+Every successive row must correspond to one declared rule; the final row must
+consume both words. Merely checking the returned Boolean would miss a broken
+certificate or an acceptance test that ignores a stranded cursor.
+
+For arbitrary block rules, matching a transition also costs work proportional
+to the compared block lengths in this simple implementation. Counting visited
+configurations alone does not account for that cost, queue storage, parent
+records or input preparation. A simulator's work is also not the elapsed time
+of a hypothetical molecular realization of the same transition relation.
+
+\section{Nondeterminism does not manufacture free witnesses}
+When $\rho$ is not injective, one upper word may admit several lower words.
+The existential language convention accepts $u$ if \emph{some} admissible
+$v$ has an accepting run. The following helper enumerates those candidates;
+it does not promise an efficient way to find a useful one.
+\Listing{lower_words}
+
+\Plate{03-witness}{An existential lower strand is a witness, not an oracle.
+With two admissible partners at each of four positions, 16 paired inputs are
+possible. A formal accepting path does not specify how to synthesize, select
+or reliably detect the successful member of a molecular pool.}{fig:witness}
+
+If position $r$ has $d_r$ possible partners, the number of admissible lower
+words is $\prod_{r=1}^{n}d_r$. When each $d_r=2$, this becomes $2^n$.
+Parallel exploration changes the organization of the search, not that count.
+An accepting species can be a small fraction of a mixture even when its
+logical existence is enough for the language definition. Readout must
+distinguish that species from background and unintended products.
+
+Our tiny test uses $\rho$ containing both $a\leftrightarrow x$ and
+$a\leftrightarrow y$, with a rule that accepts only the pair $(a,y)$.
+The lower word $x$ is admissible but not successful. This separates pairing
+validity, transition applicability and final acceptance into three tests.
+
+\section{What the biochemical finite automaton implements}
+Benenson and colleagues implemented a different, biochemical finite automaton
+using DNA, a restriction nuclease and ligase \cite{benenson}. An exposed sticky
+end encodes a current state and symbol. A compatible transition molecule binds
+and is ligated; restriction cleavage exposes the next encoded end. The
+transition molecule's geometry determines the cleavage frame. These are
+chemical encodings of a transition, not two independently addressable heads.
+
+\Plate{04-cleavage}{Conceptual restriction-based transition cycle. Recognition
+and ligation create a substrate on which cleavage exposes the next encoded
+end and releases a fragment. The recognition site and cleavage position are
+distinct. Lengths, base sequences and enzyme-specific offsets are intentionally
+not specified; this plate is not a laboratory protocol.}{fig:cleavage}
+
+This mechanism gives a useful implementation checklist. Which exposed end
+represents $(q,a)$? Which transition molecules compete for it? What molecule
+represents $(q',\text{next symbol})$? Which products are waste rather than
+future inputs? How is a terminal end converted into an observable reporter?
+A correct answer to the abstract transition table answers none of these
+chemical questions automatically.
+
+The reported device also separates computation from detection: terminal
+products interact with output detectors whose reporters can be distinguished.
+Consequently, a missing signal can mean no accepting computation, incomplete
+chemistry, insufficient reporter formation or inadequate detection. A chemical
+failure and a rejected word must not silently share one Boolean variable.
+The formal recognizer in this chapter neither reproduces that experiment nor
+predicts its yields. Its role is to make the computational semantics explicit.
+
+\section{Bound the search without hiding the heads}
+For fixed words of length $n$, the generic configuration bound is
+\begin{equation}
+ N_{\rm config}\leq |Q|(n+1)^2.
+\end{equation}
+Each rule increases $i+j$ by at least one, so every run has at most $2n$
+transitions. This monotone rank rules out cycles even if the control graph
+contains self-loops. The reference still uses a visited set to merge paths
+that reach the same configuration.
+
+\Plate{05-frontier}{Generated exploration counts for $a^k b^k$ lie below
+the generic configuration bound. This compares counts in a Python model,
+not reaction time, molecular energy or physical memory consumption.}{fig:frontier}
+
+Each cursor requires enough distinguishable values to represent $0$ through
+$n$: at least $\lceil\log_2(n+1)\rceil$ bits in a binary address model.
+Calling the controller finite-state is true; calling the complete configuration
+constant-size is false. The read-only input also occupies $2n$ abstract symbols.
+For our successful example, the path has $3k$ transitions, while exploration
+may additionally visit dead ends. The upper bound and the actual path length
+answer different questions.
+
+\section{Validation and failure analysis}
+The tests enumerate every binary word through length nine and compare the
+recognizer with an independent direct language predicate. They also validate
+every returned transition, reverse rule order, reject incompatible pairings,
+and check the configuration bound. Invalid double-empty transitions are
+rejected at the interface. These tests support the finite implementation;
+the language argument above supplies the all-length reasoning.
+
+A useful extension is to allow a double-empty rule. The monotone-rank proof
+then fails immediately, although a finite visited-set search can still
+terminate for fixed input. Another extension lets readers move left. Now the
+$2n$ path bound fails too. Such changes are new models, not harmless options.
+
+\section{Exercises with worked answers}
+\begin{enumerate}
+\item Trace ab. \textbf{Answer:} $(s,0,0),(s,0,1),(p,1,2),(d,2,2)$,
+where $s,p,d$ abbreviate the three states. Both cursors end after three rules.
+\item Why reject aab? \textbf{Answer:} Only one lower $b$ is available for
+pairing. One upper $a$ remains, which \texttt{drain} cannot consume.
+\item Why reject abb? \textbf{Answer:} After one pair step an unmatched
+lower $b$ remains. Upper-only draining cannot finish the lower cursor.
+\item Is the empty word accepted accidentally? \textbf{Answer:} No; the
+initial configuration is explicitly final and fully consumed. Remove
+\texttt{seek} from the final set to change the language to $k>0$.
+\item Bound configurations at $n=10$. \textbf{Answer:} $3(11)^2=363$,
+including unreachable combinations. This is not a claim that all are visited.
+\item Bound any path at $n=10$. \textbf{Answer:} At most 20 transitions,
+because total consumed length begins at zero and cannot exceed 20.
+\item Count a successful path for $k=10$. \textbf{Answer:} Thirty rules
+on words of length 20; this is below the general bound of 40.
+\item How many witnesses with partner counts $(2,1,3,2)$?
+\textbf{Answer:} Twelve. Summing the counts would incorrectly treat independent
+position choices as mutually exclusive whole-word alternatives.
+\item Does reversing rule order change the language? \textbf{Answer:} Not
+for exhaustive search. It may change which certificate is returned first.
+\item What does a sticky end encode here? \textbf{Answer:} In the described
+biochemical architecture, a state--symbol interface. It is not a freely
+addressable cursor into both strands.
+\item Can absence of fluorescence prove rejection? \textbf{Answer:} Not
+without a calibrated reporter, positive controls and a detection model.
+Several chemical and measurement failures can produce the same observation.
+\item Why is this not a constant-memory solution to equal-block recognition?
+\textbf{Answer:} The state labels are constant in number, but cursor positions
+and the supplied input scale with $n$. The model has changed the resources
+available to the recognizer.
+\end{enumerate}
+
+\section{Vocabulary and the next question}
+\Term{Configuration}: all information needed to determine legal next steps.
+\Term{Head lag}: difference between the two consumed-prefix lengths.
+\Term{Witness}: an admissible auxiliary input whose existence establishes
+acceptance under an existential convention.
+\Term{Cleavage frame}: position of cleavage relative to an encoded symbol,
+used in the biochemical architecture to distinguish subsequent states.
+
+The next chapter asks a stricter question: what additional storage and
+simulation guarantees justify a claim of universality? A family of small
+automata, an unbounded tape model and a finite molecular experiment must not
+be merged into one claim.

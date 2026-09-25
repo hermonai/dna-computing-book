@@ -1,0 +1,87 @@
+{
+  "accepted": true,
+  "trace": [
+    {
+      "state": "seek",
+      "i": 0,
+      "j": 0
+    },
+    {
+      "state": "seek",
+      "i": 0,
+      "j": 1
+    },
+    {
+      "state": "seek",
+      "i": 0,
+      "j": 2
+    },
+    {
+      "state": "pair",
+      "i": 1,
+      "j": 3
+    },
+    {
+      "state": "pair",
+      "i": 2,
+      "j": 4
+    },
+    {
+      "state": "drain",
+      "i": 3,
+      "j": 4
+    },
+    {
+      "state": "drain",
+      "i": 4,
+      "j": 4
+    }
+  ],
+  "growth": [
+    {
+      "n": 0,
+      "visited": 1,
+      "bound": 3
+    },
+    {
+      "n": 2,
+      "visited": 4,
+      "bound": 27
+    },
+    {
+      "n": 4,
+      "visited": 7,
+      "bound": 75
+    },
+    {
+      "n": 6,
+      "visited": 10,
+      "bound": 147
+    },
+    {
+      "n": 8,
+      "visited": 13,
+      "bound": 243
+    },
+    {
+      "n": 10,
+      "visited": 16,
+      "bound": 363
+    },
+    {
+      "n": 12,
+      "visited": 19,
+      "bound": 507
+    },
+    {
+      "n": 14,
+      "visited": 22,
+      "bound": 675
+    },
+    {
+      "n": 16,
+      "visited": 25,
+      "bound": 867
+    }
+  ]
+}

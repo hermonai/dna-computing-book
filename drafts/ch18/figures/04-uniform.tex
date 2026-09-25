@@ -1,0 +1,11 @@
+\begin{tikzpicture}[box/.style={note,draw=Blue,fill=Pale,rounded corners,text width=2.3cm,minimum height=1.2cm}]
+\node[box] (c) at (1.2,3){Constructor\\size $n$};
+\node[box] (d) at (4.5,3){Device\\$D_n$};
+\node[box] (e) at (7.8,3){Execution\\encoded input};
+\node[box] (r) at (11.1,3){Readout\\decoded result};
+\draw[flow] (c)--(d);\draw[flow] (d)--(e);\draw[flow] (e)--(r);
+\node[box] (i) at (4.5,0){Instance $x$\\encoding};
+\draw[flow] (i)--node[below right,smallnote]{prepare}(e);
+\draw[Red,dashed,-{Stealth},thick] (i) to[bend right=20] node[below,smallnote,Red,fill=white,inner sep=3pt]{answer already computed?}(r);
+\node[smallnote,text width=12cm] at (6,4.6){Account for construction, device size, instance preparation, execution and detection.};
+\end{tikzpicture}

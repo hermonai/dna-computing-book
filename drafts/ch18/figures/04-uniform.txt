@@ -1,0 +1,4 @@
+Question: Where preparation can hide the answer
+Objects and arrow semantics: Instance, uniform constructor, encoded device and output interpreter.
+Change/invariant and caption claim: Count both program generation and execution; flag answer-dependent preparation.
+Scientific risk: Do not confuse nonuniform advice with a practical solver.
