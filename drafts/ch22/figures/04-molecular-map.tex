@@ -1,0 +1,26 @@
+\begin{tikzpicture}[font=\small\sffamily,>=Stealth]
+\node[anchor=west,Blue] at (0,4.9){\textbf{A. Separated recognition domains}};
+\draw[Blue,very thick,->] (0,4)--(4.4,4);
+\draw[Blue,very thick,<-] (0,3.5)--(3,3.5);
+\draw[Green,very thick,->] (7,4)--(11.4,4);
+\draw[Green,very thick,<-] (5.6,3.5)--(11.4,3.5);
+\foreach \x in {.3,.6,...,2.7}{\draw (\x,3.5)--(\x,4);}
+\foreach \x in {7.3,7.6,...,11.2}{\draw (\x,3.5)--(\x,4);}
+\node[left] at (0,4){$5'$};\node[left] at (0,3.5){$3'$};
+\node[right] at (4.4,4){$3'$};\node[right] at (3,3.5){$5'$};
+\node[left] at (7,4){$5'$};\node[left] at (5.6,3.5){$3'$};
+\node[right] at (11.4,4){$3'$};\node[right] at (11.4,3.5){$5'$};
+\node at (3.7,4.5){$d$};\node at (6.3,3){$d^*$};
+\draw[->,Blue,thick] (5.7,2.9)--node[right]{association}(5.7,2.1);
+\node[anchor=west,Blue] at (0,1.65){\textbf{B. Paired interface; backbones remain unligated}};
+\draw[Blue,very thick,->] (0,.8)--(5.55,.8);
+\draw[Blue,very thick,<-] (0,.3)--(4,.3);
+\draw[Green,very thick,->] (5.8,.8)--(11.4,.8);
+\draw[Green,very thick,<-] (4.25,.3)--(11.4,.3);
+\foreach \x in {.3,.6,...,3.9}{\draw (\x,.3)--(\x,.8);}
+\foreach \x in {4.4,4.7,5,5.3}{\draw[Red,dashed,thick] (\x,.3)--(\x,.8);}
+\foreach \x in {6.1,6.4,...,11.2}{\draw (\x,.3)--(\x,.8);}
+\node[left] at (0,.8){$5'$};\node[left] at (0,.3){$3'$};
+\node[right] at (11.4,.8){$3'$};\node[right] at (11.4,.3){$5'$};
+\node[align=center] at (5.7,-.5){complementary overhangs create an interface bond\\two backbone nicks are not sealed by hybridization};
+\end{tikzpicture}

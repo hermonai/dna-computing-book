@@ -1,0 +1,19 @@
+\begin{tikzpicture}[font=\small\sffamily,>=Stealth]
+\draw[fill=Gold!45,thick] (0,1.4) rectangle (2.6,4);
+\node[align=center] at (1.3,2.7){west neighbor\\$E=h_0$};
+\draw[fill=Gold!45,thick] (3.1,-1.7) rectangle (5.7,.9);
+\node[align=center] at (4.4,-.4){south neighbor\\$N=v_1$};
+\draw[fill=Pale,thick] (3.1,1.4) rectangle (5.7,4);
+\node at (4.4,2.7){$X_{10}$};
+\node[Blue] at (4.4,3.7){$N:v_1$};
+\node[Blue] at (4.4,1.7){$S:v_1$};
+\node[Green,rotate=90] at (5.4,2.7){$E:h_1$};
+\node[Green,rotate=90] at (3.4,2.7){$W:h_0$};
+\draw[very thick,Green] (2.6,2.4)--(3.1,2.4);
+\draw[very thick,Blue] (4.1,.9)--(4.1,1.4);
+\node[anchor=west,text width=5.5cm,align=left] at (6.6,3.1)
+{\textbf{Two contacts, one legal tile}\\
+West support $=1$\\South support $=1$\\Total $=2=\tau$};
+\node[anchor=west,text width=5.5cm,align=left] at (6.6,.5)
+{North/east sites are empty.\\A different input bit removes a bond.\\Integer strength is not $\Delta G$.};
+\end{tikzpicture}

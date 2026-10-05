@@ -1,0 +1,20 @@
+\begin{tikzpicture}[font=\small\sffamily,>=Stealth]
+\node[anchor=west,Blue] at (0,4.5){\textbf{One scaffold, multiple address constraints}};
+\draw[Blue,very thick,->] (0,3.5)--(7.5,3.5)
+ to[out=0,in=0] (7.5,2)--(0,2)
+ to[out=180,in=180] (0,.5)--(7.5,.5);
+\node[left] at (0,3.5){$5'$};\node[right] at (7.5,.5){$3'$};
+\foreach \x/\lab in {1/a,3/b,5/c}{
+ \node[Blue] at (\x+.4,3.85){$\lab$};
+ \draw[Green,very thick,->] (\x+1,3.15)--(\x,3.15)
+ to[out=180,in=180] (\x,2.35)--(\x+1,2.35);
+ \foreach \u in {.15,.4,.65,.9}{
+  \draw[dashed] (\x+\u,3.15)--(\x+\u,3.5);
+  \draw[dashed] (\x+\u,2)--(\x+\u,2.35);
+ }
+}
+\node[anchor=west,text width=4.7cm,align=left] at (8.4,3)
+{Blue: continuous scaffold.\\Green: distinct staple strands.\\Each staple pairs antiparallel to two separated scaffold domains.};
+\node[anchor=west,text width=4.7cm,align=left] at (8.4,.7)
+{Routing and staple occupancy constrain geometry.\\This cartoon omits helix twist and crossover phasing.};
+\end{tikzpicture}

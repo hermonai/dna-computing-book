@@ -1,0 +1,17 @@
+# Chapter convergence matrix
+
+States are separate gates, not one completion flag.
+
+| ID | Canonical title | Decision | Integrated | Tests | Figures | Sources | PDF |
+|---|---|---|---|---|---|---|---|
+| DNAD-22 | Self-assembly, tiles and geometry | merge and correct stable seed, glue strength, directedness proof and counterexample; deepen kinetic and geometric mechanisms | reviewed | PASS; local chapter and full regression | PASS WITH NOTES; six figures, all color/grayscale pages | PASS WITH NOTES; access depth recorded, no external reproduction | PASS; standalone 14 pages; full-book pending |
+| DNAD-23 | Noise, crosstalk and fault models | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |
+| DNAD-24 | Scaling and resource limits | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |
+| DNAD-25 | Synthesis, sequencing and DNA storage | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |
+| DNAD-26 | Laboratory workflows and reproducibility | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |
+| DNAD-27 | Symbolic molecular simulation | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |
+| DNAD-28 | Kinetic and stochastic simulation | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |
+| DNAD-29 | Differentiable molecular and sequence models | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |
+| DNAD-30 | Genomic organization, regulation and development | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |
+| DNAD-31 | Modern molecular programming and evidence | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |
+| DNAD-32 | From molecular computation to genomic computation | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |

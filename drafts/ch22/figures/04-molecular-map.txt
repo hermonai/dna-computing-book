@@ -1,0 +1,5 @@
+Question: how can a molecular interface implement selective contact without ligation?
+Panel A: two antiparallel duplexes expose complementary single-stranded domains d and d*. Four independent backbones have labeled 5-prime and 3-prime ends.
+Panel B: the complementary overhangs pair. Red dashed rungs denote newly formed base pairs; continuous blue and green paths remain separate backbones. Their two adjacent nicks are unsealed.
+Arrows on backbones point to 3-prime ends. The vertical arrow means association, not an additional molecular bond.
+Boundary: this is a sticky-end mechanism, not a complete double-crossover routing design, energy calibration, or sequence protocol.

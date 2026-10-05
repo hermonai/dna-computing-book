@@ -1,0 +1,46 @@
+[
+  {
+    "key": "rothemund2004",
+    "claim": "DNA double-crossover tiles experimentally implemented an XOR cellular automaton producing recognizable finite Sierpinski patterns; reported assembly errors were substantial.",
+    "primary": "https://doi.org/10.1371/journal.pbio.0020424",
+    "authors": "Rothemund, Papadakis, Winfree",
+    "date": "2004-12-07",
+    "access_date": "2026-10-05",
+    "inspected": "publisher full article/figures and abstract",
+    "depth": "full publisher HTML available",
+    "unresolved": "No numerical value from the paper is used as a new benchmark."
+  },
+  {
+    "key": "rothemund2006",
+    "claim": "Scaffolded DNA origami folds a long ssDNA scaffold using many staple strands into designed nanoscale shapes.",
+    "primary": "https://doi.org/10.1038/nature04586",
+    "authors": "Paul W. K. Rothemund",
+    "date": "2006-03-16",
+    "access_date": "2026-10-05",
+    "inspected": "publisher abstract, figures metadata, supplementary descriptions",
+    "depth": "publisher page",
+    "unresolved": "Chapter uses only mechanism-level facts supported by inspected material."
+  },
+  {
+    "key": "evans2017",
+    "claim": "Physical DNA tile assembly requires thermodynamic/kinetic models beyond abstract logical attachment rules.",
+    "primary": "https://doi.org/10.1039/C6CS00745G",
+    "authors": "Constantine G. Evans, Erik Winfree",
+    "date": "2017-05-10",
+    "access_date": "2026-10-05",
+    "inspected": "publisher abstract and bibliographic record",
+    "depth": "abstract-level mechanism framing",
+    "unresolved": "No detailed fitted kinetic constants imported."
+  },
+  {
+    "key": "proofreading2004",
+    "claim": "Proofreading tile sets use cooperative assembly structure to reduce algorithmic self-assembly errors in model studies.",
+    "primary": "https://www.dna.caltech.edu/Papers/proofreading_DNA9.pdf",
+    "authors": "Erik Winfree, Renat Bekbolatov",
+    "date": "2004",
+    "access_date": "2026-10-05",
+    "inspected": "author-hosted paper metadata/abstract",
+    "depth": "abstract plus author supplementary index",
+    "unresolved": "Quantitative scaling not asserted as experimental performance."
+  }
+]

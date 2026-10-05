@@ -1,0 +1,15 @@
+\begin{tikzpicture}[font=\small\sffamily,scale=.72,>=Stealth]
+\input{\Generated/xor-grid.tex}
+\node[rotate=90] at (-.45,4.5){left seed: horizontal zeros};
+\node at (4.5,-.55){bottom seed: $1,0,0,\ldots$};
+\node[anchor=west] at (9.4,7.9){\textbf{Computed $8\times8$ product}};
+\draw[fill=Blue] (9.4,6.6) rectangle ++(.55,.55);
+\node[anchor=west] at (10.2,6.87){one};
+\draw[fill=Pale] (9.4,5.7) rectangle ++(.55,.55);
+\node[anchor=west] at (10.2,5.97){zero};
+\draw[fill=Gold!60] (9.4,4.8) rectangle ++(.55,.55);
+\node[anchor=west] at (10.2,5.07){preassembled seed};
+\node[anchor=west,align=left] at (9.4,3.2){$z_{x,y}=z_{x,y-1}\oplus z_{x-1,y}$\\
+$n^2$ placements; $2n-1$ diagonals\\$20$ reachable states for $n=3$};
+\node[anchor=west,align=left] at (9.4,1.4){Bits come from \texttt{results.json}.\\Every legal schedule has the same product.};
+\end{tikzpicture}

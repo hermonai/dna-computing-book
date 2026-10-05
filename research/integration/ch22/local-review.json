@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-06",
+  "chapter": 22,
+  "pdf": "output/pdf/dna-computing-ch22-review.pdf",
+  "pdf_sha256": "2c81a37e2efd4a98247b77993577f5336f487a31f6369c97ad05e2b43056528b",
+  "pages": 14,
+  "source_hashes": {
+    "drafts/ch22/README.md": "e8e31230d52a2cec39147d43e508e053a598d0ee106ff93d59f2d8a06fd45e17",
+    "drafts/ch22/STORYBOARD.md": "d69686cdde7e56df3997c424688527f26b945bbc569e1b100aa92cf71445fd6b",
+    "drafts/ch22/build.py": "dfff03b1b6f963c5caec9427160d756f3cd637cc5a308abd2b3fb932ff95edbf",
+    "drafts/ch22/figures/01-tile-contract.tex": "1598b45f1faca830ea4db4991636a89221db5d21d5def5bc860b3eff97df9080",
+    "drafts/ch22/figures/01-tile-contract.txt": "2999f5b75780b305322a15aade7ed2787b6b211f9a470ae9ffb7e3f2c3634ceb",
+    "drafts/ch22/figures/02-xor-growth.tex": "72395aae71e7b98f6bb2da9571708aa22eca4cf704bd84a43a94e197b3a9c185",
+    "drafts/ch22/figures/02-xor-growth.txt": "7fc0921a31c97458ce116f52c2312ae6f65468ed8219f67247b3f87aec452da6",
+    "drafts/ch22/figures/03-ambiguity.tex": "40ce6c515845951f76639378a3cb677c53c5cfbf77fe4cc523666e22f6a58c2f",
+    "drafts/ch22/figures/03-ambiguity.txt": "3ef36c0a300116dff4b1af59314803225a3fd96a4bcb9b2fbde6ccece4db6b49",
+    "drafts/ch22/figures/04-molecular-map.tex": "f2435f8adab3f8cb63d77487f9455d75a1c4e4300ef8de0898f9f05f64270f1d",
+    "drafts/ch22/figures/04-molecular-map.txt": "7519d798bf14d4870412229650e6678bc4370d01ac8b8f39d60182e519b25c07",
+    "drafts/ch22/figures/05-physical-ladder.tex": "1c1263d9db2009fc44dc5aa774ffe601ff120c4093a65068992785f20a17682f",
+    "drafts/ch22/figures/05-physical-ladder.txt": "a9cc5120735d25c85d76051c49a4d0cac3817127e627b472c6fc83885179aeae",
+    "drafts/ch22/figures/06-origami-route.tex": "f0e9216039f8c4311310473780e782bb623203bbb6f6492eb8cc5e7dce5d8d43",
+    "drafts/ch22/figures/06-origami-route.txt": "2d9dafe280a6ed14b630a43e180dfe2eb625b185827f71ae3f2b8acca7873066",
+    "drafts/ch22/manuscript.tex": "9598cfdc1b3bef4f3b997488edc3ab772ec2c106fa987e046ce342852b001529",
+    "drafts/ch22/reference.py": "952019bdaec1a9c424f82a10e812a36a1700edb706d9c6961b4b6c2869ac6bdd",
+    "drafts/ch22/results.json": "3f0ddb5b1fc1e9311fd883f3b0ddf5205a04baf08699b2b6e4845d4e34dd922b",
+    "drafts/ch22/review.tex": "20a8183f5d75ac8a1c9897c82363df1d7a679e0b768ca538e1d290971201f948",
+    "drafts/ch22/sources.tex": "a0b2bfbcb6f9614ff23f795baca675be42429c70d8bd28a35c126302853d6779",
+    "tests/test_ch22_reference.py": "a0361a865d919530ef8dd3d5f13780046762171392a9e7f3ec9cdf1a2a688731"
+  },
+  "tests": {
+    "repository_passed": 1000,
+    "repository_skipped": 2,
+    "chapter_passed": 25,
+    "report": "build/ch22/regression.xml",
+    "python": "3.13.6"
+  },
+  "visual_review": {
+    "reviewer": "author/agent",
+    "mode": "all 14 pages, four color and four grayscale contact sheets",
+    "status": "PASS WITH NOTES",
+    "notes": "Label collisions corrected and rerendered; six figures legible. Full-book layout and independent specialist/reader review remain open."
+  },
+  "mathematical_review": "Local assumptions, edge cases, independent oracles and falsifiers documented in technical-audit.md.",
+  "acceptance": "locally reviewed standalone integration candidate; not accepted publication edition"
+}

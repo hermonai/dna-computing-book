@@ -1,0 +1,4 @@
+Question: how do local staples constrain a routed scaffold?
+Blue continuous path is one scaffold from its 5-prime end to its 3-prime end, alternating travel direction in adjacent rows. Each green staple is a distinct continuous strand, antiparallel to each scaffold domain it pairs with. Dashed rungs are base pairing, not covalent bonds.
+Logic: a staple links two separated scaffold domains, imposing a spatial constraint. Domain labels are addresses, not actual nucleotide sequences.
+Boundary: helix twist, detailed crossover phasing, circular scaffold closure and full occupancy are omitted. This cartoon is not a verified origami design.

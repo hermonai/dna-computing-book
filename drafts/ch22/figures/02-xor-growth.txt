@@ -1,0 +1,5 @@
+Question: what global object follows from local XOR rules?
+Data: all 64 bits are generated from reference.results()['grid']; no hand-drawn bits are authoritative. Bottom row is 1,0,...; left column is zero. The corner and two arms are preassembled seed instances with seed-only strength-two bonds.
+Encoding: numeral and light/dark fill both indicate each bit, preserving grayscale readability.
+Logic: south XOR west determines output. All schedules preserve a lower ideal and converge to the same finite square.
+Boundary: 2n-1 diagonals count ideal dependency depth, not measured chemical time.
