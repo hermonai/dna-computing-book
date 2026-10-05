@@ -1,0 +1,23 @@
+[
+  {
+    "key": "dey2021",
+    "primary": "https://doi.org/10.1038/s43586-020-00009-8",
+    "claim": "DNA origami practice spans design, production and characterization with practical limitations.",
+    "access_date": "2026-10-05",
+    "depth": "publisher abstract/primer context"
+  },
+  {
+    "key": "rothemund2006",
+    "primary": "https://doi.org/10.1038/nature04586",
+    "claim": "Foundational DNA origami experimental context.",
+    "access_date": "2026-10-05",
+    "depth": "publisher abstract"
+  },
+  {
+    "key": "schulman2015",
+    "primary": "https://doi.org/10.1021/nn507493s",
+    "claim": "Reliability/proofreading experiment carried forward from Chapter 23.",
+    "access_date": "2026-10-05",
+    "depth": "PubMed abstract previously inspected"
+  }
+]

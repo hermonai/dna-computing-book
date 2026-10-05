@@ -1,0 +1,6 @@
+{
+  "E": "experiment tuple (design, materials, protocol, instrument, analysis)",
+  "C,V": "concentration and volume in a declared unit system",
+  "N_A": "Avogadro constant",
+  "E_bji": "defect indicator for site i/object j/preparation b"
+}

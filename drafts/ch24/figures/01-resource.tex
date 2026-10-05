@@ -1,0 +1,12 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
+\node[draw=Blue,fill=Pale,align=center,text width=2.7cm] (input) at (0,0) {Input $n$ bits\\representation rule};
+\node[draw=Blue,fill=Pale,align=center,text width=3cm] (pool) at (4,0) {Candidate pool\\$M=2^n$ identities};
+\node[draw=Blue,fill=Pale,align=center,text width=3cm] (react) at (8,0) {Dependent reactions\\serial depth $d$};
+\node[draw=Blue,fill=Gold!30,align=center,text width=2.7cm] (read) at (12,0) {Verified output\\$Q$ bits reported};
+\draw[flow] (input)--(pool); \draw[flow] (pool)--(react); \draw[flow] (react)--(read);
+\node[align=center,text width=3.2cm] at (4,-1.7) {species $S$, copies $N$\\volume $V$, concentration $c$};
+\node[align=center,text width=3.4cm] at (8,-1.7) {rates, competition, transport\\completion by deadline};
+\node[align=center,text width=3cm] at (12,-1.7) {sampling, sensitivity\\bandwidth $b$};
+\draw[Blue] (pool.south)--(4,-1); \draw[Blue] (react.south)--(8,-1); \draw[Blue] (read.south)--(12,-1);
+\node[Red,align=center] at (6,-3) {Parallel candidate processing does not make inventory, dependency or readout free.};
+\end{tikzpicture}

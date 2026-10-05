@@ -1,0 +1,2 @@
+# Continuity contract
+DNAD-23 separated local defects, object yield, nucleation, kinetic traps and observation errors, and required declared denominators/uncertainty. DNAD-24 turns that reliability theory into an executable experiment contract: immutable design identity, reagent/material provenance, concentration arithmetic, thermal protocol, controls, randomized/blinded observation, replicate hierarchy, evidence manifests and deviation logs. It does not teach hazardous synthesis; it teaches auditable experimental computation.

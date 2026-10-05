@@ -1,0 +1,414 @@
+\chapter{Scaling and resource limits}
+\label{dnad24:chapter}
+A molecular program can have a short description and require a large physical
+population. A reaction can occur in parallel and still take a long time. A tube
+can contain the correct answer and produce an unreadable observation. These are
+three different failures of scale.
+
+Chapter 4 introduced multiplicity, diversity and witness recovery. Chapter 23
+showed that local reliability does not determine whole-object correctness.
+We now combine those ideas into a resource analysis that exposes where a design
+moves its cost. The new tool is not another claim that DNA is massively parallel.
+It is an executable account of what must grow when the input grows.
+
+\section{Begin with a deliberately naive search}
+Suppose an $n$-bit search represents each of its $M=2^n$ candidate strings by
+a distinct molecular identity. A filter removes invalid candidates; a reader
+returns a surviving witness. Assume for this example that all candidates are
+generated uniformly and that the representation itself is correct.
+What must exist before the filter can exploit its parallelism?
+
+At least one instance of each required identity must be present if the claim is
+complete enumeration. This requirement is stronger than having $M$ molecules:
+some identities can occur repeatedly while others are absent. Conversely,
+finding one witness need not require enumerating every candidate. A tailored
+algorithm can change the representation, generation distribution and required
+coverage. Our calculation is a cost of this architecture, not a lower bound on
+all molecular algorithms for the underlying search problem.
+
+Early DNA-computing research supplied important algorithms for molecular
+satisfiability and related problems \cite{dnad24:boneh}. Here we do not equate
+a small number of high-level operations with a small physical resource budget.
+A separation operation acts on a population whose preparation and observation
+must also be accounted for.
+
+\Plate{01-resource}{Parallel work is only one component of the resource path.
+Candidate inventory, serial reaction dependencies and finite readout capacity
+remain separate costs. The graph is an accounting model, not a laboratory protocol.}
+{dnad24:resource}
+
+\section{Freeze the resource vector before comparing designs}
+Write a design's resource account as
+\begin{equation}
+\mathcal R(n)=
+\bigl(S,N_{\mathrm{mol}},V,c_{\mathrm{tot}},L_{\mathrm{nt}},
+d_{\mathrm{dep}},t_{\mathrm{run}},Q_{\mathrm{read}},E_{\mathrm{used}}\bigr).
+\label{dnad24:vector}
+\end{equation}
+Here $S$ is the number of chemically distinct species; $N_{\mathrm{mol}}$ counts
+physical molecules; $V$ is volume in litres; $c_{\mathrm{tot}}$ is total molar
+concentration; $L_{\mathrm{nt}}$ is total synthesized nucleotide inventory;
+$d_{\mathrm{dep}}$ is serial dependency depth; $t_{\mathrm{run}}$ is a declared
+latency; $Q_{\mathrm{read}}$ is the amount of readout demanded; and
+$E_{\mathrm{used}}$ is actual energy expenditure when measured.
+
+Specify when each quantity is counted. Peak molecules during amplification differ
+from input molecules. Number of reusable tile types differs from number of copies
+incorporated in an assembly. A seed prepared separately is not a free initial
+condition. Chapter 22's four computational XOR tiles did not describe the full
+boundary-seed inventory.
+
+A resource vector also requires a success contract: which event, with what
+probability, by what deadline? An answer to a decision problem can need only one
+distinguishable bit; reconstructing every candidate string demands much more.
+No scalar operations-per-second number summarizes all of these designs.
+
+\section{Poisson coverage: an exact extension of the sampling model}
+Chapter 4 counted fixed draws and bounded missing identities. Here we use a
+different, explicitly \Term{Poissonized} preparation model. For each identity
+$j=1,\ldots,M$, let the copy count $C_j$ be independent Poisson with mean $\mu$.
+This describes random total count, not a tube with exactly $M\mu$ molecules.
+Independence and equal abundance are assumptions, not consequences of using DNA.
+
+Since $P(C_j=0)=e^{-\mu}$, complete representation has probability
+\begin{equation}
+P_{\mathrm{cover}}=(1-e^{-\mu})^M.
+\label{dnad24:coverage}
+\end{equation}
+To make the probability of missing any required identity at most
+$\delta\in(0,1)$, solve rather than guess:
+\begin{equation}
+\mu_{\mathrm{exact}}
+=-\log\!\left[1-(1-\delta)^{1/M}\right].
+\label{dnad24:mu}
+\end{equation}
+The expression inside brackets can be tiny. Evaluating two nearly equal numbers
+and subtracting them loses significant digits. The implementation instead uses
+\[
+\mu_{\mathrm{exact}}
+=-\log\!\left[-\operatorname{expm1}
+  \left(\frac{\operatorname{log1p}(-\delta)}{M}\right)\right].
+\]
+\Listing{coverage_copies}
+
+The union bound gives a simpler sufficient condition:
+\[
+P(\exists j:C_j=0)\le M e^{-\mu},
+\qquad \mu\ge\log M+\log(1/\delta).
+\]
+It does not require missing events to be independent once their marginal
+probabilities are known; the exact product does. At fixed $\delta$ and large $M$,
+Equation~\ref{dnad24:mu} gives
+$\mu=\log M-\log[-\log(1-\delta)]+o(1)$.
+Thus full representation requires expected total inventory of order
+$M\log M$ in this particular random-preparation model, not just $M$.
+
+\Plate{02-coverage}{Copy count and species coverage answer different questions.
+The plate shows eight identity classes and an independent-Poisson occupancy model,
+not eight physically resolved molecular species in an actual solution.}
+{dnad24:occupancy}
+
+\subsection{A falsifier for the coverage assumption}
+If one required identity has generation probability zero, no increase in the
+copies of other identities can restore complete coverage. If abundances vary,
+replace the equal-mean expression by
+$\prod_j(1-e^{-\mu_j})$ under independent Poisson counts. A rare species can then
+dominate failure even when total DNA is abundant.
+
+With fixed total draw count, occupancy events are dependent and
+Equation~\ref{dnad24:coverage} is no longer exact. The reference includes a small
+dynamic-programming oracle: after $k$ uniform draws, let $p_k(s)$ be the probability
+that $s$ distinct identities have been seen. A next draw preserves $s$ with
+probability $s/M$ and increases it with probability $(M-s)/M$.
+The routine updates those two transitions for each state.
+\Listing{fixed_draw_complete}
+Exhaustive enumeration for two and three species independently verifies the
+recurrence. A separate exponential-arrival simulation samples a Poisson total and
+checks the product model. Agreement between these oracles is meaningful only when
+their preparation contracts are the same.
+
+\section{Translate the probability into matter}
+The SI mole fixes $N_A=6.02214076\times10^{23}\ \mathrm{mol}^{-1}$ exactly
+\cite{dnad24:si}. For molar concentration $c_{\mathrm{tot}}$ and volume $V$ litres,
+\[
+\mathbb E[N_{\mathrm{mol}}]=N_Ac_{\mathrm{tot}}V.
+\]
+A uniform pool with mean $\mu$ copies of each of $M$ identities consequently needs
+\begin{equation}
+V_{\mathrm{model}}=\frac{M\mu}{N_Ac_{\mathrm{tot}}}.
+\label{dnad24:volume}
+\end{equation}
+\Listing{coverage_volume}
+\begin{center}\small\input{\Generated/scaling.tex}\end{center}
+The generated table assumes complete coverage with probability at least .95,
+a uniform independent-Poisson pool, and total concentration $1\ \mu\mathrm M$.
+The values are computed requirements under those assumptions, not feasible
+synthesis orders, experimental volumes or universal complexity lower bounds.
+
+All candidates are charged to the same total concentration. Assigning
+$1\ \mu\mathrm M$ to each of $M$ species instead would raise total concentration
+to $M\ \mu\mathrm M$ and silently change the physical problem. Increasing $n$ by
+one doubles $M$ and also increases the required copies per identity. Under the
+model, fixed-concentration volume grows slightly faster than pure doubling.
+
+If each candidate has $\ell$ nucleotides, expected candidate nucleotide inventory
+is $\ell M\mu$. Primers, gates, fuels, reporter strands and control species add
+their own inventories. Turning this into mass requires the actual molecular
+composition and modification state, not an unexplained universal molecular weight.
+A computational representation that shares prefixes or uses assembly rather than
+whole-string enumeration can change the inventory law; that is an algorithmic
+change to be analyzed, not a reason to omit material accounting.
+
+\section{Diversity dilutes encounters at fixed total concentration}
+Consider one target associating with one required species in a well-mixed pool.
+With association constant $k_{\mathrm{on}}$ in
+$\mathrm{M}^{-1}\mathrm{s}^{-1}$ and species concentration $c_j$ in M,
+the pseudo-first-order encounter rate is $r_j=k_{\mathrm{on}}c_j$.
+For an exponential waiting-time model,
+\[
+\mathbb E[T_j]=1/r_j.
+\]
+Under equal concentrations $c_j=c_{\mathrm{tot}}/S$,
+\begin{equation}
+\mathbb E[T_j]=\frac{S}{k_{\mathrm{on}}c_{\mathrm{tot}}}.
+\label{dnad24:wait}
+\end{equation}
+Increasing diversity at fixed total concentration can therefore slow a particular
+required encounter. It does not necessarily slow every reaction by the same factor:
+different pathways have different stoichiometry, concentrations and competition.
+
+The generated results include an internal field evaluating this formula at assigned
+$k_{\mathrm{on}}=10^6\ \mathrm{M}^{-1}\mathrm{s}^{-1}$; that rate is a teaching
+parameter, not a measured value for the encoded species. Irreversibility,
+constant partner concentration and well-mixed transport are assumptions. If a
+partner is depleted or a contact dissociates, the one-clock model is insufficient.
+
+\Plate{03-concentration}{At fixed total inventory and volume, more distinct
+species means fewer copies and lower concentration per species. Encounter arrows
+refer to an assigned required partner, not every molecular collision.}
+{dnad24:concentration}
+
+\section{Parallelism does not erase dependency depth}
+Let a successful computation require $d$ serial stages. In an ideal irreversible
+chain, assume each stage has an independent exponential waiting time with common
+rate $r>0$ and that the next stage cannot start before its predecessor completes.
+Then
+\[
+T_{\mathrm{chain}}=\sum_{\ell=1}^{d}T_\ell,\qquad
+\mathbb E[T_{\mathrm{chain}}]=d/r.
+\]
+For integer $d\ge1$, the completion probability is the Erlang CDF
+\begin{equation}
+F_d(t)=1-e^{-rt}\sum_{k=0}^{d-1}\frac{(rt)^k}{k!},
+\quad t\ge0.
+\label{dnad24:erlang}
+\end{equation}
+One derivation counts arrivals of a rate-$r$ Poisson clock: the $d$th stage is
+complete exactly when at least $d$ arrivals have occurred by $t$.
+For zero stages, completion is immediate; $F_0(t)=1$.
+
+The reference sums the upper Poisson tail when $rt<d$ to avoid subtracting a
+number nearly one. For large $rt$, it subtracts the small lower tail.
+Its declared numerical domain limits depth to 256; this is a reference budget,
+not a physical limit on reactions.
+\Listing{erlang_complete}
+
+Now distinguish one completed computation from \emph{all} of $R$ independent
+computations. Under independent chains, the latter probability is
+\[
+P(\max_jT_j\le t)=F_d(t)^R.
+\]
+Adding parallel jobs leaves the mean time of one chain unchanged but reduces the
+probability that every job has completed by a fixed deadline.
+If the system needs only one successful witness, it has a different event again.
+
+\Plate{04-latency}{Four sequential stages at assigned rate
+$r=.1\ \mathrm{s}^{-1}$. Curves are generated for completion of one chain and
+all of ten or one hundred independent chains. Extra parallelism does not make
+the all-complete event occur earlier.}{dnad24:latency}
+
+\subsection{Where the chain model stops}
+Real reactions can branch, compete for species, return to previous states, become
+trapped or nucleate at different times. These mechanisms invalidate the equal-rate,
+independent irreversible chain. Chapter 23's error model and this latency model
+should not be multiplied unless their conditional relationship has been specified.
+Waiting longer can improve completion and also increase leakage or degradation.
+A deadline is therefore part of the scientific outcome, not an inconvenient
+implementation detail.
+
+\section{Transport has its own length scale}
+For free Brownian diffusion in $d_{\mathrm{space}}\in\{1,2,3\}$ dimensions,
+$\mathbb E[\|X(t)-X(0)\|^2]=2d_{\mathrm{space}}Dt$.
+Setting the root-mean-square displacement equal to a length $a$ gives
+\begin{equation}
+t_{\mathrm{RMS}}=\frac{a^2}{2d_{\mathrm{space}}D}.
+\label{dnad24:diffusion}
+\end{equation}
+Here $a$ is in metres and $D$ in $\mathrm{m}^2/\mathrm{s}$.
+This is not a vessel mixing-time prediction or a first-passage time to a binding
+site. Boundaries, geometry, stirring, crowding and reactive surfaces can change the
+relevant transport problem.
+\begin{center}\small\input{\Generated/transport.tex}\end{center}
+The generated values use assigned $D=10^{-10}\ \mathrm{m}^2/\mathrm{s}$ in three
+dimensions. Increasing travel distance by ten multiplies this RMS timescale by
+one hundred. Scaling a drawing without changing transport assumptions does not
+scale the device's kinetics faithfully.
+
+\section{A correct molecule must enter the observed sample}
+Readout is a physical channel, not a final line of pseudocode. Suppose the relevant
+aliquot has a Poisson number of candidate witnesses with mean $\nu$.
+Each is independently detectable with probability $\eta\in[0,1]$.
+Poisson thinning makes the detected count Poisson with mean $\eta\nu$, hence
+\begin{equation}
+P(\text{at least one detected})=1-e^{-\eta\nu}.
+\label{dnad24:detect}
+\end{equation}
+To keep the miss probability at most $\delta\in(0,1)$,
+$\nu\ge-\log\delta/\eta$ when $\eta>0$.
+At $\eta=0$, no finite witness inventory suffices. The implementation uses
+\texttt{expm1} so that very small detection probabilities remain representable.
+\Listing{detection_probability}
+\begin{center}\small\input{\Generated/detection.tex}\end{center}
+
+This event is not calibrated classification accuracy. It only describes capture
+of at least one detectable molecule under a count model. A false-positive assay
+can report a witness that was never there; Chapter 23 owns that separate
+observation-channel inversion.
+
+\Plate{05-readout}{Inventory, transport into an aliquot, detection and finite
+report bandwidth are distinct gates. Counts describe expectations; the plate
+does not promise that all molecules or all identities are observed.}
+{dnad24:readout}
+
+If a reader must communicate $Q$ bits over a serial channel with effective
+bandwidth $b$ bits/s, its output alone requires at least $Q/b$ seconds under that
+interface. A million bits at $10^5$ bits/s costs ten seconds before overhead.
+This is not a measured sequencing rate. It illustrates why returning an entire
+candidate set and returning one decision bit have different output costs.
+
+\section{Energy claims require a thermodynamic contract}
+Do not compare an ideal molecular transition to the wall-plug energy of a complete
+electronic service. Energy accounting must include preparation, temperature
+control, mixing, instrumentation, observation and downstream analysis within the
+declared system boundary.
+
+For an ideal quasistatic erasure of one unbiased classical bit at temperature
+$T$, the familiar lower bound is $k_BT\log2$ \cite{dnad24:landauer}.
+The reference calculates approximately $2.87\times10^{-21}$ J at 300 K.
+To see the information premise, start with two equally likely logical states.
+Their entropy is $S_{\mathrm{bit}}=-k_B\sum_{i=0}^1p_i\log p_i=k_B\log2$.
+Resetting both to one known state makes that logical entropy zero. In an
+isothermal process with no compensating entropy retained elsewhere, the
+environment must gain at least $k_B\log2$, giving the ideal heat floor
+$Q_{\mathrm{env}}\ge k_BT\log2$. The state probabilities and system boundary
+are essential to the argument.
+This is neither an empirical DNA energy cost nor a universal charge per hybridization
+event. Biased states, retained correlations, reversibility and nonequilibrium
+operation require the corresponding thermodynamic analysis. A useful engineering
+measurement is actual energy per verified completed task, with failures and
+auxiliary systems included.
+
+\section{The Pareto problem: costs move rather than disappear}
+A design $A$ dominates $B$ only relative to specified metrics and matched success
+requirements: no controlled cost is worse and at least one is strictly better.
+Otherwise, the designs may be incomparable.
+A smaller species alphabet may require a larger seed; more copies may improve
+sampling while increasing volume or readout; stronger redundancy may decrease
+logical error while increasing area and serial depth.
+
+\Plate{06-tradeoff}{A resource comparison freezes input, correctness event,
+deadline and observation contract before placing designs on a Pareto frontier.
+Numbers are not invented to rank real devices.}{dnad24:tradeoff}
+
+For a molecular/electronic comparison, charge each system for input preparation,
+representation, execution, output verification and recovery from failure.
+Different devices may still be useful for different tasks. The goal is to discover
+the workload where a complete design has an advantage, not to preserve an
+unqualified story about exponential parallel speedup.
+
+\section{Executable checks and falsifiers}
+The chapter adds thirty-six local tests. Coverage inversion is checked at one,
+eight, 1024 and $2^{60}$ species; exact small fixed-draw occupancy is compared
+against independent exhaustive enumeration. A seeded Poisson-arrival Monte Carlo
+checks a different preparation contract rather than accidentally validating the
+fixed-draw law. A depth-two closed form independently verifies the Erlang routine.
+
+Other checks enforce concentration/volume conservation, quadratic RMS transport
+scaling, detection inversion, endpoints and invalid domains. These are tests of
+declared mathematical models. They do not verify synthesis feasibility,
+sequence-dependent rate constants, physical mixing or actual instrument sensitivity.
+
+The main falsifiers are concrete: a zero-probability required species defeats
+coverage; a depleted partner defeats constant-rate waiting; common resource
+coupling defeats independent-chain completion; an insensitive assay defeats
+detection; an uncounted preparation cost defeats a headline system comparison.
+
+\section{Exercises and worked solutions}
+\begin{enumerate}
+\item Why does $2^n$ describe this search and not all DNA algorithms?
+\textbf{Answer:} this architecture explicitly materializes every $n$-bit candidate;
+another representation or search distribution can require different inventory.
+\item Derive Equation~\ref{dnad24:coverage}.
+\textbf{Answer:} each independent count is nonzero with probability $1-e^{-\mu}$;
+multiply over $M$ species.
+\item Solve the coverage requirement for $\mu$.
+\textbf{Answer:} take the $M$th root of $(1-e^{-\mu})^M\ge1-\delta$ and then
+the negative logarithm to obtain Equation~\ref{dnad24:mu}.
+\item Explain the numerical use of \texttt{expm1}.
+\textbf{Answer:} it accurately evaluates $e^x-1$ when $x$ is close to zero;
+direct subtraction loses relative precision.
+\item Derive the large-$M$ copy law.
+\textbf{Answer:} with $a=-\log(1-\delta)>0$,
+$1-e^{-a/M}=a/M+O(M^{-2})$, so $\mu=\log M-\log a+o(1)$.
+\item Prove the union bound's sufficient requirement.
+\textbf{Answer:} sum the $M$ missing probabilities $e^{-\mu}$ and solve
+$Me^{-\mu}\le\delta$.
+\item Why is a fixed total of $M\mu$ draws not the same model?
+\textbf{Answer:} conditioning the total count removes independent species counts;
+use the occupancy recurrence or another fixed-draw law.
+\item Derive the next-draw transitions for $s$ represented species.
+\textbf{Answer:} a represented identity is drawn with probability $s/M$;
+a new identity with probability $(M-s)/M$.
+\item If one required identity is absent, does amplification repair coverage?
+\textbf{Answer:} no; descendants of present templates do not create the absent
+identity under an identity-preserving amplification model.
+\item Double total concentration with the same inventory. What changes?
+\textbf{Answer:} modeled volume halves. Encounter rates may change; feasibility
+and off-target reactions require separate analysis.
+\item Derive Equation~\ref{dnad24:wait}.
+\textbf{Answer:} equal species concentration is $c_{\mathrm{tot}}/S$;
+the exponential mean is its reciprocal rate.
+\item Compute the mean of four serial stages at $.1\ \mathrm{s}^{-1}$.
+\textbf{Answer:} 40 s; this is a mean, not a completion guarantee at 40 s.
+\item Derive the chain CDF from a Poisson clock.
+\textbf{Answer:} completion requires at least $d$ arrivals; subtract the probability
+of zero through $d-1$ arrivals.
+\item Does running one hundred independent chains make all complete by the
+one-chain median? \textbf{Answer:} probability is $(1/2)^{100}$, not $1/2$.
+\item Scale RMS diffusion distance by ten.
+\textbf{Answer:} the assigned-model timescale increases by one hundred, with $D$
+and spatial dimension fixed.
+\item How many mean witnesses are needed for .95 detection at $\eta=.1$?
+\textbf{Answer:} $-\log(.05)/.1\approx29.9573$.
+\item What is the readout lower bound for $10^6$ bits at $10^5$ bits/s?
+\textbf{Answer:} ten seconds for the specified serial interface alone.
+\item Why is $k_BT\log2$ not DNA energy per operation?
+\textbf{Answer:} it is an ideal erasure bound under particular information and
+thermodynamic premises, not a measured chemical-device energy budget.
+\item Design a Pareto comparison.
+\textbf{Rubric:} freeze task, representation, success event, deadline and observed
+output; count species, copies, auxiliaries, synthesis, volume, latency, readout,
+energy boundary and failed runs; report incomparable tradeoffs honestly.
+\item Extend the coverage model to unequal abundances.
+\textbf{Answer:} independent Poisson means $\mu_j$ give
+$\prod_j(1-e^{-\mu_j})$; a zero mean makes complete coverage probability zero.
+A useful extension optimizes inventory subject to measured abundance uncertainty.
+\end{enumerate}
+
+\section{Bridge}
+Chapter 25 specializes the representation and readout account to DNA storage:
+indices, payload constraints, strand dropout and decoding. Chapter 26 owns
+laboratory workflows, controls and immutable evidence bundles. Keeping those
+jobs distinct prevents resource theory from repeating a methods checklist.
+The question changes from resource inventory to what information survives the
+complete physical channel.

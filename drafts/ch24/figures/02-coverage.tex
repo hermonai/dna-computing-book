@@ -1,0 +1,14 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
+\node[Blue,font=\bfseries] at (3.7,2.8) {Eight possible identity classes};
+\foreach \i/\count in {0/3,1/1,2/2,3/0,4/1,5/2,6/1,7/0}{
+\draw[draw=Blue,fill=Pale] (\i,0) rectangle ++(.8,2);
+\node at (\i+.4,2.3) {$j_{\i}$};
+\ifnum\count>0 \foreach \k in {1,...,\count}{
+\draw[Blue,thick] (\i+.12,\k*.45)--(\i+.64,\k*.45);
+\draw[Blue,-{Stealth[length=1mm]}] (\i+.64,\k*.45)--(\i+.69,\k*.45);}\else
+\node[Red] at (\i+.4,1) {$0$};\fi}
+\node[align=center,text width=5.2cm] at (11,1.4) {$C_j\sim\mathrm{Poisson}(\mu)$ independently\\[4pt]
+missing one class: $e^{-\mu}$\\all classes present: $(1-e^{-\mu})^M$};
+\node[anchor=north,align=center,text width=7.5cm] at (3.9,-.35) {Ten schematic copies, six represented identities.\\Total abundance does not certify complete coverage.};
+\node[anchor=north,Red,align=center,text width=5.5cm] at (11,-.35) {Equal means and independent counts are assumptions.\\A rare or absent required species changes the result.};
+\end{tikzpicture}

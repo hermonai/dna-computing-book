@@ -1,0 +1,1 @@
+Candidate inventory, serial reaction chain and finite readout each carry separately declared physical resource costs. Parallel processing does not erase those boundaries.

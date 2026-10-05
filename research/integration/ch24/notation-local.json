@@ -1,0 +1,35 @@
+{
+  "chapter": 24,
+  "definitions": [
+    {
+      "symbol": "M",
+      "meaning": "required candidate identities, 2^n only for explicit enumeration",
+      "unit": "count"
+    },
+    {
+      "symbol": "mu",
+      "meaning": "mean copies per identity under independent Poisson preparation",
+      "unit": "copies"
+    },
+    {
+      "symbol": "c_tot",
+      "meaning": "total pool concentration, not each species",
+      "unit": "mol/litre"
+    },
+    {
+      "symbol": "V",
+      "meaning": "model volume",
+      "unit": "litre"
+    },
+    {
+      "symbol": "r",
+      "meaning": "assigned exponential stage rate",
+      "unit": "per second"
+    },
+    {
+      "symbol": "eta",
+      "meaning": "independent witness detectability",
+      "unit": "probability"
+    }
+  ]
+}

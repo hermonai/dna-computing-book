@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-06",
+  "chapter": 24,
+  "pdf": "output/pdf/dna-computing-ch24-review.pdf",
+  "pdf_sha256": "a6e27ee65b162622f93d3485bf363f3ae251233a9a9a319ecc26a21cc0446a2c",
+  "pages": 15,
+  "source_hashes": {
+    "drafts/ch24/README.md": "577c1a93990f42f7c3b05cd8ff7bce329456f84f52f939bdb138127fd02f0382",
+    "drafts/ch24/STORYBOARD.md": "ee15aaf34481edaee50f8d2b909c76aa90b05a8f39786fecc49a0e42c8704c48",
+    "drafts/ch24/build.py": "aa3a6e10f36307aee314b7a1622483c080848c8e2defb9bc4b0b01277bb31eb8",
+    "drafts/ch24/figures/01-resource.tex": "bbe4e0ff78baf85e95b0c05f1d52954537514005647efc12dccee18ecc5cda13",
+    "drafts/ch24/figures/01-resource.txt": "4748d72bf4e42eaf267e7710550ae67d02d028039e4c1aced57b3a8fa2e16d4c",
+    "drafts/ch24/figures/02-coverage.tex": "55af18fe7202d3829b88b241caadbddc5087b6b12ca7f40e11be382a462d4dc0",
+    "drafts/ch24/figures/02-coverage.txt": "e389593777214633a986446476449979ada54dce316df056bf852c5bc935f237",
+    "drafts/ch24/figures/03-concentration.tex": "6f7478585674a1105288f90f9708b188ebe0750489680fb16da93c898b0acdf5",
+    "drafts/ch24/figures/03-concentration.txt": "271f9a13a81fa62169daf9591008f8114205db2ac13c69e9442c7c8e4f73a7b2",
+    "drafts/ch24/figures/04-latency.tex": "fe0511c26f7f7c42c51165d3f9c820d59e30fa32900abc29a11bd77ed371946c",
+    "drafts/ch24/figures/04-latency.txt": "22814aa71b892aac6e25252d861ce060c0ed1e825ec39ea6b5ace2ac350c7854",
+    "drafts/ch24/figures/05-readout.tex": "4d64a6f40dcf231b8811bbe4dbe137a2631f0427a0dcffd0dc131337a11ec32d",
+    "drafts/ch24/figures/05-readout.txt": "33b01639959b00392c7f7fa746a51fc00530d537369c4408f82e2096dd21fb29",
+    "drafts/ch24/figures/06-tradeoff.tex": "263dbd35ba9c4984af524deaaf769d23caf6445b10a4297efb4334aa640c0aa9",
+    "drafts/ch24/figures/06-tradeoff.txt": "4f91d7cb6d52b8466acb4f42b82590a285a704a0d7859e2cd269083eb1097bea",
+    "drafts/ch24/manuscript.tex": "3b22c279a03589b63fd5219aa8a75f3da8ec5b175559d55dc13c3d80536d816e",
+    "drafts/ch24/reference.py": "6a17e2366e7f9de3a6febbc81ebe46c9ab299dd5305ce838ec313b874693fee5",
+    "drafts/ch24/results.json": "75f509bd35d3917c9b78854e1a1cb44f0489a62c2772d9b8f62e90b4849c05d1",
+    "drafts/ch24/review.tex": "acc80037a2191cdc9ee9d9f6c5f07634f8d9f057496ab9223f721647f46b2e23",
+    "drafts/ch24/sources.tex": "5d39f18c86bbd3dcb273c309ff37c85d36531ac41fba774d18f95c0cf69af118",
+    "tests/test_ch24_reference.py": "d9b03b6f5749415fd38e5bb7b1e6a3271e8b8281206b5787368759ce64fd77c4"
+  },
+  "tests": {
+    "repository_passed": 1066,
+    "repository_skipped": 2,
+    "chapter_passed": 36,
+    "report": "build/ch24/regression.xml",
+    "python": "3.13.6"
+  },
+  "visual_review": {
+    "reviewer": "author/agent",
+    "status": "PASS WITH NOTES",
+    "mode": "all 15 pages, color and grayscale contact sheets",
+    "notes": "All 15 pages inspected in color and grayscale. Occupancy labels moved below bins and count corrected to ten. Equations, tables, listings, six mechanism plates and solutions are readable. Models use assigned rates; physical validation and full-book review remain open."
+  },
+  "mathematical_review": "Assumptions, independent oracles and falsifiers in technical-audit.md.",
+  "acceptance": "locally reviewed standalone integration candidate; not accepted publication edition"
+}
