@@ -5,7 +5,7 @@ States are separate gates, not one completion flag.
 | ID | Canonical title | Decision | Integrated | Tests | Figures | Sources | PDF |
 |---|---|---|---|---|---|---|---|
 | DNAD-22 | Self-assembly, tiles and geometry | merge and correct stable seed, glue strength, directedness proof and counterexample; deepen kinetic and geometric mechanisms | reviewed | PASS; local chapter and full regression | PASS WITH NOTES; six figures, all color/grayscale pages | PASS WITH NOTES; access depth recorded, no external reproduction | PASS; standalone 14 pages; full-book pending |
-| DNAD-23 | Noise, crosstalk and fault models | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |
+| DNAD-23 | Noise, crosstalk and fault models | Merge reliability models into canonical noise/crosstalk/fault scope; add observation channel, correlated redundancy, stable numerics and primary-source corrections. | locally_reviewed_candidate | 30 chapter tests; full regression passed | all pages color/grayscale locally reviewed | primary access depths recorded; no experiment replication | standalone 15 pages; full-book pending |
 | DNAD-24 | Scaling and resource limits | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |
 | DNAD-25 | Synthesis, sequencing and DNA storage | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |
 | DNAD-26 | Laboratory workflows and reproducibility | pending semantic inspection | candidate | not_rerun | not_reviewed | not_rerun | not_built_locally |

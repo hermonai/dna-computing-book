@@ -1,0 +1,57 @@
+[
+  {
+    "key": "proofreading2004",
+    "claim": "Proofreading tile sets use cooperative redundancy and kinetic/thermodynamic modeling to improve modeled error scaling.",
+    "primary": "https://www.dna.caltech.edu/Papers/proofreading_DNA9.pdf",
+    "authors": "Erik Winfree; Renat Bekbolatov",
+    "date": "2004",
+    "access_date": "2026-10-05",
+    "inspected": "author-hosted paper abstract/publication description and supplementary index",
+    "depth": "mechanism and headline scaling",
+    "unresolved": "Do not treat theoretical scaling as experimental universal law."
+  },
+  {
+    "key": "facet2007",
+    "claim": "Snaked proofreading showed a fourfold lower facet nucleation rate than uniform proofreading under reported conditions.",
+    "primary": "https://pubmed.ncbi.nlm.nih.gov/17718529/",
+    "authors": "Rebecca Schulman; Erik Winfree",
+    "date": "2007",
+    "access_date": "2026-10-05",
+    "inspected": "PubMed abstract",
+    "depth": "abstract",
+    "unresolved": null
+  },
+  {
+    "key": "redundancy2015",
+    "claim": "Experimental redundancy levels 1-4 reduced bitwise error roughly threefold per added level; fourfold redundancy was below 0.1% under reported conditions.",
+    "primary": "https://pubmed.ncbi.nlm.nih.gov/25965580/",
+    "authors": "Rebecca Schulman; Christina Wright; Erik Winfree",
+    "date": "2015",
+    "access_date": "2026-10-05",
+    "inspected": "PubMed abstract",
+    "depth": "abstract",
+    "unresolved": null
+  },
+  {
+    "key": "origami2021",
+    "claim": "DNA origami reliability includes stability and scale/manufacturing limitations.",
+    "primary": "https://www.nature.com/articles/s43586-020-00009-8",
+    "authors": "Dey et al.",
+    "date": "2021",
+    "access_date": "2026-10-05",
+    "inspected": "publisher abstract",
+    "depth": "abstract",
+    "unresolved": null
+  },
+  {
+    "key": "origami2026",
+    "claim": "Primary sequence and off-target interactions can materially change origami folding reliability and kinetic trapping.",
+    "primary": "https://www.nature.com/articles/s41467-026-73387-4",
+    "authors": "Haydell et al.",
+    "date": "2026",
+    "access_date": "2026-10-05",
+    "inspected": "publisher abstract/results excerpt",
+    "depth": "abstract plus reported result excerpt",
+    "unresolved": null
+  }
+]

@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+\begin{axis}[width=12.7cm,height=6.2cm,xmin=0,xmax=200,ymin=0,ymax=1,
+xlabel={Eligible sites $N$},ylabel={All-correct probability},
+grid=major,major grid style={gray!20},
+legend style={at={(.98,.98)},anchor=north east,font=\small},
+tick label style={font=\small},label style={font=\small}]
+\input{\Generated/yield-plot.tex}
+\legend{IID $p=.01$,Beta mixture: mean $.01$}
+\end{axis}
+\node[font=\footnotesize\sffamily,align=center] at (6.3,-1.25)
+{Generated model values; $\alpha=.99,\ \beta=98.01,\ \rho=.01$.\\
+Mixture correlation raises clean-object yield but also clusters damage.};
+\end{tikzpicture}

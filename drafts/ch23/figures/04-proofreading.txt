@@ -1,0 +1,1 @@
+A logical XOR tile is mapped conceptually to four physical subtiles with private internal labels tied to the logical identity. Wrong attachment must obtain additional support to become a completed wrong block. The sketch communicates cooperative constraints and area cost but does not supply a complete boundary/glue construction or prove a kinetic error exponent.

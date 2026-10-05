@@ -1,0 +1,1 @@
+Both curves are generated from the reference calculation at the same mean site error 0.01. Independent sites give (1-p)^N. A beta mixture with alpha 0.99 and beta 98.01 gives within-object correlation 0.01 and a different clean-object probability. Axes have actual units and values; this is not experimental yield data.

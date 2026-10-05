@@ -1,0 +1,19 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\footnotesize\sffamily]
+\node[Blue,font=\small\bfseries] at (2,3.4) {Growth mismatch};
+\node[Blue,font=\small\bfseries] at (7,3.4) {Facet initiation};
+\node[Blue,font=\small\bfseries] at (12,3.4) {Seed-independent initiation};
+\foreach \x in {0,1}\foreach \y in {0,1}{\draw[fill=Pale,draw=Blue] (\x,\y) rectangle ++(1,1);}
+\draw[fill=Red!12,draw=Red,thick] (1,2) rectangle ++(1,1);
+\draw[Green,thick] (1.12,2)--(1.88,2);
+\draw[Red,thick,dashed] (1,2.1)--(1,2.9);
+\node[align=center,text width=3.6cm] at (1.8,-.55) {one intended contact;\\one mismatched interface};
+\foreach \x in {5,6,7,8}{\draw[fill=Pale,draw=Blue] (\x,1) rectangle ++(1,1);}
+\draw[fill=Red!12,draw=Red,thick] (6,2) rectangle ++(1,1);
+\draw[Green,thick] (6.12,2)--(6.88,2);
+\node[align=center,text width=4cm] at (7,-.55) {a weak attachment on a flat facet\\can initiate an unwanted layer};
+\draw[fill=Red!12,draw=Red] (11,1) rectangle ++(1,1);
+\draw[fill=Red!12,draw=Red] (12,1) rectangle ++(1,1);
+\node[align=center] at (12,2.8) {no authorized seed};
+\node[align=center,text width=4cm] at (12,-.55) {a new assembly begins elsewhere;\\its frequency needs a distinct denominator};
+\node[align=center] at (7,-2.15) {Contacts are abstract recognition interfaces. Locking and detachment require a kinetic model.};
+\end{tikzpicture}
