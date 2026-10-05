@@ -1,0 +1,2 @@
+Question: why does a threshold consume a finite inventory?
+Input X has 5′→3′ domains t,a. A complementary sink Q is antiparallel with domains t*,a*. Pairing creates bound waste W; backbones remain continuous. One free input and one sink become one duplex. The formula r=max(s−θ,0) is a completed-capture limit, not an instantaneous kinetic law. Pairing marks are noncovalent interactions. This minimal sink is not the full seesaw threshold complex.

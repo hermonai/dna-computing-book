@@ -1,0 +1,61 @@
+{
+  "pdf": "output/pdf/dna-computing-ch21-review.pdf",
+  "pages": 13,
+  "sha256": "d0482773350034e9e16fa7fc35ad434a51378293af6ebda5bfde9c91a3e5aa1c",
+  "status": "standalone authored-LaTeX review candidate; no acceptance promotion",
+  "sources": {
+    "drafts/ch21/README.md": "4e7ee03358e2279e60b3f5efeb588e6bf3d8c96a7c5ac45a5562611d76436604",
+    "drafts/ch21/STORYBOARD.md": "1b2f3967e05b29289873cc9f20aa7706117d903deffd01944cae83061469ac40",
+    "drafts/ch21/build.py": "5cc7f3f5808bf727c4ef2182c05309901f4bd2f0e1dd9b4b406901f131190527",
+    "drafts/ch21/figures/01-capture.tex": "97f54ed0595397aee65171878da3f7a5689ed2bdd67006169ec59f0f56234963",
+    "drafts/ch21/figures/01-capture.txt": "40a61ab3fb4aa788ed616f30d67f9ce4c32514b2dd3160ecbf8542b327fa2c4f",
+    "drafts/ch21/figures/02-transfer.tex": "f187993f6e9acf2eeddd48ecff771b4957317e793f40c1bf73729851d635a5cd",
+    "drafts/ch21/figures/02-transfer.txt": "74a9bf1ef3a4d8d2b78c0e043264a855faf1eebb95bbb68f941b4afb1f211245",
+    "drafts/ch21/figures/03-race.tex": "7e7ff2c139495d71c59d304ae069f28dc7d7b3de16fe6cd6dafefe05395bacd2",
+    "drafts/ch21/figures/03-race.txt": "363cbadcd282a059c015f05a5c7b697fbe756caa05e824e490f7e776b7ce46c6",
+    "drafts/ch21/figures/04-load.tex": "ad57d79c5e828a9fd71ddb670877882c855259f447f69a670904da7ba5cc243c",
+    "drafts/ch21/figures/04-load.txt": "0f8482f2b17de5a253437b4e564483ad07da061bf4f1828074385d7bf6c961ce",
+    "drafts/ch21/figures/05-feedback.tex": "022bb23404ef2c2f62ab05b6cc5045d8e9182dd5b52cea48376ded7475e6bff0",
+    "drafts/ch21/figures/05-feedback.txt": "31b4adb57333f8897bc7477d03e80904087639511ca521e3c2bb3647c579babd",
+    "drafts/ch21/manuscript.tex": "720b7b630fed206e55345a3f60fc40a2488e3672f5240460ab7d39a6b99c6614",
+    "drafts/ch21/reference.py": "238f17ffcf771411c118f55f5acbc174512ef91022c4bbb8a834379a64d221b1",
+    "drafts/ch21/results.json": "825516a47a20274203306ec4d33e75ef20060c8ee315c74a18c66e80a9080533",
+    "drafts/ch21/review.tex": "656984a4d2b12fe235b2f878570f2f456d590d2c509b982b2015ea4441b11c03",
+    "drafts/ch21/sources.tex": "db4171eb810c98eccd273563e09700f478ca1b1f541d2185e6d72f4f401c9f37"
+  },
+  "reviewedOn": "2026-09-27",
+  "reviewType": "author technical, editorial and visual review; not independent specialist acceptance",
+  "allPagesInspected": true,
+  "inspectedPhysicalPages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "grayscaleReview": "Every page inspected in color and grayscale contact sheets. Capture/release competition and feedback phase line inspected at page scale. Reaction junctions, routing, code pagination, graph-label spacing and source-note pagination corrected and re-inspected.",
+  "figures": 5,
+  "exercises": 12,
+  "openGates": [
+    "independent specialist review",
+    "reader feedback",
+    "cumulative integration, cross-chapter index and bibliography"
+  ],
+  "validation": {
+    "generatedArtifactsCheck": "passed",
+    "pdfWordsOutsidePage": 0,
+    "unresolvedReferenceMarkers": 0,
+    "python": "3.13.6",
+    "fullSuitePassed": 975,
+    "fullSuiteSkipped": 2,
+    "priorEditionPreservationTests": "passed"
+  }
+}

@@ -1,0 +1,27 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box] (-.3,-.4) rectangle (13.3,5.3);
+\node[note,anchor=west,text=Blue] at (0,5) {\textbf{A local rule test: compare both strand labels}};
+\fill[Pale,rounded corners] (0,2.5) rectangle (6.1,4.55);
+\fill[Pale,rounded corners] (6.6,2.5) rectangle (12.8,4.55);
+\node[note] at (3.05,4.2) {Upper labels};
+\node[note] at (9.7,4.2) {Lower labels};
+\foreach \x in {1.5,8.1}{
+  \draw[Blue,thick] (\x,3.65) rectangle +(1,.35);
+  \draw[Blue,thick] (\x,3.05) rectangle +(1,.35);
+  \draw[Green,thick] (\x+1,3.05) rectangle +(1,.35);
+  \node[smallnote] at (\x+.5,3.82) {a};
+  \node[smallnote] at (\x+.5,3.22) {a};
+  \node[smallnote] at (\x+1.5,3.22) {b};
+}
+\node[smallnote] at (3.05,2.76) {$a\preceq ab$: comparable};
+\node[smallnote] at (9.7,2.76) {$a\preceq ab$: comparable};
+\node[note,draw=Blue,circle,minimum size=.65cm] (s) at (1.0,1.3) {$s$};
+\node[note,draw=Blue,circle,minimum size=.65cm] (f) at (5.0,1.95) {$f$};
+\node[note,draw=Blue,circle,minimum size=.65cm] (g) at (5.0,.55) {$g$};
+\draw[flow] (s) -- node[smallnote,above,sloped] {consume $(a,a)$} (f);
+\draw[flow] (s) -- node[smallnote,below,sloped] {consume $(ab,ab)$} (g);
+\node[note,align=left,anchor=west] at (7.0,1.35)
+  {Unread input: $ab/ab$\\Identity pairing: admissible\\\textbf{Both rules enabled at $s$}};
+\node[smallnote,text=Red] at (6.4,-.1)
+  {Syntactic conflict is local; actual ambiguity also requires a reachable configuration.};
+\end{tikzpicture}

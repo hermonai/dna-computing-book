@@ -1,0 +1,2 @@
+Question: does correct arithmetic imply finite deterministic completion time?
+Blue solid curve: deterministic count-equivalent remaining A=4/(1+4t). Red dashed staircase: one seeded finite-copy annihilation trajectory at k=Ω=1, with actual event times included. Horizontal axis seconds, vertical remaining A. Discrete completion and an ODE tail use different semantics; neither is wet-lab evidence.

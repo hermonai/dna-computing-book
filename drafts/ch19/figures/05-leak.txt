@@ -1,0 +1,2 @@
+FIGURE 05-leak
+Generated input-present fraction 1-exp(-0.011*t) and blank fraction 1-exp(-0.001*t), with a horizontal threshold 0.5. Constant effective hazards assume excess input and a finite gate pool. The useful threshold window is finite; the blank eventually crosses. This is distinct from the finite-input batch model.

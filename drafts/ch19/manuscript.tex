@@ -1,0 +1,333 @@
+\chapter{Toehold-mediated strand displacement}
+An invader binds a short exposed segment of a DNA complex. Does the incumbent
+strand necessarily leave? No. Binding may reverse before the branch point has
+crossed the duplex. The useful computation is not the arrival of an invader;
+it is a change in which strand occupies a substrate, followed by an observable
+output. This chapter reconstructs that distinction from molecular geometry,
+through first-passage probability, to finite material and readout budgets.
+
+Prerequisites are polarity and complementarity from Chapter 5, conservation
+from Chapter 6, stochastic rates from Chapter 7, and the separation of logical
+and physical state from Chapter 17. We use domain-level molecular drawings and
+assigned-rate models. No sequence-specific design or new experiment is claimed.
+
+\section{Specify the strands before writing a reaction}
+Name an invader $I$, an incumbent output $O$, and a substrate $S$. A domain is
+a contiguous segment treated as one recognition unit in a coarse description.
+Let $t$ denote an exposed \Term{toehold} and $b$ a branch-migration domain.
+Write the invader from $5'$ to $3'$ as $tb$. The aligned substrate is written
+from $3'$ to $5'$ as $t^*b^*$, where the star denotes complementary pairing
+in this alignment. If that substrate is instead listed in its own $5'$ to
+$3'$ sequence direction, its domain order reverses. Do not order oligonucleotides
+by copying an aligned lower strand as if it had the upper strand's polarity.
+
+Initially $O$ occupies $b^*$, leaving $t^*$ exposed. The invader can bind that
+exposed region and compete for the adjacent paired region. Backbone continuity
+does not change in this elementary exchange. The process substitutes pairing
+partners; it does not require cutting the substrate or synthesizing a new strand.
+Srinivas and colleagues distinguish reversible toehold binding, branch migration,
+and incumbent release in their mechanistic treatment \cite{srinivas}.
+
+\Plate{01-exchange}{One substrate, three pairing configurations. Solid colored
+strokes are covalent backbones; short vertical rungs indicate paired regions.
+The invader and incumbent have the same $5'$ to $3'$ orientation and compete
+for an antiparallel substrate. Released output retains its backbone. Geometry
+is schematic, with domain lengths not to scale.}{fig:exchange}
+
+The \Term{branch point} marks the boundary between substrate bases paired to
+the invader and those still paired to the incumbent. Its movement can reverse.
+A domain-level arrow suppresses many such exchanges; it is not a claim that
+the whole domain flips in one elementary event. Neither correct domain names
+nor Watson--Crick complementarity rules alone determine a kinetic rate.
+
+\section{Make the logical reaction conserve physical strands}
+Let $G=S{:}O$ be the initial gate complex and $W=S{:}I$ the spent complex.
+An ideal net reaction is
+\begin{equation}
+ I+G\longrightarrow W+O.
+ \label{eq:net}
+\end{equation}
+The two complexes each contain two strands. Initially the system has one
+invader strand and a two-strand gate; finally it has a two-strand spent complex
+and one output strand. Three strands remain three. Two reactant \emph{species}
+do not imply two physical strands.
+
+In a closed, well-mixed ideal batch with reaction extent $x$ in concentration
+units and no initial products,
+\begin{equation}
+ [I]=I_0-x,\quad [G]=G_0-x,\quad [W]=[O]=x.
+ \label{eq:inventory}
+\end{equation}
+Hence $[I]+[W]=I_0$, $[G]+[W]=G_0$, and $[G]+[O]=G_0$.
+These track invader, substrate and incumbent strands, respectively. They are
+stronger diagnostics than merely checking that concentrations stay nonnegative.
+A product model can conserve a sum while silently assigning the wrong strand
+identity to that sum.
+
+\Plate{04-inventory}{The three strand inventories cross the reaction boundary
+unchanged. Gate consumption limits output even if input is abundant. The output
+can trigger a subsequent gate only if it has that gate's required recognition
+interface; a labeled logical wire is not automatically a compatible strand.}{fig:inventory}
+
+This gate is not catalytic in $I$: the invader remains in $W$. A catalytic
+design needs additional reactions that release or regenerate the input.
+Likewise, feeding one released strand into two downstream gates is a competition
+for material, not free Boolean fan-out. Additional fuel, copy production, or
+a different signal encoding must be accounted for explicitly.
+
+\section{Turn a bound complex into a first-passage problem}
+Let $m\geq1$ count idealized branch-migration steps, and let $j$ be the number
+already completed. The transient states are $j=0,\ldots,m-1$; $P$ is released
+product and $D$ is detached invader. Starting at $j=0$ means the toehold is
+already bound. We make four modeling choices: forward rate $k_+>0$, backward
+rate $k_-\geq0$ for $j>0$, detachment rate $d\geq0$ only at $j=0$, and an
+absorbing product when the forward step leaves $m-1$. Rates have units
+$\mathrm{s}^{-1}$.
+
+These choices are a teaching reduction. Real interfaces can have additional
+dissociation paths, sequence-dependent barriers, and reversible product binding.
+In particular, treating product as absorbing is an observation-window or
+reaction-design assumption, not a universal thermodynamic statement.
+
+\Plate{02-walk}{The state graph distinguishes detachment from productive
+release. Backward motion does not necessarily detach the invader: it may return
+to the toehold-bound state. The first-passage calculation ends at either absorbing
+outcome; repeated binding attempts are a separate process.}{fig:walk}
+
+Let $Q$ be the transient row generator. Its off-diagonal entry $Q_{ij}$ is
+the rate from $i$ to $j$; its diagonal is minus the sum of \emph{all} outgoing
+rates, including absorption. Let $r_P$ collect direct rates to $P$. The
+detachment exit is $d$ in row zero and zero elsewhere. Thus
+$Q\boldsymbol 1+r_P+r_D=0$. A generator with row sum zero on the transient
+subspace would have forgotten absorption.
+\Listing{branch_chain}
+
+\section{Derive success probability, not just a mean rate}
+Let $p_j$ be the probability of release before detachment from state $j$.
+Condition on the first event. At an interior point with total exit rate $a_j$,
+\[
+ p_j=\sum_{i\ne j}\frac{Q_{ji}}{a_j}p_i+\frac{(r_P)_j}{a_j}.
+\]
+Multiplying by $a_j$ and using $Q_{jj}=-a_j$ gives the backward equation
+\begin{equation}
+ -Qp=r_P.\label{eq:probability}
+\end{equation}
+This is a linear boundary-value problem, not a Monte Carlo estimate.
+
+\begin{proposition}[Uniform migration with detachment at the origin]
+If $k_+=k_-=k>0$, then
+\begin{equation}
+ p_j=\frac{1+jd/k}{1+md/k},\qquad p_0=\frac{1}{1+md/k}.
+ \label{eq:closed}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Interior first-step equations give $p_{j+1}-2p_j+p_{j-1}=0$, so successive
+differences are constant and $p_j=A+Bj$. At zero,
+$k(p_1-p_0)-dp_0=0$, hence $B=dA/k$. The released boundary is $p_m=1$,
+which gives $A(1+md/k)=1$ and the stated expression.
+\end{proof}
+When $d=0$, success is certain in this finite model. When $d/k$ grows,
+most bound attempts detach. Larger $m$ lowers success at fixed rates, but this
+does not predict a universal physical length law: the rates and available
+paths may also change when a real sequence changes.
+
+\Plate{03-commitment}{Computed release-before-detachment probabilities for
+two migration lengths, at $k=2\ \mathrm{s}^{-1}$. The graph is a parameter
+sensitivity analysis of Equation~\ref{eq:closed}, not a calibration against
+toehold length or an experimental yield curve.}{fig:commitment}
+
+\section{Distinguish all attempts from successful attempts}
+Let $\tau_j$ be expected time to either absorbing outcome. First-step analysis
+includes the holding time $1/a_j$, giving
+\begin{equation}
+ -Q\tau=\boldsymbol 1.
+\end{equation}
+The mean time to \emph{successful} release, conditional on success, is different.
+Define $u_j=\mathbb E_j[T\,1_{\{P\}}]$. Since the eventual success probability
+from the state occupied at time $t$ is $p$, integration over surviving paths
+gives $u=\int_0^\infty e^{Qt}p\,dt$, hence
+\begin{equation}
+ -Qu=p,\qquad \mathbb E_j[T\mid P]=u_j/p_j.
+\end{equation}
+All transient states here reach absorption almost surely and $p_j>0$ because
+the forward path has positive rates. Other models may have traps or zero
+success probabilities; conditional means then require separate handling.
+\Listing{first_passage}
+\begin{center}\input{\Generated/passage.tex}\end{center}
+The generated table uses $k_+=k_-=2$ and $d=1$, all in inverse seconds.
+A fast average failed attempt must not be reported as a fast successful
+computation. As an independent limit check, setting $d=0$ yields
+$\tau_0=m(m+1)/(2k)$ for the reflecting-origin, absorbing-end uniform walk.
+The quadratic growth follows by summing the successive differences of the
+mean-time recurrence, even though a direct forward path has only $m$ steps.
+
+The dense reference solver uses $O(m^3)$ arithmetic and $O(m^2)$ storage;
+the tridiagonal structure permits linear-time elimination. Dense linear algebra
+is retained for inspection and testing, not offered as a scalable molecular
+simulator. Chapter 28 treats reusable solvers and numerical diagnostics.
+
+\section{Connect microscopic attempts to a coarse reaction rate}
+Let $k_{\rm on}$ have units $\mathrm{M}^{-1}\mathrm{s}^{-1}$ and let free
+invader concentration be $c$ M. Binding to one free gate then has hazard
+$a=k_{\rm on}c$. If each failed encounter restores the same free gate and
+the bath remains constant, the renewal reasoning of Chapter 17 gives
+\begin{equation}
+ \mathbb E[T_{\rm product}]=\frac{1/a+\tau_0}{p_0}.
+ \label{eq:renewal}
+\end{equation}
+The waiting time to bind and the bound residence time both count. When
+$a\tau_0\ll1$, bound encounters occupy little of the total time and an
+effective second-order description uses $k_{\rm eff}\approx k_{\rm on}p_0$.
+Without that separation, replacing the pathway by one instantaneous reaction
+can give the right eventual branch fraction and the wrong latency.
+
+The physical literature identifies an initiation penalty and a distinction
+between branch migration and simple end fraying \cite{srinivas}. Our constant
+rates omit those details deliberately. For sequence-resolved prediction, one
+needs an appropriate energy/rate model, calibrated conditions and validation
+data. Stronger binding cannot be assumed to accelerate every later step.
+Toehold exchange can also make the net process reversible; Zhang and Winfree's
+work treats that architecture explicitly \cite{zhang}. It is not identical to
+the absorbing-end construction solved here.
+
+\section{Solve a finite-pool batch without creating material}
+Assume Equation~\ref{eq:net} is irreversible on the observation interval,
+well mixed, and accurately represented by constant $k_{\rm eff}$. Then
+\begin{equation}
+ \frac{dx}{dt}=k_{\rm eff}(I_0-x)(G_0-x),\qquad x(0)=0.
+\end{equation}
+If $I_0=G_0=c_0$, separation of variables gives
+$1/(c_0-x)-1/c_0=k_{\rm eff}t$ and therefore
+\begin{equation}
+ x(t)=c_0\frac{k_{\rm eff}c_0t}{1+k_{\rm eff}c_0t}.
+ \label{eq:batch}
+\end{equation}
+For unequal pools, let $H=\max(I_0,G_0)$, $L=\min(I_0,G_0)$ and
+$\Delta=H-L>0$. Integrating partial fractions gives
+\begin{equation}
+ x(t)=\frac{LH(1-e^{-k_{\rm eff}\Delta t})}
+ {\Delta+L(1-e^{-k_{\rm eff}\Delta t})}.
+\end{equation}
+Both formulas approach $L$, never more than the limiting reagent. The reference
+uses \texttt{expm1} to resolve a small exponential difference and handles equal
+pools separately. Here concentrations are in nM, so the numerical rate is in
+$\mathrm{nM}^{-1}\mathrm{s}^{-1}$; multiply that rate by $10^9$ to express it
+in $\mathrm{M}^{-1}\mathrm{s}^{-1}$.
+\Listing{conversion}
+\begin{center}\input{\Generated/batch.tex}\end{center}
+The table assigns $I_0=G_0=100$ nM and $k_{\rm eff}=10^{-4}$
+$\mathrm{nM}^{-1}\mathrm{s}^{-1}$. At 100 seconds only half the gate is
+converted. Treating input as permanently fixed at its initial concentration
+would predict faster conversion and hide depletion. This is why the following
+excess-input readout model is labeled as a different approximation.
+
+\section{Leakage creates a decision window, not only an error bar}
+Define an input-present conversion hazard $\lambda$ and a background leak
+hazard $\ell$, both inverse seconds. Assume excess input keeps $\lambda$
+constant, reporters perfectly reflect converted gate, and every gate converts
+at most once. Then normalized signals satisfy
+\begin{equation}
+ y_1(t)=1-e^{-(\lambda+\ell)t},\qquad
+ y_0(t)=1-e^{-\ell t}.
+\end{equation}
+Both tend to one for $\ell>0$. Waiting indefinitely destroys separation in
+this model. For threshold $0<\theta<1$, a noiseless discrimination window is
+\begin{equation}
+ \frac{-\log(1-\theta)}{\lambda+\ell}\leq t
+ <\frac{-\log(1-\theta)}{\ell}.
+\end{equation}
+With $\lambda=0.01$, $\ell=0.001$ and $\theta=0.5$, the window is approximately
+63.0 to 693.1 seconds. These are model outputs, not recommended assay timings.
+For zero leak the upper limit becomes infinite; for zero input hazard no
+strict window exists. Noise, incomplete reporters and uncertain rates shrink
+or eliminate the practically usable window.
+\Plate{05-leak}{Assigned-hazard signals cross the same threshold at different
+times. The dashed blank curve eventually produces a false positive under this
+decision rule. A valid signal comparison needs a declared readout time and
+matched background controls, not only an attractive final endpoint.}{fig:leak}
+\Listing{reporter}
+
+Leakage is a mechanism class, not one universal constant. Unintended exposure,
+alternative pairing, impurities and reporter reactions can produce different
+time courses. A professional experiment distinguishes no-input background,
+noncomplementary input, a disabled intended interaction and a known output
+standard. The last control tests measurement independently of computation.
+An intensity increase alone does not identify which reaction produced it.
+
+\section{Composition, research frontier and evidence}
+Local correctness does not guarantee that a cascade is correct. A released
+output must match the next gate, remain available rather than sequestered,
+and arrive before competing reactions dominate. Preparing multiple species
+changes the interaction set; testing each gate alone does not test crosstalk
+in the mixture. A useful interface contract specifies strand identities,
+orientation, signal encoding, allowable concentration range, consumed resources,
+and how output is distinguished from exposed domains on intermediate complexes.
+
+The modern research question is not merely whether a strand can displace
+another. It is whether a compiled molecular system preserves intended dynamics
+under simultaneous reactions and changing inventories. Soloveichik, Seelig and
+Winfree's reaction-network construction gives a theoretical bridge between
+formal chemical dynamics and strand-displacement implementations \cite{crn}.
+Its existence does not validate arbitrary sequences or remove its operating
+assumptions. Chapter 20 develops stoichiometric and compositional semantics
+before Chapter 21 addresses circuit-level restoration and fan-out.
+
+A September 2026 contrast is the Scaffolded DNA Computer of Stérin and
+colleagues \cite{sterin}. Its design favors a target equilibrium configuration
+and allows replacement pathways rather than enforcing one detailed kinetic
+route. That is a different computational contract from our absorbing-end walk.
+The comparison raises a useful research question: which requirements truly
+need kinetic-path control, and which can be enforced by a global energy
+landscape? Neither architecture licenses assuming that every favorable endpoint
+is reached quickly. We do not transfer its reported experimental performance
+to the toy pathway or to arbitrary strand-displacement circuits.
+
+For an AI-assisted design workflow, retain candidate provenance and explicit
+constraints, use a physical model to reject invalid candidates, rank uncertainty
+as well as predicted performance, and reserve independent measurements for
+validation. Model-generated sequences are hypotheses. A high predicted score
+cannot replace material accounting, specificity tests or experimental evidence.
+This principle connects molecular programming to Evolutor without equating
+software gating with a biochemical reaction.
+
+\section{Exercises with worked answers}
+\begin{enumerate}
+\item Which strand must expose the complementary toehold? \textbf{Answer:}
+The substrate in $G$, here $t^*$ aligned $3'$ to $5'$. The invader carries $t$.
+\item Is branch migration backbone cutting? \textbf{Answer:} No; base-pair
+partners change while the three covalent strands remain continuous.
+\item With $m=4$, $k=2$ and $d=1$, compute success. \textbf{Answer:}
+$p_0=1/(1+4/2)=1/3$ per bound attempt, not per starting free molecule.
+\item Double both $k$ and $d$. \textbf{Answer:} Success is unchanged because
+$d/k$ is unchanged; all first-passage times halve.
+\item Derive the boundary condition at zero. \textbf{Answer:}
+$p_0=[k/(k+d)]p_1+[d/(k+d)]0$, so $k(p_1-p_0)=dp_0$.
+\item Why is $-Q\tau=1$ different from $-Qp=r_P$? \textbf{Answer:}
+The first rewards time in transient states; the second rewards only the
+product exit. Their right-hand sides have different units and meanings.
+\item At $d=0$, $m=4$, $k=2$, find the mean. \textbf{Answer:}
+$4\cdot5/(2\cdot2)=5$ seconds; it is not simply $m/k=2$ seconds.
+\item Can 30 nM input and 100 nM gate produce 100 nM output here?
+\textbf{Answer:} No. Without input regeneration, $x\leq30$ nM.
+\item What are the units of $k_{\rm eff}c_0t$? \textbf{Answer:} Dimensionless,
+provided the rate and concentration use the same molarity scale.
+\item At equal pools, solve for the half-conversion time. \textbf{Answer:}
+Equation~\ref{eq:batch} gives $t_{1/2}=1/(k_{\rm eff}c_0)$.
+\item Why can later measurement be worse? \textbf{Answer:} Under positive
+leak, blank conversion approaches full output and eventually crosses threshold.
+\item Design a falsification test for a supposed leak-free cascade.
+\textbf{Rubric:} State the hypothesis and detection limit; include no-input,
+noncomplementary input, individual-gate and full-mixture conditions; independently
+calibrate reporter response; predeclare time windows and replicates; quantify
+uncertainty. No observed signal supports an upper bound, not proof of zero leak.
+\end{enumerate}
+
+\section{Vocabulary and next question}
+\Term{First passage}: the first arrival at a specified outcome set.
+\Term{Transient generator}: rate matrix restricted to states before absorption.
+\Term{Reaction extent}: how much net reaction has occurred in declared units.
+\Term{Leakage}: output-producing behavior outside the intended input pathway.
+\Term{Interface contract}: the molecular and measurement assumptions required
+for a component to compose with another. The next chapter turns such contracts
+into chemical reaction networks while retaining their material meaning.

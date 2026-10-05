@@ -1,0 +1,29 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box] (-.1,-1.1) rectangle (13,4.2);
+\node[note,text=Blue,anchor=west] at (0,3.8) {\textbf{One exchange; three conserved strand identities}};
+\node[note] at (2.7,3.1) {Before: $I+G$};
+\node[note] at (10,3.1) {After: $W+O$};
+\draw[Red,line width=1.6pt,->] (.8,2.4)--(4.8,2.4);
+\node[smallnote,left] at (.8,2.4) {$5'$};
+\node[smallnote,right] at (4.8,2.4) {$3'$};
+\draw[Blue,line width=1.6pt,<-] (.8,.8)--(4.8,.8);
+\draw[Green,line width=1.6pt,->] (2,1.15)--(4.8,1.15);
+\foreach \x in {2.1,2.4,...,4.5}{\draw[Green!60] (\x,.83)--(\x,1.12);}
+\node[smallnote,left] at (.8,.8) {$3'$};
+\node[smallnote,right] at (4.8,.8) {$5'$};
+\node[smallnote,left] at (2,1.15) {$5'$};
+\node[smallnote,right] at (4.8,1.15) {$3'$};
+\draw[flow] (5.7,1.7)--node[above,smallnote]{exchange}(7.1,1.7);
+\draw[Blue,line width=1.6pt,<-] (8,2.05)--(12,2.05);
+\draw[Red,line width=1.6pt,->] (8,2.4)--(12,2.4);
+\foreach \x in {8.1,8.4,...,11.8}{\draw[Red!60] (\x,2.08)--(\x,2.37);}
+\node[smallnote,left] at (8,2.4) {$5'$};
+\node[smallnote,right] at (12,2.4) {$3'$};
+\node[smallnote,left] at (8,2.05) {$3'$};
+\node[smallnote,right] at (12,2.05) {$5'$};
+\draw[Green,line width=1.6pt,->] (9.2,.8)--(12,.8);
+\node[smallnote,left] at (9.2,.8) {$5'$};
+\node[smallnote,right] at (12,.8) {$3'$};
+\node[smallnote] at (6.4,-.1) {Invader: $I+W$ \qquad Substrate: $G+W$ \qquad Incumbent: $G+O$};
+\node[smallnote,text=Blue] at (6.4,-.7) {Every invariant counts strands, including those inside a complex.};
+\end{tikzpicture}

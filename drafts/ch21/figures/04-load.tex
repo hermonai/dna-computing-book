@@ -1,0 +1,15 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box] (0,-.4) rectangle (13,4.6);
+\node[note,anchor=west,text=Blue] at (0,4.25) {\textbf{Equal-volume receivers cannot each inherit the whole inventory}};
+\draw[thick,Blue,rounded corners] (.5,1.2) rectangle (3.2,3.3);
+\foreach \x in {1,1.8,2.6} \foreach \y in {1.6,2.2,2.8}
+ \fill[Blue] (\x,\y) circle (.085);
+\node[smallnote] at (1.85,.65) {9 signal equivalents};
+\foreach \y/\label in {3.4/1,2/2,.6/3} {
+ \draw[flow] (3.4,2.2)--(7,\y);
+ \draw[thick,Green,rounded corners] (7.3,\y-.4) rectangle (10.3,\y+.4);
+ \foreach \x in {7.8,8.8,9.8} \fill[Green] (\x,\y) circle (.085);
+ \node[smallnote,anchor=west] at (10.5,\y) {load \label};
+}
+\node[smallnote] at (7,-.25) {Partition: 3 each, not 9 each. Extra output requires extra reservoir.};
+\end{tikzpicture}

@@ -1,0 +1,2 @@
+Question: which summed inputs yield accepted output at six seconds?
+The exact staged response is Y=1−exp(−(max(s−θ,0)+λ)6). The nominal curve uses θ=1.3, λ=0; lower uses θ=1.35, λ=0; upper uses θ=1.25, λ=0.001. Dashed levels L=0.1 and H=0.9 delimit valid output bands. Input, output and threshold concentrations are normalized. The curves are model outputs, not measurements.

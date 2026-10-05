@@ -1,0 +1,4 @@
+Question: Two coordinates on one paired input
+Objects and arrow semantics: Antiparallel DNA polarity; two abstract head positions, both physically rightward.
+Change/invariant and caption claim: Distinguish coordinate direction from enzymatic synthesis.
+Scientific risk: Read-only heads are a formal device, not molecular motors.

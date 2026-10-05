@@ -1,0 +1,2 @@
+FIGURE 03-commitment
+Generated probability p0=1/(1+m*d/k), uniform k=2 per second, branch lengths 4 and 12. Detachment rate spans 0 through 4 per second. Longer branches lower per-encounter success under these fixed rates. Curves describe an assigned model, not measured toehold kinetics.

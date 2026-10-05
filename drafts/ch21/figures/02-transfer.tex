@@ -1,0 +1,12 @@
+\begin{tikzpicture}
+\begin{axis}[width=12.6cm,height=6cm,xlabel={Summed input $s$ (normalized concentration)},
+ylabel={Output $Y$},xmin=0,xmax=2.2,ymin=0,ymax=1.12,
+grid=major,legend style={font=\footnotesize,at={(.02,.98)},anchor=north west}]
+\input{\Generated/transfer-plot.tex}
+\legend{Nominal,Lower bound,Upper bound}
+\draw[densely dotted,black] (axis cs:0,.1)--(axis cs:2.2,.1);
+\draw[densely dotted,black] (axis cs:0,.9)--(axis cs:2.2,.9);
+\node[font=\footnotesize,anchor=east] at (axis cs:2.15,.16) {$L=0.1$};
+\node[font=\footnotesize,anchor=east] at (axis cs:2.15,.84) {$H=0.9$};
+\end{axis}
+\end{tikzpicture}

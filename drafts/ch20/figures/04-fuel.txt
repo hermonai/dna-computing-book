@@ -1,0 +1,2 @@
+Question: why can independently correct modules interfere?
+Central shared fuel F feeds Y and Z through hazards αF and βF. Dashed return arcs identify unchanged catalysts A and B. F+Y+Z=F0. Limiting product ratio is α:β when total hazard is positive. These are formal catalytic reactions, not sequence-level DNA cycles.

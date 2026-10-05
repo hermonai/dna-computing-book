@@ -1,0 +1,252 @@
+\section{Biochemical automata as implementations of transition systems}
+The formal recognizer has two read-only cursors. A biochemical finite-state
+reader instead exposes, transforms and eventually consumes a physical input
+interface. To compare them professionally, specify the abstract machine
+first and then state what the chemical implementation must preserve.
+
+Let $D=(Q,\Sigma,\delta,q_0,F)$ be a deterministic finite automaton with
+$\delta:Q\times\Sigma\to Q$. Extend it to words by
+$\delta^*(q,\varepsilon)=q$ and
+$\delta^*(q,aw)=\delta^*(\delta(q,a),w)$. It accepts $w$ exactly when
+$\delta^*(q_0,w)\in F$. A missing transition in a partial specification
+may be totalized with a rejecting sink. Physical suspension, however, still
+needs to be recorded separately from a completed rejecting output.
+
+As a running example, use $Q=\{E,O\}$, initial and accepting state $E$,
+and transitions that preserve state on a and swap it on b. The invariant is
+\begin{equation}
+ \delta^*(E,w)=E\quad\Longleftrightarrow\quad |w|_b\equiv0\pmod2.
+\end{equation}
+It follows by induction: a adds no b, while b flips parity. For abba the
+states after successive symbols are $E,O,E,E$. This is a regular-language
+reader, unlike the asynchronous equal-block construction. No hidden second
+cursor is provided by drawing its input as a duplex.
+
+\subsection{A representation relation, not an analogy}
+Track one designated input molecule, treating the rest of the mixture as its
+physical context. This is a single-reader specification, not a claim that a
+whole reaction vessel has one DFA state.
+Write $I(q,aw)$ for a molecular interface intended to represent control state
+$q$ and remaining input $aw$. A transition species $T_r$ represents
+$r=(q,a,q')$. The physical configuration $z$ also includes free enzymes,
+bound complexes, waste and other input copies. Let $\mathcal B$ be the
+designated stable interfaces and define a decoding map
+\[
+ \pi:\mathcal B\to Q\times\Sigma^*.
+\]
+An intermediate enzyme-bound complex need not belong to $\mathcal B$.
+This avoids assigning a new logical state after every reversible binding event.
+The physical system and the logical system have different clocks.
+
+\begin{definition}[Step refinement at stable interfaces]
+Classify execution segments from $z\in\mathcal B$ to the next stable
+interface $z'\in\mathcal B$ as either silent or completing. A silent segment
+must satisfy $\pi(z')=\pi(z)$. A completing segment must satisfy
+\[
+ \pi(z)=(q,aw)\quad\Longrightarrow\quad
+ \pi(z')=(\delta(q,a),w).
+\]
+No other stable-interface transition is allowed by this refinement contract.
+A binding--dissociation excursion is silent; a commitment consumes one symbol.
+Intermediate events need not have a decoded state. Terminal interfaces require
+a separate output map identifying accepting and rejecting states.
+\end{definition}
+
+\Plate{07-refinement}{One logical transition can contain multiple reaction
+events. The reversible association loop is silent at the logical level.
+Dashed arrows decode only stable interfaces. The lower lane is a declared
+reusable-transition abstraction, not the ligation-consuming mechanism of
+Figure~\ref{fig:cleavage}. Completion, correct decoding and reporter formation
+are separate obligations.}{fig:refinement}
+
+\begin{proposition}[Conditional end-to-end correctness]
+Suppose initial encoding is correct, every completed step refines $\delta$,
+silent segments preserve the represented configuration,
+each nonterminal represented input eventually completes a step, and terminal
+readout reports membership in $F$ correctly. Then processing a finite word
+$w$ reports exactly whether $w\in L(D)$.
+\end{proposition}
+\begin{proof}
+After $k$ completed steps, induction gives the represented state
+$\delta^*(q_0,w_1\cdots w_k)$ and unread suffix $w_{k+1}\cdots w_n$.
+Progress allows the induction to reach $k=n$ rather than stall. Terminal
+readout then applies the accepting-state predicate to $\delta^*(q_0,w)$.
+\end{proof}
+The hypothesis about progress is not implied by the step relation. A system
+that binds and dissociates forever without changing its logical state can
+satisfy a safety statement about completed steps while never returning an
+answer. In a probabilistic model, almost-sure eventual progress is also
+weaker than a deadline guarantee. Neither is equivalent to observing one
+successful band in one experiment.
+
+\subsection{Architectures have different material balances}
+The 2001 ligation-based design and the later ligation-free design must not
+be merged into one reaction cartoon. The 2003 report describes reversible
+software--input association followed by cleavage without software--input
+ligation, allowing reuse of transition molecules \cite{fuel}. This contrast
+is supported here by the paper's abstract; no experimental fidelity value
+or detailed sequence reconstruction is imported from it.
+
+For theoretical analysis, a reusable-transition coarse-graining can be written
+\begin{equation}
+ I+T_r\ \underset{d_r}{\stackrel{k_r^+}{\rightleftharpoons}}\ C_r
+ \ \xrightarrow{c_r}\ I'_r+T_r+W_r.
+ \label{eq:chemical}
+\end{equation}
+$C_r$ is a bound intermediate and $W_r$ collects released material.
+$k_r^+$ has units $\mathrm{M}^{-1}\mathrm{s}^{-1}$; $d_r,c_r$ have units
+$\mathrm{s}^{-1}$. Enzyme availability is absorbed into the effective
+commitment parameter $c_r$, so this is not an explicit enzyme mass balance.
+It should not be used when that lumping fails.
+
+The elementary stoichiometric changes preserve the number of transition
+carriers $N_{T_r}+N_{C_r}$ in this abstraction. A consuming architecture
+would omit $T_r$ from the committed products and lose that invariant. Both
+require nucleotide-level balance if used as chemical models: $W_r$ cannot
+simply disappear because it is absent from the logical state. Logical input
+consumption is not disappearance of physical matter.
+
+\section{Derive stochastic choice from competing pathways}
+Adar and colleagues experimentally investigated competing transition species
+and calibrated concentration-to-choice mappings \cite{adar}. Their results
+motivate a distinction between programmed concentrations and actual transition
+probabilities; they do not identify the parameters of the model below.
+All rates and numerical probabilities in our reference are assigned examples.
+
+Consider one uncommitted input with constant free transition concentrations.
+Let $b_r=k_r^+[T_r]$ be its binding hazard for channel $r$. A bound complex
+then either dissociates at rate $d_r$ or commits at rate $c_r$.
+Assume exponential holding times, no other reactions and return to the same
+free-input state after dissociation. These assumptions define a small
+continuous-time Markov model; they are not automatic properties of an assay.
+
+\subsection{One encounter and repeated attempts}
+During one encounter, the probability of commitment is
+\begin{equation}
+ s_r=\int_0^\infty c_r e^{-(c_r+d_r)t}\,dt
+     =\frac{c_r}{c_r+d_r}.
+\end{equation}
+Set $B=\sum_r b_r$ and suppose $B>0$ and $c_r+d_r>0$ for every active
+channel. The next bound channel is $r$ with probability $b_r/B$.
+The success probability of one whole attempt is
+$S=\sum_r(b_r/B)s_r$. For $S>0$, unsuccessful attempts return to the same
+condition, so their probabilities form a geometric series. Therefore
+\begin{equation}
+ p_r=\Pr(\text{eventual commitment through }r)
+ =\frac{b_rs_r}{\sum_j b_js_j}.
+ \label{eq:branch}
+\end{equation}
+This eventual branch formula is exact under the stated renewal model.
+It shows why equal concentrations do not imply equal output probabilities:
+association constants and commitment-versus-dissociation ratios also matter.
+
+The expected duration $m$ to any commitment satisfies the first-step equation
+\[
+ m=\frac1B+\sum_r\frac{b_r}{B}\frac1{c_r+d_r}+(1-S)m.
+\]
+Solving it yields
+\begin{equation}
+ m=\frac{1+\sum_r b_r/(c_r+d_r)}{\sum_r b_rs_r}.
+ \label{eq:waiting}
+\end{equation}
+The numerator accounts for time spent bound. Omitting it preserves eventual
+branch ratios but generally predicts the wrong completion time.
+The companion function \texttt{encounter\_statistics} evaluates these formulas.
+Tests independently construct the transient Markov generator and solve its
+linear absorption equations for both branch probabilities and mean duration.
+
+\subsection{When an effective exponential race is justified}
+If bound encounters are brief relative to waiting for new binding,
+$\sum_r b_r/(c_r+d_r)\ll1$, a useful approximation treats successful
+commitments as direct hazards $\lambda_r=b_rs_r$ from the free interface.
+Alternatively, these hazards may be postulated as a separate empirical
+coarse-grained model. Define $\Lambda=\sum_r\lambda_r$. Then
+\begin{align}
+ U(t)&=e^{-\Lambda t},\\
+ P_r(t)&=\int_0^t\lambda_r e^{-\Lambda s}\,ds
+       =\frac{\lambda_r}{\Lambda}(1-e^{-\Lambda t}).
+ \label{eq:race}
+\end{align}
+$U$ is uncommitted probability and $P_r$ is an \emph{absolute} committed
+probability, not a conditional fraction among products. Their sum is one.
+If all rates vanish, $U=1$ and every $P_r=0$; branch odds are undefined,
+not uniformly distributed.
+
+\Plate{08-race}{Constant effective hazards $0.6$ and $0.4\ \mathrm{s}^{-1}$
+produce two committed-output populations and an uncommitted remainder. The
+curves are generated from the declared direct-race model. They must not be
+read as exact finite-time predictions of the binding--dissociation model
+unless its coarse-graining is justified.}{fig:race}
+\Listing{race}
+\begin{center}\input{\Generated/race.tex}\end{center}
+At one second, correct and incorrect output probabilities are approximately
+0.379272 and 0.252848, with 0.367879 uncommitted. Correctness conditional on
+commitment is $0.6$, while the absolute correct-output probability is below
+$0.38$. Renormalizing observed products can hide a large incomplete population.
+In a pool with depleted transitions or competing inputs, rates may vary with
+time and history, invalidating this simple race even if it fits a short trace.
+
+\section{Stochastic automata and observable output}
+A stochastic reader associates each symbol $a$ with a row-stochastic matrix
+$P_a$ on logical states. If row vector $\alpha_0$ is the initial distribution,
+then after $w=w_1\cdots w_n$,
+\begin{equation}
+ \alpha_n=\alpha_0P_{w_1}P_{w_2}\cdots P_{w_n},\qquad
+ p_{\rm accept}=\alpha_n\boldsymbol{1}_F.
+\end{equation}
+Matrix multiplication sums the probabilities of alternative paths; it does
+not existentially select a favorable path. A probability-valued output is not
+yet a language recognizer. One can declare a cutpoint $\theta$ and accept
+when $p_{\rm accept}>\theta$, but the threshold and any margin from it are
+part of the specification. This chapter makes no language-class claim for
+arbitrary cutpoint automata.
+
+To retain mass honestly, extend the parity reader with absorbing lost state
+$\bot$. Let $\ell$ be per-symbol loss probability and $\eta$ the probability
+of flipping the intended parity among survivors. In state order $(E,O,\bot)$,
+\begin{equation}
+ \widetilde P_a=
+ \begin{pmatrix}
+ (1-\ell)(1-\eta)&(1-\ell)\eta&\ell\\
+ (1-\ell)\eta&(1-\ell)(1-\eta)&\ell\\
+ 0&0&1
+ \end{pmatrix}.
+\end{equation}
+For b, interchange the first two columns in the first two rows; keep the
+absorbing row unchanged. This specifies a noise model, not a fit to the
+2001 or 2004 experiments. A lost input is not a completed odd-parity output.
+\Listing{parity_distribution}
+
+For abba, $\eta=0.1$ and $\ell=0.05$, the generated distribution is
+\begin{center}\input{\Generated/parity.tex}\end{center}
+The survival probability after $n$ symbols is $(1-\ell)^n$. Conditional on
+survival, let $r_n$ be the probability of correct parity. Since a noise flip
+exchanges correctness and incorrectness,
+\[
+ r_{n+1}=(1-\eta)r_n+\eta(1-r_n).
+\]
+Subtract one half to get
+$r_{n+1}-1/2=(1-2\eta)(r_n-1/2)$, hence
+\begin{equation}
+ r_n=\tfrac12[1+(1-2\eta)^n],\qquad
+ p_{\rm correct}=(1-\ell)^n r_n.
+\end{equation}
+Two noise flips restore parity, so this is not the no-error probability
+$(1-\eta)^n$. Correct output and error-free execution are distinct events.
+When survival has probability zero, the conditional fraction is undefined;
+the expression for absolute correct output still evaluates to zero for $n>0$.
+The tests compare the recurrence with both this closed form and exhaustive
+enumeration of short error/loss histories.
+
+Finally, observation needs its own model, such as
+\begin{equation}
+ \mathbb E[Y_j]=b_j+\sum_{s\in\{E,O\}}H_{js}N_s.
+\end{equation}
+$N_s$ is output-molecule count, $H_{js}$ is expected signal in channel $j$
+per molecule of state $s$, and $b_j$ is background in signal units. Identical
+columns of $H$ make the two outputs unidentifiable from these measurements,
+even if the logical transitions are perfect. Controls must independently
+test input integrity, conversion to terminal products, state-specific
+reporters and background. A professional correctness claim joins encoding,
+reaction semantics, progress, stochastic error and readout evidence; it does
+not replace that chain with a single successful endpoint image.

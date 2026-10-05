@@ -1,0 +1,388 @@
+\chapter{Chemical reaction networks as programs}
+
+Place four molecules of species $A$ and four of $B$ in an ideal well-mixed
+compartment. Permit only $A+B\rightarrow W$. Predict the final counts.
+Now predict the time at which the last pair disappears. The first question
+has an exact answer without a rate constant; the second does not.
+This distinction is the starting point for treating chemistry as a program.
+
+Chapter 19 reconstructed one strand-exchange mechanism. Here we construct
+the language in which many such mechanisms can be composed. We will specify
+what a reaction consumes, what it produces, when it can occur, how often it
+occurs, and what counts as a correct output. A formal reaction is not yet
+a realizable DNA design. Our examples are mathematical references, with
+assigned rates and no new experimental measurements.
+
+\section{Name the state before naming the algorithm}
+
+A \Term{species} is a distinguishable molecular type at the chosen level of
+description. It may be a free strand, a duplex, a bound complex, or a purely
+formal signal awaiting physical implementation. Fix an ordered list
+$S_1,\ldots,S_s$. A discrete state is a vector
+$n\in\mathbb N^s$ of molecule counts. A continuous state is a vector
+$x\in\mathbb R_{\geq0}^s$ of concentrations. Their entries are not interchangeable.
+
+For $r$ reactions, let $R,P\in\mathbb N^{s\times r}$ contain reactant and product
+stoichiometries. Column $j$ represents
+\begin{equation}
+ \sum_i R_{ij}S_i\longrightarrow\sum_i P_{ij}S_i,\qquad
+ N=P-R .
+ \label{eq:stoich}
+\end{equation}
+$N$ is the \Term{stoichiometric matrix}. It describes the net state change,
+but not the enabling condition. Reaction $j$ is enabled at $n$ precisely when
+$n_i\geq R_{ij}$ for every $i$. Its firing then produces $n+N_{\cdot j}$.
+The reaction $A+F\rightarrow A+Y$ has zero net change in $A$, but still
+requires $A$. Deleting the catalyst from $R$ because its row of $N$ is zero
+changes the program.
+
+For $A+B\rightarrow W$, in species order $(A,B,W)$,
+$R=(1,1,0)^\top$, $P=(0,0,1)^\top$ and $N=(-1,-1,1)^\top$.
+For $2A\rightarrow W$, the reactant column is instead $(2,0,0)^\top$.
+Two molecules of one species are not the same state requirement as one
+molecule each of two species.
+
+\Plate{01-coordinates}{Columns define reaction events, not a chronological
+instruction list. The two reactions have different enabling conditions even
+though both consume two molecules and create one complex. Labels identify
+species independently of color.}{fig:coordinates}
+
+\Listing{network}
+The constructor takes ownership of copies and marks them read-only. It limits
+stoichiometric coefficients to 100 to keep this small numerical reference
+within its intended scope. A frozen Python container alone would not make
+the arrays immutable. The companion code also validates state shapes, finite
+values and integer counts; counts above $10^9$ are outside its declared domain.
+These are implementation limits, not limits of CRN theory.
+
+\section{Conservation is a proof obligation, not a visual impression}
+
+Let $c\in\mathbb R^s$ satisfy $c^\top N=0$. Then every firing preserves
+$c^\top n$, because
+\begin{equation}
+ c^\top(n+N_{\cdot j})=c^\top n+c^\top N_{\cdot j}=c^\top n.
+\end{equation}
+Such a vector is a \Term{linear invariant}. It can express material inventory
+or a logical difference. For annihilation, both $A+W$ and $B+W$ are invariant,
+and subtracting them gives the invariant $A-B$. The latter can be negative;
+it is not itself a nonnegative material inventory.
+
+Return to the strand-displacement reaction $I+G\rightarrow W+O$.
+In order $(I,G,W,O)$, the three strand inventories form the matrix
+\begin{equation}
+ C=
+ \begin{pmatrix}
+ 1&0&1&0\\
+ 0&1&1&0\\
+ 0&1&0&1
+ \end{pmatrix},
+ \qquad
+ N=\begin{pmatrix}-1\\-1\\1\\1\end{pmatrix},
+ \qquad CN=0.
+\end{equation}
+The rows count invader, substrate and incumbent strands. In particular,
+$G$ and $W$ each contain two strands. Counting species equally happens to
+give two reactants and two products here, but that coincidence is not the
+reason the molecular mechanism conserves material.
+
+\Plate{02-inventory}{The formal exchange column is backed by continuous
+covalent backbones. Arrowheads on strands mark the $3'$ direction; short
+vertical marks denote pairing. The reaction arrow changes occupancy, not
+strand identity. The matrix counts the three physical strand types.}{fig:inventory}
+
+In a closed physical system, atom inventories must also balance. A formal
+signal species need not represent a single molecule, however: a compiler may
+use auxiliary gates and fuels that are absent from the signal-level equations.
+An apparent source or sink in the signal model therefore requires an explicit
+reservoir in its physical interpretation. A left-nullspace calculation is a
+useful audit, not a complete chemical realizability theorem.
+
+\section{Separate the jump rule from the kinetic law}
+
+Under deterministic mass action, reaction $j$ has flux
+\begin{equation}
+ v_j(x)=k_j\prod_i x_i^{R_{ij}},\qquad
+ \frac{dx}{dt}=Nv(x).
+ \label{eq:ode}
+\end{equation}
+If concentrations have unit $U$ and time has unit seconds, a reaction of
+total order $q_j=\sum_iR_{ij}$ has $k_j$ in
+$U^{1-q_j}\mathrm{s}^{-1}$. Flux has unit $U\,\mathrm{s}^{-1}$.
+This convention gives flux $kx_A^2$ for $2A\rightarrow W$ and
+$\dot x_A=-2kx_A^2$; the factor two is in stoichiometry.
+
+At a boundary where $x_i=0$, every mass-action term consuming $S_i$ is zero,
+while terms producing it are nonnegative. Thus the vector field cannot
+point out of the nonnegative orthant. This is a property of the differential
+equation, not of every numerical integrator. A large explicit Euler step can
+still yield negative values. Likewise,
+$d(c^\top x)/dt=c^\top Nv(x)=0$ proves continuous conservation.
+
+For molecule counts, let $\Omega$ convert concentrations to counts:
+$n_i=\Omega x_i$. For molar concentrations,
+$\Omega=N_{\!A}V$ when $V$ is expressed in litres. The same macroscopic
+$k_j$ convention gives the propensity
+\begin{equation}
+ a_j(n)=k_j\Omega^{1-q_j}
+ \prod_i(n_i)_{R_{ij}},
+ \qquad
+ (n)_r=n(n-1)\cdots(n-r+1).
+ \label{eq:propensity}
+\end{equation}
+Set $(n)_0=1$ and $(n)_r=0$ if $n<r$. Propensity is an event hazard in
+$\mathrm{s}^{-1}$, not a concentration flux. In particular,
+$a=k n_A n_B/\Omega$ for $A+B\rightarrow W$ and
+$a=k n_A(n_A-1)/\Omega$ for $2A\rightarrow W$.
+
+Some stochastic conventions write a rate constant times $\binom{n_A}{2}$.
+That is compatible only after converting the rate constant: here it would
+be $2k/\Omega$. Reusing the same numeric coefficient with both formulas
+introduces a factor-of-two error. With only one $A$, the correct propensity
+is zero, whereas replacing the falling factorial by $n_A^2$ permits an
+impossible event.
+
+\Listing{propensities}
+The empty product for a zero-order source is one, giving hazard $k\Omega$.
+Such a source is useful in an open-system abstraction; it is not spontaneous
+creation of physical atoms. The drift function in the companion reference
+implements Equation~\ref{eq:ode}. The firing function below implements only
+stoichiometric enabledness: a zero kinetic rate can still label a formally
+enabled reaction, but a stochastic scheduler must never select it.
+\Listing{fire}
+
+\section{Prove a small reaction program}
+
+Consider the one-reaction network $A+B\rightarrow W$ with initial
+counts $(a,b,0)$ and strictly positive rate. We use residual $A$ and $B$
+as a dual-rail representation of a signed difference. The following result
+does not require a stochastic rate model.
+
+\begin{proposition}[Annihilation computes a residual difference]
+Every maximal firing sequence terminates after $\min(a,b)$ firings at
+\[
+ (\max(a-b,0),\ \max(b-a,0),\ \min(a,b)).
+\]
+\end{proposition}
+\begin{proof}
+The nonnegative integer ranking function $n_A+n_B$ decreases by two at
+every firing, so no firing sequence is infinite. A terminal state must have
+$n_A=0$ or $n_B=0$, since otherwise the sole reaction is enabled.
+The invariants $n_A+n_W=a$ and $n_B+n_W=b$ then force the displayed state.
+\end{proof}
+
+This is a terminal-output theorem. It does not tell an observer when the
+state has become terminal. A low signal might mean no molecules, slow
+reaction, failed reporting, or a concentration below detection. Equal inputs
+produce no residual signal on either rail; a practical equality decision
+requires an observation policy, not just a proof of arithmetic.
+
+For example, $(8,4,0)$ terminates at $(4,0,4)$. Interpreting $W$ as the
+answer instead computes $\min(a,b)$, not $a-b$. The same reaction system
+supports different functions under different input and output encodings.
+Specify the decoder as part of the program.
+
+\section{Correct completion can still have an expensive tail}
+
+In the stochastic model the only possible event has hazard
+$k(a-j)(b-j)/\Omega$ after $j$ firings. Each holding time is exponential;
+successive holding times are independent by the Markov property. Consequently
+\begin{align}
+ \mathbb E[T]&=\frac{\Omega}{k}
+ \sum_{j=0}^{\min(a,b)-1}\frac{1}{(a-j)(b-j)},\\
+ \operatorname{Var}(T)&=\frac{\Omega^2}{k^2}
+ \sum_{j=0}^{\min(a,b)-1}\frac{1}{(a-j)^2(b-j)^2}.
+ \label{eq:timing}
+\end{align}
+If either input is zero, the empty sum gives zero time. For equal inputs
+$a=b=m$, the mean is $(\Omega/k)\sum_{\ell=1}^m1/\ell^2$.
+The final pair alone contributes $\Omega/k$, even though the first event
+has mean $\Omega/(km^2)$. Fast initial progress does not certify a short tail.
+
+\Listing{completion_moments}
+\begin{center}\input{\Generated/completion.tex}\end{center}
+The table assigns $k=1$ and $\Omega=1$ in consistent reference units. It is
+not a laboratory timing estimate. Holding volume fixed while increasing $m$
+also increases concentration. Under a fixed initial concentration
+$c_0=m/\Omega$, instead $\Omega=m/c_0$ and the mean grows linearly with $m$,
+up to the bounded factor $\sum_{\ell=1}^m1/\ell^2$. These are different
+scaling experiments.
+
+\Plate{03-tail}{An assigned-rate stochastic path reaches zero after four
+events, while the equal-concentration ODE tail remains positive at every
+finite time. The count-equivalent ODE is $4/(1+4t)$ for $k=\Omega=1$.
+The staircase is one seeded sample, not an ensemble mean or measured trace.}{fig:tail}
+
+For equal initial concentrations, the ODE gives
+$x_A(t)=c_0/(1+kc_0t)$. It never reaches exactly zero at finite time.
+Moreover, $d\mathbb E[n_A]/dt=-(k/\Omega)\mathbb E[n_An_B]$;
+the product expectation is generally not the product of the expectations.
+Replacing it by $\mathbb E[n_A]\mathbb E[n_B]$ is a closure approximation.
+Large-system limits can justify deterministic trajectories under appropriate
+conditions, but do not make every finite-copy mean exactly obey mass action.
+
+A conservative deadline bound follows from Markov's inequality:
+$\Pr(T\geq t)\leq\mathbb E[T]/t$ for $t>0$. This is often loose. It is still
+more honest than interpreting a mean as a guaranteed maximum. Our tests
+compare the timing formulas with an independent backward recursion and
+check a seeded ensemble against a declared five-standard-error tolerance.
+Those tests validate the implementation of the stipulated process.
+
+\section{Compose two modules and watch the shared resource}
+
+Suppose two abstract catalytic modules share one fuel species:
+\begin{equation}
+ A+F\xrightarrow{k_1}A+Y,\qquad
+ B+F\xrightarrow{k_2}B+Z.
+ \label{eq:fuel}
+\end{equation}
+Here catalysts are unchanged by either reaction. With fixed catalyst
+concentrations, write $\alpha=k_1[A]$ and $\beta=k_2[B]$, each in inverse
+seconds. Let initially $F=F_0$ and $Y=Z=0$. The material-accounting invariant
+is $F+Y+Z=F_0$, and
+\begin{align}
+ F(t)&=F_0e^{-(\alpha+\beta)t},\\
+ Y(t)&=F_0\frac{\alpha}{\alpha+\beta}
+             (1-e^{-(\alpha+\beta)t}),\\
+ Z(t)&=F_0\frac{\beta}{\alpha+\beta}
+             (1-e^{-(\alpha+\beta)t}).
+ \label{eq:fuel-sol}
+\end{align}
+For $\alpha+\beta=0$, no conversion occurs. The formulas follow by first
+solving $\dot F=-(\alpha+\beta)F$ and then integrating $\dot Y=\alpha F$
+and $\dot Z=\beta F$.
+
+\Plate{04-fuel}{Two individually valid catalytic modules compete when they
+share a reservoir. Dashed return arcs identify catalysts; solid conversion
+arrows consume fuel. The equations are a formal catalytic model, not a claim
+that one strand-displacement gate realizes either entire cycle.}{fig:fuel}
+
+\Listing{shared_fuel}
+\begin{center}\input{\Generated/fuel.tex}\end{center}
+For $F_0=100$, $\alpha=0.1$ and $\beta=0.3$, the limiting products are
+25 and 75. Module one in isolation would convert all 100 units to $Y$;
+composing it with module two changes that answer even if their signals
+never cross-hybridize. This is resource coupling, not sequence crosstalk.
+Duplicating $F_0$ in two separate simulators silently duplicates material.
+
+In a finite-copy version with constant catalysts, the final allocation of
+$F_0$ integer fuel molecules to $Y$ is binomial with parameter
+$\alpha/(\alpha+\beta)$. The mean split agrees with the formula, but a single
+compartment need not hit that mean exactly. A physical realization also
+needs compatible molecular compositions or hidden waste species. The
+formal invariant names a fuel-equivalent inventory, not every atom.
+
+\section{What must a molecular compiler preserve?}
+
+Let $z$ denote a detailed state including intermediates and auxiliaries,
+and let $x=Lz$ be a declared linear coarse representation. Sometimes $L$
+counts both free and bound forms of a signal; sometimes only free signal
+is the interface quantity. These choices have different kinetics.
+If $\dot z=f(z)$, an exact closed coarse model $\dot x=g(x)$ requires
+\begin{equation}
+ Lf(z)=g(Lz)
+ \label{eq:closure}
+\end{equation}
+throughout the relevant state set. Thus two detailed states with the same
+$Lz$ must induce the same coarse derivative. A hidden bound complex can
+violate this condition even when both states have equal free-signal counts.
+
+\Plate{05-projection}{A projection merges detailed states only with an
+explicit semantic contract. Equal projected signal does not force equal
+release flux when intermediate occupancy differs. Approximate closure needs
+a domain and error criterion; dropping intermediate names is not a proof.}{fig:projection}
+
+Most useful reductions are approximate rather than exact. One may require,
+for declared initial conditions and observation interval $[0,T]$,
+$\sup_{0\leq t\leq T}\|Lz(t)-x_{\rm target}(t)\|\leq\varepsilon$.
+Specify the norm, concentration scale, admissible inputs, auxiliary inventories
+and rate-separation assumptions. A good endpoint match alone need not satisfy
+a trajectory-level contract.
+
+Soloveichik, Seelig and Winfree construct strand-displacement cascades that
+approximate coupled formal reaction dynamics \cite{soloveichik}. That result
+motivates the compiler interface; it does not eliminate auxiliary species,
+finite fuel or the need to check the regime of approximation.
+Our four-line mass-action evaluator is not an implementation of that compiler.
+
+\section{Stable computation and current research boundaries}
+
+Our annihilation proof is stronger than a favorable simulated run: every
+maximal execution of its one reaction has the stated terminal result.
+For general networks, stable output need not mean the entire network has
+halted. The output may stop changing while other reactions continue.
+Reachability, eventual stabilization, deadlines and noise tolerance are
+separate obligations.
+
+Chen, Doty and Soloveichik characterize deterministic count-valued function
+computation in their discrete stable-computation model by semilinear graphs
+\cite{chen}. This is a model-specific characterization, not a claim that all
+continuous chemical dynamics are semilinear or that no probabilistic CRN can
+simulate more general computation. It also does not grant a physical device
+unbounded molecule counts or perfect detection.
+
+A 2026 result by Kini and Doty studies a different boundary: reactions may
+reverse before a cutoff, but only forward reactions remain afterwards
+\cite{kini}. Their reverse-robust model retains semilinear predicate and
+function computability. Importantly, that cutoff assumption is not persistent
+thermal reversibility at equilibrium. For our annihilation example, adding
+$W\rightarrow A+B$ forever preserves $A-B$ but destroys terminal zero on one
+rail. Invariance by itself therefore does not prove stable readout.
+
+For an AI-assisted molecular-design pipeline, the CRN is an intermediate
+specification with testable obligations. Store the reaction convention and
+units; reject disabled-event bugs; audit inventories; compare detailed and
+coarse trajectories; then validate experimentally with appropriate controls.
+A generated reaction list is neither a proof of implementability nor evidence
+of useful biological behavior. Chapter 21 uses these obligations to examine
+thresholds, restoration and fan-out in composed circuits.
+
+\section{Exercises with worked answers}
+\begin{enumerate}
+\item Write $R,P,N$ for $2A\rightarrow W$ in order $(A,W)$.
+\textbf{Answer:} $(2,0)^\top$, $(0,1)^\top$, $(-2,1)^\top$.
+The inventory $A+2W$ is conserved.
+\item Why can $N$ not determine whether a catalyst is required?
+\textbf{Answer:} $F\rightarrow Y$ and $A+F\rightarrow A+Y$ have the same
+net-change column on $(A,F,Y)$ but different reactant columns.
+\item Fire annihilation from $(7,3,0)$ to termination.
+\textbf{Answer:} Three firings give $(4,0,3)$. Residual rails encode $+4$;
+$W$ encodes the minimum, 3.
+\item Compute the $2A\rightarrow W$ hazard at $n_A=3$, $k=2$, $\Omega=10$.
+\textbf{Answer:} $2(3)(2)/10=1.2\ {\rm s}^{-1}$ under our convention.
+The binomial coefficient version requires coefficient $0.4\ {\rm s}^{-1}$.
+\item Show that the continuous material invariant is exact.
+\textbf{Answer:} Multiply $\dot x=Nv(x)$ by a left-null vector;
+$c^\top\dot x=0$. This says nothing about numerical time-step error.
+\item Find mean and variance of completion from $a=b=2$, $k=\Omega=1$.
+\textbf{Answer:} Mean $1/4+1=1.25$; variance $1/16+1=1.0625$.
+\item At fixed initial concentration, why does the last-pair mean grow with
+input size? \textbf{Answer:} $\Omega=m/c_0$ grows, so its hazard $k/\Omega$
+shrinks. Volume is part of the cost model.
+\item Give a deadline guaranteeing the Markov upper bound is at most $0.05$
+when $\mathbb E[T]=2$ seconds.
+\textbf{Answer:} $t=40$ seconds; this is a bound, not a measured quantile.
+\item Compute the limiting shared-fuel split for $\alpha=\beta>0$.
+\textbf{Answer:} Half to each output in the deterministic model; finite-copy
+allocation fluctuates around that split.
+\item Does preserving $A-B$ prove stable output after adding reverse reactions?
+\textbf{Answer:} No. Reverse events recreate both rails while preserving
+their difference; a zero-rail output predicate can cease to hold.
+\item What falsifies exact projection closure?
+\textbf{Answer:} Find $z_1,z_2$ with $Lz_1=Lz_2$ but $Lf(z_1)\ne Lf(z_2)$.
+Then no single-valued $g$ satisfies Equation~\ref{eq:closure} on both.
+\item Design a composition validation study.
+\textbf{Rubric:} State signal encodings, units and output criterion; compare
+isolated modules with the full shared-inventory model; include no-input and
+resource-limited cases; audit strand and fuel inventories; specify trajectory
+error and observation window; distinguish simulation from calibrated evidence.
+\end{enumerate}
+
+\section{Vocabulary and the next interface}
+\Term{Propensity}: instantaneous event hazard for a discrete count state.
+\Term{Stable output}: an output that cannot subsequently change under the
+model's allowed continuation.
+\Term{Projection closure}: the coarse state determines its own evolution
+without additional hidden state.
+\Term{Resource coupling}: dependence introduced by a shared finite inventory.
+The next chapter asks how a circuit restores distinguishable signals while
+paying those material and timing costs.

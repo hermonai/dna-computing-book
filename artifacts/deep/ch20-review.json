@@ -1,0 +1,61 @@
+{
+  "pdf": "output/pdf/dna-computing-ch20-review.pdf",
+  "pages": 13,
+  "sha256": "02d109a1a216d5afa8901ac78e9c27db7f85646c732fdc4116845ddcad98d6cd",
+  "status": "standalone authored-LaTeX review candidate; no acceptance promotion",
+  "sources": {
+    "drafts/ch20/README.md": "6b053e30ccfe2eb5bfe3f983c5330cbe2e92a2ff4baaef07562b5bd554f4e359",
+    "drafts/ch20/STORYBOARD.md": "17dd32f5da4370b36712a718a121f36e68bcdfc22c72464ced8cb61369c5f888",
+    "drafts/ch20/build.py": "95c750a58b7649a72fadda51b8c854f52625b781f6414b9436941eb9a438cd76",
+    "drafts/ch20/figures/01-coordinates.tex": "d782d273c1ef1230473bd9d8266dcf69a42830715c6034c8f400dd45536c2673",
+    "drafts/ch20/figures/01-coordinates.txt": "5b523de83de7db41dd74c14310f66964363d7796b939aea7ed56cfa5bfa14b40",
+    "drafts/ch20/figures/02-inventory.tex": "9b8edfe50a229accfe46379ecbadafbd236b2216d1e1348fe280a9692aa12075",
+    "drafts/ch20/figures/02-inventory.txt": "632e63b2dfb7f7e14d807a17e9332994c96aa7dccd79aa152921296a75aaf4ed",
+    "drafts/ch20/figures/03-tail.tex": "55f2b74acb772d3d722620e3e20ad7fee5fa9479877bcf31ea12783fd9b0ba05",
+    "drafts/ch20/figures/03-tail.txt": "41164d42ffbe806b6d87fe569982b97cdbb45f11e3cbec197e933a7c9e8703e8",
+    "drafts/ch20/figures/04-fuel.tex": "b49fba1e141533af517d0dd5e825e32c74f4977e356722312c930aad928238ed",
+    "drafts/ch20/figures/04-fuel.txt": "b3fa983ca92d89f9121f7a1f2e3d5e958d2230774aed148deecc6043c4947cd7",
+    "drafts/ch20/figures/05-projection.tex": "cf674507d8cec6ab1b452b7038c4de060ae2dbebb30102fc5643d62ba6e76f75",
+    "drafts/ch20/figures/05-projection.txt": "5caaddc6deffb79c6f350a061d713c9bfbc411c0472739d6c1c82151c860daa8",
+    "drafts/ch20/manuscript.tex": "8a704aa6d647aeeb720eb6bc426b8e7b82bf56e8771fce0de94a048b1ae1fe1b",
+    "drafts/ch20/reference.py": "19810e86e385b225cf8d4a1677eb5401713fbec54403d2d8cfc7fd45579eae26",
+    "drafts/ch20/results.json": "d4000a2cb59b7e783b8b5a81c2445d63a53cf347898a7c1069182a52e3a87ede",
+    "drafts/ch20/review.tex": "400a7d928a488dbfe654a0c523ea75f7c3441943c687f0a1fbbd5f8ecfa5a6e4",
+    "drafts/ch20/sources.tex": "104d39d803d261ad9aba4d4b7778e06b98f541f413044130f8e618a90a47b9a8"
+  },
+  "reviewedOn": "2026-09-27",
+  "reviewType": "author technical, editorial and visual review; not independent specialist acceptance",
+  "allPagesInspected": true,
+  "inspectedPhysicalPages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "grayscaleReview": "All pages inspected in color and grayscale contact sheets. Mechanism, shared-resource, block-clock and aliasing plates checked at page scale as applicable. Label collisions, code-heading pagination, back-matter spacing and small-number reporting corrected and re-inspected.",
+  "figures": 5,
+  "exercises": 12,
+  "openGates": [
+    "independent specialist review",
+    "reader feedback",
+    "cumulative integration, cross-chapter index and bibliography"
+  ],
+  "validation": {
+    "generatedArtifactsCheck": "passed",
+    "pdfWordsOutsidePage": 0,
+    "unresolvedReferenceMarkers": 0,
+    "python": "3.13.6",
+    "fullSuitePassed": 952,
+    "fullSuiteSkipped": 2,
+    "priorEditionPreservationTests": "passed"
+  }
+}

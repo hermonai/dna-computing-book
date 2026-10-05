@@ -1,0 +1,10 @@
+\begin{tikzpicture}
+\node[note,fill=Pale,rounded corners,minimum width=12cm,minimum height=.8cm] at (6,3.4){Upper input: a a a a \qquad $\rho(a)=\{x,y\}$};
+\foreach \x/\lab in {1.5/1,4.5/2,7.5/3,10.5/4}{
+\node[note] at (\x,2.3){position \lab};
+\node[note,draw=Blue,fill=Pale,minimum width=2cm,minimum height=.7cm] at (\x,1.4){x or y};
+\draw[flow] (\x,2)--(\x,1.85);}
+\node[note,text width=12cm] at (6,.25){$2\times2\times2\times2=16$ admissible lower words\\Pairing validity does not imply an accepting run.};
+\draw[flow] (6,-.25)--(6,-.9);
+\node[note,draw=Red,rounded corners,text width=11cm,inner sep=8pt] at (6,-1.5){Separate obligations: prepare candidates; execute rules;\\distinguish an accepting product from background.};
+\end{tikzpicture}

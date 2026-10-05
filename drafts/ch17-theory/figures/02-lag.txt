@@ -1,0 +1,4 @@
+Question: Recognizing equal blocks by head separation
+Objects and arrow semantics: Head-position lattice with three phases for aabb.
+Change/invariant and caption claim: Lag supplies input-dependent configuration memory.
+Scientific risk: Identity pairing in an abstract alphabet is not natural base complementarity.

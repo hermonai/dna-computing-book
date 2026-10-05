@@ -1,0 +1,19 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box] (0,-1.1) rectangle (13,4.8);
+\node[note,anchor=west,text=Blue] at (0,4.5) {\textbf{Capture and output release race for the same free input}};
+\node[note,draw=Red,circle,minimum size=.85cm] (x) at (2,2.3) {$X$};
+\node[note,draw=Blue,circle,minimum size=.85cm] (q) at (5.3,3.3) {$Q$};
+\node[note,draw=gray,fill=Pale] (w) at (10.4,3.3) {$W$: input captured};
+\node[draw=Blue,fill=Blue,minimum size=3pt,inner sep=0pt] (rq) at (7.3,3.3) {};
+\draw[flow] (x.north) to[bend left=30] (rq.north);
+\draw[flow] (q)--(rq);
+\draw[flow] (rq)--node[above,smallnote]{$k_qxq$}(w);
+\node[note,draw=Green,circle,minimum size=.85cm] (f) at (5.3,1) {$F$};
+\node[note,draw=Green,circle,minimum size=.85cm] (y) at (10.4,1) {$Y$};
+\node[draw=Green,fill=Green,minimum size=3pt,inner sep=0pt] (rc) at (7.3,1) {};
+\draw[flow] (x.east) .. controls (4,2.3) and (7.3,2.1) .. (rc.north);
+\draw[flow] (f)--(rc);
+\draw[flow] (rc)--node[above,smallnote]{$k_cxF$}(y);
+\draw[flow,dashed,Red] (rc.south) .. controls (6.5,-.8) and (2,-.8) .. node[below,smallnote,pos=.5]{input returned} (x.south);
+\node[smallnote] at (7,-.85) {$Y(t)$ remembers earlier exposure even after $x(t)\to0$.};
+\end{tikzpicture}

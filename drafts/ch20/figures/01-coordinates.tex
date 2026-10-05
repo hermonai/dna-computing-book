@@ -1,0 +1,13 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box] (0,-.6) rectangle (13,4.6);
+\node[note,text=Blue,anchor=west] at (0,4.3) {\textbf{Same species order; different reaction columns}};
+\node[note] at (3,3.5) {$r_1:\ A+B\rightarrow W$};
+\node[note] at (10,3.5) {$r_2:\ 2A\rightarrow W$};
+\node[note] at (2,2) {$R=\begin{pmatrix}1&2\\1&0\\0&0\end{pmatrix}$};
+\node[note] at (6.4,2) {$P=\begin{pmatrix}0&0\\0&0\\1&1\end{pmatrix}$};
+\node[note] at (10.8,2) {$N=\begin{pmatrix}-1&-2\\-1&0\\1&1\end{pmatrix}$};
+\node[smallnote,text=Blue] at (2,.65) {consumed counts};
+\node[smallnote,text=Green] at (6.4,.65) {produced counts};
+\node[smallnote,text=Red] at (10.8,.65) {net changes};
+\node[smallnote] at (6.4,-.1) {Rows: $A,B,W$ \qquad Columns: $r_1,r_2$ \qquad Enabled only if $n\geq R_{\cdot j}$};
+\end{tikzpicture}

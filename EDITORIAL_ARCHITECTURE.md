@@ -1,6 +1,6 @@
 # Editorial architecture and release roadmap
 
-Updated 25 September 2026. This is the current execution map, not a claim
+Updated 27 September 2026. This is the current execution map, not a claim
 that every planned chapter is written or independently reviewed.
 
 ## One manuscript, distinct review stages
@@ -11,9 +11,9 @@ for current authoring progress. Do not regenerate archived editions merely
 to change their progress labels.
 
 Chapters 1-2 retain their internal acceptance records. Chapter 3 has standalone
-and combined LaTeX review candidates. Chapters 4-18 have isolated authored-LaTeX
+and combined LaTeX review candidates. Chapters 4-21 have isolated authored-LaTeX
 review candidates with code, vector figures, and worked solutions.
-Chapter 19 is the next unwritten chapter. Chapters 11-18 were authored at the
+Chapter 22 is the next unwritten chapter. Chapters 11-21 were authored at the
 reader's explicit request while the Chapters 1-10 integration milestone remains
 pending. These standalone candidates do not substitute for that integration.
 Independent specialist review and cumulative integration are still open.
@@ -126,6 +126,14 @@ Prove an equal-block recognizer using independently moving heads; expose cursor
 storage, existential lower-strand costs and full-input acceptance. Separate the
 formal model from restriction/ligation-based biochemical finite automata.
 
+The separate `drafts/ch17-theory/` expansion supplies explicit paired-language
+semantics, synchronous regularity and nonregularity proofs, weak/syntactic/strong
+determinism, one-symbol normal forms and resource bounds. The biochemical theory
+adds stable-interface refinement, safety versus progress, material balance,
+exact renewal branch/mean-time analysis, qualified exponential coarse-graining,
+absorbing loss and observation identifiability. Eight vector/TXT figures and
+eighteen worked exercises extend rather than overwrite the original candidate.
+
 ## Chapter 18 scope (standalone candidate): universality and complexity models
 
 Derive a tape-to-two-stack simulation invariant and test independent execution
@@ -133,11 +141,36 @@ representations. Distinguish a fixed increment program, a universal interpreter,
 uniform device construction and finite molecular experiments. Account for
 precision, preparation and event-level reliability assumptions.
 
+## Chapter 19 scope (standalone candidate): toehold-mediated strand displacement
+
+Polarity-correct strand exchange, strand-inventory invariants, first-passage probabilities and times, finite-pool depletion, leakage windows, and composition contracts.
+Five mechanism/algorithm figures, twelve worked exercises and tested reference
+code connect the prior formal foundations to the next chapter. Contemporary
+research comparisons retain explicit source-access and capability boundaries.
+
+## Chapter 20 scope (standalone candidate): chemical reaction networks as programs
+
+Define reaction syntax, stoichiometric and strand inventories, concentration
+kinetics and count-valued hazards with an explicit rate convention. Prove
+annihilation correctness and exact completion-time moments; expose shared-fuel
+competition and projection-closure failures. Five vector/TXT figures, twelve
+worked exercises and independently checked numerical examples distinguish
+formal computability, kinetic approximation and measured chemical realization.
+
+## Chapter 21 scope (standalone candidate): digital and analog dna circuits
+
+Derive concentration logic contracts, restoration and leakage windows, staged
+composition, capture-versus-release races, fan-out loading, analog error
+propagation and autocatalytic feedback.
+Five vector/TXT figures, twelve worked exercises and executable independent
+checks make the assumptions and failure boundaries visible. Original teaching
+models remain distinct from measured chemistry or trained genomic capability.
+
 ## Pending milestone: integrate Chapters 1-10
 
 Audit strand/count/concentration/signal notation, units, measurement assumptions,
 source coverage, and prerequisites, including the interfaces now used by
-Chapters 11-18. Preserve the distinction between a physical separation and a formal
+Chapters 11-21. Preserve the distinction between a physical separation and a formal
 predicate.
 Build a new cumulative entry point with unified bibliography and index; retain
 standalone candidates and accepted editions unchanged. Do not promote acceptance

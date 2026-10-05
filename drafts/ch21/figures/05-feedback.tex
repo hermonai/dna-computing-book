@@ -1,0 +1,18 @@
+\begin{tikzpicture}
+\begin{axis}[width=12.6cm,height=5.5cm,xlabel={Time (s)},ylabel={$Y/N$},
+xmin=0,xmax=12,ymin=0,ymax=1.05,grid=major,
+legend style={font=\footnotesize,at={(.98,.05)},anchor=south east}]
+\input{\Generated/feedback-plot.tex}
+\legend{$Y_0=0.1$,$Y_0=0.001$,$Y_0=0$}
+\end{axis}
+\begin{scope}[shift={(1,-2.1)}]
+\draw[Blue,thick] (0,0)--(9,0);
+\draw[flow] (1,0)--(3,0);
+\draw[flow] (5,0)--(7,0);
+\draw[Blue,fill=white] (0,0) circle(.08);
+\fill[Blue] (9,0) circle(.08);
+\node[smallnote,below] at (0,-.1) {zero: unstable};
+\node[smallnote,below] at (9,-.1) {$N$: attracting};
+\node[smallnote,above] at (4.5,.1) {$\dot Y=kY(N-Y)>0$ for $0<Y<N$};
+\end{scope}
+\end{tikzpicture}

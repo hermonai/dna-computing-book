@@ -1,0 +1,380 @@
+\chapter{Digital and analog DNA circuits}
+
+Two inputs are called high, but their concentrations are not exactly one.
+One preparation contains $0.91$ units; another contains $1.08$. A downstream
+gate must accept both without confusing either with a low input of $0.08$.
+Now connect three receivers. Is the upstream signal still high at each one?
+A truth table alone cannot answer this question: it has discarded concentration,
+time, loading and material inventory.
+
+Chapter 20 supplied reaction syntax and conservation laws. Here we construct a
+small circuit interface with explicit quantitative guarantees. Our reference
+is deliberately staged: threshold capture finishes before amplification is
+evaluated. We derive when this abstraction is composable, then solve a
+simultaneous-reaction counterexample that breaks it. The numerical rates are
+assigned teaching parameters, not estimates for a particular DNA sequence.
+
+\section{Define a bit as an interval, not a point}
+
+Let $c_\star$ be a chosen concentration scale and write $x=[X]/c_\star$.
+All concentrations below are in these normalized units. Define accepted input
+sets
+\begin{equation}
+ \mathcal L=[0,0.1],\qquad \mathcal H=[0.9,1.1].
+ \label{eq:bands}
+\end{equation}
+Values between these sets are \emph{invalid}, not intermediate Boolean values.
+Values above $1.1$ also violate the interface: an excessively strong high input
+could exhaust a threshold intended to distinguish one high input from two.
+The interface therefore has both lower and upper bounds.
+
+A two-input digital contract for a real transfer map $g$ is
+\begin{equation}
+ g(\mathcal B_i\times\mathcal B_j)\subseteq
+ \mathcal B_{b(i,j)},\qquad
+ \mathcal B_0=\mathcal L,\quad \mathcal B_1=\mathcal H ,
+\end{equation}
+where $b$ is the desired Boolean operation. The inclusion must hold for
+\emph{every} permitted input and declared parameter perturbation. Checking only
+$(0,0),(0,1),(1,0),(1,1)$ does not establish this contract.
+
+For positive weights $w_i$, an integrating stage forms
+$s=\sum_iw_ix_i$. The weights are dimensionless conversion factors here;
+their physical implementation might require distinct gates, stoichiometry
+and inventories. Negative weights do not mean negative molecular concentrations.
+One possible signed representation uses two nonnegative rails and decodes their
+difference. That representation brings its own cancellation, normalization and
+resource obligations.
+
+An OR gate needs its largest low-low sum below its smallest threshold and its
+smallest high-containing sum above its largest threshold. With equal weights,
+the low-low sum is at most $0.2$, whereas the smallest high-containing sum is
+$0.9$. Choose $\theta_{\rm OR}\in[0.25,0.35]$. For AND, the largest incorrect
+sum is $1.1+0.1=1.2$, and the smallest correct sum is $0.9+0.9=1.8$.
+Choose $\theta_{\rm AND}\in[1.25,1.35]$. These intervals already account for
+$0.05$ threshold uncertainty; they are not fitted tolerances.
+
+\section{Capture a finite amount before restoring the signal}
+
+Model threshold capture by $X+Q\to W$, where $Q$ is an input-binding sink.
+If this reaction completes before the next stage, its residual input is
+\begin{equation}
+ r=(s-\theta)_+=\max(s-\theta,0).
+ \label{eq:residual}
+\end{equation}
+This is a material balance: one sink equivalent consumes one input equivalent.
+It is not an instantaneous law of molecular recognition.
+The drawing in Figure~\ref{fig:capture} shows a minimal complementary-strand
+sink, not the full seesaw threshold complex.
+
+\Plate{01-capture}{A finite capture inventory changes free input into a bound
+duplex. Arrowheads on continuous backbones mark the $3'$ ends; vertical marks
+are base pairing, not covalent bonds. The count invariant is free plus bound
+input. The final formula assumes capture has completed and ignores dissociation
+over the readout window.}{fig:capture}
+
+Let residual input catalyze conversion of an available output-equivalent
+reservoir $F$ into $Y$:
+\begin{equation}
+ X+F\xrightarrow{k}X+Y,\qquad F\xrightarrow{\lambda}Y.
+ \label{eq:restorecrn}
+\end{equation}
+The second reaction models undesired release. $F$ is a formal reservoir, not
+necessarily one physical DNA strand: a molecular implementation must also
+account for gate scaffolds, displacement fuel and waste. Here $F+Y=F_0$,
+$X=r$ stays constant, and
+\begin{align}
+ \dot F&=-(kr+\lambda)F,\qquad F(0)=F_0,\\
+ Y(t)&=F_0\left(1-e^{-(kr+\lambda)t}\right).
+ \label{eq:response}
+\end{align}
+Time is in seconds; $\lambda$ has units $\mathrm{s}^{-1}$.
+For physical bimolecular rate $k_{\rm phys}$, our normalized coefficient is
+$k=k_{\rm phys}c_\star$, also in $\mathrm{s}^{-1}$. An increase in output
+concentration consumes the reservoir rather than creating signal material.
+
+\Listing{restored}
+
+The implementation uses $\operatorname{expm1}(z)=e^z-1$ to retain small responses
+accurately. Input validation rejects negative and nonfinite values. It does not
+validate a sequence design or prove the separated stages are a sound chemical
+approximation.
+
+Take $F_0=1$, $k=1$, $0\leq\lambda\leq0.001$ and a six-second readout.
+The response is monotone increasing in $s$, $\lambda$, $k$, $F_0$ and $t$,
+and nonincreasing in $\theta$. Thus extrema over the input and threshold boxes
+occur at the corresponding endpoints. Equation~\ref{eq:response}, rather than
+a random sampling sweep, certifies the intervals below.
+
+\Listing{gate_bounds}
+\begin{center}\input{\Generated/truth.tex}\end{center}
+
+Every computed low output is below $0.1$ and every high output exceeds $0.9$.
+All outputs are at most $F_0=1$, so the upper high bound is also preserved.
+For the weakest AND input, $r=1.8-1.35=0.45$, giving
+$Y(6)=1-e^{-2.7}\simeq0.932794$ even with no helpful leak.
+
+\Plate{02-transfer}{Computed transfer curves for the staged AND reference.
+The nominal threshold is $1.3$; the bounding curves include threshold
+uncertainty and leakage. Horizontal dashed levels delimit the accepted low
+and high regions. This is a finite-time, assigned-rate response, not an
+experimental calibration curve.}{fig:transfer}
+
+\section{Derive the readout window}
+
+Waiting longer helps a valid signal release output, but also lets leakage
+accumulate. Let accepted output be at most $L$ for low and at least $H$ for
+high, with $0<L<H<F_0$. Suppose thresholding leaves zero residual for every low
+case and at least $r_{\min}>0$ for every high case. With leak uncertainty
+$0\leq\lambda\leq\lambda_{\max}$, conservative constraints are
+\begin{align}
+ F_0(1-e^{-kr_{\min}t})&\geq H,\\
+ F_0(1-e^{-\lambda_{\max}t})&\leq L.
+\end{align}
+Taking logarithms yields
+\begin{equation}
+ \frac{-\log(1-H/F_0)}{kr_{\min}}\leq t\leq
+ \frac{-\log(1-L/F_0)}{\lambda_{\max}} .
+ \label{eq:window}
+\end{equation}
+For zero maximum leak, the upper bound is infinite in this model. For our AND
+reference it is approximately $5.117\leq t\leq105.361$ seconds. Six seconds is
+inside the window. If the lower bound exceeds the upper bound, there is
+\emph{no certified readout time}; selecting a different threshold in the plot
+cannot repair the missing separation without changing the assumptions.
+
+\Listing{read_window}
+
+A real receiver may integrate the entire upstream production history instead
+of sampling a free concentration once. Its input is then a trajectory, not just
+the terminal scalar in this reference. Gross released signal, free signal,
+bound signal and fluorescence are different quantities. The staged contract
+must not silently switch between them.
+
+\begin{proposition}[Composition under explicit interfaces]
+Consider an acyclic network of staged gates. Suppose each gate maps all valid
+input intervals to its required output interval for its assigned read time,
+each edge delivers that interval without loading or dilution, and every gate
+has the private resources and reset state assumed by its contract. Then every
+gate in the network returns the Boolean value of the corresponding ideal
+circuit.
+\end{proposition}
+\begin{proof}
+Order gates topologically. The source inputs satisfy their declared intervals.
+For the first gate, the transfer inclusion therefore places its output inside
+the interval for the correct Boolean value. By the edge assumption the next
+gate receives a valid interval. Repeating this argument over the finite order
+establishes the claim. No independence assumption about numerical errors is
+needed: the inclusion covers all jointly realized valid values.
+\end{proof}
+
+The theorem proves the staged model, not an arbitrary one-pot cascade.
+Its assumptions carry the physical difficulty. A path of depth $d$ evaluated
+in sequential six-second stages has an amplification schedule of $6d$ seconds,
+plus capture, transport and measurement costs. This is not the latency of a
+continuously reacting DNA circuit. The companion tests exhaust the corners of
+the two-layer example $(a\mathbin{\rm OR}b)\mathbin{\rm AND}c$, including both
+threshold extremes and both leak extremes.
+
+\section{A kinetic race defeats the ideal threshold}
+
+Remove the scheduling assumption. Let capture and catalytic output release
+occur simultaneously:
+\begin{equation}
+ \dot x=-k_qxq,\quad \dot q=-k_qxq,\quad
+ \dot F=-k_cxF,\quad \dot Y=k_cxF .
+ \label{eq:race}
+\end{equation}
+Set $q_0>x_0$ and no leak. An ideal threshold predicts no output, since every
+input can eventually be absorbed. But input remains catalytically active
+\emph{before} absorption.
+
+\Plate{03-race}{One free input participates in two competing processes.
+The capture path removes it; the catalytic path returns it while consuming
+output reservoir. Dashed return arrows distinguish catalytic reuse from
+creation of extra input. Even when every input is eventually captured, output
+already released need not disappear.}{fig:race}
+
+The invariant $q-x=\delta=q_0-x_0>0$ gives
+$\dot x=-k_qx(x+\delta)$. Separating variables and using $x(0)=x_0$ gives
+\begin{equation}
+ x(t)=\frac{\delta x_0e^{-k_q\delta t}}
+                 {q_0-x_0e^{-k_q\delta t}}.
+\end{equation}
+The reservoir depends on the integrated exposure
+$A(t)=\int_0^t x(u)\,du$, not merely on the eventual value of $x$. Direct
+integration gives
+\begin{align}
+ A(t)&=\frac1{k_q}
+ \log\left(1+\frac{x_0}{\delta}(1-e^{-k_q\delta t})\right),\\
+ Y(t)&=F_0(1-e^{-k_cA(t)}),\\
+ Y(\infty)&=F_0\left[1-\left(\frac{\delta}{q_0}\right)^{k_c/k_q}\right].
+ \label{eq:race-limit}
+\end{align}
+For $x_0=0.2$, $q_0=0.3$, $F_0=1$, $k_c=k_q=1$, the final output is $2/3$:
+a large false positive despite zero leak and complete eventual capture.
+
+\Needspace{16\baselineskip}
+\Listing{race_output}
+\begin{center}\input{\Generated/race.tex}\end{center}
+
+For the same concentrations, capture ten times faster still gives a limiting
+output of about $0.104$, above our low ceiling. A hundredfold rate ratio brings
+it below $0.011$. These ratios illustrate a requirement, not a toehold-length
+prescription. Sequence, salt, temperature, secondary structure and competing
+complexes would determine actual rates. Tests compare the closed form against
+an independent four-state Runge--Kutta integration and check both invariants.
+
+\section{Fan-out spends material or changes the load}
+
+A graphical wire can branch without specifying who pays. A molecular signal
+cannot. If a fixed inventory $M$ is divided among $n$ equal-volume receiving
+compartments, each receives at most $M/n$ molecules. More generally, requiring
+concentration $H_i$ in compartment volume $V_i$ demands
+\begin{equation}
+ M\geq N_A\sum_i H_iV_i
+\end{equation}
+when $H_i$ is in molar units and $V_i$ in litres. Splitting volume along with
+material can preserve concentration, but then each recipient has a smaller
+volume: that is a different interface, not free duplication.
+
+\Plate{04-load}{Three equal-volume recipients share a fixed output inventory.
+The illustrated partition conserves total material but does not give each
+recipient the original concentration. Catalytic buffering can change the
+interface only by supplying additional output reservoirs and accounting for
+binding occupancy.}{fig:load}
+
+Catalytic reuse does not consume input net, yet a bound catalyst is unavailable
+elsewhere. Under a restricted rapid-equilibrium model,
+$X+L_i\rightleftharpoons C_i$, with undepleted free loads $\ell_i$ and
+dissociation constants $K_i$, we have $[C_i]=x\ell_i/K_i$. Therefore
+\begin{equation}
+ X_{\rm total}=x+\sum_i[C_i]
+ =x\left(1+\sum_i\ell_i/K_i\right),\qquad
+ x=\frac{X_{\rm total}}{1+\sum_i\ell_i/K_i}.
+ \label{eq:load}
+\end{equation}
+This approximation requires the loads to remain effectively constant and
+binding to equilibrate quickly. It is not a full dynamic receiver model.
+Using $X_{\rm total}=0.5$, $\ell_i=K_i=1$, the reduced free catalyst lowers
+output at the original six-second readout:
+\begin{center}\input{\Generated/loads.tex}\end{center}
+The no-load output is valid high; even one stipulated load destroys that
+particular guarantee. This effect can occur without off-target hybridization.
+
+\section{Analog computation needs an error model}
+
+Analog computation asks for a numerical value, not membership in a Boolean
+interval. For $s>\theta$, the staged transfer has derivative
+\begin{equation}
+ \frac{\partial Y}{\partial s}
+ =F_0kt\,e^{-[k(s-\theta)+\lambda]t}.
+ \label{eq:sensitivity}
+\end{equation}
+At $s=\theta$ the derivative changes discontinuously in the ideal capture
+model. Above threshold the response is concave and saturating; it is not a
+linear weighted sum. Its global Lipschitz constant with respect to $s$ is at
+most $F_0kt$, so small analog errors may be amplified near the threshold even
+though valid digital intervals are restored. Digital restoration and analog
+accuracy are distinct specifications.
+
+For a cascade with stage error bound $\eta_j$ and Lipschitz bound $L_j$,
+let $\epsilon_j$ be the deviation from the ideal numerical trajectory. Then
+\begin{equation}
+ \epsilon_{j+1}\leq L_j\epsilon_j+\eta_j .
+\end{equation}
+Repeated substitution exposes products of downstream gains multiplying early
+errors. A calibrated low-gain region may be useful for analog arithmetic;
+saturated operation may be useful for a digital decision. Neither regime
+alone establishes the other. Report the concentration range, calibration
+residuals, parameter uncertainty and downstream loading with the result.
+
+\section{Positive feedback is not automatically a memory}
+
+Consider the formal autocatalytic reaction $Y+F\to2Y$ in a closed compartment.
+With $N=Y+F$ conserved,
+\begin{equation}
+ \dot Y=kY(N-Y),\qquad
+ Y(t)=\frac{N}{1+(N/Y_0-1)e^{-kNt}}\quad(0<Y_0\leq N).
+\end{equation}
+The endpoints are equilibria. At zero, the derivative of the vector field is
+$kN>0$: a small positive seed grows. At $N$ it is $-kN<0$: the filled state is
+attracting. Exact zero remains zero only in the ideal model with no seeding.
+Thus there are not two stable states separated by a threshold.
+
+\Listing{feedback}
+\Plate{05-feedback}{Computed finite-fuel autocatalysis for two positive seeds
+and exact zero. The phase line points toward full conversion for every
+interior concentration. Seed-dependent delay is not evidence of bistability;
+the dashed zero trajectory is an ideal absorbing state vulnerable to leakage.}{fig:feedback}
+
+For $Y_0<N/2$, the half-conversion time is
+$t_{1/2}=\log((N-Y_0)/Y_0)/(kN)$. Smaller seeds delay conversion but do not
+change its destination. Genuine bistable memory requires a specified dynamics
+with two attracting states, their basins, a write operation and retention
+under perturbation. Reuse additionally requires restoring resources and
+removing or transforming prior outputs.
+
+Qian and Winfree's seesaw experiments distinguish threshold absorption,
+catalytic release, integration and signal restoration~\cite{qian}.
+They also distinguish released-signal accounting from instantaneous free
+concentration. Our compact transfer model illustrates those engineering
+questions, but is not their sequence-level implementation.
+More recently, heat-rechargeable circuits use externally supplied thermal
+cycles to enable repeated computation~\cite{heat}. That result motivates
+explicit reset and energy interfaces; it does not make a closed, depleted
+reservoir spontaneously reusable.
+
+\section{Exercises with worked answers}
+\begin{enumerate}
+\item Why must a high interval have an upper bound? \textbf{Answer:}
+A high-plus-low sum must remain below an AND threshold. An arbitrarily large
+high input can cross it alone.
+\item Find the OR separation inequalities for threshold uncertainty
+$\pm0.05$. \textbf{Answer:} $0.2<\theta-0.05$ and
+$\theta+0.05<0.9$; any $0.25<\theta<0.85$ strictly separates the sums.
+Finite-time amplification further constrains the high margin.
+\item Derive the weakest residual for our AND. \textbf{Answer:}
+$0.9+0.9-(1.3+0.05)=0.45$.
+\item Verify the six-second minimum high output. \textbf{Answer:}
+$1-e^{-0.45(6)}=0.932794\ldots$.
+\item If maximum leak becomes $0.1$, can the same AND meet both bands?
+\textbf{Answer:} The upper time becomes $-\log(0.9)/0.1\simeq1.054$,
+below the required $5.117$; the certified window is empty.
+\item Explain why $r=0$ after capture does not imply zero concurrent output.
+\textbf{Answer:} Output depends on positive exposure $\int x\,dt$ before
+capture. Equation~\ref{eq:race-limit} gives a nonzero limit.
+\item Compute the race limit for equal capture/release rates and
+$(x_0,q_0)=(0.2,0.3)$. \textbf{Answer:} $1-(0.1/0.3)=2/3$.
+\item Three equal-volume receivers split $0.95$ normalized output units.
+Is each high? \textbf{Answer:} Each gets $0.3167$, outside the high interval.
+Preserving concentration requires a different volume or resource allocation.
+\item Derive the free fraction with four unit loads and unit $K_i$.
+\textbf{Answer:} $x/X_{\rm total}=1/(1+4)=1/5$ under the stated
+rapid-equilibrium and undepleted-load assumptions.
+\item Is a digital-restoring map globally contractive in analog error?
+\textbf{Answer:} Not necessarily. Near the threshold our derivative approaches
+$F_0kt=6$, although far above threshold it is small.
+\item Does $Y+F\to2Y$ store a robust zero and one? \textbf{Answer:}
+No. Zero is unstable to a positive seed; the closed system converts fuel.
+Two observed endpoint traces do not prove two stable attractors.
+\item Design a gate-composition experiment. \textbf{Rubric:} Measure isolated
+and loaded transfer trajectories, calibrate free versus released signal, vary
+threshold inventory and input timing, include no-input and off-target controls,
+report read windows and uncertainty, and test repeated use separately from
+single-use correctness. A truth table at one handpicked time is insufficient.
+\end{enumerate}
+
+\section{Vocabulary and the next interface}
+\Term{Noise margin}: separation between allowed signal sets and the decision
+boundary. \Term{Signal restoration}: mapping every allowed input region back
+into a valid output region. \Term{Fan-out}: delivery to multiple downstream
+consumers with explicit resource and loading costs. \Term{Retroactivity}:
+downstream loading changes upstream dynamics. \Term{Bistability}: two
+attracting states under the same fixed external conditions.
+
+Circuit diagrams organize reactions by logical dependency. Chapter 22 instead
+asks how spatial bonds and local attachment rules organize computation.
+The same discipline survives the change: define the physical interface,
+prove the abstract claim, and identify what a molecular realization still
+has to demonstrate.

@@ -1,0 +1,62 @@
+{
+  "pdf": "output/pdf/dna-computing-ch19-review.pdf",
+  "pages": 14,
+  "sha256": "b6a1a3aea5f261956be2852ca842f4181b115bfc2bb8dd1c6da29d9f340fa2cf",
+  "status": "standalone authored-LaTeX review candidate; no acceptance promotion",
+  "sources": {
+    "drafts/ch19/README.md": "e8ad919cbd1cc5fb21faca109cddabcb5711ee093ecc5b4007f801852a784981",
+    "drafts/ch19/STORYBOARD.md": "1cd5fcab05af1d289ecd87573070b0531afbbd02c2999757e15ec1ef00f24332",
+    "drafts/ch19/build.py": "f37e54de76eb280dc870ca39db0205ded0760f58e8e85d11cab0dc063fe06281",
+    "drafts/ch19/figures/01-exchange.tex": "7d7ab0bd579cb84ed805db19c1104ee33fdbb5dddd570f7bcadb8bd74db6536d",
+    "drafts/ch19/figures/01-exchange.txt": "80db409f1b01692e7ff6a2a3467da7dd3e9dc1b24eee3f0c8ea925878174724d",
+    "drafts/ch19/figures/02-walk.tex": "65a82f2131c49753524d4730d90145142290968c6b552926a5f5d29b9f991dd6",
+    "drafts/ch19/figures/02-walk.txt": "154dfbd915dae9407562fe3ca86e0c2b985d3d5153a2a6a621e98a365b136bc5",
+    "drafts/ch19/figures/03-commitment.tex": "059570115e2151e071dd1dac6ef91b12d26348dd46072eedfb1b3adca8450633",
+    "drafts/ch19/figures/03-commitment.txt": "5fe8fad70eb073e0577fa1dfad34a3fa1bdd42c045da13888a137d9f728786c4",
+    "drafts/ch19/figures/04-inventory.tex": "d20f0c05f89a579a01ccd19af435a3ab18f3660721790e9dc64a83cbaab9e4b0",
+    "drafts/ch19/figures/04-inventory.txt": "6761e614403e6b726edf111b34bb2e4f32b42edbd8ef6f7a4794c82d761db001",
+    "drafts/ch19/figures/05-leak.tex": "9bd09dd436bf6a81fb387270d8725f570f5a08cf600e82b429b28e2e89ae5656",
+    "drafts/ch19/figures/05-leak.txt": "2d3b85d9bda428d17e816709edf8eff34bf049827554069dfae7cd225845d3f7",
+    "drafts/ch19/manuscript.tex": "277d7e4ddeac329f4fc2f4d8cb86359a2ddbca83983e7a60054cb24f7be05b9e",
+    "drafts/ch19/reference.py": "4d0bb82d4d189819d1632a7be28c9b05b87a87e449ad1a848fcfc110f564d930",
+    "drafts/ch19/results.json": "c72b0d020e9b7eee83fba2b8efcaffcda2d2ffa0bc4555309bdccbbd67f185d7",
+    "drafts/ch19/review.tex": "8a7eb32e7b6262f92fd44baf97b6f1f80b04eb8afa9a6379261a6c970ab3b14a",
+    "drafts/ch19/sources.tex": "f88f3a51a57265fc283222bfda2f8da8a2d4b36524d7a23a97f22bf7127bbe15"
+  },
+  "reviewedOn": "2026-09-27",
+  "reviewType": "author technical, editorial and visual review; not independent specialist acceptance",
+  "allPagesInspected": true,
+  "inspectedPhysicalPages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "grayscaleReview": "All pages inspected in color and grayscale contact sheets. Molecular exchange and causal-dependency plates inspected at page scale; corrected branch-point and forbidden-dependency label spacing re-inspected. Code pagination and small-number table formatting corrected and re-inspected.",
+  "figures": 5,
+  "exercises": 12,
+  "openGates": [
+    "independent specialist review",
+    "reader feedback",
+    "cumulative integration, cross-chapter index and bibliography"
+  ],
+  "validation": {
+    "generatedArtifactsCheck": "passed",
+    "pdfWordsOutsidePage": 0,
+    "unresolvedReferenceMarkers": 0,
+    "python": "3.13.6",
+    "fullSuitePassed": 927,
+    "fullSuiteSkipped": 2,
+    "priorEditionPreservationTests": "passed"
+  }
+}

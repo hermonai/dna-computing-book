@@ -1,0 +1,166 @@
+\section{The formal model and its accepted language}
+We now state the object precisely enough that a theorem has a definite scope.
+Let $\Sigma$ be a finite alphabet, $\Sigma^*$ its finite words and
+$\varepsilon$ the empty word. Positions in code are zero-based; the letter
+$u_r$ in mathematics is the $r$th letter, with $1\leq r\leq |u|$.
+
+\begin{definition}[Paired domain and advancing automaton]
+Let $\rho\subseteq\Sigma\times\Sigma$ be symmetric. Define
+\[
+ \operatorname{WK}_{\rho}=
+ \{(u,v):|u|=|v|,\ (u_r,v_r)\in\rho\text{ for every }r\}.
+\]
+An advancing Watson--Crick automaton is
+$M=(\Sigma,\rho,Q,q_0,F,\mathcal R)$, where $Q$ and $\mathcal R$ are finite,
+$q_0\in Q$, $F\subseteq Q$, and
+$\mathcal R\subseteq Q\times\Sigma^*\times\Sigma^*\times Q$.
+Each rule $(q,x,y,q')$ satisfies $|x|+|y|>0$.
+\end{definition}
+The word \emph{advancing} names our restriction; general literature permits
+additional conventions. This presentation uses the paired-input framework of
+\cite{czeizler}, but proves the following constructions under the definitions
+given here, rather than importing a language hierarchy wholesale.
+
+For fixed $(u,v)\in\operatorname{WK}_\rho$ of length $n$, write
+\begin{equation}
+ (q,i,j)\vdash_{u,v}(q',i+|x|,j+|y|)
+ \label{eq:stepformal}
+\end{equation}
+when $(q,x,y,q')\in\mathcal R$, $x$ is a prefix of $u[i:]$ and $y$ is a
+prefix of $v[j:]$. The bounds on cursors follow from prefix matching.
+The reflexive transitive closure $\vdash^*$ permits zero steps.
+\begin{definition}[Pair acceptance and upper language]
+The accepted relation and its upper projection are
+\begin{align}
+ A(M)&=\{(u,v)\in\operatorname{WK}_\rho:
+       (q_0,0,0)\vdash_{u,v}^*(f,n,n),\ f\in F\},\\
+ L(M)&=\{u:\exists v\ (u,v)\in A(M)\}.
+\end{align}
+\end{definition}
+There are two existential choices: a lower word and a legal run on that
+fixed pair. A program that decides pair acceptance does not automatically
+decide the upper language without resolving the first choice. The empty
+word belongs to $L(M)$ exactly when $q_0\in F$, because advancing rules
+cannot consume anything on empty input.
+
+The relation constrains aligned \emph{input} positions, not arbitrary blocks
+consumed at different cursor positions. If $i\ne j$, a rule can consume
+upper a and lower b even when $\rho$ is identity. Requiring the two rule
+labels themselves to form a paired word would incorrectly forbid the
+equal-block construction. This is why the transition notation must not be
+mistaken for a chemical hybridization instruction.
+
+\subsection{Synchronous reading recovers ordinary regularity}
+\begin{proposition}[Synchronous single-letter restriction]
+If every rule consumes exactly one letter on each strand, then $L(M)$ is
+regular. Conversely, every regular language has such an automaton with
+identity pairing.
+\end{proposition}
+\begin{proof}
+Construct a nondeterministic finite automaton on upper letters, with the same
+states, start state and final states. Include an edge $q\xrightarrow{a}q'$
+exactly when some $b$ satisfies $(a,b)\in\rho$ and
+$(q,a,b,q')\in\mathcal R$. Each paired run projects to an NFA run.
+Conversely, choose one witnessing $b$ for each edge of an NFA run. Their
+concatenation forms an admissible lower word and a paired run, because both
+cursors advance together. The accepted languages coincide. For the reverse
+direction, replace every edge $q\xrightarrow{a}q'$ of an NFA by
+$(q,a,a,q')$ and use identity pairing.
+\end{proof}
+Thus double-stranded notation alone does not explain nonregular recognition.
+The distinguishing resource in our equal-block example is asynchronous access.
+This proposition concerns single-letter synchronous rules; it does not assert
+that every variant of a multihead automaton has the same characterization.
+
+\section{Three levels of determinism}
+\index{Weak determinism}\index{Syntactic determinism}\index{Strong determinism}
+Write $x\preceq z$ when $x$ is a prefix of $z$, and $x\sim_p y$ when
+one is a prefix of the other. In particular, $\varepsilon$ is comparable
+with every word. The terminology below follows \cite{czeizler}.
+
+\begin{definition}[Determinism conventions]
+\emph{Weak determinism} means at most one enabled rule in every reachable
+configuration on admissible paired inputs. \emph{Syntactic determinism}
+requires, for distinct rules $(q,x,y,q')$ and $(q,x',y',q'')$,
+\begin{equation}
+ x\not\sim_p x'\quad\text{or}\quad y\not\sim_p y'.
+ \label{eq:det}
+\end{equation}
+\emph{Strong determinism} adds identity pairing to syntactic determinism.
+\end{definition}
+The word syntactic distinguishes the check on written rules from the semantic
+property of reachable executions. A unique run for a fixed pair also does not
+imply a unique lower word for an upper input under a nonfunctional $\rho$.
+
+\begin{proposition}[A sufficient local test]
+Equation~\ref{eq:det} implies weak determinism.
+\end{proposition}
+\begin{proof}
+If two rules were enabled, their upper labels would both prefix the same
+unread upper suffix, hence would be prefix-comparable. The same argument
+would apply to the lower labels. This contradicts Equation~\ref{eq:det}.
+No assumption about how that configuration was reached is needed.
+\end{proof}
+
+\Plate{06-determinism}{Two outgoing rules conflict syntactically when both
+label pairs are prefix-comparable. The unread pair shown enables both rules.
+In general a reported conflict need not be reachable under a particular
+pairing relation; this diagram demonstrates one concrete admissible case.}{fig:determinism}
+
+\Listing{prefix_conflicts}
+For the equal-block rules, the conflict list is empty. In seek, the upper
+labels $\varepsilon$ and a are comparable, but lower a and b are not.
+In pair, upper a and b are not comparable. Drain has one rule. Together
+with identity pairing, this proves that the construction is strongly
+deterministic under our conventions. Calling its implementation a search
+does not make the recognized computation nondeterministic.
+
+Failure of the test does not establish reachable ambiguity. For example,
+append an unreachable state with rules $(z,a,a,z)$ and $(z,aa,aa,z)$.
+They conflict syntactically, yet no reachable run is changed. This is a
+counterexample to necessity, not a general algorithm for deciding weak
+determinism. The checker reports pairs of rule indices; it deliberately
+makes no claim to solve that semantic decision problem.
+
+\section{Normal forms and honest descriptional complexity}
+\index{Normal form}\index{Descriptional complexity}
+\begin{proposition}[One-symbol normalization]
+Every advancing automaton has an equivalent advancing automaton whose rules
+consume one symbol on exactly one strand. Equivalence here means equality
+of accepted paired relations, with the same empty-input convention.
+\end{proposition}
+\begin{proof}
+For a rule consuming $(x,y)$, let $\ell=|x|+|y|>0$. Replace it by a private
+path of $\ell$ transitions, consuming the letters of $x$ on the upper
+strand first and then the letters of $y$ on the lower. Introduce $\ell-1$
+fresh nonfinal states used only by this path. Keep original start and final
+states. A successful old step expands to a successful path. Conversely,
+an accepting new run cannot end inside a private path and cannot switch
+between private paths, so contract each complete path to its original rule.
+Both constructions preserve the consumed words and endpoints.
+\end{proof}
+Matching the upper block and then failing to match the lower block creates
+a dead branch, not a new accepting run. Private states are essential: sharing
+them indiscriminately could join the first half of one rule to the second
+half of another.
+\Listing{expand_rules}
+Pass all declared states as \texttt{reserved} when they include isolated
+start or final states absent from the rule endpoints. The generated private
+names must be fresh relative to the entire state set, not just reachable
+rule sources. The code validates advancing rules before expanding them.
+
+This elementary construction preserves nondeterministic acceptance, not
+syntactic determinism. Consider $(s,a,b,f)$ and $(s,a,a,g)$: lower b and
+a distinguish the original rules. Expanding upper letters first gives two
+outgoing $(a,\varepsilon)$ rules. A theorem about deterministic normal forms
+requires a more careful construction; it cannot be inferred from this code.
+
+For rule lengths $\ell_r$, this construction has
+\begin{equation}
+ |Q'|=|Q|+\sum_{r\in\mathcal R}(\ell_r-1),\qquad
+ |\mathcal R'|=\sum_{r\in\mathcal R}\ell_r.
+\end{equation}
+Report at least $(|Q|,|\mathcal R|,\sum_r\ell_r,|\rho|)$ when comparing
+descriptions. A rule storing a thousand symbols is not comparable to a
+single-symbol rule merely because both count as one arrow. Normalization
+trades label storage for explicit control states; it does not erase cost.

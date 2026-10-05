@@ -1,5 +1,8 @@
 # DNA Computing
 
+Start with the [current manuscript and folder guide](CURRENT_MANUSCRIPT.md)
+for active chapters, readable outputs, review status and build-cache policy.
+
 The shared [About this book note](tex/frontmatter/about-this-book.tex) owns
 the pedagogical acknowledgment and general evidence/review policy. It is
 authored front matter for one-time inclusion in the next integrated edition;
@@ -28,7 +31,21 @@ DOGMA = non-Transformer DNA-native model + DOGMA Engine; Hermon DNA = Transforme
 
 [Chapter 17: Watson–Crick and biochemical automata](drafts/ch17/README.md) develops a proved two-head recognizer, explicit witness costs and a restriction-based molecular transition mechanism. [Chapter 18: Universality and complexity models](drafts/ch18/README.md) develops tape/two-stack simulation, uniform construction and reliability bounds.
 
-Each new chapter includes five editable vector figures with TXT companions and twelve worked exercises. Chapters 13-18 are standalone author-reviewed candidates, not cumulative acceptance or independently validated industrial systems. Chapter 19 is next; cumulative integration remains pending.
+The separate [Chapter 17 expanded theory edition](drafts/ch17-theory/README.md)
+extends both automata subjects with definitions, propositions and proofs,
+determinism and normal forms, reaction-to-logical-step refinement, stochastic
+transition derivations and readout limits. It includes eight vector figures,
+semantic TXT companions and eighteen worked exercises. The earlier Chapter 17
+candidate remains unchanged.
+
+The original Chapters 13-18 each include five editable vector figures with TXT
+companions and twelve worked exercises. These are standalone author-reviewed
+candidates, not cumulative acceptance or independently validated industrial
+systems.
+
+[Chapter 19: Toehold-mediated strand displacement](drafts/ch19/README.md) adds five editable vector/TXT figures, twelve worked exercises and independently checked numerical examples. Polarity-correct strand exchange, strand-inventory invariants, first-passage probabilities and times, finite-pool depletion, leakage windows, and composition contracts.
+
+[Chapter 20: Chemical reaction networks as programs](drafts/ch20/README.md) develops reaction semantics, conservation laws, count/concentration rate conventions, correctness and completion-time proofs, shared-fuel competition and projection closure. Includes five editable vector/TXT figures, twelve worked exercises and tested reference code.
 
 ## Build and verify
 
@@ -52,3 +69,5 @@ Dependencies: Python 3.10+ (pytest; Pillow for page review), XeLaTeX/latexmk, li
 astra-undergraduate-rewrite is a pedagogical archive, not a parallel manuscript. Its source, figures, examples and committed PDF remain byte-identical. The default tests verify its preserved publication without rebuilding it; make historical-pdf remains an explicit reproduction tool under build/. Main, astra-rewrite and historical snapshots are preserved; no main merge is part of this milestone.
 
 The original eight-section [preproduction outline](CHAPTER_1_OUTLINE.md) is retained as design history. The actual chapter deliberately expands it to 13 sections and ten figures. Full source-access details live in [the chapter source review](research/deep-ch01-sources.md). Review is author-agent work, not independent scientific certification or a real-reader study.
+
+[Chapter 21: Digital and analog DNA circuits](drafts/ch21/README.md) adds concentration logic, finite readout windows, a circuit-composition theorem, a kinetic race counterexample, fan-out loading and feedback stability. Five editable vector/TXT figures, twelve worked exercises and executable reference tests accompany the derivations. Chapter 22 is next; cumulative integration remains pending.

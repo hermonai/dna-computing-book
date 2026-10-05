@@ -1,0 +1,2 @@
+Question: what does a branching wire cost?
+Nine abstract signal equivalents are partitioned into three equal-volume recipients containing three equivalents each. Material is conserved; concentration is not replicated. Catalytic buffering needs extra output reservoirs and has occupancy costs. The drawing is an inventory schematic, not a molecular structure or a claim about literal single-molecule gate operation.
