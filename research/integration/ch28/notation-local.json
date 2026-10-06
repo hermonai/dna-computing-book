@@ -1,0 +1,15 @@
+{
+  "chapter": 28,
+  "symbols": {
+    "a": "molar concentration or explicitly labeled continuous copy-equivalents",
+    "A": "nonnegative exact molecule count",
+    "kf": "forward first-order rate inverse time",
+    "kr": "reverse first-order rate inverse time",
+    "lambda": "kf+kr",
+    "h": "positive Euler step",
+    "alpha": "events per time propensity",
+    "Omega": "NA times volume in liters",
+    "v": "declared molar EVENT-rate concentration/time",
+    "variance": "individual-path population variance, not variance of sample mean"
+  }
+}

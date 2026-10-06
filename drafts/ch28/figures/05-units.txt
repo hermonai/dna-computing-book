@@ -1,0 +1,3 @@
+Figure 05-units / semantic text graph
+
+Distinct species give A*B eligible partners and propensity k AB/Omega under v=k a b. Identical species give choose(A,2) unordered pairs and pair coefficient 2k/Omega under the declared event law v=k a^2. A separate stoichiometric edge consumes two A per event, yielding da/dt=-2v. Omega=NA V is a unit-conversion node; doubling V at fixed copies halves propensity. This illustration is a combinatorial mechanism, not molecular geometry.

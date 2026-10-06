@@ -1,0 +1,14 @@
+\begin{tikzpicture}[font=\small\sffamily]
+\begin{axis}[at={(0,0)},anchor=south west,width=8cm,height=5cm,xlabel={Time (declared units)},ylabel={Mean $A$ / copy-equivalents},xmin=0,xmax=5,ymin=0,ymax=105,grid=major,grid style={Blue!12},tick label style={font=\footnotesize}]
+\input{\Generated/ode-curve.tex}
+\addplot[Green,dashed,domain=0:5]{20};
+\end{axis}
+\node[align=left,anchor=north west,text width=5cm] at (8.1,4.3){\textbf{Oracle and numerical gates}\\[5pt]
+$a(t)=20+80e^{-0.5t}$\\
+$a_*=20,\quad \lambda^{-1}=2$\\[5pt]
+Euler positivity: $h\le2.5$\\
+Euler stability: $h\le4$\\
+Stable does not mean positive.\\[5pt]
+Halving $h$ halves the leading error.\\
+Equilibrium line: dashed.};
+\end{tikzpicture}

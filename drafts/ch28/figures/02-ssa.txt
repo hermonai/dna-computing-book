@@ -1,0 +1,3 @@
+Figure 02-ssa / semantic text graph
+
+Count state and time determine hazards. Zero total hazard leads to an absorbing completed interval. Positive hazard fans out to an open-interval waiting-time uniform and a half-open channel-choice uniform. A before-horizon event updates the integer state, appends it, and loops. An after-horizon event leaves the preceding state valid through T. A budget-limit branch returns incomplete at current time and disallows queries beyond the simulated interval.

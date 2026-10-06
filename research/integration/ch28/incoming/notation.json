@@ -1,0 +1,10 @@
+{
+  "S": "m\u00d7R stoichiometric matrix",
+  "nu_j": "reaction-j state-change vector",
+  "c(t)": "continuous concentration state",
+  "X(t)": "integer molecule-count state",
+  "a_j(X)": "SSA propensity",
+  "a_0": "total propensity",
+  "tau": "sampled waiting time",
+  "N_A": "Avogadro constant"
+}
