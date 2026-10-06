@@ -1,0 +1,32 @@
+{
+  "access_date": "2026-10-06",
+  "chapter": 26,
+  "records": [
+    {
+      "key": "Wilkinson2016",
+      "title": "The FAIR Guiding Principles for scientific data management and stewardship",
+      "authors": "M. D. Wilkinson et al.",
+      "date": "2016",
+      "doi": "10.1038/sdata.2016.18",
+      "url": "https://www.nature.com/articles/sdata.2016.18",
+      "access_depth": "selected primary sections",
+      "inspected": "Introduction and detailed FAIR principles Box 2; accessible publisher HTML",
+      "claim": "Metadata and stewardship make evidence reusable; authorized access can be compatible with accessibility.",
+      "access_date": "2026-10-06",
+      "issue": "Access scope is explicit. No experiment replication, full commercial-book inspection or independent scientific review is inferred."
+    },
+    {
+      "key": "Dey2021",
+      "title": "DNA origami",
+      "authors": "S. Dey et al.",
+      "date": "2021-01-28",
+      "doi": "10.1038/s43586-020-00009-8",
+      "url": "https://www.nature.com/articles/s43586-020-00009-8",
+      "access_depth": "publisher abstract and metadata",
+      "inspected": "Publisher abstract, title, author record, publication date and accessible figure titles; full methods not inspected",
+      "claim": "Molecular realization involves design, synthesis and characterization, not only an abstract diagram.",
+      "access_date": "2026-10-06",
+      "issue": "Access scope is explicit. No experiment replication, full commercial-book inspection or independent scientific review is inferred."
+    }
+  ]
+}

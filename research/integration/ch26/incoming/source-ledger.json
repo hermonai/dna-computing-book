@@ -1,0 +1,23 @@
+[
+  {
+    "key": "dey2021",
+    "primary": "https://doi.org/10.1038/s43586-020-00009-8",
+    "claim": "DNA origami practice distinguishes design/production/purification/characterization stages and practical constraints.",
+    "access_date": "2026-10-05",
+    "depth": "publisher/primer context"
+  },
+  {
+    "key": "fair2016",
+    "primary": "https://doi.org/10.1038/sdata.2016.18",
+    "claim": "FAIR data principles define findable, accessible, interoperable and reusable stewardship goals.",
+    "access_date": "2026-10-05",
+    "depth": "publisher article"
+  },
+  {
+    "key": "internal23-25",
+    "primary": "DNAD-23--25",
+    "claim": "Fault denominators, evidence contracts, resource/storage channel provenance.",
+    "access_date": "2026-10-05",
+    "depth": "full prior package continuity"
+  }
+]

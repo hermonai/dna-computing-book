@@ -1,0 +1,35 @@
+{
+  "history_valid": true,
+  "event_digest": "a20bc491940cc181d2188df3cb884d6a9fd6934f4712cb295be26726af01c4cb",
+  "amount_mol": 1.0000000000000002e-14,
+  "amount_sigma_mol": 1.019803902718557e-15,
+  "preparation_mean": 0.6666666666666666,
+  "preparation_mean_variance": 0.11111111111111112,
+  "naive_object_mean_variance": 0.0007432181345224824,
+  "stages": [
+    {
+      "stage": "design_frozen",
+      "artifacts": 3
+    },
+    {
+      "stage": "materials_verified",
+      "artifacts": 4
+    },
+    {
+      "stage": "run_recorded",
+      "artifacts": 7
+    },
+    {
+      "stage": "observations_frozen",
+      "artifacts": 10
+    },
+    {
+      "stage": "analysis_frozen",
+      "artifacts": 13
+    },
+    {
+      "stage": "released",
+      "artifacts": 14
+    }
+  ]
+}

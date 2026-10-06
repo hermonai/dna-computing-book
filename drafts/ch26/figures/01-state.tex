@@ -1,0 +1,15 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
+\path[use as bounding box](-.2,-.6) rectangle(16,6.4);
+\node[anchor=west,font=\large\sffamily\bfseries,Blue] at(0,6){Evidence accumulates; prior commitments stay fixed};
+\foreach \x/\i/\title/\roles in {0/0/Design frozen/{design + sequences\\protocol},5.5/1/Materials verified/{material identity\\lot / characterization},11/2/Run recorded/{execution + controls\\randomization}} {
+\node[draw=Blue,rounded corners=2mm,fill=Pale,minimum width=4.6cm,minimum height=1.4cm,align=center] (q\i) at(\x+2.3,4.6){\textbf{\title}\\\roles};
+\node[circle,fill=Blue,text=white,inner sep=3pt] at(\x+.25,5.3){\i};}
+\foreach \x/\i/\title/\roles in {11/3/Observations frozen/{raw + calibration\\blinding},5.5/4/Analysis frozen/{specification + code\\derived values},0/5/Released/{access / license\\release metadata}} {
+\node[draw=Green,rounded corners=2mm,fill=Green!7,minimum width=4.6cm,minimum height=1.4cm,align=center] (q\i) at(\x+2.3,2.4){\textbf{\title}\\\roles};
+\node[circle,fill=Green,text=white,inner sep=3pt] at(\x+.25,3.1){\i};}
+\draw[flow](q0)--(q1);\draw[flow](q1)--(q2);
+\draw[flow](q2)--(q3);\draw[flow](q3)--(q4);\draw[flow](q4)--(q5);
+\node[align=center,Blue] at(8,1){Same plan + cumulative artifacts + deviation prefix\\One transition at a time; every actual byte digest rechecked};
+\draw[Red,thick,dashed](q0.south west) to[bend right=18] node[left,Red,align=center]{no direct\\release} (q5.north west);
+\node[anchor=west,Red] at(0,-.1){Artifact presence is not evidence that a control or calibration passed.};
+\end{tikzpicture}

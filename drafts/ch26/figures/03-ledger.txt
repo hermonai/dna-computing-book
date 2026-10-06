@@ -1,0 +1,23 @@
+SEMANTIC GRAPH — Quantity and uncertainty mechanism
+
+Purpose: Explain the mechanism and its scope; companion to the editable TikZ plate.
+Notation: prose nodes and typed relationships, not ASCII art.
+
+NODES
+N0: Assigned c=2 nM; concentration expressed in mol/L.
+N1: Assigned V=5 microlitre; volume expressed in L.
+N2: Nominal n=cV=1e-14 mol.
+N3: First-order uncertainty Jacobian (V,c); correlation rho explicit.
+
+RELATIONSHIPS
+R0: Unit conversion precedes multiplication.
+R1: V*delta_c + c*delta_V approximates delta_n.
+R2: Variance includes cross term 2*c*V*rho*sigma_c*sigma_V.
+R3: rho=0 assigned uncertainties give sigma_n=1.0198039e-15 mol.
+
+READING AND LIMITS
+- Not a measured functional strand inventory; integrity and folded/accessibility fractions unknown.
+- First-order approximation omits product fluctuations and systematic bias.
+- Illustrated vial and pipette are conceptual, not operational instructions.
+
+Visual encoding: navy/blue denotes state and bound evidence; green denotes valid flow or independent unit; red denotes failure or limitation. Text and arrow roles preserve meaning in grayscale.

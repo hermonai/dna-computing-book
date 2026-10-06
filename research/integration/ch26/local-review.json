@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-06",
+  "chapter": 26,
+  "pdf": "output/pdf/dna-computing-ch26-review.pdf",
+  "pdf_sha256": "4802c3ae113bd60e15df32e237557c291b5d7f3edae66487589bd53bd5b77f86",
+  "pages": 17,
+  "source_hashes": {
+    "drafts/ch26/README.md": "8a9f31816f270af8eceab9971f5bc5701d44dede0805d069d1bbbe106959b609",
+    "drafts/ch26/STORYBOARD.md": "78ecaf6af0422325e9468cb39ff1a53891b655a923d743a2815d2f260b43fbe8",
+    "drafts/ch26/build.py": "7b0357f4e9d0c3e6e64b4f5fb24b5d65058a9ce9f796b7e07ceedc92dc3e1f1c",
+    "drafts/ch26/figures/01-state.tex": "20301b93f9853503c71414c13bb113d6edca871b542050adfdc03c1650a8ae1b",
+    "drafts/ch26/figures/01-state.txt": "48c1c908a25b39da14551f010b9d0d760f62d367a30eb4e5afc6985c86ac3f08",
+    "drafts/ch26/figures/02-identity.tex": "c8c55145783cdbd5bcc88b1446b5a4462662e1f0c1b0cf947e272858d93d296a",
+    "drafts/ch26/figures/02-identity.txt": "4782e0f3d1bb38903c66607c16d94bee815cfaa9b23d0e879f55c55d79edbfce",
+    "drafts/ch26/figures/03-ledger.tex": "403cc38f861107760160650eacb2c55dde595de51209e4635399525380301960",
+    "drafts/ch26/figures/03-ledger.txt": "7809cbbeb8a16cd05a806bd1c3085a43aaa606a5d1f50802cd363bfe0340b2eb",
+    "drafts/ch26/figures/04-replicates.tex": "fab8c1184887a0f92ad75c55afcd7c5bba227ed2245fd58aa361b6b09f47b489",
+    "drafts/ch26/figures/04-replicates.txt": "9d4209605ccb66dc7a3087f737d9be4a46302a5d3adc1c85a51e4d6bb1236b42",
+    "drafts/ch26/figures/05-measure.tex": "6b01c091d6ff321d391b5775ca70c46157dc5f62084e3484972feca05711fdfd",
+    "drafts/ch26/figures/05-measure.txt": "8b056a300539f5d4b3e7e934c1882223f1f65fdc726955a18f1be17d90e51fa7",
+    "drafts/ch26/figures/06-release.tex": "34aaa3e9c3fbb90c04affc4aa8cd42bf6cf16d96ab6bac253a18c5172cbe31c1",
+    "drafts/ch26/figures/06-release.txt": "93f85c76ee379c1d1211d7dcfe46c8b5d4442dd8ec24dbc3c85b06ad595420a9",
+    "drafts/ch26/manuscript.tex": "627c2766468a6a8efd4dae76d86f5eac96976c87a0c87aa365c0502af805f04e",
+    "drafts/ch26/reference.py": "da5812077e2bb5dca745741f402b9a0e335b2efc3b60d69720e76278b284bfb6",
+    "drafts/ch26/results.json": "fbe72e96e74d313d3e530be1101513fe3b4d7b31003aacce2b6770824af39c42",
+    "drafts/ch26/review.tex": "93f86687b9da10ac7236b2816777092d3369d4fd3935b6a63e9e8b4ca396825f",
+    "drafts/ch26/sources.tex": "40de05675b1ca4f3cdb60abb74abb4b3b4db4330b83dd53ef445d8dbe4b27df3",
+    "tests/test_ch26_reference.py": "bf73bb6d6159131885a0d7948d433076a4a1ffb14bde754825eacf03fa3529ab"
+  },
+  "tests": {
+    "repository_passed": 1138,
+    "repository_skipped": 2,
+    "chapter_passed": 34,
+    "report": "build/ch26/regression.xml",
+    "python": "3.13.6"
+  },
+  "visual_review": {
+    "reviewer": "author/agent",
+    "status": "PASS WITH NOTES",
+    "mode": "all 17 pages, color and grayscale contact sheets",
+    "notes": "All 17 pages inspected in color and grayscale. Unit plate spacing repaired and native page 8 inspected. All six mechanism plates, complete code listings, equations, table counts, exercises, source links and index readable; no clipping or missing glyphs. Provenance and laboratory-truth gates remain separate."
+  },
+  "mathematical_review": "Assumptions, independent oracles and falsifiers in technical-audit.md.",
+  "acceptance": "locally reviewed standalone integration candidate; not accepted publication edition"
+}

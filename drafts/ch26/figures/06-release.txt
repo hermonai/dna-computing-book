@@ -1,0 +1,23 @@
+SEMANTIC GRAPH — Independent release and replication gates
+
+Purpose: Explain the mechanism and its scope; companion to the editable TikZ plate.
+Notation: prose nodes and typed relationships, not ASCII art.
+
+NODES
+N0: Bundle: frozen question, identities, raw evidence, code, outputs.
+N1: Machine gate: actual bytes and ordered immutable-history contract.
+N2: Scientific gate: controls, estimand, uncertainty and interpretation.
+N3: Reproduction, independent preparation replication, external site replication.
+
+RELATIONSHIPS
+R0: Bundle -> machine check -> separately scoped scientific review.
+R1: Same frozen evidence can be computationally reproduced.
+R2: New physical evidence tests replication; another site tests external replication.
+R3: FAIR reuse needs access mechanism, license and domain metadata.
+
+READING AND LIMITS
+- Machine pass is not scientific truth.
+- Rebuilt digest chain is not authentication.
+- Authorized restricted access may satisfy documented accessibility.
+
+Visual encoding: navy/blue denotes state and bound evidence; green denotes valid flow or independent unit; red denotes failure or limitation. Text and arrow roles preserve meaning in grayscale.
