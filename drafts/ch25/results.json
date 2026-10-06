@@ -1,0 +1,72 @@
+{
+  "kind": "digital reference outputs; no laboratory measurements",
+  "archive": {
+    "source_bytes": 28,
+    "groups": 4,
+    "unique_strands": 12,
+    "nt_per_strand": 80,
+    "unique_nt": 960,
+    "net_bits_per_unique_nt": 0.23333333333333334,
+    "recovered_exactly": true,
+    "rejected_reads": 0,
+    "duplicate_reads": 1,
+    "recovered_groups": 4,
+    "accepted_addresses": 8,
+    "first_gc_fraction": 0.225,
+    "first_maximum_run": 18
+  },
+  "constraint": {
+    "length": 8,
+    "size": 14696,
+    "fixed_payload_bits": 13,
+    "rate_bits_per_nt": 1.625,
+    "unused_words": 6504,
+    "rank": 173,
+    "word": "AACGCTGT",
+    "decoded_rank": 173
+  },
+  "consensus": {
+    "reads": 11,
+    "assigned_substitution_probability": 0.02,
+    "exact_for_assigned_seeds": true,
+    "ambiguous_clusters_are_erasures": true
+  },
+  "code_sizes": [
+    {
+      "length": 4,
+      "words": 96,
+      "bits": 6,
+      "rate": 1.5
+    },
+    {
+      "length": 8,
+      "words": 14696,
+      "bits": 13,
+      "rate": 1.625
+    },
+    {
+      "length": 12,
+      "words": 2520888,
+      "bits": 21,
+      "rate": 1.75
+    },
+    {
+      "length": 16,
+      "words": 454767840,
+      "bits": 28,
+      "rate": 1.75
+    },
+    {
+      "length": 24,
+      "words": 15978946672664,
+      "bits": 43,
+      "rate": 1.7916666666666667
+    },
+    {
+      "length": 32,
+      "words": 593075380020150888,
+      "bits": 59,
+      "rate": 1.84375
+    }
+  ]
+}

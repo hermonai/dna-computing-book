@@ -1,0 +1,5 @@
+Question: How does molecular addressing differ from a digital index?
+Panel A: an antiparallel duplex is labeled 5-prime to 3-prime on the upper strand and 3-prime to 5-prime on the lower. A forward primer extends rightward; the reverse primer extends leftward, both by 5-prime to 3-prime synthesis toward the indexed payload.
+Panel B: a mixed population is enriched for a target address family. Unequal amplification and off-target products can remain in the observed pool.
+Distinction: primer recognition determines which molecules are observed. A header index determines where an observed read belongs after sequencing. Neither replaces the other.
+Boundary: this is a conceptual orientation/selection mechanism, not a validated primer sequence, reaction protocol or measured recovery result.

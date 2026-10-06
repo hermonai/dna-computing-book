@@ -1,0 +1,97 @@
+{
+  "access_date": "2026-10-06",
+  "chapter": 25,
+  "records": [
+    {
+      "key": "goldman",
+      "authors": "N. Goldman et al.",
+      "title": "Towards practical, high-capacity, low-maintenance information storage in synthesized DNA",
+      "date": "2013-01-23",
+      "url": "https://doi.org/10.1038/nature11875",
+      "doi": "10.1038/nature11875",
+      "access_depth": "publisher abstract and metadata",
+      "inspected": "Abstract; Nature 494, 77-80",
+      "claim": "Historical digital-file reconstruction is a demonstrated storage task, not evidence for this chapter's decoder.",
+      "access_date": "2026-10-06",
+      "issue": "Not full-paper or supplementary-proof verification; no experiment replication. Independently authored chapter mechanisms are not reproductions of this source."
+    },
+    {
+      "key": "organick",
+      "authors": "L. Organick et al.",
+      "title": "Random access in large-scale DNA data storage",
+      "date": "2018-02-19",
+      "url": "https://doi.org/10.1038/nbt.4079",
+      "doi": "10.1038/nbt.4079",
+      "access_depth": "publisher abstract, metadata and accessible supplementary figure caption",
+      "inspected": "Abstract; supplementary Figure 1 primer-design caption; corrected publisher record",
+      "claim": "Random access to individual files uses molecular address/primer design, not merely a digital index.",
+      "access_date": "2026-10-06",
+      "issue": "Not full-paper or supplementary-proof verification; no experiment replication. Independently authored chapter mechanisms are not reproductions of this source."
+    },
+    {
+      "key": "bias",
+      "authors": "Y.-J. Chen et al.",
+      "title": "Quantifying molecular bias in DNA data storage",
+      "date": "2020-06-29",
+      "url": "https://doi.org/10.1038/s41467-020-16958-3",
+      "doi": "10.1038/s41467-020-16958-3",
+      "access_depth": "selected primary PMC article sections",
+      "inspected": "Abstract, introduction and initial bias/model sections",
+      "claim": "Copy-count/sampling bias is distinct from sequence errors; average read coverage can hide dropout.",
+      "access_date": "2026-10-06",
+      "issue": "Not full-paper or supplementary-proof verification; no experiment replication. Independently authored chapter mechanisms are not reproductions of this source."
+    },
+    {
+      "key": "twin",
+      "authors": "A. L. Gimpel; W. J. Stark; R. Heckel; R. N. Grass",
+      "title": "A digital twin for DNA data storage based on comprehensive quantification of errors and biases",
+      "date": "2023-09-27",
+      "url": "https://doi.org/10.1038/s41467-023-41729-1",
+      "doi": "10.1038/s41467-023-41729-1",
+      "access_depth": "selected primary publisher article sections",
+      "inspected": "Abstract, introduction and initial error-analysis sections",
+      "claim": "Workflow-dependent errors and coverage bias motivate calibrated channel models rather than one universal substitution probability.",
+      "access_date": "2026-10-06",
+      "issue": "Not full-paper or supplementary-proof verification; no experiment replication. Independently authored chapter mechanisms are not reproductions of this source."
+    },
+    {
+      "key": "deep-storage",
+      "authors": "D. Bar-Lev et al.",
+      "title": "Scalable and robust DNA-based storage via coding theory and deep learning",
+      "date": "2025-02-21",
+      "url": "https://doi.org/10.1038/s42256-025-01003-z",
+      "doi": "10.1038/s42256-025-01003-z",
+      "access_depth": "publisher abstract, metadata and data/code availability",
+      "inspected": "Abstract and data/code availability; Nature Machine Intelligence 7, 639-649",
+      "claim": "Learned reconstruction, coding and safety-margin mechanisms address distinct stages; column majority is not the published system.",
+      "access_date": "2026-10-06",
+      "issue": "Not full-paper or supplementary-proof verification; no experiment replication. Independently authored chapter mechanisms are not reproductions of this source."
+    },
+    {
+      "key": "deep-correction",
+      "authors": "D. Bar-Lev et al.",
+      "title": "Author Correction: Scalable and robust DNA-based storage via coding theory and deep learning",
+      "date": "2025-12-30; issue 2026",
+      "url": "https://doi.org/10.1038/s42256-025-01175-8",
+      "doi": "10.1038/s42256-025-01175-8",
+      "access_depth": "complete correction text",
+      "inspected": "Correction to simulated-data-generation methods; Nature Machine Intelligence 8, 134",
+      "claim": "Correction adds missing Nahum, Ben Tolila and Anavy 2021 Transformer reconstruction prior-work citation/discussion.",
+      "access_date": "2026-10-06",
+      "issue": "Correction inspected; underlying experimental results were not replicated."
+    },
+    {
+      "key": "bijective",
+      "authors": "J. Li; M. Dong; Z. Qi; H. Guan",
+      "title": "Towards density-optimal DNA storage with practical bijective coding",
+      "date": "2026-08-27",
+      "url": "https://doi.org/10.1038/s41467-026-77024-y",
+      "doi": "10.1038/s41467-026-77024-y",
+      "access_depth": "selected primary publisher article sections",
+      "inspected": "Abstract and selected codebook/overview/comparison sections; Nature Communications 17, 10261",
+      "claim": "Finite forbidden-pattern automata, dynamic completion counts and bijective mapping connect constraints to coding rates.",
+      "access_date": "2026-10-06",
+      "issue": "Not full-paper or supplementary-proof verification; no experiment replication. Independently authored chapter mechanisms are not reproductions of this source."
+    }
+  ]
+}

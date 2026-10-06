@@ -1,0 +1,26 @@
+\begin{tikzpicture}
+\node[anchor=west,font=\small\sffamily\bfseries,Blue] at (0,.8) {A. Address family with inward primer extension};
+\draw[Blue,very thick] (1,-1)--(12,-1);
+\draw[Blue,very thick] (1,-1.6)--(12,-1.6);
+\foreach \x in {1.3,1.8,...,11.8}{\draw[Blue!45] (\x,-1)--(\x,-1.6);}
+\node[note] at (.4,-1) {$5'$};\node[note] at (12.7,-1) {$3'$};
+\node[note] at (.4,-1.6) {$3'$};\node[note] at (12.7,-1.6) {$5'$};
+\draw[Green,very thick] (1.3,-2.1)--(3.8,-2.1);
+\draw[Green,-{Stealth},thick] (3.8,-2.1)--(6.3,-2.1);
+\node[smallnote] at (2.4,-2.6) {forward primer $5'\to3'$};
+\draw[Red,very thick] (9.2,-.5)--(11.7,-.5);
+\draw[Red,-{Stealth},thick] (9.2,-.5)--(6.7,-.5);
+\node[smallnote] at (10.2,.05) {reverse primer $3'\leftarrow5'$};
+\node[smallnote,fill=white] at (6.5,-1.3) {indexed payload region};
+\draw[flow] (6.5,-2.5)--(6.5,-3.3);
+\node[note] at (6.5,-3.8) {Enrichment changes relative molecule counts; it does not read the digital index.};
+\draw[Blue,thick] (2.4,-5.6) ellipse (1.8 and 1.0);
+\foreach \y in {-5.1,-5.5,-5.9}{\draw[Blue,thick] (1.2,\y)--(3,\y);}
+\draw[Green,thick] (2,-6.2)--(3.2,-6.2);
+\draw[flow] (4.5,-5.6)--node[above,note]{specificity +\\amplification}(7,-5.6);
+\draw[Blue,thick] (9.2,-5.6) ellipse (1.8 and 1.0);
+\foreach \y in {-5.0,-5.3,-5.6,-5.9,-6.2}{\draw[Blue,thick] (8.1,\y)--(10,\y);}
+\draw[Green,dashed,thick] (9.7,-4.8)--(10.5,-4.8);
+\node[note] at (2.4,-7.0) {mixed pool};
+\node[note] at (9.2,-7.0) {enriched pool;\\off-target reads may remain};
+\end{tikzpicture}

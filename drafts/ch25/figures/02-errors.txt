@@ -1,0 +1,5 @@
+Question: Which errors preserve coordinates and which invalidate column voting?
+Panel A: ACGTAC becomes ACCTAC by one substitution at coordinate 2. Downstream positions retain their meanings.
+Panel B: ACGTAC and ACGGTAC require a gap in an inferred alignment. An inserted G changes downstream offsets; the displayed alignment is an illustrative inference, not an implemented aligner.
+Panel C: in an already aligned identity cluster, A,A,C gives A by strict majority; A,C gives an erasure, not a lexicographic preference.
+Assumptions: canonical bases, established read identity/orientation/alignment, equal lengths for this vote. Correlated errors and missing clusters are not repaired by column consensus.

@@ -1,0 +1,5 @@
+Question: Why is a molecular pool not a file in byte order?
+Entities: source bytes u and trusted manifest; indexed frames; physical molecule copies n_i; observed reads; verified reconstruction.
+Relations: encoding frames source shards with addresses and CRCs. Writing creates a physical population, possibly damaged or missing. Access and sampling create unequal read multiplicities. The decoder validates addresses, reconstructs in digital index order, trims the recorded length, and compares the trusted digest.
+Invariant: repeated reads at one address are not independent source shards. Reconstruction returns the original file or reports failure under the declared model.
+Boundary: the reference executes digital framing and reconstruction, not synthesis, amplification or sequencing. Copy distributions and biochemical arrows require measurements.
