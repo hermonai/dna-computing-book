@@ -1,6 +1,6 @@
 # Editorial architecture and release roadmap
 
-Updated 27 September 2026. This is the current execution map, not a claim
+Updated 6 October 2026. This is the current execution map, not a claim
 that every planned chapter is written or independently reviewed.
 
 ## One manuscript, distinct review stages
@@ -13,7 +13,9 @@ to change their progress labels.
 Chapters 1-2 retain their internal acceptance records. Chapter 3 has standalone
 and combined LaTeX review candidates. Chapters 4-21 have isolated authored-LaTeX
 review candidates with code, vector figures, and worked solutions.
-Chapter 22 is the next unwritten chapter. Chapters 11-21 were authored at the
+Chapters 22-30 now have source-bound locally reviewed standalone integration
+candidates. Chapters 31-32 remain staged ZIP candidates requiring semantic
+inspection and their own validation gates. Chapters 11-21 were authored at the
 reader's explicit request while the Chapters 1-10 integration milestone remains
 pending. These standalone candidates do not substitute for that integration.
 Independent specialist review and cumulative integration are still open.
@@ -166,14 +168,27 @@ Five vector/TXT figures, twelve worked exercises and executable independent
 checks make the assumptions and failure boundaries visible. Original teaching
 models remain distinct from measured chemistry or trained genomic capability.
 
-## Pending milestone: integrate Chapters 1-10
+## Chapter 30 scope (locally reviewed candidate): biological mechanisms and model boundaries
+
+Derive cis/trans occupancy and chromosome-context distinctions before the
+two-regulator nondimensional model. Prove fixed-point alternatives, the
+symmetry-breaking threshold and local stability; test positivity and refinement
+against independent arithmetic. Separate production intervention from state
+clamping, recorded lineage from pseudotime, molecule partition from DNA copying,
+and population selection from within-cell regulation. Six mechanism/model
+plates and twenty worked exercises make each biological-to-computational map
+state its carriers, assumptions, observations and omitted processes.
+
+## Pending milestone: cumulative editorial and independent review
 
 Audit strand/count/concentration/signal notation, units, measurement assumptions,
 source coverage, and prerequisites, including the interfaces now used by
 Chapters 11-21. Preserve the distinction between a physical separation and a formal
 predicate.
-Build a new cumulative entry point with unified bibliography and index; retain
-standalone candidates and accepted editions unchanged. Do not promote acceptance
+The continuous authored-source entry point now builds Chapters 1-30 with unified
+bibliography, glossary and index. Its compilation does not close this editorial
+or independent review milestone. Retain standalone candidates and accepted
+editions unchanged. Do not promote acceptance
 without independent review and the existing release gates.
 
 ## Quality gates before widening the manuscript

@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-06",
+  "chapter": 30,
+  "pdf": "output/pdf/dna-computing-ch30-review.pdf",
+  "pdf_sha256": "67524921a0c84afcc357f4d875672558d76398e86126453c6378b79333720b6e",
+  "pages": 16,
+  "source_hashes": {
+    "drafts/ch30/README.md": "8b43e8d3a92a307370100c67d417a8942b9ab3c08f825611f793220f10bc72de",
+    "drafts/ch30/STORYBOARD.md": "4f4fd4cc1561f2a0d61926170f3b8aae285997aab32aa3e83593a9c51cf03ebc",
+    "drafts/ch30/build.py": "396341e1d7772a97926f0d795cdd376aee8cacf32c91548342d6bdb3a789b185",
+    "drafts/ch30/figures/01-expression.tex": "b8e097410161a9a657446a7ba521c30d5aa3328d3e5d6bbb8d1803ce74b93fdf",
+    "drafts/ch30/figures/01-expression.txt": "cbf600c202dcd8dc731655232680f6530971e4769f801b4ea97ff99f592017e9",
+    "drafts/ch30/figures/02-context.tex": "98c22f71dbe25452f4a65109f73c5e81d43327f59760afa0d88feddfc253cdf3",
+    "drafts/ch30/figures/02-context.txt": "3bfebdfe9ae6f8dfdc7cbfc51e0ad0c78d5c75e1db1d76ae1142039a9e6eb3b8",
+    "drafts/ch30/figures/03-network.tex": "bb82079abee5fe570d1cc0d8d46284c7b7d77719eb21a26466be3dff3db20dba",
+    "drafts/ch30/figures/03-network.txt": "7b6734c5d0a136fbe15a063c79d16440efda5b3a19904e60ac1afb7ffa002f20",
+    "drafts/ch30/figures/04-development.tex": "4051d330a1d2631ed927a9682530a592d35e1c771828d41d48ec561513e9ad0a",
+    "drafts/ch30/figures/04-development.txt": "5e203c2287bb89e6f3f70d944fe09d1d9a8da64b6368db7175f7d863a667dcce",
+    "drafts/ch30/figures/05-evolution.tex": "8456f42fe22bc0398787cc76db64dda8fff41d5c037a764b4ca293e8d1db57f9",
+    "drafts/ch30/figures/05-evolution.txt": "6f60ef1b77a36f8d94834ebb59407f5e8a89a806c1f90c3aa7f48c0946c07d1d",
+    "drafts/ch30/figures/06-abstraction.tex": "858884ef232d5f410bbdd033292a432a843af953dbb40a6d116efc64de832112",
+    "drafts/ch30/figures/06-abstraction.txt": "82921a42ab4539bdef2db91418e8e5ce5e240f74a11f9800d3621e5a9b87bdf1",
+    "drafts/ch30/manuscript.tex": "00ca6fa350ddd674c523d1c5ad878fc9335e61911a861d0698c94a46f209ba13",
+    "drafts/ch30/reference.py": "61a8ec525370f049980ab177a2ade383ca342b87dbd1bda4d47dedbe19a758bc",
+    "drafts/ch30/results.json": "4780e0c608eb189723c4332d3c9a47673d1a11bc25382ebf55f27e6ca658eef3",
+    "drafts/ch30/review.tex": "a838874366c9a54208eecf2af2429ce82507b44640b2599072010097663f5c30",
+    "drafts/ch30/sources.tex": "e3dea87e7e4cfd2a24f885d6414b0a8b6a9f3dfe3ef91316509fddff37208007",
+    "tests/test_ch30_reference.py": "dd98f4c73ea94ac1f8ed1cf3d5f8095ecd988b9aa23df5a543d60af085d52fa3"
+  },
+  "tests": {
+    "repository_passed": 1305,
+    "repository_skipped": 2,
+    "chapter_passed": 55,
+    "report": "build/ch30/regression.xml",
+    "python": "3.13.6"
+  },
+  "visual_review": {
+    "reviewer": "author/agent",
+    "status": "PASS WITH NOTES",
+    "mode": "all 16 pages, color and grayscale contact sheets",
+    "notes": "All 16 final pages inspected in color and grayscale. Corrected polarity-label spacing, context labels, phase-plane/time-axis separation, lineage labels and mapping-panel text. Removed redundant references title page. Six mechanism/model plates, whole-function listings, TOC and index checked; biological drawings are original schematics, not calibrated experimental evidence."
+  },
+  "mathematical_review": "Assumptions, independent oracles and falsifiers in technical-audit.md.",
+  "acceptance": "locally reviewed standalone integration candidate; not accepted publication edition"
+}

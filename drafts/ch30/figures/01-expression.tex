@@ -1,0 +1,30 @@
+\begin{tikzpicture}[font=\small\sffamily,>=Stealth]
+\path[use as bounding box] (0,-.9) rectangle (14,5.3);
+\draw[Blue,thick,rounded corners] (.2,.3) rectangle (7.6,4.8);
+\node[anchor=west,Blue] at (.45,4.5) {NUCLEUS: template, factors and processing};
+\draw[Blue,very thick] (.7,2.8)--(6.8,2.8);
+\draw[Blue,very thick] (.7,2.3)--(6.8,2.3);
+\foreach \x in {.8,1,1.2,1.4,1.6,1.8,2,2.2,2.4,2.6,2.8,3,3.2,3.4,3.6,3.8,4,4.2,4.4,4.6,4.8,5,5.2,5.4,5.6,5.8,6,6.2,6.4,6.6} {\draw[Blue!40] (\x,2.3)--(\x,2.8);}
+\node[anchor=east] at (.6,2.85) {$5'$}; \node[anchor=east] at (.6,2.25) {$3'$};
+\node[anchor=west] at (6.9,2.85) {$3'$};\node[anchor=west] at (6.9,2.25) {$5'$};
+\fill[Gold] (1.3,2.5) rectangle (2.3,2.85);
+\node[smallnote] at (1.8,2.1) {cis site};
+\node[diamond,draw=Green,fill=Green!12,minimum size=8mm] (tf) at (1.8,3.6) {TF};
+\draw[Green,dashed,->] (tf)--(1.8,2.9);
+\node[ellipse,draw=Blue,fill=Pale,minimum width=1.6cm,minimum height=.8cm] at (4.2,2.55) {Pol II};
+\draw[->,Blue,thick] (4.9,3.25)--(6.3,3.25);
+\node[smallnote] at (5.7,3.6) {transcription};
+\draw[Red,thick] (4.1,2.1) .. controls (4.1,1.6) and (3.2,1.6) .. (2.4,1.35);
+\node[smallnote,Red] at (2.3,1.05) {$5'$ RNA};
+\draw[Red,thick,->] (4.2,1.4)--(6.8,1.4);
+\node[smallnote] at (5.5,1.85) {processing / export};
+\draw[Red,thick] (8.2,1.4)--(13.3,1.4);
+\node[smallnote,Red] at (8.3,1) {$5'$};\node[smallnote,Red] at (13.2,1) {$3'$};
+\node[ellipse,draw=Blue,fill=Pale,minimum width=1.7cm,minimum height=.9cm] at (10.6,1.5) {ribosome};
+\draw[Green,thick] (10.8,2) .. controls (11.1,2.6) and (11.9,2.2) .. (12.3,3);
+\foreach \x/\y in {10.9/2.2,11.2/2.45,11.55/2.5,11.9/2.7,12.2/3} {\filldraw[Green,fill=Gold] (\x,\y) circle (.11);}
+\node[smallnote] at (11.5,3.5) {growing polypeptide};
+\node[Blue] at (10.7,4.5) {CYTOPLASM};
+\node[smallnote] at (10.7,.4) {translation reads mRNA};
+\node[smallnote,align=center] at (7,-.5) {Solid lines: molecular backbone / nascent chain. Dashed arrow: factor association.\\Geometry is schematic; DNA, RNA and protein are different physical carriers.};
+\end{tikzpicture}

@@ -1,0 +1,358 @@
+\chapter{Genomic organization, regulation and development}
+Take two cells with the same inherited DNA. Why can one produce a regulator while
+the other does not? The DNA sequence is not the entire initial condition.
+Factor concentrations, chromatin, signals and history change the molecular
+processes that read it. Chapter 29 optimized explicit mathematical objects;
+this chapter asks what biological objects a genomic model would have to represent.
+
+We separate locus-linked sequence, diffusible regulators, molecular state,
+observed time, ancestry and population change. Then we build a minimal regulatory
+model, derive its alternative stable states, and deliberately break several
+tempting interpretations. The model is a transparent teaching artifact, not a
+reconstruction of an organism or a replication of a synthetic circuit experiment.
+
+\section{Start with the physical expression mechanism}
+A protein-coding locus supplies a transcription template and regulatory sequence.
+Transcription machinery makes RNA; processing and transport may intervene;
+ribosomes translate suitable messenger RNA into polypeptides. RNA genes need not
+produce proteins. DNA recognition, factor binding, transcription initiation,
+elongation, RNA abundance and protein abundance are separate events or variables.
+\Plate{01-expression}{An original eukaryotic expression schematic separates
+regulatory binding, transcription, processing/export and translation.
+DNA is not translated directly; the drawing omits detailed molecular structures
+and does not depict a universal prokaryotic organization.}{dnad30:expression}
+
+A minimal observation-aware model is
+\begin{align}
+ \dot m&=q(G,R,E)-\gamma_m m,\\
+ \dot p&=\beta m-\gamma_p p.
+\end{align}
+Here $m$ and $p$ are RNA and protein concentrations; $q$ has concentration/time
+units, $\beta,\gamma_m,\gamma_p$ have inverse-time units, and $G,R,E$ denote
+sequence, cellular/regulatory state and environment. The RNA and protein
+concentration units may have different species reference scales, in which case
+$\beta$ includes their conversion. For a fixed nonnegative transcription rate,
+$m^\star=q/\gamma_m$ and $p^\star=\beta q/(\gamma_m\gamma_p)$ when both loss rates
+are positive. Protein abundance alone cannot identify all four parameters.
+A large protein pool can persist after transcription changes.
+
+This is not a complete expression model: maturation, bursting, transport,
+translation regulation, cell growth and division may matter. Expression
+must name its measured layer. Fluorescence from a reporter adds yet another
+observation transfer function. Chapter 10's readout discipline still applies.
+
+\section{Cis and trans are relational distinctions}
+A \Term{cis-regulatory element} is linked to the locus it influences.
+A \Term{trans regulator}, such as a diffusible transcription factor, can act on
+multiple compatible loci. Promoters support transcription initiation; enhancers
+can affect expression through context-dependent communication with promoters.
+Neither term means a universal software opcode.
+
+Consider two alleles exposed to one shared factor concentration $x$.
+For one stipulated independent binding site, let free-site and bound-site weights
+be $1$ and $x/K$, with dissociation scale $K>0$. Normalization gives
+\[
+ Z=1+x/K,\qquad \pi_{\rm bound}=\frac{x/K}{Z}=\frac{x}{K+x}.
+\]
+This equilibrium occupancy assumes an available site, constant free factor and
+a specified binding model. It is not the probability that an arbitrary sequence
+motif is transcriptionally active.
+
+For illustration only, assign allele-specific maximum rates $c_i$ and
+accessibility multipliers $q_i\in[0,1]$:
+\[
+ u_i=c_iq_i\frac{x}{K+x},\qquad i\in\{A,B\}.
+\]
+Here $c_i$ has production-rate units; $q_i$ and occupancy are dimensionless.
+The multiplicative accessibility rule is stipulated, not a general biochemical
+law. Changing $c_A$ changes only A in this model; changing shared $x$ changes both.
+\Listing{allele_rates}
+\begin{center}\input{\Generated/alleles.tex}\end{center}
+With $K=1$, equal cis rates and open sites, $x=1$ gives $(.5,.5)$.
+Halving only A's cis rate gives $(.25,.5)$; increasing shared factor to three gives
+$(.75,.75)$. Closing only A's site gives $(0,.5)$.
+Allelic imbalance can suggest a locus-linked difference, but mapping,
+copy-number, imprinting and measurement biases require controls. Equal responses
+do not prove identical cis mechanisms.
+
+\section{Chromosome context is not nearest-gene lookup}
+DNA is packaged with proteins. Local nucleosome organization, accessibility,
+factor availability and chromosome contacts contribute different information.
+Contact is not occupancy; accessibility is not productive transcription.
+An enhancer's nearest linear gene is not its target by definition.
+\Plate{02-context}{A distal element and a promoter can be close in a folded
+chromosome despite an intervening locus. A dashed contact link is not a covalent
+bond or an asserted causal regulatory effect. Two allele panels isolate a
+local cis change from a shared diffusible-factor change.}{dnad30:context}
+
+Fulco et al. tested candidate enhancer--gene connections using CRISPR
+perturbations and formulated an activity-by-contact predictor
+\cite{dnad30:abc}. This provides a concrete example of connecting a regulatory
+prediction to perturbation evidence. It does not make accessibility times contact
+a universal exact transcription law. Our two-allele calculation does not implement
+that predictor or its experiments.
+
+For a mechanistic hypothesis, identify the intervention, locus, cell context,
+measurement window and alternative explanation. Perturbing an element can affect
+multiple local processes; removing a factor can have indirect consequences.
+Independent occupancy, transcription and phenotype measurements address
+different links in the proposed chain. A correlation graph alone does not
+identify those links.
+
+Maizels and Briscoe's 2026 perspective distinguishes statistical GRN descriptions
+from mechanistic explanations and argues for biologically constrained models
+tested through richer perturbations \cite{dnad30:grn2026}.
+This is a research agenda, not evidence that an arbitrary learned latent state
+has acquired causal biological meaning. Our exact toggle calculation illustrates
+one declared model; it does not infer a regulatory network from single-cell data.
+
+\section{Nondimensionalize a two-regulator model}
+Suppose regulator A represses B production and B represses A production.
+Choose a phenomenological Hill-$2$ production term and a common first-order loss:
+\[
+ \frac{dA}{dt}=\frac{v_A s}{1+(B/K)^2}-\delta A,\qquad
+ \frac{dB}{dt}=\frac{v_B}{1+(A/K)^2}-\delta B.
+\]
+$A,B,K$ are concentrations, $v_A,v_B$ are concentration/time, $s\ge0$ is a
+dimensionless signal multiplier, and $\delta>0$ is inverse time.
+Set $a=A/K$, $b=B/K$, $\tau=\delta t$ and
+$\alpha_i=v_i/(\delta K)$:
+\[
+ \frac{da}{d\tau}=\frac{\alpha_A s}{1+b^2}-a,\qquad
+ \frac{db}{d\tau}=\frac{\alpha_B}{1+a^2}-b.
+\]
+All reference states and times below use these dimensionless coordinates.
+The genotype record stores abstract cis-dependent strengths, not nucleotide
+sequences. A measured concentration cannot be inserted without specifying $K$.
+
+The exponent is an effective response-shape choice. It does not establish that
+exactly two proteins bind cooperatively. Binding equilibrium, RNA intermediates,
+resource competition, spatial structure and molecular noise are omitted.
+Gardner, Cantor and Collins constructed a mutually inhibitory synthetic toggle
+in \emph{E. coli} \cite{dnad30:toggle}; our parameter values, equations and
+trajectories are not a reproduction of their device.
+
+\section{Derive fixed points rather than naming every plateau memory}
+Choose $s=1$ and $\alpha_A=\alpha_B=\alpha$. At a fixed point,
+\[
+ a(1+b^2)=\alpha,\qquad b(1+a^2)=\alpha.
+\]
+Subtract to obtain
+\[
+ (a-b)(1-ab)=0.
+\]
+There are two cases. A symmetric point satisfies $a=b=c$ and
+$c^3+c=\alpha$, with one nonnegative root because $3c^2+1>0$.
+An asymmetric point satisfies $ab=1$; substitution gives $a+b=\alpha$.
+Thus
+\[
+ a,b=\frac{\alpha\pm\sqrt{\alpha^2-4}}2
+\]
+in opposite order, provided $\alpha>2$. At $\alpha=2$ these coincide with
+$(1,1)$; they are not three different points. For $\alpha<2$ no real
+asymmetric positive pair exists.
+\par\medskip\noindent\begin{minipage}{\linewidth}
+\Listing{fixed_points}
+\end{minipage}\par\medskip
+Bisection uses the symmetric polynomial's monotonicity; the asymmetric roots
+are algebraic. The reciprocal small root avoids subtracting nearby large numbers.
+The teaching implementation restricts this fixed-point calculation to
+$0\le\alpha\le100$.
+
+\section{Stability is a property of dynamics, not a picture}
+The Jacobian in dimensionless time is
+\[
+ J=\begin{pmatrix}
+ -1 & -2\alpha b/(1+b^2)^2\\
+ -2\alpha a/(1+a^2)^2 & -1
+ \end{pmatrix}.
+\]
+At the symmetric point define $u=2c^2/(1+c^2)$.
+Eigenvectors $(1,1)$ and $(1,-1)$ have eigenvalues $-1-u$ and $-1+u$.
+Common-mode perturbations decay; antisymmetric perturbations grow when $c>1$,
+equivalently $\alpha>2$. At the threshold one eigenvalue is zero and a linear
+test alone does not resolve the nonlinear boundary behavior.
+
+At an asymmetric point, $ab=1$ and $a+b=\alpha$ give
+\[
+ \left(\frac{\partial\dot a}{\partial b}\right)
+ \left(\frac{\partial\dot b}{\partial a}\right)=\frac4{\alpha^2},
+ \qquad \lambda_\pm=-1\pm\frac2\alpha.
+\]
+Both eigenvalues are negative for $\alpha>2$, establishing local asymptotic
+stability. At $\alpha=3$ the values are $-5/3,-1/3$.
+\begin{center}\input{\Generated/fixed-points.tex}\end{center}
+\Plate{03-network}{The mutual-repression circuit motivates the stipulated
+equations; its phase-plane nullclines meet at two locally stable asymmetric
+points and one symmetric saddle for $\alpha=3$. Open versus filled symbols
+encode stability without relying on color.}{dnad30:network}
+Local stability is not a proof of every global trajectory or a measured cell fate.
+Memory here means history-dependent persistence in a declared deterministic
+dynamical system. It is not evidence of genome editing or a complete epigenetic
+mechanism.
+
+\section{Implement positive updates without clipping failure away}
+Euler uses old-state production on both sides:
+\[
+ a_{j+1}=(1-h)a_j+h\frac{\alpha_A s}{1+b_j^2},\qquad
+ b_{j+1}=(1-h)b_j+h\frac{\alpha_B}{1+a_j^2}.
+\]
+For $0<h\le1$, these are nonnegative sums. If $M_A=\alpha_A s$,
+then $a_{j+1}\le\max(a_j,M_A)$; similarly
+$b_{j+1}\le\max(b_j,\alpha_B)$. This proves an invariant bounded nonnegative
+rectangle, not accuracy at $h=1$.
+\Listing{euler_step}
+Updating A first and using that new A for B is a different algorithm.
+A test evaluates both coordinates against independent rational arithmetic and
+rejects the sequential-update mutant. At $a=b=10,h=2$, an unprotected Euler
+step is negative. Replacing it by zero would conceal an invalid numerical scheme;
+the reference rejects the step instead.
+
+\begin{center}\input{\Generated/refinement.tex}\end{center}
+At $\tau=10$, successive halved steps converge toward an independently implemented
+dense RK4 oracle whose RHS does not call the reference Hill function.
+The error ratios lie between 1.8 and 2.2 for these refinements, consistent with
+first-order Euler convergence. Positivity, convergence and biological adequacy
+remain three separate questions.
+
+\section{Same parameters, different history}
+With $\alpha=3$, $h=.01$, initial $(.11,.10)$ and swapped $(.10,.11)$
+approach opposite stable branches:
+\begin{center}\input{\Generated/terminal.tex}\end{center}
+The exactly symmetric initial state stays exactly symmetric in this deterministic
+implementation, even though its limiting point is a saddle. It never spontaneously
+chooses a branch. Real finite-copy noise is not represented by that exact symmetry.
+
+A production-off intervention sets A's production term to zero; it does not
+instantly set A concentration to zero. Its continuous decay is
+$a(\tau)=a_0e^{-\tau}$, while Euler gives exactly $a_j=a_0(1-h)^j$.
+The tests check the discrete formula independently.
+B's response is a causal consequence \emph{inside the stipulated model}, not
+proof of a biological A-to-B linkage. A concentration clamp, deletion, inhibition
+of transcription and protein degradation are different interventions.
+
+\section{Development, ancestry and inferred order}
+Development changes a multidimensional cell state through signaling, regulation,
+growth, mechanics and division. A state-space branch is not automatically a
+cell-division tree. Observed chronological time, \Term{pseudotime} inferred from
+snapshots, and \Term{lineage} ancestry answer different questions.
+\Plate{04-development}{The same three supplied cells have observed parent--child
+edges but a different pseudotime ordering. The molecular partition below shows
+why identical DNA inheritance does not require equal daughter molecular state.
+These are teaching records, not reconstructed biological data.}{dnad30:development}
+Our records are root $(t=0,z=.2)$, left $(t=1,z=.9)$ and right $(t=1,z=.1)$.
+The ancestry edges are root-to-left and root-to-right, yet pseudotime sorting gives
+right, root, left. Linking consecutive sorted cells would invent right-to-root
+ancestry and reverse observed time.
+\Listing{lineage_edges}
+The validator uses unique IDs, known parents and strictly earlier parent observation
+times. This deliberately restricted tree/forest schema excludes equal-time ancestry
+records; it is not a universal lineage-data format or a pseudotime estimator.
+Weinreb et al. combine expressed barcodes and transcriptomes to link state and
+fate \cite{dnad30:lineage}. That experimental linkage is distinct from sorting
+snapshot expression.
+
+\section{Inheritance has more than one carrier}
+Copying inherited DNA and partitioning cytoplasmic molecules are different
+operations. In an ideal symmetric division with independent placement of each of
+$N$ identical molecules, daughter-A count $X$ follows
+\[
+ P(X=k)={N\choose k}2^{-N},\quad
+ \mathbb E[X]=N/2,\quad \operatorname{Var}(X)=N/4.
+\]
+Daughter B receives $N-X$, not an independent binomial draw.
+Their count covariance is $-N/4$.
+If each daughter has half the original volume, their expected concentrations equal
+the parent's, while fluctuations remain. Active segregation, unequal volume and
+regulatory re-establishment require a different model.
+\begin{center}\input{\Generated/partition.tex}\end{center}
+For $N=3$ the exact probabilities are $1/8,3/8,3/8,1/8$.
+Enumerating all eight placement bitstrings supplies an independent oracle.
+The local seeded simulator conserves molecule count and does not mutate the global
+random stream. It is not a model of chromosome segregation.
+
+\section{Population selection is not within-cell adaptation}
+Natural selection operates on heritable variation with differential reproductive
+success. Let $p$ be type-1 frequency before a haploid reproduction step,
+and $w_1,w_0\ge0$ be expected reproductive weights in a specified environment.
+With positive mean weight $\bar w=pw_1+(1-p)w_0$,
+\[
+ p_{\rm sel}=\frac{pw_1}{\bar w}.
+\]
+The difference from the old frequency is
+$p_{\rm sel}-p=p(1-p)(w_1-w_0)/\bar w$.
+A common positive weight scale changes no frequency.
+With type-1-to-0 mutation probability $\mu$ and reverse probability $\nu$,
+\[
+ p'=(1-\mu)p_{\rm sel}+\nu(1-p_{\rm sel}).
+\]
+\Listing{selection_mutation}
+Selection followed by mutation generally differs from mutation followed by
+selection. The tests explicitly expose this order dependence.
+With $p_0=.25,w_1=2,w_0=1,\mu=\nu=0$, odds multiply by two each generation:
+\[
+ \frac{p_t}{1-p_t}=2^t\frac{p_0}{1-p_0},\qquad
+ p_t=\frac{2^t}{2^t+3}.
+\]
+\Plate{05-evolution}{One type-1 and three type-0 parents generate two and three
+descendants under stipulated reproductive weights. Population frequency changes
+from $1/4$ to $2/5$. Regulatory feedback in one cell is a different process.}{dnad30:evolution}
+\begin{center}\input{\Generated/selection.tex}\end{center}
+This deterministic infinite-population expectation excludes drift, linkage,
+recombination, changing environments and density dependence. Its weights are
+invented, not measured organismal fitness. Gradient descent, transcriptional
+adaptation and selecting neural checkpoints do not thereby become biological
+natural selection.
+
+\section{Carry biology into computation through explicit maps}
+Separate inherited sequence $G$, cellular state $R_t$, environment $E_t$ and
+observations $Y_t$:
+\[
+ R_{t+1}=F(G,R_t,E_t,\xi_t),\qquad Y_t=H(G,R_t,E_t,\eta_t).
+\]
+Noise in dynamics and measurement has different roles. A deterministic
+$G\mapsto Y$ lookup cannot generally express context and history.
+\Plate{06-abstraction}{A biological regulatory carrier, a measured variable and a
+computational operator are different objects. Mapping concentration to hidden
+state preserves a chosen dependency while omitting chemistry, partition and
+measurement; an analogy must expose its omitted mechanisms.}{dnad30:abstraction}
+
+If a model calls a gate a promoter, ask what formal operator changed relative to
+an established gated recurrence. If it calls hidden state epigenetic memory,
+identify persistence, reset and inheritance semantics rather than assuming molecular
+fidelity. Evolutor owns these computational hypotheses; this book owns the
+biological and molecular boundary. A useful analogy proposes a falsifiable
+dependency or intervention, not merely a new vocabulary.
+
+\section{Twenty worked exercises}
+\begin{enumerate}
+\item Why is RNA not protein? \textbf{Answer:} translation and distinct loss/processing
+dynamics separate their states; protein-only data do not identify all rates.
+\item Derive one-site occupancy. \textbf{Answer:} normalize weights $1,x/K$ to get $x/(K+x)$.
+\item Does Hill exponent two prove two cooperative binders? \textbf{Answer:} no; here it is phenomenological.
+\item Compute the cis-A rate after halving $c_A$. \textbf{Answer:} $.25$ at $x=K=1,q_A=1$.
+\item Shared trans change to $x=3$? \textbf{Answer:} both rates become $.75$ for unit cis/accessibility.
+\item Why not assign an enhancer by distance alone? \textbf{Answer:} compatibility, context and perturbation evidence are distinct from linear proximity.
+\item Derive $\alpha$. \textbf{Answer:} rescale concentration by $K$ and time by $1/\delta$ to obtain $v/(\delta K)$.
+\item Subtract the fixed-point equations. \textbf{Answer:} $(a-b)(1-ab)=0$.
+\item Asymmetric points at $\alpha=3$? \textbf{Answer:} $(3\pm\sqrt5)/2$ in opposite coordinates.
+\item Local eigenvalues there? \textbf{Answer:} $-5/3,-1/3$ in dimensionless inverse time.
+\item Stability of the symmetric point at $\alpha=3$? \textbf{Answer:} saddle, since its antisymmetric eigenvalue is $.19105889>0$.
+\item Why does an exactly symmetric simulation not choose a branch? \textbf{Answer:} deterministic symmetry is invariant; no stochastic forcing is present.
+\item Prove Euler positivity. \textbf{Answer:} for $0<h\le1$, each update is a nonnegative old-state/production sum.
+\item Why reject rather than clip $h=2$? \textbf{Answer:} clipping conceals a changed, invalid numerical method.
+\item Production-off versus concentration clamp? \textbf{Answer:} the former preserves initial A and lets it decay; the latter replaces its state equation.
+\item Pseudotime order in the three-cell fixture? \textbf{Answer:} right, root, left; it is not ancestry.
+\item Daughter covariance under independent molecule placement? \textbf{Answer:} $\operatorname{Cov}(X,N-X)=-N/4$.
+\item Selection frequency after one generation? \textbf{Answer:} $.25(2)/[.25(2)+.75(1)]=.4$.
+\item Frequency after six generations without mutation? \textbf{Answer:} $64/67=.955223881$.
+\item Design a biology-to-model claim. \textbf{Rubric:} carrier, variables/units,
+timescale, intervention, measurement, omitted processes, established computational
+baseline, falsifier and independent biological evidence.
+\end{enumerate}
+
+\section{Bridge to molecular-programming evidence}
+Chapter 31 returns to engineered molecular systems. A proved regulatory fixed
+point is a model result; fluorescence, cell behavior and molecular circuit performance
+need evidence at their own environmental and observational scope. The next chapter
+asks precisely which refinement and measurement support each claimed computation.

@@ -1,0 +1,22 @@
+\begin{tikzpicture}[font=\small\sffamily,>=Stealth]
+\path[use as bounding box] (0,-.7) rectangle (14,4.9);
+\node[anchor=west,Blue] at (0,4.55) {Name the preserved dependency and the omitted mechanism};
+\draw[Blue,rounded corners] (.2,.3) rectangle (4.25,3.9);
+\node[note,text width=3.5cm] at (2.2,3.4) {BIOLOGICAL\\CARRIER};
+\draw[Blue,thick] (.7,2.3)--(3.7,2.3);
+\foreach \x in {1.2,2.2,3.2} {\filldraw[Green,fill=Green!15] (\x,1.7) circle (.16);}
+\node[smallnote] at (2.2,1) {DNA + factor concentrations\\binding, loss, partition};
+\draw[flow] (4.35,2.15)--node[above,smallnote]{measure}(5.15,2.15);
+\draw[Blue,rounded corners] (5.3,.3) rectangle (8.6,3.9);
+\node[note] at (6.95,3.4) {OBSERVATION};
+\draw[->,Blue] (5.7,1.35)--(8.2,1.35);
+\draw[->,Blue] (5.7,1.35)--(5.7,2.8);
+\draw[Red,thick] (5.8,1.4)--(6.4,1.5)--(7,2.2)--(7.6,2.35)--(8,2.4);
+\node[smallnote,text width=2.9cm] at (7,.7) {RNA / reporter /\\state assay};
+\draw[flow] (8.7,2.15)--node[above,smallnote]{model}(9.5,2.15);
+\draw[Blue,rounded corners] (9.65,.3) rectangle (13.8,3.9);
+\node[note,text width=3.6cm] at (11.7,3.4) {COMPUTATIONAL\\OBJECT};
+\node[note] at (11.7,2.3) {$h_{t+1}=F_\theta(h_t,x_t)$};
+\node[smallnote,text width=3.6cm] at (11.7,1) {state, reset, persistence\\test against an\\established recurrence};
+\node[smallnote,Red] at (7,-.35) {Shared vocabulary does not preserve chemistry, biological inheritance, or measured causal function.};
+\end{tikzpicture}

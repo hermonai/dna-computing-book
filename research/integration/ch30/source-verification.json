@@ -1,0 +1,35 @@
+{
+  "access_date": "2026-10-06",
+  "chapter": 30,
+  "records": [
+    {
+      "key": "dnad30:toggle",
+      "url": "https://doi.org/10.1038/35002131",
+      "date": "2000-01-20; Nature403 pp339-342",
+      "access_depth": "Primary PubMed-indexed abstract and publisher metadata; direct-fetch/cookie barriers",
+      "claim": "Reported engineered mutual-repression toggle; no full methods or replication; alpha=3 is original teaching choice"
+    },
+    {
+      "key": "dnad30:abc",
+      "url": "https://doi.org/10.1038/s41588-019-0538-0",
+      "date": "2019-11-29; Nature Genetics51 pp1664-1669",
+      "access_depth": "Publisher-indexed abstract and bibliographic metadata; direct publisher retrieval error and PMC challenge",
+      "claim": "Activity/contact and CRISPR perturbation context; not universal occupancy law, full-text inspection or ABC implementation"
+    },
+    {
+      "key": "dnad30:lineage",
+      "url": "https://doi.org/10.1126/science.aaw3381",
+      "date": "2020-02-14 issue; online2020-01-23; Science367 eaaw3381",
+      "access_depth": "Primary PubMed abstract and Figure1-3 captions",
+      "claim": "Experimental linkage of expressed barcodes and transcriptomes; no full methods, reconstructed lineage or experiment reproduction"
+    },
+    {
+      "key": "dnad30:grn2026",
+      "url": "https://doi.org/10.1038/s41576-026-00939-1",
+      "date": "2026-06; online2026-03-09; Nature Reviews Genetics27 pp485-498",
+      "access_depth": "Primary PubMed abstract and selected Figure1-4 captions",
+      "claim": "Authors' perspective on correlative/causal GRN models; labeled research agenda, not experimental proof or full-text replication"
+    }
+  ],
+  "incoming_assertions": "Preserved separately; unverified access and attribution claims are not inherited."
+}
