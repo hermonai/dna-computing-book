@@ -1,0 +1,5 @@
+Purpose: separate derivative correctness from choice of derivative target.
+Continuous target: analytical formula, independent scalar central difference, and AD yield477.562251752.
+Discretized target: Euler step.1 yields532.988546189; AD, manual sensitivity recurrence and an independent geometric series agree.
+Mutation: detaching previous state every step preserves terminal state but changes gradient to20.359627535.
+Falsifier: check every derivative as well as the forward value; refine numerical step separately.

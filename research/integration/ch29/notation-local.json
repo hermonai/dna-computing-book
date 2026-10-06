@@ -1,0 +1,16 @@
+{
+  "chapter": 29,
+  "symbols": {
+    "A": "continuous count-like model output or explicitly identified CTMC expectation",
+    "C": "A0+B0 fixed total",
+    "lambda": "kf+kr strictly positive",
+    "sf": "partial forward-rate sensitivity population*time",
+    "sr": "partial reverse-rate sensitivity population*time",
+    "J": "population-squared terminal mismatch",
+    "rho": "dimensionless rate coordinate",
+    "tau": "positive nucleotide-softmax temperature",
+    "p": "categorical simplex; not a fractional molecule",
+    "solver_derivative": "derivative of executed discretization at fixed h",
+    "relaxation_gap": "continuous score differs from expected discrete score"
+  }
+}

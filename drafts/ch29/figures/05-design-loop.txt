@@ -1,0 +1,4 @@
+Purpose: distinguish a design proposal from independently supported function.
+Sequence: model contract; independent derivative oracles and refinement; optimize while recording proposals; discretize and check exact sequence constraints; unused evidence and domain checks; independent physical validation where claimed.
+Failure path: return to model/design work with a recorded failure; do not relabel it successful. Validation data reused for redesign are no longer unused final evidence.
+No physical experiment is reported in this chapter.

@@ -1,0 +1,10 @@
+{
+  "theta": "differentiable surrogate parameter vector",
+  "J": "scalar objective",
+  "kf,kr": "forward/reverse first-order rate constants [time^-1]",
+  "p_ib": "relaxed categorical probability for base b at position i",
+  "ell_i": "four nucleotide logits at position i",
+  "tau": "softmax temperature (>0)",
+  "g_AD": "automatic-differentiation gradient",
+  "g_FD": "finite-difference gradient oracle"
+}
