@@ -1,0 +1,23 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box](-.3,-.5) rectangle (15.5,5);
+\node[note,anchor=west,font=\bfseries\sffamily] at (0,4.6){A / Conceptual objects};
+\node[note,anchor=west,font=\bfseries\sffamily] at (5.4,4.6){B / Declared identities};
+\node[note,anchor=west,font=\bfseries\sffamily] at (10.6,4.6){C / Exact inventory};
+\draw[Blue,line width=3pt] (.2,3.4)--(1.9,3.4);
+\draw[Red,line width=3pt] (.2,2.8)--(1.9,2.8);
+\draw[Green,line width=3pt] (.2,2.2)--(1.9,2.2);
+\node[smallnote,anchor=west] at (2.2,3.4){free strand A};
+\node[smallnote,anchor=west] at (2.2,2.8){free strand B};
+\node[smallnote,anchor=west] at (2.2,2.2){free strand C};
+\draw[Blue,line width=3pt](.3,.8)--(2.1,.8);
+\draw[Red,line width=3pt](.3,1.1)--(2.1,1.1);
+\foreach \x in {.5,.8,1.1,1.4,1.7,2}\draw[gray](\x,.85)--(\x,1.05);
+\node[smallnote,anchor=west] at (2.3,.95){complex AB};
+\draw[flow](4.5,2.4)--(5.2,2.4);
+\node[draw,rounded corners,fill=Pale,note,text width=3.5cm,minimum height=2.3cm] at (7.6,2.5)
+{species universe\\$(A,B,C,AB,ABC)$\\one complex = one count};
+\draw[flow](9.7,2.4)--(10.4,2.4);
+\node[draw,fill=Green!10,note,text width=4cm,minimum height=2.3cm] at (12.8,2.5)
+{$x=(0,0,1,1,0)$\\one C; one AB\\sorted tuples omit zeros};
+\node[smallnote,Red,text width=8cm] at (10.2,.35){Discarded: conformation, domains, orientation and spatial position. Refine the state if these change enabledness.};
+\end{tikzpicture}

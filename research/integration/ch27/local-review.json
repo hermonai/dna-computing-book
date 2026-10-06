@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-06",
+  "chapter": 27,
+  "pdf": "output/pdf/dna-computing-ch27-review.pdf",
+  "pdf_sha256": "33d9ad7a6fb43801c76452f6ff14cb6af405faec584c7fcb141c1ddfef08825f",
+  "pages": 15,
+  "source_hashes": {
+    "drafts/ch27/README.md": "9df878d3de482d4fc200200f3b4557cb48740cca56ce239af8006655736cbcf4",
+    "drafts/ch27/STORYBOARD.md": "48c28db87e914c3d2ec34fa08c29627d4dfbe05effe1d23fe129b8021e1b2ac2",
+    "drafts/ch27/build.py": "2b0b88cf387e64d2c38c81f74ca3cfe70a3733d2505623447480f189a6e523a5",
+    "drafts/ch27/figures/01-ladder.tex": "d275865b4b5dc509aead65cae6ee9bcf7eb3b25d7b625e6c668a9fe646dcc894",
+    "drafts/ch27/figures/01-ladder.txt": "0f528dc4424628a70289b6d3bfa46bb9d7461fa490078b05b5f63a4f2d633b1b",
+    "drafts/ch27/figures/02-rule.tex": "8f050c69cb966c41fbbea104072bd6ed1a2f48780e617914abae8c28d6befd18",
+    "drafts/ch27/figures/02-rule.txt": "8b26527878bdba514fdb5a7c9bddc17e9244160adb42082b636b9ebcb93f3bf9",
+    "drafts/ch27/figures/03-graph.tex": "18cd6edb55ceb64f1cbe30ee9561e4d30fb486f753c01b1a3bc630e883f8610e",
+    "drafts/ch27/figures/03-graph.txt": "58da5e3bff268d9fdcd74f5018fdab194f8c44e6dd17ab85943d1b9af8d6c49c",
+    "drafts/ch27/figures/04-bfs.tex": "aaabd62ed1e367a172b218b07c2fcfb2f8e982239dbce0e9f95f52e856fb2d95",
+    "drafts/ch27/figures/04-bfs.txt": "336dd807297a2d9ec4ee962451a302dedcfabfed6e1932d29d66d4ea064ae35c",
+    "drafts/ch27/figures/05-invariant.tex": "13d6f83f7f1304b13351eba4505ca1874ba1811110780f48dc8fdc7a235cb549",
+    "drafts/ch27/figures/05-invariant.txt": "cafe1e639230e6f899cf4ed8e517bba5a0eca16e09845a7b8d6554bdbc57f5e4",
+    "drafts/ch27/figures/06-boundary.tex": "a09b529ca11b63d281925ed1bc4a2fcd34db21f56204add13ecb4b6de2a01a25",
+    "drafts/ch27/figures/06-boundary.txt": "c81b95c4b0fd4b0a92682ce4ae1def20aea3ac74bae6bec19ee3d3a6876fded0",
+    "drafts/ch27/manuscript.tex": "f05975debb1361652a04eea2b3f3fb649244e145dd7580a826b69826b15946f0",
+    "drafts/ch27/reference.py": "0292f767555475cecc1d625a0c537f195d57bb5f3d468ba0c371e383fec1e9ea",
+    "drafts/ch27/results.json": "dda22308210decea76c3f3e02793b65c6936d3a8713f2775f4425c598a5fb41d",
+    "drafts/ch27/review.tex": "57aa68a6a543f7f1eb6e1c4b0ccf8367eb22030234500825debe00b0015f9b76",
+    "drafts/ch27/sources.tex": "01116778bd88e81dfbd757947fa7222071978d9f39424b9670cd650fc8a4d168",
+    "tests/test_ch27_reference.py": "eeaeac4617194a6bd09524707420bf69205ea7b9dddfd4c2b448c64d7346b713"
+  },
+  "tests": {
+    "repository_passed": 1169,
+    "repository_skipped": 2,
+    "chapter_passed": 31,
+    "report": "build/ch27/regression.xml",
+    "python": "3.13.6"
+  },
+  "visual_review": {
+    "reviewer": "author/agent",
+    "status": "PASS WITH NOTES",
+    "mode": "all 15 pages, color and grayscale contact sheets",
+    "notes": "All 15 pages inspected in color and grayscale; editable plates, tested computed tables, wrapped full-function listings and source links legible. Corrected fixture labels and independently checked worked questions. Author review only; continuous visual and independent review remain open."
+  },
+  "mathematical_review": "Assumptions, independent oracles and falsifiers in technical-audit.md.",
+  "acceptance": "locally reviewed standalone integration candidate; not accepted publication edition"
+}

@@ -1,0 +1,10 @@
+{
+  "x": "nonnegative exact count vector",
+  "C_r": "consumed multiset; preserves catalyst precondition",
+  "P_r": "produced multiset",
+  "S": "stoichiometric matrix rows species columns rules",
+  "K": "depth bound",
+  "state_limit": "independent visited-state budget",
+  "outside_successors": "distinct boundary target count; null if incomplete",
+  "w": "explicit invariant weight vector"
+}

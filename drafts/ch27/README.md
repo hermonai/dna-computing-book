@@ -1,0 +1,5 @@
+# Chapter 27 — strengthened integration candidate
+
+DNAD-27: exact typed species/rules; canonical integer multisets; catalysts checked from consumption, not net delta. BFS preserves labels/self-loops, shortest predecessors and separate boundary inspection. Completed depth result vs closed reachable set vs interrupted budget are distinct; budget outside count None. State equation and invariant necessary not sufficient. 31 tests include independent dense path enumeration across27 count triples and4 bounds, catalyst/state-equation counterexample, graph closure/cycle/parallel labels, terminal divergence, budget witness and guards. 20 worked exercises;5 whole-function listings;6 conceptual scientific plates. No kinetics, domain matching, physical adequacy or independent review claimed.
+
+Run explicit Python3.13 with OMP_NUM_THREADS=1. Build: python drafts/ch27/build.py --render. Verify computed source artifacts with --check. Review candidate only; accepted editions unchanged. All-page visual review, source-bound review record and full-book convergence remain separate gates.

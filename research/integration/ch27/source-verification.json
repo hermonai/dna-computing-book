@@ -1,0 +1,28 @@
+{
+  "access_date": "2026-10-06",
+  "chapter": 27,
+  "records": [
+    {
+      "key": "cardelli-site",
+      "title": "On Process Rate Semantics",
+      "authors": "Luca Cardelli",
+      "url": "https://lucacardelli.name/Papers/On%20Process%20Rate%20Semantics.pdf",
+      "date": "Author manuscript footers 2007-12-13; author listing identifies TCS2008",
+      "access_depth": "Selected author-hosted primary PDF pages1–3",
+      "inspected": "Abstract/introduction and diagrams explaining interactions vs reactions; no full correspondence proofs",
+      "claim": "Structural interaction descriptions and quantitative process/chemical semantics must be distinguished",
+      "issue": "Incoming DOI10.1016/j.tcs.2007.10.012 not retained. Candidate correction10.1016/j.tcs.2007.11.012 could not be primary-publisher verified; cite retrieved author manuscript instead."
+    },
+    {
+      "key": "soloveichik2010",
+      "title": "DNA as a universal substrate for chemical kinetics",
+      "authors": "David Soloveichik; Georg Seelig; Erik Winfree",
+      "url": "https://doi.org/10.1073/pnas.0909380107",
+      "date": "2010-03-04 online;107(12)5393–5398",
+      "access_depth": "Selected primary publisher passages",
+      "inspected": "Rescaling for Feasibility and Accuracy, Experimental Considerations, conclusion; not SI proof/construction replication",
+      "claim": "DNA realization of formal CRN dynamics is conditional and adds auxiliary species, kinetic scaling and implementation issues",
+      "issue": "No claim that conceptual AB fixture is a molecular implementation"
+    }
+  ]
+}
