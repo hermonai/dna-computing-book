@@ -3,10 +3,11 @@ import importlib.util
 import json
 import sys
 import pytest
+from itertools import product
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "dna_computing_book_ch17", ROOT / "drafts/ch17/reference.py"
+    "dna_computing_book_ch17", ROOT / "book/chapters/ch17/reference.py"
 )
 m = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = m
@@ -15,11 +16,8 @@ spec.loader.exec_module(m)
 
 def test_results_are_reproducible():
     assert m.results() == json.loads(
-        (ROOT / "drafts/ch17/results.json").read_text()
+        (ROOT / "book/chapters/ch17/results.json").read_text()
     )
-
-
-from itertools import product
 
 
 def oracle(word):

@@ -6,7 +6,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "dna06", ROOT / "drafts/ch06/reference.py"
+    "dna06", ROOT / "book/chapters/ch06/reference.py"
 )
 M = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(M)
@@ -95,5 +95,5 @@ def test_units_and_energy_sensitivity():
 
 def test_generated_results():
     assert json.loads(
-        (ROOT / "drafts/ch06/results.json").read_text()
+        (ROOT / "book/chapters/ch06/results.json").read_text()
     ) == json.loads(json.dumps(M.results()))

@@ -1,0 +1,1 @@
+Numbered deoxyribose connectivity. Ring order C4'-O4'-C1'-C2'-C3'-C4'. C5' branches from C4', then O5' and a phosphate group. Base branches from C1'. C3' bears hydroxyl; C2' is CH2. Topology only; stereochemistry and terminal chemistry outside the example are not inferred.

@@ -1,0 +1,3 @@
+Figure 01-semantics / semantic text graph
+
+A shared reaction-channel node links A→B and B→A; each edge changes counts by one and conserves A+B. The continuous state node has concentrations in mol/L and a smooth ODE flux. The count state node has nonnegative integers, event propensities kf A and kr B, and random jumps. A conversion edge uses Omega=NA V; only the linear first-order mean matches the ODE exactly. Molecule shapes are abstract species, not sequence-level chemistry.

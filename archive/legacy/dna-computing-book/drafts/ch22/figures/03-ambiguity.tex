@@ -1,0 +1,15 @@
+\begin{tikzpicture}[font=\small\sffamily,>=Stealth]
+\node[align=center] at (6.5,4.9){same inputs: south $1$, west $0$; support $2$};
+\foreach \x/\z/\col/\name in {0/1/Green/reference,7/0/Red/mutant}{
+\draw[fill=\col!12,draw=\col,thick] (\x,1.1) rectangle ++(2.6,2.6);
+\node at (\x+1.3,4.1){\name};
+\node at (\x+1.3,2.4){$z=\z$};
+\node at (\x+1.3,3.35){$N:v_\z$};
+\node at (\x+1.3,1.45){$S:v_1$};
+\node[rotate=90] at (\x+.3,2.4){$W:h_0$};
+\node[rotate=90] at (\x+2.3,2.4){$E:h_\z$};
+\draw[->,thick,\col] (\x+2.65,2.4)--(\x+3.4,2.4);
+\node[align=center] at (\x+4,2.4){next tile\\$0\oplus\z=\z$};
+}
+\node[align=center] at (6.1,.3){A wrong output propagates; this is not merely a renamed correct tile.};
+\end{tikzpicture}

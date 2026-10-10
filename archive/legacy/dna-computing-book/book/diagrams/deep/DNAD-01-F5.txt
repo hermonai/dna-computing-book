@@ -1,0 +1,8 @@
+ID: DNAD-01-F5
+TITLE: One mixture contains many candidate identities
+PURPOSE: Use the same route IDs in pool and filtering diagrams; multiplicity is distinct from coverage.
+STEP 1 → STEP 2: Mixed components → Candidate assembly
+STEP 2 → STEP 3: Candidate assembly → Repeated identities
+STEP 3 → STEP 4: Repeated identities → Absent or unwanted products
+LIMIT: Illustrative sample, not a molecular simulation or measured mixture.
+EVIDENCE: Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources.

@@ -1,0 +1,4 @@
+Question: What changes in one Turing step
+Objects and arrow semantics: Tape cells, read/write head, control state and one right move.
+Change/invariant and caption claim: A written symbol and a moved head determine the successor.
+Scientific risk: Mathematical unbounded tape is a resource family, not an infinite device.

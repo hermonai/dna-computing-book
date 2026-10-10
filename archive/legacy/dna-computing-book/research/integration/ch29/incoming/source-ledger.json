@@ -1,0 +1,38 @@
+[
+  {
+    "key": "mordvintsev2023",
+    "claim": "Abstract mass-action CRNs can be formulated for differentiable optimization.",
+    "primary": "https://arxiv.org/abs/2302.02714",
+    "authors": "Alexander Mordvintsev; Ettore Randazzo; Eyvind Niklasson",
+    "date": "2023",
+    "access_date": "2026-10-05",
+    "access_depth": "abstract/full-paper context"
+  },
+  {
+    "key": "linder2021",
+    "claim": "Differentiable molecular-sequence optimization uses relaxations/gradient estimators and can suffer predictor pathologies on relaxed inputs.",
+    "primary": "https://doi.org/10.1186/s12859-021-04437-5",
+    "authors": "Johannes Linder; Georg Seelig",
+    "date": "2021",
+    "access_date": "2026-10-05",
+    "access_depth": "full text"
+  },
+  {
+    "key": "rijal2025",
+    "claim": "Differentiable Gillespie simulation smooths/approximates discrete exact-SSA operations to permit backpropagation.",
+    "primary": "https://doi.org/10.7554/eLife.103877.3",
+    "authors": "Krishna Rijal; Pankaj Mehta",
+    "date": "2025",
+    "access_date": "2026-10-05",
+    "access_depth": "full text/version of record"
+  },
+  {
+    "key": "lee2025",
+    "claim": "Differentiable programming has been extended to indexed CRNs and reaction-diffusion systems in current DNA computing research.",
+    "primary": "https://doi.org/10.4230/LIPIcs.DNA.31.4",
+    "authors": "Inhoo Lee; Salvador Buse; Erik Winfree",
+    "date": "2025",
+    "access_date": "2026-10-05",
+    "access_depth": "proceedings metadata/HTML"
+  }
+]

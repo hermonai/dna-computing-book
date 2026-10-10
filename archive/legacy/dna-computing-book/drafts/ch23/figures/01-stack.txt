@@ -1,0 +1,1 @@
+Reliability composes three declared conditional channels: design to physical assembly, assembly to instrument signal, and signal to defect label. Upstream faults change the system; downstream errors change its report. The red separator distinguishes these mechanisms and is not a causal inference from observed frequency alone.

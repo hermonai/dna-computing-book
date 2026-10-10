@@ -1,0 +1,7 @@
+FIGURE 4.3 / miss.tex
+Question: Does increasing independent copy count eliminate a shared failure?
+Axes: Horizontal copy count M, dimensionless integer. Vertical miss probability, logarithmic scale.
+Curves: Independent failure (1-0.04)^M; shared failure 0.10+0.90(1-0.04)^M.
+Reference: Dotted probability 0.10 line marks the shared-failure floor.
+Inference: The independent term falls while the shared event survives any copy-number increase.
+Boundary: Synthetic declared probabilities; plotted samples are computed, not measured or fitted.

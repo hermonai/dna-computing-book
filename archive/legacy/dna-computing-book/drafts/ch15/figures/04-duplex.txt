@@ -1,0 +1,4 @@
+Question: What molecular constraints does concatenation omit?
+Objects and arrow semantics: Two duplex fragments with complementary cohesive ends, annealed intermediate and sealed backbones.
+Change/invariant and caption claim: Pairing aligns ends; ligation joins compatible backbone ends.
+Scientific risk: Generic geometry only, not sequence- or enzyme-specific reaction design.

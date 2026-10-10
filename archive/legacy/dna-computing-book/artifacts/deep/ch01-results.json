@@ -1,0 +1,100 @@
+{
+  "graph": {
+    "vertices": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "edges": [
+      [
+        "A",
+        "B"
+      ],
+      [
+        "A",
+        "C"
+      ],
+      [
+        "B",
+        "C"
+      ],
+      [
+        "B",
+        "D"
+      ],
+      [
+        "C",
+        "B"
+      ],
+      [
+        "C",
+        "D"
+      ],
+      [
+        "D",
+        "E"
+      ],
+      [
+        "D",
+        "F"
+      ],
+      [
+        "E",
+        "F"
+      ]
+    ]
+  },
+  "scope": "All legal walks of 1..7 vertices; symbolic identities, not concentration or yield",
+  "counts": {
+    "generated": 106,
+    "endpoints": 14,
+    "length": 4,
+    "coverage": 2,
+    "verified": 2
+  },
+  "survivors": [
+    "ABCDEF",
+    "ACBDEF"
+  ],
+  "oracle": [
+    "ABCDEF",
+    "ACBDEF"
+  ],
+  "contaminated_counts": {
+    "generated": 107,
+    "endpoints": 15,
+    "length": 5,
+    "coverage": 3,
+    "verified": 2
+  },
+  "scaling": [
+    {
+      "n": 6,
+      "internal_orders": 24
+    },
+    {
+      "n": 10,
+      "internal_orders": 40320
+    },
+    {
+      "n": 15,
+      "internal_orders": 6227020800
+    },
+    {
+      "n": 20,
+      "internal_orders": 6402373705728000
+    },
+    {
+      "n": 25,
+      "internal_orders": 25852016738884976640000
+    }
+  ],
+  "sampling": {
+    "p": 0.041666666666666664,
+    "delta": 0.01,
+    "M": 109
+  }
+}

@@ -1,0 +1,376 @@
+\chapter{DNA storage and error-correcting design}
+A tube does not contain a file in byte order. It contains physical copies of strands,
+some missing, some changed, and some sampled many more times than others. The reader
+must infer which fragments belong together, recover absent fragments when the code
+permits it, and decide whether the resulting bytes are trustworthy. Storage is thus
+an end-to-end communication problem, not merely a translation from four letters
+to two bits.
+
+Our worked target is explicit: recover the 28-byte message
+\texttt{DNA stores bytes, not proof.} from an unordered digital strand pool after
+one located erasure in each parity group. We then derive a separate constrained
+sequence code. The separation is intentional: the first reference proves
+framing and recovery; the second proves membership and reversible ranking under
+two sequence constraints. Neither is a synthesis-ready oligonucleotide design.
+
+\section{Define the channel before choosing the code}
+\index{DNA storage!channel}
+Let a source file be $u\in\{0,1\}^B$. An encoder produces intended
+sequences $S=\{s_1,\ldots,s_M\}$. Writing creates a molecular population with copy
+counts $n_i$ and potentially changed sequences. Storage and retrieval alter that
+population. Sequencing samples reads $R$, and a decoder maps them to a file
+estimate $\widehat u$ or declared failure:
+\begin{equation}
+u \xrightarrow{\mathrm{encode}} S
+\xrightarrow{\mathrm{write/store/access/read}} R
+\xrightarrow{\mathrm{decode}} \widehat u\ \text{or failure}.
+\label{dnad25:channel}
+\end{equation}
+A decoder that always returns plausible text can hide uncertainty. A decoder
+that fails when evidence is insufficient makes the claim testable.
+
+\Plate{01-channel}{A digital codeword collection becomes a population of molecules,
+then a biased sample of reads. The numbered boundaries distinguish addressing,
+physical copy counts and reconstruction. The reference executes the digital
+boundaries, not the biochemical ones.}{dnad25:channel-plate}
+
+A substitution changes a base while retaining position; an insertion or deletion
+shifts alignment. A strand erasure removes an entire intended codeword from usable
+evidence. A file error means the reconstructed source differs anywhere. A small
+per-base error rate does not guarantee file recovery if an indispensable strand
+is missing. Conversely, noisy reads may reconstruct a file exactly when their
+errors and coverage fit the decoder's assumptions.
+
+Copy-number skew is not simply another spelling of base error. Two strands may both
+be error-free while one appears in a thousand reads and the other in none. Research
+on molecular bias distinguishes synthesis and amplification effects;
+its reported models are context, not calibration for our digital channel
+\cite{bias}. Chapter 24's occupancy and capture calculations explain why nominal
+inventory and observed coverage cannot be interchanged.
+
+\section{The two-bit ceiling and the rate actually delivered}
+\index{coding rate}
+Four equiprobable unconstrained symbols can carry $\log_2 4=2$ bits per nucleotide.
+This is an alphabet ceiling, not an achieved archive density. An intended oligo of
+length $L$ may devote bases to physical access, a digital index and redundancy.
+Sequence restrictions further reduce the usable words. Distinguish
+\begin{equation}
+R_{\rm logical}=\frac{B}{\sum_{i=1}^{M}|s_i|},
+\qquad
+R_{\rm physical}=\frac{B}{\sum_{i=1}^{M} n_i|s_i|}.
+\label{dnad25:rate}
+\end{equation}
+Both denominators count nucleotides, but the second counts all molecule copies.
+It must use a declared inventory, not a sequencing read count. A mass-density
+comparison additionally needs a molecular-mass and double/single-strand
+convention, container/encoding overhead and measured material quantities.
+
+Our byte map reads the most significant bit pairs first:
+$00\mapsto A$, $01\mapsto C$, $10\mapsto G$, $11\mapsto T$.
+Byte 173 is binary 10101101, so its word is \texttt{GGTC}.
+The tests independently recover the base-four digits of every possible byte.
+A byte occupies four nucleotides; an odd-length arbitrary bit string would need
+a separate length/padding contract. This reference accepts bytes, not a silently
+padded bit stream.
+
+\section{An outer erasure code derived from XOR}
+\index{erasure code}
+Split a source segment into equal-width byte vectors $A,B\in\{0,1\}^{8w}$ and
+store three shards:
+\begin{equation}
+(A,B,P),\qquad P=A\oplus B.
+\label{dnad25:parity}
+\end{equation}
+If $A$ is missing, $P\oplus B=A$; if $B$ is missing, $P\oplus A=B$.
+If only parity is missing, $A,B$ already hold the data. Any two known,
+correct, distinct-address shards reconstruct the segment. With two erasures,
+one known vector cannot determine two independent unknown vectors.
+
+This is a $(3,2)$ single-parity code over bytewise XOR. Its parity-check relation
+is $A\oplus B\oplus P=0$. In each bit coordinate the minimum Hamming distance
+is two: changing one data bit also changes its parity bit. It locates no arbitrary
+error by itself. If all three values arrive but violate the relation, the reference
+rejects them instead of choosing one to trust.
+
+\Plate{04-redundancy}{One parity equation reconstructs one located erasure.
+All three present-but-inconsistent shards trigger failure; two missing shards
+are underdetermined. Addresses and validity checks precede this algebra.}
+{dnad25:redundancy}
+\Listing{recover_group}
+
+A common implementation defect is \texttt{zip(a,b)} on unequal byte strings:
+Python stops at the shorter input. A parity calculation would silently
+discard a suffix. The reference validates equal widths before XOR, and tests
+this failure explicitly. Mathematical notation assumes compatible vector
+spaces; software must enforce that assumption.
+
+\section{Frame the payload, then decode an unordered pool}
+\index{DNA storage!framing}
+Each shard carries a 12-byte header: version (one byte), group index (two),
+slot (one), chunk width (two), original file length (four) and group count (two).
+The payload contributes $w$ bytes; CRC-32 contributes four. Integers use network
+big-endian order. Version 1, $0\leq\mathrm{slot}\leq2$, and the manifest's
+layout fields must agree. The reference limits $1\leq w\leq4096$ and at most
+65,535 groups to make its finite implementation contract explicit.
+
+The last source pair is zero-padded, but original byte length is retained.
+Without it, a real trailing zero byte is indistinguishable from padding.
+The archive also has an out-of-band manifest containing a SHA-256 digest of the
+source. Header redundancy makes reads interpretable; the manifest
+fixes which layout and final source are expected.
+
+\Listing{encode_archive}
+
+Decoding validates the manifest, converts canonical DNA to bytes, checks
+frame length and CRC, and verifies address/layout. Invalid reads become
+unusable evidence. Exact duplicate valid reads are counted once at their address;
+different CRC-valid payloads at one address trigger failure. Groups are reconstructed
+in index order and the concatenation is trimmed to original length. Finally the
+file digest must agree.
+
+\Listing{decode_archive}
+
+The worked archive has four groups and 12 unique strands, each 80 nt long:
+$(12+4+4)$ bytes times four nucleotides per byte. Its net logical rate is
+$224/960=0.233333$ bits per unique nucleotide. This low rate reflects deliberately
+large teaching headers and parity, not a limit on production storage systems.
+Delete slot $A$ in every group, reverse the remaining pool order, and repeat one
+read. The decoder recovers the exact 28 bytes, reports four reconstructed groups,
+eight unique addresses and one duplicate. This is a digital intervention,
+not a dropout measurement.
+
+\section{Checksums detect errors; they do not authenticate a story}
+\index{checksum}\index{authentication}
+CRC-32 is an accidental-error check, not an adversarial integrity guarantee.
+A changed payload with a recomputed CRC is still a valid frame. Parity also allows
+coherent alternative pairs: replacing $A,B$ and recomputing $P$ preserves
+the relation. The final digest catches the deliberately corrupted file
+when compared with the original trusted manifest.
+
+If an attacker can replace both data and manifest, the digest is replaced too.
+Authenticating the expected manifest requires an external trust mechanism.
+We make no universal $2^{-32}$ error-probability assertion for an arbitrary
+correlated DNA channel: that probability needs a distribution over corruptions
+and checksums. Our exhaustive single-base tests establish detection on their
+finite cases, not a theorem covering every possible channel.
+
+The tests replace each position in a worked strand by each other canonical
+base. Every changed frame is rejected and the remaining two shards recover
+the data. They also exercise length-changing reads, all three erasure locations,
+all small byte pairs, conflicting valid duplicates and coherent parity-valid
+corruption detected by the file digest. These checks address different mechanisms.
+
+\section{Consensus requires a declared alignment model}
+\index{consensus!alignment}
+For an already identified, equal-length, aligned cluster, count A/C/G/T at each
+column. Return a base only if its count exceeds half the cluster size.
+If any column lacks a strict majority, return an erasure. A lexical tie-break
+turns ignorance into a systematic A preference; it is not scientific evidence.
+
+\Plate{02-errors}{A substitution preserves a coordinate; an insertion shifts it.
+Column consensus applies only after identity, orientation and alignment are
+established. A strict-majority tie is routed to erasure, not invented sequence.}
+{dnad25:errors}
+\Listing{strict_consensus}
+
+The finite example generates 11 reads of one strand with an assigned independent
+substitution probability of 0.02 and seeds 0 through 10. Their consensus matches
+the intended strand. This is one simulated realization, not an
+estimated channel success rate. Consensus cannot repair a missing entire cluster,
+and repeated systematic errors can survive a majority vote.
+
+An indel-aware decoder must infer alignment, distinguish strand identities,
+use quality information where calibrated, and propagate ambiguous reconstruction.
+Our equal-length routine rejects length differences. The framing
+routine treats unusable indel reads as erasures, rather than pretending it has
+performed alignment. Edit-error correction is outside this implementation.
+
+\section{Count constrained words instead of hoping a screen succeeds}
+\index{constrained coding}
+The raw archive proves recovery but its first strand has GC fraction 0.225
+and a homopolymer run of 18. It fails the constraints we derive next.
+Discarding that strand without retaining an invertible mapping loses source
+information. A constrained encoder maps messages into its legal language
+by construction.
+
+Let $\mathcal C(n,g_{\min},g_{\max},r)$ contain words of length $n$,
+GC count in $[g_{\min},g_{\max}]$, and no repeated-base run longer than $r$.
+Define $C(\ell,a,j,g)$ as the number of legal completions with $\ell$ positions
+remaining, last base $a$, current run $j$ and GC count $g$. At the terminal state,
+\[
+C(0,a,j,g)=\mathbf 1\{g_{\min}\leq g\leq g_{\max}\}.
+\]
+For $\ell>0$,
+\begin{equation}
+C(\ell,a,j,g)=
+\sum_{\substack{b\in\{A,C,G,T\}\\j'(a,j,b)\leq r}}
+C(\ell-1,b,j'(a,j,b),g+\mathbf 1\{b\in\{G,C\}\}),
+\label{dnad25:count}
+\end{equation}
+where $j'=j+1$ if $a=b$ and $j'=1$ otherwise.
+States with $g>g_{\max}$ or $g+\ell<g_{\min}$ contribute zero.
+The suffix count depends on a small sufficient state, not every spelling
+of the prefix. Memoization shares subproblems; naive enumeration inspects
+$4^n$ candidates.
+
+\Plate{03-constraints}{Legal completion counts partition the lexical codebook
+into intervals. Ranking and unranking use those interval sizes; a rejected
+homopolymer branch has zero completions. Rank 173 maps to AACGCTGT.}
+{dnad25:constraints}
+\Listing{ConstraintCodec.__init__}
+
+The finite teaching domain is $n\leq64$. Counting uses exact integers,
+but run bounds and GC windows still determine cache memory and work.
+This is not a claim that arbitrary biochemical constraints remain tractable
+with the same sufficient state.
+
+\section{Rank and unrank: a reversible encoder}
+Order words lexically with $A<C<G<T$. For rank $q$, inspect next bases in
+that order. If a branch has $c$ completions and $q\geq c$,
+skip its interval and subtract $c$. Otherwise choose that base and continue.
+Each choice preserves $0\leq q<$ the selected suffix count.
+This invariant proves that the terminal word has the requested rank.
+
+The inverse adds completion counts for all smaller branches at each position.
+Thus rank and unrank use the same partition in opposite directions.
+Tests also compare both with an independently enumerated, sorted legal
+codebook, avoiding a shared-bug roundtrip alone.
+
+\Listing{ConstraintCodec.unrank}
+\Listing{ConstraintCodec.rank}
+
+For $n=8$, exactly four GC bases and $r=2$, there are 14,696 words.
+A fixed-length binary block uses
+$k=\lfloor\log_2|\mathcal C|\rfloor=13$ bits, giving $1.625$ bits/nt.
+Ranks 0 through 8,191 leave 6,504 legal words unused.
+This rate gap pays for constraints and a power-of-two fixed block;
+it is not automatically the channel's Shannon capacity.
+The reference supports legal ranks beyond the binary subset.
+
+\par\medskip\noindent\input{\Generated/code_sizes.tex}\par\medskip
+Concatenation requires its own boundary contract: two run-limited words
+can form a long homopolymer at their join. GC bounds on payload words do not
+constrain appended headers or primers. The constrained code is a separate
+mechanism, not silently grafted onto the raw archive.
+
+\section{Random access is a molecular selection problem}
+\index{DNA storage!random access}
+A digital index tells a decoder where a read belongs after observation.
+A physical address selects which molecules will be observed.
+Primer-mediated amplification is one strategy; specificity depends
+on target and off-target interactions, not the presence of a unique
+integer in a header.
+
+\Plate{05-access}{A selected primer pair enriches a target-address family.
+Off-target interactions and unequal amplification change the read population.
+This is a conceptual mechanism, not a sequence-validated primer design.}
+{dnad25:access}
+
+Organick et al. report random access to individual files in a large
+encoded collection \cite{organick}. This is a demonstration under
+their system, not proof that our addresses are biochemically orthogonal.
+The Goldman et al. abstract reports exact reconstruction of
+739 kilobytes \cite{goldman}; it cannot supply our missing synthesis,
+sequencing and independent experimental validation.
+
+If a target strand's usable reads follow Poisson mean $\lambda_i$,
+its erasure probability is $e^{-\lambda_i}$.
+Uniform means give Chapter 24's occupancy model; heterogeneous means
+show why average coverage can hide dropout. State independence and
+Poisson assumptions before multiplying strand success probabilities.
+
+\section{A rate--recovery frontier, not a magic storage claim}
+\Plate{06-boundary}{Storage preserves an intended message across a noisy channel;
+molecular computation transforms a state under a mechanism.
+They share coding, assembly and readout but have different success criteria
+and resource denominators.}{dnad25:boundary}
+
+Redundancy can improve recovery for an assumed channel but requires more unique
+sequence and potentially more material. Physical copies can reduce sampling
+erasure while enlarging the inventory denominator. Sequence restrictions can
+reduce particular unwanted interactions while lowering code rate. These
+are coupled engineering choices, not independent magic improvements.
+
+A serious evaluation reports source size, unique strand count/length,
+logical rate, physical copy distribution, write/storage/read conditions,
+error model, decoder version, access method, failed attempts and file verification.
+The reference supplies inspectable submechanisms for reasoning about that
+system, not a substitute for physical characterization.
+
+\section{Connect the finite mechanisms to current research}
+The purpose of a small reference is to make a larger system intelligible,
+not to equate its performance with that system. Gimpel et al.'s 2023 digital
+twin explicitly treats workflow-dependent error and coverage bias
+\cite{twin}. Its scope reminds us that a single substitution probability
+cannot characterize every synthesis, amplification and aging condition.
+Transfer to a different process requires new evidence.
+
+Bar-Lev et al.'s 2025 study combines neural reconstruction with error-correcting
+codes and a safety-margin mechanism \cite{deep-storage}.
+Our equal-column vote implements none of that pipeline; learned reconstruction
+also needs a declared training-channel distribution and out-of-distribution
+failure tests. The paper's later correction adds missing prior work on
+simulated-data generation \cite{deep-correction}. A professional literature
+ledger tracks such corrections, not only attractive performance summaries.
+
+Li et al.'s 2026 Siyuan Code study joins a forbidden-pattern automaton,
+dynamic-programming counts and bijective coding \cite{bijective}.
+Our two-constraint suffix counter teaches the general counting/ranking idea;
+it does not reproduce their automaton, full-strand codec, experimental density
+or production timing. Their distinction between coding potential, net rate
+and physical density reinforces Eq.~\ref{dnad25:rate}.
+General enumerative coding is established theory, not a novelty claim here.
+
+These approaches can address different bottlenecks: a channel model guides
+redundancy, a reconstruction method interprets noisy observations, and a
+constrained codec selects usable words. Combining them requires matched
+sequence length, physical copy count, channel conditions, source workload
+and file-level failure criteria. A reported speed ratio under one workload
+does not imply that the complete write--store--read system is faster by
+that factor.
+
+\section{Twenty worked exercises}
+\begin{enumerate}
+\item Encode byte 173. \textbf{Answer:} 10101101 gives GGTC.
+\item Why retain source length? \textbf{Answer:} padding and genuine trailing
+zero bytes otherwise cannot be distinguished.
+\item Derive missing $A$. \textbf{Answer:} $(A\oplus B)\oplus B=A$.
+\item Can one shard recover two unknown shards? \textbf{Answer:} no;
+the parity relation admits multiple source pairs.
+\item Why validate XOR widths? \textbf{Answer:} a truncated zip omits coordinates.
+\item For $w=4$, find strand length. \textbf{Answer:} $4(12+4+4)=80$ nt.
+\item Find net rate for 28 bytes in 12 such strands. \textbf{Answer:}
+$8(28)/(12\cdot80)=0.233333$ bits/nt.
+\item Double all physical copies. \textbf{Answer:} logical rate stays fixed;
+physical inventory rate halves.
+\item What does a duplicate valid read add? \textbf{Answer:} read-count evidence,
+not another independent parity equation at that address.
+\item Conflicting CRC-valid duplicates? \textbf{Answer:} fail, not last-write-wins.
+\item Does CRC authenticate? \textbf{Answer:} no; an adversary can recompute it.
+\item Why can coherent corruption pass parity? \textbf{Answer:}
+$P'=A'\oplus B'$ satisfies the relation for changed data.
+\item Why a trusted manifest? \textbf{Answer:} replacing file and expected
+digest defeats comparison against that altered digest.
+\item A versus C in two reads? \textbf{Answer:} strict consensus returns erasure.
+\item Can column voting repair insertion automatically? \textbf{Answer:} no;
+the coordinate/alignment model changed.
+\item Derive GC pruning. \textbf{Answer:} $g>g_{\max}$ violates the upper bound;
+$g+\ell<g_{\min}$ cannot reach the lower bound.
+\item Unranking invariant? \textbf{Answer:} residual rank remains in the chosen
+branch's completion interval.
+\item Capacity for 14,696 words? \textbf{Answer:} 13 bits since
+$8192\leq14696<16384$.
+\item Why is concatenation not run-safe? \textbf{Answer:} runs join across a boundary.
+\item Design an independent validation ladder. \textbf{Rubric:}
+all-byte oracle; exhaustive short codebooks; rank trace; all single erasures;
+malformed/conflicting reads; alignment failures; coherent corruption;
+unordered pools and padding; declared physical channel; write/read
+experiments with independent preparations and trusted source verification.
+\end{enumerate}
+
+\section{Bridge: from decoder correctness to experiment evidence}
+Chapter 26 turns these boundaries into a laboratory provenance contract.
+A decoder test proves a statement about a digital function. Demonstrating
+that a molecular pool meets its assumptions requires separate material,
+preparation, measurement and analysis records. Keeping these identities
+separate makes an elegant code an auditable experimental claim.

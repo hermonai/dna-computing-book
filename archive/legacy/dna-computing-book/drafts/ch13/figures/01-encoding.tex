@@ -1,0 +1,17 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[note,anchor=west] at (0,2.2) {\textbf{Assignment 101: fixed identities, distinct addresses}};
+\draw[Blue,line width=2pt,-{Stealth}] (.6,.6)--(13.5,.6);
+\node[smallnote] at (.4,.2) {$5'$}; \node[smallnote] at (13.6,.2) {$3'$};
+\foreach \x/\lab in {1.2/{D_{1,1}},5.5/{D_{2,0}},9.8/{D_{3,1}}}{
+ \fill[Pale] (\x,.35) rectangle ++(3,.5);
+ \draw[Blue,thick] (\x,.6)--++(3,0);
+ \node[note] at (\x+1.5,1.1) {$\lab$};
+}
+\draw[Green,line width=2pt,-{Stealth}] (8.5,-.5)--(5.5,-.5);
+\foreach \x in {5.7,6,6.3,6.6,6.9,7.2,7.5,7.8,8.1,8.4}
+ \draw[Green,dashed] (\x,.5)--(\x,-.4);
+\node[smallnote] at (5.3,-.6) {$3'$}; \node[smallnote] at (8.7,-.6) {$5'$};
+\node[note] at (7,-1.15) {capture probe $\overline{D}_{2,0}$};
+\node[smallnote,align=left] at (2.3,-.6) {$x_1=1$\\backbone unchanged};
+\node[smallnote,align=left] at (11.3,-.6) {$x_3=1$\\dashed = pairing};
+\end{tikzpicture}

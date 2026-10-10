@@ -1,0 +1,1 @@
+Five observations are 1,1,0,1,0. Their majority is one and two flips are corrected. A separate common-mode counterexample makes all copies flip together, leaving logical failure p no matter how many copies are added. The diagram is a statistical decoder, not an implemented DNA voting circuit.

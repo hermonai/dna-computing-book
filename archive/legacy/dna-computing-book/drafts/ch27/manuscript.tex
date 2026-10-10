@@ -1,0 +1,294 @@
+\chapter{Symbolic molecular simulation}
+A simulator is an executable scientific claim. Before asking how fast a molecular
+device computes, ask which transitions its model permits, what it counts as a
+state, and what a successful search actually proves. This chapter builds a small,
+exact multiset engine and then tries to falsify it with independently calculated
+transitions, conservation laws, and path enumeration.
+
+The engine is intentionally not a strand-displacement simulator. It has no domain
+matching, geometry, rates, diffusion, energy, or fluorescence. Its purpose is to
+separate a precise formal question from the later questions of chemical realization
+and experimental observation. Chapter 26's provenance discipline carries forward:
+the symbol table, rule set, bounds, and stopping reason belong to the result.
+
+\section{The state is a modeling decision}
+Let $\mathcal S=(S_1,\ldots,S_m)$ be an ordered finite species universe. A state is
+$x\in\mathbb N^m$, with $x_i$ the exact nonnegative integer count of $S_i$.
+Equivalently, it is a finite multiset. The order of dictionary entries has no
+physical meaning, so the software stores nonzero counts as an immutable sorted
+tuple of species/count pairs.
+
+\Plate{01-ladder}{A conceptual molecular abstraction, not a specified chemical
+reaction: strands and complexes are mapped to species identities; hidden topology
+is information deliberately discarded by a count model.}{dnad27:ladder}
+
+A symbol may represent a free strand, an entire complex, a tile, or a logical
+signal, but these interpretations must not be mixed silently. An $AB$ complex is
+one object in the count vector even if its material inventory contains two
+constituents. Two molecules with identical sequences but different binding
+partners may need different species identities. Tile positions and exposed glues
+usually need a spatial configuration, not just a bag of tile counts.
+
+This is an abstraction map $\alpha:\mathcal X_{\rm physical}\to\mathbb N^m$.
+If two physical configurations map to the same $x$ but have different legal
+transitions, the model has forgotten a relevant precondition. One remedy is to
+refine the species universe; another is to use a graph-based complex state. Neither
+is equivalent to adding a guessed rate constant to an inadequate state.
+
+\section{Canonicalization is part of correctness}
+\Listing{canon}
+The implementation rejects fractional, negative, and Boolean counts. A Boolean is
+not accepted as an integer count even though Python treats \texttt{bool} as an
+integer subtype. Duplicate species identities in a tuple are rejected rather than
+merged silently. Zero counts disappear from storage, and unknown species are
+rejected when a state enters a declared network.
+
+These decisions prevent three different failure modes: truncating $1.9$ molecules
+to one, treating two encodings of the same multiset as distinct states, and creating
+an undeclared species by a spelling error. Canonicalization is not a chemistry
+validator. It only establishes an unambiguous finite-multiset representation.
+
+\section{A reaction has a precondition, not just a delta}
+A rule $r$ contains a unique label, consumed vector $C_r$, and produced vector
+$P_r$. Its operational semantics is
+\[
+x\xrightarrow{r}x'\quad\Longleftrightarrow\quad
+x\ge C_r,\qquad x'=x-C_r+P_r.
+\]
+The inequality is componentwise. Consumption and production are one atomic rewrite,
+not a sequence of partly visible removals and additions.
+
+\Plate{02-rule}{Consumed and produced inventories are distinct from their net
+difference. A catalyst can have zero net change and still be an essential
+enabledness precondition.}{dnad27:rule}
+\Listing{fire}
+
+For $2A+E\to B+E$, a state with three $A$ and one $E$ becomes $A+B+E$.
+Without $E$ the rule is disabled, even though the net increment is merely
+$-2A+B$. Testing only whether the resulting vector is nonnegative would wrongly
+permit an enzyme-free transition. This catalyst example is a decisive
+counterexample to delta-only rule implementations.
+
+The reference accepts empty consumed or produced multisets. Such rules can model
+abstract input or removal, but an empty-consumption production rule can create an
+unbounded state space. The software allows the formal construct; the modeler must
+justify its interpretation and cannot call it closed material conservation.
+
+\section{Stoichiometry gives necessary constraints}
+Arrange rule increments as columns of the stoichiometric matrix
+\[
+S=[P_1-C_1\ \cdots\ P_q-C_q]\in\mathbb Z^{m\times q}.
+\]
+After a legal path whose firing-count vector is $\sigma\in\mathbb N^q$,
+\[
+x=x_0+S\sigma.
+\]
+This \Term{state equation} is necessary, not sufficient. Consider $B\to B+D$
+starting from one $A$ and no $B$. The candidate $A+D=x_0+S$ is nonnegative, yet no
+rule is enabled because the unchanged $B$ catalyst is absent. A linear equation
+cannot recover the order-sensitive applicability conditions it discarded.
+
+\Listing{stoichiometry}
+For the assembly rules $A+B\to AB$ and $AB+C\to ABC$, with species order
+$(A,B,C,AB,ABC)$, the matrix is
+\[
+S=\begin{pmatrix}
+-1&0\\-1&0\\0&-1\\1&-1\\0&1
+\end{pmatrix}.
+\]
+For $w=(1,1,1,2,3)^\top$, direct multiplication gives $w^\top S=(0,0)$.
+Consequently $w^\top x=3$ along every legal path from $A+B+C$.
+
+\Plate{05-invariant}{An independently derived left-nullspace invariant checks
+material-unit accounting. It cannot establish enabledness, timing, or experimental
+mass conservation by itself.}{dnad27:invariant}
+
+\begin{proposition}
+If $w^\top(P_r-C_r)=0$ for every rule, then $w^\top x$ is invariant on every
+finite legal path.
+\end{proposition}
+\begin{proof}
+For one transition, $w^\top x'=w^\top x+w^\top(P_r-C_r)=w^\top x$.
+Induction on path length proves the claim.
+\end{proof}
+With strictly positive integer weights and fixed total $W$, each count is at most
+$\lfloor W/w_i\rfloor$. Thus conservation can establish a finite reachable state
+space, bounded above by $\prod_i(1+\lfloor W/w_i\rfloor)$ configurations. This
+bound is often loose; it is a finiteness argument, not a predicted graph size.
+
+\section{States merge; labeled transitions do not}
+A labeled transition system has states as vertices and triples $(x,r,x')$ as
+edges. Different rules can produce the same successor, and a rule can return to
+the same state. Both distinctions matter when diagnosing competing mechanisms.
+
+\Plate{03-graph}{Two assembly routes share a final state. State deduplication merges
+that vertex but retains all four labeled reaction edges. A first-discovery witness
+records one shortest route, not all routes.}{dnad27:graph}
+
+Add $A+C\to AC$ and $AC+B\to ABC$. Starting from $A+B+C$, the resulting diamond
+has four states and four labeled edges. Recording only a predecessor tree would
+keep three edges and lose the alternative route. Our search therefore stores a
+first-discovery predecessor for witness reconstruction and a separate labeled
+edge collection for expanded states.
+
+A second fixture has $A\to B$ and $A\to C$. Its two terminal states are a
+counterexample to unique terminal outcome. A third fixture adds an $A$ self-loop
+and a $B\to A$ return edge. The finite graph closes, but an execution can loop
+forever. Graph closure does not imply termination.
+
+\section{Breadth-first search with an honest stopping contract}
+\Listing{bounded_reachable}
+Breadth-first search assigns the shortest discovered distance $d(x)$ from $x_0$.
+For every state with $d(x)<K$, it enumerates every enabled rule. Canonical equality
+merges only identical count states. On first discovery it records the parent and
+rule label, then queues the state.
+
+\Plate{04-bfs}{Three stopping outcomes have different logical meanings:
+depth-complete exploration, a fully closed reachable set, and an interrupted
+state-budget search. An unknown boundary count is not reported as zero.}{dnad27:bfs}
+
+The output separates \texttt{complete\_within\_depth} from
+\texttt{exhaustive\_closure}. At depth $K$, successor targets are inspected without
+being added to the stored graph. If any target is outside the discovered set,
+the result is depth-bounded. If none is outside and all queued states were
+processed, the discovered set is closed under every rule and contains the whole
+reachable set. This includes cyclic closed graphs.
+
+The reported edge count contains edges expanded from states with $d<K$.
+Boundary edges are inspected for closure but are not inserted into that count.
+This convention must accompany any table: at $K=0$, a self-loop can establish
+closure while the reported expanded-edge count remains zero.
+
+\begin{center}\input{\Generated/trace.tex}\end{center}
+Here the initial state is $A+B+C$ and only the two baseline assembly rules are
+present. At $K=1$, $ABC$ is absent but reachable just beyond the bound. At $K=2$,
+the three-state graph closes and the single terminal state is $ABC$. A larger
+bound changes nothing.
+
+A state budget is a separate resource constraint. When the next new state would
+exceed it, the search returns \texttt{state\_budget\_exhausted},
+both completeness flags false, and an unknown outside-successor count represented
+by \texttt{None}. Some discovered states have not yet been expanded; even the
+terminal list may be partial. Existing positive witnesses remain useful, but
+negative answers are undecided.
+
+\section{What a witness proves}
+\Listing{witness}
+Following first-discovery predecessors backward and reversing their rule labels
+gives a shortest path. For the baseline target, the result is
+\texttt{bind\_AB, bind\_C}. The zero-step initial-state witness is empty.
+
+A witness is a constructive reachability certificate only after its labels are
+replayed against the declared rules and initial state. The helper assumes the
+search's internal predecessor map; it rejects cycles but does not authenticate
+an externally supplied map. Archive the symbol table, rules, initial state,
+target, search status, and replay trace together.
+
+\begin{proposition}
+A completed, unpruned breadth-first search is sound for the declared multiset
+semantics and complete for targets at shortest distance at most $K$.
+\end{proposition}
+\begin{proof}
+Each generated edge passes the exact consumed-count precondition and applies the
+declared increment, proving soundness. Induct on distance: the initial state is
+stored; every successor of a stored state at distance below $K$ is either newly
+queued or already represented by the identical canonical state. Therefore every
+state at distance at most $K$ is stored. A resource interruption invalidates the
+inductive completeness claim.
+\end{proof}
+
+\section{Testing without asking the implementation to verify itself}
+The independent oracle enumerates path frontiers using dense integer vectors,
+not the canonicalizer, firing function, or deduplicating BFS. For all 27 initial
+triples with $A,B,C$ counts in $\{0,1,2\}$ and bounds zero through three, it compares
+the full state-to-shortest-depth mapping. Every stored edge is also replayed with
+independent consumed/produced vector arithmetic.
+
+Further tests retain parallel labels and self-loops, reject undeclared species,
+validate multiplicity and catalysts, detect missing invariant weights, exercise
+budget interruption, and distinguish multiple terminals from acceptance. The
+left-nullspace test multiplies the hand-written matrix by the hand-derived
+weights; it does not reuse the invariant helper as its oracle.
+
+These tests establish properties of this implementation and its finite fixtures.
+They are not a proof for arbitrary richer molecular languages. Partial-order
+reduction, symmetry quotienting, or approximate merging requires a separate
+argument that the property being queried is preserved.
+
+\section{Acceptance, confluence, and fairness are separate}
+An acceptance predicate $A(x)$ is supplied by the application. Terminality means
+no rule is enabled; neither condition implies the other. An accepted state can
+still react, and an unwanted dead end can be terminal.
+
+For a closed finite graph, one can inspect whether every reachable terminal is
+accepted and whether all reachable states can reach an accepted state. Neither
+property guarantees that every execution eventually accepts: a scheduler may
+remain on a cycle. Universal termination additionally requires excluding reachable
+cycles, or specifying and proving a suitable fairness condition.
+
+Confluence is stronger than observing one successful path. Every pair of reachable
+branches must admit a common descendant under the declared equivalence. A shared
+terminal diamond is an illustrative join, not a proof that a larger rule set is
+globally confluent. Strongly connected components and graph reachability algorithms
+can extend the reference, but must keep their logical questions explicit.
+
+\section{Formal possibility is not chemical realizability}
+\Plate{06-boundary}{The evidence boundary: formal transitions establish possible
+paths; kinetic models add distributions and time; experiments test whether the
+specified molecules and readout support those models.}{dnad27:boundary}
+Cardelli's author-hosted discussion of molecular semantics distinguishes models
+of interactions from quantitative rate interpretations. The reference here is
+a count rewrite system, not an implementation of an entire process calculus
+\cite{cardelli-site}.
+
+DNA strand-displacement constructions can approximate prescribed reaction-network
+dynamics under specified designs and scaling conditions \cite{soloveichik2010}.
+Auxiliary species, rate rescaling, leakage, and implementation limitations do not
+vanish under that correspondence. Our $AB$ drawing is a conceptual assembly
+inventory, not a validated domain-level construction.
+
+\section{Worked problems and design exercises}
+\begin{enumerate}
+\item Canonicalize $2A+0B+C$. \textbf{Answer:} $((A,2),(C,1))$.
+\item Why reject count $1.9$? \textbf{Answer:} it is not a discrete molecule count;
+truncation changes the model.
+\item Enable $2A+E\to B+E$ in $A+E$? \textbf{Answer:} no; one $A$ is missing.
+\item Fire it from $3A+E$. \textbf{Answer:} $A+B+E$.
+\item Why does $E$'s zero matrix row not remove its precondition?
+\textbf{Answer:} consumed and produced requirements are not encoded by their difference.
+\item Derive the assembly matrix. \textbf{Answer:} subtract each consumed vector
+from its produced vector in the stated species order.
+\item Verify the left-nullspace condition for $w=(1,1,1,2,3)^\top$. \textbf{Answer:}
+$w^\top S=(0,0)$.
+\item Bound $x_{ABC}$ at total weight three. \textbf{Answer:} at most one.
+\item Does matching total weight establish reachability? \textbf{Answer:} no;
+it is only a necessary invariant constraint.
+\item Give a feasible state-equation target that is unreachable.
+\textbf{Answer:} $A+D$ under $B\to B+D$ from $A$.
+\item Count the diamond states and edges. \textbf{Answer:} four of each.
+\item What does a predecessor tree lose? \textbf{Answer:} alternative labels,
+non-tree edges, and cycles.
+\item Interpret no $ABC$ at bound one. \textbf{Answer:} absent within one step,
+not globally unreachable.
+\item When is a bounded result nevertheless exhaustive? \textbf{Answer:} all
+queued states processed and every boundary successor already inside the set.
+\item What does a budget interruption do to negative answers?
+\textbf{Answer:} it leaves them undecided.
+\item Why can closure coexist with nontermination? \textbf{Answer:} a reachable
+cycle admits an infinite execution.
+\item Is an accepted state necessarily terminal? \textbf{Answer:} no; acceptance
+is a separate predicate.
+\item Design a richer strand state. \textbf{Rubric:} domains, strand orientation,
+complex membership, binding topology, and explicit applicability rules.
+\item Propose symmetry reduction. \textbf{Rubric:} define an equivalence and prove
+it preserves the acceptance/reachability question before merging states.
+\item Design a replay archive. \textbf{Rubric:} versioned universe/rules, initial
+state, bounds/budget, complete status, target, labeled witness, independent replay,
+and the molecular abstraction's omissions.
+\end{enumerate}
+
+\section{Bridge to quantitative simulation}
+Chapter 28 adds time and rates through deterministic and stochastic semantics.
+Ignoring timing should recover these same consumed/produced transitions. Agreement
+on stoichiometry is the first gate, not the last: units, propensities, stiffness,
+finite-copy noise, and readout adequacy require new independent tests.

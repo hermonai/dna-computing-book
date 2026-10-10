@@ -1,0 +1,14 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\fill[Pale,rounded corners] (0,-.6) rectangle (13.4,4.4);
+\node[note,anchor=west] at (.3,4) {\textbf{Chemical polarity is not a cursor instruction}};
+\draw[very thick,Blue] (1,2.3)--(11.8,2.3);
+\draw[very thick,Green] (1,1.2)--(11.8,1.2);
+\foreach \x/\a/\b in {2/A/T,4/C/G,6/G/C,8/A/T,10/C/G}{
+\draw[gray,dashed] (\x,1.5)--(\x,2);
+\node[smallnote,fill=white] at (\x,2.3){\a};
+\node[smallnote,fill=white] at (\x,1.2){\b};}
+\node[smallnote] at (.5,2.3){$5'$};\node[smallnote] at (12.4,2.3){$3'$};
+\node[smallnote] at (.5,1.2){$3'$};\node[smallnote] at (12.4,1.2){$5'$};
+\draw[flow] (3,2.9)--(5,2.9) node[midway,above,smallnote]{$i$: upper cursor};
+\draw[flow,Green] (7,.5)--(9,.5) node[midway,below,smallnote]{$j$: lower cursor};
+\end{tikzpicture}

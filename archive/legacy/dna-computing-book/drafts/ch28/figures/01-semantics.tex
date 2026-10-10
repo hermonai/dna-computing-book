@@ -1,0 +1,23 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
+\path[use as bounding box] (0,0) rectangle (14,5.7);
+\node[anchor=west,font=\bfseries] at (.2,5.4){A / Reaction channels};
+\foreach \x/\y in {.5/3.8,1.2/4.1,1.6/3.4,.7/3.1} {
+\shade[ball color=Blue!55] (\x,\y) circle (.18);}
+\foreach \x/\y in {3.4/3.8,4.1/4.1,4.5/3.4,3.6/3.1} {
+\shade[ball color=Green!50] (\x,\y) circle (.18);}
+\node at (1,2.7){species $A$};\node at (4,2.7){species $B$};
+\draw[flow] (1.9,3.9)--node[above]{$k_f$}(3,3.9);
+\draw[flow] (3,3.4)--node[below]{$k_r$}(1.9,3.4);
+\node[align=center] at (2.5,1.9){one event moves one molecule\\total count $A+B$ is unchanged};
+\draw[Blue!25] (5.3,.4)--(5.3,5);
+\node[anchor=west,font=\bfseries] at (5.7,5.4){B / State and time law};
+\node[draw,fill=Pale,align=left,text width=7cm,anchor=north west] at (5.8,4.7){
+Continuous concentration: $a,b$ in mol/L\\
+$\dot a=-k_fa+k_rb$\\
+a smooth trajectory is not one integer path};
+\node[draw,fill=Green!8,align=left,text width=7cm,anchor=north west] at (5.8,2.8){
+Discrete counts: $A,B\in\mathbb N_0$\\
+$\alpha_f=k_f A,\quad\alpha_r=k_r B$\\
+random waiting times, integer jumps};
+\node[align=center] at (7,.55){well-mixed conversion $\Omega=N_{\rm A}V$; $A=\Omega a$\\abstract species, not validated strand chemistry};
+\end{tikzpicture}

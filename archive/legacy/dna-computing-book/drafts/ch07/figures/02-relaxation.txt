@@ -1,0 +1,3 @@
+Same equilibrium, different clock
+
+Two exact deterministic concentration trajectories start at zero duplex with 100 nM total of each strand. Baseline kon is 1e6 M^-1 s^-1 and koff is 0.005 s^-1. Multiplying both by ten preserves 5 nM Kd and 80 nM equilibrium while rescaling time. Solid and dashed styles remain distinguishable in grayscale.

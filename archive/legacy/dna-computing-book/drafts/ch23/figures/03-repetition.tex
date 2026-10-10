@@ -1,0 +1,16 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
+\node[anchor=west,Blue,font=\bfseries] at (0,2.5) {Five observations of logical bit 1};
+\foreach \i/\v in {0/1,1/1,2/0,3/1,4/0}{
+\node[draw,fill=Gold!45,minimum width=.8cm,minimum height=.75cm] (p\i) at (\i*1.3,1.25) {\v};
+\draw[Blue] (p\i.south)--(\i*1.3,.25);}
+\draw[Blue,thick] (0,.25)--(5.2,.25);
+\draw[flow] (2.6,.25)--(2.6,-.25);
+\node[draw=Green,fill=Green!8,align=center,minimum width=4.4cm] at (2.6,-.7) {majority decoder returns 1\\two flips are correctable};
+\node[draw=Red,fill=Red!6,text width=5.1cm,align=left,anchor=west] at (6.4,.8)
+{Common-mode counterexample\\\footnotesize
+All five copies flip together.\\
+Failure is still $p$, not $O(p^3)$.\\
+Copy count is not independence.};
+\node[font=\footnotesize,align=center] at (5.7,-1.8)
+{External mathematical decoding; a molecular voter or proofreading pathway is not supplied.};
+\end{tikzpicture}

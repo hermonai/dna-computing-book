@@ -1,0 +1,201 @@
+{
+  "trace": [
+    {
+      "step": 1,
+      "head": 0,
+      "read": "1",
+      "write": "0",
+      "next": "carry"
+    },
+    {
+      "step": 2,
+      "head": 1,
+      "read": "1",
+      "write": "0",
+      "next": "carry"
+    },
+    {
+      "step": 3,
+      "head": 2,
+      "read": "1",
+      "write": "0",
+      "next": "carry"
+    },
+    {
+      "step": 4,
+      "head": 3,
+      "read": "_",
+      "write": "1",
+      "next": "halt"
+    }
+  ],
+  "growth": [
+    {
+      "n": 1,
+      "steps": 2,
+      "span": 2
+    },
+    {
+      "n": 2,
+      "steps": 3,
+      "span": 3
+    },
+    {
+      "n": 3,
+      "steps": 4,
+      "span": 4
+    },
+    {
+      "n": 4,
+      "steps": 5,
+      "span": 5
+    },
+    {
+      "n": 5,
+      "steps": 6,
+      "span": 6
+    },
+    {
+      "n": 6,
+      "steps": 7,
+      "span": 7
+    },
+    {
+      "n": 7,
+      "steps": 8,
+      "span": 8
+    },
+    {
+      "n": 8,
+      "steps": 9,
+      "span": 9
+    },
+    {
+      "n": 9,
+      "steps": 10,
+      "span": 10
+    },
+    {
+      "n": 10,
+      "steps": 11,
+      "span": 11
+    },
+    {
+      "n": 11,
+      "steps": 12,
+      "span": 12
+    },
+    {
+      "n": 12,
+      "steps": 13,
+      "span": 13
+    }
+  ],
+  "reliability": [
+    {
+      "events": 0,
+      "independent": 1.0,
+      "union": 1.0
+    },
+    {
+      "events": 100,
+      "independent": 0.904792147113709,
+      "union": 0.9
+    },
+    {
+      "events": 200,
+      "independent": 0.8186488294786357,
+      "union": 0.8
+    },
+    {
+      "events": 300,
+      "independent": 0.7407070321560995,
+      "union": 0.7
+    },
+    {
+      "events": 400,
+      "independent": 0.6701859060067403,
+      "union": 0.6
+    },
+    {
+      "events": 500,
+      "independent": 0.606378944861185,
+      "union": 0.5
+    },
+    {
+      "events": 600,
+      "independent": 0.5486469074854969,
+      "union": 0.4
+    },
+    {
+      "events": 700,
+      "independent": 0.4964114134310993,
+      "union": 0.29999999999999993
+    },
+    {
+      "events": 800,
+      "independent": 0.44914914861007543,
+      "union": 0.19999999999999996
+    },
+    {
+      "events": 900,
+      "independent": 0.4063866225452045,
+      "union": 0.09999999999999998
+    },
+    {
+      "events": 1000,
+      "independent": 0.36769542477096406,
+      "union": 0.0
+    },
+    {
+      "events": 1100,
+      "independent": 0.33268793286240783,
+      "union": 0.0
+    },
+    {
+      "events": 1200,
+      "independent": 0.30101342909339945,
+      "union": 0.0
+    },
+    {
+      "events": 1300,
+      "independent": 0.2723545868194771,
+      "union": 0.0
+    },
+    {
+      "events": 1400,
+      "independent": 0.24642429138466176,
+      "union": 0.0
+    },
+    {
+      "events": 1500,
+      "independent": 0.22296276370290238,
+      "union": 0.0
+    },
+    {
+      "events": 1600,
+      "independent": 0.20173495769715563,
+      "union": 0.0
+    },
+    {
+      "events": 1700,
+      "independent": 0.1825282055227027,
+      "union": 0.0
+    },
+    {
+      "events": 1800,
+      "independent": 0.16515008698369854,
+      "union": 0.0
+    },
+    {
+      "events": 1900,
+      "independent": 0.1494265017979964,
+      "union": 0.0
+    },
+    {
+      "events": 2000,
+      "independent": 0.1351999253974997,
+      "union": 0.0
+    }
+  ]
+}

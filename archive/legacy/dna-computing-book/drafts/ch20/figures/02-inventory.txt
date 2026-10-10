@@ -1,0 +1,2 @@
+Question: what does an exchange conserve?
+Before: red invader I and gate G containing blue substrate plus green incumbent. After: W contains substrate plus invader; free output O is the unchanged green incumbent. Backbone arrows point toward 3′. Pairing rungs are not covalent cuts. Conserved strand inventories: I+W, G+W, G+O. Geometry is schematic and not to scale.

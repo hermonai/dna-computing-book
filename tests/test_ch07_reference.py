@@ -6,7 +6,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "dna07", ROOT / "drafts/ch07/reference.py"
+    "dna07", ROOT / "book/chapters/ch07/reference.py"
 )
 M = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(M)
@@ -20,9 +20,9 @@ def test_equilibrium_flux_and_initial_slope():
         (1e-8, 0), rel=1e-12, abs=0
     )
     eps = 1e-5
-    assert M.equal_pool_exact(
-        eps, 100e-9, 1e6, 0.005
-    ) / eps == pytest.approx(1e-8, rel=2e-6)
+    assert M.equal_pool_exact(eps, 100e-9, 1e6, 0.005) / eps == pytest.approx(
+        1e-8, rel=2e-6
+    )
 
 
 @pytest.mark.parametrize("t", [0, 0.01, 1, 20, 120, 1000])
@@ -33,9 +33,7 @@ def test_closed_form_and_time_rescaling(t):
         M.equal_pool_exact(10 * t, 100e-9, 1e6, 0.005), abs=1e-20
     )
     if t <= 120:
-        assert M.rk4(t, 0.1, 100e-9, 100e-9, 1e6, 0.005) == pytest.approx(
-            x, abs=1e-15
-        )
+        assert M.rk4(t, 0.1, 100e-9, 100e-9, 1e6, 0.005) == pytest.approx(x, abs=1e-15)
 
 
 def test_rk4_convergence_order_and_bad_step():
@@ -49,9 +47,7 @@ def test_rk4_convergence_order_and_bad_step():
 
 def test_count_units_and_single_pair():
     volume = 20 / (M.AVOGADRO * 100e-9)
-    assert M.propensities(0, 20, 20, volume, 1e6, 0.005) == pytest.approx(
-        (2, 0)
-    )
+    assert M.propensities(0, 20, 20, volume, 1e6, 0.005) == pytest.approx((2, 0))
     assert M.stationary(1, 1, volume / 20, 1e6, 0.005) == pytest.approx(
         [1 / 21, 20 / 21]
     )
@@ -114,5 +110,5 @@ def test_nonlinear_stationary_mean_is_not_ode_root():
 
 def test_results_reproducible():
     assert json.loads(
-        (ROOT / "drafts/ch07/results.json").read_text()
+        (ROOT / "book/chapters/ch07/results.json").read_text()
     ) == json.loads(json.dumps(M.results()))

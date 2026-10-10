@@ -1,0 +1,7 @@
+{
+  "E_i": "binary declared defect event at site i",
+  "p": "local error probability in an explicit teaching model",
+  "N": "number of eligible sites",
+  "P_r(p)": "majority-decoded failure probability for odd repetition r",
+  "k,n": "observed defect count and declared denominator"
+}

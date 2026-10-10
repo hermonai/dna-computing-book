@@ -6,7 +6,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "dna08", ROOT / "drafts/ch08/reference.py"
+    "dna08", ROOT / "book/chapters/ch08/reference.py"
 )
 M = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(M)
@@ -43,9 +43,7 @@ def test_extension_conserves_nucleotides_and_does_not_mutate_pool():
     assert grown == "ACGTAC" and ppi == 4
     assert sum(left.values()) == 0 and sum(pool.values()) == 4
     assert len(grown) - 2 == ppi == sum(pool.values()) - sum(left.values())
-    assert (
-        M.extend_primer("TGCATG", "AC", dict(A=9, C=9, G=0, T=9))[0] == "AC"
-    )
+    assert M.extend_primer("TGCATG", "AC", dict(A=9, C=9, G=0, T=9))[0] == "AC"
     with pytest.raises(ValueError):
         M.extend_primer("TGCATG", "AG", pool)
     with pytest.raises(ValueError):
@@ -77,12 +75,8 @@ def test_integrator_convergence_and_bad_step():
 @pytest.mark.parametrize("t", [0, 0.01, 0.1, 1])
 def test_clamped_independent_integrating_factor(t):
     c, p = M.clamped(0.02, 1, 2, 1, 3, t)
-    assert c == pytest.approx(
-        (0.02 / 3) * (1 - math.exp(-6 * t)), abs=1e-15
-    )
-    assert p == pytest.approx(
-        0.02 * (t - (1 - math.exp(-6 * t)) / 6), abs=1e-15
-    )
+    assert c == pytest.approx((0.02 / 3) * (1 - math.exp(-6 * t)), abs=1e-15)
+    assert p == pytest.approx(0.02 * (t - (1 - math.exp(-6 * t)) / 6), abs=1e-15)
     assert c >= 0 and p >= 0
 
 
@@ -104,5 +98,5 @@ def test_invalid_sequence(bad):
 
 def test_record_matches_reference():
     assert json.loads(
-        (ROOT / "drafts/ch08/results.json").read_text()
+        (ROOT / "book/chapters/ch08/results.json").read_text()
     ) == json.loads(json.dumps(M.results()))

@@ -1,0 +1,25 @@
+{
+  "access_date": "2026-10-06",
+  "chapter": 28,
+  "records": [
+    {
+      "key": "gillespie1977",
+      "title": "Exact stochastic simulation of coupled chemical reactions",
+      "url": "https://doi.org/10.1021/j100540a008",
+      "primary_pdf": "https://www.ma.imperial.ac.uk/~nsjones/gillespie_1977.pdf",
+      "date": "1977-12-01 issue; 2002-05-01 online archive metadata is not the original publication date",
+      "access_depth": "Publisher metadata and selected primary PDF first page/abstract",
+      "claim": "Historical exact stochastic simulation formulation, not a full-paper reproduction"
+    },
+    {
+      "key": "higham2008",
+      "title": "Modeling and simulating chemical reactions",
+      "url": "https://doi.org/10.1137/060666457",
+      "primary_pdf": "https://epubs.siam.org/doi/pdf/10.1137/060666457",
+      "date": "2008 SIAM Review50(2)347–368",
+      "access_depth": "Primary introduction; selected Section4 pp353–355 and Section7 pp357–358",
+      "claim": "Direct-method joint density, exponential wait/channel selection, concentration/count conversion and distinct/identical bimolecular conventions",
+      "boundary": "No published MATLAB code, illustrations or experiments reproduced"
+    }
+  ]
+}

@@ -9,7 +9,7 @@ import sys
 import pytest
 
 spec = importlib.util.spec_from_file_location(
-    "dnad30", Path(__file__).parents[1] / "drafts/ch30/reference.py"
+    "dnad30", Path(__file__).parents[1] / "book/chapters/ch30/reference.py"
 )
 r = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = r

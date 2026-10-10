@@ -1,0 +1,23 @@
+\begin{tikzpicture}[x=.75cm,y=.75cm]
+\foreach \n/\x/\y in {A/0/4,B/2/5,C/2/3,D/4/4}
+ \node[circle,draw=Blue,fill=Pale,minimum size=7mm] (\n) at (\x,\y) {\n};
+\foreach \a/\b in {A/B,A/C,B/D,C/D}\draw[flow] (\a)--(\b);
+\draw[flow,bend left=20] (B) to (C);
+\draw[flow,bend left=20] (C) to (B);
+\node[note,anchor=west] at (6,4) {B is shared by $A\to B$ and $B\to C$.\\Graph arrows denote allowed traversal.};
+\draw[Blue,very thick] (0,1.5)--(5.7,1.5);
+\draw[Blue,very thick] (6.3,1.5)--(12,1.5);
+\node[fill=white,font=\ttfamily] at (2,1.5) {TCAG};
+\node[fill=white,font=\ttfamily] at (4.5,1.5) {CCTA};
+\node[fill=white,font=\ttfamily] at (7.5,1.5) {GTCA};
+\node[fill=white,font=\ttfamily] at (10,1.5) {GATC};
+\node[smallnote] at (6,2.2) {nick: $3'$-OH / $5'$-phosphate};
+\draw[Green,very thick] (3,.2)--(9,.2);
+\node[fill=white,font=\ttfamily] at (4.5,.2) {GGAT};
+\node[fill=white,font=\ttfamily] at (7.5,.2) {CAGT};
+\foreach \x in {3.6,4.2,4.8,5.4,6.6,7.2,7.8,8.4}
+ \draw[dotted] (\x,.45)--(\x,1.2);
+\node at (-.5,1.5) {$5'$}; \node at (12.5,1.5) {$3'$};
+\node at (2.5,.2) {$3'$}; \node at (9.5,.2) {$5'$};
+\node[smallnote] at (6,-.7) {B splint aligns the nick; ligase chemistry must seal it.};
+\end{tikzpicture}

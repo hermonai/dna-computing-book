@@ -1,0 +1,10 @@
+\begin{tikzpicture}[font=\small\sffamily]
+\begin{axis}[width=13cm,height=7cm,xlabel={Deadline $t$ (s)},ylabel={Completion probability},
+xmin=0,xmax=200,ymin=0,ymax=1,grid=major,legend pos=south east,
+legend style={font=\small}]
+\input{\Generated/latency-plot.tex}
+\legend{one chain,all ten chains,all hundred chains}
+\end{axis}
+\node[align=center,font=\footnotesize] at (6,-1.7) {Four independent irreversible stages per chain; assigned $r=.1\ {\rm s}^{-1}$.\\
+Generated probabilities, not fitted reaction data.};
+\end{tikzpicture}

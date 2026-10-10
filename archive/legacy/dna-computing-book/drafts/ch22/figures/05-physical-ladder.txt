@@ -1,0 +1,5 @@
+Question: why can a weak wrong contact become a stable error?
+State: an initially wrong tile has one contact. It exits by detachment or a second-contact locking event.
+Hazards: k_off and k_lock are constant, assigned rates in inverse seconds. Directed arrows denote stochastic transitions, not backbones.
+Logic: conditional lock probability is k_lock/(k_off+k_lock), with positive total rate. A stronger wrong bond can reduce detachment and increase locking probability.
+Boundary: the probability is conditional on initial contact, not total product defect yield.

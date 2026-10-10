@@ -3,7 +3,7 @@ import math
 import pytest
 from pathlib import Path
 
-P = Path(__file__).parents[1] / "drafts/ch22/reference.py"
+P = Path(__file__).parents[1] / "book/chapters/ch22/reference.py"
 s = importlib.util.spec_from_file_location("r", P)
 r = importlib.util.module_from_spec(s)
 s.loader.exec_module(r)

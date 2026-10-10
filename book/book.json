@@ -1,67 +1,234 @@
 {
   "title": "DNA Computing",
-  "subtitle": "From Molecular Biology to Algorithms and Computation",
-  "edition": "4-deep",
-  "status": "chapter-two-production",
+  "subtitle": "Molecular mechanisms, algorithms and evidence",
+  "main": "book/main.tex",
+  "status": "complete manuscript; publication review pending",
+  "planned_chapters": 32,
+  "legacy_root": "archive/legacy/dna-computing-book",
   "chapters": [
     {
-      "id": "DNAD-01",
       "number": 1,
       "title": "Computing with DNA",
-      "source": "tex/deep/ch01.tex",
-      "status": "internally-reviewed-draft"
+      "source": "book/chapters/ch01/manuscript.tex",
+      "reference": "book/chapters/ch01/reference.py",
+      "previous_source": "tex/deep/ch01.tex"
     },
     {
-      "id": "DNAD-02",
       "number": 2,
       "title": "Adleman's experiment: from graph to molecules",
-      "source": "tex/deep/ch02.tex",
-      "status": "internally-reviewed-draft"
+      "source": "book/chapters/ch02/manuscript.tex",
+      "reference": "book/chapters/ch02/reference.py",
+      "previous_source": "tex/deep/ch02.tex"
+    },
+    {
+      "number": 3,
+      "title": "Combinatorial search and complexity",
+      "source": "book/chapters/ch03/manuscript.tex",
+      "reference": "book/chapters/ch03/reference.py",
+      "previous_source": "tex/textbook/ch03.tex"
+    },
+    {
+      "number": 4,
+      "title": "Molecular parallelism and resource accounting",
+      "source": "book/chapters/ch04/manuscript.tex",
+      "reference": "book/chapters/ch04/reference.py",
+      "previous_source": "drafts/ch04/manuscript.tex"
+    },
+    {
+      "number": 5,
+      "title": "DNA chemistry and sequence geometry",
+      "source": "book/chapters/ch05/manuscript.tex",
+      "reference": "book/chapters/ch05/reference.py",
+      "previous_source": "drafts/ch05/manuscript.tex"
+    },
+    {
+      "number": 6,
+      "title": "Hybridization thermodynamics",
+      "source": "book/chapters/ch06/manuscript.tex",
+      "reference": "book/chapters/ch06/reference.py",
+      "previous_source": "drafts/ch06/manuscript.tex"
+    },
+    {
+      "number": 7,
+      "title": "Reaction kinetics and stochastic chemistry",
+      "source": "book/chapters/ch07/manuscript.tex",
+      "reference": "book/chapters/ch07/reference.py",
+      "previous_source": "drafts/ch07/manuscript.tex"
+    },
+    {
+      "number": 8,
+      "title": "Enzymes as molecular operators",
+      "source": "book/chapters/ch08/manuscript.tex",
+      "reference": "book/chapters/ch08/reference.py",
+      "previous_source": "drafts/ch08/manuscript.tex"
+    },
+    {
+      "number": 9,
+      "title": "Amplification and copy-number evidence",
+      "source": "book/chapters/ch09/manuscript.tex",
+      "reference": "book/chapters/ch09/reference.py",
+      "previous_source": "drafts/ch09/manuscript.tex"
+    },
+    {
+      "number": 10,
+      "title": "Separation, readout, and measurement",
+      "source": "book/chapters/ch10/manuscript.tex",
+      "reference": "book/chapters/ch10/reference.py",
+      "previous_source": "drafts/ch10/manuscript.tex"
+    },
+    {
+      "number": 11,
+      "title": "Sequence design and graph encoding",
+      "source": "book/chapters/ch11/manuscript.tex",
+      "reference": "book/chapters/ch11/reference.py",
+      "previous_source": "drafts/ch11/manuscript.tex"
+    },
+    {
+      "number": 12,
+      "title": "Generate--filter--verify algorithms",
+      "source": "book/chapters/ch12/manuscript.tex",
+      "reference": "book/chapters/ch12/reference.py",
+      "previous_source": "drafts/ch12/manuscript.tex"
+    },
+    {
+      "number": 13,
+      "title": "SAT and combinatorial constructions",
+      "source": "book/chapters/ch13/manuscript.tex",
+      "reference": "book/chapters/ch13/reference.py",
+      "previous_source": "drafts/ch13/manuscript.tex"
+    },
+    {
+      "number": 14,
+      "title": "Sticker systems and molecular memory",
+      "source": "book/chapters/ch14/manuscript.tex",
+      "reference": "book/chapters/ch14/reference.py",
+      "previous_source": "drafts/ch14/manuscript.tex"
+    },
+    {
+      "number": 15,
+      "title": "Splicing and insertion-deletion systems",
+      "source": "book/chapters/ch15/manuscript.tex",
+      "reference": "book/chapters/ch15/reference.py",
+      "previous_source": "drafts/ch15/manuscript.tex"
+    },
+    {
+      "number": 16,
+      "title": "Languages, automata and molecular recognition",
+      "source": "book/chapters/ch16/manuscript.tex",
+      "reference": "book/chapters/ch16/reference.py",
+      "previous_source": "drafts/ch16/manuscript.tex"
+    },
+    {
+      "number": 17,
+      "title": "Watson--Crick and biochemical automata",
+      "source": "book/chapters/ch17/manuscript.tex",
+      "reference": "book/chapters/ch17/reference.py",
+      "previous_source": "drafts/ch17-theory/manuscript.tex"
+    },
+    {
+      "number": 18,
+      "title": "Universality and complexity models",
+      "source": "book/chapters/ch18/manuscript.tex",
+      "reference": "book/chapters/ch18/reference.py",
+      "previous_source": "drafts/ch18/manuscript.tex"
+    },
+    {
+      "number": 19,
+      "title": "Toehold-mediated strand displacement",
+      "source": "book/chapters/ch19/manuscript.tex",
+      "reference": "book/chapters/ch19/reference.py",
+      "previous_source": "drafts/ch19/manuscript.tex"
+    },
+    {
+      "number": 20,
+      "title": "Chemical reaction networks as programs",
+      "source": "book/chapters/ch20/manuscript.tex",
+      "reference": "book/chapters/ch20/reference.py",
+      "previous_source": "drafts/ch20/manuscript.tex"
+    },
+    {
+      "number": 21,
+      "title": "Digital and analog DNA circuits",
+      "source": "book/chapters/ch21/manuscript.tex",
+      "reference": "book/chapters/ch21/reference.py",
+      "previous_source": "drafts/ch21/manuscript.tex"
+    },
+    {
+      "number": 22,
+      "title": "Self-assembly, tiles and geometry",
+      "source": "book/chapters/ch22/manuscript.tex",
+      "reference": "book/chapters/ch22/reference.py",
+      "previous_source": "drafts/ch22/manuscript.tex"
+    },
+    {
+      "number": 23,
+      "title": "Noise, crosstalk and molecular fault models",
+      "source": "book/chapters/ch23/manuscript.tex",
+      "reference": "book/chapters/ch23/reference.py",
+      "previous_source": "drafts/ch23/manuscript.tex"
+    },
+    {
+      "number": 24,
+      "title": "Scaling and resource limits",
+      "source": "book/chapters/ch24/manuscript.tex",
+      "reference": "book/chapters/ch24/reference.py",
+      "previous_source": "drafts/ch24/manuscript.tex"
+    },
+    {
+      "number": 25,
+      "title": "DNA storage and error-correcting design",
+      "source": "book/chapters/ch25/manuscript.tex",
+      "reference": "book/chapters/ch25/reference.py",
+      "previous_source": "drafts/ch25/manuscript.tex"
+    },
+    {
+      "number": 26,
+      "title": "Laboratory workflows and reproducibility",
+      "source": "book/chapters/ch26/manuscript.tex",
+      "reference": "book/chapters/ch26/reference.py",
+      "previous_source": "drafts/ch26/manuscript.tex"
+    },
+    {
+      "number": 27,
+      "title": "Symbolic molecular simulation",
+      "source": "book/chapters/ch27/manuscript.tex",
+      "reference": "book/chapters/ch27/reference.py",
+      "previous_source": "drafts/ch27/manuscript.tex"
+    },
+    {
+      "number": 28,
+      "title": "Kinetic and stochastic simulation",
+      "source": "book/chapters/ch28/manuscript.tex",
+      "reference": "book/chapters/ch28/reference.py",
+      "previous_source": "drafts/ch28/manuscript.tex"
+    },
+    {
+      "number": 29,
+      "title": "Differentiable molecular and sequence models",
+      "source": "book/chapters/ch29/manuscript.tex",
+      "reference": "book/chapters/ch29/reference.py",
+      "previous_source": "drafts/ch29/manuscript.tex"
+    },
+    {
+      "number": 30,
+      "title": "Genomic organization, regulation and development",
+      "source": "book/chapters/ch30/manuscript.tex",
+      "reference": "book/chapters/ch30/reference.py",
+      "previous_source": "drafts/ch30/manuscript.tex"
+    },
+    {
+      "number": 31,
+      "title": "Modern molecular programming and evidence",
+      "source": "book/chapters/ch31/manuscript.tex",
+      "reference": "book/chapters/ch31/reference.py",
+      "previous_source": "drafts/ch31/manuscript.tex"
+    },
+    {
+      "number": 32,
+      "title": "From molecular computation to genomic computation",
+      "source": "book/chapters/ch32/manuscript.tex",
+      "reference": "book/chapters/ch32/reference.py",
+      "previous_source": "drafts/ch32/manuscript.tex"
     }
-  ],
-  "main": "tex/deep-dna-computing-ch01-02.tex",
-  "graphs": [
-    "book/figures/deep/DNAD-01-F1.svg",
-    "book/figures/deep/DNAD-01-F2.svg",
-    "book/figures/deep/DNAD-01-F3.svg",
-    "book/figures/deep/DNAD-01-F4.svg",
-    "book/figures/deep/DNAD-01-F5.svg",
-    "book/figures/deep/DNAD-01-F6.svg",
-    "book/figures/deep/DNAD-01-F7.svg",
-    "book/figures/deep/DNAD-01-F8.svg",
-    "book/figures/deep/DNAD-01-F9.svg",
-    "book/figures/deep/DNAD-01-F10.svg",
-    "book/figures/deep/DNAD-02-F1.svg",
-    "book/figures/deep/DNAD-02-F2.svg",
-    "book/figures/deep/DNAD-02-F3.svg",
-    "book/figures/deep/DNAD-02-F4.svg",
-    "book/figures/deep/DNAD-02-F5.svg",
-    "book/figures/deep/DNAD-02-F6.svg",
-    "book/figures/deep/DNAD-02-F7.svg",
-    "book/figures/deep/DNAD-02-F8.svg",
-    "book/figures/deep/DNAD-02-F9.svg",
-    "book/figures/deep/DNAD-02-F10.svg",
-    "book/figures/deep/DNAD-02-F11.svg",
-    "book/figures/deep/DNAD-02-F12.svg",
-    "book/figures/deep/DNAD-02-F13.svg",
-    "book/figures/deep/DNAD-02-F14.svg"
-  ],
-  "pedagogy": "pedagogy/deep-curriculum.json",
-  "previousEdition": {
-    "branch": "astra-rewrite",
-    "commit": "a1fb9a6154976f903b39d0f8a26834a8336f2264"
-  },
-  "historicalSnapshot": "3e10fc84bd81e733351da539e28b729eb1f007cf",
-  "preservedUndergraduateEdition": {
-    "branch": "astra-undergraduate-rewrite",
-    "commit": "0779ed552b26d678e2443c0d94177faa04dc293c",
-    "source": "tex/undergraduate/ch01.tex",
-    "pdf": "output/pdf/undergraduate-dna-computing.pdf"
-  },
-  "preservedDeepChapterOne": {
-    "commit": "6046afc3b1ef1bee59b11176a65a3e73778c125f",
-    "source": "tex/deep/ch01.tex",
-    "main": "tex/deep-dna-computing.tex",
-    "pdf": "output/pdf/deep-dna-computing.pdf"
-  }
+  ]
 }

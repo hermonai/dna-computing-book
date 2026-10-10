@@ -7,7 +7,7 @@ import math
 from dataclasses import replace
 import pytest
 
-PATH = Path(__file__).resolve().parents[1] / "drafts/ch31/reference.py"
+PATH = Path(__file__).resolve().parents[1] / "book/chapters/ch31/reference.py"
 spec = importlib.util.spec_from_file_location("dna31", PATH)
 m = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = m

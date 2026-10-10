@@ -1,0 +1,3 @@
+04-composition
+
+Signal X has competing capture hazards k1*C1 and k2*C2. Probability for branch one is lambda1/(lambda1+lambda2), falling from one in isolation to one-half for equal competing loads. Separate error envelope requires justified forcing and Lipschitz bounds.

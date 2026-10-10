@@ -1,0 +1,9 @@
+FIGURE 4.2 / ligation.tex
+Question: What changes when an aligned nicked duplex is ligated?
+Objects: Antiparallel strands; paired bases; top-strand 3-prime hydroxyl and adjacent 5-prime phosphate; ligase.
+Initial state: Complementary recognition aligns two top-strand fragments above a continuous lower template.
+Transition: An ATP-dependent ligase example seals the nick by creating a phosphodiester linkage.
+Final state: The upper covalent backbone is continuous; the lower strand remains complementary and antiparallel.
+Encodings: Solid backbones denote covalent connectivity; dashed rungs denote base-pair recognition; downward arrow denotes reaction progression.
+Inference: Recognition and covalent completion are distinct mechanistic conditions.
+Boundary: This is a substrate/product mechanism schematic, not atomistic geometry or a protocol; not every ligase uses ATP.

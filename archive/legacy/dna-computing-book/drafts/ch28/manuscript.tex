@@ -1,0 +1,305 @@
+\chapter{Kinetic and stochastic simulation}
+Chapter 27 determined which molecular-count states a symbolic reaction network
+could reach. A reaction edge did not specify a waiting time. This chapter adds
+time without confusing three objects: a concentration trajectory, one random
+\Term{count trajectory}, and a probability distribution over count trajectories.
+
+Our reference is deliberately small: the reversible conversion $A\rightleftharpoons B$.
+Its first-order kinetics admit independent closed-form mean and variance oracles.
+That makes it a useful laboratory for numerical reasoning before a larger DNA
+circuit obscures errors. The symbols denote abstract species, not validated strand
+sequences. No kinetic constant below is an experimentally fitted DNA rate.
+
+\section{One network, two timed semantics}
+Write the two reaction channels and their count changes as
+\[
+R_f:A\longrightarrow B,\quad \nu_f=(-1,1)^\top,\qquad
+R_r:B\longrightarrow A,\quad \nu_r=(1,-1)^\top.
+\]
+Every event preserves $A+B=N$. A rate constant adds a rule for how frequently an
+enabled channel occurs; it does not change its stoichiometry. First-order constants
+$k_f,k_r$ have units inverse time.
+
+\Plate{01-semantics}{Stoichiometry is shared; state representation and timing law
+are not. Continuous concentrations and discrete molecule counts require different
+interpretations of the same reaction channels.}{dnad28:semantics}
+For concentrations $a,b$ in mol/L, mass action gives
+\[
+\dot a=-k_fa+k_rb,\qquad \dot b=k_fa-k_rb.
+\]
+For integer counts $A,B$, the stochastic \Term{propensities} are
+$\alpha_f=k_f A,\alpha_r=k_r B$, in events per time. In a well-mixed volume $V$,
+$\Omega=N_{\rm A}V$ converts concentration to count: $A=\Omega a$. For this
+first-order network, multiplying the concentration equation by $\Omega$ yields
+the same algebra for continuous copy-equivalents.
+
+A continuous value such as 26.57 copy-equivalents is not a fractional physical
+molecule. It can represent an ensemble mean or a scaled concentration. A single
+count path stays integer-valued. The equivalence of their means here follows from
+linear propensities, not from an unrestricted rule that ODEs reproduce all
+stochastic chemistry.
+
+\section{Derive the deterministic oracle first}
+Conservation implies $b=C-a$, where $C=a_0+b_0$. Let
+$\lambda=k_f+k_r$. For $\lambda>0$,
+\[
+\dot a=-\lambda a+k_rC,\qquad
+a_*=\frac{k_rC}{\lambda},\qquad
+a(t)=a_*+(a_0-a_*)e^{-\lambda t}.
+\]
+The conserved mode has eigenvalue zero; the deviation from equilibrium has
+eigenvalue $-\lambda$. Thus equilibrium and relaxation time are separate facts:
+$k_r/\lambda$ fixes the equilibrium fraction in $A$, while $1/\lambda$ fixes the
+relaxation scale.
+
+If both rates vanish, the state stays at its initial value. Dividing by
+$\lambda$ without this branch produces an invalid calculation at a legitimate
+physical boundary. For very small $t$, directly subtracting
+$1-e^{-\lambda t}$ loses relative precision. The reference instead evaluates
+$q=-\operatorname{expm1}(-\lambda t)$ and writes
+\[
+a(t)=a_0(1-k_fq/\lambda)+b_0 k_rq/\lambda.
+\]
+Tests compare this transition-probability expression with the independently
+derived equilibrium expression, including zero rates and tiny times.
+
+\section{Euler's method: conservation, positivity, and accuracy}
+Explicit Euler updates both species from the same old state:
+\[
+\begin{pmatrix}a_{n+1}\\b_{n+1}\end{pmatrix}
+=
+\begin{pmatrix}
+1-hk_f&hk_r\\ hk_f&1-hk_r
+\end{pmatrix}
+\begin{pmatrix}a_n\\b_n\end{pmatrix}.
+\]
+The columns sum to one, so total population is preserved in exact arithmetic.
+Sequentially updating $a$ and then computing the new $b$ flux from the new $a$
+would implement a different method.
+
+\Listing{euler}
+The transition matrix is nonnegative for every nonnegative initial state exactly
+when $h\max(k_f,k_r)\le1$. This is a \Term{positivity bound}. The decaying
+mode has multiplier $1-h\lambda$, so linear absolute stability requires
+$|1-h\lambda|\le1$, or $h\lambda\le2$. A method can satisfy stability yet
+produce negative populations: with $(k_f,k_r)=(0.4,0.1)$ and $h=3$,
+the multiplier is $-0.5$, but an initial $(a,b)=(1,0)$ gives $a_1=-0.2$.
+The reference rejects this step rather than clipping a negative value and hiding
+the violated contract. Equality at the stability boundary permits an undamped
+oscillation; stability is not convergence to equilibrium.
+
+\Plate{03-ode}{The deterministic oracle is a smooth ensemble mean. The numerical
+table checks first-order convergence; the positivity and stability bounds answer
+different questions.}{dnad28:ode}
+For $(A_0,B_0)=(100,0)$, rates $(0.4,0.1)$ and $T=5$, the exact mean is
+$26.566799889911906$. Euler's errors are generated from the tested reference:
+\begin{center}\input{\Generated/euler.tex}\end{center}
+Halving the step approximately halves the terminal error. A stronger independent
+oracle is $a_n=20+80(1-0.5h)^n$, valid for this fixture. It checks every time
+step, not only a terminal comparison against a shared helper.
+
+\section{Derive the direct stochastic simulation method}
+At a fixed state $x$, set $\alpha_0=\alpha_f+\alpha_r$. Under the continuous-time
+Markov chain model, the probability that no event occurs before time $\tau$ is
+$S(\tau)=e^{-\alpha_0\tau}$. Inverse-transform sampling gives
+\[
+\tau=-\log U_1/\alpha_0,\qquad
+\Pr(J=j\mid x)=\alpha_j/\alpha_0.
+\]
+The joint density is $\alpha_j e^{-\alpha_0\tau}$; the waiting time and channel
+choice are conditionally independent given the state. This is the direct-method
+construction described in the selected primary exposition
+\cite{higham2008}; Gillespie's original paper establishes the historical
+stochastic-simulation formulation \cite{gillespie1977}.
+
+\Listing{event_draw}
+The first uniform lies strictly in $(0,1)$; the channel uniform lies in $[0,1)$.
+The cumulative threshold assigns an exact boundary to the channel on its right.
+Clamping a zero waiting-time uniform to an arbitrary epsilon changes the tail of
+the waiting-time law. The reference redraws the excluded endpoint instead.
+If $\alpha_0=0$, the state is absorbing and no logarithm or division is needed.
+
+\Plate{02-ssa}{Two random draws have distinct roles. Update the count state only
+after a completed event; a path stopped by its event budget must not masquerade
+as an observation at the requested horizon.}{dnad28:ssa}
+\Listing{ssa}
+The result records events, requested horizon, simulated interval, completion flag,
+and stopping reason. A sampled event after the horizon need not be applied: the
+state before it remains valid through the horizon. A zero-rate absorbing state
+also completes the interval. Exhausting the computational event budget instead
+returns a \Term{censored trajectory}, not a completed horizon observation.
+
+The stored clock must advance strictly and remain finite at accepted events.
+When floating-point resolution cannot represent a later event time, failure is
+preferable to silently entering an infinite loop. These guards do not make the
+simulation exact arithmetic: exact SSA refers to sampling the declared CTMC
+without a fixed time-discretization approximation, subject to arithmetic and
+random-number implementation.
+
+\section{A path is a right-continuous staircase}
+At an event time, the observed count is the post-event state. Between event times,
+it stays constant. A straight line connecting event values incorrectly suggests
+fractional changes between events. The authored path figure uses a step plot.
+
+The fixed seed-28 path has 111 events by $T=5$ and ends at $(29,71)$.
+Its final $A$ count differs from the mean by about 2.43; that is not evidence of a
+bug. One sample is supposed to fluctuate. Every transition changes counts by
+$(-1,1)$ or $(1,-1)$, and every stored state has nonnegative integer counts totaling
+100. The seed is local: importing or running this reference does not reset the
+caller's global random-number generator.
+
+A query after an incomplete path's simulated interval is rejected. Reusing its
+last count as if it were the horizon count can bias ensemble estimates, because
+high-activity trajectories are more likely to hit an event cap. Discarding such
+paths can introduce another selection bias. Report interruption frequency and
+resolve the budget or use a justified alternative method before estimating a
+horizon distribution.
+
+\section{An exact finite-copy distribution}
+Each molecule independently switches between two states with the declared
+first-order rates. With $q=1-e^{-\lambda t}$,
+\[
+p_{AA}=1-\frac{k_f}{\lambda}q,\qquad
+p_{BA}=\frac{k_r}{\lambda}q.
+\]
+Initially-$A$ molecules contribute a binomial group with parameter $p_{AA}$;
+initially-$B$ molecules contribute another independent group with parameter $p_{BA}$.
+Therefore
+\[
+\mathbb E[A(t)]=A_0p_{AA}+B_0p_{BA},
+\quad
+\operatorname{Var}A(t)=A_0p_{AA}(1-p_{AA})+B_0p_{BA}(1-p_{BA}).
+\]
+\Listing{exact_moments}
+For a mixed initial population, the sum is not generally a single binomial with
+success probability $\mathbb E[A]/N$. The tests enumerate all binary configurations
+of a five-molecule mixed fixture and compute its law, mean, and variance without
+calling SSA or the moment helper.
+
+\Plate{04-ensemble}{One stochastic path, an exact population distribution, and a
+Monte Carlo mean answer different questions. The error bar is uncertainty in the
+estimated mean, not the biological spread of individual count outcomes.}{dnad28:ensemble}
+For the all-$A$ initial fixture, $A(T)\sim\operatorname{Binomial}(100,p_{AA})$,
+with variance $19.508851326005672$ and population standard deviation about 4.417.
+The 2,000 fixed-seed trajectories give mean 26.702 and sample variance
+19.51895547773887. The estimated standard error of the mean is about 0.09879.
+Its discrepancy from the exact mean is about 1.37 exact-law standard errors.
+
+The sample variance estimates the spread of individual paths. Dividing it by the
+sample count estimates the variance of the sample mean under independent sampling.
+More trajectories shrink uncertainty about the mean; they do not shrink the
+physical count variance of this model. Deterministic pseudorandom seeds support
+reproducibility, not a mathematical proof of random-number independence or
+experimental validation.
+
+\section{When first moments do not close}
+For any count-network generator with stoichiometric columns $\nu_j$,
+\[
+\frac{d}{dt}\mathbb E[X]=\sum_j\nu_j\mathbb E[\alpha_j(X)].
+\]
+Linear propensities permit replacing the expectation of each propensity with its
+value at the mean. Nonlinear propensities generally do not. If $N$ is zero or two
+with equal probability, $\mathbb E[N]=1$ but
+$\mathbb E[N(N-1)]=1$, whereas $\mathbb E[N](\mathbb E[N]-1)=0$.
+This counterexample is enough to invalidate an unqualified mean-field substitution.
+Moment closures introduce additional assumptions; increasing molecule count alone
+does not prove them for every reaction network or time horizon.
+
+A larger DNA circuit may also invalidate the well-mixed CTMC approximation through
+spatial encounters, surface attachment, temperature changes, hidden complexes,
+or time-varying reagents. A model should declare whether those effects are omitted,
+lumped into effective constants, or resolved explicitly.
+
+\section{Bimolecular units and the identical-reactant factor}
+For distinct species with molar event-rate law $v=k\,a\,b$,
+\[
+\alpha_{AB}(A,B)=\frac{k}{\Omega}AB,\qquad
+\Omega=N_{\rm A}V.
+\]
+Here $k$ has units L/(mol$\cdot$time); multiplying $v$ by $\Omega$ converts
+molar concentration change rate into events per time.
+
+For $2A\to P$, declare the convention before writing the factor.
+If the molar \emph{event-rate} law is $v=k a^2$, then
+\[
+\alpha_{AA}(A)=\frac{k}{\Omega}A(A-1)
+=\frac{2k}{\Omega}\binom A2.
+\]
+Each event consumes two $A$ molecules, so $\dot a=-2v$.
+If instead a reported constant defines $\dot a=-\widetilde k a^2$, then
+$k=\widetilde k/2$. Mixing these conventions creates a factor-of-two error.
+The finite-copy propensity approaches the declared mass-action law at large
+copy count; its exact pair factor also disables the reaction at count one
+\cite{higham2008}.
+
+\Plate{05-units}{Count pairs, concentration scaling, and event stoichiometry are
+three separate operations. The identical-reactant convention is stated explicitly
+rather than hidden inside a combinatorial factor.}{dnad28:units}
+\Listing{bimolecular_propensity}
+For $k=10^6$ L/(mol$\cdot$s), $A=10$, $B=20$, $V=10^{-15}$ L,
+the distinct-reactant propensity is about 0.332108 events/s. Doubling the volume
+at fixed molecule counts halves it. Doubling volume while keeping concentrations
+fixed doubles counts and approximately doubles the event rate. These are
+different physical interventions, so volume dependence must state what is held fixed.
+
+\section{Validation before calibration}
+\Plate{06-validation}{Validation gates connect exact laws to numerical evidence
+without upgrading a model check into an experimental chemistry claim.}{dnad28:validation}
+The reference checks exact count types, finite nonnegative rates and times,
+positive volume and Euler step size, finite propensities, conservation, enabled
+unit jumps, stopping status, and independent analytic laws. Booleans and fractional
+counts are rejected instead of being silently converted to integers.
+Finite inputs alone do not guarantee all intermediate operations remain finite;
+the code explicitly checks key outputs but does not promise arbitrary-magnitude
+numerical robustness.
+
+This chapter's 35 tests include counterexamples rather than only agreement tests.
+No wall-clock benchmark, fitted rate, sequence-level thermodynamic model, or wet-lab
+readout is claimed. Chapter 29's differentiable molecular and sequence models will
+differentiate declared kinetics and discuss sensitivities. Passing today's
+simulation tests is a prerequisite for that work, not evidence that the chosen
+rates describe a real assay.
+
+\section{Worked exercises}
+\begin{enumerate}
+\setlength{\itemsep}{1pt}
+\item Derive the conserved quantity. \emph{Solution:} adding the two ODEs gives
+$\dot a+\dot b=0$; either count event also changes $A+B$ by zero.
+\item Find equilibrium for the fixture. \emph{Solution:} $a_*=0.1(100)/0.5=20$.
+\item Find the relaxation time. \emph{Solution:} $1/(0.4+0.1)=2$ time units.
+\item Derive Euler's scalar oracle. \emph{Solution:} subtract equilibrium to obtain
+$a_{n+1}-20=(1-0.5h)(a_n-20)$ and iterate.
+\item Find the largest universally positive step. \emph{Solution:}
+$h\le1/\max(0.4,0.1)=2.5$.
+\item Find the stability endpoint. \emph{Solution:} $h\le2/0.5=4$;
+at four the deviation alternates without damping.
+\item Exhibit a stable negative step. \emph{Solution:} at $h=3$ the decaying
+multiplier is $-0.5$, yet $(1,0)$ maps to $(-0.2,1.2)$.
+\item Why not clip this result? \emph{Solution:} clipping changes the update and
+can change conservation unless another ad hoc adjustment is introduced.
+\item Draw a waiting time for total propensity four and $U_1=e^{-2}$.
+\emph{Solution:} $\tau=2/4=0.5$.
+\item Choose a channel with $(\alpha_f,\alpha_r)=(3,1)$ and $U_2=0.75$.
+\emph{Solution:} the right-boundary convention selects the reverse channel.
+\item Interpret zero total propensity. \emph{Solution:} no enabled timed event;
+the state is absorbing over the remaining interval under constant parameters.
+\item Query a path at an event time. \emph{Solution:} take its post-event count,
+not the previous count or a linearly interpolated value.
+\item What does an event-budget stop prove? \emph{Solution:} only the recorded
+prefix; it does not supply the requested horizon observation.
+\item Derive the all-$A$ variance. \emph{Solution:} sum 100 independent Bernoulli
+variances to obtain $100p_{AA}(1-p_{AA})$.
+\item Why is the mixed initial law different? \emph{Solution:} the two independent
+groups have different transition probabilities before equilibrium.
+\item Compare standard deviation with mean standard error. \emph{Solution:}
+the former describes one-path spread; the latter divides that spread by $\sqrt M$.
+\item Falsify nonlinear mean closure. \emph{Solution:} the zero-or-two example
+has factorial second moment one but plug-in factorial moment zero.
+\item Convert an identical-reactant event constant. \emph{Solution:}
+the coefficient multiplying $\binom A2$ is $2k/\Omega$ for $v=ka^2$.
+\item Hold copies fixed and double volume. \emph{Solution:} $\Omega$ doubles,
+so a bimolecular propensity halves.
+\item Specify a stronger validation experiment. \emph{Solution:} compare fitted
+and held-out time-course distributions with declared measurement noise and
+replicate-level uncertainty; do not reuse calibration data as an independent test.
+\end{enumerate}

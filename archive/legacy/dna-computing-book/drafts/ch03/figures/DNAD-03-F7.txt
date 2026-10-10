@@ -1,0 +1,24 @@
+DNAD-03-F7: P, NP and coNP: track the quantifier
+
+QUESTION
+What changes for a no-instance?
+
+OBJECTS
+Existential witness
+deterministic verifier
+complemented language
+
+RELATION / MECHANISM
+Negate existence, not a single verification result
+
+INFERENCE
+Polynomial verification of yes certificates does not supply no certificates.
+
+BOUNDARY
+Do not draw P as a proven strict subset of NP.
+
+SOURCE
+MIT lecture 14; Toronto CS 2401 lecture 3 section 4; explicit complement-closure derivation
+
+STATUS
+Working-draft figure; not part of the accepted PDF.

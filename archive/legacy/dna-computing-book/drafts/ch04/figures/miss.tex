@@ -1,0 +1,8 @@
+\begin{tikzpicture}
+\begin{semilogyaxis}[width=13.5cm,height=6.8cm,xlabel={Independent candidate copies $M$},ylabel={Probability of no recorded witness},xmin=0,xmax=200,ymin=.0001,ymax=1.4,grid=major,legend style={at={(.98,.98)},anchor=north east,font=\footnotesize},tick label style={font=\small}]
+\input{\Generated/miss-plot.tex}
+\addlegendentry{Independent copies, $q=.04$}
+\addlegendentry{Shared failure probability $.1$}
+\addplot[gray,dotted,domain=0:200] {.1};
+\end{semilogyaxis}
+\end{tikzpicture}

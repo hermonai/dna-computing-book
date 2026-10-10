@@ -1,0 +1,5 @@
+Figure 32.2 — Constructive information-loss witness.
+Samples share bases and forward frame; free-fuel concentration differs: 1 versus 10.
+Their sequence projections coincide, while k_on*A*F with k_on=.1 and A=.2 gives
+.02 versus .2. A sequence-only estimator receives identical input and cannot return
+both exact rates. A new calibrated observation is additional evidence, not recovery.

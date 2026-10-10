@@ -1,0 +1,3 @@
+SEMANTIC FIGURE COMPANION — Chapter 27 / 03-graph
+Diamond vertices A+B+C, AB+C, AC+B, ABC. Labels bind_AB/bind_C and bind_AC/bind_B join at ABC. Four states and four edges; one predecessor tree cannot replace the labeled graph.
+Edges and objects are explained semantically, not drawn as ASCII art.

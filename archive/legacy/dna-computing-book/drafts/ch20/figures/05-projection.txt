@@ -1,0 +1,2 @@
+Question: when does a coarse state determine its future?
+Two detailed states have equal free-output projection x but different intermediate occupancy. Projection arrows merge their reported free signal. Different release fluxes can give Lf(z1) ≠ Lf(z2), violating exact closure. Approximate closure needs a domain, time interval and error bound.

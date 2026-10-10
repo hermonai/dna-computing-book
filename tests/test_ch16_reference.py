@@ -6,7 +6,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "dna_computing_book_ch16", ROOT / "drafts/ch16/reference.py"
+    "dna_computing_book_ch16", ROOT / "book/chapters/ch16/reference.py"
 )
 m = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = m
@@ -15,7 +15,7 @@ spec.loader.exec_module(m)
 
 def test_committed_results_match_execution():
     assert m.results() == json.loads(
-        (ROOT / "drafts/ch16/results.json").read_text()
+        (ROOT / "book/chapters/ch16/results.json").read_text()
     )
 
 
@@ -29,13 +29,7 @@ def test_recognizer_exhaustive(n):
         assert len(trace) == len(w) + 1
         for i, q in enumerate(trace):
             prefix = w[:i]
-            expected = (
-                2
-                if prefix.endswith("01")
-                else 1
-                if prefix.endswith("0")
-                else 0
-            )
+            expected = 2 if prefix.endswith("01") else 1 if prefix.endswith("0") else 0
             assert q == expected
 
 

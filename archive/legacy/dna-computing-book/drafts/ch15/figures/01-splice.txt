@@ -1,0 +1,4 @@
+Question: How do contextual cuts determine both recombinant products?
+Objects and arrow semantics: Two oriented parent strings, marked cut sites, and exchanged suffixes; solid strand backbones, dashed pairing only when duplex is explicit.
+Change/invariant and caption claim: The sum of both product lengths is conserved; one displayed product is not the entire material balance.
+Scientific risk: Do not equate this symbolic operation with RNA splicing or a specific enzyme protocol.

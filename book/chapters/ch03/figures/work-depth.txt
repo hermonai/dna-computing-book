@@ -1,0 +1,7 @@
+Question: Why is parallel depth not total work?
+Objects: Four candidate rows and three test-stage columns.
+Transition: Each candidate advances through three dependent tests; arrows mark precedence, not molecular motion.
+Invariant: Every candidate receives every test in this declared all-candidates/all-stages policy.
+Inference: Work is 4 x 3 = 12 candidate-tests while depth is 3 dependent stages.
+Boundary: Parallel capacity is assumed. No measured execution time, reaction rate or physical scaling benefit is shown.
+Source: Original implementation-first teaching construction; the companion work_depth function supplies the exact counts.

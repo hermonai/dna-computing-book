@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+\begin{axis}[width=12cm,height=5.5cm,xlabel={Migration coordinate (mm)},
+ylabel={Assigned signal per 0.2 mm bin},xmin=39,xmax=55,ymin=0,
+legend style={font=\footnotesize,at={(.98,.98)},anchor=north east}]
+\input{\Generated/profile-plot.tex}
+\legend{Target: 7 equivalents,Other: 3 equivalents,Sum}
+\end{axis}
+\node[smallnote] at (5,-1.9) {Each detector bin integrates area, not just peak height.\\Target: 500 bp; other: 400 bp; common assigned gain. Synthetic data.};
+\end{tikzpicture}

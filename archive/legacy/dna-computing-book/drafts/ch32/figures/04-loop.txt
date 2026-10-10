@@ -1,0 +1,5 @@
+Figure 32.4 — Matched two-by-two intervention.
+Rows identify baseline versus target backbone; columns identify mechanism off/on.
+Compare baseline-on minus baseline-off for transplant, target-on minus target-off
+for ablation, and their difference for interaction. Hold declared data, budgets,
+protocol and paired seeds fixed; capacity changes remain potential confounds.

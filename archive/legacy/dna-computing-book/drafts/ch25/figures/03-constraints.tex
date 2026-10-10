@@ -1,0 +1,14 @@
+\begin{tikzpicture}[every node/.style={font=\small\sffamily}]
+\node[draw,rounded corners,fill=Gold!40,align=center] (root) at (6.5,0) {$n=8,\ \mathrm{GC}=4,\ r\leq2$\\14,696 legal words; rank $q=173$};
+\foreach \x/\b/\txt in {1/A/choose A,4.6/C/skip C,8.4/G/skip G,12/T/skip T}{
+\node[draw,fill=Pale,text width=2.2cm,align=center] (\b) at (\x,-1.7) {prefix \b\\3,674 completions\\\txt};
+\draw[flow] (root)--(\b);}
+\node[note] at (6.5,-3.3) {The A interval contains ranks 0--3,673; retain residual rank 173.};
+\node[draw,fill=Pale,align=center] (aa) at (2.7,-4.8) {prefix AA\\legal completions remain};
+\node[draw,fill=Red!12,align=center] (aaa) at (8.5,-4.8) {prefix AAA\\zero completions: run violation};
+\draw[flow] (A.south)--(aa);
+\draw[Red,dashed,-{Stealth}] (aa)--(aaa);
+\node[draw,rounded corners,fill=Green!15,align=center] (leaf) at (2.7,-7.1) {AACGCTGT\\GC count 4; longest run 2\\rank 173};
+\draw[flow] (aa)--(leaf);
+\node[note,text width=5cm] at (9.3,-7.1) {Every branch owns a disjoint rank interval.\\Unrank selects an interval;\\rank adds intervals before it.};
+\end{tikzpicture}

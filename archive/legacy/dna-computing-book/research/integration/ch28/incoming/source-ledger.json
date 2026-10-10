@@ -1,0 +1,30 @@
+[
+  {
+    "key": "gillespie1977",
+    "primary": "https://doi.org/10.1021/j100540a008",
+    "authors": "Daniel T. Gillespie",
+    "claim": "Exact stochastic simulation/direct method; deterministic and stochastic descriptions are distinct.",
+    "date": "1977",
+    "access_date": "2026-10-05",
+    "sections": "article metadata and primary-paper text/overview inspected",
+    "depth": "primary"
+  },
+  {
+    "key": "gillespie1976",
+    "primary": "https://doi.org/10.1016/0021-9991(76)90041-3",
+    "authors": "Daniel T. Gillespie",
+    "claim": "General stochastic simulation method for coupled reactions.",
+    "date": "1976",
+    "access_date": "2026-10-05",
+    "depth": "primary bibliographic"
+  },
+  {
+    "key": "higham2008",
+    "primary": "https://doi.org/10.1137/060666457",
+    "authors": "Desmond J. Higham",
+    "claim": "Deterministic/stochastic chemical reaction modeling and simulation pedagogy.",
+    "date": "2008",
+    "access_date": "2026-10-05",
+    "depth": "primary review"
+  }
+]

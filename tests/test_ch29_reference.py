@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 import torch
 
-P = Path(__file__).parents[1] / "drafts/ch29/reference.py"
+P = Path(__file__).parents[1] / "book/chapters/ch29/reference.py"
 S = importlib.util.spec_from_file_location("dnad29", P)
 R = importlib.util.module_from_spec(S)
 S.loader.exec_module(R)

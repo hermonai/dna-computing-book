@@ -1,0 +1,14 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
+\path[use as bounding box] (0,0) rectangle (14,5.7);
+\tikzset{b/.style={draw,fill=Pale,align=center,text width=3.6cm,minimum height=1.05cm}}
+\node[b] (types) at (2.1,4.5){1 / Domain\\exact counts; finite rates\\units and time interval};
+\node[b] (law) at (6.9,4.5){2 / Mechanism\\enabled integer jumps\\conserved total};
+\node[b] (oracle) at (11.7,4.5){3 / Independent law\\geometric Euler solution\\Bernoulli-group moments};
+\draw[flow] (types)--(law);\draw[flow] (law)--(oracle);
+\node[b,fill=Gold!30] (stop) at (2.1,2.3){4 / Stopping status\\complete or censored\\no false horizon sample};
+\node[b,fill=Green!8] (stats) at (6.9,2.3){5 / Ensemble evidence\\mean versus variance\\Monte Carlo uncertainty};
+\node[b,fill=Red!8] (lab) at (11.7,2.3){6 / Scientific validation\\calibration and held-out assay\\not performed here};
+\draw[flow] (oracle.south)--(11.7,3.4)--(2.1,3.4)--(stop.north);
+\draw[flow] (stop)--(stats);\draw[flow,dashed] (stats)--(lab);
+\node[align=center] at (7,.55){35 executable checks establish the declared model and arithmetic.\\A correct simulator is not evidence that the rates describe a real DNA circuit.};
+\end{tikzpicture}

@@ -1,0 +1,15 @@
+\begin{tikzpicture}
+\node[note,font=\bfseries\sffamily] at (6.5,5.8) {Composition changes the receiving load};
+\draw[thick,Green] (1,3.2) circle (.7);
+\node[note] at (1,3.2) {$X$};
+\node[note] (one) at (6.1,4.4) {$C_1$ capture\\hazard $\lambda_1=k_1C_1$};
+\node[note] (two) at (6.1,2) {$C_2$ capture\\hazard $\lambda_2=k_2C_2$};
+\draw[flow] (1.7,3.4)--node[above,sloped,smallnote] {productive branch 1} (one);
+\draw[flow] (1.7,3)--node[below,sloped,smallnote] {competing branch 2} (two);
+\node[note] at (11.3,4.4) {$P_1=\lambda_1/(\lambda_1+\lambda_2)$\\$1$ when tested alone};
+\node[note,Red] at (11.3,2) {$P_1=1/2$ for equal loads\\isolated tests do not compose};
+\draw[flow] (8.1,4.4)--(9,4.4);
+\draw[flow] (8.1,2)--(9,2);
+\fill[Pale] (0,-.2) rectangle (13.3,1.1);
+\node[note] at (6.6,.45) {A separate perturbation envelope:\\$E(t)\le E_0e^{Lt}+\eta(e^{Lt}-1)/L$; $L=0$: $E_0+\eta t$};
+\end{tikzpicture}

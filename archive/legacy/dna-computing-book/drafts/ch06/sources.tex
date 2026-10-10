@@ -1,0 +1,23 @@
+\renewcommand{\bibname}{Sources and reading notes}
+\begin{thebibliography}{9}
+\addcontentsline{toc}{chapter}{Sources and reading notes}
+\bibitem{santalucia}
+John SantaLucia Jr. (1998). A unified view of polymer, dumbbell, and
+oligonucleotide DNA nearest-neighbor thermodynamics.
+\emph{PNAS} 95(4), 1460--1465.
+\url{https://doi.org/10.1073/pnas.95.4.1460}.
+Relevant full-text background, Table 2, and melting-concentration discussion
+inspected through PMC and the Caltech-hosted paper on 19 September 2026:
+\url{https://www.dna.caltech.edu/courses/cs191/paperscs191/santalucia1998a.pdf}.
+The numerical implementation uses one internally consistent Table 2
+convention at 1 M NaCl. It does not implement salt corrections, mismatches,
+self-complementary association, or a competing-structure ensemble.
+
+\bibitem{nupack}
+NUPACK 4.0 User Guide. \emph{Model Specification}.
+\url{https://docs.nupack.org/model/}.
+Material, ensemble, temperature, and salt sections inspected on
+19 September 2026. Used to explain why physical-model settings and parameter
+versions must be explicit. NUPACK was not executed and its predictions were
+not used as experimental validation of this chapter's restricted code.
+\end{thebibliography}

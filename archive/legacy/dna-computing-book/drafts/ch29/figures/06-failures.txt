@@ -1,0 +1,5 @@
+Four diagnoses with noninterchangeable remedies.
+Broken graph: forward identical, gradients disagree; inspect dependency and all derivatives.
+Solver bias: solver derivatives agree but differ from continuous model; refine h and check positivity/stability.
+Weak identification: single scalar observation cannot determine two independent rates; inspect sensitivity rank and conditioning, add informative observations.
+Relaxation mismatch: soft score or expected constraint does not survive discretization; evaluate exact strings and independent evidence.

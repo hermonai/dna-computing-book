@@ -1,0 +1,8 @@
+ID: DNAD-01-F8
+TITLE: A length profile is not automatically one route
+PURPOSE: Draw schematic graduated-primer lanes for a known teaching route and explain mixture ambiguity.
+STEP 1 → STEP 2: Choose start and internal primer → Predict amplicon length
+STEP 2 → STEP 3: Predict amplicon length → Read several lanes
+STEP 3 → STEP 4: Read several lanes → Check route ambiguity
+LIMIT: Synthetic expected bands, not experimental data or a copied gel.
+EVIDENCE: Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources.

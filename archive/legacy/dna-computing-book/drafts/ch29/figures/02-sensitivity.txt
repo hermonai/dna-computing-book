@@ -1,0 +1,4 @@
+Purpose: explain why both equilibrium and transient speed contribute to a rate derivative.
+Panel A: computed A(t) for fixed first-order rates and initial population100; dashed equilibrium20.
+Panel B: analytical forward and reverse rate sensitivities on a separate population-second axis, both zero at t0. Forward sensitivity is negative; reverse positive for this fixture.
+All plotted values come from results.json through the authored builder. State and derivative have different units and are not plotted against an unlabeled common scale.

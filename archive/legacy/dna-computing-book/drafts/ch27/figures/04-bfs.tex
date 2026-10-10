@@ -1,0 +1,12 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box](-.3,-.6) rectangle(15.5,5);
+\node[note,anchor=west,font=\bfseries\sffamily]at(0,4.6){Stopping reason determines the negative claim};
+\foreach \x/\title/\fill in {2.3/Depth bound/Pale,7.6/Closed set/Green!10,12.9/State budget/Gold!30}{
+\node[draw,fill=\fill,note,minimum width=4.5cm,minimum height=.65cm] at(\x,3.6){\title};}
+\node[note,text width=4.3cm]at(2.3,2.15){process all depths $\le K$\\inspect boundary successors\\outside target exists};
+\node[note,text width=4.3cm]at(7.6,2.15){process the entire queue\\all successors stay inside\\finite closure, possibly cyclic};
+\node[note,text width=4.3cm]at(12.9,2.15){stop before new discovery\\queue remains incomplete\\outside count unknown};
+\node[draw,fill=Pale,smallnote,text width=4.2cm]at(2.3,.55){complete within depth\\global absence undecided};
+\node[draw,fill=Green!10,smallnote,text width=4.2cm]at(7.6,.55){exhaustive reachable set\\global absence provable};
+\node[draw=Red,fill=Red!5,smallnote,text width=4.2cm]at(12.9,.55){partial witnesses usable\\negative results undecided};
+\end{tikzpicture}

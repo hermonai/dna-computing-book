@@ -1,0 +1,16 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[note] at (2,4.2) {Initial $(a,b,c)$};
+\node[note] at (7,4.2) {Disjoint branch};
+\node[note] at (12,4.2) {Final $(a,b,c)$};
+\foreach \y/\bits/\branch/\out in {3.2/000/{a=0}/000,2.2/010/{a=0}/010,1.2/100/{a=1,b=0}/100,.2/110/{a=1,b=1}/111}{
+ \node[note] at (2,\y) {\bits\quad$\times5$};
+ \draw[flow] (3.5,\y)--(5.3,\y);
+ \node[smallnote] at (7,\y) {$\branch$};
+ \draw[flow] (8.6,\y)--(10.3,\y);
+ \node[note] at (12,\y) {\out\quad$\times5$};
+}
+\draw[Green,rounded corners,thick] (10.8,-.15) rectangle (13.5,.55);
+\node[smallnote,Green] at (7,-.7) {Only this branch: set $c$};
+\draw[flow,Green] (9,-.7)--(11,-.15);
+\node[smallnote] at (7,-1.5) {Clear $c$ first. Separate, write, then merge without copying.};
+\end{tikzpicture}

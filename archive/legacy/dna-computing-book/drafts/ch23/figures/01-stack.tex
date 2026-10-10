@@ -1,0 +1,15 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
+\foreach \x/\id/\title/\body in {
+0/c/{Design $C$}/{rules and sequences},
+3.8/a/{Assembly $A$}/{physical product},
+7.6/y/{Signal $Y$}/{instrument output},
+11.4/d/{Label $\hat D$}/{defect decision}}{
+\node[draw=Blue,fill=Pale,minimum width=3.1cm,minimum height=1.05cm,align=center] (\id) at (\x,0) {\title\\\footnotesize\body};}
+\draw[flow] (c)--node[above,font=\footnotesize]{$P(A\mid C)$}(a);
+\draw[flow] (a)--node[above,font=\footnotesize]{$P(Y\mid A)$}(y);
+\draw[flow] (y)--node[above,font=\footnotesize]{$P(\hat D\mid Y)$}(d);
+\node[align=center,text width=5.6cm,anchor=north] at (1.9,-.95) {synthesis, crosstalk, leak, growth faults\\alter the realized system};
+\node[align=center,text width=5.8cm,anchor=north] at (9.5,-.95) {sampling, instrument and classification errors\\alter what is reported};
+\draw[Red,thick] (7.6,-.6)--(7.6,-1.8);
+\node[font=\footnotesize,align=center] at (5.7,-2.8) {A lower observed defect rate need not imply a lower molecular defect rate.};
+\end{tikzpicture}

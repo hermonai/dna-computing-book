@@ -1,0 +1,1 @@
+Two numbered sugar rings connected through C3' of residue i, O3', phosphate P, O5', C5' of residue i+1, and its C4'. Phosphate has two nonbridging oxygen attachments shown in a conventional charged resonance representation. Base branches are not part of the backbone. Geometric projection omits stereochemistry.

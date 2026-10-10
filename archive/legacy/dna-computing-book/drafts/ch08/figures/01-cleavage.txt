@@ -1,0 +1,3 @@
+Figure 8.1
+
+EcoRI recognition and two staggered cuts: paired GAATTC/CTTAAG, separate backbone cut sites, resulting four-base 5-prime overhang. Show recognition versus cleavage, not scissor decoration. Risk: confusing a displayed bottom strand with its 5-to-3 sequence.

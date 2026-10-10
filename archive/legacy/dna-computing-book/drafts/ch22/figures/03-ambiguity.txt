@@ -1,0 +1,5 @@
+Question: does the mutant change the computation, not merely the name?
+Common inputs: S=v1 and W=h0, giving support two.
+Reference: bit 1, N=v1, E=h1. Mutant: bit 0, N=v0, E=h0.
+Consequence: the next south-zero tile sees a different west bit, so output divergence propagates.
+Boundary: this deliberately enlarged abstract type set is not a measured mutation assay.

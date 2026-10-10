@@ -1,0 +1,18 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
+\draw[Blue,thick,rounded corners] (0,0) rectangle (3.2,2.5);
+\foreach \x/\y in {.4/.5,.8/1.7,1.6/.7,2.5/1.9,2/1.3}{
+\draw[Blue,thick] (\x,\y)--++(.4,0);}
+\node[above,align=center] at (1.6,2.7) {Witness inventory\\before sampling};
+\node[draw=Blue,fill=Pale,align=center,text width=2.6cm] (sample) at (5.7,1.2)
+{Aliquot\\mean witnesses $\nu$};
+\node[draw=Green,fill=Green!8,align=center,text width=2.7cm] (detect) at (9.6,1.2)
+{Detector\\mean detected $\eta\nu$};
+\draw[flow] (3.2,1.2)--node[above,font=\footnotesize]{sample}(sample);
+\draw[flow] (sample)--node[above,font=\footnotesize]{$\eta$}(detect);
+\node[draw=Blue,fill=Gold!30,align=center,text width=2.6cm] (bits) at (9.6,-1.1)
+{Report $Q$ bits\\rate $b$ bits/s};
+\draw[flow] (detect)--(bits);
+\node[align=center,text width=6cm] at (3.5,-1.1) {$P(\text{detected count}=0)=e^{-\eta\nu}$\\
+Detection does not establish calibrated classification.};
+\node[align=center] at (5.8,-2.7) {An answer present in the original pool can still be absent from the observed sample.};
+\end{tikzpicture}

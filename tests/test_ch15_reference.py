@@ -6,7 +6,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "dna_computing_book_ch15", ROOT / "drafts/ch15/reference.py"
+    "dna_computing_book_ch15", ROOT / "book/chapters/ch15/reference.py"
 )
 m = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = m
@@ -15,7 +15,7 @@ spec.loader.exec_module(m)
 
 def test_committed_results_match_execution():
     assert m.results() == json.loads(
-        (ROOT / "drafts/ch15/results.json").read_text()
+        (ROOT / "book/chapters/ch15/results.json").read_text()
     )
 
 
@@ -41,13 +41,9 @@ def test_all_context_cuts_and_length_conservation():
                             and y[:j].endswith(c)
                             and y[j:].startswith(d)
                         ):
-                            expected.append(
-                                (i, j, x[:i] + y[j:], y[:j] + x[i:])
-                            )
+                            expected.append((i, j, x[:i] + y[j:], y[:j] + x[i:]))
                 assert got == expected
-                assert all(
-                    len(u) + len(v) == len(x) + len(y) for _, _, u, v in got
-                )
+                assert all(len(u) + len(v) == len(x) + len(y) for _, _, u, v in got)
 
 
 def test_overlap_is_not_lost():

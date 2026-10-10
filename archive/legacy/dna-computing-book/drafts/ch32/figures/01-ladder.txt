@@ -1,0 +1,5 @@
+Figure 32.1 — Representations and information contracts.
+Physical sample → sequence record → canonical word → one-hot tensor → software operator.
+A sequence record may retain bases and orientation but omits concentration, medium,
+modifications and partners unless separately supplied. One-hot reversibility applies
+to base order, not the molecule's full state. Encoding is not physical execution.

@@ -1,0 +1,18 @@
+{
+  "chapter": 30,
+  "symbols": {
+    "x": "shared trans-factor abundance in declared occupancy units",
+    "c_i": "allele-specific effective production strength, not DNA sequence",
+    "q_i": "stipulated accessible fraction in [0,1]",
+    "a_b": "dimensionless concentrations A/K and B/K",
+    "tau": "dimensionless time delta*t; not Chapter29 temperature",
+    "alpha": "effective production/(delta*K)",
+    "h": "dimensionless Euler step in (0,1]",
+    "s": "production intervention, not concentration clamp",
+    "z": "supplied snapshot pseudotime, not ancestry",
+    "N_X": "integer molecule total and daughter-A count; daughter-B=N-X",
+    "p": "type-1 population frequency",
+    "w1_w0": "assigned reproductive weights, not measured fitness",
+    "mu_nu": "type-1-to-0 and reverse mutation probabilities"
+  }
+}

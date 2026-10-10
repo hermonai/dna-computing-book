@@ -1,0 +1,13 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[draw,circle,minimum size=1cm] (a) at (1,1) {$q_0$};
+\node[draw,circle,minimum size=1cm] (b) at (5,1) {$q_1$};
+\node[draw,circle,double,minimum size=1cm] (c) at (9,1) {$q_2$};
+\draw[flow] (-.5,1)--(a);
+\draw[flow] (a) edge[loop above] node[note]{1}(a);
+\draw[flow] (a)--node[above,note]{0}(b);
+\draw[flow] (b) edge[loop above] node[note]{0}(b);
+\draw[flow] (b) edge[bend left=20] node[above,note]{1}(c);
+\draw[flow] (c) edge[bend left=20] node[below,note]{0}(b);
+\draw[flow] (c) to[bend left=35] node[below,note]{1}(a);
+\node[note] at (5,-1.3) {Accept when input ends in the double-circle state.};
+\end{tikzpicture}

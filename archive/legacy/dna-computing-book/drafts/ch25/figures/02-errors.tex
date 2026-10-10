@@ -1,0 +1,28 @@
+\begin{tikzpicture}
+\node[anchor=west,font=\small\sffamily\bfseries,Blue] at (0,0) {A. Substitution: same coordinate};
+\node[anchor=west,font=\small\sffamily\bfseries,Blue] at (7.2,0) {B. Insertion: changed alignment};
+\foreach \x/\s in {0/A,1/C,2/G,3/T,4/A,5/C}{
+\node[draw,fill=Pale,minimum size=.55cm] at (\x,-.8) {\s};
+\node[font=\scriptsize] at (\x,-.3) {\x};}
+\foreach \x/\s in {0/A,1/C,2/C,3/T,4/A,5/C}{
+\node[draw,fill=Pale,minimum size=.55cm] at (\x,-1.7) {\s};}
+\draw[Red,very thick] (1.6,-2.1) rectangle (2.4,-1.3);
+\draw[flow] (2,-1.0)--(2,-1.35);
+\node[note] at (2.6,-2.7) {Only one base changes;\\downstream coordinates remain aligned.};
+\foreach \x/\s in {7.4/A,8.3/C,9.2/G,10.1/-,11/T,11.9/A,12.8/C}{
+\node[draw,fill=Pale,minimum size=.55cm] at (\x,-.8) {\s};}
+\foreach \x/\s in {7.4/A,8.3/C,9.2/G,10.1/G,11/T,11.9/A,12.8/C}{
+\node[draw,fill=Pale,minimum size=.55cm] at (\x,-1.7) {\s};}
+\draw[Red,very thick] (9.7,-2.1) rectangle (10.5,-1.3);
+\node[note] at (10.2,-2.7) {Gap placement is an inference.\\Unequal lengths fail column voting.};
+\draw[gray!50] (0,-3.5)--(13,-3.5);
+\node[anchor=west,font=\small\sffamily\bfseries,Blue] at (0,-4.1) {C. Known aligned cluster: strict majority};
+\foreach \x/\s in {1/A,2/A,3/C}{\node[draw,fill=Pale,minimum size=.7cm] at (\x,-4.9) {\s};}
+\draw[flow] (3.7,-4.9)--(5,-4.9);
+\node[draw,fill=Green!15,minimum size=.7cm] at (5.6,-4.9) {A};
+\node[note] at (3.4,-5.7) {$2/3>1/2$: accept A};
+\foreach \x/\s in {8.2/A,9.2/C}{\node[draw,fill=Pale,minimum size=.7cm] at (\x,-4.9) {\s};}
+\draw[flow] (10,-4.9)--(11,-4.9);
+\node[draw,fill=Red!12] at (12,-4.9) {erasure};
+\node[note] at (10.2,-5.7) {$1/2$ tie: no invented base};
+\end{tikzpicture}

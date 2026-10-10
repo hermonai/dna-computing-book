@@ -1,0 +1,19 @@
+\begin{tikzpicture}[every node/.style={font=\small\sffamily}]
+\node[draw,fill=Blue!12,minimum width=3cm] (a) at (1.5,0) {$A=1010$};
+\node[draw,fill=Green!15,minimum width=3cm] (b) at (6.5,0) {$B=0110$};
+\node[draw,fill=Gold!40,minimum width=3cm] (p) at (11.5,0) {$P=A\oplus B=1100$};
+\draw[flow] (a.north)--(1.5,.7)--(11.5,.7)--(p.north);
+\draw[flow] (b)--(p);
+\node[note] at (6.5,-.8) {One coordinate-wise parity relation: $A\oplus B\oplus P=0000$};
+\draw[gray!50] (0,-1.4)--(13,-1.4);
+\node[draw,fill=Red!12,align=center] (miss) at (1.5,-2.5) {$A$ absent\\located erasure};
+\node[draw,fill=Green!15] at (6.5,-2.5) {$B=0110$};
+\node[draw,fill=Gold!40] at (11.5,-2.5) {$P=1100$};
+\node[draw,fill=Blue!12] (rec) at (6.5,-3.8) {$P\oplus B=1010=A$};
+\draw[flow] (11.5,-2.9)--(rec.east);
+\draw[flow] (6.5,-2.9)--(rec.north);
+\node[note] at (6.5,-4.7) {Two correct, distinct-address shards determine the missing third.};
+\draw[gray!50] (0,-5.2)--(13,-5.2);
+\node[draw,fill=Red!12,align=center] at (3,-6.2) {All three present; $P'=1101$\\syndrome $0001$: reject\\parity alone cannot locate the error};
+\node[draw,fill=Red!12,align=center] at (10,-6.2) {Two shards absent\\one equation, multiple sources\\recovery is underdetermined};
+\end{tikzpicture}

@@ -1,0 +1,11 @@
+\begin{tikzpicture}[box/.style={note,draw=Blue,rounded corners,fill=Pale,text width=4.5cm,minimum height=1.1cm}]
+\node[box] (a) at (2.4,4){Tape configuration $c$\\$(q,h,t)$};
+\node[box] (b) at (10,4){Next tape configuration\\$F(c)$};
+\node[box] (c) at (2.4,1.4){Two stacks $E(c)$\\left top: $h-1$; right top: $h$};
+\node[box] (d) at (10,1.4){Updated stacks\\$G(E(c))$};
+\draw[flow] (a)--node[above,smallnote]{tape step $F$}(b);
+\draw[flow] (a)--node[left,smallnote]{encode $E$}(c);
+\draw[flow] (c)--node[above,smallnote]{stack step $G$}(d);
+\draw[flow] (d)--node[right,smallnote]{decode $D$}(b);
+\node[note,text width=12cm] at (6,-.1){Invariant: $L_i=t(h-1-i)$ and $R_i=t(h+i)$, indexed down from each top.\\The square must commute for every legal source transition.};
+\end{tikzpicture}

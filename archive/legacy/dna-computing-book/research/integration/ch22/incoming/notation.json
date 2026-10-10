@@ -1,0 +1,22 @@
+{
+  "tau": {
+    "meaning": "abstract attachment temperature",
+    "domain": "positive integer",
+    "chapter_value": 2
+  },
+  "alpha": {
+    "meaning": "finite assembly",
+    "type": "partial map Z^2 -> T"
+  },
+  "sigma": {
+    "meaning": "seed assembly"
+  },
+  "z_x_y": {
+    "meaning": "computed bit at lattice coordinate (x,y)",
+    "domain": "{0,1}"
+  },
+  "p": {
+    "meaning": "illustrative independent placement-error probability",
+    "range": "[0,1]"
+  }
+}

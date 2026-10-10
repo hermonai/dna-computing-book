@@ -1,0 +1,5 @@
+Purpose: distinguish a physical population from its stipulated differentiable model.
+Objects: well-mixed A and B; first-order rates kf and kr in inverse seconds; fixed initial populations; terminal observation A(5); squared mismatch to 30.
+Forward logic: establish the modeling assumptions, evaluate the stable transfer formula, then evaluate the loss.
+Backward logic: propagate a loss cotangent through the original parameter tensors. No backward arrow establishes chemical validity.
+Fixture: terminal 26.56679989; loss 11.786862996; rate gradient 477.562251752. Circle colors denote species, not molecular structures.

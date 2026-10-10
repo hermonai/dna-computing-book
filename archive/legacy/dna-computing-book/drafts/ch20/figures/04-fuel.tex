@@ -1,0 +1,15 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box] (0,-1.1) rectangle (13,4.5);
+\node[note,text=Blue,anchor=west] at (0,4.2) {\textbf{Composition changes the fuel available to each module}};
+\node[note,draw=Blue,circle,minimum size=13mm,fill=Pale] (f) at (6.5,1.6) {$F$};
+\node[note,draw=Green,circle,minimum size=11mm] (y) at (1.5,1.6) {$Y$};
+\node[note,draw=Red,circle,minimum size=11mm] (z) at (11.5,1.6) {$Z$};
+\draw[flow] (f)--node[above,smallnote]{$\alpha F$}(y);
+\draw[flow] (f)--node[above,smallnote]{$\beta F$}(z);
+\node[note,draw=Green,fill=Pale] (a) at (3.8,3.2) {$A$};
+\node[note,draw=Red,fill=Pale] (b) at (9.2,3.2) {$B$};
+\draw[Green,thick,dashed,->] (a) to[bend right=60] (3.8,1.5) to[bend right=60] (a);
+\draw[Red,thick,dashed,->] (b) to[bend left=60] (9.2,1.5) to[bend left=60] (b);
+\node[smallnote] at (6.5,.1) {$F+Y+Z=F_0$ \qquad $Y_\infty:Z_\infty=\alpha:\beta$};
+\node[smallnote] at (6.5,-.7) {$A,B$: returned catalysts \qquad $F$: shared consumed reservoir};
+\end{tikzpicture}

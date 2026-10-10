@@ -1,0 +1,28 @@
+DNAD-03-F11: Reduction claims have three proof obligations
+
+QUESTION
+What must a construction demonstrate?
+
+OBJECTS
+Polynomial construction
+yes-to-yes proof
+yes-backward proof
+
+RELATION / MECHANISM
+Check size then both implication directions
+
+INFERENCE
+A plausible drawing is not a reduction proof.
+
+BOUNDARY
+Testing finite cases cannot replace proof.
+
+SOURCE
+Original checklist tied to worked construction
+
+STATUS
+Working-draft figure; not part of the accepted PDF.
+
+SEMANTIC TXT GRAPH
+Cycle ⇢ split pivot ⇢ path; path ⇢ identify endpoints ⇢ cycle.
+Construction size n+1 and m; both existence implications required.

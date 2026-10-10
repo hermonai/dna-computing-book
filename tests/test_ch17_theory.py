@@ -10,10 +10,8 @@ import numpy as np
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-HERE = ROOT / "drafts/ch17-theory"
-spec = importlib.util.spec_from_file_location(
-    "ch17_theory", HERE / "reference.py"
-)
+HERE = ROOT / "book/chapters/ch17"
+spec = importlib.util.spec_from_file_location("ch17_theory", HERE / "reference.py")
 m = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(m)
 
@@ -56,9 +54,7 @@ def test_private_paths_preserve_pair_acceptance_with_nonidentity_relation():
     originals = {r[i] for r in rules for i in (0, 3)}
     introduced = {r[i] for r in expanded for i in (0, 3)} - originals
     assert not introduced & reserved
-    assert len(introduced) == sum(
-        len(x) + len(y) - 1 for _, x, y, _ in rules
-    )
+    assert len(introduced) == sum(len(x) + len(y) - 1 for _, x, y, _ in rules)
     rho = frozenset(product("ab", repeat=2))
     for n in range(5):
         for u in product("ab", repeat=n):
@@ -80,9 +76,9 @@ def test_syntactic_conflict_is_not_necessarily_reachable():
     assert m.prefix_conflicts(rules) == [(5, 6)]
     for w in words(6):
         assert m.paired_run(w, w, rules)[0] == m.paired_run(w, w)[0]
-    assert m.prefix_conflicts(
-        (("s", "a", "a", "f"), ("s", "ab", "ab", "g"))
-    ) == [(0, 1)]
+    assert m.prefix_conflicts((("s", "a", "a", "f"), ("s", "ab", "ab", "g"))) == [
+        (0, 1)
+    ]
 
 
 @pytest.mark.parametrize("function", [m.expand_rules, m.prefix_conflicts])
@@ -104,10 +100,7 @@ def test_race_probability_mass_and_scaling(rates, time):
     assert scaled[1] == pytest.approx(pending)
     if sum(rates) and time:
         assert out == pytest.approx(
-            tuple(
-                r / sum(rates) * (-math.expm1(-sum(rates) * time))
-                for r in rates
-            )
+            tuple(r / sum(rates) * (-math.expm1(-sum(rates) * time)) for r in rates)
         )
 
 
@@ -217,6 +210,4 @@ def test_invalid_parity_parameters(word, error, loss):
 
 
 def test_worked_parity_answer():
-    assert m.parity_distribution("abba", 0.1, 0.05)[-1][0] == pytest.approx(
-        0.574064005
-    )
+    assert m.parity_distribution("abba", 0.1, 0.05)[-1][0] == pytest.approx(0.574064005)

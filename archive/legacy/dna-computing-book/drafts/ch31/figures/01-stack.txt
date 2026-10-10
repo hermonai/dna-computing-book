@@ -1,0 +1,3 @@
+01-stack
+
+Specification -> realization -> observation -> scoped claim. Refinement uses a projected state, a norm, a horizon and domain. Observation requires calibration and identifiability. Coverage does not establish a positive effect.

@@ -1,0 +1,310 @@
+\chapter{Differentiable molecular and sequence models}
+Chapter 28 gave a reaction system a clock. Now ask a different question:
+if the modeled terminal population misses a target, which parameter should move?
+And if a sequence predictor assigns a low score, can a gradient suggest a better
+sequence? The answer depends on precisely \emph{what} is differentiated.
+
+This chapter constructs two transparent examples rather than hiding the problem in
+a pretrained network. We derive reaction sensitivities, compare three derivative
+routes, differentiate a discretized solver, and expose a graph-breaking bug.
+Then we derive a nucleotide-logit gradient, enumerate its discrete expectation,
+and test a constraint that a continuous relaxation does not preserve.
+All computed values are teaching-model outputs, not measurements.
+
+\section{Choose the differentiable object}
+A physical molecule, an integer reaction trajectory, a real-valued kinetic model
+and a learned sequence predictor are different objects. Write the full contract
+before drawing the computational graph:
+\[
+  \theta\in\Theta,\quad \dot x=F(x,\theta,t),\quad
+  y=H(x(T),\theta),\quad J=\mathcal L(y,y^\star).
+\]
+Topology, initial state, units, observation mapping and objective all belong in
+this contract. Automatic differentiation traverses the executed operations, not
+the validity of the modeling arrow. A perfect derivative of a poor predictor
+can be a poor scientific recommendation.
+\Plate{01-boundary}{A reversible reaction is mapped into an explicit mathematical
+program. The backward arrows terminate inside that program, not in the physical
+vessel. Rates and observation units stay visible.}{dnad29:boundary}
+
+\Term{Sensitivity} is a derivative of a specified output with respect to a specified
+parameter. If $J$ has population-squared units and $k_f$ has units s$^{-1}$,
+$dJ/dk_f$ has population-squared seconds. Derivative magnitude changes when rate
+units or parameter coordinates change. To compare dimensions, introduce reference
+scales $x=C\tilde x$, $t=t_0\tilde t$ and $\kappa=k t_0$, then state whether
+the reported derivative is with respect to $k$ or $\kappa$.
+
+\section{Derive both reaction sensitivities}
+Use the Chapter 28 first-order, well-mixed, constant-rate model
+\[
+ A\xrightleftharpoons[k_r]{k_f}B,\qquad
+ \dot A=-k_f A+k_r B,\quad C=A_0+B_0.
+\]
+Counts in the deterministic model may be interpreted as ensemble means under
+the matching first-order stochastic process; they are not necessarily integers.
+Let $\lambda=k_f+k_r>0$, $E=e^{-\lambda t}$,
+$q=1-E$ and $D=A_0-Ck_r/\lambda$. Then
+\[
+ A(t)=Ck_r/\lambda+D E.
+\]
+Differentiate the equilibrium and transient terms separately:
+\begin{align}
+ s_f(t):=\partial_{k_f}A(t)&=-\frac{Ck_r}{\lambda^2}q-DtE,\\
+ s_r(t):=\partial_{k_r}A(t)&=\frac{Ck_f}{\lambda^2}q-DtE.
+\end{align}
+The signs have a concrete interpretation for the fixture: increasing forward
+conversion lowers $A$; increasing reverse conversion replenishes it.
+Both sensitivities are zero at $t=0$ because the stipulated initial populations
+do not depend on the rates. A rate-dependent initialization would add its own term.
+
+Set $A_0=100$, $B_0=0$, $k_f=.4$ s$^{-1}$, $k_r=.1$ s$^{-1}$,
+$T=5$ s and $A^\star=30$. We obtain
+\[
+ A(T)=26.56679989,\quad s_f=-69.55059950,\quad s_r=114.03240077.
+\]
+For $J=(A(T)-A^\star)^2$,
+\[
+ J=11.786862996,\qquad
+ \frac{dJ}{dk_f}=2(A(T)-A^\star)s_f=477.562251752.
+\]
+A small decrease of $k_f$ is therefore a local descent direction. This is neither
+a globally optimal rate nor a calibrated chemical design.
+\Plate{02-sensitivity}{Computed concentration/count-like output and rate
+sensitivities have separate vertical scales and units. A perturbation is propagated
+through both equilibrium and relaxation speed.}{dnad29:sensitivity}
+\Listing{analytic_sensitivities}
+
+\section{Implement without breaking the graph}
+Float64 is explicit rather than a module-wide change of PyTorch's default dtype.
+The following function keeps rate tensors on the graph and evaluates
+$1-e^{-\lambda t}$ as $-\operatorname{expm1}(-\lambda t)$.
+\Listing{reversible_a_t}
+Validation may inspect detached values, but the returned calculation must use the
+original tensors. Converting the rate itself to a Python float before evaluation
+would erase the claimed dependency. This chart deliberately requires $\lambda>0$.
+The all-zero-rate boundary has a separate constant forward solution; extending
+derivatives there requires a continuous-limit treatment, not division by zero.
+
+\section{Three routes, one declared target}
+Use the analytical formula above, Float64 reverse-mode AD, and central differences
+of an independent Python/math implementation:
+\[
+ g_{\rm FD}(\epsilon)=
+ \frac{J_{\rm scalar}(k_f+\epsilon)-J_{\rm scalar}(k_f-\epsilon)}{2\epsilon}.
+\]
+The finite-difference function does not call the AD loss wrapper or its backward
+pass. This independence matters: two wrappers around one wrong derivative do not
+provide two oracles.
+\begin{center}\input{\Generated/gradient-checks.tex}\end{center}
+Large steps incur truncation; extremely small steps amplify subtraction error.
+Here $10^{-6}$ is more accurate than $10^{-8}$. Sweep steps and parameters rather
+than selecting one favorable result. Reject unrepresentable steps and perturbations
+outside the rate domain.
+\Plate{03-oracles}{The analytical, independent scalar finite-difference and AD
+paths converge on one derivative target. A separate comparison is required for
+the derivative of a numerical solver.}{dnad29:oracles}
+
+For $f:\mathbb R^p\to\mathbb R^q$, a Jacobian--vector product propagates one input
+direction; a vector--Jacobian product propagates one output cotangent. Reverse mode
+is attractive for a scalar loss with many parameters. It computes the derivative
+of the selected program trace where differentiable, not a license to ignore branches,
+discontinuities or numerical error.
+
+\section{Differentiate the solver you actually executed}
+For step size $h=T/n$, forward Euler gives
+\[
+ A_{j+1}=(1-\lambda h)A_j+h k_r C.
+\]
+Its derivative with respect to $k_f$, with $k_r,C,h$ fixed, is
+\[
+ s_{j+1}=(1-\lambda h)s_j-h A_j,\qquad s_0=0.
+\]
+The $A_j$ on the right is the \emph{old} state. Updating $A$ first and then using
+it here implements a different recurrence.
+\Listing{euler_sensitivity}
+The reference enforces Chapter 28's positivity condition
+$h\max(k_f,k_r)\leq1$. A successful gradient calculation does not repair
+a negative-population numerical method.
+
+\begin{center}\input{\Generated/euler-checks.tex}\end{center}
+AD agrees with the manual recurrence and an independent geometric-series oracle
+at each fixed $h$. It does \emph{not} equal the continuous-model derivative at
+finite $h$; the gradient error approximately halves under these refinements.
+Separate \Term{solver derivative} correctness from convergence to the underlying
+differential-equation derivative.
+
+\subsection{An intentionally wrong backward path}
+At $h=.1$, repeatedly replacing the previous state by a detached tensor preserves
+$A(T)=26.15559802$ exactly. Yet the resulting loss gradient is $20.35962753$,
+rather than $532.98854619$. A forward-only parity test cannot catch this mutation.
+Compare every claimed parameter gradient, not only the final state.
+
+For larger systems, forward sensitivity obeys
+$\dot S=F_xS+F_\theta$. An adjoint instead propagates output sensitivities backward.
+Discrete backpropagation differentiates an executed integration scheme;
+a continuous adjoint differentiates a continuous model and is itself solved
+numerically. Check interpolation, tolerances, stiffness, event handling and
+memory/recomputation policies before declaring these interchangeable.
+
+\section{Constraints change coordinates}
+A positive rate can be parameterized as $k_f=k_0\operatorname{softplus}(\rho)$,
+where $\rho$ is dimensionless and $k_0$ supplies inverse-time units. Then
+\[
+ \partial_\rho J=(\partial_{k_f}J)\,k_0\,\sigma(\rho).
+\]
+The reference checks this chain rule at $\rho=-.7$ with $k_0=1$ s$^{-1}$.
+Softplus enforces strict positivity but may have a tiny derivative far below zero;
+it neither represents exact zero at a finite $\rho$ nor fixes poor conditioning.
+A positive parameterization is not an identifiability argument.
+
+\section{Can the data determine both rates?}
+\Term{Local identifiability} requires informative observations.
+A single terminal observation has sensitivity row $(s_f,s_r)$. The direction
+$(s_r,-s_f)$ has zero first-order effect. Thus one scalar observation cannot
+locally identify two unconstrained rates. With observations at two times:
+\begin{center}\input{\Generated/identifiability.tex}\end{center}
+the determinant is $-6324.063041$, nonzero at this fixture.
+This gives local rank two, not global uniqueness or small uncertainty.
+At equilibrium only $k_r/(k_f+k_r)$ is observed: doubling both rates leaves
+the equilibrium unchanged.
+
+With measurement errors $\sigma_i$, use a whitened sensitivity matrix
+$\tilde S_{ij}=(\partial_{\theta_j}y_i)/\sigma_i$ and inspect singular directions.
+Under the stipulated independent Gaussian observation model, the local
+information matrix is $\tilde S^\top\tilde S$. Correlated errors instead require
+a covariance-weighted construction. A poorly conditioned matrix warns that
+some rate combinations remain weakly constrained. Observation times, initial
+conditions and perturbations should be designed to distinguish those combinations.
+
+\section{From nucleotide symbols to a simplex}
+A discrete base has no ordinary derivative with respect to its letter.
+Introduce logits $\ell\in\mathbb R^{L\times4}$ in A,C,G,T order and temperature
+$\tau>0$:
+\[
+ p_{ib}=\frac{e^{\ell_{ib}/\tau}}{\sum_c e^{\ell_{ic}/\tau}}.
+\]
+These rows are categorical distributions, not four fractional nucleotides
+inside a single DNA molecule. A physical library sampled from them is yet another
+object with sampling and preparation costs.
+\Plate{04-relaxation}{Four nucleotide channels become a probability simplex,
+then a score and a discrete candidate. The discretization arrow has its own
+constraint and score checks.}{dnad29:relaxation}
+
+For a fixed motif $m$ of length $L$, define
+$S(p)=L^{-1}\sum_i p_{i,m_i}$. It is exactly the expected positional match fraction
+under independent base sampling. Enumerating all $4^4=256$ strings provides an
+independent expectation oracle. Its logit derivative is
+\[
+ \frac{\partial S}{\partial\ell_{ib}}
+ =\frac{p_{i,m_i}}{L\tau}\left(\mathbf1[b=m_i]-p_{ib}\right).
+\]
+\Listing{soft_motif_gradient}
+At uniform logits, $L=4,\tau=1$, the target-channel gradient is $.046875$;
+each other channel has gradient $-.015625$. Each row sums to zero, expressing
+the softmax gauge: adding the same constant to all four logits changes nothing.
+All sixteen entries are checked against AD across three temperatures.
+
+Eighty plain gradient-ascent updates with step $.4$ raise the score from $.25$
+to $.780406667$; the argmax candidate is ACGT and every row remains non-one-hot.
+History includes the initial score \emph{and} the score after each update.
+This is a known-answer objective, not evidence of promoter, enhancer or protein
+design ability.
+
+\section{A relaxation can invent a nonexistent reward}
+Consider the nonlinear score
+\[
+ R(p)=\frac1L\sum_i\left(1-\sum_b p_{ib}^2\right).
+\]
+Uniform rows achieve $.75$, but \emph{every} discrete one-hot sequence scores zero.
+This is a \Term{relaxation gap}: $R(\mathbb E[X])\neq\mathbb E[R(X)]$. Improving a predictor evaluated
+on a soft sequence does not necessarily improve the expected discrete sequence
+or the eventual argmax candidate.
+
+Likewise, uniform length-four rows have expected GC count two, but A-first
+argmax tie-breaking returns AAAA with GC count zero. A differentiable expected-GC
+penalty is not an exact per-candidate GC constraint.
+\par\medskip\noindent\begin{minipage}{\linewidth}
+\Listing{exact_constrained_design}
+\end{minipage}\par\medskip
+An exhaustive oracle for the AAAA positional target with exactly two GC bases
+returns AACC, score $.5$, under lexical tie-breaking. The enumeration is limited
+to length eight, costs exponentially many candidates, and is a correctness oracle,
+not a production search method.
+
+\section{Discrete and stochastic derivatives need precise names}
+For categorical distributions, one may use a score-function estimator
+\[
+ \nabla_\theta\mathbb E_{X\sim p_\theta}[f(X)]
+ =\mathbb E[f(X)\nabla_\theta\log p_\theta(X)]
+\]
+under the relevant support and interchange conditions. Baselines can reduce
+variance; biased straight-through rules replace a discrete forward choice's
+backward map by a chosen surrogate. Neither is the ordinary derivative of
+argmax. Linder and Seelig's Fast SeqProp combines normalization with a
+straight-through approach; its results motivate the distinction between relaxed
+and discrete predictor inputs \cite{dnad29:seqprop}. Our reference is not a
+Fast SeqProp reproduction.
+
+An exact SSA path changes reaction choices and horizon event counts discontinuously
+as rates vary. A locally unchanged integer endpoint can have zero pathwise
+derivative while its expected count changes smoothly. Chapter 28's independent-
+molecule expectation gives an exact derivative oracle for this first-order case;
+it does not supply a differentiable exact SSA implementation.
+Rijal and Mehta smooth discrete operations in an approximate differentiable
+Gillespie method \cite{dnad29:dga}. Compare distributions, moments and task-relevant
+tails to exact SSA, not only attractive gradients.
+
+\section{A design loop needs independent evidence}
+\Plate{05-design-loop}{Optimization creates proposals. Discretization, constraints,
+unused validation evidence and physical testing are separate gates; a failure
+returns to the model or design, not to a relabeled success.}{dnad29:design-loop}
+Freeze predictor training support and design objectives; optimize only inside a
+declared design domain; discretize; recheck exact sequence constraints; evaluate
+with evidence not used for candidate selection; then measure physical function
+where the claim requires it. A second predictor trained on the same biases may not
+be genuinely orthogonal evidence. Record all candidates, exclusions and selection
+rules, not only the best predicted score.
+
+Abstract mass-action CRNs have been optimized using differentiable programming
+\cite{dnad29:crn}. Indexed CRNs provide a contemporary framework for families of
+species and reactions, including well-mixed and reaction-diffusion settings
+\cite{dnad29:icrn}. These are research connections, not evidence that our two-state
+example implements those systems or produces realizable DNA kinetics.
+
+\Plate{06-failures}{Failure signatures distinguish graph errors, solver error,
+non-identifiability and relaxation mismatch. Each has a different remedy and
+a different falsifying test.}{dnad29:failures}
+
+\section{Twenty worked exercises}
+\begin{enumerate}
+\item Give $\partial_{k_f}A(0)$. \textbf{Answer:} zero for rate-independent initial state.
+\item Differentiate $Ck_r/\lambda$ with respect to $k_f$.
+\textbf{Answer:} $-Ck_r/\lambda^2$.
+\item Why is there a second term in $s_f$? \textbf{Answer:} the relaxation speed $\lambda$ changes too.
+\item State the fixture's local descent direction. \textbf{Answer:} decrease $k_f$ since $dJ/dk_f>0$.
+\item Units of $dJ/dk_f$? \textbf{Answer:} population-squared seconds for this loss and rate convention.
+\item Why independent scalar FD? \textbf{Answer:} reusing a wrong backward routine cannot validate it.
+\item Does smaller $\epsilon$ always help? \textbf{Answer:} no; the $10^{-8}$ error here exceeds $10^{-6}$.
+\item Derive the Euler sensitivity update. \textbf{Answer:} differentiate $(1-\lambda h)A_j+h k_rC$ to get $(1-\lambda h)s_j-hA_j$.
+\item Which $A$ enters that update? \textbf{Answer:} the old $A_j$, before the simultaneous update.
+\item Does correct AD of Euler equal the exact ODE derivative? \textbf{Answer:} not at finite $h$.
+\item What catches repeated detach? \textbf{Answer:} full gradient comparison; forward equality alone passes.
+\item Add rate units to softplus. \textbf{Answer:} $k=k_0\operatorname{softplus}(\rho)$ with $k_0$ inverse time.
+\item Give an unobservable single-time direction. \textbf{Answer:} $(s_r,-s_f)$.
+\item Why two times? \textbf{Answer:} their sensitivity rows can span two rate directions; inspect rank and conditioning.
+\item Can equilibrium alone infer both absolute rates? \textbf{Answer:} no; proportional scaling leaves equilibrium fixed.
+\item Uniform motif score? \textbf{Answer:} $.25$.
+\item Uniform target logit gradient for $L=4,\tau=1$? \textbf{Answer:} $.046875$; alternatives $-.015625$.
+\item Why do row gradients sum to zero? \textbf{Answer:} softmax is invariant to common row shifts.
+\item Show expected GC does not enforce candidate GC. \textbf{Answer:} uniform length-four rows give expected two but A-first argmax gives zero.
+\item Design a release gate. \textbf{Rubric:} exact model/units, independent gradient oracle,
+solver refinement, parameter domain, identifiability, discrete constraints,
+unused validation, documented selection and physical evidence where required.
+\end{enumerate}
+
+\section{Bridge to genomic organization}
+Chapter 30 distinguishes inherited sequence, regulation, cellular state and
+phenotype. A differentiable representation is useful only after those variables,
+timescales and observation mappings are explicit. Optimizing a numerical sequence
+is not biological evolution, and a smooth model is not a proof that a biological
+mechanism has been captured.

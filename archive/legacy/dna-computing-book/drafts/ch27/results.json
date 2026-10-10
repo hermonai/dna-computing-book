@@ -1,0 +1,65 @@
+{
+  "trace": [
+    {
+      "bound": 0,
+      "states": 1,
+      "edges": 0,
+      "outside": 1,
+      "closure": 0
+    },
+    {
+      "bound": 1,
+      "states": 2,
+      "edges": 1,
+      "outside": 1,
+      "closure": 0
+    },
+    {
+      "bound": 2,
+      "states": 3,
+      "edges": 2,
+      "outside": 0,
+      "closure": 1
+    },
+    {
+      "bound": 3,
+      "states": 3,
+      "edges": 2,
+      "outside": 0,
+      "closure": 1
+    }
+  ],
+  "shortest_witness": [
+    "bind_AB",
+    "bind_C"
+  ],
+  "all_weight_three": true,
+  "stoichiometric_rows": [
+    [
+      -1,
+      0
+    ],
+    [
+      -1,
+      0
+    ],
+    [
+      0,
+      -1
+    ],
+    [
+      1,
+      -1
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "diamond_states": 4,
+  "diamond_edges": 4,
+  "divergent_terminals": 2,
+  "budget_status": "state_budget_exhausted",
+  "budget_complete": false,
+  "scope": "formal count reachability only; no time, probability, domain matching or wet lab"
+}

@@ -1,0 +1,4 @@
+Question: Why does a local insertion need context and a payload source?
+Objects and arrow semantics: A left and right address flank an insertion boundary; the payload appears as a distinct donor, then a changed string.
+Change/invariant and caption claim: Only the selected boundary changes; contexts survive the insertion.
+Scientific risk: Formal string lengths are not a complete nucleotide inventory.

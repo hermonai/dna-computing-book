@@ -1,81 +1,92 @@
 # DNA Computing
 
-Start with the [current manuscript and folder guide](CURRENT_MANUSCRIPT.md)
-for active chapters, readable outputs, review status and build-cache policy.
+**Molecular mechanisms, algorithms and evidence**
 
-Current milestone (10 October 2026): Chapters 31–32 are locally reviewed,
-source-bound candidates with twelve original vector/TXT plates, forty worked
-exercises and 95 new tests. The continuous authored-source manuscript reaches
-the final planned Chapter 32 (398 pages). Full regression: 1,400 passed, 2 skipped.
-See [Chapter 31](drafts/ch31/README.md), [Chapter 32](drafts/ch32/README.md)
-and [remaining release gates](CURRENT_MANUSCRIPT.md). Content completion is not
-independent scientific acceptance; preserved accepted editions remain unchanged.
+A 32-chapter manuscript connecting molecular biology, formal computation,
+reaction-network programming, simulation and genomic representations. Worked
+derivations, executable reference models, original vector illustrations and
+exercises accompany the theory.
 
-The shared [About this book note](tex/frontmatter/about-this-book.tex) owns
-the pedagogical acknowledgment and general evidence/review policy. It is
-authored front matter for one-time inclusion in the next integrated edition;
-chapter-specific assumptions and source notes remain in their chapters.
+The complete manuscript is a **review candidate**, not an independently reviewed
+publication or a demonstration of industrial/genomic capability.
 
-New authoring uses the [LaTeX-first Chapters 1–3 textbook candidate](tex/dna-computing-textbook.tex),
-with a worked first-principles opening, native TikZ mechanisms and retained
-reviewed vector figures. See [revision scope and build commands](TEXTBOOK_REVISION.md)
-and the [shared textbook standard](TEXTBOOK_STANDARD.md). Run
-`make -f textbook.mk textbook-check` then `make -f textbook.mk textbook`.
-This is a new review candidate; the accepted Chapters 1–2 and their hashes remain frozen.
+## Read the book
 
-Canonical active edition: **astra-deep-rewrite**. Deep science and engineering, straightforward explanations, useful abstraction.
+Build the current edition with `make pdf`. The only current full-book output is
+[`output/pdf/dna-computing.pdf`](output/pdf/dna-computing.pdf).
+All 32 chapters are included; Chapter 17 uses the expanded Watson–Crick and
+biochemical automata treatment.
 
-Chapters 1–2 are internally reviewed development manuscripts. Chapter 2 — **Adleman’s experiment: from graph to molecules** — adds 14 original editable SVG figures with semantic TXT companions, nine static keyframes, executable reference code and twelve exercises with worked solutions. The 32-chapter architecture remains; Chapter 3 has standalone and combined LaTeX review candidates. [Chapter 4: Molecular parallelism and resource accounting](drafts/ch04/README.md) is now an isolated authored-LaTeX review candidate with five vector plates, executable probability models, and twelve worked exercises. [Chapter 5: DNA chemistry and sequence geometry](drafts/ch05/README.md) adds five original mechanism plates, implementation-first derivations, tested code, and twelve worked exercises. [Chapter 6: Hybridization thermodynamics](drafts/ch06/README.md) adds five vector figures, tested numerical models, and twelve worked exercises. [Chapter 7: Reaction kinetics and stochastic chemistry](drafts/ch07/README.md) adds five mechanism figures, independent numerical checks, and twelve worked exercises. [Chapter 8: Enzymes as molecular operators](drafts/ch08/README.md) adds five biochemical/kinetic plates, substrate contracts, a tested catalytic model, and twelve worked exercises. [Chapter 9: Amplification and copy-number evidence](drafts/ch09/README.md) adds five molecular/counting figures, resource and sampling models, and twelve worked exercises. [Chapter 10: Separation, readout, and measurement](drafts/ch10/README.md) adds five mechanism/measurement figures, a tested inverse model with uncertainty and ambiguity checks, and twelve worked exercises. [Chapter 11: Sequence design and graph encoding](drafts/ch11/README.md) adds polarity-aware sequence checks, a tested graph code and five vector plates. [Chapter 12: Generate–filter–verify algorithms](drafts/ch12/README.md) adds exact multiset semantics, independent verification, finite-copy reliability and five vector plates. Each includes twelve worked exercises. Chapters 1–10 integration remains pending; cumulative acceptance has not advanced.
+See the [chapter map](book/README.md), [authoring guide](docs/AUTHORING.md)
+and [editorial architecture](docs/EDITORIAL_ARCHITECTURE.md).
 
-The [current editorial architecture](EDITORIAL_ARCHITECTURE.md) defines chapter responsibilities, prerequisites, evidence gates, and the next integration milestone. Use it for current authoring progress; generated historical plans retain their acceptance-snapshot status.
+## Repository layout
 
-Read the [Chapters 1–2 PDF](output/pdf/deep-dna-computing-ch01-02.pdf), [Chapter 2 source](tex/deep/ch02.tex), [Chapter 2 production report](DEEP_CHAPTER_2_REPORT.md), [edition strategy](CANONICAL_EDITION_STRATEGY.md), [book plan](BOOK_PLAN.md) and [chapter standard](CHAPTER_STANDARD.md). The [Chapter 1-only PDF](output/pdf/deep-dna-computing.pdf) and [its production report](DEEP_CHAPTER_1_REPORT.md) are preserved unchanged.
-
-DOGMA = non-Transformer DNA-native model + DOGMA Engine; Hermon DNA = Transformer-based DNA model + Hermon DNA Engine; Evolutor = broader theory/research/compiler/runtime above both. These are research identities, not claims of trained models or production engines.
-
-[Chapter 13: SAT and combinatorial constructions](drafts/ch13/README.md) adds finite-copy clause selection, exhaustive small SAT oracles and coverage/resource derivations. [Chapter 14: Sticker systems and molecular memory](drafts/ch14/README.md) adds occupancy-register semantics, conditional writes, reset analysis and reuse limits. Each includes five editable mechanism figures with TXT companions and twelve worked exercises; current research comparisons have dated source-access notes.
-
-[Chapter 15: Splicing and insertion-deletion systems](drafts/ch15/README.md) develops contextual cuts, finite-copy reactions, bounded reachability and chemical interface limits. [Chapter 16: Languages, automata and molecular recognition](drafts/ch16/README.md) develops recognizer invariants, an exact binary transducer, scaffolded recognition and noisy transitions. Each includes five editable vector figures with semantic TXT companions, tested reference code and twelve worked exercises.
-
-[Chapter 17: Watson–Crick and biochemical automata](drafts/ch17/README.md) develops a proved two-head recognizer, explicit witness costs and a restriction-based molecular transition mechanism. [Chapter 18: Universality and complexity models](drafts/ch18/README.md) develops tape/two-stack simulation, uniform construction and reliability bounds.
-
-The separate [Chapter 17 expanded theory edition](drafts/ch17-theory/README.md)
-extends both automata subjects with definitions, propositions and proofs,
-determinism and normal forms, reaction-to-logical-step refinement, stochastic
-transition derivations and readout limits. It includes eight vector figures,
-semantic TXT companions and eighteen worked exercises. The earlier Chapter 17
-candidate remains unchanged.
-
-The original Chapters 13-18 each include five editable vector figures with TXT
-companions and twelve worked exercises. These are standalone author-reviewed
-candidates, not cumulative acceptance or independently validated industrial
-systems.
-
-[Chapter 19: Toehold-mediated strand displacement](drafts/ch19/README.md) adds five editable vector/TXT figures, twelve worked exercises and independently checked numerical examples. Polarity-correct strand exchange, strand-inventory invariants, first-passage probabilities and times, finite-pool depletion, leakage windows, and composition contracts.
-
-[Chapter 20: Chemical reaction networks as programs](drafts/ch20/README.md) develops reaction semantics, conservation laws, count/concentration rate conventions, correctness and completion-time proofs, shared-fuel competition and projection closure. Includes five editable vector/TXT figures, twelve worked exercises and tested reference code.
-
-## Build and verify
-
-Chapter 3 now has a standalone [review edition](drafts/ch03/README.md), with twelve editable SVG/TXT figures and a page-inspected PDF. See the [review report and release gates](DEEP_CHAPTER_3_REVIEW_REPORT.md). It is not yet included in the accepted cumulative PDF.
-
-```sh
-python3 examples/deep/ch01.py
-python3 examples/deep/ch02.py
-python3 scripts/build_deep_chapter.py --check
-python3 scripts/build_deep_chapter02.py --check
-python3 scripts/build_textbook_plan.py --check
-make pdf
-python3 -m pytest
-python3 scripts/review_deep.py
+```text
+book/
+  main.tex                 Full-book LaTeX entry point
+  style.tex, layout.tex    Shared typography, figure and reference conventions
+  book.json                Ordered current chapter manifest
+  frontmatter/             Shared acknowledgment and evidence conventions
+  chapters/ch01–ch32/       Canonical prose, references, figures and companion code
+  backmatter/              Glossary and opening bibliography
+code/minidna/              Reusable executable teaching library and its tests
+docs/                     Authoring standards, architecture and provenance
+scripts/                  Current build and archive-verification tools
+tests/                    Current numerical and repository checks
+output/pdf/               One generated full-book PDF
+build/                    Disposable compiler and computed-asset cache
+archive/                  Preserved earlier editions, reports and review PDFs
 ```
 
-Dependencies: Python 3.10+ (pytest; Pillow for page review), XeLaTeX/latexmk, librsvg, Poppler, and DejaVu fonts. The full historical numerical regression suite also uses the existing repository dependencies. The PDF gate rejects old, empty, later-chapter, unreviewed, or changed-after-review source. To author new material, build a preview under build/ and complete review before updating the acceptance record; do not weaken the gate.
+There is no active `tex/` or `drafts/` tree. Edit prose in
+`book/chapters/chNN/manuscript.tex`, not in generated TeX or archived material.
+Figures and their semantic TXT companions live beside their chapter.
 
-## Frozen editions
+## Build and test
 
-astra-undergraduate-rewrite is a pedagogical archive, not a parallel manuscript. Its source, figures, examples and committed PDF remain byte-identical. The default tests verify its preserved publication without rebuilding it; make historical-pdf remains an explicit reproduction tool under build/. Main, astra-rewrite and historical snapshots are preserved; no main merge is part of this milestone.
+Requirements: Python 3.11+, NumPy, PyTorch and pytest; XeLaTeX, latexmk,
+makeindex, Poppler (`pdfinfo`, `pdftoppm`) and librsvg (`rsvg-convert`).
+Fonts: TeX Gyre Pagella/Heros and DejaVu Sans Mono.
+Install Python dependencies with `python3 -m pip install -e '.[dev]'`.
 
-The original eight-section [preproduction outline](CHAPTER_1_OUTLINE.md) is retained as design history. The actual chapter deliberately expands it to 13 sections and ten figures. Full source-access details live in [the chapter source review](research/deep-ch01-sources.md). Review is author-agent work, not independent scientific certification or a real-reader study.
+```sh
+make pdf           # full book, bibliography, glossary and index
+make check         # generate assets, verify values and run current tests
+make archive-check # verify preserved source/PDF checksums
+make legacy-test   # unchanged historical regression suite
+make review        # render all pages and color/grayscale contact sheets
+```
 
-[Chapter 21: Digital and analog DNA circuits](drafts/ch21/README.md) adds concentration logic, finite readout windows, a circuit-composition theorem, a kinetic race counterexample, fan-out loading and feedback stability. Five editable vector/TXT figures, twelve worked exercises and executable reference tests accompany the derivations. Chapters 22–32 are now integrated review candidates; cumulative acceptance remains pending.
+Select Python with `make pdf PYTHON=/path/to/python3`.
+`make` defaults to the complete book, not the earlier two-chapter edition.
+Missing glyphs, unresolved references/citations, duplicate labels and overfull
+boxes fail the build. Code listings come from tested chapter implementations.
+Build evidence lives in `build/book/build-record.json`, `warning-audit.json`
+and `bibliography-map.json`. Generated outputs are ignored by Git.
+
+## Earlier editions and recovery
+
+The [archive guide](archive/README.md) explains what was retained and why.
+The previous layout is preserved under `archive/legacy/dna-computing-book/`,
+including the old `book/`, `tex/chapters/`, standalone review PDFs and
+historical acceptance records. The [migration manifest](archive/manifest.json)
+binds those bytes to the pre-reorganization commit.
+
+The archive is historical evidence, not a second authoring tree. Intermediate
+render images and old build caches are retained locally there for recovery and
+excluded from Git. Original review records do not imply acceptance of relocated
+sources. Do not copy a previous PDF back into the current output folder.
+
+## Scientific and editorial status
+
+The 32-chapter authoring plan is complete. Full-volume scientific/editorial
+review, comprehensive visual/accessibility QA, bibliography/index reconciliation,
+independent specialist review and reader evaluation remain publication gates.
+See [current release status](docs/STATUS.md).
+
+Numerical results are model computations unless identified as measurements.
+DOGMA denotes the non-Transformer research branch; Hermon DNA the Transformer
+branch; Evolutor the broader research/runtime program. Biological analogies
+and working reference components do not establish novelty, trained-model
+quality, production readiness or general intelligence.

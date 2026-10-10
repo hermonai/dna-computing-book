@@ -1,0 +1,8 @@
+{
+  "S": "finite species universe",
+  "x": "multiset/count state in N^m",
+  "C_r": "consumed stoichiometric multiset",
+  "P_r": "produced multiset",
+  "x\u2192_r x'": "legal symbolic transition",
+  "I_w": "weighted invariant"
+}

@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+\foreach \y/\lab in {2.4/Before,.2/After}{
+\node[note,anchor=west] at (0,\y+.3){\textbf{\lab}};
+\foreach \x/\v in {3/1,4.3/1,5.6/1,6.9/{\_},8.2/{\_}}{
+\draw[Blue,fill=Pale] (\x,\y) rectangle ++(1.1,.8);
+\node[note] at (\x+.55,\y+.4){\v};}}
+\node[note,fill=Pale] at (3.55,.6){0};
+\draw[flow,Red] (3.55,4)--(3.55,3.25);
+\node[note] at (5.8,4){carry, head $=0$};
+\draw[flow,Red] (4.85,1.8)--(4.85,1.05);
+\node[note] at (7.2,1.8){carry, head $=1$};
+\node[smallnote,text width=3cm] at (11,2){Read 1\\Write 0\\Move $+1$};
+\draw[flow] (10,3)--(10,1);
+\end{tikzpicture}

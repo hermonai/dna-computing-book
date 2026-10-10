@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-06",
+  "chapter": 28,
+  "pdf": "output/pdf/dna-computing-ch28-review.pdf",
+  "pdf_sha256": "98b9e96083afd7fa980d8a694fff3255179fd8b13ace1c5e1aabefc7d32198eb",
+  "pages": 14,
+  "source_hashes": {
+    "drafts/ch28/README.md": "3bed4a5fc7d4388a0c358097a8632b5638b8588836777ca00803fa69cf475a93",
+    "drafts/ch28/STORYBOARD.md": "a0e8dc16c803866cc92479104dbf80240f2c27d9fca9ffe47200df64996b9bf7",
+    "drafts/ch28/build.py": "aeb4c5b59306bf74dd8f2c57292460bdddf25eb79063e8d249ead422c93cae50",
+    "drafts/ch28/figures/01-semantics.tex": "600b582fa34de294d38012b3b8bd2b2e506e0c33effd81c8b239fd7908b268e0",
+    "drafts/ch28/figures/01-semantics.txt": "4a08bdc608fdd0e970a1a0df2354d96e99b8acb3d47ab4f8188ab03133aacbad",
+    "drafts/ch28/figures/02-ssa.tex": "d2ebe59e80b12f9ddc247a6732584b00d4e6b6f2f3f87137f1832db921df37b9",
+    "drafts/ch28/figures/02-ssa.txt": "cf54db22b19f6276709d7609aeb65b76504025c8f0d0b0fad1f8c50d109f3dd1",
+    "drafts/ch28/figures/03-ode.tex": "866def21816effbe3de3ec43866ff29068736b853cd068b1608db5a656b7315f",
+    "drafts/ch28/figures/03-ode.txt": "420a9773346b6ac27c9e412eaad64188e6c3d8f4278b9de9abe083fe3f540f7c",
+    "drafts/ch28/figures/04-ensemble.tex": "2124fe454552961afdc4f85866dee4bcb789414b796034039c640735d2fd2879",
+    "drafts/ch28/figures/04-ensemble.txt": "f43ef5e95fa7ad504644ea7b63e3191cac4d27ac8d90bb0f4387d6bd137c0494",
+    "drafts/ch28/figures/05-units.tex": "f8a1fa0f09a2605dd62b157dfbc8ce301e8d19ed6c4ee2c9805ab9b7aabd96a1",
+    "drafts/ch28/figures/05-units.txt": "d46da6655a4b6af3a15671dee7fe960b200099f73f491a628fc7f0108be0ca50",
+    "drafts/ch28/figures/06-validation.tex": "b4eb28563ea7f6ed84e7ef44bf9c629d4acee400b8208db87c54dfba00d6c51b",
+    "drafts/ch28/figures/06-validation.txt": "21e70fb733693abbbf350db7b5926a45f30fb31212da20646fc13a929603aa10",
+    "drafts/ch28/manuscript.tex": "c495c549b89fa1017c8781edf4adc7882ff4dd7d5ff28000045edc3df61a7a4b",
+    "drafts/ch28/reference.py": "dcae4020cce1fbe183980d8a467c316847410e9a350b476a899072844fabc361",
+    "drafts/ch28/results.json": "e0d00d6120b327389141be02345dddf00b8639600316640639db172b7e236deb",
+    "drafts/ch28/review.tex": "6afaf4704399a28f85a4f3af739da000370af730a4386ea9a76a96fa0b21dbbc",
+    "drafts/ch28/sources.tex": "d91828b41094312636e6400fdec004ac9a58e73f7606eaacf026923f33766130",
+    "tests/test_ch28_reference.py": "3641e2b8fe4c347e0fe85491379cb488b30b9482bbfea1b61a9313a643edf972"
+  },
+  "tests": {
+    "repository_passed": 1204,
+    "repository_skipped": 2,
+    "chapter_passed": 35,
+    "report": "build/ch28/regression.xml",
+    "python": "3.13.6"
+  },
+  "visual_review": {
+    "reviewer": "author/agent",
+    "status": "PASS WITH NOTES",
+    "mode": "all 14 pages, color and grayscale contact sheets",
+    "notes": "All14 pages inspected in color/grayscale. Repaired crowded first-plate headings, chart annotation/axis overlap and unit-plate bottom spacing. Step chart is right-continuous and reaches horizon; exact distribution is labeled separately from Monte Carlo uncertainty. Index explicitly regenerated and final four entries checked. Listings are complete across page breaks; sources merged into one references page. No physical chemistry or acceptance claim."
+  },
+  "mathematical_review": "Assumptions, independent oracles and falsifiers in technical-audit.md.",
+  "acceptance": "locally reviewed standalone integration candidate; not accepted publication edition"
+}

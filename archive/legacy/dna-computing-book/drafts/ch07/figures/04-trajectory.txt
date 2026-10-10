@@ -1,0 +1,3 @@
+A single vessel changes by integers
+
+Exact-event model sampled with seed 1701, 20 copies per strand, volume 3.321078134e-16 L, kon 1e6 and koff 0.005, 120 seconds. Step plot holds the post-event value until the next event. Final extension to horizon is not an event. This is simulated, not measured.

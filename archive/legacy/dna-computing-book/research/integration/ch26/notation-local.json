@@ -1,0 +1,14 @@
+{
+  "chapter": 26,
+  "stable_chapter_id": "DNAD-26",
+  "symbols": {
+    "H": "Immutable ordered event history",
+    "P": "Frozen Plan",
+    "A": "Bound artifact record set, compared by full values",
+    "D": "Ordered deviation tuple; prefix monotonic",
+    "n": "Nominal amount cV, mol",
+    "rho": "Concentration-volume uncertainty correlation",
+    "R": "Number of independent preparations, not number of objects"
+  },
+  "scope": "Synthetic provenance and arithmetic, no laboratory evidence"
+}

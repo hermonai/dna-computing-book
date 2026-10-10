@@ -1,0 +1,18 @@
+\begin{tikzpicture}[font=\small\sffamily,atom/.style={fill=white,inner sep=2pt},line width=1pt,scale=.93,transform shape]
+\fill[Gold!25] (.5,2.3)--(1,3.5)--(2.4,3.5)--(3.2,2.3)--(2.4,1.2)--cycle;
+\draw (.5,2.3)--(1,3.5)--(2.4,3.5)--(3.2,2.3)--(2.4,1.2)--cycle;
+\foreach \x/\y/\a in {.5/2.3/C4',1/3.5/O4',2.4/3.5/C1',3.2/2.3/C2',2.4/1.2/C3'} {\node[atom] at (\x,\y) {$\a$};}
+\draw (.5,2.3)--(-.3,1.3); \node[atom] at (-.3,1.3) {$C5'$};
+\draw (2.4,3.5)--(3.5,4.3); \node[fill=Blue!10,draw,rounded corners] at (4,4.3) {Base $i$};
+\draw[Blue,line width=2pt] (2.4,1.2)--(4,1.2)--(6,1.2)--(8,1.2)--(9.6,1.2)--(10.5,2.3);
+\foreach \x/\a in {4/O3',6/P,8/O5',9.6/C5'} {\node[atom,text=Blue] at (\x,1.2) {$\a$};}
+\draw (5.95,1.4)--(5.95,2.7) (6.08,1.4)--(6.08,2.7);
+\node[atom] at (6,2.9) {O};
+\draw (6,1)--(6,-.1); \node[atom] at (6,-.25) {$O^-$};
+\fill[Gold!25] (10.5,2.3)--(11.1,3.5)--(12.5,3.5)--(13.3,2.3)--(12.5,1.2)--cycle;
+\draw (10.5,2.3)--(11.1,3.5)--(12.5,3.5)--(13.3,2.3)--(12.5,1.2)--cycle;
+\foreach \x/\y/\a in {10.5/2.3/C4',11.1/3.5/O4',12.5/3.5/C1',13.3/2.3/C2',12.5/1.2/C3'} {\node[atom] at (\x,\y) {$\a$};}
+\draw (12.5,3.5)--(13.5,4.3); \node[fill=Blue!10,draw,rounded corners] at (13.5,4.3) {Base $i+1$};
+\node[smallnote,text width=4.5cm] at (7.2,4.2) {Two sugar--oxygen attachments\\share one phosphate};
+\node[smallnote,text width=11cm] at (6.5,-1.5) {Highlighted covalent path: $3'$ oxygen of residue $i$ to $5'$ oxygen of residue $i+1$.\\Ring geometry is schematic; unshown bonds and terminal groups are omitted.};
+\end{tikzpicture}

@@ -1,0 +1,3 @@
+Figure 8.2
+
+Nick sealing: three chemical activation stages, enzyme-AMP then DNA-AMP then continuous backbone; template pairing stays intact. Show 3-OH and 5-phosphate; released AMP is not incorporated as a base. Protein outline schematic, not an atomistic structure.

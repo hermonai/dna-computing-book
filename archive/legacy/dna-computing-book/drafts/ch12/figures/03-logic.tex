@@ -1,0 +1,10 @@
+\begin{tikzpicture}[x=1.9cm,y=.65cm]
+\foreach \s/\x in {Candidate/0,Endpoints/1,Length/2,Coverage/3,Edges/4}
+ \node[smallnote] at (\x,1) {\s};
+\foreach \s/\y/\e/\l/\c/\a in {ABCD/0/yes/yes/yes/yes,ABBD/-1/yes/yes/no/no,ABDC/-2/no/yes/yes/no,ABD/-3/yes/no/no/yes}{
+ \node[font=\ttfamily] at (0,\y) {\s};
+ \node at (1,\y) {\e}; \node at (2,\y) {\l};
+ \node at (3,\y) {\c}; \node at (4,\y) {\a};}
+\draw[Blue] (-.5,.5)--(4.5,.5);
+\node[smallnote] at (2,-4) {Endpoints are fixed at A and D; target length is four.};
+\end{tikzpicture}

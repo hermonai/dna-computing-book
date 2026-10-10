@@ -1,0 +1,17 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box] (0,-.5) rectangle (13,4.6);
+\node[note,anchor=west,text=Blue] at (.2,4.3) {\textbf{Species change; strand identities do not}};
+\node[note] at (2.7,3.5) {Before: $I+G$};
+\node[note] at (10,3.5) {After: $W+O$};
+\draw[Red,line width=2pt,->] (.6,2.8)--(4.8,2.8);
+\draw[Green,line width=2pt,->] (2,1.9)--(4.8,1.9);
+\draw[Blue,line width=2pt,<-] (.6,1.5)--(4.8,1.5);
+\foreach \x in {2.1,2.4,...,4.7}{\draw[gray] (\x,1.55)--(\x,1.85);}
+\draw[Red,line width=2pt,->] (8,2.8)--(12.2,2.8);
+\draw[Blue,line width=2pt,<-] (8,2.4)--(12.2,2.4);
+\foreach \x in {8.1,8.4,...,12.1}{\draw[gray] (\x,2.45)--(\x,2.75);}
+\draw[Green,line width=2pt,->] (9.4,1.5)--(12.2,1.5);
+\draw[flow] (5.4,2.2)--node[smallnote,above] {exchange} (7.4,2.2);
+\node[smallnote] at (6.5,.6) {Invader: $[I]+[W]$\qquad Substrate: $[G]+[W]$\qquad Incumbent: $[G]+[O]$};
+\node[smallnote] at (6.5,0) {Backbone arrows point toward $3'$ ends; each invariant tracks one physical strand type.};
+\end{tikzpicture}

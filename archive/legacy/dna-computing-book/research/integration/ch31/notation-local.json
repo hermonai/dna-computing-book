@@ -1,0 +1,10 @@
+{
+  "A": "free input",
+  "F": "free auxiliary fuel",
+  "I": "captured intermediate",
+  "B": "output",
+  "W": "spent auxiliary",
+  "u": "on*held_fuel",
+  "P": "declared projection",
+  "context": "exact evidence scope, not ordered level"
+}

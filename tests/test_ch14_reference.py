@@ -3,17 +3,16 @@ import importlib.util
 import sys
 import json
 import pytest
+from collections import Counter
+from itertools import permutations
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "ch14_reference_tests", ROOT / "drafts/ch14/reference.py"
+    "ch14_reference_tests", ROOT / "book/chapters/ch14/reference.py"
 )
 m = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = m
 spec.loader.exec_module(m)
-
-from collections import Counter
-from itertools import permutations
 
 
 @pytest.mark.parametrize("width", range(1, 6))
@@ -99,6 +98,6 @@ def test_retention_and_markov_stationarity():
 
 def test_committed_result_artifact_matches_execution():
     assert (
-        json.loads((ROOT / "drafts/ch14/results.json").read_text())
+        json.loads((ROOT / "book/chapters/ch14/results.json").read_text())
         == m.results()
     )

@@ -1,0 +1,20 @@
+\begin{tikzpicture}[x=.72cm,y=.8cm]
+\node[note,anchor=west,text=Blue] at (0,1.9) {1\quad Opposing templates; growing ends point into the interval};
+\draw[Blue,line width=1.2pt] (0,1)--(14,1);
+\draw[Green,line width=1.2pt] (0,-1)--(14,-1);
+\node[left] at (0,1) {$5'$}; \node[right] at (14,1) {$3'$};
+\node[left] at (0,-1) {$3'$}; \node[right] at (14,-1) {$5'$};
+\draw[densely dashed,gray] (2,-1.5)--(2,1.4);
+\draw[densely dashed,gray] (12,-1.5)--(12,1.4);
+\node[smallnote] at (2,-1.8) {$a=2$};\node[smallnote] at (12,-1.8) {$b=12$};
+\draw[Red,line width=2.5pt] (2,-.55)--(5,-.55);
+\draw[Red,line width=2.5pt] (9,.55)--(12,.55);
+\foreach \x in {2.3,3.1,3.9,4.7}{\draw[dashed,gray] (\x,-.65)--(\x,-.93);}
+\foreach \x in {9.3,10.1,10.9,11.7}{\draw[dashed,gray] (\x,.65)--(\x,.93);}
+\node[smallnote,above] at (3.3,-.5) {$5'$-ACG-$3'$};
+\node[smallnote,below] at (10.7,.5) {$3'$-ATG-$5'$};
+\draw[flow,Red] (5,-.55)--(8,-.55) node[midway,above,smallnote] {extension};
+\draw[flow,Red] (9,.55)--(6,.55) node[midway,below,smallnote] {extension};
+\node[smallnote] at (7,-2.7) {Reverse primer written from its own $5'$ end: GTA\\
+Top strand target: $5'$-ACGATCGTAC-$3'$};
+\end{tikzpicture}

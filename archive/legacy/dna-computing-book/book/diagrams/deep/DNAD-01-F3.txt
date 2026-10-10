@@ -1,0 +1,8 @@
+ID: DNAD-01-F3
+TITLE: Why plausible routes fail
+PURPOSE: Compare valid, repeated, missing and illegal-edge candidates with exact rejection reasons.
+STEP 1 → STEP 2: Read route → Check endpoints and length
+STEP 2 → STEP 3: Check endpoints and length → Check coverage
+STEP 3 → STEP 4: Check coverage → Verify every edge
+LIMIT: A length-and-coverage check cannot establish adjacency.
+EVIDENCE: Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources.

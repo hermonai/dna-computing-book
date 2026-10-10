@@ -1,0 +1,1 @@
+Correct and defective physical objects are mapped to classifier labels. Solid arrows show correct classification; dashed crossed arrows show false positives and negatives. At true defect 0.01, false-positive 0.02 and false-negative 0.10, observed defects are 0.0288. Inversion loses identifiability when the classifier contrast is zero and becomes ill-conditioned near zero.

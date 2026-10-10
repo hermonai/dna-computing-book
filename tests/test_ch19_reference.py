@@ -7,14 +7,16 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "dna19", ROOT / "drafts/ch19/reference.py"
+    "dna19", ROOT / "book/chapters/ch19/reference.py"
 )
 m = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(m)
 
 
 def test_reproducible_results():
-    assert m.results() == json.loads((ROOT / "drafts/ch19/results.json").read_text())
+    assert m.results() == json.loads(
+        (ROOT / "book/chapters/ch19/results.json").read_text()
+    )
 
 
 @pytest.mark.parametrize("length", [1, 2, 4, 12])

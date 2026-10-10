@@ -1,0 +1,11 @@
+FIGURE: A direct exponential race retains unfinished probability
+MODEL: Assigned constant hazards lambda_correct=0.6/s and lambda_incorrect=0.4/s.
+CURVES: Correct=0.6*(1-exp(-t)); incorrect=0.4*(1-exp(-t));
+uncommitted=exp(-t). They sum to one at every time.
+ENCODING: Blue solid for correct, red dashed for incorrect, green dash-dot for
+uncommitted. Text labels and line patterns preserve the distinction without color.
+EXAMPLE: At one second, absolute correctness is about 0.379272. Correctness
+conditioned on completion is 0.6. Neither is a measured laboratory quantity.
+SCOPE: This is a direct-hazard model, not an exact finite-time solution of
+the explicit reversible binding/commitment model. See the coarse-graining
+assumptions and exact mean waiting-time derivation in the text.

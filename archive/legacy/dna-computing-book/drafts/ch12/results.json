@@ -1,0 +1,103 @@
+{
+  "trace": [
+    {
+      "stage": "generated",
+      "species": 34,
+      "copies": 34
+    },
+    {
+      "stage": "endpoints",
+      "species": 6,
+      "copies": 6
+    },
+    {
+      "stage": "length",
+      "species": 2,
+      "copies": 2
+    },
+    {
+      "stage": "contains A",
+      "species": 2,
+      "copies": 2
+    },
+    {
+      "stage": "contains B",
+      "species": 2,
+      "copies": 2
+    },
+    {
+      "stage": "contains C",
+      "species": 2,
+      "copies": 2
+    },
+    {
+      "stage": "contains D",
+      "species": 2,
+      "copies": 2
+    }
+  ],
+  "kept": [
+    "ABCD",
+    "ACBD"
+  ],
+  "oracle": [
+    "ABCD",
+    "ACBD"
+  ],
+  "noisy": [
+    {
+      "stage": 0,
+      "true": 10,
+      "false": 10000,
+      "purity": 0.000999000999000999
+    },
+    {
+      "stage": 1,
+      "true": 8.0,
+      "false": 100.0,
+      "purity": 0.07407407407407407
+    },
+    {
+      "stage": 2,
+      "true": 6.4,
+      "false": 1.0,
+      "purity": 0.8648648648648649
+    }
+  ],
+  "survival": [
+    {
+      "copies": 0,
+      "probability": 0.0
+    },
+    {
+      "copies": 1,
+      "probability": 0.2359296000000001
+    },
+    {
+      "copies": 2,
+      "probability": 0.41619642384384015
+    },
+    {
+      "copies": 5,
+      "probability": 0.7395844715392677
+    },
+    {
+      "copies": 10,
+      "probability": 0.9321837525365175
+    },
+    {
+      "copies": 20,
+      "probability": 0.9954009565799717
+    },
+    {
+      "copies": 50,
+      "probability": 0.9999985656049609
+    }
+  ],
+  "order": {
+    "F_then_G": [],
+    "G_then_F": [
+      "good"
+    ]
+  }
+}

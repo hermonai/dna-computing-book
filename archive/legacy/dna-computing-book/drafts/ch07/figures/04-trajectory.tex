@@ -1,0 +1,8 @@
+\begin{tikzpicture}
+\begin{axis}[width=13cm,height=6cm,xmin=0,xmax=120,ymin=0,ymax=20,
+xlabel={Time (s)},ylabel={Duplex count},xtick={0,20,40,60,80,100,120},ytick={0,5,10,15,20},
+tick label style={font=\small},label style={font=\small}]
+\input{\Generated/events-plot.tex}
+\node[anchor=north west,align=left,font=\small,fill=white] at (axis cs:3,19.5) {20 copies per strand species\\Seed 1701; no time-step grid};
+\end{axis}
+\end{tikzpicture}

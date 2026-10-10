@@ -1,0 +1,4 @@
+Question: Does one rewrite path describe every reachable word?
+Objects and arrow semantics: A branching derivation tree with repeated words merged by equality and a marked depth boundary.
+Change/invariant and caption claim: Paths are alternative derivations, not simultaneous physical copies.
+Scientific risk: A truncated search is not a proof of non-reachability.

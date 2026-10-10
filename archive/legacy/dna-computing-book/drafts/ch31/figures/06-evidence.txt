@@ -1,0 +1,3 @@
+06-evidence
+
+Independent interval calibration produces B in [.32727,.48889]. Three independent preparations each have two technical readings. Means .41,.11,.39; the low second unit is retained. Six readings do not become six independent units.

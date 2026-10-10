@@ -1,0 +1,30 @@
+DNAD-03-F10: No signal is not a universal negative
+
+QUESTION
+Why is negative evidence different?
+
+OBJECTS
+Witness support
+sampling
+survival
+detector
+no-signal outcome
+
+RELATION / MECHANISM
+Trace the alternative causes of absence
+
+INFERENCE
+A missing signal needs coverage, retention and readout assumptions.
+
+BOUNDARY
+This is not a calibrated experimental error probability.
+
+SOURCE
+Chapter 2 model
+
+STATUS
+Working-draft figure; not part of the accepted PDF.
+
+SEMANTIC TXT GRAPH
+No witness generated ⇢ no signal; witness lost ⇢ no signal; detection failure ⇢ no signal.
+For independent copies: q=p·survival·detection; P(signal)=1−(1−q)^M.

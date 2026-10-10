@@ -1,0 +1,17 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[note] (a) at (1.7,2.3) {000\\3 copies};
+\node[note] (b) at (1.7,.7) {001\\5 copies};
+\node[note,draw=Blue,fill=Pale,minimum width=2cm,minimum height=1cm] (c) at (7,1.5) {000\\8 copies};
+\draw[flow] (a.east)--node[above,smallnote]{clear bit 2}(c.north west);
+\draw[flow] (b.east)--(c.south west);
+\node[note,anchor=west,align=left] at (9,1.5) {Copies conserved\\State distinctions lost};
+\draw[Blue!25] (0,-.1)--(14,-.1);
+\node[smallnote,anchor=west] at (0,-.8) {Retain history:};
+\node[note] at (4,-.8) {$(b,h)=(0,0)$};
+\node[note] at (4,-1.8) {$(b,h)=(1,0)$};
+\draw[flow] (6,-.8)--(8,-.8);
+\draw[flow] (6,-1.8)--(8,-1.8);
+\node[note] at (10,-.8) {$(0,0)$};
+\node[note] at (10,-1.8) {$(0,1)$};
+\node[smallnote] at (7,-2.6) {The larger transformation preserves the old bit in another address.};
+\end{tikzpicture}

@@ -1,0 +1,9 @@
+\begin{tikzpicture}[font=\small\sffamily]
+\begin{axis}[at={(0,0)},anchor=south west,width=7.1cm,height=4.8cm,xlabel={Time},ylabel={Single-path $A$ count},xmin=0,xmax=5,grid=major,grid style={Blue!12},tick label style={font=\footnotesize},title={A / Integer staircase, seed 28}]
+\input{\Generated/ssa-path.tex}
+\end{axis}
+\begin{axis}[at={(7.2cm,0)},anchor=south west,width=7.1cm,height=4.8cm,xlabel={$A$ at $T=5$},ylabel={Exact probability},xmin=10,xmax=45,grid=major,grid style={Blue!12},tick label style={font=\footnotesize},title={B / Binomial population law}]
+\input{\Generated/exact-distribution.tex}
+\end{axis}
+\node[align=center] at (7,-1.7){Exact mean 26.5668; population variance 19.5089.\\2,000 simulated paths: mean 26.702; estimated mean SE 0.09879.};
+\end{tikzpicture}

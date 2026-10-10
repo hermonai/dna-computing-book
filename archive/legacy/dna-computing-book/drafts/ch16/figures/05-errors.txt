@@ -1,0 +1,4 @@
+Question: Can a missing molecule be called a rejected word?
+Objects and arrow semantics: Mass-preserving logical-state distribution plus a separate absorbing loss state.
+Change/invariant and caption claim: Correct/incorrect transitions differ from disappearance and readout.
+Scientific risk: Assigned noise parameters are illustrative, not experimental fits.

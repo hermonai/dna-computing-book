@@ -3,18 +3,17 @@ import importlib.util
 import sys
 import json
 import pytest
+from collections import Counter
+from itertools import product, permutations
+import math
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "ch13_reference_tests", ROOT / "drafts/ch13/reference.py"
+    "ch13_reference_tests", ROOT / "book/chapters/ch13/reference.py"
 )
 m = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = m
 spec.loader.exec_module(m)
-
-from collections import Counter
-from itertools import product, permutations
-import math
 
 
 def test_truth_table_trace_and_duplicate_negative_control():
@@ -35,9 +34,7 @@ def test_all_two_clause_formulas_match_independent_oracle(clauses):
 
 
 def test_partition_conserves_nonuniform_counts_and_is_disjoint():
-    pool = Counter(
-        {a: i + 1 for i, a in enumerate(product((0, 1), repeat=3))}
-    )
+    pool = Counter({a: i + 1 for i, a in enumerate(product((0, 1), repeat=3))})
     before = pool.copy()
     for clause in [(1, 2, 3), (1, 1), (-1, 1), (), (-2, 3)]:
         yes, no, branches = m.clause_partition(pool, clause)
@@ -72,17 +69,13 @@ def test_invalid_formula(args):
 def test_probability_independent_binomial_oracle():
     n, M, s, q = 3, 7, 2, 0.5
     u = s * q / 2**n
-    direct = sum(
-        math.comb(M, k) * u**k * (1 - u) ** (M - k) for k in range(1, M + 1)
-    )
+    direct = sum(math.comb(M, k) * u**k * (1 - u) ** (M - k) for k in range(1, M + 1))
     assert m.witness_probability(n, M, s, q) == pytest.approx(direct)
     assert m.witness_probability(0, 1) == 1
     assert m.witness_probability(0, 0) == 0
     assert m.witness_probability(10, 100, 0) == 0
     assert m.witness_probability(10, 100, 1, 0) == 0
-    assert m.witness_probability(40, 1) == pytest.approx(
-        2**-40, rel=1e-14, abs=0
-    )
+    assert m.witness_probability(40, 1) == pytest.approx(2**-40, rel=1e-14, abs=0)
 
 
 @pytest.mark.parametrize(
@@ -95,6 +88,6 @@ def test_probability_rejects_invalid(args):
 
 def test_committed_result_artifact_matches_execution():
     assert (
-        json.loads((ROOT / "drafts/ch13/results.json").read_text())
+        json.loads((ROOT / "book/chapters/ch13/results.json").read_text())
         == m.results()
     )

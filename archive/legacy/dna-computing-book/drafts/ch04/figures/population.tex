@@ -1,0 +1,15 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[note,font=\bfseries\sffamily,text width=6cm] at (3,2.7) {Sample A: eight molecules\\four identities};
+\node[note,font=\bfseries\sffamily,text width=6cm] at (10.5,2.7) {Sample B: eight molecules\\three identities};
+\foreach \i/\id in {0/a,1/a,2/b,3/b,4/c,5/c,6/d,7/d}{
+ \pgfmathtruncatemacro{\row}{\i/4}\pgfmathtruncatemacro{\col}{mod(\i,4)}
+ \draw[Blue,thick] (1.65*\col,1.7-\row) .. controls +(0.35,.3) and +(-.35,-.3) .. +(1.1,0);
+ \node[smallnote] at (1.65*\col+.55,1.35-\row) {$\id$};}
+\foreach \i/\id in {0/a,1/a,2/a,3/a,4/b,5/b,6/c,7/c}{
+ \pgfmathtruncatemacro{\row}{\i/4}\pgfmathtruncatemacro{\col}{mod(\i,4)}
+ \draw[Green,thick] (7.5+1.65*\col,1.7-\row) .. controls +(.35,.3) and +(-.35,-.3) .. +(1.1,0);
+ \node[smallnote] at (8.05+1.65*\col,1.35-\row) {$\id$};}
+\node[note] at (3,-.4) {Represented: $\{a,b,c,d\}$};
+\node[note,Red] at (10.5,-.4) {Identity $d$ is absent};
+\node[smallnote] at (6.8,-1.1) {Each curve is one schematic strand. Labels denote sequence identity, not nucleotide bases.};
+\end{tikzpicture}

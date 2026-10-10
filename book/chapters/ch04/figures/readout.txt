@@ -1,0 +1,7 @@
+FIGURE 4.5 / readout.tex
+Question: Why can a pool containing the answer fail to yield evidence?
+Objects: Whole pool, sampled aliquot, capture substrate, readout.
+Sequence: A witness must enter the aliquot, survive capture, and generate a detectable result.
+Declared case: 100 witnesses; independent per-copy inclusion probability 0.01.
+Inference: Miss probability is 0.99^100, about 0.366, even before later losses.
+Boundary: Glyphs are not literal counts; capture and detection efficiencies are unspecified; logical verification remains required.

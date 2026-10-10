@@ -1,0 +1,13 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box](-.3,-.5) rectangle (15.5,4.5);
+\node[note,anchor=west,font=\bfseries\sffamily] at (0,4){Catalyst precondition / $2A+E\longrightarrow B+E$};
+\foreach \x in {1,2}\node[circle,draw=Blue,fill=Blue!10,minimum size=.8cm] at (\x,2.7){A};
+\node[draw=Green,fill=Green!15,ellipse,minimum width=1.4cm] at (3.3,2.7){E};
+\draw[flow](4.4,2.7)--node[above,smallnote]{$x\ge C_r$}(6.6,2.7);
+\node[circle,draw=Red,fill=Red!10,minimum size=.8cm] at (7.4,2.7){B};
+\node[draw=Green,fill=Green!15,ellipse,minimum width=1.4cm] at (9,2.7){E};
+\node[note] at (12.8,2.7){$\Delta E=0$\\but $x_E\ge1$};
+\node[draw,fill=Green!10,note,text width=6.2cm,minimum height=.9cm] at (3.5,1){$3A+E\ \mapsto\ A+B+E$\\enabled: both consumed requirements met};
+\node[draw=Red,fill=Red!5,note,text width=6.2cm,minimum height=.9cm] at (11.4,1){$3A$ alone: disabled\\a nonnegative net update is insufficient};
+\node[smallnote] at (7.5,-.05){Atomic inventory rewrite; conceptual species, not an enzyme-specific biochemical mechanism.};
+\end{tikzpicture}

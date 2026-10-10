@@ -5,7 +5,7 @@ import itertools
 import pytest
 
 spec = importlib.util.spec_from_file_location(
-    "dna24", Path(__file__).parents[1] / "drafts/ch24/reference.py"
+    "dna24", Path(__file__).parents[1] / "book/chapters/ch24/reference.py"
 )
 r = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(r)

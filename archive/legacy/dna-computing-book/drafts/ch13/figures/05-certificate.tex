@@ -1,0 +1,18 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[note,anchor=west] at (0,3.4) {\textbf{Recovered sequence: 101}};
+\foreach \x/\s in {0.8/1,2.2/0,3.6/1}{
+ \draw[Blue,line width=2pt] (\x,2.5)--++(1,0);
+ \node[note] at (\x+.5,2.9) {\s};
+}
+\draw[flow] (5,2.5)--node[above,smallnote]{decode}(7,2.5);
+\node[note,anchor=west,align=left] at (7.3,2.5) {$C_1:1\lor0=1$\\$C_2:0\lor1=1$\\$C_3:1\lor0=1$};
+\node[note,draw=Green,rounded corners] at (12.2,2.5) {SAT\\certificate};
+\draw[flow] (10.5,2.5)--(11.3,2.5);
+\draw[Blue!30] (0,1.1)--(14,1.1);
+\node[note] (none) at (2,0) {No detected\\product};
+\node[note,anchor=west] (unsat) at (7,.35) {No satisfying assignment exists};
+\node[note,anchor=west] (lost) at (7,-.65) {Witness absent, lost or undetected};
+\draw[flow,dashed] (none.east)--(unsat.west);
+\draw[flow,dashed] (none.east)--(lost.west);
+\node[smallnote] at (7,-1.5) {Dashed branches: alternative explanations, not established causes.};
+\end{tikzpicture}

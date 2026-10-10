@@ -9,7 +9,7 @@ import zlib
 
 import pytest
 
-p = Path(__file__).parents[1] / "drafts/ch25/reference.py"
+p = Path(__file__).parents[1] / "book/chapters/ch25/reference.py"
 spec = importlib.util.spec_from_file_location("dnad25", p)
 r = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(r)

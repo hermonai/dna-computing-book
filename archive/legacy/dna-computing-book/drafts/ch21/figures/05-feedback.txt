@@ -1,0 +1,2 @@
+Question: does autocatalysis provide bistable memory?
+Y+F→2Y conserves N=Y+F. With N=k=1, logistic curves start at 0.1 and 0.001 and approach 1; exact zero remains zero. The phase line has positive drift for 0<Y<N, an unstable zero and an attracting full-conversion endpoint. All curves use assigned parameters; delay is not bistability, and full conversion depletes fuel.

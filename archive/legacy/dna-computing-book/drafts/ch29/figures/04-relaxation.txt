@@ -1,0 +1,5 @@
+Purpose: follow logit distribution through optimization to a concrete DNA string.
+Matrix: A,C,G,T columns; four positions; after80 updates each target probability.780406667 and alternative.073197778. Rows sum1; matrix entries are rounded in the illustration.
+Score: expected positional motif matches improves.25 to.780406667. ArgmaxACGT is reevaluated separately.
+Counterexample: uniform four-position rows have expected GC2 but A-first argmaxAAAA has GC0. Nonlinear diversity score is.75 at uniform and0 on every one-hot string.
+A categorical distribution is not a fractional molecule.

@@ -1,0 +1,30 @@
+DNAD-03-F9: Small depth can hide large work
+
+QUESTION
+Where did the search cost go?
+
+OBJECTS
+Candidate branches
+parallel workers
+depth
+work
+material
+
+RELATION / MECHANISM
+Expose simultaneous branches and their total allocation
+
+INFERENCE
+Parallel depth is only one resource coordinate.
+
+BOUNDARY
+Do not equate Boolean circuit depth to laboratory time.
+
+SOURCE
+Original accounting linked to Chapter 2
+
+STATUS
+Working-draft figure; not part of the accepted PDF.
+
+SEMANTIC TXT GRAPH
+4 candidate histories × 3 tests = 12 work units; critical-path depth 3.
+Parallel workers consume capacity; laboratory time is not abstract depth.

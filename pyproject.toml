@@ -7,10 +7,10 @@ name = "dna-computing-book"
 version = "0.1.0"
 description = "Executable reference material for DNA Computing: Foundations, Models, and the Road to Genomic Computation"
 requires-python = ">=3.11"
-dependencies = ["torch>=2.2"]
+dependencies = ["torch>=2.2", "numpy>=1.26"]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "ruff>=0.8"]
+dev = ["pytest>=8", "ruff>=0.8", "Pillow>=10"]
 
 [tool.setuptools.packages.find]
 where = ["code/minidna"]

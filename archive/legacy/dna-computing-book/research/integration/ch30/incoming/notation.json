@@ -1,0 +1,10 @@
+{
+  "G": "inherited genotype/sequence",
+  "R_t": "regulatory/cellular state",
+  "E_t": "environment",
+  "P_t": "phenotype/observation",
+  "a,b": "toy regulator states",
+  "R(x)": "Hill repression",
+  "alpha_A,alpha_B": "toy cis-dependent production strengths",
+  "delta": "toy decay rate"
+}

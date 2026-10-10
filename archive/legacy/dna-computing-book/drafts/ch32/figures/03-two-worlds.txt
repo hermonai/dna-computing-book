@@ -1,0 +1,5 @@
+Figure 32.3 — Mechanistic organization, not vocabulary equivalence.
+Engineered circuit: A + F ⇄ I → B + W, with assigned reaction rates and finite pools.
+Regulation: a schematic cis-regulatory DNA region interacts with trans factors,
+produces RNA and participates in feedback under cellular context. Shared DNA
+substrate does not make these causal systems or their software analogues identical.

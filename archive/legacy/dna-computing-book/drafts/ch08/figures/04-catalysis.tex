@@ -1,0 +1,16 @@
+\begin{tikzpicture}[font=\small\sffamily]
+\node[draw=Gold!60!black,fill=Gold!30,rounded corners,minimum height=.8cm] (free) at (1,6) {$E+S$};
+\node[draw=Gold!60!black,fill=Gold!30,rounded corners,minimum height=.8cm] (bound) at (5.5,6) {$ES$};
+\node[draw=Gold!60!black,fill=Gold!30,rounded corners,minimum height=.8cm] (product) at (10,6) {$E+P$};
+\draw[flow] (free.north east) to[bend left=15] node[above,smallnote] {binding $k_1s$}(bound.north west);
+\draw[flow] (bound.south west) to[bend left=15] node[below,smallnote] {release $k_{-1}$}(free.south east);
+\draw[flow] (bound)--node[above,smallnote] {turnover $k_{\rm cat}$}(product);
+\begin{axis}[at={(.4cm,0cm)},anchor=south west,width=11.5cm,height=4.6cm,
+xlabel={Free substrate $s$ ($\mu$M)},ylabel={Rate ($\mu$M/s)},xmin=0,xmax=10,ymin=0,ymax=.065,
+tick label style={font=\small},label style={font=\small}]
+\input{\Generated/rate-plot.tex}
+\addplot[gray,dashed] coordinates {(0,.06)(10,.06)};
+\addplot[Red,only marks] coordinates {(2,.03)};
+\node[smallnote,anchor=west] at (axis cs:2.3,.027) {$K_M=2\,\mu$M\\half limiting rate};
+\end{axis}
+\end{tikzpicture}

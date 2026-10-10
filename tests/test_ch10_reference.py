@@ -7,7 +7,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "dna10", ROOT / "drafts/ch10/reference.py"
+    "dna10", ROOT / "book/chapters/ch10/reference.py"
 )
 ref = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(ref)
@@ -35,9 +35,7 @@ def test_bad_ladders(lengths, x):
 def test_kernel_area_symmetry_and_finite_window():
     k = ref.band_kernel([-10, 0, 10], [0], [1])
     assert k[:, 0] == pytest.approx([0.5, 0.5])
-    assert ref.band_kernel([-1, 1], [0], [1])[0, 0] == pytest.approx(
-        0.6826894921
-    )
+    assert ref.band_kernel([-1, 1], [0], [1])[0, 0] == pytest.approx(0.6826894921)
     assert ref.band_kernel([0, 1], [0], [1]).sum() < 0.5
 
 
@@ -54,9 +52,7 @@ def test_exact_ambiguity_is_rejected_then_extra_channel_resolves():
     with pytest.raises(ValueError, match="identifiable"):
         ref.unmix(a, a @ [7, 3], [0.1] * 3)
     b = np.vstack((a, [1, 0.1]))
-    assert ref.unmix(b, b @ [7, 3], [0.1] * 4)["estimate"] == pytest.approx(
-        [7, 3]
-    )
+    assert ref.unmix(b, b @ [7, 3], [0.1] * 4)["estimate"] == pytest.approx([7, 3])
 
 
 @pytest.mark.parametrize("delta", [1.0, 0.1, 0.01])
@@ -71,9 +67,9 @@ def test_background_is_shared_error_not_independent_subtraction():
     net, sd = ref.roi_summary([12, 14, 13, 11], [2, 2, 2, 2], 1)
     assert net == 42 and sd == pytest.approx(math.sqrt(8))
     # More blank pixels reduce only the background-estimation contribution.
-    assert ref.roi_summary([12, 14, 13, 11], [2] * 16, 1)[
-        1
-    ] == pytest.approx(math.sqrt(5))
+    assert ref.roi_summary([12, 14, 13, 11], [2] * 16, 1)[1] == pytest.approx(
+        math.sqrt(5)
+    )
 
 
 def test_saturation_destroys_injectivity():
@@ -111,7 +107,7 @@ def test_invalid_kernel(edges, widths):
 
 def test_results_are_reproducible():
     assert ref.results() == json.loads(
-        (ROOT / "drafts/ch10/results.json").read_text()
+        (ROOT / "book/chapters/ch10/results.json").read_text()
     )
 
 

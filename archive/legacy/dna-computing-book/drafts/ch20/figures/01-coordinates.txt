@@ -1,0 +1,2 @@
+Question: how do reaction matrices encode different enabling conditions?
+Rows are A, B, W; columns are A+B → W and 2A → W. R columns are (1,1,0) and (2,0,0). P columns are (0,0,1) and (0,0,1). N=P−R. R names required molecules; N alone cannot represent catalysts. Read top reaction labels, then consumed, produced and net-change columns.

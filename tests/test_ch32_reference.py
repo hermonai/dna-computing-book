@@ -6,7 +6,7 @@ import math
 import pytest
 
 spec = importlib.util.spec_from_file_location(
-    "dna32", Path(__file__).parents[1] / "drafts/ch32/reference.py"
+    "dna32", Path(__file__).parents[1] / "book/chapters/ch32/reference.py"
 )
 m = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = m

@@ -1,0 +1,22 @@
+SEMANTIC GRAPH — Nested evidence and pseudoreplication
+
+Purpose: Explain the mechanism and its scope; companion to the editable TikZ plate.
+Notation: prose nodes and typed relationships, not ASCII art.
+
+NODES
+N0: Three synthetic independent preparations.
+N1: Each preparation contributes 100 assigned binary objects.
+N2: Preparation means (0,1,1).
+
+RELATIONSHIPS
+R0: Treatment/preparation -> shared object-level effects.
+R1: Equal preparation mean =2/3.
+R2: Sample variance of preparation means /3 =1/9.
+R3: Naive independent-object variance =0.0007432181; ratio149.5.
+
+READING AND LIMITS
+- Dot field depicts nesting, not every one of the 100 observations.
+- Extreme assigned within-preparation agreement exposes an independence mistake.
+- No laboratory variability estimate or exact confidence interval is inferred.
+
+Visual encoding: navy/blue denotes state and bound evidence; green denotes valid flow or independent unit; red denotes failure or limitation. Text and arrow roles preserve meaning in grayscale.

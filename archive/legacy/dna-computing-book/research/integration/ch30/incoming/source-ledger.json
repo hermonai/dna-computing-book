@@ -1,0 +1,35 @@
+[
+  {
+    "key": "enhancers2021",
+    "claim": "Enhancers contribute spatiotemporal expression and enhancer-promoter communication depends on multiple levels of genome organization.",
+    "primary": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8558291/",
+    "authors": "Schoenfelder et al. review context",
+    "access_date": "2026-10-05",
+    "depth": "full-text review"
+  },
+  {
+    "key": "3d2018",
+    "claim": "3D genome organization affects communication between promoters and distal cis-regulatory elements.",
+    "primary": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6061806/",
+    "access_date": "2026-10-05",
+    "depth": "full-text review"
+  },
+  {
+    "key": "moris2016",
+    "claim": "Waddington landscape is an abstraction; fate transitions may be stochastic/discontinuous rather than a literal smooth hierarchy.",
+    "primary": "https://doi.org/10.1038/nrg.2016.98",
+    "authors": "Naomi Moris; Cristina Pina; Alfonso Martinez Arias",
+    "date": "2016",
+    "access_date": "2026-10-05",
+    "depth": "review abstract/context"
+  },
+  {
+    "key": "maizels2026",
+    "claim": "Modern GRN research distinguishes correlative reconstruction from causal mechanistic explanation.",
+    "primary": "https://doi.org/10.1038/s41576-026-00939-1",
+    "authors": "Rory J. Maizels; James Briscoe",
+    "date": "2026",
+    "access_date": "2026-10-05",
+    "depth": "current perspective abstract"
+  }
+]

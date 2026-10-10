@@ -1,0 +1,7 @@
+FIGURE 4.1 / population.tex
+Question: Can molecule count establish candidate diversity?
+Objects: Two populations, each containing eight candidate strands; identity labels a,b,c,d.
+States: Population A has identity counts 2,2,2,2. Population B has counts 4,2,2,0.
+Relation: The total count is invariant while represented support changes from four to three.
+Inference: Abundance does not establish complete coverage.
+Boundary: Each label is a whole candidate identity, not a DNA nucleotide; positions are not molecular dynamics.

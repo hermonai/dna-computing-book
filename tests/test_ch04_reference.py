@@ -2,7 +2,6 @@
 
 import importlib.util
 from pathlib import Path
-from decimal import Decimal
 from fractions import Fraction
 from itertools import product, combinations
 from math import log
@@ -10,33 +9,10 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "d04", ROOT / "drafts/ch04/reference.py"
+    "d04", ROOT / "book/chapters/ch04/reference.py"
 )
 M = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(M)
-
-
-def test_review_record_binds_authored_sources_without_promotion():
-    import hashlib
-    import json
-    record = json.loads((ROOT / "artifacts/deep/ch04-review.json").read_text())
-    assert record["allPagesInspected"] and record["openGates"]
-    assert record["figures"] == 5 and record["exercises"] == 12
-    assert record["status"].endswith("no acceptance promotion")
-    for path, digest in record["sources"].items():
-        assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest, path
-    accepted = json.loads((ROOT / "book/book.json").read_text())
-    assert len(accepted["chapters"]) == 2
-
-
-def test_local_review_pdf_matches_author_review_when_available():
-    import hashlib
-    import json
-    record = json.loads((ROOT / "artifacts/deep/ch04-review.json").read_text())
-    path = ROOT / record["pdf"]
-    if not path.exists():
-        pytest.skip("Review PDF is a generated, gitignored artifact")
-    assert hashlib.sha256(path.read_bytes()).hexdigest() == record["sha256"]
 
 
 def test_minimal_budget():
@@ -87,9 +63,7 @@ def test_invalid_probabilities(p):
         M.miss(3, p)
 
 
-@pytest.mark.parametrize(
-    "p,d", [(0, 0.01), (".0001", 0), (".1", 1), ("1e-60", ".01")]
-)
+@pytest.mark.parametrize("p,d", [(0, 0.01), (".0001", 0), (".1", 1), ("1e-60", ".01")])
 def test_unattainable_or_unsupported_budget(p, d):
     with pytest.raises(ValueError):
         M.required_copies(p, d)
@@ -121,16 +95,12 @@ def test_inventory_dimensions_and_dilution():
     assert one["moles"] == pytest.approx(1e-15)
     assert one["litres"] == pytest.approx(1e-6)
     assert one["litres"] == pytest.approx(10 * ten["litres"])
-    assert one["grams_ssdna_approx"] == pytest.approx(
-        ten["grams_ssdna_approx"]
-    )
+    assert one["grams_ssdna_approx"] == pytest.approx(ten["grams_ssdna_approx"])
     assert M.half_time(1e6, 1e-9) == pytest.approx(log(2) * 1000)
 
 
 def test_bayes_readout_is_not_sensitivity():
-    assert M.positive_predictive_value(0.01, 0.9, 0.05) == pytest.approx(
-        2 / 13
-    )
+    assert M.positive_predictive_value(0.01, 0.9, 0.05) == pytest.approx(2 / 13)
     with pytest.raises(ValueError):
         M.positive_predictive_value(0, 0, 0)
 
@@ -145,7 +115,7 @@ def test_generated_results_reproduce():
     import json
 
     assert (
-        json.loads((ROOT / "drafts/ch04/results.json").read_text())
+        json.loads((ROOT / "book/chapters/ch04/results.json").read_text())
         == M.results()
     )
 

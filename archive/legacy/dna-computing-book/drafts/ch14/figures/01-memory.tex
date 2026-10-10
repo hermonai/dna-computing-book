@@ -1,0 +1,19 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[note,anchor=west] at (0,2.7) {\textbf{Same backbone, different occupancy}};
+\draw[Blue,line width=2pt,-{Stealth}] (.5,.6)--(13.6,.6);
+\node[smallnote] at (.3,.25) {$5'$};\node[smallnote] at (13.8,.25) {$3'$};
+\foreach \x/\i/\b in {1/0/0,4.2/1/1,7.4/2/0,10.6/3/1}{
+ \fill[Pale] (\x,.4) rectangle ++(2.4,.4);
+ \draw[Blue,thick] (\x,.6)--++(2.4,0);
+ \node[note] at (\x+1.2,.1) {$D_{\i}$};
+ \node[note] at (\x+1.2,-.5) {$b_{\i}=\b$};
+}
+\foreach \x in {4.2,10.6}{
+ \draw[Green,line width=2pt,-{Stealth}] (\x+2.4,1.9)--(\x,1.9);
+ \foreach \d in {.2,.5,.8,1.1,1.4,1.7,2,2.3}
+  \draw[Green,dashed] (\x+\d,.8)--(\x+\d,1.75);
+ \node[smallnote] at (\x-.3,1.9) {$3'$};
+ \node[smallnote] at (\x+2.7,1.9) {$5'$};
+}
+\node[smallnote] at (7,-1) {Bit order: address 0 to 3. Each block is a multi-base domain.};
+\end{tikzpicture}

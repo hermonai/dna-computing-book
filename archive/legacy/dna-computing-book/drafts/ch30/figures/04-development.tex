@@ -1,0 +1,30 @@
+\begin{tikzpicture}[font=\small\sffamily,>=Stealth]
+\path[use as bounding box] (0,-1.2) rectangle (14,6.3);
+\node[anchor=west,Blue] at (0,5.95) {A. Observed ancestry and inferred ordering are separate};
+\node[circle,draw=Blue,fill=Pale,minimum size=1cm] (root) at (2,4.9) {root};
+\node[circle,draw=Green,fill=Green!10,minimum size=1cm] (left) at (.9,3.1) {left};
+\node[circle,draw=Red,fill=Red!10,minimum size=1cm] (right) at (3.3,3.1) {right};
+\draw[flow] (root)--(left); \draw[flow] (root)--(right);
+\node[smallnote,anchor=west] at (4.25,4.9) {$t=0,\ z=.2$};
+\node[smallnote,anchor=west,text width=3.4cm,align=left] at (4.25,3.1) {$t=1$:\\left $z=.9$; right $z=.1$};
+\node[smallnote,Blue] at (2.1,2.25) {solid edges: recorded parent};
+\draw[->,Red,thick] (8.2,3.1)--(13.3,3.1);
+\foreach \x/\label/\z in {8.5/right/.1,10.65/root/.2,12.9/left/.9} {
+ \draw[Red] (\x,2.9)--(\x,3.3);
+ \node[smallnote] at (\x,3.7) {\label};
+ \node[smallnote] at (\x,2.5) {$z=\z$};
+}
+\node[smallnote] at (10.7,4.9) {snapshot pseudotime axis};
+\node[smallnote,Red] at (10.7,1.9) {sorted neighbors do not imply ancestry};
+\draw[gray!40] (0,1.35)--(14,1.35);
+\node[anchor=west,Blue] at (0,.95) {B. Three cytoplasmic molecules, complementary daughter counts};
+\draw[Blue,fill=Pale] (2,-.1) circle (.7);
+\foreach \x/\y in {1.7/-.15,2.1/.15,2.3/-.3} {\filldraw[Green,fill=Green!20] (\x,\y) circle (.12);}
+\draw[->,Blue] (3,-.1)--(5.1,-.1);
+\draw[Blue,fill=Pale] (6,-.1) circle (.65);
+\draw[Blue,fill=Pale] (8,-.1) circle (.65);
+\filldraw[Green,fill=Green!20] (6,-.1) circle (.12);
+\filldraw[Green,fill=Green!20] (7.8,.05) circle (.12);
+\filldraw[Green,fill=Green!20] (8.2,-.2) circle (.12);
+\node[smallnote] at (11.4,-.1) {$X=1,\ N-X=2$ illustrated\\$X\sim\mathrm{Binomial}(3,1/2)$};
+\end{tikzpicture}

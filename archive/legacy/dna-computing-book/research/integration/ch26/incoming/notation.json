@@ -1,0 +1,8 @@
+{
+  "q": "audited workflow stage",
+  "c": "molar concentration",
+  "V": "volume",
+  "n": "amount in moles",
+  "preparation_id": "identity of an independent physical preparation",
+  "artifact digest": "SHA-256 byte-identity binding"
+}

@@ -1,0 +1,34 @@
+DNAD-03-F6: Recovering a witness with decision queries
+
+QUESTION
+How can yes/no answers guide construction?
+
+OBJECTS
+Graph
+ordered edge deletions
+decision oracle
+minimal yes-graph
+
+RELATION / MECHANISM
+Replay six ordered trial deletions from the original six-edge graph; retain a yes-instance after every trial; reconstruct the final path
+
+INFERENCE
+At most m+1 oracle queries suffice for this search reduction.
+
+BOUNDARY
+The oracle is not free and not implemented in polynomial time here.
+
+SOURCE
+Original edge-deletion proof and exhaustive small tests
+
+STATUS
+Working-draft figure; not part of the accepted PDF.
+
+NUMERICAL OBSERVATIONS
+Query 1: original graph YES.
+Query 2: try removing 0 → 1; oracle YES; delete; retained edges = [(0, 2), (1, 2), (1, 3), (2, 1), (2, 3)].
+Query 3: try removing 0 → 2; oracle NO; retain; retained edges = [(0, 2), (1, 2), (1, 3), (2, 1), (2, 3)].
+Query 4: try removing 1 → 2; oracle YES; delete; retained edges = [(0, 2), (1, 3), (2, 1), (2, 3)].
+Query 5: try removing 1 → 3; oracle NO; retain; retained edges = [(0, 2), (1, 3), (2, 1), (2, 3)].
+Query 6: try removing 2 → 1; oracle NO; retain; retained edges = [(0, 2), (1, 3), (2, 1), (2, 3)].
+Query 7: try removing 2 → 3; oracle YES; delete; retained edges = [(0, 2), (1, 3), (2, 1)].

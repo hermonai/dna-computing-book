@@ -1,0 +1,14 @@
+\begin{tikzpicture}[font=\small\sffamily,>=Stealth]
+\draw[fill=Gold!35] (0,1.5) rectangle (2,3.5);
+\draw[fill=Red!12,draw=Red,thick] (2.25,1.5) rectangle (4.25,3.5);
+\draw[Red,very thick] (2,2.5)--(2.25,2.5);
+\node[align=center] at (3.25,2.5){wrong tile\\one contact};
+\draw[->,Blue,thick] (4.4,2.7)--node[above,sloped]{$k_{\rm off}$}(7.2,4);
+\node[align=center] at (8.5,4){detached\\contact rejected};
+\draw[->,Red,thick] (4.4,2.2)--node[below,sloped]{$k_{\rm lock}$}(7.2,1);
+\draw[fill=Red!12,draw=Red,thick] (7.5,.5) rectangle (8.7,1.7);
+\draw[fill=Gold!35] (7.5,-.95) rectangle (8.7,.25);
+\draw[Red,very thick] (8.1,.25)--(8.1,.5);
+\node[anchor=west,align=left] at (9,1){neighbor contact\\stabilizes the error};
+\node[anchor=west,align=left] at (0,-1.6){$P_{\rm lock}=k_{\rm lock}/(k_{\rm off}+k_{\rm lock})$; conditional on a wrong contact.\\An ideal $\tau=2$ rule forbids the initial event; a kinetic model need not.};
+\end{tikzpicture}

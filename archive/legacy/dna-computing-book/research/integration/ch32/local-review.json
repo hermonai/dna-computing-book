@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-10",
+  "chapter": 32,
+  "pdf": "output/pdf/dna-computing-ch32-review.pdf",
+  "pdf_sha256": "d44bd16874469fde529afc9b3ae4293fbedd5cfd3687e094eedee94e7c76d687",
+  "pages": 14,
+  "source_hashes": {
+    "drafts/ch32/README.md": "a33cd465b6b6c911bc596ea8961c90b990ee30fc0ceb8c263ebe4da0a22fba5e",
+    "drafts/ch32/STORYBOARD.md": "22b5d0c96042369b6b64998b2628c97d84418a0dd8202abbb6a8ffc9925282df",
+    "drafts/ch32/build.py": "e24120db1b965c0afb4a18061e524a7669d32f3294e701d2727446e3dbac62e8",
+    "drafts/ch32/figures/01-ladder.tex": "1ea35b90bff0f79361628b4a0d3b9d3b29a95e13a204a31bc942126c5862ab54",
+    "drafts/ch32/figures/01-ladder.txt": "6c328f5555d6998e560b20cbcc2f017cf0716189eee8b6fe36aafbaecb8ce85e",
+    "drafts/ch32/figures/02-ledger.tex": "5d2592edd11e323b90b3970b8c69481c5c216621e3246d5047963e62e81d60cf",
+    "drafts/ch32/figures/02-ledger.txt": "69323cd01a8bd5be0f4552e18969b9a42d231dea039e151d3e5bcc76dec390cd",
+    "drafts/ch32/figures/03-two-worlds.tex": "71b940ec3c7ff3f077f60aabad8e269cfe09fdc20dad198f4be626050f8cc83a",
+    "drafts/ch32/figures/03-two-worlds.txt": "8b4d69dfb5fcbe5a954dd38087ac6d1b3734cefff8d84da4d557055b182ab240",
+    "drafts/ch32/figures/04-loop.tex": "d06eaaaa7f3ce7abe5e5f3e6cc8eb4f736698a98385b1528bd8c4f2bd2f9f1f8",
+    "drafts/ch32/figures/04-loop.txt": "fb0eda8116eb98e23ccbf27195c8dea7b0ca981a4f9a8fe1833e86f2a4779ae1",
+    "drafts/ch32/figures/05-programs.tex": "6d8b073c8ef08afea0ff3b10697635d8aa24e30ac6e4bb2e7bdf2ec2b8c622dd",
+    "drafts/ch32/figures/05-programs.txt": "103433522aae5b1653147657c64e1a0c4c721c5fe5b223894d8e93f20c6e788c",
+    "drafts/ch32/figures/06-map.tex": "5251fe687696bcb80b14443823f6c8e982a6ddb2616d020446838b679b437051",
+    "drafts/ch32/figures/06-map.txt": "66b1e48fe4769b18551f0ceed0cd33a8e61403724e3cfc7d88a9ba3783e6dda2",
+    "drafts/ch32/manuscript.tex": "53bdc2370367bff21426cdf007b4491cde982d86d8f0de211c646421b960ff32",
+    "drafts/ch32/reference.py": "9995f427f3a70bec6e537a4d10807710599868ff344f0692e892c6989db5ff4e",
+    "drafts/ch32/results.json": "8325b47c6c90b56ee02308b2dcc0dec85e3b1c82060da4a2e5bdcffa104cdea1",
+    "drafts/ch32/review.tex": "ac40fda5ea2a2baf2b138281739bd20c8782552238e0a66e8b67cde46e928f52",
+    "drafts/ch32/sources.tex": "c1384540c8a3cb5b8cc2a8af03511dfd7e4fa6c3c2ecbe5bec8c8a2f5c64e925",
+    "tests/test_ch32_reference.py": "a774916619f4fc32b62c1fdd3639c9d0d9f26a13becafe1308794eef425e3cd2"
+  },
+  "tests": {
+    "repository_passed": 1400,
+    "repository_skipped": 2,
+    "chapter_passed": 31,
+    "report": "build/ch32/regression.xml",
+    "python": "3.13.6"
+  },
+  "visual_review": {
+    "reviewer": "author/agent",
+    "status": "PASS WITH NOTES",
+    "mode": "all 14 pages, color and grayscale contact sheets",
+    "notes": "All 14 pages inspected in color and grayscale. Reversible capture and regulatory/RNA labels clarified; paired-effect listing kept intact. Projection counterexample, factorial values, taxonomy and final gates checked."
+  },
+  "mathematical_review": "Assumptions, independent oracles and falsifiers in technical-audit.md.",
+  "acceptance": "locally reviewed standalone integration candidate; not accepted publication edition"
+}

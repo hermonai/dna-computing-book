@@ -1,0 +1,12 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
+\path[use as bounding box](0,-.3) rectangle(16,6.7);
+\node[anchor=west,font=\large\sffamily\bfseries,Blue] at(0,6.2){Three separate questions at the release boundary};
+\node[draw=Blue,fill=Pale,align=center,minimum width=4.3cm,minimum height=1.6cm](b) at(2.5,4.5){Bundle bytes\\design + raw evidence\\code + derived results};
+\node[draw=Green,fill=Green!7,align=center,minimum width=4.3cm,minimum height=1.6cm](m) at(8,4.5){Machine gate\\bytes / sizes / digests\\ordered history / frozen plan};
+\node[draw=Red,fill=Red!5,align=center,minimum width=4.3cm,minimum height=1.6cm](s) at(13.5,4.5){Scientific gate\\controls / estimand\\uncertainty / interpretation};
+\draw[flow](b)--(m);\draw[flow](m)--(s);
+\foreach \x/\t in {2.5/{Computational reproduction\\same frozen evidence},8/{Experimental replication\\new independent preparations},13.5/{External replication\\another team or site}} {
+\node[align=center,minimum width=4.4cm,draw=Blue,rounded corners,minimum height=1.3cm] at(\x,2.4){\t};}
+\node[align=center,Red] at(8,1){A rebuilt chain can be coherent without being authentic.\\A valid record does not certify a true measurement.};
+\node[align=center,Blue] at(8,0){FAIR metadata + explicit access and license\\Restricted access can still be documented and reusable.};
+\end{tikzpicture}

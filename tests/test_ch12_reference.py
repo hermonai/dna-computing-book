@@ -5,11 +5,10 @@ import json
 import pytest
 from collections import Counter
 from itertools import permutations
-import math
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "ch12_reference_tests", ROOT / "drafts/ch12/reference.py"
+    "ch12_reference_tests", ROOT / "book/chapters/ch12/reference.py"
 )
 m = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = m
@@ -17,15 +16,11 @@ spec.loader.exec_module(m)
 
 
 def test_literal_trace_and_independent_path_oracle():
-    kept, trace = m.filter_trace(
-        m.walks(m.VERTICES, m.EDGES, 5), m.VERTICES, "A", "D"
-    )
+    kept, trace = m.filter_trace(m.walks(m.VERTICES, m.EDGES, 5), m.VERTICES, "A", "D")
     oracle = {
         p
         for p in permutations(m.VERTICES)
-        if p[0] == "A"
-        and p[-1] == "D"
-        and all(e in m.EDGES for e in zip(p, p[1:]))
+        if p[0] == "A" and p[-1] == "D" and all(e in m.EDGES for e in zip(p, p[1:]))
     }
     assert set(kept) == oracle == {tuple("ABCD"), tuple("ACBD")}
     assert [v["copies"] for v in trace] == [34, 6, 2, 2, 2, 2, 2]
@@ -47,9 +42,7 @@ def test_invalid_generator_is_detected_only_by_independent_verifier():
 
 
 def test_bounded_generation_can_miss_real_witnesses():
-    kept, _ = m.filter_trace(
-        m.walks(m.VERTICES, m.EDGES, 3), m.VERTICES, "A", "D"
-    )
+    kept, _ = m.filter_trace(m.walks(m.VERTICES, m.EDGES, 3), m.VERTICES, "A", "D")
     assert not kept
     assert m.verify(tuple("ABCD"), m.VERTICES, m.EDGES, "A", "D")
 
@@ -61,8 +54,13 @@ def test_verifier_rejects_wrong_certificates(p):
 
 def test_exact_filters_commute():
     p = m.walks(m.VERTICES, m.EDGES, 5)
-    f = lambda q: "B" in q
-    g = lambda q: len(q) == 4
+
+    def f(q):
+        return "B" in q
+
+    def g(q):
+        return len(q) == 4
+
     assert m.retain(m.retain(p, f), g) == m.retain(m.retain(p, g), f)
 
 
@@ -80,17 +78,13 @@ def test_retention_expected_counts_and_fixed_diagonal_commutation():
     )
 
 
-@pytest.mark.parametrize(
-    "n,q", [(0, 0.2), (1, 0.2), (10, 0.2), (7, 0), (7, 1)]
-)
+@pytest.mark.parametrize("n,q", [(0, 0.2), (1, 0.2), (10, 0.2), (7, 0), (7, 1)])
 def test_detection_formula_against_binomial_zero_term(n, q):
     assert m.detect_probability(n, q) == pytest.approx(1 - (1 - q) ** n)
 
 
 def test_tiny_detection_avoids_cancellation():
-    assert m.detect_probability(100, 1e-20) == pytest.approx(
-        1e-18, rel=1e-12, abs=0
-    )
+    assert m.detect_probability(100, 1e-20) == pytest.approx(1e-18, rel=1e-12, abs=0)
 
 
 @pytest.mark.parametrize("n,p", [(-1, 0.5), (1, 1.1), (2, float("nan"))])
@@ -101,5 +95,5 @@ def test_invalid_detection_inputs(n, p):
 
 def test_generated_results():
     assert m.results() == json.loads(
-        (ROOT / "drafts/ch12/results.json").read_text()
+        (ROOT / "book/chapters/ch12/results.json").read_text()
     )

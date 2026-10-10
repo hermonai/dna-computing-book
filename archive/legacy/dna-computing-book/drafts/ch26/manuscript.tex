@@ -1,0 +1,363 @@
+\chapter{Laboratory workflows and reproducibility}
+\label{dnad26:chapter}
+A diagram specifies what a molecular system is intended to do. A laboratory record
+must establish which physical realization was actually tested, what was observed,
+and how those observations became a conclusion. These are different questions.
+Chapter 25 recovered a digital file under declared coding assumptions; it did not
+establish that an ordered strand was intact, an instrument was calibrated, or an
+independent preparation would behave the same way.
+
+Our objective is to build a small, executable \Term{evidence ledger}. We derive its
+transition rules, implement them, try to break them, and examine what they cannot
+verify. The ledger is a provenance teaching artifact, not an operating protocol,
+a certified electronic laboratory notebook, or evidence that a wet-lab experiment
+was performed. All example artifact bytes and replicate outcomes are assigned
+synthetic teaching data.
+
+\section{From an abstract claim to a testable record}
+Before collecting evidence, write a claim with an intervention, outcome,
+denominator, comparison and experimental unit. For example, a design revision
+improves the fraction of correctly classified assemblies across independently
+prepared reactions. This specifies more than saying that the design works.
+A fraction of correct objects, a fraction of functional reaction vessels and
+a fraction of recoverable files are different estimands.
+
+A design freeze should bind the primary outcome and its classifier, control roles,
+planned independent units, exclusion rules, stopping or sampling plan, and the
+boundary between confirmatory and exploratory analysis. Freezing does not prohibit
+learning. An exploratory revision receives a new identity and remains valuable;
+it must not silently replace the prospectively specified question.
+
+For molecular implementations, a sequence manifest needs identities, roles and
+orientation, with an explicit convention for complement and reverse complement.
+Chapter 24's resource accounting and Chapter 25's sequence coding do not supply
+a universal laboratory recipe. Buffer, instrument and material requirements depend
+on the mechanism and validated local procedures. The DNA-origami primer provides
+context for design, synthesis and characterization \cite{Dey2021}; this chapter
+does not claim to reproduce its laboratory methods.
+
+\section{Six boundaries, not six decorative labels}
+Let $q_i$ be one of six ordered stages:
+design frozen, materials verified, run recorded, observations frozen, analysis
+frozen, and released. A history is $H_k=(E_0,\ldots,E_{k-1})$, not an isolated label
+saying released. Define the required new artifact roles
+\[
+\begin{aligned}
+R_0&=\{\mathrm{design,sequences,protocol}\},\\
+R_1&=\{\mathrm{materials}\},\\
+R_2&=\{\mathrm{execution,controls,randomization}\},\\
+R_3&=\{\mathrm{raw,calibration,blinding}\},\\
+R_4&=\{\mathrm{analysis\_spec,analysis\_code,derived}\},\\
+R_5&=\{\mathrm{release\_metadata}\}.
+\end{aligned}
+\]
+A stage-$i$ event must retain all roles in $\bigcup_{j=0}^{i}R_j$. Presence is a
+necessary structural prerequisite, not a scientific judgment about an artifact's
+contents. A file labeled calibration can still contain a failed calibration.
+\Plate{01-state}{Each audited boundary adds evidence while retaining earlier
+identities and artifacts. Cumulative prerequisites prevent a release label from
+standing in for the complete history.}{dnad26:state}
+
+The demo binds three artifacts at design freeze, then four, seven, ten,
+thirteen and fourteen. These counts follow from this deliberately small
+schema, not from a universal reporting standard.
+\begin{center}\input{\Generated/stages.tex}\end{center}
+The release gate has two distinct parts: machine validation of the ledger, and
+human/domain validation of the experiment and inference. Neither should be
+reported as the other.
+
+\section{Identity is a hierarchy of physical commitments}
+A \Term{design identity} names an abstract mechanism. A sequence-set identity names
+its specific strand realization. A material identity names the relevant acquired
+or produced lot and its provenance. A preparation identity names a specific
+physical combination, including its relation to an independent experimental unit.
+\Plate{02-identity}{A design can have multiple sequence realizations; a sequence
+realization can have different material lots. Multiple measurements of one
+preparation are not new preparations.}{dnad26:identity}
+
+Consider three changes. Correcting a base in the sequence manifest changes the
+sequence-set identity even if the conceptual gate is unchanged. Reordering the
+same sequences from a new lot changes material identity without necessarily
+changing the sequence set. Imaging a second field from the same prepared vessel
+changes the observation identity, not the preparation identity.
+
+Our frozen \texttt{Plan} binds run, design, sequence set, material, preparation,
+protocol version, independent-unit identity, distinct control identities and a
+blinding policy. Identifiers are nonempty stripped strings. Control identities
+must be distinct; the two-control minimum encodes this teaching contract, not
+a sufficient experimental design for every assay. A material substitution or
+sequence revision after the initial freeze requires a new linked run. A correction
+is recorded with its reason and provenance; previous evidence is not overwritten.
+
+\section{Bind actual bytes, not just plausible-looking hashes}
+For artifact bytes $B$ define
+\[
+A=(\mathrm{role,id,SHA256}(B),|B|).
+\]
+Validation retrieves bytes by identity and checks type, size and digest. Checking
+only that a string has 64 hexadecimal characters would accept a missing file.
+Checking only size would accept a same-length mutation.
+
+The implementation uses an immutable tuple of frozen artifact records and rejects
+duplicate artifact identities. Immutability of the record does not make the external
+byte store immutable: that is why every validation rechecks the actual bytes.
+\Listing{verify_artifacts}
+The function assumes \texttt{Artifact}, \texttt{ROLES}, \texttt{identifier} and
+\texttt{sha} from the complete runnable module. Each listing is the literal tested
+function, not abbreviated pseudocode. The full file also defines the plan and event
+dataclasses, constructors and validation helpers.
+
+Our event digest uses a declared local JSON profile: sorted keys, compact separators,
+ASCII escaping, no non-finite JSON numbers and ASCII bytes. This is a reproducibility
+contract for these Python records, not conformance to a cross-language canonical-JSON
+standard. Another implementation must reproduce the specified byte representation
+or adopt a separately versioned serialization.
+
+\section{Derive the append-only invariant}
+Write $P(E)$ for the frozen plan, $A(E)$ for its artifact set, and $D(E)$ for its
+ordered deviations. A valid adjacent pair must satisfy
+\[
+\begin{aligned}
+q(E_i)&=q_i,&
+\mathrm{previous}(E_i)&=\mathrm{digest}(E_{i-1}),\\
+P(E_i)&=P(E_{i-1}),&
+A(E_{i-1})&\subseteq A(E_i),\\
+D(E_{i-1})&\preceq D(E_i).
+\end{aligned}
+\]
+Here set inclusion compares the entire artifact record, not just its identity;
+$\preceq$ means ordered-prefix inclusion. The genesis predecessor is a fixed
+all-zero digest. The event's own digest must match its serialized content.
+\Listing{validate_history}
+
+This yields a short inductive argument. The genesis event fixes the plan and its
+first artifacts. Each validated successor preserves them and appends evidence.
+Therefore every valid prefix retains all earlier bound records and deviations.
+The statement is conditional on the supplied history and byte store. It says
+nothing about whether an omitted real-world event occurred.
+\Listing{advance}
+The constructor advances exactly one stage, validates both the existing history
+and its actual bytes, and rejects a second release. A restarted instrument can
+be recorded as a deviation before observations freeze. Its disposition belongs
+in the analysis specification; appending the note does not automatically excuse
+or invalidate the run.
+
+\subsection{The coherent-forgery counterexample}
+Suppose an adversary changes artifact bytes, updates their digests, rewrites the
+events and recomputes every predecessor link. The resulting internally consistent
+history can pass this validator. A hash chain detects inconsistency relative to
+a trusted earlier record; it is not an identity authority or an unforgeable timestamp.
+External anchoring, authenticated signatures, access control and retention policies
+address different threats and need their own design. Even a signed false measurement
+remains false. Describe this system as byte binding and structural provenance,
+not cryptographic proof of experimental truth.
+
+\section{Preparation quantities: derive, convert, qualify}
+For concentration $c$ in mol/L and volume $V$ in L, nominal amount is
+\begin{equation}
+n=cV.
+\label{dnad26:amount}
+\end{equation}
+Thus $2\,\mathrm{nM}=2\times10^{-9}\,\mathrm{mol/L}$ and
+$5\,\mu\mathrm L=5\times10^{-6}\,\mathrm L$ give $n=10^{-14}$ mol.
+The unit conversion is part of the computation, not typographical decoration.
+\Plate{03-ledger}{Nominal amount follows from compatible units. Uncertainty and
+functional fraction are separate questions; the example is assigned,
+not a measured preparation.}{dnad26:ledger}
+
+If the intact functional fraction is $f$, functional amount would be $fn$ under
+that model. The ledger does not measure $f$. Concentration inferred from absorbance,
+supplier nominal concentration, folded fraction and incorporated fraction are not
+interchangeable quantities. Record the measurement method and what it estimates.
+
+Let concentration and volume uncertainties be $\sigma_c,\sigma_V$ with correlation
+$\rho$. Linearize $n(c+\delta c,V+\delta V)$:
+$\delta n\approx V\delta c+c\delta V$. Taking variance gives
+\begin{equation}
+\sigma_n^2\approx V^2\sigma_c^2+c^2\sigma_V^2+
+2cV\rho\sigma_c\sigma_V.
+\label{dnad26:uncertainty}
+\end{equation}
+This first-order approximation requires a defensible uncertainty model.
+It omits $\delta c\,\delta V$ and need not describe
+large, skewed or systematically biased errors.
+
+For $\sigma_c=0.2$ nM, $\sigma_V=0.1\,\mu$L and $\rho=0$, the example yields
+$\sigma_n=1.0198039027\times10^{-15}$ mol, approximately $10.2\%$ relative
+uncertainty. Correlated errors change the answer; independence must not be assumed
+merely because concentration and volume have different names.
+\Listing{amount_uncertainty}
+The code evaluates the equivalent nonnegative form
+$\operatorname{hypot}(x+\rho y,\sqrt{1-\rho^2}\,y)$ with $x=V\sigma_c$,
+$y=c\sigma_V$. It rejects invalid inputs and non-finite results rather than releasing
+an infinite uncertainty as a usable result. This numerical arrangement is not
+a higher-order physical uncertainty model.
+
+\section{Controls test mechanisms; identities alone do not}
+A negative control asks what happens without the proposed intervention or required
+mechanism. A positive control asks whether the measurement can recover an expected
+signal under a validated condition. A process control probes a specific upstream
+failure such as sample handling or contamination. A no-input gate, a known readout
+standard and a sample-handling blank answer different questions.
+
+Declare the control's prediction, denominator and disposition rule in advance.
+A failed positive control can make an apparent absence of output uninterpretable;
+a successful positive control does not prove the designed gate computed correctly.
+High negative-control background can invalidate a threshold-based interpretation.
+Our schema verifies the existence of a control record, not whether any prediction held.
+
+Randomized processing order can break alignment between condition and temporal
+drift. Blinded classification can block expectation from affecting field selection
+or borderline calls. Neither fixes an irrelevant control or a defective instrument.
+Record the assignment artifact and its scope: randomizing images after preparation
+does not randomize preparation-level treatment.
+
+\section{Three preparations are not three hundred replications}
+Let $y_{rj}$ be observation $j$ in independently prepared unit $r$, with $m_r$
+observations. For a preparation-weighted estimand define
+\[
+\bar y_r=\frac{1}{m_r}\sum_j y_{rj},\qquad
+\hat\mu=\frac1R\sum_r\bar y_r,\qquad
+\widehat{\operatorname{Var}}(\hat\mu)=
+\frac{\sum_r(\bar y_r-\hat\mu)^2}{R(R-1)}.
+\]
+This is the sample variance of independent preparation means divided by $R$.
+It requires independent units with an appropriate common-population interpretation;
+it is not an exact small-sample confidence interval or a universal hierarchical model.
+\Plate{04-replicates}{Treatment assigned to preparations creates shared upstream
+variation. Increasing object counts does not increase the number of independently
+prepared units.}{dnad26:replicates}
+\Listing{cluster_mean_variance}
+
+Assign 100 binary objects to each of three preparations, with preparation means
+$(0,1,1)$. Then $\hat\mu=2/3$ and preparation-mean variance is $1/9$.
+Treating all 300 objects as independent instead gives
+$\hat\mu(1-\hat\mu)/299=0.0007432181$, smaller by a factor of $149.5$.
+The example deliberately creates perfect within-preparation agreement to expose
+the independence error. It is not an estimate of laboratory variability.
+
+When $m_r$ differ, an object-weighted mean and a preparation-weighted mean can differ.
+For means $(0,1)$ with counts $(1,999)$, equal preparation weighting yields $0.5$,
+while pooling objects yields $0.999$. Neither is automatically the correct target.
+Specify the estimand before selecting an uncertainty method.
+
+\section{Preserve observation before classification}
+An image, fluorescence trace or sequencing output is not yet a scientific success
+label. A classifier maps a defined raw artifact and calibration to a reported
+variable. Freeze image selection, segmentation, thresholds, handling of ambiguous
+objects and denominator conventions. Otherwise a classifier revision changes
+reported accuracy while no molecular mechanism changed.
+\Plate{05-measure}{Raw observations, calibrated variables and success labels are
+distinct artifacts. Versioning the mapping permits reanalysis without rewriting
+the physical preparation.}{dnad26:measure}
+
+Our blinding contract requires coded identities at observation freeze when the plan
+requires blinding. Later analysis may unblind after that recorded boundary; the
+history preserves the earlier blinded event. If blinding is infeasible, the plan
+must include an explicit reason rather than silently setting a Boolean false.
+A real study may need blinded analysis through additional stages and authenticated
+custody of the code key.
+
+Retain prespecified results even when a deviation motivates a sensitivity
+analysis. An alternative exclusion or threshold is a new analytical artifact with
+its own justification. It must not erase the original analysis or disguise
+a post-hoc decision as a frozen rule.
+
+\section{Release a usable evidence bundle}
+\Plate{06-release}{Machine-valid provenance is only one release gate. Scientific
+interpretation, access policy and external replication remain separate assessments.}
+{dnad26:release}
+A release should bind the question, identity hierarchy, raw evidence, calibration,
+control outcomes, deviations, analysis specification, code/environment versions and
+derived tables and figures. A reader should reconstruct each plotted value
+and discover why an excluded observation was excluded.
+
+FAIR means findable, accessible, interoperable and reusable under appropriate
+metadata and stewardship \cite{Wilkinson2016}. It does not require unrestricted
+public data: authentication and authorization may be compatible with accessibility.
+Record the access mechanism, license and retention policy. A ZIP with unnamed
+images and no denominator is not reusable simply because it downloads.
+
+\subsection{Four levels of evidence}
+Computational reproduction reruns the frozen analysis on the same bytes.
+Analytical robustness asks how reasonable analysis choices affect the conclusion.
+Experimental replication obtains new independently prepared physical evidence.
+External replication tests the claim at another team or site.
+These gates establish different things. Passing the software tests below establishes
+none of the last three by itself.
+
+\section{Independent tests and deliberate counterexamples}
+The tests recompute event hashes through a separately constructed JSON body, not the
+module's serialization helper. They enumerate illegal stage orders, remove required
+roles even after recomputing a valid digest, mutate same-length bytes, substitute a
+renamed artifact, change the frozen plan, delete a deviation and break a predecessor
+link. This separates content-integrity checks from workflow checks.
+
+A rehashed isolated release is rejected because it is not genesis.
+A rehashed artifact replacement can pass an individual event's role check but fail
+history monotonicity. The blinding test rejects an unblinded observation freeze
+and allows later unblinding. Hand-derived covariance and preparation-variance
+oracles test the arithmetic independently.
+The suite also covers malformed digests, duplicate identities,
+Boolean values masquerading as numbers, invalid quantities and overflow.
+
+The demonstration writes fourteen assigned text artifacts, not experimental files.
+Its six valid events establish execution of the stated ledger contract.
+Laboratory competence, independent scientific review, assay validation and replication
+remain open. This limitation is part of the result, not fine print.
+
+\section{Twenty worked exercises}
+\begin{enumerate}
+\item Same conceptual gate, corrected base: which identity changes?
+\textbf{Answer:} sequence-set identity; the design identity may remain.
+\item New lot with unchanged sequences?
+\textbf{Answer:} new material identity and new run/preparation provenance.
+\item Second image from one vessel: a new independent unit?
+\textbf{Answer:} no, a new observation nested within that preparation.
+\item What roles are required at observation freeze?
+\textbf{Answer:} all ten roles accumulated from stages zero through three.
+\item Why reject an isolated correctly hashed release?
+\textbf{Answer:} a valid history begins at design freeze and advances in order.
+\item Can a well-formed digest establish that bytes exist?
+\textbf{Answer:} no; retrieve bytes and verify length and digest.
+\item A same-length byte mutation preserves size. Which check catches it?
+\textbf{Answer:} recomputing SHA-256 against the bound artifact digest.
+\item Why compare full artifact records rather than identity sets?
+\textbf{Answer:} the same identity could otherwise name altered bytes or a new role.
+\item Can an internally rebuilt chain authenticate its author?
+\textbf{Answer:} no; recomputed links can describe a coherent forgery.
+\item Convert 2 nM in $5\,\mu$L to mol.
+\textbf{Answer:} $(2\times10^{-9})(5\times10^{-6})=10^{-14}$ mol.
+\item Derive the covariance term in Eq.~\ref{dnad26:uncertainty}.
+\textbf{Answer:} variance of $V\delta c+c\delta V$ contains
+$2cV\operatorname{Cov}(\delta c,\delta V)=2cV\rho\sigma_c\sigma_V$.
+\item Compute $\sigma_n$ for the stated independent errors.
+\textbf{Answer:} $\sqrt{(10^{-15})^2+(2\times10^{-16})^2}
+=1.0198039\times10^{-15}$ mol.
+\item Does $nN_A$ establish functional strand count?
+\textbf{Answer:} no; intactness, availability and incorporation need separate evidence.
+\item Derive variance of the equally weighted preparation mean.
+\textbf{Answer:} independent preparation sample variance divided by $R$ gives
+$\sum_r(\bar y_r-\hat\mu)^2/[R(R-1)]$.
+\item Evaluate it for preparation means $(0,1,1)$.
+\textbf{Answer:} $\hat\mu=2/3$, squared-deviation sum $2/3$, variance $1/9$.
+\item Compare pooling and equal weighting for counts $(1,999)$, means $(0,1)$.
+\textbf{Answer:} pooled $0.999$, equally weighted $0.5$; different targets.
+\item Can a failed positive control support a claim of no gate output?
+\textbf{Answer:} not without resolving whether the assay could observe output.
+\item When may the example unblind?
+\textbf{Answer:} after the required blinded observation-freeze boundary;
+stricter study policies may delay this.
+\item Must FAIR data always be unrestricted?
+\textbf{Answer:} no; documented authorized access can be appropriate.
+\item Design a release review.
+\textbf{Rubric:} validate bytes/history, inspect controls/denominators,
+reproduce derived results, assess deviations/uncertainty, document access,
+and report replication and independent review separately.
+\end{enumerate}
+
+\section{Bridge to symbolic molecular simulation}
+The next chapter represents molecular species and reactions as symbolic
+states and rules. A simulator also needs frozen inputs, versioned semantics,
+independent checks and an output trace. Reproducible symbolic execution is evidence
+about a model, not by itself evidence that its molecular system operates in a vessel.

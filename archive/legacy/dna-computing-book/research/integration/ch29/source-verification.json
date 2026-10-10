@@ -1,0 +1,35 @@
+{
+  "access_date": "2026-10-06",
+  "chapter": 29,
+  "records": [
+    {
+      "key": "dnad29:crn",
+      "url": "https://arxiv.org/abs/2302.02714v1",
+      "date": "2023-02-06 v1 preprint",
+      "access_depth": "Primary abstract/version page",
+      "claim": "Abstract mass-action CRN optimization; no fullpaper experiment replication"
+    },
+    {
+      "key": "dnad29:seqprop",
+      "url": "https://doi.org/10.1186/s12859-021-04437-5",
+      "date": "2021-10-20 Version of Record",
+      "access_depth": "Publisher metadata, selected Background and Activation maximization for biological sequences sections; selected normalization introduction",
+      "claim": "Continuous/discrete input mismatch, softmax gradients, straight-through approximation and Fast SeqProp normalization; no algorithm reproduction or claimed speedup in this chapter"
+    },
+    {
+      "key": "dnad29:dga",
+      "url": "https://doi.org/10.7554/eLife.103877.3",
+      "date": "2025-03-17 Version of Record",
+      "access_depth": "Publisher-indexed primary abstract/publication status from search and assessment page. Direct article and PDF retrieval later returned client challenge.",
+      "claim": "Approximate differentiable Gillespie method smooths discontinuous exact operations",
+      "boundary": "Incoming full-text-inspected assertion is NOT inherited; no full-text replication"
+    },
+    {
+      "key": "dnad29:icrn",
+      "url": "https://doi.org/10.4230/LIPIcs.DNA.31.4",
+      "date": "2025-08-19 DNA31 LIPIcs347 pp4:1-4:23",
+      "access_depth": "Primary proceedings metadata/abstract and selected experimental HTML introduction defining indexed CRN collections and enumeration",
+      "claim": "Indexed species/reactions and differentiable well-mixed/reaction-diffusion framework; not implemented here"
+    }
+  ]
+}

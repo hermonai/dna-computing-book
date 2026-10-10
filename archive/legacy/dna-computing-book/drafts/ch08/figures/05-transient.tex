@@ -1,0 +1,8 @@
+\begin{tikzpicture}
+\begin{axis}[width=12.5cm,height=5.5cm,xlabel={Time (s)},ylabel={Bound enzyme (nM)},
+xmin=0,xmax=1,ymin=0,ymax=7.5,legend style={at={(.5,1.02)},anchor=south,draw=none,legend columns=2},
+tick label style={font=\small},label style={font=\small}]
+\input{\Generated/transient-plot.tex}
+\legend{Closed reaction,Clamped-substrate oracle}
+\end{axis}
+\end{tikzpicture}

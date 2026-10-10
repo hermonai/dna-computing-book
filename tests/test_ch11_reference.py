@@ -7,7 +7,7 @@ from itertools import product
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "ch11_reference_tests", ROOT / "drafts/ch11/reference.py"
+    "ch11_reference_tests", ROOT / "book/chapters/ch11/reference.py"
 )
 m = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = m
@@ -98,5 +98,5 @@ def test_composition_creates_a_new_substring():
 
 def test_generated_results():
     assert m.results() == json.loads(
-        (ROOT / "drafts/ch11/results.json").read_text()
+        (ROOT / "book/chapters/ch11/results.json").read_text()
     )

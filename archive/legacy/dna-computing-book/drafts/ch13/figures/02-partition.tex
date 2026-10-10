@@ -1,0 +1,16 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\foreach \x/\name/\count in {0/{P}/{56 copies},5/{R_1}/{28 copies},10/{R_2}/{14 rejected}}{
+ \draw[Blue,thick,rounded corners=9pt] (\x+.5,1.5)--(\x+.5,.1)--(\x+2.5,.1)--(\x+2.5,1.5);
+ \fill[Pale] (\x+.6,.2) rectangle (\x+2.4,.85);
+ \node[note] at (\x+1.5,1) {$\name$};
+ \node[smallnote] at (\x+1.5,-.3) {\count};
+}
+\draw[flow] (2.8,1)--node[above,smallnote] {$x_1=0$}(5.2,1);
+\draw[flow] (7.8,1)--node[above,smallnote] {$x_2=0$}(10.2,1);
+\draw[flow] (1.5,.05)--(1.5,-1.5)--(5.7,-1.5);
+\draw[flow] (6.5,.05)--(6.5,-1.1);
+\node[smallnote,anchor=west] at (1.7,-.9) {$x_1=1$: 28 copies};
+\node[smallnote,anchor=west] at (6.8,-.8) {$x_2=1$: 14 copies};
+\node[note,draw=Green,fill=Pale,minimum width=2cm,minimum height=.8cm] at (6.5,-1.5) {$Q$: 42};
+\node[smallnote] at (7,-2.3) {First matching literal owns each retained copy. No amplification.};
+\end{tikzpicture}

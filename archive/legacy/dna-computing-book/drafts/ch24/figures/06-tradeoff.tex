@@ -1,0 +1,14 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
+\node[draw=Blue,fill=Pale,align=center,text width=12.4cm] (contract) at (6,2)
+{Fixed scientific contract: input, correct-output event, failure tolerance, deadline, observation};
+\node[draw=Blue,align=left,text width=5cm] (a) at (2.7,-.1)
+{Design A\\fewer species\\larger prepared seed\\different dependency depth};
+\node[draw=Blue,align=left,text width=5cm] (b) at (9.4,-.1)
+{Design B\\more species\\smaller seed\\different readout demand};
+\draw[flow] (contract.south)--(a.north); \draw[flow] (contract.south)--(b.north);
+\node[draw=Green,fill=Green!8,align=center,text width=12.4cm] (ledger) at (6,-2.3)
+{Compare the complete resource vectors, including auxiliaries and failed runs.\\
+A dominates B only if no controlled cost is worse and at least one is better.};
+\draw[flow] (a.south)--(ledger.north -| a); \draw[flow] (b.south)--(ledger.north -| b);
+\node[Red] at (6,-3.6) {Otherwise report the tradeoff; do not invent a scalar winner.};
+\end{tikzpicture}

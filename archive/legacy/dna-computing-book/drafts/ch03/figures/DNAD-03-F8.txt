@@ -1,0 +1,34 @@
+DNAD-03-F8: Factorial enumeration versus subset states
+
+QUESTION
+What changes when histories are merged?
+
+OBJECTS
+Permutation count
+reachable states
+transitions
+storage
+
+RELATION / MECHANISM
+Compare explicit algorithmic counts on the same instances
+
+INFERENCE
+An exponential algorithm can improve on factorial enumeration without becoming polynomial.
+
+BOUNDARY
+Operational counters are not wall-clock benchmarks.
+
+SOURCE
+Original result artifact
+
+STATUS
+Working-draft figure; not part of the accepted PDF.
+
+NUMERICAL OBSERVATIONS
+n=2: interior orders=1; reachable states=2; neighbor scans=1.
+n=3: interior orders=1; reachable states=3; neighbor scans=4.
+n=4: interior orders=2; reachable states=6; neighbor scans=15.
+n=5: interior orders=6; reachable states=14; neighbor scans=52.
+n=6: interior orders=24; reachable states=34; neighbor scans=165.
+n=7: interior orders=120; reachable states=82; neighbor scans=486.
+n=8: interior orders=720; reachable states=194; neighbor scans=1351.

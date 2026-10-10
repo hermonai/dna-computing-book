@@ -1,0 +1,49 @@
+{
+  "products": [
+    [
+      2,
+      2,
+      "LADN",
+      "MCBR"
+    ]
+  ],
+  "after_reaction": {
+    "LADN": 1,
+    "MCBR": 1
+  },
+  "growth": [
+    {
+      "depth": 0,
+      "words": 1
+    },
+    {
+      "depth": 1,
+      "words": 3
+    },
+    {
+      "depth": 2,
+      "words": 7
+    },
+    {
+      "depth": 3,
+      "words": 15
+    },
+    {
+      "depth": 4,
+      "words": 31
+    },
+    {
+      "depth": 5,
+      "words": 63
+    }
+  ],
+  "closed": false,
+  "word_count": 63,
+  "insert": [
+    "ABAXB",
+    "AXBAB"
+  ],
+  "delete": [
+    "AB"
+  ]
+}

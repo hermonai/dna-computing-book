@@ -1,0 +1,2 @@
+FIGURE 02-walk
+Transient states count branch progress j=0 through m-1. Forward rate k_plus, backward rate k_minus for j>0, and detachment d only at j=0. Product P and detached D are absorbing outcomes. Intermediate states are compressed for m>4. A bound encounter can fail without producing output.

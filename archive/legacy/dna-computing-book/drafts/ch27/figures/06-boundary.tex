@@ -1,0 +1,11 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box](-.3,-.4) rectangle(15.5,4.6);
+\node[note,anchor=west,font=\bfseries\sffamily]at(0,4.2){Three different scientific questions};
+\node[draw,fill=Pale,note,text width=3.6cm,minimum height=1.7cm](a)at(2.2,2.5){Formal paths\\counts + rule preconditions\\Is the target reachable?};
+\node[draw,fill=Gold!25,note,text width=3.6cm,minimum height=1.7cm](b)at(7.6,2.5){Quantitative dynamics\\rates + units + noise\\How likely; how long?};
+\node[draw,fill=Green!10,note,text width=3.6cm,minimum height=1.7cm](c)at(13,2.5){Physical observation\\molecules + assay + controls\\Does the device realize it?};
+\draw[flow](a)--(b);\draw[flow](b)--(c);
+\node[smallnote,text width=4cm]at(2.2,.7){software soundness\\is not chemical adequacy};
+\node[smallnote,text width=4cm]at(7.6,.7){same stoichiometry\\does not ensure same kinetics};
+\node[smallnote,text width=4cm]at(13,.7){auxiliary species, leakage\\and readout must be tested};
+\end{tikzpicture}

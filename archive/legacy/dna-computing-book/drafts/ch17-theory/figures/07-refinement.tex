@@ -1,0 +1,43 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box] (-.3,-.5) rectangle (13.35,6.6);
+\node[note,anchor=west,text=Blue] at (0,6.3) {\textbf{One logical step, several chemical events}};
+\node[note,draw=Blue,rounded corners,fill=Pale,minimum width=3.6cm,
+minimum height=.8cm] (before) at (2,5.3) {$(q,aw)$};
+\node[note,draw=Blue,rounded corners,fill=Pale,minimum width=3.6cm,
+minimum height=.8cm] (after) at (10.6,5.3) {$(\delta(q,a),w)$};
+\draw[flow] (before) -- node[smallnote,above] {consume a; apply $\delta$} (after);
+% Stable exposed duplex: the protruding upper segment is the encoded interface.
+\draw[Blue,line width=2pt] (.4,2.7)--(3.4,2.7);
+\draw[Blue,line width=2pt] (1.15,2.36)--(3.4,2.36);
+\foreach \x in {1.25,1.55,...,3.35}{\draw[Blue!50] (\x,2.4)--(\x,2.66);}
+\draw[Gold!70!black,line width=3pt] (.4,2.7)--(1.15,2.7);
+\node[smallnote,above] at (1.9,2.9) {$I(q,aw)$};
+\node[smallnote,below] at (1.85,2.13) {Exposed interface\\encodes $(q,a)$};
+\draw[flow,dashed] (1.9,3.3) -- (before.south);
+% Bound complex: abstract software duplex association, no sequence/offset claim.
+\draw[Blue,line width=2pt] (5,2.7)--(7.9,2.7);
+\draw[Blue,line width=2pt] (5.8,2.36)--(7.9,2.36);
+\foreach \x in {5.9,6.2,...,7.7}{\draw[Blue!50] (\x,2.4)--(\x,2.66);}
+\draw[Green,line width=2.5pt] (4.85,2.1)--(4.85,2.36)--(5.65,2.36);
+\foreach \x in {5.05,5.25,5.45}{\draw[Green,dashed] (\x,2.4)--(\x,2.66);}
+\node[smallnote,above] at (6.45,2.9) {$C_r$};
+\node[smallnote,below] at (6.45,2.05) {Bound intermediate\\not assigned a new DFA state};
+\draw[flow] (3.55,2.88)--node[smallnote,above] {$+T_r$} (4.65,2.88);
+\draw[flow] (4.65,2.22)--node[smallnote,below] {release} (3.55,2.22);
+% New stable interface after irreversible commitment.
+\draw[Blue,line width=2pt] (9.4,2.7)--(12.3,2.7);
+\draw[Blue,line width=2pt] (10.1,2.36)--(12.3,2.36);
+\foreach \x in {10.2,10.5,...,12.2}{\draw[Blue!50] (\x,2.4)--(\x,2.66);}
+\draw[Red,line width=3pt] (9.4,2.7)--(10.1,2.7);
+\node[smallnote,above] at (10.8,2.9) {$I'_r$};
+\node[smallnote,below] at (10.8,2.1) {Next stable interface\\encodes $(q',\text{next})$};
+\draw[flow] (8.05,2.53)--node[smallnote,above,align=center] {commit} (9.2,2.53);
+\draw[flow,dashed] (10.7,3.3)--(after.south);
+\node[smallnote,draw=Green,rounded corners,fill=Green!6] (released) at (9.5,.7)
+ {Released: reusable $T_r$ + waste $W_r$};
+\draw[flow] (8.6,2.25)--(8.6,1.2)--(9.5,1.2)--(released.north);
+\node[smallnote,align=left,anchor=west] at (.25,.6)
+ {Solid arrows: reaction events\\Dashed arrows: decoding, not chemistry};
+\node[smallnote,text=Red] at (6.5,-.15)
+ {Reusable-transition abstraction. Not a sequence-level design or the 2001 ligation cycle.};
+\end{tikzpicture}

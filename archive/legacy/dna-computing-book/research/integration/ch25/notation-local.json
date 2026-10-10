@@ -1,0 +1,40 @@
+{
+  "chapter": 25,
+  "definitions": [
+    {
+      "symbol": "u",
+      "meaning": "original binary source of length B",
+      "unit": "bits"
+    },
+    {
+      "symbol": "n_i",
+      "meaning": "physical copy count of intended strand identity i",
+      "unit": "molecules"
+    },
+    {
+      "symbol": "R_logical",
+      "meaning": "source bits divided by unique encoded nucleotides",
+      "unit": "bits per unique nucleotide"
+    },
+    {
+      "symbol": "R_physical",
+      "meaning": "source bits divided by nucleotides across all physical copies",
+      "unit": "bits per physical nucleotide"
+    },
+    {
+      "symbol": "w",
+      "meaning": "payload shard width; integer 1 through 4096",
+      "unit": "bytes"
+    },
+    {
+      "symbol": "C(ell,a,j,g)",
+      "meaning": "exact legal suffix count given remaining length, previous base, run and accumulated GC",
+      "unit": "count"
+    },
+    {
+      "symbol": "q",
+      "meaning": "zero-based lexical rank within declared legal codebook",
+      "unit": "integer"
+    }
+  ]
+}

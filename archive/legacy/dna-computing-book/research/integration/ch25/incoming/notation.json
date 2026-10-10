@@ -1,0 +1,8 @@
+{
+  "M": "digital source message",
+  "S_i": "intended DNA codeword sequence",
+  "R": "sequencing reads",
+  "p_s": "toy substitution probability",
+  "rho": "net payload rate under stated coding accounting",
+  "A_L": "allowed length-L DNA sequence set"
+}

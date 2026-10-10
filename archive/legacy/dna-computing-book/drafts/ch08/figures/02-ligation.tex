@@ -1,0 +1,27 @@
+\begin{tikzpicture}[font=\small\sffamily]
+\node[anchor=west,text=Blue] at (0,6.6) {1\quad Activate the enzyme};
+\path[draw=Gold!60!black,fill=Gold!50] (.5,5.6) .. controls (.1,6.2) and (1.6,6.4) .. (2.2,5.8)
+.. controls (2.8,5.2) and (1.7,4.9) .. (1.1,5.3) -- cycle;
+\node at (1.3,5.7) {Ligase};
+\draw[flow] (3,5.7)--node[above,smallnote] {ATP}(5.4,5.7);
+\node[draw=Gold!70!black,fill=Gold!30,rounded corners] at (7,5.7) {Ligase--AMP};
+\node[smallnote] at (4.2,5.1) {$\mathrm{PP_i}$ released};
+\node[anchor=west,text=Blue] at (0,4.3) {2\quad Activate the DNA end at an aligned nick};
+\draw[Blue,very thick] (.5,3.4)--(4.5,3.4);
+\draw[Blue,very thick] (6,3.4)--(11.5,3.4);
+\draw[Green,very thick] (.5,2.5)--(11.5,2.5);
+\foreach \x in {1,2,3,4,6.5,7.5,8.5,9.5,10.5}{\draw[dashed,gray] (\x,2.75)--(\x,3.15);}
+\node[smallnote,anchor=east] at (4.5,3.85) {$3'$-OH};
+\node[smallnote,anchor=west] at (6,3.85) {$5'$-P--AMP};
+\node[anchor=east] at (.5,3.4) {$5'$}; \node[anchor=west] at (11.5,3.4) {$3'$};
+\node[anchor=east] at (.5,2.5) {$3'$}; \node[anchor=west] at (11.5,2.5) {$5'$};
+\draw[flow,Red] (4.7,3.4) to[bend left=35] (5.85,3.4);
+\node[anchor=west,text=Blue] at (0,1.4) {3\quad Seal one covalent backbone bond};
+\draw[Blue,very thick] (.5,.5)--(4.5,.5);
+\draw[Red,very thick] (4.5,.5)--(6,.5);
+\draw[Blue,very thick] (6,.5)--(11.5,.5);
+\draw[Green,very thick] (.5,-.4)--(11.5,-.4);
+\foreach \x in {1,2,3,4,6.5,7.5,8.5,9.5,10.5}{\draw[dashed,gray] (\x,-.15)--(\x,.25);}
+\node[smallnote] at (5.25,1) {AMP released};
+\node[smallnote] at (6,-1.1) {Paired bases stay in place; the nick disappears. No nucleotide is inserted.};
+\end{tikzpicture}

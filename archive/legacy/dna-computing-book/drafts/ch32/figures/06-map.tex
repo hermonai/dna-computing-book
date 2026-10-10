@@ -1,0 +1,8 @@
+\begin{tikzpicture}
+\foreach \y/\label/\txt in {5.5/A/{Molecular mechanism and resource accounting},3.8/B/{Algorithms, formal languages and molecular programs},2.1/C/{Reliability, readout, simulation and genomic organization},.4/D/{Ch31: scoped evidence; Ch32: abstraction and synthesis}}{
+ \fill[Pale] (0,\y-.55) rectangle (13,\y+.55);
+ \node[note,anchor=west] at (.3,\y) {\label\quad\txt};
+}
+\foreach \y in {4.9,3.2,1.5}{\draw[flow] (6.5,\y)--(6.5,\y-.45);}
+\node[note,Red] at (6.5,-1) {Authoring spine reaches Chapter 32.\\Cumulative editorial, scientific and reader review remain separate gates.};
+\end{tikzpicture}

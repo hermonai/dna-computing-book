@@ -8,7 +8,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "dna20", ROOT / "drafts/ch20/reference.py"
+    "dna20", ROOT / "book/chapters/ch20/reference.py"
 )
 m = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = m
@@ -17,7 +17,7 @@ spec.loader.exec_module(m)
 
 def test_results():
     assert m.results() == json.loads(
-        (ROOT / "drafts/ch20/results.json").read_text()
+        (ROOT / "book/chapters/ch20/results.json").read_text()
     )
 
 
@@ -40,12 +40,8 @@ def test_strand_inventory_and_enabledness():
 @pytest.mark.parametrize("n", range(8))
 def test_identical_reactants_use_pairs_not_squares(n):
     crn = m.network([[2], [0]], [[0], [1]], [3.0])
-    assert m.propensities(crn, [n, 0], 10)[0] == pytest.approx(
-        0.3 * n * (n - 1)
-    )
-    assert np.array([1, 2]) @ m.drift(crn, [n / 10, 0]) == pytest.approx(
-        0
-    )
+    assert m.propensities(crn, [n, 0], 10)[0] == pytest.approx(0.3 * n * (n - 1))
+    assert np.array([1, 2]) @ m.drift(crn, [n / 10, 0]) == pytest.approx(0)
     if n >= 2:
         assert m.fire(crn, [n, 0], 0).tolist() == [n - 2, 1]
     else:
@@ -61,9 +57,7 @@ def test_zero_order_and_density_limit():
     errors = []
     for omega in (10, 100, 1000):
         counts = (x * omega).astype(int)
-        expected_drift = (
-            crn.change @ m.propensities(crn, counts, omega) / omega
-        )
+        expected_drift = crn.change @ m.propensities(crn, counts, omega) / omega
         errors.append(np.linalg.norm(expected_drift - m.drift(crn, x)))
     assert errors[0] / errors[1] == pytest.approx(10)
     assert errors[1] / errors[2] == pytest.approx(10)
@@ -79,9 +73,7 @@ def test_completion_against_backward_recursion(a, b):
         second += 2 * hold * hold + 2 * hold * mean
         mean += hold
     got_mean, got_var = m.completion_moments(a, b)
-    assert (got_mean, got_var) == pytest.approx(
-        (mean, second - mean * mean)
-    )
+    assert (got_mean, got_var) == pytest.approx((mean, second - mean * mean))
     assert m.completion_moments(a, b, k=2, omega=3) == pytest.approx(
         (1.5 * got_mean, 2.25 * got_var)
     )
@@ -100,16 +92,12 @@ def test_stochastic_paths_and_monte_carlo_error_budget():
     assert abs(np.mean(times) - mean) < 5 * math.sqrt(var / len(times))
 
 
-@pytest.mark.parametrize(
-    "alpha,beta", [(0, 0), (0, 0.3), (0.1, 0), (0.1, 0.3)]
-)
+@pytest.mark.parametrize("alpha,beta", [(0, 0), (0, 0.3), (0.1, 0), (0.1, 0.3)])
 def test_shared_fuel_against_rk4(alpha, beta):
     state = np.array([100.0, 0.0, 0.0])
 
     def rhs(x):
-        return np.array(
-            [-(alpha + beta) * x[0], alpha * x[0], beta * x[0]]
-        )
+        return np.array([-(alpha + beta) * x[0], alpha * x[0], beta * x[0]])
 
     dt = 0.01
     for _ in range(1000):

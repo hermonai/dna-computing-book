@@ -1,0 +1,19 @@
+\begin{tikzpicture}[font=\small\sffamily,>=Stealth]
+\path[use as bounding box] (0,-.8) rectangle (14,4.4);
+\node[anchor=west,Blue] at (0,4.05) {Reproduction changes population composition under stated weights};
+\foreach \x/\c/\lab in {1/Green/1,2.1/Blue/0,3.2/Blue/0,4.3/Blue/0} {
+ \filldraw[\c,fill=\c!15] (\x,2.9) circle (.4);
+ \node at (\x,2.9) {\lab};
+}
+\node[smallnote] at (2.7,2.1) {parents: $p=1/4$};
+\draw[flow] (5,2.9)--node[above,smallnote]{$w_1=2$\\$w_0=1$}(7.1,2.9);
+\foreach \x/\c/\lab in {8/Green/1,9.1/Green/1,10.2/Blue/0,11.3/Blue/0,12.4/Blue/0} {
+ \filldraw[\c,fill=\c!15] (\x,2.9) circle (.4);
+ \node at (\x,2.9) {\lab};
+}
+\node[smallnote] at (10.3,2.1) {descendants: $p_{\rm sel}=2/5$};
+\draw[flow] (10.3,1.65)--(10.3,.65);
+\node[smallnote] at (10.3,.25) {$p'=(1-\mu)p_{\rm sel}+\nu(1-p_{\rm sel})$};
+\node[smallnote] at (3,.8) {Inherited type: 0 or 1\\Within-cell state changes are not this count update};
+\node[smallnote,Red] at (7,-.5) {Invented reproductive weights; no measured fitness, drift, recombination or genomic sequence simulation.};
+\end{tikzpicture}

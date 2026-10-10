@@ -1,0 +1,4 @@
+Question: Local fidelity and whole-computation reliability
+Objects and arrow semantics: Generated per-step-error survival curves and a union-bound budget.
+Change/invariant and caption claim: Number of logical or physical events matters to the reliability claim.
+Scientific risk: Assigned probabilities are not measured chemical error rates.

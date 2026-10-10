@@ -1,0 +1,13 @@
+FIGURE: Prefix conflict versus reachable ambiguity
+QUESTION: What must a syntactic determinism check compare?
+UPPER LABELS: a is a prefix of ab.
+LOWER LABELS: a is a prefix of ab.
+RULE 1: From s consume upper a and lower a; enter f.
+RULE 2: From s consume upper ab and lower ab; enter g.
+WITNESS: At initial state s, unread pair ab/ab is admissible under identity
+pairing and enables both rules. Their possible eventual acceptance is a
+different question from their simultaneous availability.
+LIMIT: A local conflict elsewhere may be unreachable. This checker is not
+a decision procedure for weak determinism.
+DESIGN: Shared-prefix segments have matching geometry and letter labels;
+the unmatched b extension is distinguished by position, text and color.

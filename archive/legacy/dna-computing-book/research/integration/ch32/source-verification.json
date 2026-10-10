@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-10",
+  "chapter": 32,
+  "book": "dna-computing",
+  "original_archive": "dna-computing-ch32-r01.zip",
+  "inherited_claims_adopted": false,
+  "sources": [
+    {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/7973651/",
+      "access": "primary abstract; not full methods"
+    },
+    {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20203007/",
+      "access": "primary abstract and indexed publisher excerpts as recorded in Chapter 31; not full methods"
+    },
+    {
+      "path": "drafts/ch30/manuscript.tex; drafts/ch31/reference.py",
+      "access": "local authored interfaces inspected"
+    }
+  ],
+  "limitations": "Original mathematical examples and assigned scores; no experiment replication or independent acceptance."
+}

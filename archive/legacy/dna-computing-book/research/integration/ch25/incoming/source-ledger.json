@@ -1,0 +1,30 @@
+[
+  {
+    "key": "goldman2013",
+    "primary": "https://doi.org/10.1038/nature11875",
+    "claim": "Reported 739 kB-class archive and exact reconstruction.",
+    "access_date": "2026-10-05",
+    "depth": "publisher abstract/article metadata"
+  },
+  {
+    "key": "fountain2017",
+    "primary": "https://doi.org/10.1126/science.aaj2038",
+    "claim": "Reported 2.14e6 bytes with DNA Fountain and perfect retrieval.",
+    "access_date": "2026-10-05",
+    "depth": "PubMed abstract"
+  },
+  {
+    "key": "organick2018",
+    "primary": "https://doi.org/10.1038/nbt.4079",
+    "claim": "Reported >200 MB, >13 million oligos and individual random access.",
+    "access_date": "2026-10-05",
+    "depth": "publisher abstract"
+  },
+  {
+    "key": "yang2024",
+    "primary": "https://doi.org/10.1038/s41570-024-00576-4",
+    "claim": "Modern review of DNA computing/storage writing, reading, retrieval and integration.",
+    "access_date": "2026-10-05",
+    "depth": "publisher abstract"
+  }
+]

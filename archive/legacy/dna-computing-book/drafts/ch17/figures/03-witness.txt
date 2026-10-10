@@ -1,0 +1,4 @@
+Question: Existential pairing is a resource choice
+Objects and arrow semantics: Four upper a symbols each admit x or y below. Sixteen paired inputs lead to separate preparation, execution and detection obligations; no accepting path is assumed.
+Change/invariant and caption claim: Separate pair acceptance from existential upper-language acceptance.
+Scientific risk: A witness oracle is not free molecule preparation.

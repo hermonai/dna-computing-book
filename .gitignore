@@ -1,13 +1,21 @@
+/build/
+/output/
+/tmp/
 __pycache__/
-output/
-tmp/
 *.py[cod]
 .pytest_cache/
 .ruff_cache/
-.venv/
-dist/
-build/
-*.egg-info/
 .DS_Store
-book/_build/
-notebooks/.ipynb_checkpoints/
+*.egg-info/
+.venv/
+# Locally retained, recoverable intermediates are not source.
+/archive/legacy/dna-computing-book/build/
+/archive/legacy/dna-computing-book/tmp/
+/archive/legacy/dna-computing-book/output/
+# The three previously tracked release PDFs are explicitly retained in Git.
+!/archive/legacy/dna-computing-book/output/
+!/archive/legacy/dna-computing-book/output/pdf/
+/archive/legacy/dna-computing-book/output/pdf/*
+!/archive/legacy/dna-computing-book/output/pdf/deep-dna-computing.pdf
+!/archive/legacy/dna-computing-book/output/pdf/deep-dna-computing-ch01-02.pdf
+!/archive/legacy/dna-computing-book/output/pdf/undergraduate-dna-computing.pdf

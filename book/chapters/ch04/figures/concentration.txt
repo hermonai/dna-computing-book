@@ -1,0 +1,7 @@
+FIGURE 4.4 / concentration.tex
+Question: What changes when a fixed molecular inventory occupies a smaller volume?
+Invariant: Both populations have 602,214,076 specified molecules.
+States: Volume 1 microlitre at 1 nanomolar; volume 0.1 microlitre at 10 nanomolar.
+Relation: Concentration equals molecule count divided by Avogadro constant and volume.
+Inference: Inventory and concentration are not interchangeable quantities.
+Boundary: Six glyphs represent each population; tube dimensions and fill levels are not quantitative scale drawings.

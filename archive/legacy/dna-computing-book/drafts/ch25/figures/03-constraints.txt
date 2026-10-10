@@ -1,0 +1,5 @@
+Question: How can a reversible encoder select legal sequences without rejection sampling?
+State: remaining length, previous base, current run length and accumulated GC count. Terminal states contribute one exactly when the GC bound holds; run-violating branches contribute zero.
+Example: length 8, exactly 4 GC bases, maximum run 2. The root has 14,696 legal completions. Each first-base branch has 3,674, by complement/alphabet symmetry under these constraints.
+Trace: rank 173 lies in the A interval [0,3674); retain residual 173. Prefix AA permits completions; prefix AAA has zero. Repeated interval selection yields AACGCTGT, with GC count 4 and longest run 2.
+Invariant: ordered branches partition the legal lexical codebook. Unrank selects an interval; rank sums intervals before the selected branch. No claim of biochemical sufficiency or new coding theory is made.

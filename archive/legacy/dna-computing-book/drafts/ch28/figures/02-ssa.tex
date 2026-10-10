@@ -1,0 +1,18 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
+\path[use as bounding box] (0,0) rectangle (14,6.3);
+\tikzset{box/.style={draw,rounded corners,fill=Pale,align=center,minimum width=3.4cm,minimum height=.8cm}}
+\node[box] (state) at (2,5.4){count state $(A,B)$\\clock $t$};
+\node[box] (hazard) at (6.3,5.4){$\alpha_f=k_fA,\ \alpha_r=k_rB$\\$\alpha_0=\alpha_f+\alpha_r$};
+\node[box,fill=Green!8] (absorb) at (11.1,5.4){$\alpha_0=0$: absorbing\\complete through $T$};
+\draw[flow] (state)--(hazard);\draw[flow] (hazard)--(absorb);
+\node[box] (wait) at (3,3.7){$U_1\in(0,1)$\\$\tau=-\log U_1/\alpha_0$};
+\node[box] (choice) at (7.4,3.7){$U_2\in[0,1)$\\$\Pr(J=j)=\alpha_j/\alpha_0$};
+\draw[flow] (hazard.south)--(6.3,4.5)-|(wait.north);
+\draw[flow] (hazard.south)--(6.3,4.5)-|(choice.north);
+\node[box,fill=Gold!30] (update) at (5,2){if $t+\tau\le T$: apply $\nu_J$\\append post-event state};
+\draw[flow] (wait.south)--(3,2.8)-|(update.north);
+\draw[flow] (choice.south)--(7.4,2.8)-|(update.north);
+\draw[flow] (update.west)--(.3,2)--(.3,5.4)--(state.west);
+\node[draw,fill=Red!8,align=center,text width=3.9cm] at (11.1,2.8){event budget exhausted:\\incomplete at current $t$\\no horizon extrapolation};
+\node[align=center] at (6.6,.55){An event beyond $T$ is not applied; the preceding state completes the horizon.\\Two uniforms separate clock and channel. A budget stop is censoring, not completion.};
+\end{tikzpicture}

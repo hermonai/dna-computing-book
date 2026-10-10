@@ -1,0 +1,5 @@
+\begin{tikzpicture}\begin{axis}[width=13cm,height=6.5cm,xlabel={Time (s)},ylabel={Converted gate fraction},xmin=0,xmax=1000,ymin=0,ymax=1,grid=major,legend pos=south east]
+\input{\Generated/leak-plot.tex}
+\addplot[black,dotted,thick] coordinates {(0,.5) (1000,.5)};
+\legend{Input present,No-input leak,Decision threshold}
+\end{axis}\end{tikzpicture}

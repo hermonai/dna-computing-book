@@ -1,0 +1,14 @@
+\begin{tikzpicture}[font=\small\sffamily]
+\foreach \i/\u/\l in {0/A/T,1/C/G,2/G/C,3/T/A,4/A/T}{
+\pgfmathsetmacro{\x}{2+2*\i}
+\node[draw=Blue,fill=Blue!9,minimum width=1cm,minimum height=.65cm] at (\x,2) {\u};
+\node[draw=Green,fill=Green!9,minimum width=1cm,minimum height=.65cm] at (\x,.5) {\l};
+\draw[dashed,gray] (\x,1.65)--(\x,.85);}
+\draw[flow] (1.3,2.8)--(10.7,2.8);
+\draw[flow,Green] (10.7,-.3)--(1.3,-.3);
+\node at (.7,2) {$5'$}; \node at (11.3,2) {$3'$};
+\node at (.7,.5) {$3'$}; \node at (11.3,.5) {$5'$};
+\node[smallnote] at (6,3.25) {Upper stored sequence: A C G T A};
+\node[smallnote] at (6,-.85) {Read the lower strand right to left: T A C G T};
+\node[draw=Green,fill=Green!6,rounded corners,minimum width=9cm,minimum height=.8cm] at (6,-1.8) {Lower stored sequence: $5'$--T A C G T--$3'$};
+\end{tikzpicture}

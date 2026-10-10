@@ -1,0 +1,10 @@
+\begin{tikzpicture}
+\begin{axis}[width=12cm,height=5.4cm,ymin=-75,ymax=65,axis x line=bottom,axis y line=left,
+ylabel={kcal/mol},xtick={0,1,2},xticklabels={$\Delta H^\circ$,$-T\Delta S^\circ$,$\Delta G^\circ$},
+xticklabel style={yshift=-8pt},ytick={-60,-40,-20,0,20,40,60},xmin=-.6,xmax=2.6,
+tick label style={font=\small},label style={font=\small},enlarge x limits=false]
+\input{\Generated/energy-plot.tex}
+\addplot[gray,thin,forget plot] coordinates {(-.6,0)(2.6,0)};
+\end{axis}
+\node[smallnote] at (5.8,-1.15) {$\Delta G^\circ=\Delta H^\circ-T\Delta S^\circ$\qquad Actual mixture: $\Delta G=\Delta G^\circ+RT\ln Q$};
+\end{tikzpicture}

@@ -1,0 +1,14 @@
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
+\path[use as bounding box](0,-.3) rectangle(16,6.5);
+\node[anchor=west,font=\large\sffamily\bfseries,Blue] at(0,6.1){Independent preparation is the uncertainty unit};
+\foreach \x/\n/\m/\c in {2.5/1/0/Red,8/2/1/Green,13.5/3/1/Green} {
+\node[Blue,font=\bfseries] at(\x,5.3){Preparation \n};
+\draw[Blue,thick](\x-.3,4.9)--(\x-.3,4.1) arc[start angle=180,end angle=360,x radius=.3,y radius=.12]--(\x+.3,4.9);
+\draw[flow](\x,3.9)--(\x,3.45);
+\draw[Blue,fill=Pale,rounded corners](\x-1.9,1.9) rectangle(\x+1.9,3.3);
+\foreach \i in {0,...,9} \foreach \j in {0,...,3} \fill[\c](\x-1.6+.35*\i,2.15+.25*\j) circle(.052);
+\node[align=center] at(\x,1.35){100 synthetic objects\\$\bar y_{\n}=\m$};
+}
+\node[align=center,Green] at(8,.45){Three independent means: $(0,1,1)$\\$\hat\mu=2/3,\quad \widehat{\mathrm{Var}}(\hat\mu)=1/9$};
+\node[anchor=west,Red] at(0,-.15){Naive 300-object variance $0.0007432$: $149.5\times$ smaller in this assigned example.};
+\end{tikzpicture}

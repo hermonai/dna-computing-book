@@ -1,0 +1,221 @@
+# Editorial architecture and release roadmap
+
+Updated 11 October 2026. The planned content spine now reaches Chapter 32;
+cumulative editorial and independent scientific acceptance remain open.
+
+## One manuscript, distinct review stages
+
+The current chapter manifest is `book/book.json`; all 32 authored chapters live
+in `book/chapters/` and assemble through `book/main.tex`. The previous generated
+BOOK_PLAN and acceptance snapshots are frozen in the archive, not used to drive
+the current build.
+
+The original chapter acceptance and local-review records remain byte-preserved
+under `archive/legacy/dna-computing-book/`. Relocated sources do not inherit
+those records' acceptance. The supplied Chapters 22-32 packages were semantically
+integrated and strengthened with original derivations and falsifiers. All
+chapters now have one continuous source build; independent review and cumulative
+scientific/editorial acceptance are still open.
+
+## Give each return to a topic a new job
+
+| Chapter group | Primary question and owned deliverable | What belongs later |
+|---|---|---|
+| 1-4: origins and resource accounting | What is computed, and where is its cost paid? Separate formal problem, molecule inventory, and measured evidence. | Detailed chemistry and numerical solvers |
+| 5-7: molecular foundations | What can pair, what equilibrium is allowed, and how does a finite population get there? Sequence geometry, finite-pool thermodynamics, exact and stochastic binding references. | General reaction-network software and fitted rates |
+| 8-10: operators and observations | How do enzymes transform substrates, amplification change populations, and instruments expose imperfect evidence? Substrate-to-product mechanisms with controls. | A complete universal laboratory protocol |
+| 11-18: representation and formal models | Which encoding and permitted operations implement a computation? Explicit semantics, constructive examples, and limits. | Experimental feasibility inferred solely from universality |
+| 19-22: engineered molecular systems | How do local strand, reaction, and assembly mechanisms compose? Interfaces, leakage paths, conservation, and composition failures. | General-purpose simulation infrastructure |
+| 23-26: reliability and practice | What survives noise, scale, storage, and reproducibility demands? Error budgets and auditable experimental evidence. | Unmeasured industrial performance claims |
+| 27-29: executable modeling | How do we build reusable symbolic, kinetic, and differentiable tools? Chapter 28 extends Chapter 7 to networks, solver diagnostics, stiffness, parameter inference, and uncertainty. | Re-teaching the same two-species derivation |
+| 30-32: connection and synthesis | Where does molecular regulation inform computation, and where does the analogy fail? Research questions with falsifiable tests. | Treating Evolutor software states as literal molecules |
+
+The prerequisite chain for the next milestone is sequence polarity (5),
+binding free energy and mass balance (6), reaction rates and molecule-count
+noise (7), then catalytic substrate transformation (8). Chapter 9 can then
+explain amplification without confusing copying, equilibrium binding, and
+computational search.
+
+## Chapter 8 scope (standalone candidate): enzymes as molecular operators
+
+Begin with one chemically explicit substrate-to-product transformation.
+Show recognition, binding, catalytic action, product release, and a failure
+or competing substrate. Label strand polarity and the bond or substrate
+feature that changes. Separate enzyme specificity from perfect recognition.
+
+Derive a minimal catalytic rate model and state its assumptions before
+using it. Tie each computational operator to physical prerequisites and
+what it cannot do. Provide executable inventory checks and a limiting-case
+oracle; distinguish simulated behavior from measured enzyme activity.
+Use original biology/biochemistry mechanism plates, not a generic flowchart
+with biological names substituted into boxes.
+
+## Chapter 9 scope (standalone candidate): amplification and copy-number evidence
+
+Begin with one primer-extension event and track how two primers define an
+amplifiable interval across repeated cycles. Separate strand count, duplex
+count, and sequence-defined product count. Derive ideal doubling, then a
+cycle-dependent efficiency model with finite resources and background.
+Explain why amplification copies existing information and can magnify bias
+or contamination without solving an arbitrary search problem.
+
+Provide polarity-correct mechanism plates, explicit inventory checks,
+limiting-case oracles, and an observation model that distinguishes threshold
+crossing from absolute initial abundance. Assigned efficiencies must remain
+separate from measured assay performance.
+
+## Chapter 10 scope (standalone candidate): separation, readout, and measurement
+
+Start with a mixture of target and off-target products, and ask which physical
+property an instrument actually separates or measures. Explain electrophoretic
+migration and fluorescence readout without treating band intensity as exact
+molecule identity. Build an observation model with background, overlapping
+species, calibration, and uncertainty. Provide controls and a counterexample
+in which two distinct molecular mixtures produce the same observed signal.
+
+## Chapter 11 scope (standalone candidate): sequence design and graph encoding
+
+Derive reverse complements, offset complementarity, hairpin constraints and
+code-distance bounds before constructing an injective graph encoding. Test
+all short walks, deliberately expose a seam-created recognition site, and keep
+combinatorial screening distinct from thermodynamic or laboratory validation.
+
+## Chapter 12 scope (standalone candidate): generate-filter-verify algorithms
+
+Build exact multiset filters and an independent witness verifier. Prove the
+ideal algorithm's soundness and conditional completeness, then quantify loss,
+false retention and finite-copy detection. Contrast commuting ideal predicates
+with a capacity-limited order counterexample. Mechanism plates separate
+molecular recognition from physical retention and evidence of identity.
+
+## Chapter 13 scope (standalone candidate): SAT and combinatorial constructions
+
+Build disjoint-residual clause selection with finite copy counts. Prove its
+soundness and pool-relative completeness; compare against an independent
+integer SAT oracle. Derive coverage and detection probability, expose the
+duplicate-copy OR bug, and separate a positive certificate from no-signal
+evidence. Compare the resource model cautiously with 2026 scaffolded computation.
+
+## Chapter 14 scope (standalone candidate): sticker systems and molecular memory
+
+Implement occupancy registers, count-preserving pushforward writes and
+conditional AND with explicit output clearing. Test every initial register
+and address permutation. Explain reset information loss, operation-level
+retention and state-transition errors. Draw polarity-correct memory complexes
+and distinguish abstract selective clear from demonstrated renewable computing.
+
+## Chapter 15 scope (standalone candidate): splicing and insertion-deletion systems
+
+Define contextual cuts and both recombinant products before implementing a finite-copy
+reaction. Separate language closure from molecular inventory and bounded search.
+Use polarity-correct ligation schematics to identify the chemical interface
+without claiming a formal splice is an implemented laboratory operation.
+
+## Chapter 16 scope (standalone candidate): languages, automata and molecular recognition
+
+Construct and minimize an end-marked finite-state recognizer, then implement
+a least-significant-bit-first addition transducer. Prove prefix invariants,
+compare exhaustive arithmetic oracles and propagate an explicit error/loss
+channel. Relate the formal interface to current scaffolded molecular computing
+without substituting a probability model for measured chemistry.
+
+## Chapter 17 scope (standalone candidate): Watson–Crick and biochemical automata
+
+Prove an equal-block recognizer using independently moving heads; expose cursor
+storage, existential lower-strand costs and full-input acceptance. Separate the
+formal model from restriction/ligation-based biochemical finite automata.
+
+The canonical `book/chapters/ch17/` expansion supplies explicit paired-language
+semantics, synchronous regularity and nonregularity proofs, weak/syntactic/strong
+determinism, one-symbol normal forms and resource bounds. The biochemical theory
+adds stable-interface refinement, safety versus progress, material balance,
+exact renewal branch/mean-time analysis, qualified exponential coarse-graining,
+absorbing loss and observation identifiability. Eight vector/TXT figures and
+eighteen worked exercises extend rather than overwrite the original candidate.
+
+## Chapter 18 scope (standalone candidate): universality and complexity models
+
+Derive a tape-to-two-stack simulation invariant and test independent execution
+representations. Distinguish a fixed increment program, a universal interpreter,
+uniform device construction and finite molecular experiments. Account for
+precision, preparation and event-level reliability assumptions.
+
+## Chapter 19 scope (standalone candidate): toehold-mediated strand displacement
+
+Polarity-correct strand exchange, strand-inventory invariants, first-passage probabilities and times, finite-pool depletion, leakage windows, and composition contracts.
+Five mechanism/algorithm figures, twelve worked exercises and tested reference
+code connect the prior formal foundations to the next chapter. Contemporary
+research comparisons retain explicit source-access and capability boundaries.
+
+## Chapter 20 scope (standalone candidate): chemical reaction networks as programs
+
+Define reaction syntax, stoichiometric and strand inventories, concentration
+kinetics and count-valued hazards with an explicit rate convention. Prove
+annihilation correctness and exact completion-time moments; expose shared-fuel
+competition and projection-closure failures. Five vector/TXT figures, twelve
+worked exercises and independently checked numerical examples distinguish
+formal computability, kinetic approximation and measured chemical realization.
+
+## Chapter 21 scope (standalone candidate): digital and analog dna circuits
+
+Derive concentration logic contracts, restoration and leakage windows, staged
+composition, capture-versus-release races, fan-out loading, analog error
+propagation and autocatalytic feedback.
+Five vector/TXT figures, twelve worked exercises and executable independent
+checks make the assumptions and failure boundaries visible. Original teaching
+models remain distinct from measured chemistry or trained genomic capability.
+
+## Chapter 30 scope (locally reviewed candidate): biological mechanisms and model boundaries
+
+Derive cis/trans occupancy and chromosome-context distinctions before the
+two-regulator nondimensional model. Prove fixed-point alternatives, the
+symmetry-breaking threshold and local stability; test positivity and refinement
+against independent arithmetic. Separate production intervention from state
+clamping, recorded lineage from pseudotime, molecule partition from DNA copying,
+and population selection from within-cell regulation. Six mechanism/model
+plates and twenty worked exercises make each biological-to-computational map
+state its carriers, assumptions, observations and omitted processes.
+
+## Chapters 31–32: realization, evidence and the closing bridge
+
+Chapter 31 derives finite-fuel capture/release dynamics, exact held-fuel poles,
+positivity conditions, independent integration checks and calibration bounds.
+Formal refinement, kinetic approximation and observed evidence stay distinct.
+Chapter 32 proves the fiber recoverability criterion and uses a constructive
+concentration collision to expose information loss. A matched factorial panel
+separates mechanism effects from backbone effects without claiming experiments.
+Each chapter has six original vector/TXT plates and twenty worked exercises.
+The 32-chapter spine is assembled; independent publication acceptance is not.
+
+## Pending milestone: cumulative editorial and independent review
+
+Audit strand/count/concentration/signal notation, units, measurement assumptions,
+source coverage, and prerequisites, including the interfaces now used by
+Chapters 11-21. Preserve the distinction between a physical separation and a formal
+predicate.
+The continuous authored-source entry point now builds Chapters 1-32 with unified
+bibliography, glossary and index. Its compilation does not close this editorial
+or independent review milestone. Retain standalone candidates and accepted
+editions unchanged. Do not promote acceptance
+without independent review and the existing release gates.
+
+## Quality gates before widening the manuscript
+
+1. Complete a locally reproducible chapter: explanations, derivations,
+   source access notes, tested examples, worked exercises, and figure TXT
+   companions. Numerical figure labels must agree with executable results.
+2. Inspect every rendered page in color and grayscale. Check polarity,
+   molecular inventory, arrow meaning, units, and captions separately from
+   visual appearance. Hash the reviewed source set and PDF.
+3. Request independent domain and reader review. Record disagreements and
+   corrections; author-agent review does not satisfy this gate.
+4. After Chapter 10, prepare a combined Chapters 1-10 integration candidate:
+   audit notation, prerequisites, duplicate explanations, bibliography,
+   cross-references, and index. Earlier specialist reviews may happen sooner.
+5. Advance cumulative acceptance only after its existing gates pass.
+   Standalone chapter completion must never silently promote the edition.
+
+The implementation-first teaching pattern is predict, derive, implement,
+check against an independent result, deliberately break an assumption,
+then explain the boundary. Depth comes from these connections, not a fixed
+page count or a fixed number of decorative figures.

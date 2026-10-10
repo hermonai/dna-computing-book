@@ -1,0 +1,24 @@
+SEMANTIC GRAPH — Audit-boundary history
+
+Purpose: Explain the mechanism and its scope; companion to the editable TikZ plate.
+Notation: prose nodes and typed relationships, not ASCII art.
+
+NODES
+N0: E0: design_frozen; roles design, sequences, protocol.
+N1: E1: materials_verified; append materials.
+N2: E2: run_recorded; append execution, controls, randomization.
+N3: E3: observations_frozen; append raw, calibration, blinding.
+N4: E4: analysis_frozen; append analysis_spec, analysis_code, derived.
+N5: E5: released; append release_metadata; terminal.
+
+RELATIONSHIPS
+R0: E_i -> E_(i+1): exactly one chronological boundary; no skipping or duplicate release.
+R1: Artifacts and deviation prefixes accumulate; Plan equality holds from genesis.
+R2: Each event binds predecessor digest and its own serialized content; actual supplied bytes rechecked.
+
+READING AND LIMITS
+- Stage artifact counts 3,4,7,10,13,14 are this teaching schema only.
+- Presence of a calibration/control artifact does not establish success.
+- Internally rewritten chains can pass without external trusted anchors.
+
+Visual encoding: navy/blue denotes state and bound evidence; green denotes valid flow or independent unit; red denotes failure or limitation. Text and arrow roles preserve meaning in grayscale.

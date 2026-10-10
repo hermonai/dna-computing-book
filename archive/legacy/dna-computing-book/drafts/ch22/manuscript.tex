@@ -1,0 +1,409 @@
+\chapter{Self-assembly, tiles and geometry}
+
+A reaction network computes in a well-mixed state: species identities and counts
+matter, but two molecules do not normally carry a permanent north, south, east and
+west. Self-assembly adds an address. A component can expose different recognition
+interfaces on different sides, and the identity of the next component can depend on
+the interfaces already present at a growth front. The new question is therefore
+spatial: \emph{can local recognition rules force a desired global object?}
+
+This chapter answers that question first in a deliberately small formal model and
+then asks what survives when the tiles are molecules. The distinction matters.
+An abstract glue is a symbol with an integer strength. A sticky end is a sequence
+whose association depends on concentration, temperature, salt, secondary structure,
+competing strands and time. A proof about the first object becomes a molecular
+claim only after an implementation establishes the required correspondence.
+
+\section{A precise seeded tile model}
+
+A \Term{tile type} is an oriented unit square with four sides
+$D=\{N,E,S,W\}$. Each side carries a pair $(\ell,s)$ consisting of a glue label
+$\ell$ and nonnegative integer strength $s$. Rotation is not allowed in this
+chapter. An \Term{assembly} is a finite partial function
+$\alpha:\mathbb Z^2\rightharpoonup T$ from lattice positions to tile types.
+The seed $\sigma$ is an initial finite assembly.
+Fix a glue dictionary assigning one strength to each label. The null label has
+strength zero. Our code rejects a bond between equal labels with unequal
+strengths: taking one side's strength would make support evaluation asymmetric.
+
+For adjacent occupied positions, a bond contributes strength $s$ exactly when
+the two facing labels are equal, non-null, and the declared strengths agree.
+At temperature $\tau=2$, a tile may attach at an empty position $p$ when the
+sum of matching strengths to already occupied north, east, south and west
+neighbors is at least two. Figure~\ref{fig:tile} shows the contract.
+
+\Plate{01-tile-contract}{An oriented abstract tile and the local attachment
+predicate. The model adds integer strengths; it does not assign a molecular
+free energy to those integers.}{fig:tile}
+
+A one-tile extension is written $\alpha\to\beta$. An assembly is
+\Term{producible} if a finite sequence of legal extensions starts at $\sigma$.
+For a conventional seeded aTAM system, the seed must be $\tau$-stable:
+every cut separating its binding graph into two nonempty parts has total crossing
+strength at least $\tau$. Connectivity alone is insufficient. A strength-one
+chain is connected but has a strength-one cut at $\tau=2$.
+Adding a tile with support at least $\tau$ preserves stability: a cut isolating
+that tile crosses its full support; any other cut already separates the old
+stable assembly and gains only nonnegative additional bonds.
+
+\Listing{bond}
+\Listing{legal_tiles}
+
+It is \Term{terminal} if no tile can legally attach anywhere on its frontier.
+A seeded system is \Term{directed} when every maximal legal assembly sequence
+has the same terminal assembly. Unique choice at each visited frontier site is
+sufficient for our finite construction, but directedness is a property of the
+whole transition system, not merely of one preferred schedule.
+
+\section{Build XOR into geometry}
+
+Let each computational tile receive a bit $s$ from its south side and a bit $w$
+from its west side. Define four tile types
+\[
+X_{sw}:\quad S=v_s,\quad W=h_w,\quad N=v_{s\oplus w},
+\quad E=h_{s\oplus w},
+\]
+with all four computational glues of strength one. Because $\tau=2$, neither
+input alone is enough: a tile must agree with both already present inputs.
+
+Use an L-shaped seed. Along the bottom boundary expose vertical bits
+$1,0,0,\ldots$; along the left boundary expose horizontal zeros. For interior
+coordinates $(x,y)$ with $x,y\ge1$, the tile bit therefore satisfies
+\begin{equation}
+ z_{x,y}=z_{x,y-1}\oplus z_{x-1,y}.
+ \label{dnad22:xor}
+\end{equation}
+This is Pascal's recurrence modulo two in a rotated coordinate frame.
+The two arms and corner are joined by seed-only strength-two bonds. The
+computational sides still expose strength-one bit glues; the strong seed bonds
+must not match the computational alphabet. Every cut of this connected seed
+crosses a strength-two bond. The seed is supplied as a preassembled input
+object, not grown by the four computational types.
+
+\Listing{seed}
+
+\Plate{02-xor-growth}{The L-shaped seed supplies two local inputs to each
+interior site. Cooperative strength-one bonds make the XOR rule a spatial
+attachment rule. Every interior bit in the finite product comes from the
+executable reference.}{fig:xor}
+
+\begin{proposition}[Unique interior tile]
+Assume the south and west neighbors of an empty interior position are present,
+expose $v_s$ and $h_w$, and its north/east positions are empty.
+Exactly one reference tile can attach
+at temperature two, namely $X_{sw}$.
+\end{proposition}
+\begin{proof}
+Tile $X_{sw}$ matches both occupied inputs, so its total support is $1+1=2$.
+Any other $X_{s'w'}$ differs in at least one input bit. If exactly one differs,
+the support is one; if both differ, it is zero. Both are below $\tau=2$.
+Thus the legal tile is unique.
+\end{proof}
+
+\begin{proposition}[Order-independent finite growth]
+For the stable size-$n$ seed and the four specified nonrotating XOR types at
+$\tau=2$, every maximal assembly sequence has the same terminal assembly:
+the seed and precisely the $n^2$ interior cells satisfying
+Equation~\ref{dnad22:xor}.
+\end{proposition}
+\begin{proof}
+Let $I$ be the occupied interior positions. Inductively $I$ is a lower ideal:
+if $(x,y)\in I$, all interior positions southwest of it are in $I$.
+At a missing interior position, an occupied north or east neighbor would
+contradict this property. Only south and west can contribute, and both
+must be occupied to supply two units. The preceding proposition fixes
+one tile and preserves the lower-ideal property. No position outside the
+square can gain two computational contacts: beyond either arm only one
+inward neighbor is possible, and the boundary's other exposed glues are null
+or seed-only. If the square is incomplete, a minimal missing position has
+both predecessors present and admits an addition. A maximal sequence
+therefore fills the square; it cannot stop at a smaller ideal. The recurrence
+uniquely fixes every bit by induction on $x+y$.
+\end{proof}
+
+This proof quantifies over all schedules. It explains why the north/east
+assumption in the local proposition is legitimate here but not for an arbitrary
+assembly. The code compares the square with an independent cellular-automaton oracle.
+
+\Listing{explore}
+
+Exhaustive exploration merges identical partial assemblies rather than replaying
+every permutation of additions. The occupied lower ideals of an $n$-by-$n$
+square correspond to monotone lattice boundary paths, giving
+$\binom{2n}{n}$ states: $20$ for $n=3$ and $70$ for $n=4$. The code finds one
+terminal state for each tested size $0\le n\le4$ without clipping its frontier
+to the square. A separate small-graph cut oracle checks seed and product
+stability. These finite checks corroborate the proof; an exploration-budget
+exception is not a termination certificate.
+
+The first rows for $n=8$ are generated in \texttt{results.json}; they are not
+hand-copied artwork. The test suite also attempts an attachment before its west
+input exists and confirms that one strength-one bond cannot cross $\tau=2$.
+
+\section{Local legality is not global determinism}
+
+Now add one mutant tile with the same south and west input glues as $X_{10}$ but
+a zero output bit and north/east interfaces $v_0,h_0$, rather than the correct
+one bit and $v_1,h_1$. At a site receiving south $1$ and west
+$0$, both tiles have support two. The simulator returns two legal candidates.
+
+\Plate{03-ambiguity}{A single extra tile type can preserve local legality while
+destroying unique continuation. Directedness therefore requires reasoning about
+the set of all legal growth paths, not just replaying one successful trace.}{fig:ambiguity}
+
+This counterexample is small but important. A renderer that always chooses the
+first legal tile can still draw a perfect Sierpiński pattern and conceal the
+model error. Verification must enumerate the legal set or compare the transition
+relation with an independent specification. The same principle appeared in
+Chapter 20: a deterministic numerical integrator does not prove that the modeled
+chemistry has only one relevant pathway.
+
+Mismatch is a separate notion. In our aTAM variant a tile can attach with total
+support two while exposing a nonmatching glue to another occupied neighbor if
+the two matching sides already supply enough support. One can forbid such
+mismatches by definition, penalize them in a kinetic model, or allow them.
+Those are different models and can have different terminal assemblies.
+
+\section{Resources: tile types, area, frontier and material}
+
+For an $n\times n$ computation the reference construction uses four computational
+tile types independent of $n$, but places $n^2$ computational tile instances.
+The distinction is analogous to program size versus execution work:
+\[
+\text{tile complexity}=4,\qquad
+\text{placement work}=n^2,\qquad
+\text{final area}=n^2\ \text{lattice cells}.
+\]
+The seed itself contains $2n+1$ boundary instances in this finite presentation.
+A four-type claim counts only computational types, not the whole device.
+The reference names each boundary tile separately; its full type inventory
+is $4+(2n+1)$. Reusing identical boundary species could reduce that description,
+but does not remove the $O(n)$ input-seed preparation.
+A physical implementation must additionally supply enough copies of each tile
+species to avoid depletion over the intended growth ensemble.
+
+If each of $N=n^2$ placements were independently correct with probability
+$1-p$, then the probability of a completely correct square would be
+\begin{equation}
+P_{\rm all}=(1-p)^N.
+\label{dnad22:yield}
+\end{equation}
+This is an explanatory finite-size model, not a law of tile growth: real errors
+can be correlated, growth-front dependent and reversible. It nevertheless shows
+why a small per-placement error does not imply high object yield. At $p=0.01$,
+a $10\times10$ object has all-correct probability about $0.366$, while a
+$100\times100$ object is essentially never perfect under the independent model.
+The numerical values are generated by the reference program.
+\begin{center}\input{\Generated/yield_examples.tex}\end{center}
+The $100$-by-$100$ result is extremely small, not mathematically zero. Code uses
+$\exp[N\log(1-p)]$ with \texttt{log1p} for small $p$, and separately handles
+zero placements and probability endpoints.
+
+A second resource is time. A maximally parallel abstract schedule can grow many
+sites on one diagonal concurrently, giving $O(n)$ dependency depth even though
+there are $O(n^2)$ placements. A serial simulator takes $O(n^2)$ attachment
+steps. Neither count is a measured assembly time. Molecular time depends on
+collision rates, concentrations, detachment and transport.
+
+\section{From glue labels to DNA tile interfaces}
+
+Algorithmic DNA tile experiments instantiate spatial interfaces with DNA motifs.
+A schematic double-crossover tile contains antiparallel duplex segments joined
+by crossover connections; single-stranded sticky ends can expose sequence-specific
+recognition at selected edges. Figure~\ref{fig:dx} isolates the sticky-end
+interface: exposed complementary domains associate while preserving strand
+polarity and leaving the backbones unligated. It is not a complete
+double-crossover strand-routing design.
+
+\Plate{04-molecular-map}{A molecular edge-recognition mechanism. Continuous
+lines are independent covalent backbones; dashed red marks are newly paired
+overhang bases. Arrowheads point to $3'$ ends. Two nicks remain: hybridization
+is not ligation. A contact is not automatically an integer glue strength or
+a measured $\Delta G$.}{fig:dx}
+
+The 2004 Sierpiński-triangle experiment translated an XOR cellular-automaton
+rule into double-crossover DNA tiles and observed recognizable finite fractal
+patterns by atomic-force microscopy~\cite{sierpinski}. That result is historically decisive
+because it closes more of the abstraction ladder than a simulation does:
+logical rule $\rightarrow$ tile identities $\rightarrow$ molecular motifs
+$\rightarrow$ assembled structures $\rightarrow$ instrument image. It also
+reported substantial assembly errors, which is exactly why abstract
+directedness must not be confused with physical yield.
+
+The mapping has at least four layers:
+\begin{enumerate}
+\item an abstract side says which labels are compatible;
+\item sequence design chooses candidate recognition domains;
+\item thermodynamics and kinetics determine association and dissociation under
+      an experimental condition;
+\item imaging/classification decides whether the resulting object counts as a
+      correct assembly.
+\end{enumerate}
+Failure can enter at every arrow. Two sticky ends intended to be orthogonal can
+cross-hybridize; a correct contact can detach; a weakly supported incorrect tile
+can become kinetically trapped by later growth; an aggregate can nucleate away
+from the seed; an imaging pipeline can misclassify a defect.
+
+\section{Origami changes the geometry contract}
+
+Scaffolded DNA origami solves a different but complementary problem. A long
+single-stranded scaffold is routed through a desired shape and many shorter
+staple strands bind separated scaffold segments, constraining the scaffold into
+the designed geometry. The computation is therefore not naturally described as
+one square tile choosing the next square tile. The design object is a routed
+polymer plus a set of staple constraints.
+
+\Plate{06-origami-route}{A routed scaffold and three distinct staples.
+Each staple pairs antiparallel to separated domains and constrains their
+relative placement. Continuity, staple identity and base pairing are different
+relations. Helix twist, junction phasing and sequence design are omitted;
+this mechanism cartoon is not a folding protocol or atomically resolved shape.}{fig:origami}
+
+Rothemund's 2006 work~\cite{origami} demonstrated roughly hundred-nanometre two-dimensional
+shapes and addressable patterns using a roughly 7-kilobase scaffold and more
+than two hundred staples. For this chapter the important conceptual point is
+not the exact historical dimensions; it is that geometry can be encoded by
+global scaffold routing plus local hybridization constraints. Tile assembly
+and origami can also be composed: an origami object can act as a larger
+addressable component, while tiles can extend or decorate structures.
+
+Thus ``DNA self-assembly'' does not name one computational model. A rigorous
+description states what is programmable: tile adjacency, scaffold route,
+staple occupancy, strand-displacement pathway, or some combination.
+
+\section{Why physical growth is not monotone}
+
+The aTAM used above is irreversible: once a legal tile attaches, it never leaves.
+Molecular association is generally reversible. A minimal kinetic picture assigns
+attachment and detachment propensities that depend on free tile concentration
+and binding context. Stronger cooperative contacts can reduce detachment, but
+the growth front is then a stochastic process over assemblies rather than a
+monotone partial order.
+
+Consider a wrong tile after a weak initial contact. Let it detach with rate
+$k_{\rm off}$, or acquire a stabilizing neighboring contact with rate
+$k_{\rm lock}$. Both are in $\mathrm{s}^{-1}$ and are stipulated constant
+exponential clocks during this local episode. Residence survival is
+$S(t)=e^{-(k_{\rm off}+k_{\rm lock})t}$. The locking probability is
+\begin{equation}
+ P_{\rm lock}=\int_0^\infty k_{\rm lock}S(t)\,dt
+ =\frac{k_{\rm lock}}{k_{\rm off}+k_{\rm lock}}.
+ \label{dnad22:trap}
+\end{equation}
+Mean time to either event is $1/(k_{\rm off}+k_{\rm lock})$. With rates
+$9$ and $1$, one in ten such contacts locks. If stronger wrong binding
+reduces $k_{\rm off}$ to $1$ while $k_{\rm lock}$ is unchanged, the probability
+rises to one half. This is conditional on a wrong contact, not a defect
+fraction of all products. Arrival frequency and later repair are additional factors.
+
+\Listing{trap_probability}
+
+In an ideal dilute solution, the association hazard of one free tile species
+can be modeled as $k_{\rm on}c$, with $k_{\rm on}$ in
+$\mathrm{M}^{-1}\mathrm{s}^{-1}$ and free concentration $c$ in molar units.
+Assigning rates to glues requires more than an integer-strength lookup:
+depletion, cooperative contacts and geometric accessibility can change the
+state space as well as its hazards.
+
+\Plate{05-physical-ladder}{Competing exits from a wrong initial contact.
+Detachment rejects it; a second contact can trap it. Arrows denote transition
+hazards, not covalent bonds. This local rate model is conditional on contact,
+not an observed assembly-yield curve.}{fig:physical}
+
+Three failure modes deserve separate names. \Term{Spurious nucleation} starts
+growth without the intended seed. A \Term{kinetic trap} is a state that is
+reachable quickly but escapes slowly relative to the observation window.
+A \Term{mismatch} is an unintended local interface relation. Their remedies can
+conflict: lowering concentration can suppress some unwanted attachments while
+also slowing desired growth; stronger bonds can stabilize correct contacts while
+also making an incorrect contact harder to remove.
+
+Proofreading tile constructions~\cite{proofreading} exploit cooperativity by replacing one logical
+tile with a structured block of physical tiles so that an isolated error has
+difficulty acquiring enough subsequent support. This is an architectural
+error-control idea, not a guarantee that any chosen sequences achieve a target
+error rate. Chapter 23 will make that distinction quantitative.
+
+\section{A practical verification protocol}
+
+A useful self-assembly claim should be testable at all layers. For the formal
+system, enumerate small assemblies and check directedness, terminality and the
+claimed output function. For the sequence layer, test intended and unintended
+interactions under a declared thermodynamic model. For kinetics, vary
+concentration and temperature and compare time-resolved predictions with
+controls. For physical products, define the observation rule before looking at
+the data and report defect distributions, not only representative images.
+
+The package's executable tests cover the first layer only. They prove neither
+sequence orthogonality nor experimental yield. That is a feature of the
+evidence contract: the code says exactly what it knows.
+
+\section{Exercises with worked answers}
+
+\begin{enumerate}
+\item At $\tau=2$, can one strength-one input attach an XOR tile?
+\textbf{Answer:} No. Its support is one.
+\item Prove that $X_{sw}$ is unique when south and west inputs are present.
+\textbf{Answer:} With north/east empty, it has support two; every other tile
+mismatches an input and has support at most one. Additional occupied neighbors
+require a separate argument.
+\item Why does a successful raster-order simulation not prove directedness?
+\textbf{Answer:} The simulator may hide alternative legal attachments by its
+tie-breaking rule. Directedness concerns every maximal legal sequence.
+\item With $p=0.01$ independent placement error and $N=100$, compute all-correct
+yield. \textbf{Answer:} $0.99^{100}\approx0.366$.
+\item What happens as $N\to\infty$ for fixed $0<p<1$?
+\textbf{Answer:} $(1-p)^N\to0$.
+\item Distinguish tile complexity from assembly size.
+\textbf{Answer:} Tile complexity counts distinct programmable types; assembly
+size counts placed instances. Four types can generate arbitrarily large finite
+prefixes when the seed/boundary permits them.
+\item Why is abstract strength 2 not ``twice the binding energy'' of strength 1?
+\textbf{Answer:} Strength is a discrete model parameter. Molecular free energy
+depends on sequence and condition and combines nonlinearly with entropy and
+concentration.
+\item Give a mismatch that is still attachable.
+\textbf{Answer:} A tile may match south and west with total support two while
+mismatching an already occupied north neighbor, if the model permits mismatches.
+\item What does spurious nucleation violate?
+\textbf{Answer:} The intended seeded-growth contract: an assembly begins away
+from the designated seed.
+\item Why can stronger binding worsen a kinetic trap?
+\textbf{Answer:} It can reduce the escape/detachment rate of an incorrect state.
+\item Compare origami and square-tile programming.
+\textbf{Answer:} Origami primarily programs a global scaffold route constrained
+by staples; square-tile models program local adjacency rules. They can be
+combined but are not identical abstractions.
+\item Design an experiment testing the abstract-to-physical mapping.
+\textbf{Rubric:} Declare sequences and conditions; include seeded/no-seed and
+mismatch controls; measure time and defect distributions; vary concentration or
+temperature; define image classification in advance; compare with a reversible
+kinetic model; report uncertainty and failed assemblies.
+\item Why is the new seed temperature-two stable?
+\textbf{Answer:} Its seed-only graph is connected and every edge has strength
+two. Each nontrivial cut crosses an edge. The one-vertex size-zero seed has no
+nontrivial cut.
+\item How many named full-device types does the size-eight reference use?
+\textbf{Answer:} Four computational types plus $2(8)+1$ seed types, or $21$.
+This is a description count, not the number of material copies.
+\item Derive the probability that detachment wins the two-clock race.
+\textbf{Answer:} Integrate $k_{\rm off}e^{-(k_{\rm off}+k_{\rm lock})t}$;
+the result is $k_{\rm off}/(k_{\rm off}+k_{\rm lock})$ for positive total
+rate. If both rates vanish, there is no exit and the ratio is undefined.
+\item Why does two-domain staple binding not certify an origami shape?
+\textbf{Answer:} Scaffold routing, required occupancies, helix twist and junction
+geometry must all agree. Local pairing does not establish global folding or yield.
+\end{enumerate}
+
+\section{Vocabulary and next interface}
+
+\Term{Directed assembly}: all maximal legal growth paths converge to the same
+terminal assembly. \Term{Frontier}: empty lattice positions adjacent to the
+current assembly. \Term{Cooperative attachment}: multiple contacts jointly cross
+the attachment threshold. \Term{Spurious nucleation}: unintended seed-independent
+growth. \Term{Kinetic trap}: a long-lived off-pathway state on the experimental
+timescale.
+
+Chapter 23 asks what to do when the local rule is correct but physical execution
+is not. Redundancy, proofreading, detection and repair will be treated as
+resource-bearing mechanisms rather than as a generic promise of robustness.

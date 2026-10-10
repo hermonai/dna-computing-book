@@ -1,0 +1,1 @@
+Upper 5'-ACGTA-3' left-to-right. Aligned lower row is 3'-TGCAT-5'. Dashed rungs denote complementary positions, not exact hydrogen-bond geometry. Reading arrow for lower row points right-to-left. Its stored 5'-to-3' sequence is TACGT. No reaction occurs.

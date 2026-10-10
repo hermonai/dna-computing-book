@@ -1,0 +1,9 @@
+ID: DNAD-01-F7
+TITLE: Predicates meet laboratory operations
+PURPOSE: Map joining, endpoints, size, vertex presence and evidence to operations and failure modes.
+STEP 1 → STEP 2: Join compatible ends → Enrich endpoint-compatible material
+STEP 2 → STEP 3: Enrich endpoint-compatible material → Select size
+STEP 3 → STEP 4: Select size → Retain complementary sequence
+STEP 4 → STEP 5: Retain complementary sequence → Interpret measurement
+LIMIT: Operations approximate predicates; distinguish annealing, covalent ligation, amplification and measurement.
+EVIDENCE: Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources.

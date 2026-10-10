@@ -1,0 +1,8 @@
+ID: DNAD-01-F9
+TITLE: Candidate space becomes a material budget
+PURPOSE: Plot log10 factorial candidate counts for fixed endpoints with marked axes; pair with molecule-budget equation.
+STEP 1 → STEP 2: Count internal orders → Specify hit probability
+STEP 2 → STEP 3: Specify hit probability → Budget repeated samples
+STEP 3 → STEP 4: Budget repeated samples → Account for losses and readout
+LIMIT: Analytical counts, not measured yield, speed or energy.
+EVIDENCE: Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources.

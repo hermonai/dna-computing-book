@@ -1,0 +1,327 @@
+\chapter{Modern molecular programming and evidence}
+\label{ch:dna31}
+\section{The engineering question}
+A formal network can be mathematically correct while its DNA realization runs
+too slowly, consumes an unreported auxiliary species, or activates a reporter
+through an unintended route. These are statements about different objects,
+not contradictions. This chapter connects those objects without erasing their
+differences.
+
+Chapter 30 separated genomic organization, regulation and development. Here we
+return to synthetic molecular programming: what supports the assertion that a
+molecular system implements a specified computation? We build an original
+finite-fuel reaction model, derive an exact constant-fuel reference, implement a
+positivity-preserving update, and carry uncertainty through readout and evidence
+assessment. The model is small enough to audit. It is not a complete DNA compiler,
+experimental data, or a wet-laboratory protocol.
+
+The reader will distinguish formal species from physical intermediates,
+calculate failures of a reduced model, diagnose a non-identifiable readout, and
+reject unsupported evidence transfer. Computed tables come from
+\texttt{book/chapters/ch31/reference.py}.
+\Plate{01-stack}{Four interfaces in molecular programming. Success at one does not prove the others.}{fig:dna31-stack}
+
+\section{Specify the refinement obligation}
+Let $x(t)\in\mathbb R_{\ge0}^{n}$ denote formal concentrations with
+$\dot x=f(x)$. A physical state $z(t)\in\mathbb R_{\ge0}^{m}$ includes auxiliary
+complexes, intermediates and waste, with $\dot z=g(z;\theta)$. A
+\Term{refinement map} $P$ identifies the physical representation of formal
+species. A useful statement names a norm, horizon, initial domain and tolerance:
+\begin{equation}
+ \sup_{0\le t\le T}\|Pz(t)-x(t)\|\le\varepsilon
+ \quad\text{for }z(0)\in\mathcal D,\ \theta\in\Theta.
+ \label{eq:dna31-refinement}
+\end{equation}
+A bound for one minute need not persist for one day. A low-signal approximation
+need not hold at arbitrary concentration. A correct terminal Boolean answer
+does not establish trajectory refinement.
+
+Soloveichik, Seelig and Winfree develop strand-displacement constructions for
+approximating prescribed chemical kinetics \cite{dna31-soloveichik}. This motivates
+an explicit refinement interface. It does not identify our original, lumped
+three-reaction model with their compiler, or provide parameters for our examples.
+
+\section{A displacement mechanism is not a reaction arrow}
+An exposed toehold permits initial association. Branch migration exchanges which
+strand occupies a complementary domain. Release leaves the invader paired and
+the incumbent free. Figure~\ref{fig:dna31-dsd} labels antiparallel polarities;
+$a^*$ denotes the complementary domain, not an arbitrary second sequence.
+Association, migration and dissociation are distinct microscopic events. The
+figure does not imply deterministic motion, successful release after every
+encounter, or experimentally validated sequences. Coarse-graining these events
+into an effective rate is an assumption to test.
+\Plate{02-dsd}{Original domain-level displacement schematic. Arrowheads mark $3'$ ends, including the left-pointing scaffold. Migration is reversible; positions are schematic, not time-resolved.}{fig:dna31-dsd}
+
+\section{Build a finite-fuel realization}
+Consider the well-mixed teaching network
+\begin{equation}
+ A+F\xrightarrow{k_{\rm on}}I,\qquad
+ I\xrightarrow{k_{\rm off}}A+F,\qquad
+ I\xrightarrow{k_{\rm cat}}B+W.
+ \label{eq:dna31-network}
+\end{equation}
+$A$ is available input, $F$ auxiliary fuel, $I$ a captured intermediate,
+$B$ output and $W$ spent auxiliary material. The symbol $k_{\rm cat}$ labels a
+unimolecular conversion; it does not make $A$ a catalyst or imply a protein
+enzyme. $k_{\rm on}$ has units concentration$^{-1}$time$^{-1}$, while the other
+rates have units time$^{-1}$.
+
+Set $v_1=k_{\rm on}AF$, $v_2=k_{\rm off}I$, $v_3=k_{\rm cat}I$.
+In order $(A,F,I,B,W)$:
+\begin{equation}
+ \dot z=
+ \begin{pmatrix}-1&1&0\\-1&1&0\\1&-1&-1\\0&0&1\\0&0&1\end{pmatrix}
+ \begin{pmatrix}v_1\\v_2\\v_3\end{pmatrix}.
+ \label{eq:dna31-stoich}
+\end{equation}
+Capture consumes both available pools, reversal restores them, and conversion
+produces one output and one waste. Adding rows proves the conserved pools
+\begin{equation}
+ C_A=A+I+B,\qquad C_F=F+I+W.
+ \label{eq:dna31-pools}
+\end{equation}
+$B-W$ is also constant. Initially absent $I,B,W$ imply $B=W$ and
+$0\le B(t)\le\min(A_0,F_0)$. Waiting cannot overcome this capacity limit.
+
+If formal input means all unconverted material, its projection is $X=A+I$,
+not free $A$. Then $\dot X=-k_{\rm cat}I$. Comparing free concentration in one
+model against total unconverted concentration in another confuses definition
+error with approximation error. We retain both $A$ and $I$ below.
+
+\section{Derive the held-fuel reference}
+An external reservoir maintaining $F=\bar F$ gives constant
+$u=k_{\rm on}\bar F$. This is not a sealed mixture:
+\[
+ \frac{d}{dt}\begin{pmatrix}A\\I\end{pmatrix}
+ =
+ \begin{pmatrix}-u&k_{\rm off}\\u&-(k_{\rm off}+k_{\rm cat})\end{pmatrix}
+ \begin{pmatrix}A\\I\end{pmatrix}.
+\]
+The poles solve
+$\lambda^2+s\lambda+u k_{\rm cat}=0$, where
+$s=u+k_{\rm off}+k_{\rm cat}$. Put
+$\Delta=\sqrt{s^2-4u k_{\rm cat}}$. For $\Delta>0$,
+\[
+ \lambda_f=-(s+\Delta)/2,\qquad
+ \lambda_s=-2u k_{\rm cat}/(s+\Delta).
+\]
+The second formula avoids cancellation when the slow pole is close to zero.
+Nonnegative rates give a nonnegative discriminant:
+$(u-k_{\rm cat})^2+k_{\rm off}^2+2k_{\rm off}(u+k_{\rm cat})$.
+For $A(0)=A_0$, $I(0)=B(0)=0$:
+\begin{align}
+ I(t)&=\frac{uA_0}{\Delta}(e^{\lambda_s t}-e^{\lambda_f t}),\\
+ A(t)&=\frac{A_0}{\Delta}
+ [(-\lambda_f-u)e^{\lambda_s t}+(\lambda_s+u)e^{\lambda_f t}],\\
+ B(t)&=A_0-A(t)-I(t).
+\end{align}
+A repeated pole requires its limiting solution, not an arbitrary small
+denominator. For $k_{\rm off}=0$, $u=k_{\rm cat}>0$:
+$A=A_0e^{-ut}$, $I=A_0ut e^{-ut}$. For $u=0$, no capture occurs.
+\Listing{held_fuel}
+
+\section{Expose the reduction's initial-layer error}
+Setting $\dot I\approx0$ yields
+\[
+ I\approx \frac{uA}{k_{\rm off}+k_{\rm cat}},\qquad
+ k_{\rm eff}=\frac{u k_{\rm cat}}{k_{\rm off}+k_{\rm cat}}.
+\]
+Using $A\approx A_0-B$ adds a second assumption: little input resides in
+$I$. A useful ratio is $u/(k_{\rm off}+k_{\rm cat})$; its adequacy depends on
+the required tolerance. The reduced curve is
+$B_{\rm red}=A_0(1-e^{-k_{\rm eff}t})$.
+
+The exact initial slope is $\dot B(0)=k_{\rm cat}I(0)=0$. The reduced initial
+slope is $k_{\rm eff}A_0>0$. Hence the reduction is not an exact transient
+identity, even with perfect held fuel. It discards intermediate accumulation.
+For $u=.1$, $k_{\rm off}=.9$, $k_{\rm cat}=.1$, $k_{\rm eff}=.01$;
+the exact slow decay magnitude is approximately $.00917$.
+These are assigned model units, not measured rates.
+\begin{center}\input{\Generated/kinetics.tex}\end{center}
+\Plate{03-crn}{Computed held-fuel comparison: exact output, reduced output and intermediate. Finite-fuel pool conservation is not imposed on an externally replenished reservoir.}{fig:dna31-crn}
+
+\section{Implement without clipping the answer}
+Use simultaneous Euler updates $z_{n+1}=z_n+hSv(z_n)$. A sufficient positivity
+condition is
+\begin{equation}
+ h\max\{k_{\rm on}F_n,k_{\rm on}A_n,k_{\rm off}+k_{\rm cat}\}\le1.
+ \label{eq:dna31-positive}
+\end{equation}
+For example, $A_{n+1}=A_n(1-hk_{\rm on}F_n)+hk_{\rm off}I_n$ has two
+nonnegative terms. The same reasoning applies to $F$ and $I$; $B,W$ increase.
+The code refuses an unsafe step rather than clamping negative concentrations.
+\Listing{euler_step}
+
+The conserved-pool vectors annihilate each stoichiometric column, so Euler
+preserves those pools algebraically. Tests allow explicit roundoff tolerances.
+Clipping would change a pool without a modeled reaction and conceal an
+integration failure. Positivity alone is not an accuracy theorem: we test
+first-order step refinement against an independently handwritten RK4 system.
+The exact held-fuel formula is separately compared with a handwritten linear
+integrator; neither oracle calls the production right-hand side.
+
+The sealed-mixture table uses $(k_{\rm on},k_{\rm off},k_{\rm cat})=(.1,.9,.1)$,
+$A_0=1$, other signal pools initially empty, horizon $20$, and step $.002$:
+\begin{center}\input{\Generated/fuel.tex}\end{center}
+Changing $F_0$ changes both capacity and initial capture rate. It does not isolate
+a pure capacity effect, nor constitute a measured dose-response experiment.
+
+\section{Composition changes the interface}
+A signal captured by two approximately constant downstream populations has
+hazards $\lambda_1=k_1C_1$ and $\lambda_2=k_2C_2$. Under independent exponential
+waiting times,
+\[
+ P(\text{branch 1 wins})=
+ \int_0^\infty\lambda_1e^{-(\lambda_1+\lambda_2)t}\,dt
+ =\frac{\lambda_1}{\lambda_1+\lambda_2}.
+\]
+Tested alone, branch 1 captures with probability one if $\lambda_1>0$.
+Adding equal competition makes that probability one half.
+This \Term{loading counterexample} excludes dissociation, replenishment and
+spatial transport. Those require a richer model, not an informal correction.
+\Plate{04-composition}{Shared-signal competition. Isolated module tests do not imply composed behavior. The perturbation envelope below is a distinct, conditional bound.}{fig:dna31-composition}
+
+\subsection{Propagate a bounded discrepancy}
+Let initial separation be $E_0$, vector-field discrepancy at most $\eta$ and
+Lipschitz constant $L$ on a declared domain.
+$E(t)\le E_0+\int_0^t(LE(s)+\eta)\,ds$ gives
+\[
+ E(t)\le E_0e^{Lt}+
+ \begin{cases}\eta(e^{Lt}-1)/L,&L>0,\\\eta t,&L=0.\end{cases}
+\]
+The implementation uses \texttt{expm1} near zero. It evaluates supplied constants;
+it does not certify them. A small fitted observation residual cannot bound
+unobserved vector-field discrepancy. An envelope can be finite yet too large to
+support the advertised tolerance.
+
+\section{Observe a mechanism, not merely brightness}
+If a channel measures $y=B+I$, the states $(B,I)=(.4,.1)$ and $(.2,.3)$ are
+indistinguishable. Lower instrument noise cannot remove this
+\Term{structural non-identifiability}. An independently calibrated channel for
+$I$ would resolve $B=y-I$ under that model; a conserved input total alone would
+not separate $B$ from $I$.
+
+A reporter can also brighten when degradation separates fluorophore and
+quencher rather than when intended displacement occurs.
+\Plate{05-environment}{Distinct intended and unintended activation routes. The cell and compartment boundaries are explanatory schematics, not microscopy or validated delivery models.}{fig:dna31-environment}
+Fern and Schulman examine nuclease-associated degradation in serum-supplemented
+medium \cite{dna31-fern}. Zhong and Sczepanski compare D- and L-DNA displacement
+behavior in living mammalian cells \cite{dna31-zhong}. These primary studies
+motivate context-specific records; their rates are not parameters of our model.
+
+\section{Carry calibration uncertainty before thresholding}
+For nonsaturating $y=o+gB$, assume independent interval bounds
+$y\in[y_-,y_+]$, $o\in[o_-,o_+]$, $0<g_-\le g\le g_+$, $B\ge0$.
+A feasible enclosure is
+\begin{equation}
+ B\in\left[\max\left(0,\frac{y_--o_+}{g_+}\right),
+                 \frac{y_+-o_-}{g_-}\right].
+ \label{eq:dna31-calibration}
+\end{equation}
+If $y_+<o_-$, nonnegative output cannot explain the observation and the code
+rejects it. Overlapping observation and offset uncertainty produce lower bound
+zero; averaging endpoints must not manufacture positive evidence.
+\Listing{calibrated_interval}
+The assigned example $y\in[.48,.52]$, $o\in[.08,.12]$, $g\in[.9,1.1]$ gives
+$B\in[.32727,.48889]$. It does not guarantee $B\ge.45$.
+This is a worst-case enclosure, not a confidence or credible interval.
+Correlation, saturation, photobleaching and intermediate activation alter the
+observation model.
+\Plate{06-evidence}{Calibration intervals and independent-unit hierarchy. The unfavorable second unit in this synthetic dataset is retained.}{fig:dna31-evidence}
+
+\section{Count preparations, not repeated readings}
+Three independently prepared samples read twice are three independent units,
+not six. Technical readings $(.40,.42)$, $(.10,.12)$ and $(.38,.40)$ give
+unit means $.41$, $.11$, $.39$ and equal-unit mean $.30333$.
+The low second unit is not dropped for disagreeing with an intended narrative.
+\Listing{summarize_units}
+With one independent unit, between-unit sample standard deviation is unidentified:
+the function returns \texttt{None}, not zero. Descriptive sample spread is still
+not an interval for future samples. Batch effects, dependence, sampling design
+and exclusion rules require separate analysis.
+
+\section{Evidence scopes are not a ranking}
+A formal theorem, simulated trajectory, buffer measurement and cellular
+measurement answer different questions. An organism-level observation is not a
+stronger theorem, nor does it automatically validate a buffer-specific kinetic
+claim. The incoming ordinal environment gate is replaced by exact kind, context
+and protocol matching.
+\Listing{admissible}
+The \Term{evidence coverage gate} checks controls, observables, distinct unit
+identifiers and a source locator. It does not read raw values, establish an
+effect, or perform scientific peer review. A negative experiment may satisfy
+metadata coverage perfectly.
+
+Transporting a claim requires an explicit bridge: what mechanism is shared,
+which rates change, which delivery barrier appears, and what remains
+identifiable? Such a bridge is scientific work, not an ordering comparison
+between environment labels.
+
+\section{Make claims falsifiable}
+One supported claim is: under this mass-action model and the sufficient Euler
+bound, updates preserve nonnegative concentrations and the two pools up to
+roundoff. A valid state satisfying the bound but violating positivity or
+systematically drifting a pool would falsify that implementation claim.
+
+A biological claim would instead name a reporter, environment, time window,
+output criterion and control panel. It requires raw data, calibrated observations
+and independent units. Numerical checks cannot establish that claim.
+This distinction keeps an implementation proof from becoming an unearned
+statement of cellular capability.
+
+\section{Worked exercises}
+\begin{enumerate}
+\item \textbf{Units.} With micromolar and seconds, what units does $k_{\rm on}$
+require? \emph{Answer:} $\mu\mathrm M^{-1}\mathrm s^{-1}$.
+\item \textbf{Pool proof.} Apply $(1,0,1,1,0)$ to each column of $S$.
+\emph{Answer:} all results are zero, hence $\dot C_A=0$.
+\item \textbf{Capacity.} Can $B=.2$ occur from $A_0=1,F_0=.1$ and empty
+other pools? \emph{Answer:} no; $B=W\le C_F=.1$.
+\item \textbf{Projection.} Is $A$ all unconverted input?
+\emph{Answer:} no; captured $I$ is also unconverted, giving $A+I$.
+\item \textbf{Initial layer.} Compare exact and reduced $\dot B(0)$.
+\emph{Answer:} zero versus $k_{\rm eff}A_0$.
+\item \textbf{Repeated pole.} For $u=k_{\rm cat}=1,k_{\rm off}=0$, find
+$I(1)/A_0$. \emph{Answer:} $e^{-1}$, using the limit solution.
+\item \textbf{No conversion.} Set $k_{\rm cat}=0$.
+\emph{Answer:} $B$ remains unchanged although $I$ may accumulate.
+\item \textbf{Unsafe step.} With $A=F=1$, $k_{\rm on}=1$,
+$k_{\rm off}=.9,k_{\rm cat}=.1$, assess $h=2$.
+\emph{Answer:} $h\max(1,1,1)=2>1$; reject it.
+\item \textbf{Clipping.} Why not clamp negative $A$?
+\emph{Answer:} it changes the pool without a reaction and hides step failure.
+\item \textbf{Order.} Halving a step halves its error against an independent
+reference. \emph{Answer:} this indicates first-order behavior in that regime,
+not a universal accuracy guarantee.
+\item \textbf{Loading.} Find branch-1 probability for hazards $2$ and $3$.
+\emph{Answer:} $2/5$, not the isolated value one.
+\item \textbf{Zero-$L$ bound.} Use $E_0=.1,\eta=.03,t=2$.
+\emph{Answer:} $.16$.
+\item \textbf{Certification.} Does evaluating the envelope certify $\eta$?
+\emph{Answer:} no; its bound must be justified on the intended domain.
+\item \textbf{Ambiguity.} Give two states with $B+I=.5$.
+\emph{Answer:} $(.4,.1)$ and $(.2,.3)$.
+\item \textbf{Extra channel.} Given $I=.1$ and $B+I=.5$, find $B$.
+\emph{Answer:} $.4$ under the linear observation model.
+\item \textbf{Threshold.} Does the worked interval guarantee $B\ge.45$?
+\emph{Answer:} no; its lower endpoint is about $.3273$.
+\item \textbf{Inconsistency.} Can $y\in[0,.1]$, $o\in[.2,.3]$ with positive
+gain imply nonnegative $B$? \emph{Answer:} no; reject the assumed model.
+\item \textbf{Replication.} One preparation is read 100 times.
+\emph{Answer:} one independent unit; between-unit spread is unidentified.
+\item \textbf{Transport.} Does a cellular result verify a buffer-A claim?
+\emph{Answer:} not automatically; the contexts and relevant mechanisms differ.
+\item \textbf{Negative study.} Can a failed experiment pass coverage?
+\emph{Answer:} yes; coverage is not a positive-outcome label.
+\end{enumerate}
+
+\section{Synthesis and the next chapter}
+Formal specification, physical realization, observation and scoped claim are
+four coupled contracts. Conservation and exact transients make realization
+testable; calibration and unit accounting make its evidence interpretable.
+None substitutes for the others.
+
+Chapter 32's molecular/genomic synthesis must preserve these distinctions.
+A metaphor between genomic regulation and software is not a kinetic refinement
+proof; a simulator output is not a cellular measurement. The next integration
+must separate established results, conditional conclusions and research proposals.

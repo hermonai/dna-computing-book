@@ -1,0 +1,43 @@
+{
+  "access_date": "2026-10-06",
+  "chapter": 24,
+  "records": [
+    {
+      "key": "dnad24:boneh",
+      "authors": "D. Boneh; C. Dunworth; R. J. Lipton; J. Sgall",
+      "title": "On the computational power of DNA",
+      "date": "1996",
+      "url": "https://crypto.stanford.edu/~dabo/pubs/abstracts/biocircuit.html",
+      "access_depth": "author abstract and publication metadata",
+      "inspected": "author abstract; Discrete Applied Mathematics 71, pages 79–94 publication record",
+      "claim": "Molecular circuit satisfiability, optimization and sampling algorithms are established prior art.",
+      "issue": "Full paper not inspected; no experimental replication.",
+      "access_date": "2026-10-06"
+    },
+    {
+      "key": "dnad24:si",
+      "authors": "Bureau International des Poids et Mesures",
+      "title": "SI base unit: mole (mol)",
+      "date": "current SI definition, accessed 2026-10-06",
+      "url": "https://www.bipm.org/en/si-base-units/mole",
+      "access_depth": "official definition page",
+      "inspected": "mole definition and Avogadro constant relation",
+      "claim": "Avogadro constant exactly 6.02214076e23 per mole.",
+      "issue": "No experimental measurement claim.",
+      "access_date": "2026-10-06"
+    },
+    {
+      "key": "dnad24:landauer",
+      "authors": "R. Landauer",
+      "title": "Irreversibility and Heat Generation in the Computing Process",
+      "date": "1961; scanned primary reprint 2000",
+      "url": "https://www.cpt.univ-mrs.fr/~verga/pdfs/Landauer-1961uq.pdf",
+      "doi": "10.1147/rd.53.0183",
+      "access_depth": "selected primary-paper pages, visually inspected",
+      "inspected": "reprint pp. 262–266; Sections 3–4 and opening of Section 5; entropy and reset minimum on p. 265",
+      "claim": "Unbiased reset reduces bit entropy by k_B ln 2; ideal environment heat floor under declared premises.",
+      "issue": "Not a universal DNA energy cost; bias/correlations and actual process boundary matter.",
+      "access_date": "2026-10-06"
+    }
+  ]
+}

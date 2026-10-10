@@ -1,0 +1,25 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[note,font=\bfseries\sffamily,anchor=west] at (0,5.7) {A. DISTRIBUTION \quad B. SURROGATE ASCENT \quad C. DISCRETE AUDIT};
+\foreach \x/\b in {0/A,1/C,2/G,3/T} \node[smallnote] at (\x+.7,4.9) {\b};
+\foreach \i in {0,...,3}{
+ \node[smallnote] at (.05,4.25-.65*\i) {\the\numexpr\i+1\relax};
+ \foreach \j in {0,...,3}{
+  \ifnum\i=\j
+   \draw[Blue,fill=Blue!25] (.4+\j,3.95-.65*\i) rectangle (1+\j,4.55-.65*\i);
+   \node[smallnote] at (.7+\j,4.25-.65*\i) {.780};
+  \else
+   \draw[gray,fill=Pale] (.4+\j,3.95-.65*\i) rectangle (1+\j,4.55-.65*\i);
+   \node[smallnote] at (.7+\j,4.25-.65*\i) {.073};
+  \fi
+ }}
+\node[note] at (2,1) {Each row sums to one\\No row is a molecule};
+\node[draw,fill=Gold!35,note,text width=4.4cm,minimum height=2.4cm] (s) at (7.7,3.6)
+ {$S(p)=L^{-1}\sum_i p_{i,m_i}$\\$.25\;\to\;.7804$\\80 updates, step $.4$};
+\draw[flow] (4.2,3.6)--(s);
+\node[draw,fill=Green!10,note,text width=3.4cm,minimum height=1.2cm] (c) at (13.2,4.6) {Argmax: $5'$--ACGT--$3'$\\Re-evaluate the string};
+\node[draw,fill=Red!7,note,text width=3.4cm,minimum height=1.6cm] (f) at (13.2,1.8)
+ {Expected GC $\neq$ exact GC\\Uniform rows: expected 2\\A-first argmax AAAA: 0};
+\draw[flow] (s)--(c);
+\draw[Red,-{Stealth},thick] (c)--(f);
+\node[smallnote] at (8,.1) {Nonlinear warning: $R(p)=1-\sum_b p_b^2$ is .75 at uniform, but 0 for every one-hot base};
+\end{tikzpicture}

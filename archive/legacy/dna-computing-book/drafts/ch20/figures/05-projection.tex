@@ -1,0 +1,13 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box] (0,-.9) rectangle (13,4.8);
+\node[note,text=Blue,anchor=west] at (0,4.5) {\textbf{A coarse value can hide different future release rates}};
+\node[note,draw=Blue,fill=Pale,minimum width=4.1cm,minimum height=1.1cm] (a) at (2.6,3)
+ {$z_1$: few bound intermediates\\free output $=x$};
+\node[note,draw=Blue,fill=Pale,minimum width=4.1cm,minimum height=1.1cm] (b) at (10,3)
+ {$z_2$: many bound intermediates\\free output $=x$};
+\node[note,draw=Green,minimum width=2.5cm] (c) at (6.3,1) {$Lz_1=Lz_2=x$};
+\draw[flow] (a.south)--node[left,smallnote]{project $L$}(c.north west);
+\draw[flow] (b.south)--node[right,smallnote]{project $L$}(c.north east);
+\node[smallnote,text=Red] at (6.3,-.1) {Possible: $Lf(z_1)\ne Lf(z_2)$};
+\node[smallnote] at (6.3,-.65) {Then $x$ alone is not a closed dynamical state.};
+\end{tikzpicture}

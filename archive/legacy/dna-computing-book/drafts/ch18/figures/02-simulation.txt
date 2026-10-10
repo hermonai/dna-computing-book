@@ -1,0 +1,4 @@
+Question: What an implementation proof must preserve
+Objects and arrow semantics: Source configurations and target microsteps joined by decode maps.
+Change/invariant and caption claim: The two routes through a commuting diagram yield the same source successor.
+Scientific risk: A finite trace comparison is not a universal simulation theorem.

@@ -1,0 +1,8 @@
+ID: DNAD-01-F1
+TITLE: Computing across three descriptions
+PURPOSE: Keep graph constraints, molecular operations and decoded evidence in separate lanes.
+STEP 1 → STEP 2: Specify graph → Encode candidate
+STEP 2 → STEP 3: Encode candidate → Operate on molecules
+STEP 3 → STEP 4: Operate on molecules → Observe and verify
+LIMIT: A diagram of representation is not a claim that the physical process implements it perfectly.
+EVIDENCE: Original symbolic example and derived mathematics; historical assertions attributed separately to primary sources.

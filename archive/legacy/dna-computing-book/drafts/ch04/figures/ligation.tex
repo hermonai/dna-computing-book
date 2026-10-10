@@ -1,0 +1,29 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[note,font=\bfseries\sffamily] at (6.7,4.7) {Association creates a substrate; ligation changes the backbone};
+\foreach \y in {3,0}{
+ \draw[Green,line width=2pt] (2,\y) -- (11.5,\y);
+ \node[smallnote,left] at (2,\y) {$3'$};
+ \node[smallnote,right] at (11.5,\y) {$5'$};
+ \foreach \x/\a/\b in {2.5/A/T,3.6/C/G,4.7/G/C,5.8/T/A,7.3/A/T,8.4/G/C,9.5/C/G,10.6/T/A}{
+  \draw[gray,dashed] (\x,\y+.2)--(\x,\y+.6);
+  \node[font=\scriptsize\sffamily,fill=white,inner sep=1pt] at (\x,\y+.77) {\a};
+  \node[font=\scriptsize\sffamily,fill=white,inner sep=1pt] at (\x,\y+.05) {\b};
+ }
+}
+\draw[Blue,line width=2pt] (2,3.9)--(6.2,3.9);
+\draw[Blue,line width=2pt] (6.7,3.9)--(11.5,3.9);
+\node[smallnote,left] at (2,3.9) {$5'$};
+\node[smallnote,right] at (11.5,3.9) {$3'$};
+\node[smallnote,above left] at (6.2,3.9) {$3'$-OH};
+\node[smallnote,above right] at (6.7,3.9) {$5'$-P};
+\node[smallnote] at (12.4,3.45) {aligned\\nick};
+\draw[flow] (6.7,2.7)--(6.7,1.25);
+\draw[fill=Gold,draw=orange!60!black] (4.2,2.2) .. controls (3.6,2.8) and (5,3) .. (5.2,2.5) .. controls (6.1,2.8) and (6,1.4) .. (5.2,1.7) .. controls (4.4,1.1) and (3.7,1.6) .. cycle;
+\node[smallnote] at (4.9,2.1) {ligase};
+\node[note,anchor=west] at (7.1,2) {ATP-dependent example\\substrate chemistry and conditions matter};
+\draw[Blue,line width=2pt] (2,.9)--(11.5,.9);
+\node[smallnote,left] at (2,.9) {$5'$};
+\node[smallnote,right] at (11.5,.9) {$3'$};
+\node[smallnote] at (12.4,.45) {sealed\\strand};
+\node[smallnote] at (6.7,-.65) {Solid lines: covalent backbones. Dashed rungs: complementary recognition, not new backbone bonds.};
+\end{tikzpicture}

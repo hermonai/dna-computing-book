@@ -1,0 +1,22 @@
+\begin{tikzpicture}
+\draw[thick,Blue,fill=Pale] (4.2,3) ellipse (3.6 and 2.6);
+\draw[thick,Blue,dashed] (4.2,3) ellipse (2.8 and 1.9);
+\node[smallnote] at (4.2,5.3) {Schematic cell boundary / delivery barrier};
+\node[smallnote] at (4.2,4.4) {Accessible compartment};
+\draw[very thick,Green] (2.2,3.7)--(4.6,3.7);
+\draw[very thick,Blue] (2.2,3.3)--(4.6,3.3);
+\foreach \x in {2.4,2.8,3.2,3.6,4,4.4}{\draw[gray] (\x,3.35)--(\x,3.65);}
+\node[smallnote] at (3.4,4) {Reporter duplex};
+\fill[Gold] (4.6,3.7) circle (.13);
+\fill[Red] (4.6,3.3) circle (.13);
+\node[smallnote] at (2.5,2.8) {fluorophore / quencher};
+\draw[flow] (5,3.6)--(9.3,4.6) node[midway,above,sloped,smallnote] {intended displacement};
+\draw[flow,Red,dashed] (5,3.2)--(9.3,2.2) node[midway,below,sloped,smallnote] {degradation / nonspecific release};
+\draw[very thick,Green] (9.4,4.6)--(11.5,4.6);
+\fill[Gold] (11.5,4.6) circle (.13);
+\draw[very thick,Green] (9.4,2.2)--(10.1,2.2);
+\draw[very thick,Green] (10.5,2.2)--(11.5,2.2);
+\fill[Gold] (11.5,2.2) circle (.13);
+\node[note] at (11.1,3.4) {Both pathways can\\increase fluorescence.};
+\node[smallnote,text width=12.5cm] at (6.5,-.2) {Buffer, serum and intracellular contexts change delivery, degradation and observation.\\They are different evidence scopes, not a monotonic ranking of correctness.};
+\end{tikzpicture}

@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-06",
+  "chapter": 29,
+  "pdf": "output/pdf/dna-computing-ch29-review.pdf",
+  "pdf_sha256": "ab340139547164a99f32e8ec2827f1ce34bbaac2b4ca57d387b87e5205956044",
+  "pages": 14,
+  "source_hashes": {
+    "drafts/ch29/README.md": "b0d8fd1555bf578ee8ae9dfa9f996065ffe8255868400dcf1e141d6dce60346f",
+    "drafts/ch29/STORYBOARD.md": "41318e6e03292aa81f588a69dac759b9da6e62de6f275cb53548fdfe96d0c593",
+    "drafts/ch29/build.py": "204ddcead4da5d5a14533b15535dc68d960dfed830446c9921af1cfaf7f2aba7",
+    "drafts/ch29/figures/01-boundary.tex": "f52d784982de8032d12bed5058769cd72e482548f9bca09018c105c4a6294b04",
+    "drafts/ch29/figures/01-boundary.txt": "a15b4df39994425eb3f7575035472cf7ddb3ef8e77e2362fe9bd575cedeb493b",
+    "drafts/ch29/figures/02-sensitivity.tex": "bd38d3ddc2f1852eb0f9a1ee173b73cb6a257c209211e5b03606f2df0fa1d7fe",
+    "drafts/ch29/figures/02-sensitivity.txt": "16d92f47252dc9cb1e3c3b948e81db1de658a3f857e2321ce2e1c7c62e212d46",
+    "drafts/ch29/figures/03-oracles.tex": "e6c2d19f1f28096010598be81e6994fcaeb615bfec22aa72ef01b39ea82f64fe",
+    "drafts/ch29/figures/03-oracles.txt": "fb35c60e0dece6ddef31cf09b73ffacc22cc0d02555739ae6cad382254c4dbdb",
+    "drafts/ch29/figures/04-relaxation.tex": "d2aa58cc659d50a9745664690671fc4a4a2c3fee40b00bc17ff88ba313fd5bac",
+    "drafts/ch29/figures/04-relaxation.txt": "d8d096ae410c5d4a4d6d86480c72bd7f82d5c48329420fe99f9aabadddd1764a",
+    "drafts/ch29/figures/05-design-loop.tex": "969a98aff2281e5aa815d175a708cfb39672f4be362ccb98f897fbebe2c9e798",
+    "drafts/ch29/figures/05-design-loop.txt": "ca564b5100173ef5c242d7e213b6897861c4eb9b83f3cbb75f267dddc0e7517c",
+    "drafts/ch29/figures/06-failures.tex": "e831a1255a82c16ca1809f7e89087fe7e85a785350ee48a984c4d4adc68e734a",
+    "drafts/ch29/figures/06-failures.txt": "5484add31c2f54b2d15fe1fd1e669639d5b992c55a4c70ca8692d901af25cc3c",
+    "drafts/ch29/manuscript.tex": "5c656bf5d159b2e012c8a630af7cdb7ff0d719beb64d5937a7f7e4fc14f77b6e",
+    "drafts/ch29/reference.py": "d62de5241dcce3c5c1815bfa0f14f4ea6427792fa9faa9984bf9e6f3fefff434",
+    "drafts/ch29/results.json": "e5e661f5a726b392cb3f8affef34ddc796cad2f8d2ef359f572a4b37859f1e13",
+    "drafts/ch29/review.tex": "5ec771b9c12b9e344e63ba6632f0071885fe2178fde6677205d6675da5da450f",
+    "drafts/ch29/sources.tex": "e02dab68137e40f47a7e04d9adfaf93e9d01619e1704e8a1d5a43c28e4d08bef",
+    "tests/test_ch29_reference.py": "d7e4d2345336748b4d5117ed4121b2f56553d33b3a2827455418044333d21f7e"
+  },
+  "tests": {
+    "repository_passed": 1250,
+    "repository_skipped": 2,
+    "chapter_passed": 46,
+    "report": "build/ch29/regression.xml",
+    "python": "3.13.6"
+  },
+  "visual_review": {
+    "reviewer": "author/agent",
+    "status": "PASS WITH NOTES",
+    "mode": "all 14 pages, color and grayscale contact sheets",
+    "notes": "All 14 final pages inspected in color and grayscale. Repaired label spacing, matrix fill contrast, and whole-function listing pagination. Analytic/AD/scalar gradient oracles, solver refinement, identifiability and discrete relaxation counterexamples checked; six editable plates retain readable labels and semantic TXT companions. Independent scientific and reader review remain open."
+  },
+  "mathematical_review": "Assumptions, independent oracles and falsifiers in technical-audit.md.",
+  "acceptance": "locally reviewed standalone integration candidate; not accepted publication edition"
+}

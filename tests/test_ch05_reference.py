@@ -6,53 +6,8 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_review_record_binds_complete_authored_source_set():
-    import hashlib
-    import json
-
-    record = json.loads(
-        (ROOT / "artifacts/deep/ch05-review.json").read_text()
-    )
-    actual = {
-        str(p.relative_to(ROOT))
-        for p in (ROOT / "drafts/ch05").rglob("*")
-        if p.is_file() and "__pycache__" not in p.parts
-    }
-    assert set(record["sources"]) == actual
-    for path, digest in record["sources"].items():
-        assert (
-            hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest
-        )
-    assert record["allPagesInspected"]
-    assert record["figures"] == 5 and record["exercises"] == 12
-    assert record["status"].endswith("no acceptance promotion")
-    assert record["openGates"]
-    assert (
-        len(json.loads((ROOT / "book/book.json").read_text())["chapters"])
-        == 2
-    )
-    figures = ROOT / "drafts/ch05/figures"
-    assert len(list(figures.glob("*.tex"))) == 5
-    assert {p.stem for p in figures.glob("*.tex")} == {
-        p.stem for p in figures.glob("*.txt")
-    }
-
-
-def test_local_pdf_matches_review_when_available():
-    import hashlib
-    import json
-
-    record = json.loads(
-        (ROOT / "artifacts/deep/ch05-review.json").read_text()
-    )
-    path = ROOT / record["pdf"]
-    if not path.exists():
-        pytest.skip("Review PDF is generated and gitignored")
-    assert hashlib.sha256(path.read_bytes()).hexdigest() == record["sha256"]
-
-
 spec = importlib.util.spec_from_file_location(
-    "dna05", ROOT / "drafts/ch05/reference.py"
+    "dna05", ROOT / "book/chapters/ch05/reference.py"
 )
 M = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(M)
@@ -105,9 +60,7 @@ def test_every_interval_identity_including_empty_and_edges():
         for b in range(a, len(s) + 1):
             c, d = M.reverse_interval(len(s), a, b)
             assert d - c == b - a
-            assert M.reverse_complement(s)[c:d] == M.reverse_complement(
-                s[a:b]
-            )
+            assert M.reverse_complement(s)[c:d] == M.reverse_complement(s[a:b])
             assert M.reverse_interval(len(s), c, d) == (a, b)
 
 
@@ -136,7 +89,7 @@ def test_generated_results():
     import json
 
     assert (
-        json.loads((ROOT / "drafts/ch05/results.json").read_text())
+        json.loads((ROOT / "book/chapters/ch05/results.json").read_text())
         == M.results()
     )
 

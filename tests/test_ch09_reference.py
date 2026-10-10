@@ -7,7 +7,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
-    "dna_ch09", ROOT / "drafts/ch09/reference.py"
+    "dna_ch09", ROOT / "book/chapters/ch09/reference.py"
 )
 ref = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(ref)
@@ -31,16 +31,11 @@ def test_lineage_by_independent_endpoint_enumeration():
         assert len(strands) == 2 ** (n + 1)
         exact = sum(a == 2 and b == 12 for a, b, _ in strands)
         assert exact == expected["exact"]
-        assert expected["original"] + expected["one_end"] + exact == len(
-            strands
-        )
+        assert expected["original"] + expected["one_end"] + exact == len(strands)
         if n:
             assert expected["exact"] == 2 ** (n + 1) - 2 * n - 2
             assert expected["exact_duplexes"] == 2**n - 2 * n
-        children = [
-            (a, 12, -1) if sign == 1 else (2, b, 1)
-            for a, b, sign in strands
-        ]
+        children = [(a, 12, -1) if sign == 1 else (2, b, 1) for a, b, sign in strands]
         strands += children
 
 
@@ -83,12 +78,8 @@ def test_budget_invariants(f, r, b):
 
 
 def test_budget_plateau_and_mean_counts():
-    assert (
-        ref.budgeted(10, [1] * 5, 90, 120, 1400, 10, 3, 3)[-1]["n"] == 100
-    )
-    assert (
-        ref.budgeted(10, [1] * 5, 100, 100, 35, 10, 3, 3)[-1]["n"] == 12.5
-    )
+    assert ref.budgeted(10, [1] * 5, 90, 120, 1400, 10, 3, 3)[-1]["n"] == 100
+    assert ref.budgeted(10, [1] * 5, 100, 100, 35, 10, 3, 3)[-1]["n"] == 12.5
 
 
 def test_branching_moments_by_exact_distribution():
@@ -115,9 +106,7 @@ def test_threshold_inverse_and_gain_nonidentifiability():
 
 
 def test_slope_and_sampling():
-    assert ref.efficiency_from_slope(
-        -math.log(10) / math.log(2)
-    ) == pytest.approx(1)
+    assert ref.efficiency_from_slope(-math.log(10) / math.log(2)) == pytest.approx(1)
     assert ref.efficiency_from_slope(-4) == pytest.approx(10**0.25 - 1)
     assert ref.empty_probability(0) == 1
     assert ref.empty_probability(3) == pytest.approx(math.exp(-3))
@@ -133,6 +122,4 @@ def test_invalid_efficiency(bad):
 
 def test_results_are_current():
     actual = json.loads(json.dumps(ref.results()))
-    assert actual == json.loads(
-        (ROOT / "drafts/ch09/results.json").read_text()
-    )
+    assert actual == json.loads((ROOT / "book/chapters/ch09/results.json").read_text())

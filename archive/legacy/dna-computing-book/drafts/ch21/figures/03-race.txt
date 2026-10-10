@@ -1,0 +1,2 @@
+Question: can complete eventual capture coexist with a false-positive output?
+Free X is consumed by X+Q→W at rate kq xq. In the competing branch X+F→X+Y at rate kc xF, X is returned and F is consumed. Dashed return means catalytic reuse. The product Y records integrated exposure before X is captured. When x0=0.2,q0=0.3,kq=kc,F0=1, the long-time output is 2/3 despite zero final free X.

@@ -1,0 +1,4 @@
+Question: which contacts make X10 attach at temperature two?
+State: occupied west tile exposes h0; occupied south tile exposes v1; north and east are empty.
+Relations: horizontal and vertical contact strokes are matching glue bonds of strength one. A square is an oriented tile, not an atom. Support is two; every other input pair loses at least one bond.
+Boundary: integer strengths are formal model parameters, not measured binding energies.

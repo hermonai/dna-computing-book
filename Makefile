@@ -1,47 +1,35 @@
 PYTHON ?= python3
-MAIN := deep-dna-computing-ch01-02
-HISTORICAL_MAIN := undergraduate-dna-computing
-export PATH := /Library/TeX/texbin:$(PATH)
+export OMP_NUM_THREADS := 1
+export PATH := /Library/TeX/texbin:/opt/homebrew/bin:/usr/local/bin:$(PATH)
 
-.PHONY: graphs artifacts test pdf historical-pdf check-pdf manuscript-gate pedagogy deep-artifacts review-pdf
+.DEFAULT_GOAL := pdf
+.PHONY: pdf prepare check test legacy-test archive-check review help
 
-pedagogy:
-	$(PYTHON) scripts/build_pedagogy.py --check
+pdf:
+	$(PYTHON) scripts/build_book.py
 
-manuscript-gate:
-	$(PYTHON) scripts/require_active_manuscript.py
+prepare:
+	$(PYTHON) scripts/build_book.py --prepare-only
 
-graphs:
-	$(PYTHON) scripts/render_graphs.py
-
-artifacts:
-	$(PYTHON) scripts/chapter01_artifacts.py
-	$(PYTHON) scripts/chapter02_artifacts.py
+check: prepare
+	$(PYTHON) scripts/build_book.py --check-assets
+	$(PYTHON) -m pytest -q -o addopts=''
 
 test:
-	$(PYTHON) -m pytest
+	$(PYTHON) -m pytest -q -o addopts=''
 
-deep-artifacts:
-	$(PYTHON) scripts/build_deep_chapter.py --check
-	$(PYTHON) scripts/build_deep_chapter02.py --check
+legacy-test:
+	cd archive/legacy/dna-computing-book && GIT_DIR=$(CURDIR)/.git GIT_WORK_TREE=$(CURDIR)/archive/legacy/dna-computing-book $(PYTHON) -m pytest -q -o addopts=''
 
-pdf: manuscript-gate deep-artifacts
-	mkdir -p build/deep-figures output/pdf
-	for figure in book/figures/deep/*.svg; do rsvg-convert --format=pdf --output="build/deep-figures/$$(basename "$$figure" .svg).pdf" "$$figure" || exit; done
-	cd tex && latexmk -silent -xelatex -interaction=nonstopmode -halt-on-error -outdir=../build $(MAIN).tex
-	$(PYTHON) scripts/check_latex_log.py build/$(MAIN).log
-	cp build/$(MAIN).pdf output/pdf/$(MAIN).pdf
+archive-check:
+	$(PYTHON) scripts/verify_archive.py
 
-review-pdf: pdf
-	$(PYTHON) scripts/review_deep.py
+review:
+	$(PYTHON) scripts/review_pdf.py
 
-# Reproduce the preserved edition explicitly; never overwrite its committed PDF.
-historical-pdf:
-	$(PYTHON) scripts/audit_undergraduate.py --check
-	$(PYTHON) scripts/build_undergraduate.py --check
-	mkdir -p build/figures output/pdf
-	for figure in book/figures/undergraduate/*.svg; do rsvg-convert --format=pdf --output="build/figures/$$(basename "$$figure" .svg).pdf" "$$figure" || exit; done
-	cd tex && latexmk -xelatex -interaction=nonstopmode -halt-on-error -outdir=../build $(HISTORICAL_MAIN).tex
-
-check-pdf: manuscript-gate
-	$(PYTHON) scripts/check_latex_log.py build/$(MAIN).log
+help:
+	@echo "make pdf          Build the full 32-chapter manuscript"
+	@echo "make check        Verify generated assets and current numerical/source tests"
+	@echo "make legacy-test  Run the unchanged historical regression suite"
+	@echo "make archive-check  Verify preserved source and PDF bytes"
+	@echo "make review       Render all pages and color/grayscale contact sheets"

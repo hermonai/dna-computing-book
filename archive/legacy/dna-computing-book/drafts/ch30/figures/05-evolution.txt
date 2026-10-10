@@ -1,0 +1,1 @@
+Population reproduction and mutation. One type1 parent and three type0 parents give frequency1/4. Under invented weights w1=2,w0=1 their descendants number2 and3, giving2/5. A subsequent bidirectional mutation step uses p'=(1-mu)p_sel+nu(1-p_sel). This is an abstract haploid frequency update, not within-cell regulation, sequence design or measured organismal fitness.

@@ -1,0 +1,129 @@
+{
+  "scope": "symbolic orientation and uncertainty sets only",
+  "example": {
+    "input": "ACGTA",
+    "complement": "TGCAT",
+    "reverse": "ATGCA",
+    "reverse_complement": "TACGT"
+  },
+  "ambiguity": {
+    "A": {
+      "set": "A",
+      "complement": "T"
+    },
+    "C": {
+      "set": "C",
+      "complement": "G"
+    },
+    "G": {
+      "set": "G",
+      "complement": "C"
+    },
+    "T": {
+      "set": "T",
+      "complement": "A"
+    },
+    "R": {
+      "set": "AG",
+      "complement": "Y"
+    },
+    "Y": {
+      "set": "CT",
+      "complement": "R"
+    },
+    "M": {
+      "set": "AC",
+      "complement": "K"
+    },
+    "K": {
+      "set": "GT",
+      "complement": "M"
+    },
+    "S": {
+      "set": "CG",
+      "complement": "S"
+    },
+    "W": {
+      "set": "AT",
+      "complement": "W"
+    },
+    "B": {
+      "set": "CGT",
+      "complement": "V"
+    },
+    "D": {
+      "set": "AGT",
+      "complement": "H"
+    },
+    "H": {
+      "set": "ACT",
+      "complement": "D"
+    },
+    "V": {
+      "set": "ACG",
+      "complement": "B"
+    },
+    "N": {
+      "set": "ACGT",
+      "complement": "N"
+    }
+  },
+  "expansion_ARN": [
+    "AAA",
+    "AAC",
+    "AAG",
+    "AAT",
+    "AGA",
+    "AGC",
+    "AGG",
+    "AGT"
+  ],
+  "interval": {
+    "sequence": "ACGTAGCTA",
+    "original": [
+      2,
+      6
+    ],
+    "reversed": [
+      3,
+      7
+    ],
+    "substring": "GTAG",
+    "rc_substring": "CTAC"
+  },
+  "palindromes": [
+    {
+      "length": 0,
+      "count": 1
+    },
+    {
+      "length": 1,
+      "count": 0
+    },
+    {
+      "length": 2,
+      "count": 4
+    },
+    {
+      "length": 3,
+      "count": 0
+    },
+    {
+      "length": 4,
+      "count": 16
+    },
+    {
+      "length": 5,
+      "count": 0
+    },
+    {
+      "length": 6,
+      "count": 64
+    }
+  ],
+  "controls": {
+    "correct_aligned": true,
+    "wrong_same_direction": false,
+    "possible_not_guaranteed": true
+  }
+}

@@ -8,7 +8,7 @@ import sys
 
 import pytest
 
-path = Path(__file__).parents[1] / "drafts/ch26/reference.py"
+path = Path(__file__).parents[1] / "book/chapters/ch26/reference.py"
 spec = importlib.util.spec_from_file_location("dna26", path)
 r = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = r

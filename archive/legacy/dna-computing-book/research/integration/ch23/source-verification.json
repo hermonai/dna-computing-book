@@ -1,0 +1,55 @@
+{
+  "access_date": "2026-10-06",
+  "book": "dna-computing",
+  "chapter": 23,
+  "records": [
+    {
+      "key": "proofreading2004",
+      "authors": "Erik Winfree; Renat Bekbolatov",
+      "title": "Proofreading Tile Sets: Error Correction for Algorithmic Self-Assembly",
+      "date": "2004",
+      "url": "https://www.dna.caltech.edu/Papers/proofreading_DNA9.pdf",
+      "access_depth": "selected full-text sections",
+      "inspected": "Section 3, PDF page 10; Discussion, PDF pages 16–17",
+      "claim": "Private internal block labels introduce cooperative error-control pathways; modeled benefits have kinetic and facet limits.",
+      "issue": "No kinetic simulation or wet-lab reproduction.",
+      "access_date": "2026-10-06"
+    },
+    {
+      "key": "facet2007",
+      "authors": "Ho-Lin Chen; Rebecca Schulman; Ashish Goel; Erik Winfree",
+      "title": "Reducing Facet Nucleation during Algorithmic Self-Assembly",
+      "date": "2007-08-24",
+      "url": "https://doi.org/10.1021/nl070793o",
+      "access_depth": "author PDF selected text; publisher metadata",
+      "inspected": "author PDF abstract, page 1; mechanism/figure descriptions pages 2–3; comparative results page 6",
+      "claim": "Reported fourfold reduction is a facet-nucleation result under the tested conditions, not a bitwise mismatch law.",
+      "issue": "Incoming PNAS journal/pages and omitted authors corrected; no experimental reproduction.",
+      "access_date": "2026-10-06"
+    },
+    {
+      "key": "redundancy2015",
+      "authors": "Rebecca Schulman; Christina Wright; Erik Winfree",
+      "title": "Increasing Redundancy Exponentially Reduces Error Rates during Algorithmic Self-Assembly",
+      "date": "2015-05-12",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25965580/",
+      "access_depth": "primary abstract and metadata",
+      "inspected": "PubMed Abstract",
+      "claim": "Reported redundancy levels 1–4 reduce bitwise error under the reported conditions.",
+      "issue": "No full methods/raw-data audit.",
+      "access_date": "2026-10-06"
+    },
+    {
+      "key": "origami2026",
+      "authors": "Ben Shirt-Ediss et al.",
+      "title": "Optimising DNA origami assembly by reducing off-target interactions",
+      "date": "2026-05-26",
+      "url": "https://www.nature.com/articles/s41467-026-73387-4",
+      "access_depth": "selected publisher HTML",
+      "inspected": "Abstract; Introduction off-target/model-limit discussion",
+      "claim": "Off-target interactions can change folding despite intended complementarity.",
+      "issue": "Incoming lead-author attribution corrected; no AFM or optical-tweezers reproduction.",
+      "access_date": "2026-10-06"
+    }
+  ]
+}

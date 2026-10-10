@@ -1,0 +1,23 @@
+[
+  {
+    "key": "petri1962",
+    "primary": "historical Petri-net dissertation",
+    "claim": "Place/transition systems provide foundational transition-system context.",
+    "access_date": "2026-10-05",
+    "depth": "historical context"
+  },
+  {
+    "key": "cardelli2008",
+    "primary": "https://doi.org/10.1016/j.tcs.2007.10.012",
+    "claim": "Process structure and rate semantics can be distinguished formally.",
+    "access_date": "2026-10-05",
+    "depth": "bibliographic/abstract context"
+  },
+  {
+    "key": "soloveichik2010",
+    "primary": "https://doi.org/10.1073/pnas.0909380107",
+    "claim": "Formal CRNs can be compiled to DNA strand-displacement implementations under stated approximation conditions.",
+    "access_date": "2026-10-05",
+    "depth": "primary paper context"
+  }
+]

@@ -1,0 +1,4 @@
+Question: How a molecular transition consumes an interface
+Objects and arrow semantics: Polarity-correct duplex, transition recognition, enzyme-mediated cleavage and a newly exposed end.
+Change/invariant and caption claim: Separate current state/symbol interface from next-state interface and waste.
+Scientific risk: Conceptual restriction-based cycle; not a sequence or enzyme protocol.

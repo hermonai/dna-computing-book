@@ -1,0 +1,11 @@
+\begin{tikzpicture}[x=1cm,y=.8cm]
+\node[note] at (0,2) {[bad, good]};
+\node[draw=Blue,fill=Gold,note] (f) at (3,2) {F: 1 slot\\bad};
+\node[draw=Blue,note] (g) at (6,2) {G: good only\\empty};
+\draw[flow] (1.2,2)--(f); \draw[flow] (f)--(g);
+\node[note] at (0,0) {[bad, good]};
+\node[draw=Blue,fill=Pale,note] (g2) at (3,0) {G: good only\\good};
+\node[draw=Blue,fill=Pale,note] (f2) at (6,0) {F: 1 slot\\good};
+\draw[flow] (1.2,0)--(g2); \draw[flow] (g2)--(f2);
+\node[smallnote,align=left] at (10,1) {Original copy order is fixed.\\F accepts either identity.\\G has capacity two.};
+\end{tikzpicture}

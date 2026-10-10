@@ -1,0 +1,24 @@
+SEMANTIC GRAPH — Concept-to-observation identity hierarchy
+
+Purpose: Explain the mechanism and its scope; companion to the editable TikZ plate.
+Notation: prose nodes and typed relationships, not ASCII art.
+
+NODES
+N0: Design v4: abstract mechanism.
+N1: Two sequence sets: corrected base may preserve concept but changes realization.
+N2: Material lot 7: a specific acquisition/production provenance.
+N3: Preparations 11,12,13: explicitly named physical units.
+N4: Observation fields: nested images or reads.
+
+RELATIONSHIPS
+R0: Design -> sequence set: one-to-many physical realization.
+R1: Sequence set -> lot: sequence identity does not identify material batch.
+R2: Lot -> independently prepared unit: separate preparation identity.
+R3: Preparation -> fields: repeat observations share upstream variation.
+
+READING AND LIMITS
+- Drawing is schematic, not an experimental workflow or chemical structure.
+- Independent status must follow intervention assignment and actual preparation process.
+- Extra images do not create independent preparation replicates.
+
+Visual encoding: navy/blue denotes state and bound evidence; green denotes valid flow or independent unit; red denotes failure or limitation. Text and arrow roles preserve meaning in grayscale.

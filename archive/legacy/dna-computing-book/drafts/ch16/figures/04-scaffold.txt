@@ -1,0 +1,4 @@
+Question: How can local matching encode an automaton constraint?
+Objects and arrow semantics: Antiparallel position-bound compute strands on a scaffold, matching state-domain interfaces, one deliberately mismatched interface.
+Change/invariant and caption claim: Satisfying local adjacency encodes a valid state path.
+Scientific risk: Conceptual domain schematic, not a validated base-sequence design or kinetic pathway.

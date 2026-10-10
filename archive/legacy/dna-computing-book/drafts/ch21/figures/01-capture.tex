@@ -1,0 +1,25 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\path[use as bounding box] (0,-.4) rectangle (13,3.8);
+\node[note,anchor=west,text=Blue] at (0,3.5) {\textbf{Threshold capture changes occupancy, not strand identity}};
+\node[note] at (2.7,2.9) {Separate input and finite sink};
+\draw[very thick,Red,-{Stealth}] (.8,2.25)--(4.6,2.25);
+\node[smallnote,left] at (.8,2.25) {$5'$};
+\node[smallnote,right] at (4.6,2.25) {$3'$};
+\node[note,above] at (1.4,2.25) {$t$};
+\node[note,above] at (3.1,2.25) {$a$};
+\draw[very thick,Blue,-{Stealth}] (4.6,1.1)--(.8,1.1);
+\node[smallnote,left] at (.8,1.1) {$3'$};
+\node[smallnote,right] at (4.6,1.1) {$5'$};
+\node[note,below] at (1.4,1.1) {$t^*$};
+\node[note,below] at (3.1,1.1) {$a^*$};
+\draw[flow] (5.2,1.7)--node[above,smallnote]{capture}(7.1,1.7);
+\node[note] at (10,2.9) {Bound waste; input unavailable};
+\draw[very thick,Red,-{Stealth}] (8.1,1.95)--(11.9,1.95);
+\draw[very thick,Blue,-{Stealth}] (11.9,1.65)--(8.1,1.65);
+\foreach \x in {8.2,8.45,...,11.7} \draw[thin,gray] (\x,1.65)--(\x,1.95);
+\node[smallnote,left] at (8.1,1.95) {$5'$};
+\node[smallnote,right] at (11.9,1.95) {$3'$};
+\node[smallnote,left] at (8.1,1.65) {$3'$};
+\node[smallnote,right] at (11.9,1.65) {$5'$};
+\node[note] at (6.5,.1) {$X+Q\longrightarrow W\qquad r=(s-\theta)_+\quad\text{only after completed capture}$};
+\end{tikzpicture}

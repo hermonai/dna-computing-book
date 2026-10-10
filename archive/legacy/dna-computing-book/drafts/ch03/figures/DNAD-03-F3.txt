@@ -1,0 +1,25 @@
+DNAD-03-F3: A cycle becomes a fixed-endpoint path
+
+QUESTION
+Which way does hardness travel?
+
+OBJECTS
+Original pivot
+split source
+split sink
+incoming/outgoing arcs
+
+RELATION / MECHANISM
+Split the pivot, open the cycle, then identify endpoints in reverse
+
+INFERENCE
+Both directions preserve existence and the transformation is polynomial.
+
+BOUNDARY
+The transformation does not solve either problem.
+
+SOURCE
+MIT 6.046 recitation 8 section 2
+
+STATUS
+Working-draft figure; not part of the accepted PDF.

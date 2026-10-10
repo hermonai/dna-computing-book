@@ -1,0 +1,4 @@
+Question: How does one carry bit implement addition?
+Objects and arrow semantics: Two carry states, local input bit pairs, emitted sum bit and final carry flush.
+Change/invariant and caption claim: Least-significant-bit-first order is part of the contract.
+Scientific risk: Fixed-width overflow must not silently disappear.

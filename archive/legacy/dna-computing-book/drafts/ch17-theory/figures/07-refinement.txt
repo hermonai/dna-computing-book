@@ -1,0 +1,15 @@
+FIGURE: Logical refinement at stable molecular interfaces
+LOGICAL CONTRACT: (q, aw) becomes (delta(q,a), w) in one completed step.
+PHYSICAL STATES: Free exposed input I(q,aw); bound complex C_r; new exposed
+input I'_r; released transition carrier T_r; released material W_r.
+EVENTS: I + T_r associates reversibly to C_r. Commitment exposes I'_r and
+releases T_r and W_r in this declared reusable-carrier abstraction.
+DECODING: Only stable interfaces have dashed correspondence arrows to
+logical states. Bound intermediates do not create extra DFA states.
+SILENT LOOP: Association followed by dissociation leaves the logical
+configuration unchanged; it consumes time but makes no computational progress.
+LIMITS: Duplex segments are schematic state/symbol interfaces, not actual
+sequences. No enzyme position, synthesis polarity, or cleavage offset is
+asserted. The original ligation-consuming architecture is a separate plate.
+PROOF OBLIGATIONS: Encoding; completed-step refinement; progress; terminal
+readout. Step safety alone is insufficient.

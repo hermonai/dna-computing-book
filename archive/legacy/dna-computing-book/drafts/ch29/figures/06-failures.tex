@@ -1,0 +1,12 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\foreach \x/\y/\heading/\body in {
+3.6/4.4/{A. BROKEN GRAPH}/{Same forward, wrong gradient\\Detach mutant: 20.36 versus 532.99\\Test all parameter derivatives},
+11.7/4.4/{B. SOLVER BIAS}/{Correct Euler gradient, wrong ODE target\\Refine $h$; check positivity and error\\Do not equate AD with convergence},
+3.6/1.3/{C. WEAK IDENTIFICATION}/{One scalar, two rate parameters\\Null sensitivity direction remains\\Add informative observations},
+11.7/1.3/{D. RELAXATION MISMATCH}/{Soft reward .75; every string reward 0\\Expected GC does not bind argmax\\Discretize and audit independently}}
+ {
+ \node[draw=Blue,rounded corners,fill=Pale,minimum width=7.2cm,minimum height=2.6cm] at (\x,\y) {};
+ \node[note,font=\bfseries\sffamily] at (\x,\y+.8) {\heading};
+ \node[note,text width=6.8cm] at (\x,\y-.2) {\body};
+ }
+\end{tikzpicture}
