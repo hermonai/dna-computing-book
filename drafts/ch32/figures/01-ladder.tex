@@ -1,0 +1,23 @@
+\begin{tikzpicture}
+\node[note,font=\bfseries\sffamily] at (6.5,5.5) {Projection and encoding preserve different properties};
+\fill[Pale] (0,1.4) rectangle (3,4.8);
+\foreach \y in {2,2.4,2.8,3.2,3.6,4}{
+ \draw[thick,Blue] (.4,\y) -- (2.6,\y);
+ \draw[thick,Green] (.4,\y+.15) -- (2.6,\y+.15);
+}
+\node[note] at (1.5,4.45) {Physical sample};
+\node[smallnote] at (1.5,.8) {concentration, environment,\\geometry, modifications};
+\fill[Pale] (4,1.4) rectangle (7,4.8);
+\node[note] at (5.5,4.45) {Sequence record};
+\node[note] at (5.5,3.5) {$5'$ A C G T $3'$};
+\node[smallnote] at (5.5,2.3) {declared orientation frame\\canonical base order};
+\fill[Pale] (8,1.4) rectangle (11,4.8);
+\node[note] at (9.5,4.45) {Integer one-hot};
+\node[note] at (9.5,3) {$\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1\end{pmatrix}$};
+\node[smallnote] at (9.5,.8) {Frame must be carried\\separately if needed.};
+\draw[flow] (3,3.3)--(4,3.3) node[midway,above,smallnote] {$\pi$};
+\draw[flow] (7,3.3)--(8,3.3) node[midway,above,smallnote] {$\phi$};
+\draw[flow] (11,3.3)--(12,3.3);
+\node[note] at (12.7,3.3) {$F(X)$\\software};
+\node[smallnote,Red] at (6.5,-.2) {No arrow reconstructs discarded chemistry without additional information.};
+\end{tikzpicture}

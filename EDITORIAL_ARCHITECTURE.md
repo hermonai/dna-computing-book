@@ -1,7 +1,7 @@
 # Editorial architecture and release roadmap
 
-Updated 6 October 2026. This is the current execution map, not a claim
-that every planned chapter is written or independently reviewed.
+Updated 10 October 2026. The planned content spine now reaches Chapter 32;
+cumulative editorial and independent scientific acceptance remain open.
 
 ## One manuscript, distinct review stages
 
@@ -13,9 +13,10 @@ to change their progress labels.
 Chapters 1-2 retain their internal acceptance records. Chapter 3 has standalone
 and combined LaTeX review candidates. Chapters 4-21 have isolated authored-LaTeX
 review candidates with code, vector figures, and worked solutions.
-Chapters 22-30 now have source-bound locally reviewed standalone integration
-candidates. Chapters 31-32 remain staged ZIP candidates requiring semantic
-inspection and their own validation gates. Chapters 11-21 were authored at the
+Chapters 22-32 have source-bound locally reviewed standalone integration
+candidates. The actual Chapter 31/32 source ZIPs were inspected and integrated,
+then substantially strengthened with original derivations and falsifiers.
+Chapters 11-21 were authored at the
 reader's explicit request while the Chapters 1-10 integration milestone remains
 pending. These standalone candidates do not substitute for that integration.
 Independent specialist review and cumulative integration are still open.
@@ -179,13 +180,24 @@ and population selection from within-cell regulation. Six mechanism/model
 plates and twenty worked exercises make each biological-to-computational map
 state its carriers, assumptions, observations and omitted processes.
 
+## Chapters 31–32: realization, evidence and the closing bridge
+
+Chapter 31 derives finite-fuel capture/release dynamics, exact held-fuel poles,
+positivity conditions, independent integration checks and calibration bounds.
+Formal refinement, kinetic approximation and observed evidence stay distinct.
+Chapter 32 proves the fiber recoverability criterion and uses a constructive
+concentration collision to expose information loss. A matched factorial panel
+separates mechanism effects from backbone effects without claiming experiments.
+Each chapter has six original vector/TXT plates and twenty worked exercises.
+The 32-chapter spine is assembled; independent publication acceptance is not.
+
 ## Pending milestone: cumulative editorial and independent review
 
 Audit strand/count/concentration/signal notation, units, measurement assumptions,
 source coverage, and prerequisites, including the interfaces now used by
 Chapters 11-21. Preserve the distinction between a physical separation and a formal
 predicate.
-The continuous authored-source entry point now builds Chapters 1-30 with unified
+The continuous authored-source entry point now builds Chapters 1-32 with unified
 bibliography, glossary and index. Its compilation does not close this editorial
 or independent review milestone. Retain standalone candidates and accepted
 editions unchanged. Do not promote acceptance

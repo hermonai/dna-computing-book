@@ -1,0 +1,37 @@
+[
+  {
+    "key": "soloveichik2010",
+    "claim": "Formal CRNs can be systematically compiled into DNA strand-displacement systems approximating target kinetics.",
+    "primary": "https://doi.org/10.1073/pnas.0909380107",
+    "access_date": "2026-10-05",
+    "access_depth": "full primary article"
+  },
+  {
+    "key": "qian2011science",
+    "claim": "Experimental seesaw circuits included a four-bit square-root circuit comprising 130 DNA strands.",
+    "primary": "https://doi.org/10.1126/science.1200520",
+    "access_date": "2026-10-05",
+    "access_depth": "primary abstract/full PDF"
+  },
+  {
+    "key": "qian2011nature",
+    "claim": "DNA strand-displacement cascades implemented a neural-network/associative-memory-style computation.",
+    "primary": "https://doi.org/10.1038/nature10262",
+    "access_date": "2026-10-05",
+    "access_depth": "primary abstract/supplement context"
+  },
+  {
+    "key": "fern2017",
+    "claim": "Serum-supplemented media require degradation-aware characterization and can alter circuit behavior.",
+    "primary": "https://doi.org/10.1021/acssynbio.7b00105",
+    "access_date": "2026-10-05",
+    "access_depth": "primary abstract"
+  },
+  {
+    "key": "zhong2021",
+    "claim": "Direct D-DNA/L-DNA comparison in living mammalian cells found environmental stability/kinetic differences.",
+    "primary": "https://doi.org/10.1021/acssynbio.0c00527",
+    "access_date": "2026-10-05",
+    "access_depth": "primary full text"
+  }
+]

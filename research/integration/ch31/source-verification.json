@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-10",
+  "chapter": 31,
+  "book": "dna-computing",
+  "original_archive": "dna-computing-ch31-r01.zip",
+  "inherited_claims_adopted": false,
+  "sources": [
+    {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20203007/",
+      "access": "primary abstract plus indexed publisher excerpts; not full methods"
+    },
+    {
+      "url": "https://pubs.acs.org/doi/10.1021/acssynbio.7b00105",
+      "access": "publisher indexed abstract; direct 403"
+    },
+    {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33347747/",
+      "access": "primary abstract and figure captions; PMC recaptcha; no full methods"
+    }
+  ],
+  "limitations": "No experiment replication, training benchmark or independent acceptance."
+}

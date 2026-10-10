@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-10",
+  "chapter": 31,
+  "pdf": "output/pdf/dna-computing-ch31-review.pdf",
+  "pdf_sha256": "301210be86f13e12274c469cbfd016f6bf94575e437527f11c09c73ec3e213c3",
+  "pages": 15,
+  "source_hashes": {
+    "drafts/ch31/README.md": "caa2da473512d30b4e7ce3796299219a7a8277a802e58d814e7f7e105ad1b831",
+    "drafts/ch31/STORYBOARD.md": "e2f6f180149ae51fe076cec02fbcb5b9e3f28a2994b8a1c8c0a3876ce65dfb0f",
+    "drafts/ch31/build.py": "b874d131ddeb627e54abaf560fa597b96e31034b350ccfd5c4722048b15facbe",
+    "drafts/ch31/figures/01-stack.tex": "c544c73f514ac6ca1f9568ea643820a9536795397842dab929489e8614ee0073",
+    "drafts/ch31/figures/01-stack.txt": "934f99652d5c03f14ce956849caa41a9a6ac0735dca2e845b6be2be274e5e317",
+    "drafts/ch31/figures/02-dsd.tex": "9a4e9622eae7034a9732096a4c7ed7c00d7e6c987a03ffea3983ce378f9eb6f1",
+    "drafts/ch31/figures/02-dsd.txt": "007e311134f8c54efd7e391962b379d0159e80cb48f6690a499943de42ef09a5",
+    "drafts/ch31/figures/03-crn.tex": "31a75c835da1eb3868302d8450a5518d743980cecabea7ef0ca30b88419d1f0c",
+    "drafts/ch31/figures/03-crn.txt": "a2a0f9c309f7c2e35e32b50cf9c9db90321d6025b7085938d8a66269e83d60b1",
+    "drafts/ch31/figures/04-composition.tex": "d3346dee1045d642a7fde3c0aa656659ed749338b2ad5b7ac5a91101f303a0dd",
+    "drafts/ch31/figures/04-composition.txt": "ebd658e9b68e89450b3b92b0dd9029e7a329edd26f94c373bb92de82c72bc9db",
+    "drafts/ch31/figures/05-environment.tex": "8f1f8b2a58ddd5d02708e692ab0cc393ccbd1998a42b4a508f851fc892e25b9a",
+    "drafts/ch31/figures/05-environment.txt": "31ec6ce8f9337a89ee369e9807d84e91278d9a425ee35580739902a7848370e5",
+    "drafts/ch31/figures/06-evidence.tex": "31d359dfb4d9a24c4c06bc8be01b391cf467b93c960c5ed071118045e8112d82",
+    "drafts/ch31/figures/06-evidence.txt": "777aeae5f759e08037e1f94078f38840eea60eedcf5fb00f90de0ca42e837596",
+    "drafts/ch31/manuscript.tex": "c71d81e727cec741914e9f53a2eb51cd3f7553eece48a853eebc0ed3dcde3cfb",
+    "drafts/ch31/reference.py": "c2a4fc64e4b1b3369146505451e122bd69426cb5d4e3f0aaf8fcfa995830f58d",
+    "drafts/ch31/results.json": "50ca20ec0332c7e80647a72e9ad56104cdd5cf34bb9eca6f936d93dd3884eea3",
+    "drafts/ch31/review.tex": "eb7228c9d03b6cd1e820974fe3fa2d52f58a27c22c844fc0befdc768d398a95d",
+    "drafts/ch31/sources.tex": "eb4359df856a11689ca4d40adfed6bc262a840695d49b8c9994109180ead141d",
+    "tests/test_ch31_reference.py": "72cf119f1ba92ac3e481f8676b5bb41b04aabc574ae0f55b8a071a97a5b05594"
+  },
+  "tests": {
+    "repository_passed": 1400,
+    "repository_skipped": 2,
+    "chapter_passed": 64,
+    "report": "build/ch31/regression.xml",
+    "python": "3.13.6"
+  },
+  "visual_review": {
+    "reviewer": "author/agent",
+    "status": "PASS WITH NOTES",
+    "mode": "all 15 pages, color and grayscale contact sheets",
+    "notes": "All 15 pages inspected in color and grayscale; strand polarity, finite-fuel curves and calibration labels checked. Literal code is readable; long held-fuel listing continues across pages. No overlap or clipping observed."
+  },
+  "mathematical_review": "Assumptions, independent oracles and falsifiers in technical-audit.md.",
+  "acceptance": "locally reviewed standalone integration candidate; not accepted publication edition"
+}

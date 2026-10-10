@@ -1,0 +1,3 @@
+02-dsd
+
+Three panels: incoming 5'-t-a-3' approaches scaffold 3'-t*-a*-5', with incumbent 5'-a-3' paired to a*. Toehold t binds t*. Branch migration within a exchanges pairing. Incoming strand ends paired to both scaffold domains; incumbent is released. Arrowheads mark 3' ends. Domains and migration position are schematic.

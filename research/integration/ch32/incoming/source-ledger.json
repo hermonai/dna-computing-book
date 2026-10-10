@@ -1,0 +1,47 @@
+[
+  {
+    "key": "watsoncrick1953",
+    "claim": "DNA sequence is grounded in a physical molecular structure whose geometry is not contained in a bare base string.",
+    "primary": "https://doi.org/10.1038/171737a0",
+    "authors": "J. D. Watson; F. H. C. Crick",
+    "date": "1953",
+    "access_date": "2026-10-05",
+    "access_depth": "primary paper context"
+  },
+  {
+    "key": "adleman1994",
+    "claim": "DNA molecules can physically encode and filter candidates for a combinatorial computation.",
+    "primary": "https://doi.org/10.1126/science.7973651",
+    "authors": "Leonard M. Adleman",
+    "date": "1994",
+    "access_date": "2026-10-05",
+    "access_depth": "primary paper/abstract context"
+  },
+  {
+    "key": "soloveichik2010",
+    "claim": "Formal CRNs and DNA strand-displacement implementations are related by a designed approximation/refinement rather than literal identity.",
+    "primary": "https://doi.org/10.1073/pnas.0909380107",
+    "authors": "David Soloveichik; Georg Seelig; Erik Winfree",
+    "date": "2010",
+    "access_date": "2026-10-05",
+    "access_depth": "primary full-text context from prior chapter research"
+  },
+  {
+    "key": "levine2005",
+    "claim": "Developmental gene regulatory networks motivate causal regulatory organization at a biological level distinct from engineered molecular circuits.",
+    "primary": "https://doi.org/10.1073/pnas.0408031102",
+    "authors": "Mike Levine; Eric H. Davidson",
+    "date": "2005",
+    "access_date": "2026-10-05",
+    "access_depth": "primary review/perspective context"
+  },
+  {
+    "key": "moris2016",
+    "claim": "Developmental landscapes are useful abstractions with limitations; state transitions should not be read as a literal fixed software graph.",
+    "primary": "https://doi.org/10.1038/nrg.2016.98",
+    "authors": "Naomi Moris; Cristina Pina; Alfonso Martinez Arias",
+    "date": "2016",
+    "access_date": "2026-10-05",
+    "access_depth": "review context"
+  }
+]

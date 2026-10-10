@@ -1,0 +1,12 @@
+{
+  "M": "physical molecular state",
+  "S": "sequence record",
+  "Sigma*": "formal string space",
+  "X": "tensor/numerical representation",
+  "F": "computational operator",
+  "P(R)": "properties explicitly preserved by representation R",
+  "G": "proposed genomic mechanism",
+  "M_G": "model containing mechanism G",
+  "M_0": "established baseline",
+  "Delta": "comparative metric difference"
+}

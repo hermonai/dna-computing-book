@@ -1,0 +1,276 @@
+\chapter{From molecular computation to genomic computation}
+\label{ch:dna32}
+\section{Finish the conceptual arc without erasing boundaries}
+A DNA molecule can be a physical reactant, a sequence record, a formal string
+or an encoded tensor. These descriptions are useful precisely because they
+are not identical. This closing chapter establishes what can be transferred
+between them, what cannot be reconstructed after projection, and what would
+make a genomic-computation hypothesis scientifically informative.
+
+Chapter 31 connected specification, realization, observation and scoped evidence.
+We now apply that discipline to the boundary between molecular mechanisms and
+software models inspired by genomic organization. The original executable
+examples are constructive information-loss witnesses, strict encodings and
+paired evaluation arithmetic. No molecular experiment or trained-model result
+is reported here.
+
+This is the final planned chapter of the 32-chapter DNA authoring spine.
+It is not a claim that the entire publication has passed independent review.
+Evolutor continues beyond this boundary with testable architectural and systems
+hypotheses.
+
+\section{A projection keeps a record, not the whole molecule}
+Write the representation chain
+\[
+ M\xrightarrow{\pi_1}S\xrightarrow{\pi_2}\Sigma^*
+ \xrightarrow{\phi}X\xrightarrow{F}Y.
+\]
+$M$ contains physical molecular state; $S$ is a sequence record with coordinate
+conventions; $\Sigma^*$ is a formal word; $X$ is a numerical encoding; $F$ is a
+software operator. Each arrow has its own domain, codomain and convention.
+A bare sequence omits concentration, copy count, solvent, modifications,
+geometry and interaction partners. An orientation frame may be carried as
+metadata or lost when only base order is retained.
+\Plate{01-ladder}{Representations and their information contracts. Encoding a physical description is not a physical execution of the encoded algorithm.}{fig:dna32-ladder}
+
+\section{Prove when a discarded property cannot be recovered}
+Let $\pi:M\to R$ be a projection and $q:M\to Q$ a property. A function
+$\widehat q:R\to Q$ satisfying $\widehat q(\pi(m))=q(m)$ for every admissible
+$m$ exists exactly when $q$ is constant on every fiber of $\pi$.
+
+For necessity, if $\pi(m_1)=\pi(m_2)$, applying $\widehat q$ gives
+$q(m_1)=q(m_2)$. For sufficiency, assign to each reachable representation
+$r$ the common value of $q$ among objects mapping to it. The fiber condition
+makes that assignment well-defined; unreachable representations can be handled
+outside the admissible domain.
+
+This is a \Term{fiber recoverability criterion}. It is stronger than a vague
+claim that information is lost: it says precisely which property cannot be
+determined from a chosen record.
+\Plate{02-ledger}{A constructive collision: identical base order and frame, different concentration. A sequence-only estimator must return one answer for both and cannot be correct for both.}{fig:dna32-ledger}
+\Listing{collision_witness}
+
+The code searches a finite list for such a witness. Finding one disproves
+recoverability on that domain. Failing to find one does not prove universal
+injectivity; the tested samples may simply omit a collision.
+
+\subsection{A kinetic consequence, not only a metadata consequence}
+Take samples with the same base order and orientation but $F=1$ and $F=10$
+in assigned concentration units. With $k_{\rm on}=.1$ and $A=.2$, the capture
+rates $k_{\rm on}AF$ are $.02$ and $.2$. No algorithm reading only the identical
+sequence records can infer both correct rates.
+
+An external calibrated concentration measurement could resolve the distinction.
+That is new evidence with provenance and context, not recovery of information
+that the sequence already contained. Chapter 31's observation contract applies
+to that measurement.
+
+\section{Use a preservation ledger with the right scope}
+For a representation, record the named properties it declares to carry.
+A pure projection may discard a property but must not silently introduce one.
+\Listing{project}
+The property-set checker is a \Term{coverage ledger}, not a truth verifier.
+It cannot certify that a file actually uses the declared coordinate convention
+or that a supplied concentration was measured correctly.
+
+Derived properties also require care. Reverse complement can be computed from
+a canonical string by an explicit algorithm; its addition is a derived result,
+not evidence that the original string encoded concentration. New observations,
+derivations and lossy projections should have distinct provenance records.
+
+\section{An exact encoding is exact only at its declared level}
+For alphabet order $(A,C,G,T)$, one-hot maps each base to a basis vector in
+$\mathbb R^4$. A strict integer one-hot array preserves canonical base order:
+\[
+ \operatorname{decode}(\operatorname{encode}(s))=s.
+\]
+Each row must have four integer entries, exactly one equal to one.
+The reference rejects Boolean and floating-point lookalikes rather than
+silently weakening its data contract.
+\Listing{decode_one_hot}
+
+A naked one-hot tensor does not preserve an external orientation frame unless
+that frame is separately carried. Nor does it preserve the molecule's geometry.
+The reverse-complement identity $\operatorname{rc}(\operatorname{rc}(s))=s$
+is an exact string statement. It does not describe a molecule spontaneously
+executing a reversal operation. Exhaustive tests over canonical strings through
+length five independently construct complements and verify round trips.
+
+Learned embeddings can intentionally collapse distinct bases or contexts.
+Compression may aid a task while losing exact recoverability. The correct
+question is whether the retained representation is sufficient for the specified
+task, not whether all information must always be kept.
+
+\section{Sufficiency is task-dependent}
+For a task target $q$, the fiber criterion tests deterministic sufficiency:
+$q$ must factor through the representation. A probabilistic prediction instead
+requires a distribution over omitted states and its domain of validity.
+A learned conditional average is not an exact reconstruction of each underlying
+molecule.
+
+For example, two concentrations might have the same classification label but
+different kinetic trajectories. The sequence could be sufficient for the former
+under a declared labeling rule and insufficient for the latter. A claim of
+sufficiency must name the task and domain.
+
+\section{Engineered reactions and genomic regulation}
+An engineered circuit selects reactants, interfaces and resource assumptions.
+A living genomic system involves cis elements, transcription factors, chromatin,
+spatial contacts, RNA/protein turnover, signaling and developmental history.
+Both involve nucleic acids, but their causal models differ.
+\Plate{03-two-worlds}{Contrasting mechanistic organization. Designed displacement and genomic regulation share a substrate vocabulary, not an automatically shared computation.}{fig:dna32-worlds}
+
+A DNA sequence can influence a reaction without being the entire reactive state.
+Likewise, a promoter sequence contributes to regulation without determining
+expression independently of cellular context. Chapter 30's regulatory and
+developmental distinctions must not be collapsed into a single software gate.
+Earlier molecular work, including Adleman's experiment and formal-to-DNA
+kinetic constructions, establishes specific physical/programming relationships,
+not universal equivalence between molecules and digital models
+\cite{dna32-adleman,dna32-soloveichik}.
+
+\section{Turn inspiration into an operator and prediction}
+A useful transfer names a biological mechanism, identifies a computational
+property, formalizes an operator, compares it with the closest established
+mechanism and proposes a falsifiable intervention.
+
+A software sigmoid is already a standard gate. Calling it a promoter does not
+add a mechanism. A proposal must specify an actual difference: typed multilevel
+control, strand symmetry, structural generation, locality, multiple timescales
+or another explicit property. Then it must explain why that difference should
+alter a declared observable under matched conditions.
+
+Development-inspired structural generation must name inherited specification,
+transition rule, environment, clock, persistence and learning signal.
+Population-based evolution requires population, heritable variation and
+differential selection; gradient descent in one parameter vector is not
+automatically evolutionary search.
+\Plate{04-loop}{A matched $2\times2$ intervention design. Mechanism removal and transplant provide different tests of the claimed explanatory role.}{fig:dna32-loop}
+
+\section{Compute ablation and transplant effects}
+Let $Y_{b,g,s}$ be a metric for backbone $b\in\{0,1\}$, mechanism
+$g\in\{0,1\}$ and paired seed $s$. Define
+\[
+ d^{\rm transplant}_s=Y_{0,1,s}-Y_{0,0,s},\qquad
+ d^{\rm ablation}_s=Y_{1,1,s}-Y_{1,0,s}.
+\]
+The interaction is
+$d^{\rm int}_s=d^{\rm ablation}_s-d^{\rm transplant}_s$.
+It distinguishes a mechanism's effect in the target backbone from its effect
+when transplanted into the baseline backbone. A strong full model can coexist
+with zero effect from the named mechanism.
+\par\Needspace{16\baselineskip}
+\Listing{paired_effect}
+\Listing{factorial_effect}
+
+The following scores are deliberately assigned synthetic arithmetic, not
+training runs, benchmark results or evidence of any architecture:
+\begin{center}\input{\Generated/panel.tex}\end{center}
+They give mean transplant effect $.0275$, ablation effect $.0375$ and
+interaction $.01$. Pair differences by seed before computing their spread.
+For $n>1$, sample standard deviation is
+$s_d=\sqrt{\sum_s(d_s-\bar d)^2/(n-1)}$ and the usual descriptive standard-error
+calculation is $s_d/\sqrt n$. With one pair, those quantities are unidentified.
+No confidence level is asserted by this computation.
+
+\section{What makes this a causal experiment?}
+Arithmetic alone does not identify causal effects. The mechanism interventions
+must be controlled; data splits, optimizer settings, training budget, parameter
+and activation budgets, evaluation protocol and seed pairing must be declared.
+Ablation can alter capacity or optimization difficulty; transplant can require
+different interfaces. These are potential confounds, not reasons to omit the
+comparison.
+
+Predeclare a primary metric, adverse outcomes, exclusion criteria and failure
+thresholds. Separate tuning from held-out evaluation. Use matched controls
+where possible, including a structure-preserving but semantically disrupted
+mechanism. Report all runs and the metric direction: a positive difference in
+loss is not an improvement merely because it is positive.
+
+An effect in a synthetic motif task does not establish genomic understanding,
+continual learning or general intelligence. Out-of-domain biology and software
+capability each require their own tasks and observations.
+
+\section{Keep the two model directions distinct}
+\Plate{05-programs}{Program boundaries. DOGMA is the non-Transformer research direction; HermonDNA is the Transformer branch; Evolutor supplies the broader research and systems program.}{fig:dna32-programs}
+DOGMA and HermonDNA must earn support through explicit operators and comparisons,
+not DNA vocabulary. Evolutor owns the broader hypotheses, evaluation, compiler
+and runtime contracts. DNA Computing supplies molecular, formal and evidential
+foundations; it does not pre-decide which architectural proposal will succeed.
+
+A causal information-access contract matters in either branch. Offline suffix
+state cannot be used to claim causal decoding. A restricted affine scan cannot
+establish equivalence to an arbitrary state-dependent architecture. These
+boundaries remain part of the handoff.
+
+\section{Replace the ladder with scoped evidence}
+Chapter 31 rejected an ordinal ordering of formal, simulated, cell-free and
+cellular evidence. The final chapter must retain that correction.
+A kinetic theorem, simulated trajectory, fluorescence measurement and neural
+benchmark are different evidence branches, each attached to a claim and context.
+
+Transferring between branches requires an explicit bridge. A cell experiment
+does not prove a software architecture; a neural benchmark does not validate a
+molecular rate. Listing more advanced environments cannot substitute for
+identifiability, controls or independent replication.
+
+\section{Close the authoring spine, not the publication gates}
+\Plate{06-map}{The book's closing map and separate release gates. Completed chapter authoring is not independent scientific acceptance.}{fig:dna32-map}
+The manuscript now reaches the planned conceptual endpoint: physical resources
+and mechanisms; formal languages and algorithms; strand displacement and
+chemical networks; reliability and readout; symbolic, stochastic and
+differentiable models; genomic organization; evidence and abstraction contracts.
+
+The active continuous edition must still receive cumulative editorial review:
+notation, bibliography, glossary, index, cross-chapter assumptions and visual
+consistency. Independent scientific and reader review remain distinct gates.
+Legacy accepted material stays preserved; the word complete refers here to
+the planned chapter spine, not a certified publication.
+
+\section{Twenty worked synthesis exercises}
+\begin{enumerate}
+\item \textbf{Projection.} Two molecules have one sequence but different
+concentrations. \emph{Answer:} sequence projection is many-to-one.
+\item \textbf{Recovery.} State the fiber criterion. \emph{Answer:}
+the desired property must be constant over every projection fiber.
+\item \textbf{Proof.} Why does one collision disprove exact recovery?
+\emph{Answer:} the estimator receives one representation but would need two
+different outputs.
+\item \textbf{Finite search.} No collision was found in ten samples.
+\emph{Answer:} this is not proof of universal recoverability.
+\item \textbf{Kinetics.} Compare $kAF$ for $k=.1,A=.2,F=1$ versus $10$.
+\emph{Answer:} $.02$ versus $.2$.
+\item \textbf{New measurement.} Can calibrated concentration metadata help?
+\emph{Answer:} yes, as newly sourced evidence, not recovery from sequence alone.
+\item \textbf{One-hot.} What alphabet order is used? \emph{Answer:}
+$(A,C,G,T)$, explicitly fixed.
+\item \textbf{Invalid row.} Is $(1,1,0,0)$ legal? \emph{Answer:} no;
+exactly one integer one is required.
+\item \textbf{Frame.} Does a naked tensor preserve an external orientation
+label? \emph{Answer:} no; carry the label separately.
+\item \textbf{Reverse complement.} Where is involution exact?
+\emph{Answer:} canonical strings, not a claim of physical execution.
+\item \textbf{Task sufficiency.} Can a representation suffice for one label
+but not a trajectory? \emph{Answer:} yes; sufficiency is task-specific.
+\item \textbf{Biological naming.} Is a sigmoid biologically a promoter?
+\emph{Answer:} no; an operator and evidence bridge are required.
+\item \textbf{Development.} What must structural generation specify?
+\emph{Answer:} inherited rule, state, signals, clock, persistence and training.
+\item \textbf{Evolution.} Is single-vector gradient descent population search?
+\emph{Answer:} not without population, inheritance, variation and selection.
+\item \textbf{Transplant.} Find the worked mean effect. \emph{Answer:} $.0275$.
+\item \textbf{Ablation.} Find the target effect. \emph{Answer:} $.0375$.
+\item \textbf{Interaction.} Subtract those effects. \emph{Answer:} $.01$.
+\item \textbf{Causality.} Do assigned scores establish a mechanism's advantage?
+\emph{Answer:} no; they demonstrate arithmetic only.
+\item \textbf{Taxonomy.} Which branch is Transformer-based?
+\emph{Answer:} HermonDNA, not DOGMA.
+\item \textbf{Completion.} Does Chapter 32 confer publication acceptance?
+\emph{Answer:} no; cumulative editorial, scientific and reader review remain.
+\end{enumerate}
+
+\section{Closing boundary}
+Computation is a representation, a mechanism, a resource budget and an
+observation contract, not only an equation. Genomic computation should inherit
+that discipline before it inherits biological names. That is the book's
+handoff to Evolutor.

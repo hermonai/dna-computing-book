@@ -1,0 +1,10 @@
+{
+  "pi": "projection",
+  "q": "property tested for recoverability",
+  "fiber": "all states with the same projection",
+  "b": "backbone indicator",
+  "g": "mechanism indicator",
+  "s": "paired seed",
+  "Y": "assigned synthetic score",
+  "frame": "external orientation label"
+}

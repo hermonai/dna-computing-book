@@ -374,12 +374,22 @@
       "existing_chapter_state": "absent",
       "dependencies": [],
       "conflicts": [],
-      "decision": "pending semantic inspection",
-      "source_verification": "not_rerun",
-      "code_test_state": "not_rerun",
-      "figure_state": "not_reviewed",
-      "pdf_state": "not_built_locally",
-      "final_integration_state": "candidate"
+      "decision": "Rebuild candidate around finite-fuel kinetic refinement, calibrated observation, and context-specific evidence; preserve incoming provenance and reject environment-ranking inference.",
+      "source_verification": "primary access depths recorded; no experiment replication",
+      "code_test_state": "64 chapter tests; full regression passed",
+      "figure_state": "all pages color/grayscale locally reviewed",
+      "pdf_state": "standalone 15 pages; full-book pending",
+      "final_integration_state": "locally_reviewed_candidate",
+      "gates": {
+        "integrated": true,
+        "tested": true,
+        "built": true,
+        "rendered": true,
+        "locally_reviewed": true,
+        "independently_reviewed": false,
+        "accepted": false,
+        "full_book_converged": false
+      }
     },
     {
       "book": "dna-computing",
@@ -405,12 +415,22 @@
       "existing_chapter_state": "absent",
       "dependencies": [],
       "conflicts": [],
-      "decision": "pending semantic inspection",
-      "source_verification": "not_rerun",
-      "code_test_state": "not_rerun",
-      "figure_state": "not_reviewed",
-      "pdf_state": "not_built_locally",
-      "final_integration_state": "candidate"
+      "decision": "Close authoring spine with constructive information-loss proofs, representation/observation contracts and a causal evaluation design; replace ordinal evidence ladder with Chapter 31 scoped evidence and preserve unaccepted publication gates.",
+      "source_verification": "primary access depths recorded; no experiment replication",
+      "code_test_state": "31 chapter tests; full regression passed",
+      "figure_state": "all pages color/grayscale locally reviewed",
+      "pdf_state": "standalone 14 pages; full-book pending",
+      "final_integration_state": "locally_reviewed_candidate",
+      "gates": {
+        "integrated": true,
+        "tested": true,
+        "built": true,
+        "rendered": true,
+        "locally_reviewed": true,
+        "independently_reviewed": false,
+        "accepted": false,
+        "full_book_converged": false
+      }
     }
   ]
 }

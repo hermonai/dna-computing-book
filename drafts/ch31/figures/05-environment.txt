@@ -1,0 +1,3 @@
+05-environment
+
+A reporter duplex inside a schematic delivery compartment has fluorophore and quencher nearby. Intended displacement and nonspecific degradation can both release fluorescence. A bright signal alone does not identify the intended product; buffer/serum/cell contexts require distinct evidence.

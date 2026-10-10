@@ -1,89 +1,70 @@
 # Current manuscript and repository guide
 
-Updated 6 October 2026. This guide identifies the active work; it does not
-promote a review candidate into an accepted edition.
+Updated 10 October 2026. Active content reaches Chapter 32, the final planned
+DNA chapter. This is a complete authoring spine, not an accepted publication.
 
 ## Start here
 
-- Latest integrated chapter candidate: [30 — Genomic organization, regulation and development](drafts/ch30/README.md).
-- Current scope and chapter responsibilities: [editorial architecture](EDITORIAL_ARCHITECTURE.md).
-- Opening LaTeX revision: [revision guide](TEXTBOOK_REVISION.md).
-- Production criteria: [textbook standard](TEXTBOOK_STANDARD.md) and [chapter standard](CHAPTER_STANDARD.md).
+- [Chapter 31 — Modern molecular programming and evidence](drafts/ch31/README.md)
+- [Chapter 32 — From molecular computation to genomic computation](drafts/ch32/README.md)
+- [Editorial architecture and release gates](EDITORIAL_ARCHITECTURE.md)
+- [Package convergence matrix](research/integration/chapter-convergence-matrix.md)
+- [Continuous PDF hash, review scope and open release gates](research/integration/continuous-through32-review.json)
+- [Textbook standard](TEXTBOOK_STANDARD.md) and [chapter standard](CHAPTER_STANDARD.md)
 
 ## One manuscript, explicit stages
 
-| Material | Where to work or read | Status |
+| Material | Active location | Status |
 |---|---|---|
-| Opening Chapters 1–3 revision | tex/ and TEXTBOOK_REVISION.md | Textbook review candidate; accepted opening preserved separately |
-| Standalone Chapter 3 | drafts/ch03/README.md | Earlier review candidate and figure sources |
-| Chapters 4–20 | drafts/ch04/ through drafts/ch20/ | Authored standalone review candidates |
-| Expanded Chapter 17 theory | drafts/ch17-theory/README.md | Preferred extended theory candidate; original Chapter 17 retained |
-| Chapter 21 | drafts/ch21/README.md | New standalone review candidate |
-| Accepted Chapters 1–2 | book/book.json and existing acceptance records | Frozen; not a claim that Chapters 3–21 are cumulatively accepted |
-| Historical editions | Existing historical sources and preservation tests | Archives, not parallel active authoring |
+| Opening Chapters 1–3 | tex/ and TEXTBOOK_REVISION.md | Textbook review candidate |
+| Chapters 4–21 | drafts/ch04/ through drafts/ch21/ | Authored standalone candidates |
+| Expanded Chapter 17 | drafts/ch17-theory/ | Preferred theory extension; original retained |
+| Chapters 22–32 | drafts/ch22/ through drafts/ch32/ | Source-bound locally reviewed candidates |
+| Continuous Chapters 1–32 | output/pdf/dna-computing-convergence.pdf | Authored-source cumulative review candidate |
+| Accepted Chapters 1–2 | book/book.json and acceptance records | Frozen, not superseded acceptance |
+| Historical editions | Existing sources and preservation tests | Archives, not parallel authoring |
 
-Read chapters in numerical order. The latest standalone PDF is not the entire
-book. The new continuous authored-LaTeX builder consolidates notation, bibliography,
-index and cross-references through the explicitly requested chapter. Later candidates must retain compatible interfaces;
-integration and independent specialist/reader review are explicit open gates.
-BOOK_PLAN.md is a generated acceptance snapshot and long-range chapter spine,
-not a live list of completed drafts. Do not edit frozen status files to make
-progress appear larger.
+All dna-computing-ch22-r01.zip through dna-computing-ch32-r01.zip packages are
+inventoried and semantically integrated. In particular, the requested Chapter
+30/31/32 ZIPs were used; preserved incoming metadata is provenance, not local proof.
+Review records bind authored source, PDF hashes and regression evidence.
 
-## What belongs in each folder
+## Build and verify
 
-| Folder | Purpose | Cleanup rule |
-|---|---|---|
-| drafts/, tex/, figures/, examples/ | Authored text, diagrams and reference implementations | Preserve; never treat as build cache |
-| tests/ | Numerical, semantic and preservation checks | Preserve and run |
-| artifacts/deep/ | Review records binding source and PDF hashes | Preserve; update only after actual review |
-| output/pdf/ | Readable generated PDFs and preserved publications | Do not blanket-delete; inspect edition and provenance first |
-| build/ | Generated tables/listings, LaTeX auxiliaries, compiler PDFs and logs | Disposable only after checking tracked files and active builds |
-| tmp/pdfs/ | Rendered page images used for visual QA | Regenerable; not manuscript sources |
+Use Python 3.13.6 at /Users/wenyan/.pyenv/versions/3.13.6/bin/python3.
 
-A .tex file under build/ may be a generated table, not an authored chapter.
-Edit the owning drafts/chNN/manuscript.tex or its figures instead. An identical-looking
-PDF under build/ is a compiler product; read the named file under output/pdf/.
+- Chapter builders: drafts/chNN/build.py --render; --check verifies computed assets.
+- Continuous build: scripts/build-convergence.py --through 32 --refresh-assets.
+- Regression: python -m pytest -q -o addopts=''.
+- Do not build PDFs concurrently with preservation tests in the same repository.
 
-## Clean current workflow
+The continuous builder assembles authored LaTeX with reconciled bibliography,
+global glossary, index and chapter references. The pedagogical acknowledgment
+appears once in front matter. A successful build is not cumulative visual review.
 
-Use the chapter README commands for standalone reviews. For continuous assembly,
-run Python 3.13: scripts/build-convergence.py --through 30 --refresh-assets.
-This produces output/pdf/dna-computing-convergence.pdf and a source-bound build
-report in build/convergence/. It is a cumulative review candidate, not an accepted
-full planned book. --check on chapter builders verifies existing computed assets.
-Do not use historical-pdf or older cumulative builders merely to preview a new
-chapter: those are explicit reproduction workflows and recreate their own caches.
+## Folder and cleanup policy
 
-On 27 September 2026, the two books' old build trees (1,148 files, approximately
-102 MB combined) were moved to a dated macOS Trash archive, not deleted.
-Authored files, prior review PDFs, acceptance records and historical editions
-were retained. Current chapter builds and the regression suite recreate only
-the caches they need (including textbook validation assets). The local
-archive includes a recovery receipt. Future cleanup should likewise resolve
-exact paths, confirm no tracked source or active process, then archive rather
-than recursively delete a repository directory.
+Authored drafts/, tex/, figures/, examples/ and tests/ are source, not cache.
+research/integration/ contains durable provenance and local evidence.
+output/pdf/ holds readable review PDFs and preserved editions; inspect provenance
+before removing anything. build/ contains generated tables, listings, compiler
+outputs and logs. tmp/pdfs/ contains regenerable visual-review pages.
 
-## Next editorial milestone
+On 27 September 2026, the books' legacy build trees (1,148 files, about 102 MB
+combined) were moved to a dated macOS Trash archive with a recovery receipt.
+Authored files, review records, accepted PDFs and historical editions were retained.
+Future cleanup must resolve exact targets and archive rather than delete broadly.
 
-Chapter 31 develops modern molecular programming and evidence: preserve the
-distinction between formal refinement, kinetic realization and measured readout.
-Use dna-computing-ch31-r01.zip as the source candidate; Chapter 32 uses
-dna-computing-ch32-r01.zip for the molecular/genomic synthesis.
-Primary sources inform questions; local implementation checks do not establish biological capability or industrial leadership.
+## DNA release work remains
 
-# Package convergence in progress — 6 October 2026
+The content spine closes with finite-fuel realization and scoped evidence (31),
+then constructive information-loss proofs and molecular/genomic synthesis (32).
+Full regression: 1,400 passed, 2 skipped. New standalone PDFs: 15 and 14 pages;
+each has six vector/TXT plates and twenty worked exercises.
 
-Chapters 22–30 have been semantically integrated, rewritten, tested and locally
-visually reviewed as standalone candidates. Source-bound evidence is tracked
-in the matrix, not inferred from file presence. The integration branch preserves the earlier
-accepted edition. Remaining packages and cumulative/full-book gates are tracked
-separately in `research/integration/chapter-convergence-matrix.md`; this update is
-not an acceptance promotion. Use the declared Python environment (Python 3.11+;
-PyTorch required for Evolutor), not the macOS system Python.
-
-The explicitly requested dna-computing-ch30/31/32-r01.zip packages are all
-inventoried with archive digests, canonical chapter mappings and separate gates.
-Chapter 30 is integrated; Chapters 31–32 remain staged source candidates.
-See research/integration/package-inventory.json and the convergence matrix;
-being present or referenced is not a claim of completed integration.
+Remaining gates: cumulative line-by-line scientific/editorial review, complete
+continuous-edition visual QA, bibliography/notation/index reconciliation beyond
+automated closure, independent specialist review and real-reader evaluation.
+Chapter acceptance and full-book convergence remain false in the inventory.
+BOOK_PLAN.md stays the generated frozen acceptance snapshot, not a live progress
+counter. Do not regenerate legacy editions or promote their acceptance records.

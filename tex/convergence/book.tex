@@ -5,6 +5,7 @@
 \input{../build/convergence/scope.tex}
 \begin{document}
 \frontmatter
+\fancyhead[R]{\small\sffamily Front matter}
 \begin{titlepage}
 \color{Blue}\sffamily\vspace*{24mm}
 {\Huge\bfseries DNA Computing\par}
@@ -13,7 +14,7 @@
 \vspace{7mm}{\large Define the mechanism. Derive the result. Test the claim.\par}
 \vfill Continuous integration review candidate\par
 Chapters 1--\IncludedThrough\ / October 2026\par
-Not an accepted publication edition; later packages and independent review remain gated.
+Planned chapter spine assembled; cumulative editorial and independent review remain gated.
 \end{titlepage}
 \chapter*{Reading and evidence conventions}
 \addcontentsline{toc}{chapter}{Reading and evidence conventions}
@@ -35,10 +36,14 @@ ownership and failure contract. The single bibliography reconciles exact source
 identifiers while retaining the source-key provenance in the build record.
 The global index is generated from authored term marks. Chapter packages still
 awaiting semantic integration are not included merely because their ZIP exists.
+\input{frontmatter/about-this-book.tex}
+\clearpage
 \tableofcontents
 \mainmatter
+\fancyhead[R]{\small\sffamily Chapter \thechapter}
 \input{../build/convergence/chapters.tex}
 \backmatter
+\fancyhead[R]{\small\sffamily Reference material}
 \input{convergence/glossary.tex}
 \input{../build/convergence/bibliography.tex}
 \clearpage\phantomsection\addcontentsline{toc}{chapter}{Index}
