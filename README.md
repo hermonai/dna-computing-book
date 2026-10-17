@@ -12,6 +12,10 @@ publication or a demonstration of industrial/genomic capability.
 
 ## Read the book
 
+Download the complete 397-page manuscript and its source-bound review record
+from the [public review prerelease](https://github.com/hermonai/dna-computing-book/releases/tag/dna-review-2026-10-17).
+This is a review candidate, not the final accepted publication.
+
 Build the current edition with `make pdf`. The only current full-book output is
 [`output/pdf/dna-computing.pdf`](output/pdf/dna-computing.pdf).
 All 32 chapters are included; Chapter 17 uses the expanded Watson–Crick and
