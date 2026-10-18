@@ -24,6 +24,10 @@ biochemical automata treatment.
 See the [chapter map](book/README.md), [authoring guide](docs/AUTHORING.md)
 and [editorial architecture](docs/EDITORIAL_ARCHITECTURE.md).
 
+For the next editorial pass, use the
+[Claude undergraduate textbook review and illustration prompt](docs/CLAUDE_PREPUBLICATION_REVIEW_PROMPT.md).
+It specifies the author's current teaching brief; it does not mark that revision complete.
+
 ## Repository layout
 
 ```text
