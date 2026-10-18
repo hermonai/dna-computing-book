@@ -1,4 +1,11 @@
 \chapter{Sequence design and graph encoding}
+\ChapterGoals{%
+\item choose a sequence representation and define distances that respect strand polarity;
+\item explain what a minimum-distance guarantee protects against, and under which noise model;
+\item detect offset (sliding) complementarity and self-complementary hairpins;
+\item construct a small graph codec, prove that it round-trips, and attack its junctions;
+\item separate combinatorial screening from thermodynamic and laboratory validation.}
+{Chapters~5--7 and~10.}
 Suppose four vertices have four different DNA words. Does that make every
 directed edge chemically distinguishable? No. Two words may differ at every
 aligned position and still offer a long complementary segment after one strand
@@ -118,6 +125,15 @@ Our code does not invoke or reproduce that package. A subsequent design stage
 needs complete structures, concentrations, physical conditions and an appropriate
 thermodynamic model, followed by experimental validation.
 
+\begin{CSBridge}
+Sequence design is a coding-theory problem with a twist. In ordinary codes, a
+codeword is compared with corrupted copies of itself. Here every word is also
+compared with the \emph{reverse complements} of all words, at every offset,
+because any of those pairings could happen in a tube. The search space grows
+as $4^L$ for length-$L$ words, so practical designers combine exhaustive
+screens for short words with stochastic search and thermodynamic models.
+\end{CSBridge}
+
 \section{Construct a small inspectable library}
 \index{sequence design}
 Choose three equal-length words from a supplied list. Require GC fraction
@@ -201,6 +217,21 @@ The resulting design discipline has two levels: prove representation semantics,
 then examine the actual molecular constructs, including unintended interactions.
 Chapter 12 asks how finite candidate populations and imperfect filters affect
 the ability to recover a valid encoded witness.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item Distances between DNA words must be defined against the reverse complement,
+because pairing is antiparallel.
+\item A minimum Hamming distance protects against a declared number of aligned
+substitutions; it says nothing about shifted alignments.
+\item Sliding one strand can expose long complementary runs that aligned
+comparison misses; inverted repeats allow a strand to pair with itself.
+\item Concatenating domains creates junction words that belong to no single
+component; a codec must screen the seams as well as the words.
+\item Passing combinatorial screens is necessary, not sufficient: thermodynamic
+models (Chapter~6) and experiments decide actual selectivity.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked reasoning}
 \begin{enumerate}

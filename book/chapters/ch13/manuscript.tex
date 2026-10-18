@@ -1,5 +1,12 @@
 \chapter{SAT and combinatorial constructions}
 \label{ch:sat}
+\ChapterGoals{%
+\item encode Boolean assignments as addressable molecules;
+\item implement clause selection as a disjoint partition that never invents copies;
+\item prove the selector's invariant and check it on every assignment;
+\item show where exponential cost reappears in coverage and detection;
+\item explain why a positive certificate and a negative result carry different evidence.}
+{Chapters~3 and~12; Boolean logic (conjunctive normal form is defined below).}
 A molecular search does not evaluate a formula by understanding its symbols.
 It changes a population so that the molecules left in one tube encode
 assignments satisfying that formula. The difficult step is not writing
@@ -221,6 +228,17 @@ capacity counterexample already shows why commuting Boolean predicates
 need not yield commuting laboratory operators.
 
 \section{Current research: change the architecture, not the accounting}
+\begin{Frontier}
+\textbf{From filtering to energy landscapes.} The largest filtering experiment,
+a 20-variable 3-SAT instance, used repeated electrophoretic capture through
+probe-bearing gel modules.\cite{Braich2002} A 2026 scaffolded DNA computer takes
+a different approach: input and program strands assemble on a scaffold so that
+the correct output is the most thermodynamically favoured
+configuration.\cite{Sterin2026} The resource ledger of Chapter~4 still applies:
+preparation, incorrect near-optimal states, equilibration time and readout must
+all be counted.
+\end{Frontier}
+
 A September 2026 Scaffolded DNA Computer study reports computation through
 engineered equilibrium preference, including finite-state programs and
 25-bit addition \cite{Sterin2026}. Its main text distinguishes short-scaffold
@@ -234,6 +252,22 @@ preparation, degeneracy of incorrect states, equilibration and readout.
 An energetically favored correct state does not, by itself, establish a
 short path to it. Nor does a finite addition demonstration establish
 efficient solution of arbitrary NP-complete instances.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A satisfying assignment is a molecule whose variable addresses carry the
+right values; clause tests are selections on those addresses.
+\item An OR over literals must partition the pool into disjoint residuals;
+retesting the same copies for each literal would double-count them.
+\item The selector's invariant (survivors are exactly the copies of satisfying
+assignments) is proved by induction and checked exhaustively on small formulas.
+\item For $n$ variables the library must cover $2^n$ assignments with enough copies
+to survive losses, so material grows exponentially even though the number of
+steps grows only with the formula size.
+\item A decoded, verified assignment certifies satisfiability; an empty tube
+certifies nothing without coverage and detection bounds.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked answers}
 \begin{enumerate}

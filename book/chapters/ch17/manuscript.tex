@@ -1,4 +1,11 @@
 \chapter{Watson--Crick and biochemical automata}
+\ChapterGoals{%
+\item distinguish control state, configuration and physical state in a molecular machine;
+\item design a two-head Watson--Crick automaton that uses head lag to recognise equal blocks, and prove it correct;
+\item search configurations explicitly and explain why nondeterminism does not create free witnesses;
+\item explain what the restriction--ligation biochemical automaton implements and what it consumes;
+\item bound search costs without hiding the information stored in head positions.}
+{Chapter~16 (automata and regular languages); induction proofs.}
 Two readers move along a double strand. One waits while the other advances.
 Can that delay store information even when the controller has only three
 states? Yes: the distance between the readers is part of the configuration.
@@ -227,6 +234,23 @@ A useful extension is to allow a double-empty rule. The monotone-rank proof
 then fails immediately, although a finite visited-set search can still
 terminate for fixed input. Another extension lets readers move left. Now the
 $2n$ path bound fails too. Such changes are new models, not harmless options.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A machine's configuration includes everything that determines its future,
+not only its control-state label; in a two-head automaton the head lag is
+memory.
+\item Two heads reading the upper and lower strands of a duplex can recognise
+languages, such as equal-length blocks, that one-head finite automata cannot.
+\item Nondeterministic acceptance means that some computation path accepts;
+simulating it requires searching configurations, and the search has a cost.
+\item The Benenson automaton encodes state and symbol in an exposed sticky end;
+binding a transition molecule, ligation and restriction cleavage expose the next
+end while consuming input.
+\item Formal correctness (the language recognised) and chemical progress
+(whether and how fast the reactions reach a reporter) must be argued separately.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked answers}
 \begin{enumerate}

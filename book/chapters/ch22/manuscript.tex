@@ -1,4 +1,11 @@
 \chapter{Self-assembly, tiles and geometry}
+\ChapterGoals{%
+\item define the abstract tile assembly model: tiles, glues, strengths and temperature;
+\item build XOR into the geometry of growth and prove the assembly is directed;
+\item explain why locally legal attachment need not give a unique global result;
+\item count resources (tile types, area, frontier, material) and map glues to DNA sticky ends;
+\item describe how DNA origami folds a scaffold with staples, and what recent algorithmic self-assembly has achieved.}
+{Chapters~6, 15 and~19.}
 
 A reaction network computes in a well-mixed state: species identities and counts
 matter, but two molecules do not normally carry a permanent north, south, east and
@@ -253,6 +260,15 @@ the designed geometry. The computation is therefore not naturally described as
 one square tile choosing the next square tile. The design object is a routed
 polymer plus a set of staple constraints.
 
+\Plate{00-origami}{DNA origami. (A)~One long scaffold strand (blue) is routed
+back and forth through parallel helices; hundreds of short staple strands
+(coloured) each pair with segments of neighbouring helices and pin them
+together. (B)~At a crossover a staple, antiparallel to the scaffold, leaves one
+helix and continues on the next. (C)~Because every staple occupies a known
+position, staples carrying an extra hairpin can be placed to draw a pattern of
+raised ``pixels'' on a sheet roughly 100\,nm across. Helix twist and crossover
+spacing are omitted.}{fig:origamiplate}
+
 \Plate{06-origami-route}{A routed scaffold and three distinct staples.
 Each staple pairs antiparallel to separated domains and constrains their
 relative placement. Continuity, staple identity and base pairing are different
@@ -324,6 +340,30 @@ difficulty acquiring enough subsequent support. This is an architectural
 error-control idea, not a guarantee that any chosen sequences achieve a target
 error rate. Chapter 23 will make that distinction quantitative.
 
+\section{Algorithmic self-assembly at scale}
+Two recent experiments show how far these ideas have gone. Woods and colleagues
+designed a single set of 355 single-stranded DNA tiles that can be
+reprogrammed, simply by choosing which tiles to include, to run many different
+six-bit algorithms. They demonstrated 21 programs, including sorting,
+palindrome recognition, leader election and counting to 63, with an overall
+per-tile error rate below one in three thousand.\cite{Woods2019} Evans and
+colleagues used a different principle: 917 tiles that can assemble into three
+alternative structures sharing many tiles, so that the pattern of tile
+concentrations determines which structure nucleates first. Trained in silico,
+the system classified 18 small images into three categories by nucleation
+alone, a form of pattern recognition carried out by self-assembly
+kinetics.\cite{Evans2024}
+
+\begin{Frontier}
+\textbf{Reprogrammable and learning self-assembly.} These results move
+algorithmic self-assembly from single demonstrations towards general-purpose
+molecular hardware: one tile set, many programs.\cite{Woods2019} They also show
+that the \emph{kinetics} of nucleation, not only the equilibrium structure, can
+compute.\cite{Evans2024} Open problems include faster assembly, error rates low
+enough for long computations, and interfacing self-assembled outputs with
+strand-displacement circuits and sensors.
+\end{Frontier}
+
 \section{A practical verification protocol}
 
 A useful self-assembly claim should be testable at all layers. For the formal
@@ -337,6 +377,24 @@ the data and report defect distributions, not only representative images.
 The package's executable tests cover the first layer only. They prove neither
 sequence orthogonality nor experimental yield. That is a feature of the
 evidence contract: the code says exactly what it knows.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item In the abstract tile assembly model a tile attaches where the summed
+strength of its matching glues reaches the temperature $\tau$; cooperative binding
+at $\tau=2$ lets growth compute.
+\item Choosing tiles so that each new site reads two neighbours implements
+cellular-automaton rules such as XOR, which grows Sierpinski patterns.
+\item Local legality does not imply a unique outcome; directedness must be proved
+for every assembly order.
+\item Glues become DNA sticky ends on double-crossover tiles; integer strengths
+are an abstraction of free energies that vary with sequence and conditions.
+\item DNA origami encodes shape in a routed scaffold plus staples, and every
+staple is an addressable position about 6\,nm apart.
+\item Real growth is reversible and error-prone; Chapter~23 develops proofreading
+and redundancy.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked answers}
 

@@ -1,4 +1,11 @@
 \chapter{Chemical reaction networks as programs}
+\ChapterGoals{%
+\item name the state of a chemical reaction network and write its stoichiometric matrix;
+\item prove conservation laws and a small reaction program correct for every execution;
+\item separate the jump rule (which reactions can fire) from the kinetic law (how fast);
+\item compute completion-time statistics and explain why correct programs can still be slow;
+\item analyse how composed modules compete for shared resources, and what a molecular compiler must preserve.}
+{Chapters~7 and~19; matrices and linear equations.}
 
 Place four molecules of species $A$ and four of $B$ in an ideal well-mixed
 compartment. Permit only $A+B\rightarrow W$. Predict the final counts.
@@ -305,6 +312,17 @@ finite fuel or the need to check the regime of approximation.
 Our four-line mass-action evaluator is not an implementation of that compiler.
 
 \section{Stable computation and current research boundaries}
+\begin{Frontier}
+\textbf{From reaction programs to molecules.} The DNA-as-a-universal-substrate
+construction made reaction networks a programming language for
+chemistry.\cite{Soloveichik2010} Experiments have since compiled networks that
+behave as feedback controllers\cite{Chen2013} and as an autonomous chemical
+oscillator built entirely from DNA.\cite{Srinivas2017} The compilation step is
+now the bottleneck: the detailed displacement system must reproduce the formal
+network's dynamics despite intermediates, leak and finite fuel, which is exactly
+the refinement question of Chapter~31.
+\end{Frontier}
+
 
 Our annihilation proof is stronger than a favorable simulated run: every
 maximal execution of its one reaction has the stated terminal result.
@@ -335,6 +353,24 @@ coarse trajectories; then validate experimentally with appropriate controls.
 A generated reaction list is neither a proof of implementability nor evidence
 of useful biological behavior. Chapter 21 uses these obligations to examine
 thresholds, restoration and fan-out in composed circuits.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A chemical reaction network is a program: species are variables, reactions
+are rules, and the state is a vector of counts or concentrations.
+\item Stoichiometry fixes how each reaction changes the state; vectors $c$ with
+$c^\top N=0$ are conserved by every execution.
+\item Which reactions are enabled (the jump rule) and how fast they fire (mass
+action, propensities) are separate parts of the semantics.
+\item A program such as annihilation can be proved correct for every maximal
+execution, yet its completion time can have a long tail.
+\item Composing modules that share a reservoir couples them even without
+sequence crosstalk; a compiler must preserve the abstract dynamics, not only the
+reaction list.
+\item Stable computation characterises what CRNs compute exactly; experiments
+add finite inventories, leak and detection limits.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked answers}
 \begin{enumerate}

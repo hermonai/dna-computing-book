@@ -1,0 +1,15 @@
+Figure: why toehold length controls strand-displacement speed, in two panels.
+
+Panel A (schematic free-energy landscape): free energy is plotted against
+reaction progress for three toehold lengths, 2, 4 and 6 nucleotides. Each curve
+starts at the unbound invader plus gate, rises over a small initiation barrier,
+drops into a well when the toehold binds, then crosses a long plateau of many
+small, similar barriers (the reversible steps of branch migration), and finally
+drops when the product strand is released. Longer toeholds give deeper wells.
+A deeper well means the bound invader detaches less often, so more binding
+events complete migration.
+Panel B (toehold length sets the rate): a schematic curve of effective rate
+constant (log scale) against toehold length from 0 to 10 nucleotides rises
+roughly exponentially for short toeholds, spanning about a millionfold, and then
+saturates near the hybridisation rate for long toeholds. The curve is a
+qualitative summary, not fitted data.

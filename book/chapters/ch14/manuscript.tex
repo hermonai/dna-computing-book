@@ -1,4 +1,11 @@
 \chapter{Sticker systems and molecular memory}
+\ChapterGoals{%
+\item separate a memory strand (fixed backbone) from its contents (sticker occupancy);
+\item model set and clear as maps on states and pushforwards on copy counts;
+\item build a conditional AND from uniform writes and separations;
+\item explain why reset is many-to-one and what information it destroys;
+\item build an error budget for a register and compare sticker memory with modern molecular memories.}
+{Chapters~12--13; multisets and maps between finite sets.}
 A sequence need not change for its stored information to change. Imagine
 four address regions on one long DNA strand. Short complementary strands
 occupy addresses 1 and 3; addresses 0 and 2 remain exposed. Under an
@@ -205,6 +212,16 @@ be correlated, so taking a majority vote is not automatically independent
 error reduction.
 
 \section{Modern molecular memory: compare the mechanisms}
+\begin{Frontier}
+\textbf{Occupancy as a storage medium.} The sticker idea, that information can
+live in what is bound to a fixed strand rather than in the strand's sequence,
+reappeared in 2024 as \emph{epigenetic bits}: enzymes add methyl marks to
+premade DNA templates, and nanopore sequencing reads the marks, avoiding
+synthesis of every new sequence.\cite{ZhangC2024} In living cells, CRISPR-based
+recorders write ordered events into genomic ``tapes''.\cite{Shipman2017,Choi2022}
+Each is a different memory interface with its own write, read and error model.
+\end{Frontier}
+
 The 1998 sticker paper separates abstract operations from proposed physical
 implementations \cite{Roweis1998}. Our reference adopts ideal addressed writes;
 selective clear remains a physical obligation. It would be misleading to
@@ -224,6 +241,21 @@ population may realize a result. To connect them, measure cross-address
 interference, time to a usable output, consumables, carryover and readout
 accuracy across repeated inputs. A common use of DNA scaffolds does not
 make two computational models equivalent.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item In a sticker system the sequence never changes; information is the pattern
+of which addresses carry a complementary sticker.
+\item A write is a function on register states; applied to a population it pushes
+copy counts forward without creating or destroying molecules.
+\item Separating on one bit, writing, and recombining implements conditional
+logic such as $c=a\land b$ on every register in parallel.
+\item Clearing a bit maps several states to one; without a history tag the
+distinction is lost, although every backbone survives.
+\item Per-operation errors compound with register length and program depth, so
+reliability must be budgeted before scaling.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked answers}
 \begin{enumerate}

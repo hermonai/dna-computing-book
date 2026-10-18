@@ -1,4 +1,11 @@
 \chapter{Toehold-mediated strand displacement}
+\ChapterGoals{%
+\item specify a strand-displacement reaction by strands, domains and orientation before writing it as a reaction;
+\item check that a logical reaction conserves every physical strand;
+\item model branch migration as a first-passage problem and derive the success probability and conditional times;
+\item explain how toehold length controls the coarse reaction rate;
+\item quantify leak as a decision window, and state the composition obligations of cascades.}
+{Chapters~5--7 (complementarity, thermodynamics, kinetics); Markov chains are introduced as needed.}
 An invader binds a short exposed segment of a DNA complex. Does the incumbent
 strand necessarily leave? No. Binding may reverse before the branch point has
 crossed the duplex. The useful computation is not the arrival of an invader;
@@ -74,6 +81,18 @@ design needs additional reactions that release or regenerate the input.
 Likewise, feeding one released strand into two downstream gates is a competition
 for material, not free Boolean fan-out. Additional fuel, copy production, or
 a different signal encoding must be accounted for explicitly.
+
+\Plate{00-landscape}{Why toehold length controls displacement speed.
+(A)~A schematic free-energy landscape. Binding the toehold lowers the free
+energy into a well; branch migration then crosses many small, nearly equal
+barriers; releasing the incumbent completes the reaction. A longer toehold
+gives a deeper well, so the bound invader is less likely to fall off before
+migration finishes. (B)~As a result, the effective rate constant rises roughly
+exponentially with toehold length, by about six orders of magnitude, before
+saturating near the rate of hybridisation for long toeholds, as measured by
+Zhang and Winfree.\cite{ZhangWinfree2009} Both panels are qualitative
+summaries; the chapter's quantitative model is the first-passage chain that
+follows.}{fig:landscape}
 
 \section{Turn a bound complex into a first-passage problem}
 Let $m\geq1$ count idealized branch-migration steps, and let $j$ be the number
@@ -222,7 +241,7 @@ converted. Treating input as permanently fixed at its initial concentration
 would predict faster conversion and hide depletion. This is why the following
 excess-input readout model is labeled as a different approximation.
 
-\section{Leakage creates a decision window, not only an error bar}
+\section{Leakage creates a decision window, not only an error bar}\label{sec:leak}
 Define an input-present conversion hazard $\lambda$ and a background leak
 hazard $\ell$, both inverse seconds. Assume excess input keeps $\lambda$
 constant, reporters perfectly reflect converted gate, and every gate converts
@@ -256,6 +275,17 @@ standard. The last control tests measurement independently of computation.
 An intensity increase alone does not identify which reaction produced it.
 
 \section{Composition, research frontier and evidence}
+\begin{Frontier}
+\textbf{Leak and its suppression.} Every displacement gate can release output
+slowly without its input, through fraying ends or transient misfolding. Wang and
+colleagues gave design principles under which leak would require several
+unlikely events to happen together, and showed that such designs suppress leak
+substantially.\cite{Wang2018} Leak is therefore a design variable, not
+only a measurement nuisance; the decision-window analysis of
+Section~\ref{sec:leak} shows how it limits the depth and duration of a
+computation.
+\end{Frontier}
+
 Local correctness does not guarantee that a cascade is correct. A released
 output must match the next gate, remain available rather than sequestered,
 and arrive before competing reactions dominate. Preparing multiple species
@@ -288,8 +318,27 @@ constraints, use a physical model to reject invalid candidates, rank uncertainty
 as well as predicted performance, and reserve independent measurements for
 validation. Model-generated sequences are hypotheses. A high predicted score
 cannot replace material accounting, specificity tests or experimental evidence.
-This principle connects molecular programming to Evolutor without equating
-software gating with a biochemical reaction.
+Software gating of candidate designs is a useful engineering step, but it is
+not a biochemical reaction and does not substitute for one.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item In toehold-mediated strand displacement an invader binds a short exposed
+toehold, branch-migrates through a shared domain and releases the incumbent;
+backbones never change, only pairing partners.
+\item A correct reaction $I+G\to W+O$ conserves invader, substrate and incumbent
+strands; species counts and strand counts are different checks.
+\item Branch migration is a random walk with an absorbing product and a
+detachment exit; what matters is the probability of success per binding event
+and the time to complete, not just a mean rate.
+\item Longer toeholds make the bound state more stable, so the effective rate
+rises roughly exponentially with toehold length before saturating.
+\item Leak produces output without input; with a finite pool it defines a time
+window in which input and no-input conditions remain distinguishable.
+\item Composition requires matching interfaces, available (not sequestered)
+outputs and controlled crosstalk among all species present together.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked answers}
 \begin{enumerate}

@@ -1,0 +1,55 @@
+\begin{tikzpicture}[x=1cm,y=1cm,
+  stg/.style={panel,minimum width=2.45cm,minimum height=4.35cm,anchor=north west},
+  sh/.style={anchor=north,font=\sffamily\bfseries\small,text=Ink,align=center},
+  err/.style={anchor=north,font=\sffamily\footnotesize,text=RejectRed!85!black,align=center,text width=2.4cm,
+    execute at begin node={\hyphenpenalty=10000 }}]
+\def\gap{2.66}
+% ------------------------------------------------------------ six stages
+\foreach \k/\t in {0/{1 Encode},1/{2 Write},2/{3 Store},3/{4 Select},4/{5 Read},5/{6 Decode}}{
+  \node[stg] (st\k) at ({\gap*\k},0) {};
+  \node[sh] at ({\gap*\k+1.225},-.1) {\t};}
+\foreach \k in {0,...,4}{\draw[react] ({\gap*\k+2.47},-2.0)--({\gap*(\k+1)-.02},-2.0);}
+% 1 encode: bits to bases with index and parity
+\begin{scope}[shift={(.15,-.75)}]
+ \node[font=\ttfamily\scriptsize,anchor=north west,text=Ink,inner sep=0pt] at (0,0) {0100 1110 0100};
+ \draw[data] (1.1,-.32)--(1.1,-.72);
+ \foreach \k/\c in {0/BaseA,1/BaseC,2/BaseG,3/BaseT,4/BaseA,5/BaseC}{\fill[\c] (.1+.33*\k,-.85) rectangle +(.29,-.29);}
+ \fill[InkSoft!60] (.1,-1.3) rectangle +(.6,-.22);\node[font=\sffamily\tiny,text=white] at (.4,-1.41) {index};
+ \fill[StrandAmber] (.75,-1.3) rectangle +(.95,-.22);\node[font=\sffamily\tiny,text=white] at (1.22,-1.41) {payload};
+ \fill[StrandRose] (1.75,-1.3) rectangle +(.4,-.22);\node[font=\sffamily\tiny,text=white] at (1.95,-1.41) {ECC};
+\end{scope}
+% 2 write: synthesis of many strands
+\begin{scope}[shift={({\gap+.2},-.85)}]
+ \foreach \k/\c in {0/DNAblue,1/StrandViolet,2/StrandGreen,3/DNAsky,4/StrandAmber}{\draw[strand,\c,line width=1.6pt] (0,-.27*\k)--(1.95,-.27*\k);}
+ \draw[strand,DNAblue!50,line width=1.6pt,dash pattern=on 3pt off 1.5pt] (0,-1.35)--(1.2,-1.35);
+\end{scope}
+% 3 store: dried pool
+\begin{scope}[shift={({2*\gap+.62},-2.7)}]\begin{scope}[scale=.62,transform shape]\Tube{(0,0)}{DNAsky}{}\end{scope}\end{scope}
+\node[slab,align=center] at ({2*\gap+1.72},-1.75) {dry pool\\of many\\strands};
+% 4 select: PCR with file-specific primers
+\begin{scope}[shift={({3*\gap+.18},-.9)}]
+ \foreach \k/\c in {0/StrandGreen,1/StrandGreen,2/StrandGreen}{\draw[strand,\c,line width=1.5pt] (.0,-.25*\k)--(2.0,-.25*\k);
+   \draw[StrandRose,line width=2.4pt] (0,-.25*\k)--(.35,-.25*\k);\draw[StrandRose,line width=2.4pt] (1.65,-.25*\k)--(2.0,-.25*\k);}
+ \draw[strand,InkSoft!50,line width=1.4pt] (0,-.95)--(2.0,-.95);
+ \node[slab,align=center] at (1.0,-1.55) {primers pick\\one file};
+\end{scope}
+% 5 read: sequencing reads
+\begin{scope}[shift={({4*\gap+.15},-.8)}]
+ \foreach \k/\s in {0/ACGTTGCA,1/ACGTAGCA,2/ACGTTGCA,3/ACGTTCA}{\node[font=\ttfamily\scriptsize,anchor=west,inner sep=0pt] at (0,-.3*\k) {\s};}
+ \draw[RejectRed,line width=.8pt,rounded corners=1pt] (.6,-.19) rectangle (.82,-.42);
+ \node[slab,align=center] at (1.05,-1.45) {many noisy\\reads};
+\end{scope}
+% 6 decode
+\begin{scope}[shift={({5*\gap+.15},-.8)}]
+ \node[font=\ttfamily\scriptsize,anchor=west,inner sep=0pt] at (0,0) {ACGTTGCA};
+ \node[slab,anchor=west] at (0,-.35) {consensus};
+ \draw[data] (1.05,-.55)--(1.05,-.9);
+ \node[font=\ttfamily\scriptsize,anchor=west,inner sep=0pt,text=AcceptGreen!80!black] at (0,-1.15) {01001110\,\checkmark};
+ \node[slab,anchor=west] at (0,-1.5) {erasures filled};
+\end{scope}
+% ------------------------------------------------------------ error row
+\foreach \k/\t in {0/{code rate and constraints},1/{substitutions, deletions, truncations},2/{decay, strand loss},
+                   3/{amplification bias, dropout},4/{read errors, uneven coverage},5/{decoding failure if too many losses}}{
+  \node[err] at ({\gap*\k+1.225},-3.15) {\t};}
+\node[anchor=west,font=\sffamily\bfseries\footnotesize,text=RejectRed!85!black] at (0,-4.7) {What can go wrong at each stage (red) is what the code must tolerate.};
+\end{tikzpicture}

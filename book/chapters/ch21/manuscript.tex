@@ -1,4 +1,11 @@
 \chapter{Digital and analog DNA circuits}
+\ChapterGoals{%
+\item define digital signals as concentration intervals and derive the margins of OR and AND gates;
+\item model threshold capture and fuel-driven restoration, and derive the readout window;
+\item analyse a kinetic race that defeats an ideal threshold, and the cost of fan-out;
+\item separate the error models of digital and analog computation;
+\item explain how seesaw gates build DNA neural networks, and what recent experiments in molecular learning have shown.}
+{Chapters~19--20; the step function and weighted sums.}
 
 Two inputs are called high, but their concentrations are not exactly one.
 One preparation contains $0.91$ units; another contains $1.08$. A downstream
@@ -324,6 +331,144 @@ More recently, heat-rechargeable circuits use externally supplied thermal
 cycles to enable repeated computation~\cite{SongQian2025}. That result motivates
 explicit reset and energy interfaces; it does not make a closed, depleted
 reservoir spontaneously reusable.
+
+
+\section{From threshold gates to DNA neural networks}\label{sec:neural}
+The circuit elements of this chapter (weighted sums, finite-capture thresholds,
+fuel-driven restoration) are exactly the ingredients of an artificial neuron. A
+\Term{linear threshold unit} computes
+\begin{equation}
+ y=\operatorname{step}\Bigl(\sum_i w_ix_i-\theta\Bigr),
+ \label{eq:neuron}
+\end{equation}
+which is $1$ when the weighted sum exceeds the threshold $\theta$ and $0$
+otherwise. Our OR and AND gates are special cases with $w_1=w_2=1$ and
+$\theta\in[0.25,0.35]$ or $\theta\in[1.25,1.35]$. The digital-interval analysis
+of Equation~\eqref{eq:bands} therefore transfers directly: a molecular neuron must
+keep low and high sums separated by more than the threshold uncertainty, and
+it must restore its output before the next layer reads it.
+
+\Plate{06-neural}{From a seesaw gate to a DNA neural network. (A)~In a seesaw
+gate, an input strand binds an exposed toehold on a gate base and branch-migrates
+through a recognition domain, releasing a bound output; the exchange is
+reversible, and a fuel strand pushes it forward so that one input can release
+many outputs. (B)~A molecular neuron multiplies inputs by weights (the
+concentrations of weight gates), sums them into one species, subtracts a
+threshold with a faster sink, and restores the result with fuel.
+(C)~Winner-take-all classification: weighted sums against stored patterns are
+computed in parallel, an annihilation reaction removes equal amounts of
+competing sums, and the survivor is restored and reported. Domain lengths and
+concentrations are schematic.}{fig:neural}
+
+\subsection{The seesaw gate}
+Qian and Winfree built circuits from a single motif, the \emph{seesaw gate}
+(Figure~\ref{fig:neural}A).\cite{QianWinfree2011} Every signal strand has the form
+$S_i\,T\,S_j$: two recognition domains separated by a short universal toehold
+$T$. A gate base strand $T^*S_2^*T^*$ holds an output $S_2TS_3$; an input
+$S_1TS_2$ binds the free toehold and displaces the output by branch migration
+through $S_2$. Because both sides of the gate have the same toehold, the reaction
+can run backwards, which is why the gate ``seesaws''. Three further species turn
+this reversible exchange into circuit operations. A \emph{threshold} complex with
+a longer toehold absorbs input faster than the gate does, implementing the
+capture-then-release staging of Equation~\eqref{eq:residual}. \emph{Fuel}
+strands drive the gate catalytically, so a small input can release a large
+output, which is the restoration step. A \emph{reporter} with a fluorophore and
+quencher converts the final output into light. With these elements Qian and
+Winfree built multilayer circuits, including one that computes the integer
+square root of a four-bit number.\cite{QianWinfree2011}
+
+The same paper's model also maps onto neurons. Several weight gates that release
+the same signal species implement summation; the initial concentration of each
+weight gate sets the corresponding weight; and the threshold and amplifier
+implement Equation~\eqref{eq:neuron}. Negative weights cannot be negative
+concentrations, so they are handled with \emph{dual-rail} signals: each logical
+value is carried by two species whose difference encodes the sign, at the cost
+of doubling the circuit.
+
+\subsection{Associative memory and winner-take-all classification}
+Using seesaw neurons, Qian, Winfree and Bruck built a four-neuron Hopfield-type
+network that recalls a stored pattern from a partial or corrupted
+cue.\cite{QianWinfreeBruck2011} Scaling to larger patterns required a different
+architecture. In a \Term{winner-take-all} network (Figure~\ref{fig:neural}C), each
+stored memory $k$ has its own weight vector $w^{(k)}$, and the network computes
+all the weighted sums $s_k=w^{(k)}\cdot x$ in parallel. An annihilation reaction
+$S_k+S_\ell\to\varnothing$ between every pair of sums consumes equal amounts of
+both, so after completion only the largest sum survives, with value equal to its
+margin over the runner-up; restoration then turns that survivor into a full
+signal. Cherry and Qian used this design to classify 100-bit molecular patterns
+derived from handwritten digits.\cite{CherryQian2018}
+
+\begin{Worked}{a two-memory winner-take-all decision}
+Use the $3\times3$ patterns of Figure~\ref{fig:neural}C, with pixels numbered row
+by row from $0$ to $8$. The input $x$ (an ``L'') has ones at pixels
+$\{0,3,6,7,8\}$. Memory~1 has ones at $\{0,3,6,7\}$ and memory~2 (a ``T'') at
+$\{0,1,2,4,7\}$, with binary weights equal to the stored pixels. Then
+\[
+\begin{aligned}
+s_1&=\textstyle\sum_iw^{(1)}_ix_i=|\{0,3,6,7\}\cap\{0,3,6,7,8\}|=4,\\
+s_2&=|\{0,1,2,4,7\}\cap\{0,3,6,7,8\}|=|\{0,7\}|=2 .
+\end{aligned}
+\]
+Ideal annihilation $S_1+S_2\to\varnothing$ runs until the smaller species is
+exhausted, leaving $S_1=4-2=2$ and $S_2=0$. The answer is ``L''. Two features
+matter physically. The margin, not the raw sum, survives annihilation, so a
+close contest leaves a small signal that restoration must amplify above leak;
+and annihilation competes in time with restoration, exactly the kinetic race of
+Equation~\eqref{eq:race}.
+\end{Worked}
+
+\subsection{Larger architectures, recharging and learning}
+Several recent results extend these ideas, each within reported conditions.
+Convolutional networks built from DNA switching gates share weights across
+positions of a 144-bit input and recognise patterns in up to eight categories,
+or more when two networks are cascaded hierarchically.\cite{Xiong2022}
+DNA-based programmable gate arrays reconfigure layers of dual-rail gates into a
+very large number of distinct circuits, including a three-layer circuit that
+solves quadratic equations and a classifier of disease-related
+microRNAs.\cite{Lv2023} Heat can recharge enzyme-free circuits: nucleic acids
+with strong secondary structure become kinetically trapped in energy-storing
+states on heating and cooling, so circuits and neural networks with more than
+two hundred species compute repeatedly with new inputs.\cite{SongQian2025}
+Finally, in 2025 Cherry and Qian reported supervised learning carried out by
+DNA itself: training examples, each an input pattern with its desired label,
+were written into molecular concentration memories that then served as the
+weights for classifying test patterns, entirely in vitro by enzyme-free strand
+displacement.\cite{CherryQian2025}
+
+\begin{Frontier}
+\textbf{Learning in a test tube.} The 2025 result moves the learning step, not
+only inference, into chemistry: the network's weights are formed by the training
+molecules themselves rather than computed on an electronic computer and then
+synthesised.\cite{CherryQian2025} Open problems include learning that continues
+over many rounds, stable long-term weight storage, competing with electronic
+classifiers on real biomolecular inputs, and reusing a trained network many
+times, where recharging approaches may help.\cite{SongQian2025}
+\end{Frontier}
+
+\begin{Pitfall}
+A \emph{DNA neural network} computes \emph{with} DNA: its neurons are strands and
+reactions. It is unrelated to a digital neural network trained \emph{on} DNA
+sequences, such as a genomic language model running on a GPU. The two meet only
+when a molecular computation is designed, simulated or analysed with digital
+tools (Chapter~29).
+\end{Pitfall}
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A bit is an interval of concentrations; a gate is correct only if every
+permitted input maps into the right output interval.
+\item Threshold capture subtracts a fixed amount, $r=(s-\theta)_+$; fuel-driven
+catalysis restores the residual to a full signal.
+\item When capture and catalysis run simultaneously, input can release output
+before it is captured, giving false positives unless capture is much faster.
+\item Fan-out spends material or loads the catalyst; no wire branches for free.
+\item Analog accuracy and digital restoration are different specifications;
+errors propagate through gains $\epsilon_{j+1}\le L_j\epsilon_j+\eta_j$.
+\item Seesaw gates combine weighting, summation, thresholding and restoration
+into molecular neurons; winner-take-all networks classify patterns, and DNA
+networks have now learned from molecular training examples.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked answers}
 \begin{enumerate}

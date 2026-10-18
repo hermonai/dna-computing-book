@@ -1,5 +1,12 @@
 \chapter{Scaling and resource limits}
 \label{dnad24:chapter}
+\ChapterGoals{%
+\item freeze a resource vector before comparing designs, and refuse single-number comparisons;
+\item extend the sampling bound with Poisson coverage and convert probability into matter and volume;
+\item explain how diversity dilutes encounters at fixed total concentration, and why depth sets latency;
+\item estimate diffusion times and the probability that a correct molecule reaches the observed sample;
+\item state what an energy claim must include, from Landauer's bound to laboratory overheads.}
+{Chapters~4, 7 and~23.}
 A molecular program can have a short description and require a large physical
 population. A reaction can occur in parallel and still take a long time. A tube
 can contain the correct answer and produce an unreadable observation. These are
@@ -342,6 +349,25 @@ The main falsifiers are concrete: a zero-probability required species defeats
 coverage; a depleted partner defeats constant-rate waiting; common resource
 coupling defeats independent-chain completion; an insensitive assay defeats
 detection; an uncounted preparation cost defeats a headline system comparison.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item Compare designs only through a declared resource vector: sequences,
+molecules, volume, concentration, length, time, readout and energy.
+\item Poisson coverage: to include each of $M$ needed species with probability
+$1-\delta$, the mean copies per species must satisfy
+$\mu\ge-\log[1-(1-\delta)^{1/M}]$.
+\item At fixed total concentration, more distinct species means fewer partners of
+each kind, so bimolecular encounter times grow with diversity.
+\item Parallelism shortens width, not depth: a chain of $d$ dependent steps has an
+Erlang completion time.
+\item Diffusion over distance $a$ takes about $a^2/(2dD)$; transport is a cost
+when systems grow.
+\item Landauer's bound is far below any laboratory overhead; a credible energy
+claim states its boundary and includes synthesis, temperature control and
+readout.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises and worked solutions}
 \begin{enumerate}

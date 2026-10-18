@@ -1,0 +1,18 @@
+Figure: from a seesaw gate to a DNA neural network, in three panels.
+
+Panel A (seesaw gate): a gate base strand (violet) carries, from left to right,
+a toehold T*, a recognition domain S2* and a second toehold T*. An output strand
+w(2,3), reading S2 T S3, is bound over S2* and the right toehold, with S3
+dangling. An input strand w(1,2), reading S1 T S2, binds the free left toehold
+and branch-migrates through S2; the output then holds only by its short toehold
+and falls off. The exchange is reversible: a fuel strand pushes the gate back,
+so one input can catalytically release many outputs.
+Panel B (molecular neuron): four inputs x1 to x4 are multiplied by weights w1 to
+w4 (concentrations of weight gates), summed into one species, compared with a
+threshold theta by a faster sink, and restored by fuel-driven amplification to
+a full on level read by a fluorophore: y = step(sum of w_i x_i minus theta).
+Panel C (winner-take-all): a 3-by-3 input pattern shaped like an L is compared
+with two stored patterns, L and T. The weighted sums are s1 = 4 and s2 = 2.
+Annihilation S1 + S2 -> nothing removes equal amounts of both, leaving S1 = 2 and
+S2 = 0; restoration turns the survivor into a full signal reporting L. Each
+weighted sum is computed by its own gates in parallel.

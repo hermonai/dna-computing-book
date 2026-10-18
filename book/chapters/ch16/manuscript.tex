@@ -1,4 +1,11 @@
 \chapter{Languages, automata and molecular recognition}
+\ChapterGoals{%
+\item build a deterministic finite automaton by asking what a future suffix can distinguish;
+\item trace an automaton on an input and prove a prefix invariant;
+\item design a streaming transducer that adds binary numbers least-significant bit first;
+\item compile a state path into local molecular constraints, and keep transition error separate from loss;
+\item prove that a finite automaton cannot count without bound.}
+{Chapter~15; finite sets, functions and probability vectors.}
 Does \texttt{1101} end in \texttt{01}? A human can inspect its final two bits.
 A streaming machine does not know which bits will be last. It must update a
 small memory after every symbol, then decide when input ends. Molecular
@@ -50,6 +57,14 @@ continuation 1 distinguishes 0 from $\varepsilon$. If two prefixes shared a
 state, every future continuation would have the same acceptance outcome from
 both, contradicting these witnesses. This is the practical core of
 state minimization.
+
+\begin{CSBridge}
+A \emph{deterministic finite automaton} (DFA) is the simplest model of a
+computer with fixed memory. It reads an input one symbol at a time, updating a
+single state from a finite list, and at the end accepts or rejects. Regular
+expressions, text search and network protocols are built on the same idea.
+Everything a DFA can recognise is called a \emph{regular language}.
+\end{CSBridge}
 
 \section{Execute the rule before discussing chemistry}
 \index{state invariant}\index{end-of-input}
@@ -205,6 +220,22 @@ a specified maximum length. It prohibits using a bounded demonstration as
 evidence of unbounded counting with fixed memory. Physical finite-state
 machines also have finite input and reagent inventories; formal recognition
 does not eliminate fabrication or readout cost.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A finite automaton remembers only the information that can change the
+answer for some future suffix; equivalent prefixes share a state.
+\item An automaton is specified by states, an input alphabet, a transition
+function, a start state and accepting states; a trace checks it on one input.
+\item A transducer that reads two numbers least-significant bit first needs only
+the carry as memory to output their sum.
+\item Molecular implementations turn transitions into local recognition events;
+a transition error and a lost molecule are different failures with different
+signatures.
+\item Fixed finite memory cannot recognise $\{0^n1^n\}$: bounded demonstrations do
+not show unbounded counting.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked answers}
 \begin{enumerate}

@@ -1,4 +1,11 @@
 \chapter{Noise, crosstalk and molecular fault models}
+\ChapterGoals{%
+\item separate the events that ``error rate'' can mean: growth errors, nucleation, malformed objects and misclassification;
+\item compute how small per-site error compounds with size, and how heterogeneity changes the count distribution;
+\item analyse redundancy (majority voting) and proofreading tile sets as error-suppression mechanisms;
+\item trade speed against stability and correctness in growth;
+\item model measurement error so that observed and true error rates are not confused.}
+{Chapters~12, 22 and~24's probability tools; binomial and beta distributions are introduced as needed.}
 
 Chapter 22 ended with a deliberately uncomfortable result: a tile system can be
 directed in the abstract model and still produce defective molecular objects. That
@@ -145,6 +152,14 @@ This distinction prevents a common conceptual shortcut. A DNA tile crystal does 
 contain a free digital majority gate merely because our notebook can decode three
 pixels. Molecular redundancy must alter the physical pathway so that a wrong logical
 choice requires multiple coordinated unfavorable events.
+
+\begin{TryThis}
+An assembly has $N=1000$ sites and each attachment is wrong independently with
+probability $p=10^{-3}$. Before computing, guess the fraction of perfect
+assemblies. Then check: $(1-10^{-3})^{1000}\approx e^{-1}\approx0.37$. Most
+assemblies contain at least one error even though each site is 99.9 per cent
+reliable.
+\end{TryThis}
 
 \section{Proofreading tile sets}
 
@@ -336,6 +351,25 @@ For each experiment, record at least:
 \item failure channels not measured by the chosen assay.
 \end{enumerate}
 This ledger makes comparisons harder to oversell and easier to reproduce.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item Name the event before counting it: attachment errors, spurious
+nucleation, malformed objects and instrument misclassification are different.
+\item With independent per-site error $p$, an $N$-site object is perfect with
+probability $(1-p)^N$; even $p=10^{-3}$ ruins most objects of a few thousand
+sites.
+\item Variation of $p$ between objects widens the defect distribution
+(beta-binomial); averages hide it.
+\item Majority voting over $r$ copies reduces error to
+$\sum_{k>r/2}\binom rk p^k(1-p)^{r-k}$ when errors are independent; proofreading
+tiles turn single errors into stalls that can be undone.
+\item Slower, closer-to-equilibrium growth is more accurate; correction always
+costs time or material.
+\item An observed defect rate is $\alpha+(1-\alpha-\beta)p$: the instrument's
+false-positive and false-negative rates are part of the error model.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises and worked solutions}
 \begin{enumerate}

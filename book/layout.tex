@@ -17,7 +17,7 @@
 \newcommand{\Generated}{}
 \newcommand{\PlateDirectory}{}
 \newcommand{\Plate}[3]{\par\medskip\noindent\begin{minipage}{\linewidth}\centering
-\resizebox{\linewidth}{!}{\input{\PlateDirectory/#1.tex}}
+\adjustbox{scale=1.15,max width=\linewidth}{\input{\PlateDirectory/#1.tex}}
 \captionof{figure}{#2}\FigureLabel{#3}\end{minipage}\par\medskip}
 \newcommand{\Listing}[1]{\par\Needspace{5\baselineskip}
 \VerbatimInput[breaklines,breakanywhere,fontsize=\small,frame=single,numbers=left,numbersep=4pt]{\Generated/#1.py}\par\medskip}

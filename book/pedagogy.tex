@@ -11,33 +11,33 @@
 \usepackage[skins,breakable]{tcolorbox}
 \tcbset{bookbase/.style={enhanced,breakable,sharp corners,boxrule=0pt,
   left=9pt,right=8pt,top=6pt,bottom=6pt,before skip=10pt,after skip=10pt,
-  fonttitle=\sffamily\bfseries,coltitle=Ink,attach title to upper,
-  after title={\par\smallskip},parbox=false,
-  before upper={\setlength{\parskip}{4pt}\raggedright}}}
+  parbox=false}}
 
 \newcommand{\BoxMark}[1]{\textcolor{#1}{\rule[-1pt]{7pt}{7pt}}\hspace{5pt}}
+% \BoxHead{colour}{title}: the heading line placed at the top of each box.
+\newcommand{\BoxHead}[2]{{\sffamily\bfseries\color{Ink}\BoxMark{#1}#2\par}\smallskip}
 
 \newtcolorbox{KeyIdeas}{bookbase,colback=DNAblue!6,
   borderline west={3pt}{0pt}{DNAblue},
-  title={\BoxMark{DNAblue}Key ideas}}
+  before upper={\setlength{\parskip}{4pt}\raggedright\BoxHead{DNAblue}{Key ideas}}}
 \newtcolorbox{BioBridge}{bookbase,colback=ProteinGold!12,
   borderline west={3pt}{0pt}{ProteinEdge},
-  title={\BoxMark{ProteinEdge}Biology bridge}}
+  before upper={\setlength{\parskip}{4pt}\raggedright\BoxHead{ProteinEdge}{Biology bridge}}}
 \newtcolorbox{CSBridge}{bookbase,colback=CompTeal!8,
   borderline west={3pt}{0pt}{CompTeal},
-  title={\BoxMark{CompTeal}Computing bridge}}
+  before upper={\setlength{\parskip}{4pt}\raggedright\BoxHead{CompTeal}{Computing bridge}}}
 \newtcolorbox{Pitfall}{bookbase,colback=RejectRed!6,
   borderline west={3pt}{0pt}{RejectRed},
-  title={\BoxMark{RejectRed}Common pitfall}}
+  before upper={\setlength{\parskip}{4pt}\raggedright\BoxHead{RejectRed}{Common pitfall}}}
 \newtcolorbox{Frontier}{bookbase,colback=EvidenceViolet!7,
   borderline west={3pt}{0pt}{EvidenceViolet},
-  title={\BoxMark{EvidenceViolet}Research frontier}}
+  before upper={\setlength{\parskip}{4pt}\raggedright\BoxHead{EvidenceViolet}{Research frontier}}}
 \newtcolorbox{TryThis}{bookbase,colback=StrandGreen!7,
   borderline west={3pt}{0pt}{StrandGreen},
-  title={\BoxMark{StrandGreen}Predict first}}
+  before upper={\setlength{\parskip}{4pt}\raggedright\BoxHead{StrandGreen}{Predict first}}}
 \newtcolorbox{Worked}[1]{bookbase,colback=PanelBg,
   borderline west={3pt}{0pt}{InkSoft},
-  title={\BoxMark{InkSoft}Worked example: #1}}
+  before upper={\setlength{\parskip}{4pt}\raggedright\BoxHead{InkSoft}{Worked example: #1}}}
 
 % Chapter opening: learning goals beside the prerequisites they rely on.
 \newcommand{\ChapterGoals}[2]{%
@@ -54,7 +54,7 @@
 % The original single-purpose callout keeps its interface, in the new style.
 \renewcommand{\Callout}[2]{%
  \begin{tcolorbox}[bookbase,colback=DNAblue!6,borderline west={3pt}{0pt}{DNAblue},
-   title={\BoxMark{DNAblue}#1}]#2\end{tcolorbox}}
+   before upper={\setlength{\parskip}{4pt}\raggedright\BoxHead{DNAblue}{#1}}]#2\end{tcolorbox}}
 
 % Part openers: a short orientation page for each group of chapters.
 % \BookPart{title}{key}{orientation text, usually ending with a chapter list}

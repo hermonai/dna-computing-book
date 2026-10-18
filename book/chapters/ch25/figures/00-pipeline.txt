@@ -1,0 +1,18 @@
+Figure: the DNA data-storage pipeline in six stages, with the errors each stage
+introduces listed beneath it in red.
+
+1 Encode: bits are mapped to bases and packed into strands with an index (the
+strand's address), a payload and error-correcting code (ECC); the code rate and
+sequence constraints limit how many bits each base can carry.
+2 Write: chemical synthesis makes many different strands; some carry
+substitutions or deletions, and some are truncated (dashed).
+3 Store: the strands are kept as a dry pool; strands decay or are lost over
+time.
+4 Select: PCR with file-specific primers copies only the strands of one file;
+amplification bias and dropout distort the copy numbers.
+5 Read: sequencing produces many noisy reads of each strand, with read errors
+(boxed) and uneven coverage.
+6 Decode: reads are grouped and combined into a consensus, and the outer code
+fills in missing strands; decoding fails if too many strands are lost.
+The note beneath states that what can go wrong at each stage is what the code
+must tolerate.

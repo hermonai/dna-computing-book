@@ -1,0 +1,73 @@
+\begin{tikzpicture}[x=1cm,y=1cm,
+  dd/.style={dom=#1,minimum width=9mm,minimum height=3.6mm,font=\sffamily\scriptsize},
+  hd/.style={anchor=west,font=\sffamily\bfseries\small,text=Ink}]
+% ================================================================ A seesaw gate
+\PanelTitle{(0,.3)}{A}{Seesaw gate}
+\begin{scope}[shift={(.2,-1.75)}]
+ % gate base strand 3'-T* S2* T*-5'
+ \draw[strandL,StrandViolet] (4.0,-1.0)--(.55,-1.0);
+ \node[dd=StrandViolet,minimum width=6mm] at (.9,-1.3) {$T^*$};
+ \node[dd=StrandViolet,minimum width=16mm] at (2.2,-1.3) {$S_2^*$};
+ \node[dd=StrandViolet,minimum width=6mm] at (3.5,-1.3) {$T^*$};
+ % bound output 5'-S2 T S3-3'
+ \draw[backbone,StrandGreen] (1.45,-.6)--(3.85,-.6);
+ \draw[strand,StrandGreen] (3.75,-.6)--(4.0,-.6) -- (4.85,-.25);
+ \node[dd=StrandGreen,minimum width=16mm] at (2.2,-.3) {$S_2$};
+ \node[dd=StrandGreen,minimum width=6mm] at (3.5,-.3) {$T$};
+ \node[dd=StrandGreen,minimum width=8mm] at (4.75,.05) {$S_3$};
+ \Rungs{1.5}{3.8}{-.68}{-.92}{.19}
+ \node[slab,text=StrandGreen!70!black,anchor=west] at (5.2,-.35) {output $w_{2,3}$};
+ \node[slab,text=StrandViolet,anchor=west] at (4.15,-1.0) {gate base};
+ % incoming input 5'-S1 T S2-3'
+ \draw[strand,DNAblue] (-.2,.55)--(1.1,.55)--(2.95,.55);
+ \node[dd=DNAblue,minimum width=9mm] at (.2,.88) {$S_1$};
+ \node[dd=DNAblue,minimum width=6mm] at (.9,.88) {$T$};
+ \node[dd=DNAblue,minimum width=16mm] at (2.05,.88) {$S_2$};
+ \node[slab,text=DNAblue,anchor=west] at (3.1,.6) {input $w_{1,2}$};
+ \draw[move] (.9,.42)--(.9,-.85);
+ \node[slab,anchor=west,align=left] at (-.2,-2.15) {the input binds the free toehold $T^*$ and\\branch-migrates through $S_2$; the output then\\holds only by a short $T$ and falls off};
+ \node[slab,anchor=west,align=left,text=CompTeal!80!black] at (-.2,-3.25) {reversible: a fuel strand $w_{2,f}$ pushes the\\gate back, so one input releases many outputs};
+\end{scope}
+% ================================================================ B molecular neuron
+\PanelTitle{(8.3,.3)}{B}{A molecular neuron}
+\begin{scope}[shift={(8.4,-1.2)}]
+ \foreach \i/\y in {1/.7,2/.0,3/-.7,4/-1.4}{
+   \node[circle,draw=DNAblue,fill=DNAblue!15,inner sep=0pt,minimum size=5.2mm,font=\sffamily\scriptsize] (x\i) at (0,\y) {$x_{\i}$};
+   \node[draw=CompTeal,fill=CompTeal!10,rounded corners=1.5pt,font=\sffamily\scriptsize,inner sep=2pt] (w\i) at (1.35,\y) {$\times w_{\i}$};
+   \draw[data] (x\i)--(w\i);}
+ \node[circle,draw=Ink,fill=white,inner sep=0pt,minimum size=8mm,font=\sffamily\small] (sum) at (2.85,-.35) {$\Sigma$};
+ \foreach \i in {1,...,4}{\draw[data] (w\i.east)--(sum);}
+ \node[draw=RejectRed,fill=RejectRed!8,rounded corners=1.5pt,font=\sffamily\scriptsize,align=center,inner sep=2pt] (th) at (4.35,-.35) {threshold\\$-\theta$};
+ \node[draw=StrandGreen,fill=StrandGreen!10,rounded corners=1.5pt,font=\sffamily\scriptsize,align=center,inner sep=2pt] (amp) at (5.85,-.35) {restore\\(fuel)};
+ \Fluor{(7.05,-.35)}
+ \draw[data] (sum)--(th);\draw[data] (th)--(amp);\draw[data] (amp)--(6.9,-.35);
+ \node[slab,align=left,anchor=north west] at (-.2,-2.0) {weights: concentrations of weight gates;\\sum: several gates release one species;\\threshold: a faster sink absorbs $\theta$;\\restore: fuel-driven amplification to a\\full ``on'' level read by a fluorophore};
+ \node[slab,anchor=north] at (5.1,.85) {$y=\mathrm{step}\!\left(\sum_i w_ix_i-\theta\right)$};
+\end{scope}
+% ================================================================ C winner take all
+\PanelTitle{(0,-5.55)}{C}{Winner-take-all: compare stored patterns, keep the best match}
+\begin{scope}[shift={(.3,-6.65)}]
+ % input pattern 3x3 and two memories
+ \newcommand{\Grid}[3]{\begin{scope}[shift={(#1,#2)}]\foreach \v [count=\k from 0] in {#3}{
+   \pgfmathtruncatemacro{\r}{\k/3}\pgfmathtruncatemacro{\c}{mod(\k,3)}
+   \ifnum\v=1 \fill[DNAblue] (\c*.34,-\r*.34) rectangle +(.3,-.3);\else \draw[PanelEdge] (\c*.34,-\r*.34) rectangle +(.3,-.3);\fi}\end{scope}}
+ \Grid{0}{0}{1,0,0,1,0,0,1,1,1}
+ \node[slab] at (.5,-1.25) {input $x$};
+ \Grid{2.1}{.55}{1,0,0,1,0,0,1,1,0}
+ \Grid{2.1}{-.85}{1,1,1,0,1,0,0,1,0}
+ \node[slab,anchor=west] at (3.2,.2) {memory 1 (``L'')};
+ \node[slab,anchor=west] at (3.2,-1.2) {memory 2 (``T'')};
+ \draw[data] (1.15,-.3)--(2.0,.05);\draw[data] (1.15,-.6)--(2.0,-1.1);
+ \node[molbox,font=\sffamily\scriptsize] (s1) at (6.95,.05) {$s_1=w^{(1)}\!\cdot x=4$};
+ \node[molbox,font=\sffamily\scriptsize] (s2) at (6.95,-1.15) {$s_2=w^{(2)}\!\cdot x=2$};
+ 
+ \node[draw=RejectRed,fill=RejectRed!7,rounded corners=2pt,font=\sffamily\scriptsize,align=center,inner sep=3pt] (ann) at (9.6,-.55) {annihilate\\$S_1+S_2\to\varnothing$};
+ \draw[data] (4.7,.2)--(s1.west);\draw[data] (4.7,-1.05)--(s2.west);
+ \draw[react] (s1.east)--(ann);\draw[react] (s2.east)--(ann);
+ \node[molbox,font=\sffamily\scriptsize,align=center] (left) at (12.2,-.55) {left over:\\$S_1=4-2=2$,\ $S_2=0$};
+ \draw[react] (ann)--(left);
+ \node[draw=StrandGreen,fill=StrandGreen!10,rounded corners=2pt,font=\sffamily\scriptsize,align=center,inner sep=3pt] (win) at (14.6,-.55) {restore:\\report ``L''};
+ \draw[react] (left)--(win);
+ \node[slab,anchor=west,align=left] at (8.6,-2.05) {sums are computed in parallel; annihilation keeps\\only the margin; restoration amplifies the survivor};
+\end{scope}
+\end{tikzpicture}

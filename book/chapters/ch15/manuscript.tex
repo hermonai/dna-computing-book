@@ -1,4 +1,11 @@
 \chapter{Splicing and insertion-deletion systems}
+\ChapterGoals{%
+\item define a splicing rule as a relation on strings and enumerate all its cuts, including overlapping contexts;
+\item distinguish the language of possible products from a finite molecular inventory that consumes its parents;
+\item model insertion and deletion rules that preserve context but change length;
+\item explore reachability with an explicit cutoff, without mistaking the cutoff for closure;
+\item restore the molecular interface (polarity, ends, enzymes) that a string rule omits.}
+{Chapters~8 and~12; string concatenation and finite sets.}
 Two strings, \texttt{LABR} and \texttt{MCDN}, contain designated cut boundaries
 \texttt{LA|BR} and \texttt{MC|DN}. Exchange their right-hand pieces.
 The products are \texttt{LADN} and \texttt{MCBR}. Nothing was copied, yet
@@ -68,6 +75,15 @@ The reference compares all cuts of all binary words of length at most three
 against an independently written boundary enumeration. It tests length
 conservation for every returned pair and checks overlapping contexts.
 A missing site is a completeness error even if every returned product looks plausible.
+
+\begin{BioBridge}
+Splicing systems were inspired by recombination: a restriction enzyme cuts two
+DNA molecules at recognition sites, and a ligase joins the pieces crosswise
+through matching sticky ends. In a cell or tube this happens to individual
+molecules, each of which is used up when it is cut. The formal rule keeps the
+recombination pattern but drops the chemistry, which is why this chapter
+restores it in Section~\ref{sec:interface}.
+\end{BioBridge}
 
 \section{A finite tube cannot reuse a consumed parent for free}
 \index{inventory}\index{reaction transaction}
@@ -166,7 +182,7 @@ The one-step enumeration also costs work: every boundary is examined,
 and each context comparison and string construction costs more than zero.
 The reference favors transparency over asymptotically optimized matching.
 
-\section{Recover the molecular interface deliberately}
+\section{Recover the molecular interface deliberately}\label{sec:interface}
 \index{cohesive end}\index{ligation}
 Substring concatenation has no polarity, exposed hydroxyl or phosphate, duplex
 structure, enzyme accessibility or competing ligation partner. Restore those
@@ -187,6 +203,23 @@ from fusion overhangs that order fragments and checks orientation and internal-s
 compatibility \cite{NEBGoldenGate}. This is an engineering comparison, not an implementation
 of arbitrary context rewriting. Combinatorial reachability proves a statement
 about chosen rules. Assembly fidelity needs a different experiment and readout.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A splicing rule $u_1|u_2\,\#\,u_3|u_4$ cuts two strings at specified contexts
+and exchanges their right-hand parts; it is a relation, not a recipe.
+\item Every eligible cut must be enumerated: overlapping contexts give several
+products from one pair of parents.
+\item A language contains every product that rules could ever make; a finite
+tube consumes parents and contains only some of them.
+\item Insertion and deletion rules act in context and change length; their power
+depends on the context sizes.
+\item Bounded search gives a correct statement only about the bound; closure
+needs a proof.
+\item To become chemistry, a string rule needs strand polarity, cohesive ends,
+enzymes and a readout, as in Golden Gate assembly.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked answers}
 \begin{enumerate}

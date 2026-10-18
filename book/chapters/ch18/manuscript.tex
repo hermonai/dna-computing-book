@@ -1,4 +1,11 @@
 \chapter{Universality and complexity models}
+\ChapterGoals{%
+\item define an exact tape configuration and test a small Turing-machine program against its contract;
+\item simulate a tape with two stacks and prove the simulation invariant;
+\item state what a universality claim must quantify: program, input, construction and costs;
+\item explain why uniform construction prevents an answer from hiding in the preparation;
+\item count opportunities for error, and relate universality to a contemporary molecular result.}
+{Chapters~3, 16 and~17.}
 A molecular machine can implement many programs without being a universal
 computer. Conversely, a mathematically universal model can be physically
 impractical. The first claim concerns which finite programs are available;
@@ -193,10 +200,14 @@ Increasing problem size can therefore tighten fidelity requirements even
 when the abstract computational model remains unchanged.
 
 \section{A contemporary result and its boundary}
-Stérin and colleagues' 2026 molecular-computer paper describes compilation of
-finite-state machines into strand-displacement systems and a bounded
-experimental demonstration \cite{Sterin2026}. Its main text distinguishes kinetic
-model conditions from experimentally enforced conditions. The relevant lesson
+Stérin and colleagues' 2026 scaffolded DNA computer encodes a program as a set of
+short ``tile'' strands that compete to bind positions on a long scaffold; at high
+tile excess, mismatched tiles carry an energetic penalty and are replaced, so the
+correct output is the thermodynamically favoured configuration. Its
+one-dimensional form simulates finite-state machines, and the paper reports a
+bounded set of experimental programs \cite{Sterin2026}. It distinguishes the
+conditions assumed by its thermodynamic model from those enforced in
+experiments. The relevant lesson
 here is to separate compilation, kinetics and demonstrated instances. We do
 not infer unbounded Turing universality, asymptotic advantage or arbitrary-length
 experimental reliability from that result.
@@ -205,6 +216,24 @@ For a new architecture, ask for an explicit transition encoding, a simulation
 invariant, construction and execution costs, a noise model, and a test that
 could falsify the claimed mapping. A persuasive result need not solve every
 layer at once; it must say which layer it establishes.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A Turing machine configuration $(q,h,t)$ records control state, head
+position and tape; a program is tested by checking each step against its
+contract.
+\item Two stacks simulate a tape: the left stack holds cells to the left of the
+head, the right stack the head cell and beyond; an invariant makes each simulated
+step auditable.
+\item ``Universal'' is a statement about an unbounded family of computations, with
+an explicit encoding; it says nothing about speed, reliability or preparation
+cost.
+\item A device family must be constructed uniformly by an efficient procedure,
+or the answer can be smuggled into the construction.
+\item Every additional step is another opportunity for error, so long
+computations need per-step reliabilities very close to one or error correction.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked answers}
 \begin{enumerate}

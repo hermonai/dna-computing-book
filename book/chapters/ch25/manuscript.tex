@@ -1,4 +1,11 @@
 \chapter{DNA storage and error-correcting design}
+\ChapterGoals{%
+\item describe DNA storage as a communication channel with erasures, substitutions, insertions and deletions;
+\item compute the two-bit ceiling and the rate actually delivered after indexing, constraints and redundancy;
+\item build an XOR outer erasure code, frame a payload, and decode an unordered pool;
+\item count constrained words and implement reversible ranking and unranking;
+\item explain random access by PCR, and read current storage research critically.}
+{Chapters~9--11 (PCR, readout, sequence design); binary arithmetic and XOR.}
 A tube does not contain a file in byte order. It contains physical copies of strands,
 some missing, some changed, and some sampled many more times than others. The reader
 must infer which fragments belong together, recover absent fragments when the code
@@ -12,6 +19,14 @@ one located erasure in each parity group. We then derive a separate constrained
 sequence code. The separation is intentional: the first reference proves
 framing and recovery; the second proves membership and reversible ranking under
 two sequence constraints. Neither is a synthesis-ready oligonucleotide design.
+
+\Plate{00-pipeline}{The DNA data-storage pipeline. Bits are encoded into
+strands carrying an index, a payload and error-correcting redundancy; the
+strands are synthesised, stored as a dry pool, selected by PCR with
+file-specific primers, sequenced into many noisy reads, and decoded by consensus
+and erasure correction. Each stage introduces characteristic errors (red); the
+code is designed to tolerate exactly these. The sequences shown are
+illustrative.}{fig:pipeline}
 
 \section{Define the channel before choosing the code}
 \index{DNA storage!channel}
@@ -298,6 +313,20 @@ The reference supplies inspectable submechanisms for reasoning about that
 system, not a substitute for physical characterization.
 
 \section{Connect the finite mechanisms to current research}
+\begin{Frontier}
+\textbf{Where DNA storage stands.} Encoding schemes have progressed from early
+demonstrations storing about a megabyte of text, images and
+audio\cite{Church2012,Goldman2013} to fountain codes that use the channel
+efficiently,\cite{ErlichZielinski2017} random access among
+many files,\cite{Organick2018} measured error and bias models\cite{Chen2020bias,Gimpel2023}
+and decoders that combine coding theory with learned
+reconstruction.\cite{BarLev2025} Writing remains the bottleneck: chemical
+synthesis is slow and costly per base.\cite{Kosuri2014} One response prints
+information as enzymatically added methyl marks on premade templates, read by
+nanopore sequencing.\cite{ZhangC2024} Every reported density or speed should be
+read with its full write--store--read boundary.
+\end{Frontier}
+
 The purpose of a small reference is to make a larger system intelligible,
 not to equate its performance with that system. Gimpel et al.'s 2023 digital
 twin explicitly treats workflow-dependent error and coverage bias
@@ -328,6 +357,24 @@ sequence length, physical copy count, channel conditions, source workload
 and file-level failure criteria. A reported speed ratio under one workload
 does not imply that the complete write--store--read system is faster by
 that factor.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item Storage is an end-to-end channel: synthesis, storage, PCR and sequencing
+each add characteristic errors, and strands arrive unordered.
+\item Four bases give at most two bits per base; indices, sequence constraints
+and redundancy reduce the delivered rate, which must be reported with its
+overheads.
+\item An index frames each strand; an outer erasure code such as XOR parity
+recovers lost strands whose positions are known.
+\item Checksums detect corruption but do not authenticate content; consensus
+across reads needs an explicit alignment model.
+\item Constrained codes (for example, limits on homopolymers) can be counted and
+ranked exactly, giving a reversible encoder.
+\item Random access is molecular selection with primers; its bias and
+cross-talk are part of the channel.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Twenty worked exercises}
 \begin{enumerate}

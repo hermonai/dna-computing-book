@@ -148,5 +148,5 @@
 % \TikzPlate{path-without-.tex}{caption}{label}: native vector plate for
 % chapters that do not use \Plate's per-chapter directory.
 \newcommand{\TikzPlate}[3]{\par\medskip\noindent\begin{minipage}{\linewidth}\centering
- \resizebox{\linewidth}{!}{\input{#1.tex}}
+ \adjustbox{scale=1.15,max width=\linewidth}{\input{#1.tex}}
  \captionof{figure}{#2}\FigureLabel{#3}\end{minipage}\par\medskip}

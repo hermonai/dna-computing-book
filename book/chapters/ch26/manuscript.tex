@@ -1,5 +1,12 @@
 \chapter{Laboratory workflows and reproducibility}
 \label{dnad26:chapter}
+\ChapterGoals{%
+\item turn an abstract claim about a molecular computation into a testable record;
+\item distinguish design identity, physical identity and measured identity of a molecular sample;
+\item bind evidence to exact file contents and derive an append-only invariant for a ledger;
+\item propagate preparation uncertainty and choose controls that test mechanisms;
+\item distinguish technical repeats from independent replicates, and preserve raw observations.}
+{Chapters~10 and~25; hashes are introduced as needed.}
 A diagram specifies what a molecular system is intended to do. A laboratory record
 must establish which physical realization was actually tested, what was observed,
 and how those observations became a conclusion. These are different questions.
@@ -305,6 +312,22 @@ The demonstration writes fourteen assigned text artifacts, not experimental file
 Its six valid events establish execution of the stated ledger contract.
 Laboratory competence, independent scientific review, assay validation and replication
 remain open. This limitation is part of the result, not fine print.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A design states intent; a record must establish what was actually made,
+measured and concluded, and these are separate boundaries.
+\item A sequence name, an ordered oligonucleotide and a verified molecule are
+different levels of identity.
+\item Cryptographic hashes bind evidence to exact bytes; an append-only ledger
+makes later changes visible.
+\item Preparation quantities carry uncertainty, $\sigma_n^2\approx V^2\sigma_c^2+c^2\sigma_V^2+2cV\rho\sigma_c\sigma_V$, which must be reported.
+\item Controls test mechanisms: a negative control can show that a signal needs the
+intended input, not merely that the instrument works.
+\item Three readings of one preparation are not three experiments; preserve raw
+observations before classification.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Twenty worked exercises}
 \begin{enumerate}

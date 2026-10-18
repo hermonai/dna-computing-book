@@ -1,0 +1,17 @@
+Figure: DNA origami, in three panels.
+
+Panel A (one scaffold, many staples): a single long blue scaffold strand runs
+from its 5' end back and forth through six parallel rows (helices), turning at
+alternate ends, and finishes at its 3' end. Short coloured staple strands each
+pair with two neighbouring rows: each runs along one row, crosses over, and
+runs back along the next, pinning the rows together. Staples bridging different
+row pairs are staggered so that the whole sheet is connected.
+Panel B (a staple crossover): two adjacent scaffold helices run in opposite
+directions. A rose staple, with its 5' end at upper right, pairs antiparallel to
+the upper helix, crosses over to the lower helix, and pairs antiparallel there,
+ending at its 3' end at lower right.
+Panel C (staples as addressable pixels): a rectangle of staple positions about
+100 nm across. Staples at chosen addresses carry an extra hairpin and appear as
+raised dark pixels spelling DNA; the remaining positions are plain staples.
+Helix twist, crossover spacing and sequence are omitted; the drawing is
+schematic.

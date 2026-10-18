@@ -1,4 +1,11 @@
 \chapter{Generate--filter--verify algorithms}
+\ChapterGoals{%
+\item represent a candidate population as a multiset and define ideal filters on it;
+\item prove the soundness and conditional completeness of a generate--filter--verify algorithm;
+\item model physical selection as a noisy observation with loss and false retention;
+\item compute the probability that at least one witness survives, and why expectation is not enough;
+\item show with a counterexample how capacity limits make filter order matter.}
+{Chapters~1, 2, 4 and~11.}
 Imagine that the last tube is empty. Have we proved that the graph has no
 Hamiltonian path, or did we lose its only surviving molecule? Now imagine
 a bright band in that tube. Have we found a valid path, or retained a large
@@ -240,6 +247,24 @@ permutation-based witness oracle, wrong-generator and truncated-generator
 failures, copy preservation, capacity order, and tiny-probability arithmetic.
 Later formal models must preserve these distinctions rather than hide finite
 populations behind an ideal set operation.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A physical population is a multiset with finite copies; ideal filters act
+on it by keeping or discarding copies, never by inventing them.
+\item The algorithm is \emph{sound} if every verified survivor is a witness and
+\emph{complete relative to the pool} if every generated witness survives; physical
+loss breaks the second.
+\item An independent verifier checks the decoded witness against the instance,
+so soundness does not rest on the filters alone.
+\item Survival is a probability: an expected surviving copy count of one can
+still leave a substantial chance of zero survivors.
+\item Ideal filters commute; capacity-limited physical filters need not, so order
+is part of the protocol.
+\item An empty tube and a bright band are both observations that need a model of
+generation, selection and readout before they become decisions.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked reasoning}
 \begin{enumerate}
