@@ -3,9 +3,9 @@
 \fill[Pale] (0,-60) rectangle (6,0);
 \foreach \x in {1,4}{\draw[Blue,fill=white] (\x,0) rectangle (\x+1,-3);}
 \node[smallnote] at (1.5,7) {ladder};\node[smallnote] at (4.5,7) {sample};
-\foreach \y/\label in {52.041/250,46.021/500,40/1000,33.979/2000}{
+\foreach \y/\plabel in {52.041/250,46.021/500,40/1000,33.979/2000}{
 \draw[Blue,line width=2pt] (1,-\y)--(2,-\y);
-\node[left,smallnote] at (.8,-\y) {\label};}
+\node[left,smallnote] at (.8,-\y) {\plabel};}
 \draw[Red,line width=2pt] (4,-45)--(5,-45);
 \draw[flow] (6.5,-5)--(6.5,-55);
 \node[smallnote,rotate=90] at (7.2,-30) {migration distance};

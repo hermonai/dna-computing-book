@@ -1,0 +1,15 @@
+Figure: how two edge strands are joined at vertex B.
+
+Panel A (annealing). Two upper strands are written 5' to 3' from left to right.
+The first represents the edge A to B and carries domains aR and bL; the second
+represents the edge B to C and carries domains bR and cL. Beneath them, the
+vertex splint for B runs antiparallel (3' at left, 5' at right) and carries the
+complementary domains bL* and bR*. Grey rungs show pairing of bL with bL* and
+of bR with bR*. Pairing places the 3' end of the first edge strand beside the 5'
+end of the second; the gap in the backbone between them is a nick (red marker:
+a 3' hydroxyl beside a 5' phosphate).
+Panel B (ligation). After ligase acts, the upper strand is one continuous
+molecule reading ... aR bL bR cL ...; a gold dot marks the new backbone bond.
+The splint is still paired underneath and can later be removed by melting.
+Domain lengths are schematic and chemical end groups other than the nick are
+omitted.

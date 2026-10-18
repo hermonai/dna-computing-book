@@ -1,0 +1,152 @@
+% Shared visual language for every illustration in the book.
+%
+% Object colours (also carried by labels, line style or shape, never colour alone):
+%   DNA strands ......... blues/purples/greens (strand identity), solid thick line,
+%                         half-arrowhead (harpoon) marks the 3' end
+%   RNA ................. coral, same strand geometry with a wavy/lighter style
+%   protein / enzyme .... gold rounded blob with darker outline
+%   computation ......... teal arrows and boxes (symbolic transformation)
+%   evidence ............ slate-violet dash-dot (observation / measurement)
+% Arrow meanings:
+%   reaction (chemical change) ......... solid ink arrow, Stealth head
+%   reversible association ............. paired harpoons
+%   movement / transfer of material .... dashed arrow
+%   symbolic map / data flow ........... teal arrow with Latex head
+%   observation / inference ............ dash-dot violet arrow
+% Pairing: short grey rungs = base pairs (hydrogen bonding + stacking schematic);
+% covalent backbone = continuous strand line. Drawings are schematic, not to scale,
+% unless a caption states otherwise.
+
+% ---------------------------------------------------------------- palette
+\definecolor{Ink}{HTML}{1F2933}
+\definecolor{InkSoft}{HTML}{52606D}
+\definecolor{Rule}{HTML}{9AA5B1}
+\definecolor{PanelBg}{HTML}{F3F7FB}
+\definecolor{PanelEdge}{HTML}{C3D0DD}
+\definecolor{DNAblue}{HTML}{1F5FA6}
+\definecolor{DNAsky}{HTML}{4C9BE8}
+\definecolor{StrandViolet}{HTML}{6F4AA8}
+\definecolor{StrandGreen}{HTML}{218A5B}
+\definecolor{StrandRose}{HTML}{C23B5E}
+\definecolor{StrandAmber}{HTML}{C77C0E}
+\definecolor{RNAcoral}{HTML}{E2603F}
+\definecolor{ProteinGold}{HTML}{F0B13C}
+\definecolor{ProteinEdge}{HTML}{9A6A0B}
+\definecolor{CompTeal}{HTML}{0F8B8D}
+\definecolor{EvidenceViolet}{HTML}{6A5ACD}
+\definecolor{AcceptGreen}{HTML}{2E8B57}
+\definecolor{RejectRed}{HTML}{C0392B}
+\definecolor{Water}{HTML}{DCEEFB}
+\definecolor{GelBg}{HTML}{E9EEF2}
+\definecolor{BaseA}{HTML}{3C8D2F}% adenine  (green)
+\definecolor{BaseT}{HTML}{C8372D}% thymine  (red)
+\definecolor{BaseG}{HTML}{E09A1A}% guanine  (amber)
+\definecolor{BaseC}{HTML}{2F6FB3}% cytosine (blue)
+\definecolor{BaseU}{HTML}{8E44AD}% uracil   (purple)
+
+% Harmonise the legacy plate colours with the shared palette so every older
+% plate adopts the same, richer and print-safe hues.
+\definecolor{Blue}{HTML}{1D4F86}
+\definecolor{Green}{HTML}{1F7A52}
+\definecolor{Red}{HTML}{B5304C}
+\definecolor{Pale}{HTML}{EAF2F8}
+\definecolor{Gold}{HTML}{F4CF7A}
+
+\usetikzlibrary{decorations.pathmorphing,decorations.pathreplacing,decorations.markings,
+  shadings,patterns,backgrounds,fit,shapes.misc,shapes.symbols,shapes.arrows,
+  arrows.meta,positioning,calc,shapes.geometric}
+
+\tikzset{
+ % ---------------------------------------------------- typography in figures
+ lab/.style={font=\sffamily\small,text=Ink,inner sep=1.5pt},
+ slab/.style={font=\sffamily\footnotesize,text=Ink,inner sep=1pt},
+ tlab/.style={font=\sffamily\footnotesize\itshape,text=InkSoft,inner sep=1pt},
+ ptitle/.style={font=\sffamily\bfseries\normalsize,text=Ink,anchor=west},
+ ends/.style={font=\sffamily\footnotesize\bfseries,text=InkSoft,inner sep=1pt},
+ % ---------------------------------------------------- panels
+ panel/.style={fill=PanelBg,draw=PanelEdge,rounded corners=4pt,line width=.6pt},
+ card/.style={fill=white,draw=PanelEdge,rounded corners=3pt,line width=.6pt},
+ compbox/.style={fill=CompTeal!8,draw=CompTeal,rounded corners=3pt,line width=.8pt,
+   font=\sffamily\small,align=center,inner sep=4pt},
+ evbox/.style={fill=EvidenceViolet!7,draw=EvidenceViolet,rounded corners=3pt,
+   line width=.8pt,dash pattern=on 4pt off 1.5pt on 1pt off 1.5pt,
+   font=\sffamily\small,align=center,inner sep=4pt},
+ molbox/.style={fill=DNAblue!7,draw=DNAblue,rounded corners=3pt,line width=.8pt,
+   font=\sffamily\small,align=center,inner sep=4pt},
+ % ---------------------------------------------------- strands and pairing
+ strand/.style={line width=2.4pt,line cap=round,-{Straight Barb[harpoon,length=3.2mm,width=2.4mm,line width=1.6pt]}},
+ strandL/.style={line width=2.4pt,line cap=round,-{Straight Barb[harpoon,swap,length=3.2mm,width=2.4mm,line width=1.6pt]}},
+ backbone/.style={line width=2.4pt,line cap=round},
+ rna/.style={line width=2pt,line cap=round,RNAcoral,decorate,
+   decoration={snake,amplitude=.5mm,segment length=3mm,post length=3mm},
+   -{Straight Barb[harpoon,length=3mm,width=2.2mm,line width=1.4pt]}},
+ rung/.style={line width=.9pt,Rule},
+ hbond/.style={line width=.8pt,dash pattern=on 1.4pt off 1.2pt,InkSoft},
+ nick/.style={fill=white,draw=RejectRed,line width=.9pt},
+ % ---------------------------------------------------- arrow semantics
+ react/.style={-{Stealth[length=3.2mm,width=2.4mm]},line width=1.2pt,Ink},
+ move/.style={-{Stealth[length=2.8mm]},line width=1pt,Ink,dash pattern=on 4pt off 2.5pt},
+ data/.style={-{Latex[length=2.8mm]},line width=1.2pt,CompTeal},
+ observe/.style={-{Latex[open,length=2.8mm]},line width=1pt,EvidenceViolet,
+   dash pattern=on 4pt off 1.5pt on 1pt off 1.5pt},
+ inhibit/.style={-{Bar[width=3mm]},line width=1.2pt,RejectRed},
+ brace/.style={decorate,decoration={brace,amplitude=4pt},line width=.8pt,InkSoft},
+ % ---------------------------------------------------- domains (box on a strand)
+ dom/.style={draw=#1,fill=#1!14,line width=.9pt,rounded corners=1.5pt,
+   minimum height=4.2mm,inner sep=1pt,font=\sffamily\footnotesize},
+ pill/.style={draw=#1,fill=#1!12,line width=.8pt,rounded corners=6pt,
+   font=\sffamily\footnotesize,inner sep=3pt},
+ % ---------------------------------------------------- numbered step badge
+ stepbadge/.style={circle,fill=#1,text=white,font=\sffamily\bfseries\footnotesize,
+   inner sep=0pt,minimum size=4.6mm},
+ stepbadge/.default=Ink,
+}
+
+% \Strand[colour]{(x1,y1)}{(x2,y2)}: covalent strand from 5' (start) to 3' (harpoon).
+\newcommand{\Strand}[3][DNAblue]{\draw[strand,#1] #2 -- #3;}
+% \Rungs{x1}{x2}{y1}{y2}{step}: base-pair rungs between two horizontal strands.
+\newcommand{\Rungs}[5]{\pgfmathtruncatemacro{\RungN}{floor((#2-#1)/#5+0.001)}%
+ \foreach \rk in {0,...,\RungN}{\pgfmathsetmacro{\rx}{#1+\rk*#5}\draw[rung] (\rx,#3)--(\rx,#4);}}
+% \Ends{(x,y)}{text}: small 5'/3' end label.
+\newcommand{\EndLab}[2]{\node[ends] at #1 {#2};}
+% \Enzyme{(x,y)}{scale}{label}: protein as a shaded irregular blob.
+\newcommand{\Enzyme}[3]{%
+ \begin{scope}[shift={#1},scale=#2]
+ \shade[ball color=ProteinGold!85,draw=ProteinEdge,line width=.8pt]
+  plot[smooth cycle,tension=.85] coordinates{(-1,-.15)(-.82,.5)(-.25,.78)(.35,.7)(.9,.42)(1.02,-.15)(.7,-.62)(.1,-.38)(-.35,-.66)(-.85,-.55)};
+ \node[font=\sffamily\bfseries\footnotesize,text=Ink] at (0,.12) {#3};
+ \end{scope}}
+% \Tube{(x,y)}{liquid colour}{label}: microcentrifuge tube, base at (x,y).
+\newcommand{\Tube}[3]{%
+ \begin{scope}[shift={#1}]
+ \fill[#2!35] (-.42,1.05)--(-.42,.55)--(0,-.05)--(.42,.55)--(.42,1.05)--cycle;
+ \draw[InkSoft,line width=.9pt,fill=white,fill opacity=.15] (-.48,1.75)--(-.48,.55)--(0,-.12)--(.48,.55)--(.48,1.75);
+ \draw[InkSoft,line width=.9pt,rounded corners=1pt] (-.58,1.75) rectangle (.58,1.92);
+ \draw[InkSoft,line width=.8pt] (-.58,1.92) .. controls (-.58,2.3) and (-.95,2.25) .. (-.98,1.98);
+ \node[slab,below] at (0,-.18) {#3};
+ \end{scope}}
+% \Bead{(x,y)}{radius}: paramagnetic or affinity bead.
+\newcommand{\Bead}[2]{\shade[ball color=InkSoft!45] #1 circle (#2);}
+% \Fluor{(x,y)}: fluorophore marker; \Quench{(x,y)}: quencher marker.
+\newcommand{\Fluor}[1]{\node[star,star points=6,star point ratio=.5,fill=StrandAmber,draw=Ink,line width=.5pt,inner sep=1.4pt] at #1 {};}
+\newcommand{\Quench}[1]{\node[circle,fill=Ink,inner sep=1.8pt] at #1 {};}
+% \PanelTitle{(x,y)}{A}{title}
+\newcommand{\PanelTitle}[3]{\node[anchor=west,font=\sffamily\bfseries\normalsize,text=Ink] at #1
+ {\tikz[baseline=-.6ex]\node[stepbadge=DNAblue]{#2};\ #3};}
+% \Helix{x0}{y0}{length}{turn length}{radius}: schematic B-DNA double helix
+% drawn along x. Two backbones phase-shifted to show unequal grooves.
+\newcommand{\Helix}[5]{%
+ \begin{scope}[shift={(#1,#2)}]
+ \foreach \hx in {0,0.18,...,#3}{
+   \pgfmathsetmacro{\ya}{#5*sin(360*\hx/#4)}
+   \pgfmathsetmacro{\yb}{#5*sin(360*\hx/#4+150)}
+   \draw[rung,line width=1.1pt] (\hx,\ya) -- (\hx,\yb);}
+ \draw[DNAblue,line width=2.6pt,domain=0:#3,samples=120,smooth] plot (\x,{#5*sin(360*\x/#4)});
+ \draw[StrandViolet,line width=2.6pt,domain=0:#3,samples=120,smooth] plot (\x,{#5*sin(360*\x/#4+150)});
+ \end{scope}}
+
+% \TikzPlate{path-without-.tex}{caption}{label}: native vector plate for
+% chapters that do not use \Plate's per-chapter directory.
+\newcommand{\TikzPlate}[3]{\par\medskip\noindent\begin{minipage}{\linewidth}\centering
+ \resizebox{\linewidth}{!}{\input{#1.tex}}
+ \captionof{figure}{#2}\FigureLabel{#3}\end{minipage}\par\medskip}

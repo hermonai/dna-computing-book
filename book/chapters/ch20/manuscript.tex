@@ -299,7 +299,7 @@ and rate-separation assumptions. A good endpoint match alone need not satisfy
 a trajectory-level contract.
 
 Soloveichik, Seelig and Winfree construct strand-displacement cascades that
-approximate coupled formal reaction dynamics \cite{soloveichik}. That result
+approximate coupled formal reaction dynamics \cite{Soloveichik2010}. That result
 motivates the compiler interface; it does not eliminate auxiliary species,
 finite fuel or the need to check the regime of approximation.
 Our four-line mass-action evaluator is not an implementation of that compiler.
@@ -315,14 +315,14 @@ separate obligations.
 
 Chen, Doty and Soloveichik characterize deterministic count-valued function
 computation in their discrete stable-computation model by semilinear graphs
-\cite{chen}. This is a model-specific characterization, not a claim that all
+\cite{Chen2014}. This is a model-specific characterization, not a claim that all
 continuous chemical dynamics are semilinear or that no probabilistic CRN can
 simulate more general computation. It also does not grant a physical device
 unbounded molecule counts or perfect detection.
 
 A 2026 result by Kini and Doty studies a different boundary: reactions may
 reverse before a cutoff, but only forward reactions remain afterwards
-\cite{kini}. Their reverse-robust model retains semilinear predicate and
+\cite{KiniDoty2026}. Their reverse-robust model retains semilinear predicate and
 function computability. Importantly, that cutoff assumption is not persistent
 thermal reversibility at equilibrium. For our annihilation example, adding
 $W\rightarrow A+B$ forever preserves $A-B$ but destroys terminal zero on one

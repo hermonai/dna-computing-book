@@ -84,23 +84,31 @@ def test_all_original_archived_bytes_and_release_records():
             )
 
 
-def test_exact_bibliography_and_fail_closed_citation_mapping():
-    assert B.identity(r"\url{https://doi.org/10.1/AbC}") == B.identity(
-        r"\url{https://doi.org/10.1/abc}"
-    )
-    assert B.identity(r"\url{https://example.org/A}") != B.identity(
-        r"\url{https://example.org/a}"
-    )
-    assert (
-        B.remap_cites(r"\cite{x, y}", {"x": "shared", "y": "ch32:y"})
-        == r"\cite{shared,ch32:y}"
-    )
-    with pytest.raises(ValueError, match="Unresolved"):
-        B.remap_cites(r"\cite{missing}", {})
+def test_single_bibliography_resolves_every_citation():
+    """One authored BibTeX database; every \\cite resolves; no duplicate works."""
+    keys = B.bib_keys()
+    assert len(keys) >= 100
     with pytest.raises(ValueError, match="Duplicate"):
-        B.bib_items(
-            r"\begin{thebibliography}{9}\bibitem{x} A\bibitem{x} B\end{thebibliography}"
-        )
+        B.bib_keys("@article{x,\n title={A}}\n@book{x,\n title={B}}\n")
+    assert B.cited_keys(r"\cite{a, b}\citep[p.~3]{c}") == ["a", "b", "c"]
+    cmap = B.citation_map()
+    assert set(cmap) <= keys and len(cmap) >= 100
+    text = B.BIB.read_text()
+    dois = [d.lower() for d in re.findall(r"doi = \{([^}]+)\}", text)]
+    assert len(dois) == len(set(dois)), "the same DOI appears in two records"
+    # Chapter sources no longer carry private bibliographies.
+    for path in (ROOT / "book").rglob("*.tex"):
+        assert "\\begin{thebibliography}" not in path.read_text(), path
+
+
+def test_parts_cover_the_chapter_sequence():
+    parts = MANIFEST["parts"]
+    firsts = [p["first_chapter"] for p in parts]
+    assert firsts == sorted(firsts) and firsts[0] == 1 and len(parts) == 8
+    for p in parts:
+        assert (ROOT / p["source"]).is_file()
+    for item in MANIFEST["frontmatter"] + MANIFEST["backmatter"]:
+        assert (ROOT / item).is_file(), item
 
 
 def test_svg_names_are_unique_and_tex_sources_are_local():

@@ -1,0 +1,159 @@
+\chapter{A mathematical toolkit}\label{app:math}
+\markboth{A mathematical toolkit}{A mathematical toolkit}
+
+This appendix collects the mathematics that a reader arriving from biology or
+chemistry needs, with one worked example per idea. Each topic is introduced
+again where the book first uses it; the appendix is for review and quick
+reference.
+
+\section{Sets, multisets and logic}
+A \emph{set} lists distinct objects: $\{A,B,C\}$. A \emph{multiset} also records
+how many copies of each object are present: a tube containing three copies of
+strand $x$ and one of $y$ is the multiset $\{x^3,y^1\}$. The book uses
+$N(x)$ for the multiplicity (copy number) of $x$, and the \emph{support} for
+the set of objects with $N(x)>0$. Selection can change multiplicities; it cannot
+put back an object that is absent from the support.
+
+Logical connectives combine statements: $p\land q$ (and), $p\lor q$ (or),
+$\lnot p$ (not). A \emph{predicate} is a statement about an object that is true
+or false, written $[\,\cdot\,]$. Quantifiers say how many objects satisfy it:
+$\exists x\,P(x)$ (``there exists'') and $\forall x\,P(x)$ (``for all''). Most
+of the computational problems in this book are existence questions of the form
+``is there a candidate that passes every test?''
+
+\section{Exponentials and logarithms}
+Exponential growth multiplies by a constant factor per step: perfect PCR
+doubles the copy number every cycle, so after $n$ cycles $N_n=N_0\,2^n$. The
+logarithm undoes exponentiation: if $y=b^x$ then $x=\log_b y$. Useful rules:
+\[
+\log(ab)=\log a+\log b,\qquad \log(a^k)=k\log a,\qquad \log_b y=\frac{\ln y}{\ln b}.
+\]
+\begin{Worked}{how many PCR cycles?}
+Starting from 10 copies, how many perfect doublings reach $10^{9}$ copies?
+Solve $10\cdot2^{n}=10^{9}$, so $2^{n}=10^{8}$ and
+$n=\log_2 10^8 = 8\ln10/\ln2 = 8\times3.3219\approx26.6$. Twenty-seven cycles
+suffice in the ideal model; real efficiencies below 100\,\% need more
+(Chapter~9).
+\end{Worked}
+Logarithmic axes turn exponential curves into straight lines, which is why
+factorial and exponential resource counts are plotted on them (Chapters~1
+and~4).
+
+\section{Probability}
+A probability $\Pr(E)$ is a number between 0 and 1 assigned to an event $E$.
+If $E$ and $F$ are \emph{independent}, $\Pr(E\land F)=\Pr(E)\Pr(F)$. The
+\emph{conditional probability} of $E$ given $F$ is
+$\Pr(E\mid F)=\Pr(E\land F)/\Pr(F)$, and the chain rule
+$\Pr(E_1\land E_2\land E_3)=\Pr(E_1)\Pr(E_2\mid E_1)\Pr(E_3\mid E_1\land E_2)$
+holds without any independence assumption. Chapter~1 uses it to compute how a
+molecule survives a sequence of purification steps.
+
+\paragraph{At least one success.} If each of $M$ independent trials succeeds
+with probability $p$, the chance that none succeeds is $(1-p)^M$, so
+\[
+\Pr(\text{at least one success}) = 1-(1-p)^M \approx 1-e^{-pM}\quad(p\ \text{small}).
+\]
+This single formula controls how many molecules a molecular search must
+prepare (Chapters~1, 4 and 24).
+
+\paragraph{Binomial and Poisson counts.} The number of successes $K$ in $M$
+independent trials has the binomial distribution, with mean $Mp$ and variance
+$Mp(1-p)$. When $M$ is large and $p$ small, $K$ is approximately
+\emph{Poisson} with mean $\lambda=Mp$: $\Pr(K=k)=e^{-\lambda}\lambda^k/k!$.
+Pipetting a small volume from a well-mixed tube is a Poisson experiment: a
+sample expected to contain $\lambda=3$ copies of a rare strand contains none
+with probability $e^{-3}\approx0.05$.
+
+\paragraph{Expectation and variance.} The expectation $\mathbb E[X]$ is the
+long-run average of a random quantity $X$; the variance
+$\mathrm{Var}(X)=\mathbb E[(X-\mathbb E X)^2]$ measures its spread. For a sum of
+independent quantities, expectations and variances add. Relative fluctuations
+of a count with mean $\lambda$ scale like $1/\sqrt{\lambda}$, which is why
+molecule-level noise matters at small copy numbers (Chapter~7).
+
+\section{Rates and differential equations}
+A rate is a change per unit time. If molecules of $A$ decay independently,
+each with constant hazard $k$ (units s$^{-1}$), the concentration obeys
+\[
+\frac{d[A]}{dt}=-k[A],\qquad\text{with solution}\qquad [A](t)=[A]_0\,e^{-kt}.
+\]
+Check by differentiating: $\tfrac{d}{dt}[A]_0e^{-kt}=-k[A]_0e^{-kt}$. The
+\emph{half-life} $t_{1/2}=\ln2/k$ is when half remains.
+
+The \emph{law of mass action} says that a bimolecular reaction
+$A+B\to C$ proceeds at rate $k[A][B]$, where $k$ has units
+M$^{-1}$\,s$^{-1}$. A reversible reaction $A+B\rightleftharpoons C$ with forward
+constant $k_f$ and reverse constant $k_r$ reaches \emph{equilibrium} when
+the two rates balance, $k_f[A][B]=k_r[C]$, so
+$[C]/([A][B])=k_f/k_r=K$, the equilibrium constant. Chapters~6, 7, 19 and 28
+develop these ideas; Chapter~28 shows how to solve such equations numerically
+and when the deterministic description fails.
+
+\begin{CSBridge}
+A differential equation is a rule for updating a state continuously in time. A
+computer solves it by taking small steps: Euler's method updates
+$x\leftarrow x+h\,f(x)$ with step $h$. Smaller steps are more accurate but cost
+more. Chapter~28 builds and tests such a solver.
+\end{CSBridge}
+
+\section{Free energy and equilibrium}
+At constant temperature and pressure a reaction's tendency to proceed is
+measured by its standard free-energy change $\Delta G^{\circ}$. It is linked to
+the equilibrium constant by
+\[
+K=\exp\!\left(-\frac{\Delta G^{\circ}}{RT}\right),
+\]
+with gas constant $R=8.314\,\mathrm{J\,mol^{-1}K^{-1}}$ and absolute temperature
+$T$. At 25\,\textdegree C, $RT\approx2.48$\,kJ\,mol$^{-1}$ (0.593\,kcal\,mol$^{-1}$).
+Every additional $-RT\ln10\approx-5.7$\,kJ\,mol$^{-1}$ (about $-1.36$\,kcal\,mol$^{-1}$)
+multiplies $K$ by ten. Free energy splits as
+$\Delta G^{\circ}=\Delta H^{\circ}-T\Delta S^{\circ}$: pairing releases heat
+($\Delta H^{\circ}<0$) but costs entropy ($\Delta S^{\circ}<0$), so duplexes melt
+when $T$ rises (Chapter~6).
+
+\section{Graphs, algorithms and growth rates}
+A \emph{directed graph} $G=(V,E)$ has vertices $V$ and ordered edges $E$. A
+\emph{path} follows edges without repeating vertices; a \emph{Hamiltonian path}
+visits every vertex exactly once (Chapter~1). An \emph{algorithm} is a finite
+procedure that transforms an input into an output; its \emph{cost} is measured
+by how resources such as time, memory, or molecules grow with input size $n$.
+We write $f(n)=O(g(n))$ when $f$ grows no faster than a constant times $g$ for
+large $n$. Polynomial growth ($n^2$, $n^3$) is considered tractable;
+exponential ($2^n$) and factorial ($n!$) growth are not, because each additional
+input element multiplies the cost. Chapter~3 explains the classes P and NP and
+why moving a search into a test tube does not change exponential into
+polynomial cost.
+
+\section{Reading the Python in this book}
+Reference implementations use a small subset of Python.
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.38\linewidth}p{0.55\linewidth}@{}}
+\toprule
+Code & Meaning\\
+\midrule
+\texttt{x = 3} & bind the name \texttt{x} to the value 3\\
+\texttt{def f(a, b):} & define a function with inputs \texttt{a}, \texttt{b}\\
+\texttt{return a + b} & the function's output\\
+\texttt{[f(x) for x in xs]} & list of \texttt{f} applied to each element of \texttt{xs}\\
+\texttt{\{"A": "T", "C": "G"\}} & dictionary: a lookup table from keys to values\\
+\texttt{for i in range(n):} & repeat with \texttt{i} = 0, 1, \ldots, $n-1$\\
+\texttt{if cond: ... else: ...} & choose between two branches\\
+\texttt{raise ValueError(...)} & stop with an error when an input is invalid\\
+\texttt{assert x == y} & a test: fail loudly if the claim is false\\
+\bottomrule
+\end{tabular}
+\end{center}
+For example, the reverse complement of a DNA sequence (Chapter~5) can be
+written
+\begin{verbatim}
+PAIR = {"A": "T", "T": "A", "C": "G", "G": "C"}
+
+def reverse_complement(seq):
+    return "".join(PAIR[base] for base in reversed(seq))
+
+assert reverse_complement("ACGTTG") == "CAACGT"
+\end{verbatim}
+Reading it aloud: look up each base's partner, taking the bases in reverse
+order, and join them into a new string; then test the function on an example
+whose answer we know independently.

@@ -2,50 +2,59 @@
 \newcommand{\BookTitle}{DNA Computing}
 \input{style.tex}
 \input{layout.tex}
+\input{visual.tex}
+\input{pedagogy.tex}
 \input{../build/book/scope.tex}
 \begin{document}
 \frontmatter
-\fancyhead[R]{\small\sffamily Front matter}
+\pagestyle{empty}
 \begin{titlepage}
-\color{Blue}\sffamily\vspace*{24mm}
-{\Huge\bfseries DNA Computing\par}
-\vspace{12mm}{\Large Molecular mechanisms, algorithms and evidence\par}
-\vspace{14mm}\rule{\linewidth}{.8pt}\par
-\vspace{7mm}{\large Define the mechanism. Derive the result. Test the claim.\par}
-\vfill Complete manuscript / Review candidate\par
-Chapters 1--\IncludedThrough\ / October 2026\par
-Planned chapter spine assembled; cumulative editorial and independent review remain gated.
+\begin{tikzpicture}[remember picture,overlay]
+ \fill[DNAblue] (current page.north west) rectangle ([yshift=-11.5cm]current page.north east);
+ \begin{scope}[shift={([xshift=-1.0cm,yshift=-8.4cm]current page.north west)},rotate=8]
+  \foreach \hx in {0,0.21,...,24}{
+   \draw[white,opacity=.30,line width=1.1pt] (\hx,{1.05*sin(360*\hx/3.6)}) -- (\hx,{1.05*sin(360*\hx/3.6+148)});}
+  \draw[DNAsky!70,line width=3.4pt,domain=0:24,samples=300,smooth] plot (\x,{1.05*sin(360*\x/3.6+148)});
+  \draw[white,line width=3.4pt,domain=0:24,samples=300,smooth] plot (\x,{1.05*sin(360*\x/3.6)});
+ \end{scope}
+ \node[anchor=north west,text=white,font=\sffamily\bfseries\fontsize{40}{46}\selectfont]
+   at ([xshift=2.4cm,yshift=-2.2cm]current page.north west) {DNA Computing};
+ \node[anchor=north west,text=white,font=\sffamily\fontsize{17}{21}\selectfont,text width=15cm,align=left]
+   at ([xshift=2.45cm,yshift=-4.0cm]current page.north west) {Molecular mechanisms, algorithms and evidence};
+ \node[anchor=north west,text=Ink,font=\sffamily\large,text width=15.5cm,align=left]
+   at ([xshift=2.45cm,yshift=-13.4cm]current page.north west)
+   {Strands, enzymes and reactions as a programmable computer:\\
+    from Adleman's experiment to strand-displacement circuits,\\
+    DNA neural networks, algorithmic self-assembly, data storage\\
+    and molecular recorders in living cells.};
+ \node[anchor=south west,text=InkSoft,font=\sffamily,text width=15.5cm,align=left]
+   at ([xshift=2.45cm,yshift=2.6cm]current page.south west)
+   {\textbf{Review edition}, October 2026\\
+    Thirty-two chapters in eight parts, with an epilogue on open problems,\\
+    appendices, executable reference code and worked solutions.};
+\end{tikzpicture}
 \end{titlepage}
-\chapter*{Reading and evidence conventions}
-\addcontentsline{toc}{chapter}{Reading and evidence conventions}
-This continuous manuscript assembles authored LaTeX, not previously exported PDFs.
-Begin with the worked problem, derive the mechanism, run the reference, inspect
-its state or values, and try the counterexample. The implementation-first
-teaching progression is general pedagogy; the book's prose, code and illustrations
-are its own. External model names and biological analogies are not proof of novelty.
-
-A mathematical result holds under stated premises. A passing test checks the
-implemented function on declared cases. A simulated trace is not a laboratory
-measurement, and a synthetic model result is not a genomic capability benchmark.
-Source notes record access depth; local technical and visual review are distinct
-from independent specialist and reader review. Historical accepted editions
-remain unchanged. This candidate has not inherited their acceptance.
-
-Chapter boundaries preserve each mechanism's units, information access, state
-ownership and failure contract. The single bibliography reconciles exact source
-identifiers while retaining the source-key provenance in the build record.
-The global index is generated from authored term marks. Chapter packages still
-awaiting semantic integration are not included merely because their ZIP exists.
-\input{frontmatter/about-this-book.tex}
+\pagestyle{fancy}
+\fancyhead[R]{\small\sffamily Front matter}
+\input{frontmatter/preface.tex}
+\input{frontmatter/how-to-use.tex}
 \clearpage
 \tableofcontents
 \mainmatter
 \fancyhead[R]{\small\sffamily Chapter \thechapter}
 \input{../build/book/chapters.tex}
+\input{backmatter/epilogue.tex}
+\appendix
+\titleformat{\chapter}[display]{\raggedright\hyphenpenalty=10000\color{BookBlue}\sffamily\bfseries}{\large APPENDIX \thechapter}{8pt}{\huge}
+\fancyhead[R]{\small\sffamily Appendix \thechapter}
+\input{backmatter/appendix-biology.tex}
+\input{backmatter/appendix-math.tex}
+\input{backmatter/appendix-timeline.tex}
 \backmatter
 \fancyhead[R]{\small\sffamily Reference material}
 \input{backmatter/glossary.tex}
-\input{../build/book/bibliography.tex}
+\bibliographystyle{plainnat}
+\bibliography{backmatter/references}
 \clearpage\phantomsection\addcontentsline{toc}{chapter}{Index}
 \printindex
 \end{document}

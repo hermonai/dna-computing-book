@@ -33,7 +33,7 @@ The table is deliberately narrower than the full biochemical repertoire of these
 \section{Restriction: a site determines two cut coordinates}
 \index{EcoRI}
 
-EcoRI recognizes the duplex site GAATTC and cuts after the first G on the strand read $5'$ to $3'$ \cite{ecori}. On our displayed top strand, a site beginning at zero-based index $i$ gives
+EcoRI recognizes the duplex site GAATTC and cuts after the first G on the strand read $5'$ to $3'$ \cite{NEBEcoRI}. On our displayed top strand, a site beginning at zero-based index $i$ gives
 \begin{equation}
 c_{\mathrm{top}}=i+1,\qquad c_{\mathrm{bottom}}=i+5.
 \label{eq:cuts}
@@ -50,7 +50,7 @@ The helper \texttt{dna} rejects empty strings, noncanonical letters, and lowerca
 
 \subsection{What the string matcher cannot tell us}
 
-The function assumes an accessible, fully paired canonical duplex. It does not model methylation sensitivity, altered specificity, incomplete digestion, or conditions needed for a particular preparation. The product information documents relevant qualifications \cite{ecori}; those are not parameters secretly encoded in the six-letter match.
+The function assumes an accessible, fully paired canonical duplex. It does not model methylation sensitivity, altered specificity, incomplete digestion, or conditions needed for a particular preparation. The product information documents relevant qualifications \cite{NEBEcoRI}; those are not parameters secretly encoded in the six-letter match.
 
 The recognizer supplies eligible sites. A separate reaction model supplies fractions cut or event times. A third layer translates those events into observable fragment distributions. Returning a site list is not an experimental cleavage measurement.
 
@@ -59,7 +59,7 @@ The recognizer supplies eligible sites. A separate reaction model supplies fract
 
 Complementary overhangs can anneal without their backbones becoming covalently continuous. Thermal dissociation can separate an annealed complex again. A \Term{DNA ligase} can seal an eligible nick, turning a base-paired arrangement into a covalently connected product.
 
-For the ATP-dependent teaching contract used here, the joining strand presents an upstream $3'$ hydroxyl and a downstream $5'$ phosphate. T4 DNA ligase is an example that joins suitable DNA ends and nicks \cite{ligase}. Its catalytic cycle can be understood as three transfers \cite{ligasemechanism}:
+For the ATP-dependent teaching contract used here, the joining strand presents an upstream $3'$ hydroxyl and a downstream $5'$ phosphate. T4 DNA ligase is an example that joins suitable DNA ends and nicks \cite{NEBT4Ligase}. Its catalytic cycle can be understood as three transfers \cite{Shi2018}:
 
 \begin{enumerate}
 \item ATP activates the enzyme by supplying AMP; pyrophosphate is released.
@@ -84,7 +84,7 @@ If EcoRI-generated fragments are rejoined in their original arrangement, GAATTC 
 \section{Polymerase extension: a template-guided material balance}
 \index{dNTP inventory}
 
-A \Term{DNA polymerase} extends a primer at its $3'$ end, synthesizing the new strand $5'$ to $3'$. It does not append bases to the primer's $5'$ end. T4 DNA polymerase requires a primer and template and also has a distinct $3'$-to-$5'$ exonuclease activity \cite{polymerase}. Our code models ideal, correctly paired extension, not that enzyme's full activity profile.
+A \Term{DNA polymerase} extends a primer at its $3'$ end, synthesizing the new strand $5'$ to $3'$. It does not append bases to the primer's $5'$ end. T4 DNA polymerase requires a primer and template and also has a distinct $3'$-to-$5'$ exonuclease activity \cite{NEBT4Pol}. Our code models ideal, correctly paired extension, not that enzyme's full activity profile.
 
 Consider displayed template $3'\text{-TGCATG-}5'$ with primer $5'\text{-AC-}3'$. The next template base is C, so the next incorporated base is G. Continuing gives ACGTAC. Each incorporation consumes one corresponding deoxynucleoside triphosphate (dNTP), adds one nucleotide residue to the strand, and releases one pyrophosphate (PPi).
 
@@ -159,7 +159,7 @@ Use assigned values $k_1=2$, $k_{-1}=1$, $k_{\rm cat}=3$, and $e_0=0.02$ in the 
 
 The equilibrium dissociation constant for $E+S\rightleftharpoons C$ is $K_D=k_{-1}/k_1$. Our example has $K_D=0.5\,\mu$M, four times smaller than $K_M$. Catalysis is another route out of the bound state, so $K_M$ contains both escape rates. Only in the rapid-equilibrium limit $k_{\rm cat}\ll k_{-1}$ does this mechanism give $K_M\approx K_D$.
 
-The official kinetic recommendations distinguish these quantities and define the Michaelis constant through the rate relationship \cite{kinetics}. A fitted hyperbola does not prove that this minimal mechanism uniquely explains the data.
+The official kinetic recommendations distinguish these quantities and define the Michaelis constant through the rate relationship \cite{IUBMB1981}. A fitted hyperbola does not prove that this minimal mechanism uniquely explains the data.
 
 \section{Expose the approximation's initial failure}
 
@@ -205,7 +205,7 @@ RK4 is not unconditionally positivity preserving. A large step can produce a neg
 
 Four checks play different roles. Conservation verifies stoichiometry. Nonnegative concentrations and nondecreasing product check physical behavior within this irreversible mechanism. Step halving tests convergence: a fourth-order global error falls by about $2^4=16$ in the asymptotic regime. Finally, lowering enzyme concentration makes short-time depletion negligible, allowing the closed solution to approach the independently derived clamped transient. One check cannot replace the others.
 
-In enzyme analysis, \emph{initial rate} often means the early quasi-steady portion before substantial depletion, not the derivative at the exact instant unbound reactants are mixed \cite{transient}. These are different quantities.
+In enzyme analysis, \emph{initial rate} often means the early quasi-steady portion before substantial depletion, not the derivative at the exact instant unbound reactants are mixed \cite{IUBMB1981}. These are different quantities.
 
 \subsection{A reduced rate is not a perpetual linear yield}
 \index{substrate depletion}

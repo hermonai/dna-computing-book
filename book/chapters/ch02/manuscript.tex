@@ -4,7 +4,7 @@
 \section{A reconstruction, not a replacement history}
 Chapter~\ref{ch:computing} used an original six-vertex teaching graph. We now change instances deliberately: the vertices in this chapter are the seven numbered vertices of Adleman's 1994 experiment. The point is to carry the correspondence all the way from directed edges to oriented sequence fragments, laboratory selection, and readable evidence.
 
-The historical anchor is the original report, including its experimental notes, rather than a simplified diagram of a generic DNA computer.\cite{adleman} Our redrawn graph and the three published sequence codes preserve factual information from that report. Our route inventory, fault injection, mathematical proofs, sensitivity model and synthetic band diagrams are new teaching constructions. None is a measurement of the original reaction.
+The historical anchor is the original report, including its experimental notes, rather than a simplified diagram of a generic DNA computer.\cite{Adleman1994} Our redrawn graph and the three published sequence codes preserve factual information from that report. Our route inventory, fault injection, mathematical proofs, sensitivity model and synthetic band diagrams are new teaching constructions. None is a measurement of the original reaction.
 
 Three distinctions will organize the reconstruction. First, hybridization associates complementary strands, while ligation creates a backbone bond. Second, PCR and affinity selection enrich physical populations rather than evaluate perfect Boolean predicates. Third, a readable signal is evidence to interpret, not a substitute for checking a decoded witness. These distinctions prevent a short abstract algorithm from concealing the actual work.
 
@@ -80,18 +80,18 @@ There are $k$ complete codes, so its length is $20k$ nucleotides. After compleme
 This derivation depends on complete endpoints and full-length products. With only half-codes at both ends, the expression would instead be $20(k-1)$. With truncations, nonspecific ligation or unexpected internal priming, even a correct arithmetic formula need not describe the observed fragment. A length filter inherits the assumptions of the encoding that makes length meaningful.
 
 \section{Annealing positions ends; ligation connects them}
-DNA strands have directional sugar--phosphate backbones. Complementary sequences can align antiparallel through base pairing.\cite{dna} The schematic domains $L_3$ and $L_3^*$ stand for ten-base regions, not indivisible magnetic labels. Pairing may form and dissociate; partial matches and folded structures can compete with the desired junction.
+DNA strands have directional sugar--phosphate backbones. Complementary sequences can align antiparallel through base pairing.\cite{Alberts2002} The schematic domains $L_3$ and $L_3^*$ stand for ten-base regions, not indivisible magnetic labels. Pairing may form and dissociate; partial matches and folded structures can compete with the desired junction.
 
 \DeepFigure{DNAD-02-F4}{Three states of one intended junction: separated fragments, an annealed complex with a nick, and a ligated continuous upper backbone. Dashed vertical contacts denote noncovalent pairing. Red backbone closure denotes a different chemical event. Domain widths and end-group placement are schematic.}{fig:d2assembly}
 
-At a properly aligned nick, T4 DNA ligase can join a $3'$ hydroxyl to a neighboring $5'$ phosphate through a phosphodiester bond.\cite{ligase} The splint is an alignment device; it does not become an extra vertex code inserted into the upper strand. If the duplex later separates, the ligated upper fragments remain connected because a backbone bond has been formed.
+At a properly aligned nick, T4 DNA ligase can join a $3'$ hydroxyl to a neighboring $5'$ phosphate through a phosphodiester bond.\cite{NEBT4Ligase} The splint is an alignment device; it does not become an extra vertex code inserted into the upper strand. If the duplex later separates, the ligated upper fragments remain connected because a backbone bond has been formed.
 
 A drawing can therefore be tested mechanically. Ask which two atoms' terminal groups are being brought together, which strand carries the continuous product, and which marks mean pairing rather than covalent connection. A line joining labels without a direction or bond meaning cannot answer these questions.
 
-Complementarity alone is not a quantitative prediction of productive binding. Neighboring base context and solution conditions affect duplex thermodynamics.\cite{d2santalucia} A ten-base domain does not have a universal melting temperature independent of its sequence and surroundings. Chapter 6, \emph{Hybridization thermodynamics}, develops that physics. Here the domain model establishes the intended geometry, not a validated sequence-design certificate.
+Complementarity alone is not a quantitative prediction of productive binding. Neighboring base context and solution conditions affect duplex thermodynamics.\cite{SantaLucia1998} A ten-base domain does not have a universal melting temperature independent of its sequence and surroundings. Chapter 6, \emph{Hybridization thermodynamics}, develops that physics. Here the domain model establishes the intended geometry, not a validated sequence-design certificate.
 
 \section{A molecular population has multiplicity and missing members}
-The paper's preparation used edge fragments and internal complementary vertex splints. The input inventory included 50 pmol of each species in a 100-$\mu$L ligation mixture, with a four-hour room-temperature ligation step.\cite{adleman} These historical details anchor the physical scale; they are not a modern replication protocol.
+The paper's preparation used edge fragments and internal complementary vertex splints. The input inventory included 50 pmol of each species in a 100-$\mu$L ligation mixture, with a four-hour room-temperature ligation step.\cite{Adleman1994} These historical details anchor the physical scale; they are not a modern replication protocol.
 
 \DeepFigure{DNAD-02-F5}{Digital enumeration lists every candidate within a declared bound; a physical preparation contains unequal multiplicities and can miss a witness entirely. The illustrated tube is deliberately hypothetical and is not a reconstruction of measured abundance.}{fig:d2population}
 
@@ -100,16 +100,16 @@ Let $N(P)$ count copies of route $P$. Total material, $\sum_P N(P)$, differs fro
 Our program enumerates legal walks of one through eight vertices, starting anywhere. It obtains 1,583 distinct bounded walks. The real reaction is neither that exhaustive inventory nor a uniform random draw from it. In particular, cycles in the graph permit arbitrarily long abstract walks; eight is an explicit software boundary, not a chemically enforced maximum.
 
 \section{Endpoint PCR: orientation turns recognition into enrichment}
-The historical endpoint primers were associated with $O_0$ and the complement of $O_6$.\cite{adleman} To understand their logical role, follow a double-stranded candidate. The $O_0$ primer binds a complementary start region and extends toward the interior; the complementary-$O_6$ primer binds the other strand near the finish and extends inward in the opposite direction. Both new strands grow $5'$ to $3'$.
+The historical endpoint primers were associated with $O_0$ and the complement of $O_6$.\cite{Adleman1994} To understand their logical role, follow a double-stranded candidate. The $O_0$ primer binds a complementary start region and extends toward the interior; the complementary-$O_6$ primer binds the other strand near the finish and extends inward in the opposite direction. Both new strands grow $5'$ to $3'$.
 
 \DeepFigure{DNAD-02-F6}{Opposed template strands and inward-facing endpoint primers. Polymerase extension grows from the primer's $3'$ end. Repeated separation, annealing and extension enrich a compatible product family. This is an orientation diagram, not a thermal-cycling recipe.}{fig:d2pcr}
 
-PCR uses repeated strand separation and primer-directed copying to amplify a selected interval.\cite{pcr} Ideal doubling illustrates its power but should not be assumed for every molecule in every cycle. A template with one effective primer site, off-target binding, incomplete extension, or unequal amplification efficiency can behave differently from the ideal two-site target.
+PCR uses repeated strand separation and primer-directed copying to amplify a selected interval.\cite{NHGRIPCR} Ideal doubling illustrates its power but should not be assumed for every molecule in every cycle. A template with one effective primer site, off-target binding, incomplete extension, or unequal amplification efficiency can behave differently from the ideal two-site target.
 
 The software endpoint predicate retains an existing route unchanged or removes it. PCR can create additional copies and can select an interval within a longer template. Thus endpoint filter names the intended computational role, not a literal set-intersection operation performed without representation assumptions. A strong band means that some sequence amplified successfully; it does not independently certify a Hamiltonian order.
 
 \section{Size selection: seven occurrences are not seven identities}
-Gel electrophoresis separates charged molecules in a matrix under an electric field; size is a major determinant of migration under appropriate conditions.\cite{gel} The historical workflow recovered the 140-bp fraction, with additional purification and amplification steps. Our conceptual pipeline compresses those repeated physical operations into one ideal length predicate.
+Gel electrophoresis separates charged molecules in a matrix under an electric field; size is a major determinant of migration under appropriate conditions.\cite{NHGRIElectrophoresis} The historical workflow recovered the 140-bp fraction, with additional purification and amplification steps. Our conceptual pipeline compresses those repeated physical operations into one ideal length predicate.
 
 \DeepFigure{DNAD-02-F7}{Synthetic 120-, 140- and 160-bp bands illustrate a size fraction. The two listed seven-occurrence routes both encode 140 bases under the full-endpoint convention, despite different coverage. Positions and intensities are schematic, not experimental gel data.}{fig:d2length}
 
@@ -121,7 +121,7 @@ This is a useful general design pattern: two weak observables can jointly imply 
 \index{affinity selection}\index{vertex splint}\index{biotin}
 The detailed affinity procedure has a preparatory step and a selection step. In preparation, one PCR strand was biotin-labeled through a complementary-$O_6$ primer and immobilized on streptavidin-coated particles. Denaturation released the other, unbiotinylated strand into solution. That free strand was the material needed for subsequent sequence recognition.
 
-In vertex selection, the bead carries a biotinylated complementary vertex probe. A target strand containing the corresponding code can hybridize to this probe. Unbound material is washed away; denaturation releases retained target into solution for the next selection. The sequence-recognition role belongs to the probe, not to biotin.\cite{adleman}
+In vertex selection, the bead carries a biotinylated complementary vertex probe. A target strand containing the corresponding code can hybridize to this probe. Unbound material is washed away; denaturation releases retained target into solution for the next selection. The sequence-recognition role belongs to the probe, not to biotin.\cite{Adleman1994}
 
 \DeepFigure{DNAD-02-F8}{Preparation and selection retain different molecular relationships. First recover the unbiotinylated strand from an immobilized duplex. Then recognize a vertex through a complementary bead-bound probe, wash, and release the selected target. The diagram tracks which material remains attached and which returns to solution.}{fig:d2beads}
 
@@ -153,7 +153,7 @@ This viewpoint separates \Term{soundness} from \Term{completeness}. Soundness as
 
 \section{Graduated PCR: a position projection, not sequencing}
 \index{graduated PCR}\index{readout ambiguity}
-Graduated PCR used separate reactions combining the start-associated primer with a primer associated with each later vertex. Product lengths supported positions in the route.\cite{adleman} In our idealized code-length model, an occurrence at zero-based position $j$ gives a product of $20(j+1)$ bp from the start.
+Graduated PCR used separate reactions combining the start-associated primer with a primer associated with each later vertex. Product lengths supported positions in the route.\cite{Adleman1994} In our idealized code-length model, an occurrence at zero-based position $j$ gives a product of $20(j+1)$ bp from the start.
 
 \DeepFigure{DNAD-02-F11}{Synthetic graduated-PCR-style length projections. The pure witness gives 40, 60, 80, 100, 120 and 140 bp in lanes 1 through 6. A mixture of the witness, short route and repeated-3 route produces unions of possible lengths. This is not the historical gel photograph and makes no intensity or detection-efficiency claim.}{fig:d2readout}
 
@@ -213,7 +213,7 @@ It is an accounting framework, not a universal complexity definition. The compon
 
 \DeepFigure{DNAD-02-F13}{Input molecules and candidate orders belong to different accounts. The historical reagent amount converts to about $3.01\times10^{13}$ oligos per species. The factorial column counts interior permutations only for a complete directed graph with fixed endpoints; it is not an observed route distribution or a universal DNA lower bound.}{fig:d2resources}
 
-Using the exact Avogadro constant,\cite{si}
+Using the exact Avogadro constant,\cite{BIPMmole}
 \[
 50\times10^{-12}\ \mathrm{mol}\times
 6.02214076\times10^{23}\ \mathrm{mol}^{-1}
@@ -227,14 +227,14 @@ M\ge\frac{\ln\delta}{\ln(1-p)}
 \]
 for miss probability at most $\delta$, with $0<p,\delta<1$. Neither formula tells us $p$ for the historical chemistry. Sparse edges, unequal assembly probabilities and alternative algorithms change the account.
 
-The reported laboratory workflow took about seven days, not merely the time of one parallel chemical reaction.\cite{adleman} Preparation, transfers, amplification, recovery and readout are part of elapsed work. The demonstration does not establish asymptotically efficient NP-complete search, fault-free computation, or automatic superiority over silicon.
+The reported laboratory workflow took about seven days, not merely the time of one parallel chemical reaction.\cite{Adleman1994} Preparation, transfers, amplification, recovery and readout are part of elapsed work. The demonstration does not establish asymptotically efficient NP-complete search, fault-free computation, or automatic superiority over silicon.
 
 \section{What the experiment opened, and what changed later}
 The bounded achievement is already substantial: molecular representations and selective operations participated in solving a small combinatorial instance. This links an abstract problem to physical information processing. It does not require an unsupported general claim about competitive runtime.
 
 \DeepFigure{DNAD-02-F14}{A conceptual map of later research traditions, organized by state and operation. This is neither a causal genealogy nor a ranking of superiority. The mechanisms differ; subsequent chapters must derive their own correctness and resource arguments.}{fig:d2aftermath}
 
-Lipton explored SAT-style molecular search as a proposal,\cite{d2lipton} while formal work studied computational power under specified DNA operations.\cite{d2boneh} Molecular automata used biochemical transitions;\cite{benenson} self-assembly organized local interactions into structures;\cite{assembly} strand-displacement circuits made recognition and exchange into composable signal operations.\cite{d2seelig} These are not all variants of filtering a pre-existing factorial route pool.
+Lipton explored SAT-style molecular search as a proposal,\cite{Lipton1995} while formal work studied computational power under specified DNA operations.\cite{Boneh1996} Molecular automata used biochemical transitions;\cite{Benenson2001} self-assembly organized local interactions into structures;\cite{Winfree1998} strand-displacement circuits made recognition and exchange into composable signal operations.\cite{Seelig2006} These are not all variants of filtering a pre-existing factorial route pool.
 
 Chapter 3, \emph{Combinatorial search and complexity}, next separates instance difficulty, verification cost, reductions and physical resource accounting. The later thermodynamic and kinetic chapters then examine whether the symbolic operations assumed here are physically reliable. The separation is intentional: a correct combinatorial proof and a workable molecular implementation must both be earned.
 

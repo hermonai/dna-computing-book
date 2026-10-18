@@ -1,0 +1,130 @@
+\chapter*{How to use this book}
+\addcontentsline{toc}{chapter}{How to use this book}
+\markboth{How to use this book}{How to use this book}
+
+\section*{Reading paths}
+Chapters build on one another, but not in a single line. Figure~\ref{fig:readingmap}
+shows the eight parts, the chapters inside each, and three suggested emphases.
+Chapters marked \textsf{C} form the core path that every reader should follow;
+\textsf{T} marks chapters for readers who want the formal theory of molecular
+computation; \textsf{L} marks chapters for readers heading towards laboratory
+design and molecular engineering.
+
+\TikzPlate{frontmatter/figures/reading-map}{A reading map. Each row is one part
+of the book; each card is a chapter, with its number, a short title and badges
+for the core path (C), theory emphasis (T) and laboratory and engineering
+emphasis (L). Within a part, chapters are best read left to right. Arrows mark
+the few long-range prerequisites that cross parts: thermodynamics and kinetics
+(Chapters 6--7) underpin strand displacement (Chapter 19); reaction networks
+(Chapter 20) underpin simulation (Chapters 27--28).}{fig:readingmap}
+
+\begin{description}
+\item[If you come from biology or chemistry.] Read Chapter~1, skim
+Chapters~5 and 8--10 (much will be familiar, but notice how each mechanism is
+turned into an operation with a precise input and output), and read the
+\emph{Computing bridge} boxes. Appendix~\ref{app:math} reviews logarithms,
+probability, rates and differential equations, and Chapter~3 introduces
+complexity from first principles.
+\item[If you come from computer science, mathematics or physics.] Read
+Chapter~1 and Appendix~\ref{app:biology} before Part~II, and read the
+\emph{Biology bridge} boxes. Do not skip Chapters~5--8: the strand
+orientation, thermodynamic and kinetic ideas they introduce are what make the
+later algorithms physically meaningful.
+\item[If you want the research frontier quickly.] Read Chapters~1, 5, 6,
+19, 21, 22 and 25, and then the Epilogue.
+\end{description}
+
+\section*{Course plans}
+A one-semester (14-week) introductory course can follow the core path:
+\begin{center}
+\small\sffamily
+\begin{tabular}{@{}lll@{}}
+\toprule
+Weeks & Chapters & Theme\\
+\midrule
+1--2 & 1, 2, 4 & Computing with molecules; Adleman's experiment; resources\\
+3--4 & 5, 6, 7 & Strands, hybridisation thermodynamics, kinetics and noise\\
+5--6 & 8, 9, (10) & Enzymes, PCR amplification, readout\\
+7 & 11, 12 & Sequence design; generate--filter--verify algorithms\\
+8--9 & 19, 20 & Strand displacement; reaction networks as programs\\
+10--11 & 21, 22 & DNA circuits and neural networks; self-assembly and origami\\
+12 & 25 & DNA data storage and coding\\
+13 & 30, 31 & From gene regulation to molecular programming in cells\\
+14 & Epilogue & Frontiers, open problems, student projects\\
+\bottomrule
+\end{tabular}
+\end{center}
+A second semester, or a graduate course, can take either the theory emphasis
+(Chapters 3, 13--18, 20, 22, 27, 29 and 32) or the engineering emphasis
+(Chapters 10, 11, 21--26, 28 and 31).
+
+\section*{Features of each chapter}
+Each chapter opens with its learning goals and the ideas it relies on, and
+closes with a summary of key ideas, exercises and worked solutions. Inside the
+chapter, a small number of recurring boxes signal their purpose:
+\begin{TryThis}
+asks you to commit to a prediction before the text derives the answer.
+\end{TryThis}
+\begin{Pitfall}
+names a misconception, a failure mode or a negative control that a careful
+experiment or proof must exclude.
+\end{Pitfall}
+\begin{BioBridge}
+supplies the biological or chemical background a computing reader needs at
+that point, without assuming a biology course.
+\end{BioBridge}
+\begin{CSBridge}
+supplies the mathematical or computational background a biology reader needs
+at that point, without assuming a programming course.
+\end{CSBridge}
+\begin{Frontier}
+summarises current research, stating what was demonstrated and the scope of
+that evidence.
+\end{Frontier}
+
+Exercises progress from reading a figure and predicting an outcome, through hand
+calculation and tracing an algorithm, to implementation and open design
+problems. Worked solutions follow each exercise set; open problems carry an
+explicit description of what a good answer must contain.
+
+\section*{Visual conventions}\label{sec:conventions}
+The illustrations use one visual language throughout
+(Figure~\ref{fig:legend}). Colour is always reinforced by shape, line style or
+a label, so every figure can be read in greyscale.
+
+\TikzPlate{frontmatter/figures/visual-legend}{The book's visual language.
+Strand identity is shown by colour and a half-arrowhead (harpoon) at the
+3$'$ end; base pairs are grey rungs; covalent bonds are continuous lines and
+hydrogen bonds dashed. Arrow shape encodes meaning: a chemical reaction, a
+reversible association, a physical transfer of material, a symbolic
+(computational) mapping, or an observation that supports an inference.
+Molecule classes have fixed colours: DNA in blues and violets, RNA in coral,
+proteins and enzymes in gold, computational objects in teal and measurements
+in violet. Drawings are schematic and not to scale unless the caption says
+otherwise.}{fig:legend}
+
+\section*{Notation}
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.27\linewidth}p{0.66\linewidth}@{}}
+\toprule
+Symbol & Meaning\\
+\midrule
+$5'$, $3'$ & The two chemically distinct ends of a nucleic-acid strand. Sequences
+are written $5'\to3'$ unless an alignment says otherwise.\\
+$a$, $a^{*}$ & A named sequence domain and its Watson--Crick complement.\\
+$\mathrm{rc}(s)$ & Reverse complement of sequence $s$.\\
+$N(P)$ & Multiplicity: number of molecular copies of candidate $P$ in a population.\\
+$[X]$ & Concentration of species $X$, usually in mol\,L$^{-1}$ (M), nM or \textmu M.\\
+$N_{\mathrm A}$ & Avogadro constant, $6.02214076\times10^{23}\,\mathrm{mol}^{-1}$ (exact).\\
+$\Delta G^{\circ}$, $\Delta H^{\circ}$, $\Delta S^{\circ}$ & Standard free energy,
+enthalpy and entropy change of a reaction.\\
+$K$, $K_d$ & Equilibrium (association) constant; dissociation constant $K_d=1/K$.\\
+$T_m$ & Melting temperature: where half of the duplex-forming strands are paired.\\
+$k$, $k_f$, $k_r$ & Rate constants; units depend on reaction order (e.g.\ M$^{-1}$s$^{-1}$).\\
+$a_j(x)$ & Propensity: the event rate of reaction $j$ in a discrete-count state $x$.\\
+$\Pr(\cdot)$, $\mathbb E[\cdot]$ & Probability and expectation.\\
+$O(\cdot)$ & Asymptotic upper bound on resource growth (Chapter~3).\\
+\bottomrule
+\end{tabular}
+\end{center}

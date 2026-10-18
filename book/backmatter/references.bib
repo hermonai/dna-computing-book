@@ -1,0 +1,723 @@
+% Unified bibliography for DNA Computing: Molecular mechanisms, algorithms and evidence.
+% One record per work. Keys are global (AuthorYear). Records the book cites are
+% printed in one alphabetical list at the end of the volume. Notes on how deeply
+% each source was inspected are kept in docs/provenance/source-access-notes.md,
+% not in the reader-facing bibliography.
+
+% ------------------------------------------------------------------ foundations
+@article{Adleman1994,
+  author = {Leonard M. Adleman},
+  title = {Molecular computation of solutions to combinatorial problems},
+  journal = {Science}, volume = {266}, number = {5187}, pages = {1021--1024}, year = {1994},
+  doi = {10.1126/science.7973651}}
+
+@article{Lipton1995,
+  author = {Richard J. Lipton},
+  title = {{DNA} solution of hard computational problems},
+  journal = {Science}, volume = {268}, number = {5210}, pages = {542--545}, year = {1995},
+  doi = {10.1126/science.7725098}}
+
+@article{Boneh1996,
+  author = {Dan Boneh and Christopher Dunworth and Richard J. Lipton and Ji{\v{r}}{\'\i} Sgall},
+  title = {On the computational power of {DNA}},
+  journal = {Discrete Applied Mathematics}, volume = {71}, pages = {79--94}, year = {1996},
+  url = {https://crypto.stanford.edu/~dabo/pubs/abstracts/biocircuit.html}}
+
+@article{Ouyang1997,
+  author = {Qi Ouyang and Peter D. Kaplan and Shumao Liu and Albert Libchaber},
+  title = {{DNA} solution of the maximal clique problem},
+  journal = {Science}, volume = {278}, number = {5337}, pages = {446--449}, year = {1997},
+  doi = {10.1126/science.278.5337.446}}
+
+@article{Roweis1998,
+  author = {Sam Roweis and Erik Winfree and Richard Burgoyne and Nickolas V. Chelyapov and Myron F. Goodman and Paul W. K. Rothemund and Leonard M. Adleman},
+  title = {A sticker-based model for {DNA} computation},
+  journal = {Journal of Computational Biology}, volume = {5}, number = {4}, pages = {615--629}, year = {1998},
+  doi = {10.1089/cmb.1998.5.615}}
+
+@article{Braich2002,
+  author = {Ravinderjit S. Braich and Nickolas Chelyapov and Cliff Johnson and Paul W. K. Rothemund and Leonard Adleman},
+  title = {Solution of a 20-variable 3-{SAT} problem on a {DNA} computer},
+  journal = {Science}, volume = {296}, number = {5567}, pages = {499--502}, year = {2002},
+  doi = {10.1126/science.1069528}}
+
+@article{WatsonCrick1953,
+  author = {James D. Watson and Francis H. C. Crick},
+  title = {Molecular structure of nucleic acids: a structure for deoxyribose nucleic acid},
+  journal = {Nature}, volume = {171}, pages = {737--738}, year = {1953},
+  doi = {10.1038/171737a0}}
+
+@incollection{Alberts2002,
+  author = {Bruce Alberts and Alexander Johnson and Julian Lewis and Martin Raff and Keith Roberts and Peter Walter},
+  title = {The structure and function of {DNA}},
+  booktitle = {Molecular Biology of the Cell}, edition = {4th}, publisher = {Garland Science}, address = {New York}, year = {2002},
+  url = {https://www.ncbi.nlm.nih.gov/books/NBK26821/}}
+
+@article{Saiki1988,
+  author = {Randall K. Saiki and David H. Gelfand and Susanne Stoffel and Stephen J. Scharf and Russell Higuchi and Glenn T. Horn and Kary B. Mullis and Henry A. Erlich},
+  title = {Primer-directed enzymatic amplification of {DNA} with a thermostable {DNA} polymerase},
+  journal = {Science}, volume = {239}, number = {4839}, pages = {487--491}, year = {1988},
+  doi = {10.1126/science.2448875}}
+
+@misc{PfenningHamilton,
+  author = {Frank Pfenning},
+  title = {Lecture 36: The {H}amiltonian path problem},
+  howpublished = {Lecture notes, 15-453 Formal Languages, Automata and Computability, Carnegie Mellon University},
+  url = {https://www.cs.cmu.edu/~fp/courses/flac/lectures/lecture36.html},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+@misc{BIPMmole,
+  author = {{Bureau International des Poids et Mesures}},
+  title = {{SI} base unit: mole (mol)},
+  howpublished = {Official definition of the SI base unit},
+  url = {https://www.bipm.org/en/si-base-units/mole},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+@misc{RaschkaLLM,
+  author = {Sebastian Raschka},
+  title = {Build a Large Language Model (From Scratch): companion overview and chapter map},
+  url = {https://www.sebastianraschka.com/llms-from-scratch/},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+% ------------------------------------------------------------------ nucleic-acid chemistry and physics
+@misc{IUPAC1983,
+  author = {{IUPAC--IUB Joint Commission on Biochemical Nomenclature}},
+  title = {Abbreviations and symbols for the description of conformations of polynucleotide chains ({R}ecommendations 1982)},
+  year = {1983},
+  url = {https://iupac.qmul.ac.uk/misc/pnuc1.html}}
+
+@misc{IUPAC1970,
+  author = {{IUPAC--IUB Commission on Biochemical Nomenclature}},
+  title = {Abbreviations and symbols for nucleic acids, polynucleotides and their constituents ({R}ecommendations 1970)},
+  year = {1970},
+  url = {https://iupac.qmul.ac.uk/misc/naabb.html}}
+
+@misc{NHGRIDNA,
+  author = {{National Human Genome Research Institute}},
+  title = {Deoxyribonucleic acid ({DNA}) fact sheet},
+  year = {2020},
+  url = {https://www.genome.gov/about-genomics/fact-sheets/Deoxyribonucleic-Acid-Fact-Sheet}}
+
+@misc{NHGRIPCR,
+  author = {{National Human Genome Research Institute}},
+  title = {Polymerase chain reaction ({PCR}) fact sheet},
+  url = {https://www.genome.gov/about-genomics/fact-sheets/Polymerase-Chain-Reaction-Fact-Sheet},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+@misc{NHGRIElectrophoresis,
+  author = {{National Human Genome Research Institute}},
+  title = {Electrophoresis},
+  howpublished = {Talking Glossary of Genomic and Genetic Terms},
+  url = {https://www.genome.gov/genetics-glossary/Electrophoresis},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+@misc{INSDC,
+  author = {{International Nucleotide Sequence Database Collaboration}},
+  title = {The {DDBJ/ENA/GenBank} feature table definition, appendix 7.4.1: nucleotide base codes},
+  url = {https://www.insdc.org/submitting-standards/feature-table/},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+@article{Yakovchuk2006,
+  author = {Peter Yakovchuk and Ekaterina Protozanova and Maxim D. Frank-Kamenetskii},
+  title = {Base-stacking and base-pairing contributions into thermal stability of the {DNA} double helix},
+  journal = {Nucleic Acids Research}, volume = {34}, number = {2}, pages = {564--574}, year = {2006},
+  doi = {10.1093/nar/gkj454},
+  note = {Correction: Nucleic Acids Research 34(3), 1082 (2006), doi:10.1093/nar/gkj523}}
+
+@article{SantaLucia1998,
+  author = {John {SantaLucia Jr.}},
+  title = {A unified view of polymer, dumbbell, and oligonucleotide {DNA} nearest-neighbor thermodynamics},
+  journal = {Proceedings of the National Academy of Sciences USA}, volume = {95}, number = {4}, pages = {1460--1465}, year = {1998},
+  doi = {10.1073/pnas.95.4.1460}}
+
+@misc{NUPACKmodel,
+  author = {{NUPACK Team}},
+  title = {{NUPACK} 4.0 user guide: model specification and definitions},
+  url = {https://docs.nupack.org/model/},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+@article{Zadeh2011,
+  author = {Joseph N. Zadeh and Conrad D. Steenberg and Justin S. Bois and Brian R. Wolfe and Marshall B. Pierce and Asif R. Khan and Robert M. Dirks and Niles A. Pierce},
+  title = {{NUPACK}: analysis and design of nucleic acid systems},
+  journal = {Journal of Computational Chemistry}, volume = {32}, number = {1}, pages = {170--173}, year = {2011},
+  doi = {10.1002/jcc.21596}}
+
+@article{Gillespie1977,
+  author = {Daniel T. Gillespie},
+  title = {Exact stochastic simulation of coupled chemical reactions},
+  journal = {Journal of Physical Chemistry}, volume = {81}, number = {25}, pages = {2340--2361}, year = {1977},
+  doi = {10.1021/j100540a008}}
+
+@article{Higham2008,
+  author = {Desmond J. Higham},
+  title = {Modeling and simulating chemical reactions},
+  journal = {SIAM Review}, volume = {50}, number = {2}, pages = {347--368}, year = {2008},
+  doi = {10.1137/060666457}}
+
+% ------------------------------------------------------------------ enzymes, amplification, measurement
+@misc{NEBT4Ligase,
+  author = {{New England Biolabs}},
+  title = {{T4 DNA} ligase ({M0202}): substrates, cofactor and reaction description},
+  url = {https://www.neb.com/en-us/products/m0202-t4-dna-ligase},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+@misc{NEBLigation,
+  author = {{New England Biolabs}},
+  title = {{DNA} ligation: nick sealing and {ATP}-dependent ligase chemistry},
+  url = {https://www.neb.com/en/applications/cloning-and-synthetic-biology/dna-ligation},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+@misc{NEBEcoRI,
+  author = {{New England Biolabs}},
+  title = {{EcoRI} ({R0101}): recognition site, cleavage position and specificity},
+  url = {https://www.neb.com/en-us/products/r0101-ecori},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+@misc{NEBT4Pol,
+  author = {{New England Biolabs}},
+  title = {{T4 DNA} polymerase ({M0203}): direction, primer requirement and exonuclease activity},
+  url = {https://www.neb.com/products/m0203-t4-dna-polymerase},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+@article{Shi2018,
+  author = {Ke Shi and others},
+  title = {{T4 DNA} ligase structure reveals a prototypical {ATP}-dependent ligase with a unique mode of sliding clamp interaction},
+  journal = {Nucleic Acids Research}, volume = {46}, number = {19}, pages = {10474--10488}, year = {2018},
+  doi = {10.1093/nar/gky776}}
+
+@misc{IUBMB1981,
+  author = {{Nomenclature Committee of the International Union of Biochemistry}},
+  title = {Symbolism and terminology in enzyme kinetics ({R}ecommendations 1981)},
+  year = {1981},
+  url = {https://iubmb.qmul.ac.uk/kinetics/}}
+
+@misc{NEBPCR,
+  author = {{New England Biolabs}},
+  title = {{PCR}: application overview},
+  url = {https://www.neb.com/en/applications/dna-amplification-pcr-and-qpcr/pcr},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+@article{Svec2015,
+  author = {D. Svec and A. Tichopad and V. Novosadova and M. W. Pfaffl and M. Kubista},
+  title = {How good is a {PCR} efficiency estimate: recommendations for precise and robust {qPCR} efficiency assessments},
+  journal = {Biomolecular Detection and Quantification}, volume = {3}, pages = {9--16}, year = {2015},
+  doi = {10.1016/j.bdq.2015.01.005}}
+
+@misc{AddgeneGel,
+  author = {{Addgene}},
+  title = {Agarose gel electrophoresis},
+  howpublished = {Laboratory protocol},
+  year = {2018},
+  url = {https://www.addgene.org/protocols/gel-electrophoresis/}}
+
+@misc{NEBBands,
+  author = {{New England Biolabs}},
+  title = {What are the additional bands {I} see on the gel?},
+  howpublished = {Technical note},
+  url = {https://www.neb.com/en/faqs/what-are-the-additional-bands-i-see-on-the-gel},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+@manual{ThermoQubit,
+  organization = {{Thermo Fisher Scientific}},
+  title = {Qubit {dsDNA HS} Assay Kit User Guide},
+  note = {Publication MAN0002326, revision C.0; accessed October 2026},
+  url = {https://www.thermofisher.com/TFS-Assets/LSG/manuals/Qubit_dsDNA_HS_Assay_UG.pdf},
+  year = {n.d.}}
+
+@misc{NEBGoldenGate,
+  author = {{New England Biolabs}},
+  title = {Insert considerations for {NEBridge Golden Gate} assembly ({BsmBI-v2})},
+  url = {https://www.neb.com/en/tools-and-resources/usage-guidelines/insert-considerations-for-neb-golden-gate-assembly-kit-bsmbi-v2-neb-e1602},
+  year = {n.d.}, note = {Online resource; accessed September--October 2026}}
+
+% ------------------------------------------------------------------ formal models and automata
+@misc{KariNg2019,
+  author = {Lila Kari and Timothy Ng},
+  title = {Descriptional complexity of semi-simple splicing systems},
+  howpublished = {arXiv:1909.02512},
+  year = {2019},
+  url = {https://arxiv.org/abs/1909.02512}}
+
+@article{Czeizler2009,
+  author = {Elena Czeizler and Eugen Czeizler and Lila Kari and Kai Salomaa},
+  title = {On the descriptional complexity of {W}atson--{C}rick automata},
+  journal = {Theoretical Computer Science}, volume = {410}, pages = {3250--3260}, year = {2009},
+  doi = {10.1016/j.tcs.2009.05.001}}
+
+@article{Benenson2001,
+  author = {Yaakov Benenson and Tamar Paz-Elizur and Rivka Adar and Ehud Keinan and Zvi Livneh and Ehud Shapiro},
+  title = {Programmable and autonomous computing machine made of biomolecules},
+  journal = {Nature}, volume = {414}, pages = {430--434}, year = {2001},
+  doi = {10.1038/35106533}}
+
+@article{Benenson2003,
+  author = {Yaakov Benenson and Rivka Adar and Tamar Paz-Elizur and Zvi Livneh and Ehud Shapiro},
+  title = {{DNA} molecule provides a computing machine with both data and fuel},
+  journal = {Proceedings of the National Academy of Sciences USA}, volume = {100}, pages = {2191--2196}, year = {2003},
+  doi = {10.1073/pnas.0535624100}}
+
+@article{Adar2004,
+  author = {Rivka Adar and Yaakov Benenson and Gregory Linshiz and Amit Rosner and Naftali Tishby and Ehud Shapiro},
+  title = {Stochastic computing with biomolecular automata},
+  journal = {Proceedings of the National Academy of Sciences USA}, volume = {101}, pages = {9960--9965}, year = {2004},
+  doi = {10.1073/pnas.0400731101}}
+
+@article{Benenson2004,
+  author = {Yaakov Benenson and Binyamin Gil and Uri Ben-Dor and Rivka Adar and Ehud Shapiro},
+  title = {An autonomous molecular computer for logical control of gene expression},
+  journal = {Nature}, volume = {429}, pages = {423--429}, year = {2004},
+  doi = {10.1038/nature02551}}
+
+@article{Stojanovic2003,
+  author = {Milan N. Stojanovic and Darko Stefanovic},
+  title = {A deoxyribozyme-based molecular automaton},
+  journal = {Nature Biotechnology}, volume = {21}, pages = {1069--1074}, year = {2003},
+  doi = {10.1038/nbt862}}
+
+@article{Sterin2026,
+  author = {T. St{\'e}rin and A. Eshra and C. G. Evans and J. Adio and D. Woods},
+  title = {A thermodynamically favoured molecular computer},
+  journal = {Nature}, volume = {657}, pages = {646--652}, year = {2026},
+  doi = {10.1038/s41586-026-10996-5}}
+
+% ------------------------------------------------------------------ strand displacement, CRNs, circuits
+@article{Yurke2000,
+  author = {Bernard Yurke and Andrew J. Turberfield and Allen P. {Mills Jr.} and Friedrich C. Simmel and Jennifer L. Neumann},
+  title = {A {DNA}-fuelled molecular machine made of {DNA}},
+  journal = {Nature}, volume = {406}, pages = {605--608}, year = {2000},
+  doi = {10.1038/35020524}}
+
+@article{Seelig2006,
+  author = {Georg Seelig and David Soloveichik and David Yu Zhang and Erik Winfree},
+  title = {Enzyme-free nucleic acid logic circuits},
+  journal = {Science}, volume = {314}, number = {5805}, pages = {1585--1588}, year = {2006},
+  doi = {10.1126/science.1132493}}
+
+@article{Zhang2007,
+  author = {David Yu Zhang and Andrew J. Turberfield and Bernard Yurke and Erik Winfree},
+  title = {Engineering entropy-driven reactions and networks catalyzed by {DNA}},
+  journal = {Science}, volume = {318}, number = {5853}, pages = {1121--1125}, year = {2007},
+  doi = {10.1126/science.1148532}}
+
+@article{ZhangWinfree2009,
+  author = {David Yu Zhang and Erik Winfree},
+  title = {Control of {DNA} strand displacement kinetics using toehold exchange},
+  journal = {Journal of the American Chemical Society}, volume = {131}, number = {47}, pages = {17303--17314}, year = {2009},
+  doi = {10.1021/ja906987s}}
+
+@article{Soloveichik2010,
+  author = {David Soloveichik and Georg Seelig and Erik Winfree},
+  title = {{DNA} as a universal substrate for chemical kinetics},
+  journal = {Proceedings of the National Academy of Sciences USA}, volume = {107}, number = {12}, pages = {5393--5398}, year = {2010},
+  doi = {10.1073/pnas.0909380107}}
+
+@article{ZhangSeelig2011,
+  author = {David Yu Zhang and Georg Seelig},
+  title = {Dynamic {DNA} nanotechnology using strand-displacement reactions},
+  journal = {Nature Chemistry}, volume = {3}, pages = {103--113}, year = {2011},
+  doi = {10.1038/nchem.957}}
+
+@article{QianWinfree2011,
+  author = {Lulu Qian and Erik Winfree},
+  title = {Scaling up digital circuit computation with {DNA} strand displacement cascades},
+  journal = {Science}, volume = {332}, number = {6034}, pages = {1196--1201}, year = {2011},
+  doi = {10.1126/science.1200520}}
+
+@article{QianWinfreeBruck2011,
+  author = {Lulu Qian and Erik Winfree and Jehoshua Bruck},
+  title = {Neural network computation with {DNA} strand displacement cascades},
+  journal = {Nature}, volume = {475}, pages = {368--372}, year = {2011},
+  doi = {10.1038/nature10262}}
+
+@article{Lakin2011,
+  author = {Matthew R. Lakin and Simon Youssef and Filippo Polo and Stephen Emmott and Andrew Phillips},
+  title = {Visual {DSD}: a design and analysis tool for {DNA} strand displacement systems},
+  journal = {Bioinformatics}, volume = {27}, number = {22}, pages = {3211--3213}, year = {2011},
+  doi = {10.1093/bioinformatics/btr543}}
+
+@article{Srinivas2013,
+  author = {Niranjan Srinivas and Thomas E. Ouldridge and Petr {\v{S}}ulc and Joseph M. Schaeffer and Bernard Yurke and Ard A. Louis and Jonathan P. K. Doye and Erik Winfree},
+  title = {On the biophysics and kinetics of toehold-mediated {DNA} strand displacement},
+  journal = {Nucleic Acids Research}, volume = {41}, number = {22}, pages = {10641--10658}, year = {2013},
+  doi = {10.1093/nar/gkt801}}
+
+@article{Chen2013,
+  author = {Yuan-Jyue Chen and Neil Dalchau and Niranjan Srinivas and Andrew Phillips and Luca Cardelli and David Soloveichik and Georg Seelig},
+  title = {Programmable chemical controllers made from {DNA}},
+  journal = {Nature Nanotechnology}, volume = {8}, pages = {755--762}, year = {2013},
+  doi = {10.1038/nnano.2013.189}}
+
+@article{Chen2014,
+  author = {Ho-Lin Chen and David Doty and David Soloveichik},
+  title = {Deterministic function computation with chemical reaction networks},
+  journal = {Natural Computing}, volume = {13}, pages = {517--534}, year = {2014},
+  url = {https://arxiv.org/abs/1204.4176}}
+
+@article{Srinivas2017,
+  author = {Niranjan Srinivas and James Parkin and Georg Seelig and Erik Winfree and David Soloveichik},
+  title = {Enzyme-free nucleic acid dynamical systems},
+  journal = {Science}, volume = {358}, number = {6369}, pages = {eaal2052}, year = {2017},
+  doi = {10.1126/science.aal2052}}
+
+@article{Wang2018,
+  author = {Boya Wang and Chris Thachuk and Andrew D. Ellington and Erik Winfree and David Soloveichik},
+  title = {Effective design principles for leakless strand displacement systems},
+  journal = {Proceedings of the National Academy of Sciences USA}, volume = {115}, number = {52}, pages = {E12182--E12191}, year = {2018},
+  doi = {10.1073/pnas.1806859115}}
+
+@article{CherryQian2018,
+  author = {Kevin M. Cherry and Lulu Qian},
+  title = {Scaling up molecular pattern recognition with {DNA}-based winner-take-all neural networks},
+  journal = {Nature}, volume = {559}, pages = {370--376}, year = {2018},
+  doi = {10.1038/s41586-018-0289-6}}
+
+@article{Xiong2022,
+  author = {Xiewei Xiong and others},
+  title = {Molecular convolutional neural networks with {DNA} regulatory circuits},
+  journal = {Nature Machine Intelligence}, volume = {4}, year = {2022},
+  doi = {10.1038/s42256-022-00502-7}}
+
+@article{Lv2023,
+  author = {Hui Lv and Nuli Xie and Mingqiang Li and Mingkai Dong and Chenyun Sun and Qian Zhang and Lei Zhao and Jiang Li and Xiaolei Zuo and Haibo Chen and Fei Wang and Chunhai Fan},
+  title = {{DNA}-based programmable gate arrays for general-purpose {DNA} computing},
+  journal = {Nature}, volume = {622}, pages = {292--300}, year = {2023},
+  doi = {10.1038/s41586-023-06484-9}}
+
+@article{CherryQian2025,
+  author = {Kevin M. Cherry and Lulu Qian},
+  title = {Supervised learning in {DNA} neural networks},
+  journal = {Nature}, volume = {645}, pages = {639--647}, year = {2025},
+  doi = {10.1038/s41586-025-09479-w}}
+
+@article{SongQian2025,
+  author = {Tianqi Song and Lulu Qian},
+  title = {Heat-rechargeable computation in {DNA} logic circuits and neural networks},
+  journal = {Nature}, volume = {646}, pages = {315--322}, year = {2025},
+  doi = {10.1038/s41586-025-09570-2}}
+
+@inproceedings{KiniDoty2026,
+  author = {R. Kini and David Doty},
+  title = {Reverse-robust computation with chemical reaction networks},
+  booktitle = {32nd International Conference on DNA Computing and Molecular Programming (DNA 32)},
+  series = {Leibniz International Proceedings in Informatics (LIPIcs)}, volume = {387}, year = {2026},
+  note = {Article 6; preprint arXiv:2604.14355}}
+
+@article{Zhang2020cancer,
+  author = {Chao Zhang and Yumeng Zhao and Xuemei Xu and others},
+  title = {Cancer diagnosis with {DNA} molecular computation},
+  journal = {Nature Nanotechnology}, volume = {15}, pages = {709--715}, year = {2020}}
+
+@article{FernSchulman2017,
+  author = {J. Fern and Rebecca Schulman},
+  title = {Design and characterization of {DNA} strand-displacement circuits in serum-supplemented cell medium},
+  journal = {ACS Synthetic Biology}, year = {2017},
+  doi = {10.1021/acssynbio.7b00105}}
+
+@article{ZhongSczepanski2021,
+  author = {W. Zhong and Jonathan T. Sczepanski},
+  title = {Direct comparison of {D-DNA} and {L-DNA} strand-displacement reactions in living mammalian cells},
+  journal = {ACS Synthetic Biology}, volume = {10}, pages = {209--212}, year = {2021},
+  url = {https://pubmed.ncbi.nlm.nih.gov/33347747/}}
+
+@misc{Cardelli2008,
+  author = {Luca Cardelli},
+  title = {On process rate semantics},
+  howpublished = {Theoretical Computer Science (2008); author manuscript dated December 2007},
+  year = {2008},
+  url = {https://lucacardelli.name/Papers/On%20Process%20Rate%20Semantics.pdf}}
+
+% ------------------------------------------------------------------ self-assembly, origami, devices
+@article{Seeman1982,
+  author = {Nadrian C. Seeman},
+  title = {Nucleic acid junctions and lattices},
+  journal = {Journal of Theoretical Biology}, volume = {99}, number = {2}, pages = {237--247}, year = {1982},
+  doi = {10.1016/0022-5193(82)90002-9}}
+
+@article{Winfree1998,
+  author = {Erik Winfree and Furong Liu and Lisa A. Wenzler and Nadrian C. Seeman},
+  title = {Design and self-assembly of two-dimensional {DNA} crystals},
+  journal = {Nature}, volume = {394}, pages = {539--544}, year = {1998},
+  doi = {10.1038/28998}}
+
+@phdthesis{Winfree1998thesis,
+  author = {Erik Winfree},
+  title = {Algorithmic Self-Assembly of {DNA}},
+  school = {California Institute of Technology}, year = {1998}}
+
+@inproceedings{RothemundWinfree2000,
+  author = {Paul W. K. Rothemund and Erik Winfree},
+  title = {The program-size complexity of self-assembled squares},
+  booktitle = {Proceedings of the 32nd Annual ACM Symposium on Theory of Computing (STOC)},
+  pages = {459--468}, year = {2000}}
+
+@article{Rothemund2004,
+  author = {Paul W. K. Rothemund and Nick Papadakis and Erik Winfree},
+  title = {Algorithmic self-assembly of {DNA} {S}ierpinski triangles},
+  journal = {PLoS Biology}, volume = {2}, number = {12}, pages = {e424}, year = {2004},
+  doi = {10.1371/journal.pbio.0020424}}
+
+@inproceedings{WinfreeBekbolatov2004,
+  author = {Erik Winfree and R. Bekbolatov},
+  title = {Proofreading tile sets: error correction for algorithmic self-assembly},
+  booktitle = {DNA Computing: 9th International Workshop on DNA-Based Computers},
+  series = {Lecture Notes in Computer Science}, volume = {2943}, pages = {126--144},
+  publisher = {Springer}, year = {2004},
+  url = {https://www.dna.caltech.edu/Papers/proofreading_DNA9.pdf}}
+
+@article{Rothemund2006,
+  author = {Paul W. K. Rothemund},
+  title = {Folding {DNA} to create nanoscale shapes and patterns},
+  journal = {Nature}, volume = {440}, pages = {297--302}, year = {2006},
+  doi = {10.1038/nature04586}}
+
+@article{Chen2007,
+  author = {Ho-Lin Chen and Rebecca Schulman and Ashish Goel and Erik Winfree},
+  title = {Reducing facet nucleation during algorithmic self-assembly},
+  journal = {Nano Letters}, volume = {7}, pages = {2913--2919}, year = {2007},
+  doi = {10.1021/nl070793o}}
+
+@article{Douglas2012,
+  author = {Shawn M. Douglas and Ido Bachelet and George M. Church},
+  title = {A logic-gated nanorobot for targeted transport of molecular payloads},
+  journal = {Science}, volume = {335}, number = {6070}, pages = {831--834}, year = {2012},
+  doi = {10.1126/science.1214081}}
+
+@article{Ke2012,
+  author = {Yonggang Ke and Luvena L. Ong and William M. Shih and Peng Yin},
+  title = {Three-dimensional structures self-assembled from {DNA} bricks},
+  journal = {Science}, volume = {338}, number = {6111}, pages = {1177--1183}, year = {2012},
+  doi = {10.1126/science.1227268}}
+
+@article{Doty2012,
+  author = {David Doty},
+  title = {Theory of algorithmic self-assembly},
+  journal = {Communications of the ACM}, volume = {55}, number = {12}, pages = {78--88}, year = {2012}}
+
+@article{Schulman2015,
+  author = {Rebecca Schulman and C. Wright and Erik Winfree},
+  title = {Increasing redundancy exponentially reduces error rates during algorithmic self-assembly},
+  journal = {ACS Nano}, volume = {9}, number = {6}, pages = {5760--5771}, year = {2015},
+  doi = {10.1021/nn507493s}}
+
+@article{EvansWinfree2017,
+  author = {Constantine G. Evans and Erik Winfree},
+  title = {Physical principles for {DNA} tile self-assembly},
+  journal = {Chemical Society Reviews}, volume = {46}, pages = {3808--3829}, year = {2017},
+  doi = {10.1039/C6CS00745G}}
+
+@article{Thubagere2017,
+  author = {Anupama J. Thubagere and others},
+  title = {A cargo-sorting {DNA} robot},
+  journal = {Science}, volume = {357}, number = {6356}, pages = {eaan6558}, year = {2017},
+  doi = {10.1126/science.aan6558}}
+
+@article{SeemanSleiman2018,
+  author = {Nadrian C. Seeman and Hanadi F. Sleiman},
+  title = {{DNA} nanotechnology},
+  journal = {Nature Reviews Materials}, volume = {3}, pages = {17068}, year = {2018},
+  doi = {10.1038/natrevmats.2017.68}}
+
+@article{Woods2019,
+  author = {Damien Woods and David Doty and Cameron Myhrvold and Joy Hui and Felix Zhou and Peng Yin and Erik Winfree},
+  title = {Diverse and robust molecular algorithms using reprogrammable {DNA} self-assembly},
+  journal = {Nature}, volume = {567}, pages = {366--372}, year = {2019},
+  doi = {10.1038/s41586-019-1014-9}}
+
+@article{Dey2021,
+  author = {Swarup Dey and others},
+  title = {{DNA} origami},
+  journal = {Nature Reviews Methods Primers}, volume = {1}, pages = {13}, year = {2021},
+  doi = {10.1038/s43586-020-00009-8}}
+
+@article{Evans2024,
+  author = {Constantine Glen Evans and Jackson O'Brien and Erik Winfree and Arvind Murugan},
+  title = {Pattern recognition in the nucleation kinetics of non-equilibrium self-assembly},
+  journal = {Nature}, volume = {625}, pages = {500--507}, year = {2024},
+  doi = {10.1038/s41586-023-06890-z}}
+
+@article{ShirtEdiss2026,
+  author = {B. Shirt-Ediss and others},
+  title = {Optimising {DNA} origami assembly by reducing off-target interactions},
+  journal = {Nature Communications}, volume = {17}, pages = {6859}, year = {2026},
+  doi = {10.1038/s41467-026-73387-4}}
+
+% ------------------------------------------------------------------ physics of computation
+@article{Landauer1961,
+  author = {Rolf Landauer},
+  title = {Irreversibility and heat generation in the computing process},
+  journal = {IBM Journal of Research and Development}, volume = {5}, number = {3}, pages = {183--191}, year = {1961},
+  doi = {10.1147/rd.53.0183}}
+
+@article{Bennett1982,
+  author = {Charles H. Bennett},
+  title = {The thermodynamics of computation---a review},
+  journal = {International Journal of Theoretical Physics}, volume = {21}, number = {12}, pages = {905--940}, year = {1982},
+  doi = {10.1007/BF02084158}}
+
+% ------------------------------------------------------------------ storage and recording
+@article{Church2012,
+  author = {George M. Church and Yuan Gao and Sriram Kosuri},
+  title = {Next-generation digital information storage in {DNA}},
+  journal = {Science}, volume = {337}, number = {6102}, pages = {1628}, year = {2012},
+  doi = {10.1126/science.1226355}}
+
+@article{Goldman2013,
+  author = {Nick Goldman and Paul Bertone and Siyuan Chen and Christophe Dessimoz and Emily M. LeProust and Botond Sipos and Ewan Birney},
+  title = {Towards practical, high-capacity, low-maintenance information storage in synthesized {DNA}},
+  journal = {Nature}, volume = {494}, pages = {77--80}, year = {2013},
+  doi = {10.1038/nature11875}}
+
+@article{Kosuri2014,
+  author = {Sriram Kosuri and George M. Church},
+  title = {Large-scale de novo {DNA} synthesis: technologies and applications},
+  journal = {Nature Methods}, volume = {11}, pages = {499--507}, year = {2014},
+  doi = {10.1038/nmeth.2918}}
+
+@article{ErlichZielinski2017,
+  author = {Yaniv Erlich and Dina Zielinski},
+  title = {{DNA} {F}ountain enables a robust and efficient storage architecture},
+  journal = {Science}, volume = {355}, number = {6328}, pages = {950--954}, year = {2017},
+  doi = {10.1126/science.aaj2038}}
+
+@article{Organick2018,
+  author = {Lee Organick and others},
+  title = {Random access in large-scale {DNA} data storage},
+  journal = {Nature Biotechnology}, volume = {36}, pages = {242--248}, year = {2018},
+  doi = {10.1038/nbt.4079}}
+
+@article{Ceze2019,
+  author = {Luis Ceze and Jeff Nivala and Karin Strauss},
+  title = {Molecular digital data storage using {DNA}},
+  journal = {Nature Reviews Genetics}, volume = {20}, pages = {456--466}, year = {2019},
+  doi = {10.1038/s41576-019-0125-3}}
+
+@article{Chen2020bias,
+  author = {Yuan-Jyue Chen and others},
+  title = {Quantifying molecular bias in {DNA} data storage},
+  journal = {Nature Communications}, volume = {11}, pages = {3264}, year = {2020},
+  doi = {10.1038/s41467-020-16958-3}}
+
+@article{Gimpel2023,
+  author = {A. L. Gimpel and W. J. Stark and R. Heckel and R. N. Grass},
+  title = {A digital twin for {DNA} data storage based on comprehensive quantification of errors and biases},
+  journal = {Nature Communications}, volume = {14}, pages = {6026}, year = {2023},
+  doi = {10.1038/s41467-023-41729-1}}
+
+@article{ZhangC2024,
+  author = {Cheng Zhang and others},
+  title = {Parallel molecular data storage by printing epigenetic bits on {DNA}},
+  journal = {Nature}, volume = {634}, pages = {824--832}, year = {2024},
+  doi = {10.1038/s41586-024-08040-5}}
+
+@article{BarLev2025,
+  author = {D. Bar-Lev and others},
+  title = {Scalable and robust {DNA}-based storage via coding theory and deep learning},
+  journal = {Nature Machine Intelligence}, volume = {7}, pages = {639--649}, year = {2025},
+  doi = {10.1038/s42256-025-01003-z},
+  note = {Author correction: Nature Machine Intelligence 8, 134 (2026), doi:10.1038/s42256-025-01175-8}}
+
+@article{Li2026,
+  author = {J. Li and M. Dong and Z. Qi and H. Guan},
+  title = {Towards density-optimal {DNA} storage with practical bijective coding},
+  journal = {Nature Communications}, volume = {17}, pages = {10261}, year = {2026},
+  doi = {10.1038/s41467-026-77024-y}}
+
+@article{Shipman2017,
+  author = {Seth L. Shipman and Jeff Nivala and Jeffrey D. Macklis and George M. Church},
+  title = {{CRISPR--Cas} encoding of a digital movie into the genomes of a population of living bacteria},
+  journal = {Nature}, volume = {547}, pages = {345--349}, year = {2017},
+  doi = {10.1038/nature23017}}
+
+@article{Choi2022,
+  author = {Junhong Choi and others},
+  title = {A time-resolved, multi-symbol molecular recorder via sequential genome editing},
+  journal = {Nature}, volume = {608}, pages = {98--107}, year = {2022},
+  doi = {10.1038/s41586-022-04922-8}}
+
+@article{Wilkinson2016,
+  author = {Mark D. Wilkinson and others},
+  title = {The {FAIR} guiding principles for scientific data management and stewardship},
+  journal = {Scientific Data}, volume = {3}, pages = {160018}, year = {2016},
+  doi = {10.1038/sdata.2016.18}}
+
+% ------------------------------------------------------------------ cells, regulation, synthetic biology
+@article{ElowitzLeibler2000,
+  author = {Michael B. Elowitz and Stanislas Leibler},
+  title = {A synthetic oscillatory network of transcriptional regulators},
+  journal = {Nature}, volume = {403}, pages = {335--338}, year = {2000},
+  doi = {10.1038/35002125}}
+
+@article{Gardner2000,
+  author = {Timothy S. Gardner and Charles R. Cantor and James J. Collins},
+  title = {Construction of a genetic toggle switch in {E}scherichia coli},
+  journal = {Nature}, volume = {403}, pages = {339--342}, year = {2000},
+  doi = {10.1038/35002131}}
+
+@article{Siuti2013,
+  author = {Piro Siuti and John Yazbek and Timothy K. Lu},
+  title = {Synthetic circuits integrating logic and memory in living cells},
+  journal = {Nature Biotechnology}, volume = {31}, pages = {448--452}, year = {2013},
+  doi = {10.1038/nbt.2510}}
+
+@article{Bonnet2013,
+  author = {Jerome Bonnet and Peter Yin and Monica E. Ortiz and Pakpoom Subsoontorn and Drew Endy},
+  title = {Amplifying genetic logic gates},
+  journal = {Science}, volume = {340}, number = {6132}, pages = {599--603}, year = {2013},
+  doi = {10.1126/science.1232758}}
+
+@article{Nielsen2016,
+  author = {Alec A. K. Nielsen and Bryan S. Der and Jonghyeon Shin and Prashant Vaidyanathan and Vanya Paralanov and Elizabeth A. Strychalski and David Ross and Douglas Densmore and Christopher A. Voigt},
+  title = {Genetic circuit design automation},
+  journal = {Science}, volume = {352}, number = {6281}, pages = {aac7341}, year = {2016},
+  doi = {10.1126/science.aac7341}}
+
+@article{Green2017,
+  author = {Alexander A. Green and Jongmin Kim and Duo Ma and Pamela A. Silver and James J. Collins and Peng Yin},
+  title = {Complex cellular logic computation using ribocomputing devices},
+  journal = {Nature}, volume = {548}, pages = {117--121}, year = {2017},
+  doi = {10.1038/nature23271}}
+
+@article{Fulco2019,
+  author = {Charles P. Fulco and Joseph Nasser and Thouis R. Jones and others},
+  title = {Activity-by-contact model of enhancer--promoter regulation from thousands of {CRISPR} perturbations},
+  journal = {Nature Genetics}, volume = {51}, pages = {1664--1669}, year = {2019},
+  doi = {10.1038/s41588-019-0538-0}}
+
+@article{Weinreb2020,
+  author = {Caleb Weinreb and Alejo Rodriguez-Fraticelli and Fernando D. Camargo and Allon M. Klein},
+  title = {Lineage tracing on transcriptional landscapes links state to fate during differentiation},
+  journal = {Science}, volume = {367}, number = {6479}, pages = {eaaw3381}, year = {2020},
+  doi = {10.1126/science.aaw3381}}
+
+@article{MaizelsBriscoe2026,
+  author = {R. J. Maizels and James Briscoe},
+  title = {Gene regulatory networks: from correlative models to causal explanations},
+  journal = {Nature Reviews Genetics}, volume = {27}, pages = {485--498}, year = {2026},
+  doi = {10.1038/s41576-026-00939-1}}
+
+% ------------------------------------------------------------------ modelling and differentiable design
+@misc{Mordvintsev2023,
+  author = {Alexander Mordvintsev and Ettore Randazzo and Eyvind Niklasson},
+  title = {Differentiable programming of chemical reaction networks},
+  howpublished = {arXiv:2302.02714},
+  year = {2023},
+  url = {https://arxiv.org/abs/2302.02714}}
+
+@article{LinderSeelig2021,
+  author = {Johannes Linder and Georg Seelig},
+  title = {Fast activation maximization for molecular sequence design},
+  journal = {BMC Bioinformatics}, volume = {22}, pages = {510}, year = {2021},
+  doi = {10.1186/s12859-021-04437-5}}
+
+@article{RijalMehta2025,
+  author = {K. Rijal and P. Mehta},
+  title = {A differentiable {G}illespie algorithm for simulating chemical kinetics, parameter estimation, and designing synthetic biological circuits},
+  journal = {eLife}, volume = {14}, pages = {RP103877}, year = {2025},
+  doi = {10.7554/eLife.103877.3}}
+
+@inproceedings{Lee2025,
+  author = {I. Lee and S. Buse and Erik Winfree},
+  title = {Differentiable programming of indexed chemical reaction networks and reaction-diffusion systems},
+  booktitle = {31st International Conference on DNA Computing and Molecular Programming (DNA 31)},
+  series = {Leibniz International Proceedings in Informatics (LIPIcs)}, volume = {347}, pages = {4:1--4:23}, year = {2025},
+  doi = {10.4230/LIPIcs.DNA.31.4}}

@@ -1,0 +1,54 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+% ============================================================ transcription panel
+\fill[PanelBg,rounded corners=4pt] (-.3,-.15) rectangle (16.1,4.35);
+\node[anchor=west,font=\sffamily\bfseries\small,text=Ink] at (-.1,4.05) {1\enspace Transcription: a gene's DNA is copied into messenger RNA};
+% coding (top) and template (bottom) strands, opened into a bubble under the polymerase
+\draw[backbone,DNAblue] (0,2.0)--(5.6,2.0) .. controls (6.1,2.0) and (6.2,2.45) .. (6.7,2.45)--(8.7,2.45) .. controls (9.2,2.45) and (9.3,2.0) .. (9.8,2.0)--(15.3,2.0);
+\draw[strand,DNAblue] (15.2,2.0)--(15.7,2.0);
+\draw[backbone,StrandViolet] (15.7,1.2)--(9.8,1.2) .. controls (9.3,1.2) and (9.2,.75) .. (8.7,.75)--(6.7,.75) .. controls (6.2,.75) and (6.1,1.2) .. (5.6,1.2)--(.3,1.2);
+\draw[strandL,StrandViolet] (.4,1.2)--(-.05,1.2);
+\Rungs{.3}{5.5}{1.88}{1.32}{.24}
+\Rungs{9.95}{15.2}{1.88}{1.32}{.24}
+\node[ends,DNAblue] at (-.25,2.0) {5$'$};\node[ends,DNAblue] at (15.95,2.0) {3$'$};
+\node[ends,StrandViolet] at (-.3,1.2) {3$'$};\node[ends,StrandViolet] at (15.95,1.2) {5$'$};
+\node[slab,text=DNAblue,anchor=west] at (11.0,2.3) {coding strand};
+\node[slab,text=StrandViolet,anchor=west] at (11.0,.9) {template strand};
+% promoter and transcription factor
+\fill[StrandGreen!28] (2.0,1.15) rectangle (3.6,2.05);
+\node[slab,text=StrandGreen!60!black] at (2.8,.85) {promoter};
+\begin{scope}[shift={(2.8,2.62)},scale=.42]
+ \shade[ball color=StrandGreen!55,draw=StrandGreen!60!black,line width=.6pt] plot[smooth cycle,tension=.9] coordinates{(-1,-.4)(-.8,.5)(0,.85)(.8,.5)(1,-.4)(.3,-.75)(-.3,-.75)};
+\end{scope}
+\node[slab,anchor=west,align=left] at (3.45,2.95) {transcription factor\\binds the promoter};
+% RNA polymerase over the bubble
+\Enzyme{(7.7,1.6)}{1.05}{}
+\node[font=\sffamily\bfseries\footnotesize,text=Ink] (rnap) at (7.6,3.35) {RNA polymerase};
+\draw[Ink,line width=.6pt] (rnap.south)--(7.7,2.42);
+% nascent RNA: short hybrid with the template inside the bubble, then exits upstream
+\draw[RNAcoral,line width=2pt,decorate,decoration={snake,amplitude=.45mm,segment length=2.4mm}] (6.9,.95)--(8.5,.95);
+\draw[RNAcoral,line width=2pt,decorate,decoration={snake,amplitude=.6mm,segment length=3mm}] (6.95,.95) .. controls (6.3,.5) and (5.4,.3) .. (4.6,.3);
+\node[slab,text=RNAcoral!80!black,anchor=east] at (4.55,.3) {5$'$ end of the new mRNA};
+\draw[-{Stealth[length=2mm]},Ink,line width=.9pt] (9.6,3.4)--(11.2,3.4) node[right,slab] {polymerase moves downstream};
+\node[slab,anchor=west,align=left] at (11.0,.35) {template read 3$'\!\to\!$5$'$; RNA made 5$'\!\to\!$3$'$};
+% ============================================================ translation panel
+\fill[ProteinGold!10,rounded corners=4pt] (-.3,-4.75) rectangle (16.1,-.75);
+\node[anchor=west,font=\sffamily\bfseries\small,text=Ink] at (6.4,-1.05) {2\enspace Translation: a ribosome reads codons and builds a protein};
+\draw[RNAcoral,line width=2.2pt,decorate,decoration={snake,amplitude=.6mm,segment length=3mm,post length=3.2mm},-{Straight Barb[harpoon,length=3mm,width=2.2mm,line width=1.4pt]}] (.9,-3.55)--(14.2,-3.55);
+\node[ends,RNAcoral!80!black] at (.65,-3.55) {5$'$};\node[ends,RNAcoral!80!black] at (14.5,-3.55) {3$'$};
+\foreach \cx/\cod in {1.9/AUG,3.1/GCU,4.3/UUC,5.5/GGA,6.7/ACC,7.9/UAA}{\node[slab,text=RNAcoral!80!black] at (\cx,-4.1) {\cod};}
+\node[slab,anchor=west] at (8.6,-4.1) {three bases (a codon) specify one amino acid};
+\shade[ball color=ProteinGold!60!white,draw=ProteinEdge,line width=.8pt] (5.5,-3.3) ellipse (1.3 and .55);
+\shade[ball color=ProteinGold!85,draw=ProteinEdge,line width=.8pt] (5.5,-2.5) ellipse (1.05 and .62);
+\node[font=\sffamily\bfseries\footnotesize] at (5.5,-2.5) {ribosome};
+\foreach \px/\py in {5.9/-1.78,6.3/-1.62,6.7/-1.76,7.1/-1.58,7.5/-1.74,7.9/-1.56}{
+  \shade[ball color=StrandAmber!70] (\px,\py) circle (.17);}
+\node[slab,anchor=west] at (8.2,-1.68) {growing protein: a chain of amino acids};
+\draw[-{Stealth[length=2mm]},Ink,line width=.9pt] (7.1,-2.75)--(8.6,-2.75) node[right,slab] {ribosome moves 5$'\!\to\!$3$'$ along the mRNA};
+% mRNA travels from the gene to the ribosome
+\draw[move] (4.4,.15) .. controls (4.1,-1.0) and (3.5,-2.3) .. (2.7,-3.25);
+\node[slab,anchor=west,align=left] at (4.1,-1.45) {mRNA leaves\\the gene};
+% feedback: some proteins regulate genes
+\draw[-{Stealth[length=2.4mm]},StrandGreen!70!black,line width=1pt,dash pattern=on 3pt off 1.5pt]
+  (.1,-2.0) .. controls (-.8,-1.2) and (-.75,2.5) .. (2.25,2.7);
+\node[slab,anchor=west,align=left,text=StrandGreen!55!black] at (.05,-2.25) {some proteins are\\transcription\\factors: feedback};
+\end{tikzpicture}

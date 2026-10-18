@@ -1,0 +1,193 @@
+\chapter*{Epilogue: frontiers and open problems}
+\addcontentsline{toc}{chapter}{Epilogue: frontiers and open problems}
+\markboth{Epilogue}{Epilogue}
+\fancyhead[R]{\small\sffamily Epilogue}
+\label{ch:epilogue}
+
+Thirty-two chapters ago we asked whether a tube of molecules could represent
+candidates, remove the wrong ones and leave a readable answer. The answer turned
+out to be yes, and also much more. DNA can do more than search: it can run
+reaction programs, compute with analog concentrations, assemble algorithmically,
+store files and record a cell's history. This epilogue surveys where the field
+stands in late 2026, names the problems that remain open, and suggests projects
+through which a reader of this book can contribute.
+
+\section*{Five research frontiers}
+\addcontentsline{toc}{section}{Five research frontiers}
+Figure~\ref{fig:frontiers} groups current research into five frontiers. Each is
+summarised by what has been demonstrated and what remains unsolved; the
+demonstrations are cited, and the open questions are our assessment.
+
+\TikzPlate{backmatter/figures/frontiers}{Five research frontiers in DNA
+computing. For each frontier the upper list records representative
+demonstrations (each a specific experiment under reported conditions, not a
+general capability), and the lower list names open problems. The frontiers are
+coupled: learning systems need reusable energy, in-cell computing needs
+nuclease-resistant chemistry, and every frontier needs faster, more reliable
+composition.}{fig:frontiers}
+
+\subsection*{1. Molecular learning and neural computation}
+Seesaw gates (Chapter~21) made it possible to build weighted-sum threshold
+units from DNA, and with them Hopfield-style associative memories.\cite{QianWinfreeBruck2011}
+Winner-take-all DNA neural networks later classified 100-bit molecular patterns
+such as handwritten digits,\cite{CherryQian2018} convolutional architectures with
+weight sharing were built from switching gates,\cite{Xiong2022} and a tile set
+was shown to classify images through which of three structures nucleates
+first.\cite{Evans2024} The decisive step reported in 2025 was learning itself:
+a DNA network that adjusted molecular ``weights'' stored as concentrations from
+molecular training examples and then classified test patterns, all in vitro.\cite{CherryQian2025}
+
+\begin{Frontier}
+\textbf{What was shown:} supervised learning of pattern classification from
+molecular examples, carried out by enzyme-free strand displacement in a test
+tube.\cite{CherryQian2025} \textbf{What was not shown:} learning that
+continues over many training rounds without manual intervention, learning on
+non-synthetic biological inputs, or performance competitive with electronic
+learning. These are open problems, not failures of the result.
+\end{Frontier}
+
+Open questions include how to make molecular learning \emph{online} (updating as
+inputs arrive), how to store weights stably for long periods, how to scale beyond
+a few hundred distinct species without crosstalk, and how to train networks
+whose inputs are real biomolecules such as microRNA panels.
+
+\subsection*{2. Programmable and reconfigurable architectures}
+Early molecular computers were built anew for every problem. A recurring theme
+of recent work is \emph{reprogrammability}: the same molecular hardware runs
+different software. A single set of 355 DNA tiles was reprogrammed by tile
+selection to run 21 different six-bit algorithms, from sorting to leader
+election, with a per-tile error rate below one in three thousand.\cite{Woods2019}
+DNA-based programmable gate arrays reconfigure dual-rail logic layers into a
+very large number of distinct circuits, by analogy with electronic FPGAs.\cite{Lv2023}
+And the scaffolded DNA computer reported in 2026 runs programs such as
+multi-bit addition and parity checking by letting the correct answer emerge as
+the most thermodynamically favoured assembly on a scaffold, rather than by
+stepping through instructions.\cite{Sterin2026}
+
+Open questions: what is the right \emph{instruction set} for molecular
+computers; how should a compiler map a high-level program to strands
+(Chapter~20); how should a computation be \emph{verified} when its output is a
+population rather than a single state (Chapters~26--27)?
+
+\subsection*{3. Energy, reuse and speed}
+Strand-displacement circuits are powered by the free energy stored in
+pre-assembled fuel complexes; once the fuel is spent, the tube is discarded.
+Landauer's principle and Bennett's analysis of reversible computing set the
+physical baseline,\cite{Landauer1961,Bennett1982} but practical molecular
+circuits operate far from that limit. A 2025 study showed that heating can
+recharge enzyme-free circuits by returning strands to kinetically trapped,
+energy-storing states, allowing a circuit and a neural network to compute
+repeatedly with new inputs.\cite{SongQian2025} Speed remains a central
+limitation: bimolecular reactions at nanomolar concentrations take minutes to
+hours (Chapters~7 and~19). Localising components on a surface or an origami
+scaffold, so that reactions become effectively unimolecular, is one route to
+faster and more reliable circuits.
+
+Open questions: universal and waste-free fuels; circuits that recover from
+leak (Chapter~21);\cite{Wang2018} and principled trade-offs between speed,
+accuracy and energy of the kind Chapter~24 begins to formalise.
+
+\subsection*{4. Information storage and computing on stored data}
+DNA data storage has moved from proof of principle to engineering. Encoding
+schemes now combine constrained codes with outer erasure codes
+(Chapter~25);\cite{Goldman2013,ErlichZielinski2017} random access selects files
+by PCR from large pools;\cite{Organick2018} and error models of synthesis,
+storage, amplification and sequencing are measured rather than
+assumed.\cite{Chen2020bias,Gimpel2023} Writing remains the bottleneck. One
+response is to avoid synthesising every sequence: epigenetic bits print data
+as enzymatically added methyl marks on premade DNA and read them by nanopore
+sequencing.\cite{ZhangC2024} Another is to compute on the stored data
+directly, so that hybridisation selects or compares records before anything is
+sequenced.
+
+Open questions: cost and speed of writing; random access without destructive
+amplification; long-term integrity; and \emph{in-storage computation} that
+filters, searches or aggregates data before it is ever sequenced.
+
+\subsection*{5. Computing inside living systems}
+Cells already compute; synthetic biology tries to program them. Genetic
+circuits have been designed with automated tools,\cite{Nielsen2016} RNA
+``ribocomputing'' devices evaluate logic in bacteria,\cite{Green2017} and
+recombinases write permanent memory into DNA.\cite{Siuti2013,Bonnet2013}
+CRISPR systems record events into genomes: a short movie was written into a
+bacterial population,\cite{Shipman2017} and the DNA Typewriter records ordered
+sequences of events in human cells by sequential prime editing of a genomic
+``tape''.\cite{Choi2022} Outside the cell, logic-gated DNA nanorobots open
+in response to molecular keys,\cite{Douglas2012} and DNA classifiers have been
+applied to serum samples.\cite{Zhang2020cancer} Running strand-displacement
+circuits in biological fluids requires coping with nucleases, binding proteins
+and dilution (Chapter~31).\cite{FernSchulman2017,ZhongSczepanski2021}
+
+Open questions: delivery and stability in cells; isolation of synthetic
+circuits from host regulation (Chapter~30); safety and containment; and
+interpretation, since a cell's recorded history is only as trustworthy as the
+model of how it was written (Chapter~32).
+
+\section*{Cross-cutting open problems}
+\addcontentsline{toc}{section}{Cross-cutting open problems}
+Some problems cut across every frontier.
+\begin{enumerate}
+\item \textbf{Composition at scale.} Every additional strand is a new
+opportunity for spurious interaction. Can sequence design, leakless
+architectures and localisation keep error from growing with system size
+(Chapters~11, 21 and 23)?
+\item \textbf{Design automation.} From a specification, can a compiler produce
+sequences, predict kinetics, and certify correctness, as electronic design
+automation does for chips (Chapters~20, 27--29)?
+\item \textbf{The readout bottleneck.} A computation that takes minutes but
+needs a day of sequencing has moved, not removed, its cost
+(Chapters~4, 10 and 24).
+\item \textbf{Theory of thermodynamic computing.} When is ``the answer is the
+lowest-free-energy state'' a reliable computational principle, and what are its
+time and energy costs (Chapters~6, 22 and 24)?
+\item \textbf{Evidence standards.} Shared formats for sequences, protocols,
+controls and raw data would let molecular computations be reproduced and
+compared (Chapter~26).\cite{Wilkinson2016}
+\end{enumerate}
+
+\section*{What not to expect}
+\addcontentsline{toc}{section}{What not to expect}
+It is worth repeating a lesson from Part~I. DNA will not replace electronic
+processors for general-purpose arithmetic. Molecular parallelism relocates
+costs into material, time and readout; it does not turn exponential search into
+polynomial search (Chapters~3, 4 and 24). The promise of molecular computing
+lies where electronics cannot operate: in a drop of blood, on a cell surface,
+inside a nanostructure, or in an archive designed to last centuries.
+
+\section*{Projects for readers}
+\addcontentsline{toc}{section}{Projects for readers}
+The following capstone projects use the book's tools. Each can be pursued
+computationally; some suggest experiments that would require a supervised
+laboratory.
+\begin{enumerate}
+\item \textbf{A strand-displacement compiler.} Implement a translation from a
+small chemical reaction network to two-domain strand-displacement reactions
+(Chapters~19--20) and verify with the symbolic and stochastic simulators of
+Chapters~27--28 that the compiled network reproduces the original's behaviour.
+\item \textbf{A molecular perceptron.} Design a seesaw-gate network that
+computes a weighted threshold of four inputs (Chapter~21). Quantify how leak and
+concentration error change its decision boundary.
+\item \textbf{A storage codec.} Build an encoder and decoder that convert a
+file into constrained DNA strands with an outer erasure code (Chapter~25), and
+measure recovery under simulated synthesis, sequencing and dropout errors.
+\item \textbf{A tile-assembly algorithm.} Design a tile set that counts in
+binary or computes parity, simulate it in the abstract tile assembly model, and
+add proofreading (Chapters~22--23).
+\item \textbf{Resource accounting for a modern claim.} Choose a published DNA
+computing result and write its complete resource vector (Chapter~4): sequences,
+copies, volume, time, energy and readout. Identify which resource limits scaling.
+\end{enumerate}
+A strong project report states the specification, the model and its
+assumptions, an independent check of the implementation, a deliberate failure
+case, and a clear separation between what was simulated and what was measured,
+the same standard this book has tried to meet.
+
+\section*{Closing}
+\addcontentsline{toc}{section}{Closing}
+Adleman's 1994 report already looked ahead to what molecular computation might
+become. Thirty-two years later, the most important
+legacy of his experiment is not a faster way to find Hamiltonian paths. It is a
+way of thinking: that matter can be programmed, that the rules of chemistry can
+be read as the rules of a computer, and that the discipline of computer science,
+with specifications, invariants, proofs and tests, can make that programming
+reliable. That way of thinking is now yours to extend.

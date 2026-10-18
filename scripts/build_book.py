@@ -25,54 +25,33 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def bib_items(text):
-    """Read the book's simple authored bibitem environments; reject ambiguity."""
-    blocks = re.findall(
-        r"\\begin\{thebibliography\}\{[^}]*\}(.*?)\\end\{thebibliography\}",
-        text,
-        flags=re.S,
-    )
-    items = []
-    for block in blocks:
-        matches = list(re.finditer(r"\\bibitem\{([^}]+)\}", block))
-        for i, match in enumerate(matches):
-            end = matches[i + 1].start() if i + 1 < len(matches) else len(block)
-            items.append((match[1], block[match.end() : end].strip()))
-    if len({k for k, _ in items}) != len(items):
-        raise ValueError("Duplicate bibitem key within one source")
-    return items
+CITE = re.compile(r"\\cite[pt]?(?:\[[^\]]*\])?\{([^}]+)\}")
+BIB = ROOT / "book/backmatter/references.bib"
 
 
-def strip_bib(text):
-    return re.sub(
-        r"\\begin\{thebibliography\}\{[^}]*\}.*?\\end\{thebibliography\}",
-        "",
-        text,
-        flags=re.S,
-    )
+def bib_keys(text=None):
+    """Keys of the single authored BibTeX database; duplicates are an error."""
+    text = BIB.read_text() if text is None else text
+    keys = re.findall(r"^@\w+\{([^,\s]+),", text, flags=re.M)
+    if len(keys) != len(set(keys)):
+        raise ValueError("Duplicate BibTeX key in references.bib")
+    return set(keys)
 
 
-def identity(body):
-    """Conservative exact primary identifier matching, not fuzzy title guessing."""
-    dois = re.findall(r"https?://doi\.org/([^}\s]+)", body)
-    if dois:
-        return "doi:" + dois[0].rstrip(".").lower()
-    urls = re.findall(r"\\(?:url|href)\{(https?://[^}]+)\}", body)
-    if urls:
-        # URL paths can be case-sensitive; never merge distinct paths by case.
-        return "url:" + urls[0].rstrip("/")
-    return "text:" + re.sub(r"\s+", " ", body)
+def cited_keys(text):
+    return [k.strip() for m in CITE.finditer(text) for k in m[1].split(",")]
 
 
-def remap_cites(text, mapping):
-    def rewrite(match):
-        keys = [k.strip() for k in match[1].split(",")]
-        missing = set(keys) - mapping.keys()
-        if missing:
-            raise ValueError(f"Unresolved citation keys: {sorted(missing)}")
-        return r"\cite{" + ",".join(mapping[k] for k in keys) + "}"
-
-    return re.sub(r"\\cite\{([^}]+)\}", rewrite, text)
+def citation_map():
+    """Map every cited key to the book sources that cite it; fail closed."""
+    keys = bib_keys()
+    used = {}
+    for path in sorted((ROOT / "book").rglob("*.tex")):
+        for key in cited_keys(path.read_text()):
+            if key not in keys:
+                raise ValueError(f"Unresolved citation key {key} in {path.relative_to(ROOT)}")
+            used.setdefault(key, set()).add(str(path.relative_to(ROOT)))
+    return {k: sorted(v) for k, v in sorted(used.items())}
 
 
 def chapter_dir(number):
@@ -139,47 +118,16 @@ def prepare(through, refresh, check=False):
 
 
 def assemble(through):
-    opening = ROOT / "book/backmatter/opening-sources.tex"
-    opening_items = bib_items(opening.read_text())
-    entries = {}
-    seen = {}
-    provenance = []
-    for key, body in opening_items:
-        entries[key] = body
-        # Preserve the frozen opening's key references even if identifiers repeat.
-        seen.setdefault(identity(body), key)
-        provenance.append(
-            {
-                "source": str(opening.relative_to(ROOT)),
-                "original_key": key,
-                "book_key": key,
-            }
-        )
-    wrappers = [
-        rf"\input{{chapters/ch{number:02d}/manuscript.tex}}" for number in range(1, 4)
-    ]
-    for number in range(4, through + 1):
+    manifest = json.loads((ROOT / "book/book.json").read_text())
+    parts = {p["first_chapter"]: p for p in manifest.get("parts", [])}
+    wrappers = []
+    for number in range(1, through + 1):
+        if number in parts:
+            wrappers.append(rf"\input{{{Path(parts[number]['source']).relative_to('book')}}}")
+        if number <= 3:
+            wrappers.append(rf"\input{{chapters/ch{number:02d}/manuscript.tex}}")
+            continue
         directory = chapter_dir(number)
-        source_file = directory / "sources.tex"
-        source = source_file.read_text()
-        items = bib_items(source)
-        mapping = {}
-        for key, body in items:
-            ident = identity(body)
-            book_key = seen.get(ident, f"ch{number:02d}:{key}")
-            seen[ident] = book_key
-            # Current later record supersedes earlier display metadata for the
-            # same exact identifier, retaining all contributing source records.
-            entries[book_key] = body
-            mapping[key] = book_key
-            provenance.append(
-                {
-                    "source": str(source_file.relative_to(ROOT)),
-                    "original_key": key,
-                    "book_key": book_key,
-                    "matched_identifier": ident,
-                }
-            )
         out = BUILD / f"ch{number:02d}"
         out.mkdir(parents=True, exist_ok=True)
 
@@ -193,23 +141,19 @@ def assemble(through):
             return re.sub(r"\\input\{([^}]+)\}", replace, text)
 
         for authored in directory.glob("*.tex"):
-            if authored.name in ("review.tex", "sources.tex"):
+            if authored.name == "review.tex":
                 continue
             text = authored.read_text()
             if number == 4 and authored.name == "manuscript.tex":
-                # Layout-only soft breakpoint in a narrow table cell. The
-                # authored source and scientific text are kept unchanged.
+                # Layout-only soft breakpoint in a narrow table cell.
                 text = text.replace(
                     "Concentration/volume", r"Concentration/\allowbreak volume"
                 )
-            (out / authored.name).write_text(
-                rewrite_local_inputs(remap_cites(text, mapping))
-            )
-        (out / "evidence.tex").write_text(remap_cites(strip_bib(source), mapping))
+            (out / authored.name).write_text(rewrite_local_inputs(text))
         figures = out / "figures"
         figures.mkdir(exist_ok=True)
         for figure in sorted((directory / "figures").glob("*.tex")):
-            (figures / figure.name).write_text(remap_cites(figure.read_text(), mapping))
+            (figures / figure.name).write_text(figure.read_text())
         wrappers.extend(
             [
                 r"\clearpage\begingroup",
@@ -218,23 +162,15 @@ def assemble(through):
                 rf"\def\PlateDirectory{{../build/book/ch{number:02d}/figures}}",
                 r"\ScopedChapterLabels",
                 rf"\input{{../build/book/ch{number:02d}/manuscript.tex}}",
-                rf"\input{{../build/book/ch{number:02d}/evidence.tex}}",
+                rf"\input{{../build/book/ch{number:02d}/sources.tex}}",
                 r"\clearpage\endgroup",
             ]
         )
     (BUILD / "chapters.tex").write_text("\n".join(wrappers) + "\n")
-    bibliography = [
-        r"\begin{thebibliography}{999}",
-        r"\addcontentsline{toc}{chapter}{Bibliography}",
-    ]
-    bibliography += [rf"\bibitem{{{k}}} {v}" for k, v in entries.items()]
-    bibliography.append(r"\end{thebibliography}")
-    (BUILD / "bibliography.tex").write_text("\n\n".join(bibliography) + "\n")
-    (BUILD / "bibliography-map.json").write_text(
-        json.dumps(provenance, indent=2) + "\n"
-    )
+    cmap = citation_map()
+    (BUILD / "citation-map.json").write_text(json.dumps(cmap, indent=2) + "\n")
     (BUILD / "scope.tex").write_text(rf"\def\IncludedThrough{{{through}}}" + "\n")
-    return provenance
+    return cmap
 
 
 def main():
@@ -265,7 +201,7 @@ def main():
         return
     provenance = assemble(args.through)
     if args.prepare_only:
-        print("Derived chapter wrappers and consolidated bibliography prepared.")
+        print("Derived chapter wrappers and citation map prepared.")
         return
     name = BOOK
     command = [
@@ -286,6 +222,7 @@ def main():
             os.environ,
             PATH="/Library/TeX/texbin:/opt/homebrew/bin:/usr/local/bin:"
             + os.environ["PATH"],
+            BIBINPUTS=str(ROOT / "book") + ":",
         ),
     )
     (BUILD / "console.log").write_text(result.stdout + result.stderr)
@@ -303,7 +240,11 @@ def main():
     rerun = subprocess.run(
         result.args,
         cwd=ROOT / "book",
-        env=dict(os.environ, PATH="/Library/TeX/texbin:" + os.environ["PATH"]),
+        env=dict(
+            os.environ,
+            PATH="/Library/TeX/texbin:" + os.environ["PATH"],
+            BIBINPUTS=str(ROOT / "book") + ":",
+        ),
         capture_output=True,
         text=True,
     )
@@ -324,6 +265,7 @@ def main():
                 "multiply defined",
                 "LaTeX Warning: Reference",
                 "LaTeX Warning: Citation",
+                "Package natbib Warning",
             )
         )
     ]
@@ -336,6 +278,9 @@ def main():
     output.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(BUILD / (name + ".pdf"), output)
     info = subprocess.check_output(["pdfinfo", str(output)], text=True)
+    blg = (BUILD / (name + ".blg")).read_text()
+    if "Warning--" in blg or "error message" in blg:
+        raise RuntimeError("BibTeX reported problems:\n" + blg[-3000:])
     paths = list((ROOT / "book").rglob("*")) + [Path(__file__)]
     paths = [p for p in paths if p.is_file() and "__pycache__" not in p.parts]
     paths += [p for p in (ROOT / "tests").glob("*.py")]
@@ -354,7 +299,7 @@ def main():
         "pdf": str(output.relative_to(ROOT)),
         "pages": int(re.search(r"Pages:\s+(\d+)", info)[1]),
         "pdf_sha256": sha(output),
-        "bibliography_contributions": len(provenance),
+        "cited_works": len(provenance),
         "source_hashes": {str(p.relative_to(ROOT)): sha(p) for p in sorted(set(paths))},
     }
     (BUILD / "build-record.json").write_text(json.dumps(record, indent=2) + "\n")

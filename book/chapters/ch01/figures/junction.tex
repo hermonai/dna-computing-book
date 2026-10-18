@@ -1,0 +1,36 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\PanelTitle{(0,1.95)}{A}{Annealing aligns two edge strands}
+\begin{scope}[shift={(.6,-1.0)}]
+ % edge strand A->B : a_R b_L ; edge strand B->C : b_R c_L
+ \draw[backbone,DNAblue] (0,.6)--(3.25,.6);\draw[strand,DNAblue] (3.15,.6)--(3.45,.6);
+ \draw[backbone,DNAsky] (3.75,.6)--(6.95,.6);\draw[strand,DNAsky] (6.85,.6)--(7.2,.6);
+ \node[dom=DNAblue,minimum width=14mm] at (.85,1.0) {$a_R$};
+ \node[dom=DNAblue,minimum width=14mm] at (2.45,1.0) {$b_L$};
+ \node[dom=DNAsky,minimum width=14mm] at (4.55,1.0) {$b_R$};
+ \node[dom=DNAsky,minimum width=14mm] at (6.15,1.0) {$c_L$};
+ \node[ends,DNAblue] at (-.25,.6) {5$'$};\node[ends,DNAsky] at (7.45,.6) {3$'$};
+ \node[slab,text=DNAblue!80!black] at (1.65,1.55) {edge $A\!\to\!B$};
+ \node[slab,text=DNAsky!80!black] at (5.35,1.55) {edge $B\!\to\!C$};
+ % splint: complement of O_B = b_L b_R, antiparallel underneath
+ \draw[backbone,StrandViolet] (5.25,-.15)--(1.75,-.15);\draw[strandL,StrandViolet] (1.85,-.15)--(1.5,-.15);
+ \node[dom=StrandViolet,minimum width=14mm] at (2.45,-.55) {$b_L^{*}$};
+ \node[dom=StrandViolet,minimum width=14mm] at (4.55,-.55) {$b_R^{*}$};
+ \node[ends,StrandViolet] at (1.25,-.15) {3$'$};\node[ends,StrandViolet] at (5.5,-.15) {5$'$};
+ \node[slab,text=StrandViolet] at (3.5,-1.05) {vertex splint for $B$};
+ \Rungs{1.75}{3.25}{.5}{-.05}{.18}
+ \Rungs{3.8}{5.2}{.5}{-.05}{.18}
+ % nick
+ \draw[RejectRed,line width=.9pt] (3.6,.75)--(3.6,2.05) node[above,slab,text=RejectRed] {nick: $3'$-OH beside a $5'$-phosphate};
+\end{scope}
+\draw[react] (8.7,-.45)--(9.9,-.45) node[midway,above,slab] {ligase};
+\PanelTitle{(10.2,1.95)}{B}{Ligation}
+\begin{scope}[shift={(10.6,-1.0)}]
+ \draw[backbone,DNAblue] (0,.6)--(2.6,.6);\draw[backbone,DNAsky] (2.6,.6)--(5.0,.6);\draw[strand,DNAsky] (4.9,.6)--(5.25,.6);
+ \fill[ProteinGold] (2.6,.6) circle (.09);
+ \node[ends,DNAblue] at (-.25,.6) {5$'$};\node[ends,DNAsky] at (5.5,.6) {3$'$};
+ \draw[backbone,StrandViolet] (3.8,-.15)--(1.4,-.15);\draw[strandL,StrandViolet] (1.5,-.15)--(1.15,-.15);
+ \Rungs{1.4}{3.8}{.5}{-.05}{.2}
+ \node[slab,align=center] at (2.6,1.3) {one continuous strand:\\$\ldots a_R\,b_L\,b_R\,c_L\ldots$};
+ \node[slab,align=center,text=StrandViolet] at (2.6,-.75) {splint can later\\be melted away};
+\end{scope}
+\end{tikzpicture}

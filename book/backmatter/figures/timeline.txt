@@ -1,0 +1,27 @@
+Figure: a swimlane timeline of DNA computing, 1953-2026.
+
+Years run down the left margin. Five coloured lanes group milestones by theme;
+each milestone is a dot with a short label in its lane.
+Molecules and physics (blue): 1953 double helix; 1961 erasure costs heat
+(Landauer); 1982 reversible computing (Bennett); 1988 PCR with a heat-stable
+enzyme; 1998 nearest-neighbour thermodynamics.
+Algorithms and formal models (rose): 1994 Hamiltonian path in a tube; 1995 SAT
+by molecular filtering; 1997 maximal clique; 1998 sticker model; 2001
+enzyme-driven automaton; 2002 20-variable 3-SAT; 2003 deoxyribozyme
+tic-tac-toe; 2010 DNA implements any reaction network; 2026 thermodynamically
+favoured computer.
+Circuits and learning (green): 2006 enzyme-free logic circuits; 2007
+entropy-driven catalysis; 2009 toehold exchange; 2011 seesaw circuits and a
+Hopfield network; 2013 chemical controllers; 2017 DNA oscillator; 2018
+winner-take-all networks; 2020 DNA cancer classifier; 2022 convolutional
+network; 2023 programmable gate arrays; 2025 learning in a tube and heat
+recharging.
+Assembly and devices (violet): 1982 DNA junctions and lattices; 1998 2D DNA
+tile crystals; 2000 DNA-fuelled tweezers; 2004 Sierpinski triangles; 2006 DNA
+origami; 2012 nanorobot and DNA bricks; 2017 cargo-sorting robot; 2019 21
+reprogrammable algorithms; 2024 pattern recognition by nucleation.
+Storage, cells and recording (amber): 2000 toggle switch and repressilator;
+2004 automaton controls gene expression; 2012 digital data in DNA; 2013
+archival storage and recombinase logic; 2016 genetic circuit design automation;
+2017 DNA Fountain and a movie in bacteria; 2018 random access storage; 2022
+DNA Typewriter recorder; 2024 epigenetic-bit storage.

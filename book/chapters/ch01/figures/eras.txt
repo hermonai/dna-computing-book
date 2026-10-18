@@ -1,0 +1,24 @@
+Figure: four overlapping eras of DNA computing, drawn as four coloured cards
+above a time axis from 1994 to 2026.
+
+1994-2003, search in a tube (blue): a tube and a gel icon. Libraries of
+candidate strands are filtered by PCR, gels and capture probes. Examples:
+Hamiltonian path, satisfiability, maximal clique, sticker memory, a 20-variable
+3-SAT instance. Lesson: parallelism does not remove exponential cost (Part I).
+2001-2010, molecular machines (rose): an enzyme cutting a duplex and a small
+tile pattern. Enzymes and tiles act autonomously: automata step through states,
+tiles grow patterns, a scaffold folds into shapes. Examples: enzyme-driven
+automata, Sierpinski crystals, DNA origami, enzyme-free logic. Lesson: local
+rules compose (Parts IV-V).
+2006-2019, programmed dynamics (green): an invading strand displacing an
+incumbent and a sigmoidal output curve. Strand displacement lets sequence
+program reaction rates: circuits, reaction networks, neural networks, walkers
+and robots. Examples: seesaw circuits, Hopfield and winner-take-all networks, a
+cargo-sorting robot, data storage. Lesson: interfaces, leak and fuel (Parts
+V-VI).
+2019-2026, learning and integration (violet): a small neural network and a
+grid. Reprogrammable hardware, molecular learning, rechargeable circuits,
+recording in cells. Examples: a 21-algorithm tile set, gate arrays, learning in
+vitro, epigenetic-bit storage, a scaffolded computer. Lesson: see the Epilogue.
+The eras overlap; dates indicate when each style of work became prominent, not
+sharp boundaries.

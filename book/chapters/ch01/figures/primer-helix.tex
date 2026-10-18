@@ -1,0 +1,111 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\def\stringA{A}\def\stringC{C}\def\stringG{G}\def\stringT{T}
+% ---------------------------------------------------------------- Panel A
+% B-form helix projected onto the page. 1 cm in the drawing = 1 nm:
+% radius 1 nm (diameter ~2 nm), rise 0.34 nm per base pair, ~10.5 bp per turn.
+% Right-handed: y = R sin(theta), depth z = -R cos(theta), theta = 360 x / P.
+% With strand offset 148 deg, front-face passes are 148 deg apart (minor groove,
+% centred at theta = 106 deg) or 212 deg apart (major groove, theta = 286 deg).
+\PanelTitle{(0,3.15)}{A}{The double helix: two antiparallel strands wound around one axis}
+\begin{scope}[shift={(1.0,0.9)}]
+ \def\P{3.57}\def\R{1.0}\def\L{13.6}\def\ph{148}
+ \def\seq{{"A","C","G","T","T","G","C","A","A","G","C","T","T","G","A","C","G","A","T","C","C","G","T","A","G","C","A","T","G","C","A","A","T","G","C","G","T","A","C","G"}}
+ % back halves of both backbones (behind the bases)
+ \foreach \i in {0,...,271}{
+   \pgfmathsetmacro{\xa}{\i*\L/272}\pgfmathsetmacro{\xb}{(\i+1)*\L/272}
+   \pgfmathsetmacro{\za}{cos(360*\xa/\P)}
+   \pgfmathsetmacro{\zb}{cos(360*\xa/\P+\ph)}
+   \ifdim\za pt>0pt \draw[DNAblue!45,line width=2.6pt,line cap=round] (\xa,{\R*sin(360*\xa/\P)})--(\xb,{\R*sin(360*\xb/\P)});\fi
+   \ifdim\zb pt>0pt \draw[StrandViolet!45,line width=2.6pt,line cap=round] (\xa,{\R*sin(360*\xa/\P+\ph)})--(\xb,{\R*sin(360*\xb/\P+\ph)});\fi
+ }
+ % base pairs: each rung is two half-bars coloured by base identity
+ \foreach \k in {0,...,39}{
+   \pgfmathsetmacro{\x}{0.17+\k*0.34}
+   \pgfmathsetmacro{\ya}{\R*sin(360*\x/\P)}
+   \pgfmathsetmacro{\yb}{\R*sin(360*\x/\P+\ph)}
+   \pgfmathsetmacro{\ym}{(\ya+\yb)/2}
+   \pgfmathparse{\seq[\k]}\edef\b{\pgfmathresult}
+   \def\c{BaseA}\def\d{BaseT}
+   \ifx\b\stringC\def\c{BaseC}\def\d{BaseG}\fi
+   \ifx\b\stringG\def\c{BaseG}\def\d{BaseC}\fi
+   \ifx\b\stringT\def\c{BaseT}\def\d{BaseA}\fi
+   \draw[\c,line width=1.9pt] (\x,\ya)--(\x,\ym);
+   \draw[\d,line width=1.9pt] (\x,\ym)--(\x,\yb);
+ }
+ % front halves
+ \foreach \i in {0,...,271}{
+   \pgfmathsetmacro{\xa}{\i*\L/272}\pgfmathsetmacro{\xb}{(\i+1)*\L/272}
+   \pgfmathsetmacro{\za}{cos(360*\xa/\P)}
+   \pgfmathsetmacro{\zb}{cos(360*\xa/\P+\ph)}
+   \ifdim\za pt<0pt \draw[DNAblue,line width=2.8pt,line cap=round] (\xa,{\R*sin(360*\xa/\P)})--(\xb,{\R*sin(360*\xb/\P)});\fi
+   \ifdim\zb pt<0pt \draw[StrandViolet,line width=2.8pt,line cap=round] (\xa,{\R*sin(360*\xa/\P+\ph)})--(\xb,{\R*sin(360*\xb/\P+\ph)});\fi
+ }
+ % strand ends and direction
+ \node[ends,DNAblue,left] at (-.08,0) {5$'$};
+ \node[ends,StrandViolet,left] at (-.08,{\R*sin(\ph)}) {3$'$};
+ \node[ends,DNAblue,right] at (\L+.08,{\R*sin(360*\L/\P)}) {3$'$};
+ \node[ends,StrandViolet,right] at (\L+.08,{\R*sin(360*\L/\P+\ph)}) {5$'$};
+ % dimension annotations
+ \draw[brace] (\L+0.65,1.0)--(\L+0.65,-1.0) node[midway,right=5pt,slab,align=left] {$\approx$2 nm\\diameter};
+ \draw[|-|,InkSoft,line width=.7pt] (7.14,1.42)--(10.71,1.42) node[midway,above=1pt,slab] {one helical turn $\approx$ 10.5 base pairs ($\approx$3.6 nm)};
+ \draw[|-|,InkSoft,line width=.7pt] (1.87,1.42)--(2.21,1.42) node[midway,above=1pt,slab] {rise $\approx$ 0.34 nm per base pair};
+ \node[slab,anchor=north] at (6.1,-1.3) {major groove};
+ \draw[InkSoft,line width=.6pt,-{Stealth[length=1.6mm]}] (6.2,-1.32)--(6.40,-.12);
+ \node[slab,anchor=north] at (8.75,-1.3) {minor groove};
+ \draw[InkSoft,line width=.6pt,-{Stealth[length=1.6mm]}] (8.65,-1.32)--(8.24,-.12);
+\end{scope}
+% ---------------------------------------------------------------- Panel B
+\PanelTitle{(0,-1.75)}{B}{Unwound and magnified: backbone bonds versus base pairing}
+\begin{scope}[shift={(1.0,-4.35)}]
+ \def\top{{"A","C","G","T","T","G"}}
+ \def\bot{{"T","G","C","A","A","C"}}
+ \def\hb{{2,3,3,2,2,3}}
+ \draw[backbone,DNAblue] (-.25,1.25)--(8.05,1.25);
+ \draw[strand,DNAblue] (7.9,1.25)--(8.35,1.25);
+ \draw[backbone,StrandViolet] (-.25,-1.25)--(8.05,-1.25);
+ \draw[strandL,StrandViolet] (-.1,-1.25)--(-.55,-1.25);
+ \node[ends,DNAblue,left] at (-.6,1.25) {5$'$};\node[ends,DNAblue,right] at (8.4,1.25) {3$'$};
+ \node[ends,StrandViolet,left] at (-.6,-1.25) {3$'$};\node[ends,StrandViolet,right] at (8.4,-1.25) {5$'$};
+ \foreach \k in {0,...,5}{
+   \pgfmathsetmacro{\x}{0.55+\k*1.4}
+   \pgfmathparse{\top[\k]}\edef\b{\pgfmathresult}
+   \pgfmathparse{\bot[\k]}\edef\bb{\pgfmathresult}
+   \pgfmathparse{\hb[\k]}\edef\n{\pgfmathresult}
+   \def\c{BaseA}\ifx\b\stringC\def\c{BaseC}\fi\ifx\b\stringG\def\c{BaseG}\fi\ifx\b\stringT\def\c{BaseT}\fi
+   \def\d{BaseA}\ifx\bb\stringC\def\d{BaseC}\fi\ifx\bb\stringG\def\d{BaseG}\fi\ifx\bb\stringT\def\d{BaseT}\fi
+   % phosphate (circle) and sugar (pentagon) on each backbone
+   \fill[DNAblue] (\x-.62,1.25) circle (.09);
+   \fill[StrandViolet] (\x-.62,-1.25) circle (.09);
+   \node[regular polygon,regular polygon sides=5,draw=DNAblue,fill=white,line width=.8pt,inner sep=0pt,minimum size=4.2mm] at (\x,1.25) {};
+   \node[regular polygon,regular polygon sides=5,draw=StrandViolet,fill=white,line width=.8pt,inner sep=0pt,minimum size=4.2mm,rotate=180] at (\x,-1.25) {};
+   \draw[\c,line width=1pt] (\x,1.05)--(\x,.72);
+   \draw[\d,line width=1pt] (\x,-1.05)--(\x,-.72);
+   \node[draw=\c,fill=\c!22,rounded corners=1.5pt,minimum width=7mm,minimum height=4.6mm,font=\sffamily\bfseries\small,text=Ink,inner sep=0pt] at (\x,.5) {\b};
+   \node[draw=\d,fill=\d!22,rounded corners=1.5pt,minimum width=7mm,minimum height=4.6mm,font=\sffamily\bfseries\small,text=Ink,inner sep=0pt] at (\x,-.5) {\bb};
+   \ifnum\n=2
+     \draw[hbond] (\x-.12,.27)--(\x-.12,-.27);\draw[hbond] (\x+.12,.27)--(\x+.12,-.27);
+   \else
+     \draw[hbond] (\x-.18,.27)--(\x-.18,-.27);\draw[hbond] (\x,.27)--(\x,-.27);\draw[hbond] (\x+.18,.27)--(\x+.18,-.27);
+   \fi
+ }
+ % annotations
+ \node[slab,anchor=west,align=left] at (9.0,1.75) {\textbf{covalent backbone}\\sugar (pentagon) and phosphate\\(dot) repeat along each strand};
+ \node[slab,anchor=west,align=left] at (9.0,0.0) {\textbf{base pairs (dashed = hydrogen bonds)}\\A$\cdot$T: two;\quad G$\cdot$C: three\\stacked pairs also stabilise the duplex};
+ \node[slab,anchor=west,align=left] at (9.0,-1.75) {\textbf{antiparallel partner}\\read in its own 5$'$$\to$3$'$ direction\\it is 5$'$-CAACGT-3$'$: the \emph{reverse}\\complement of 5$'$-ACGTTG-3$'$};
+\end{scope}
+% ---------------------------------------------------------------- Panel C
+\PanelTitle{(0,-7.0)}{C}{How this book draws the same duplex: domains, stars and 3$'$ harpoons}
+\begin{scope}[shift={(1.0,-8.85)}]
+ \draw[strand,DNAblue] (0,.55)--(7.4,.55);
+ \draw[strandL,StrandViolet] (7.4,-.55)--(0,-.55);
+ \node[ends,DNAblue,left] at (-.1,.55) {5$'$};\node[ends,DNAblue,right] at (7.5,.55) {3$'$};
+ \node[ends,StrandViolet,left] at (-.1,-.55) {3$'$};\node[ends,StrandViolet,right] at (7.5,-.55) {5$'$};
+ \Rungs{.3}{7.0}{.42}{-.42}{.35}
+ \node[dom=DNAblue,minimum width=30mm] at (1.85,.95) {domain $a$};
+ \node[dom=DNAsky,minimum width=33mm] at (5.45,.95) {domain $b$};
+ \node[dom=StrandViolet,minimum width=30mm] at (1.85,-.95) {$a^{*}$};
+ \node[dom=StrandViolet,minimum width=33mm] at (5.45,-.95) {$b^{*}$};
+ \node[slab,anchor=west,align=left] at (9.0,.75) {\textbf{a domain} is a named sequence segment\\(often 5--25 nucleotides) with one job,\\such as recognition or a toehold};
+ \node[slab,anchor=west,align=left] at (9.0,-.75) {\textbf{a star} ($a^{*}$) marks the complementary\\segment, drawn antiparallel; the half-\\arrowhead (harpoon) marks each 3$'$ end};
+\end{scope}
+\end{tikzpicture}

@@ -1,8 +1,8 @@
 \begin{tikzpicture}[x=1cm,y=1cm]
-\foreach \x/\id/\label in {2.2/a/{1. Declare model\\units, topology, domain},7.7/b/{2. Differentiate\\oracles and solver refinement},13.2/c/{3. Optimize\\record all proposals}}
- \node[draw,fill=Pale,note,text width=4cm,minimum height=1.5cm] (\id) at (\x,4.5) {\label};
-\foreach \x/\id/\label in {13.2/d/{4. Discretize\\exact GC / run / motif constraints},7.7/e/{5. Unused evidence\\support and uncertainty checks},2.2/f/{6. Physical validation\\independent measured function}}
- \node[draw,fill=Gold!35,note,text width=4cm,minimum height=1.5cm] (\id) at (\x,1.8) {\label};
+\foreach \x/\id/\plabel in {2.2/a/{1. Declare model\\units, topology, domain},7.7/b/{2. Differentiate\\oracles and solver refinement},13.2/c/{3. Optimize\\record all proposals}}
+ \node[draw,fill=Pale,note,text width=4cm,minimum height=1.5cm] (\id) at (\x,4.5) {\plabel};
+\foreach \x/\id/\plabel in {13.2/d/{4. Discretize\\exact GC / run / motif constraints},7.7/e/{5. Unused evidence\\support and uncertainty checks},2.2/f/{6. Physical validation\\independent measured function}}
+ \node[draw,fill=Gold!35,note,text width=4cm,minimum height=1.5cm] (\id) at (\x,1.8) {\plabel};
 \foreach \a/\b in {a/b,b/c,c/d,d/e,e/f} \draw[flow] (\a)--(\b);
 \draw[Red,dashed,-{Stealth},thick] (e.south)--(7.7,.3)--(-.5,.3)--(-.5,4.5)--(a.west);
 \node[Red,smallnote] at (7.7,-.2) {Failed candidate remains failed; model revisions need new unused evidence};

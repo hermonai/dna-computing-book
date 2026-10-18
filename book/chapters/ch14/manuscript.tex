@@ -21,7 +21,7 @@ selective sticker removal in a laboratory.
 \index{occupancy register}
 The sticker model distinguishes a long \Term{memory strand}, address-specific
 short \Term{stickers}, and a \Term{memory complex} consisting of the strand
-plus its bound stickers \cite{stickers}. We use $w$ non-overlapping domains
+plus its bound stickers \cite{Roweis1998}. We use $w$ non-overlapping domains
 $D_0,\ldots,D_{w-1}$ as addresses. Bit $b_i=1$ means its complementary
 sticker is present; $b_i=0$ means it is absent. One address is a designed
 sequence region, not a single nucleotide.
@@ -206,12 +206,12 @@ error reduction.
 
 \section{Modern molecular memory: compare the mechanisms}
 The 1998 sticker paper separates abstract operations from proposed physical
-implementations \cite{stickers}. Our reference adopts ideal addressed writes;
+implementations \cite{Roweis1998}. Our reference adopts ideal addressed writes;
 selective clear remains a physical obligation. It would be misleading to
 infer arbitrary reliable rewrites from a correct integer bitmask program.
 
 A 2026 Scaffolded DNA Computer study instead engineers a preferred
-equilibrium configuration and reports renewable computations \cite{sdc}.
+equilibrium configuration and reports renewable computations \cite{Sterin2026}.
 Its renewal experiments add input and blocker strands and reanneal.
 This is not a free, address-independent implementation of our clear
 primitive. The study also reports a substantial scale-dependent distinction:

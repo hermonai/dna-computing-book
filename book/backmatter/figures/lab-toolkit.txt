@@ -1,0 +1,18 @@
+Figure: the molecular programmer's laboratory toolkit, in six panels.
+
+1 Write (synthesis): a short strand grows on a solid support one base per
+cycle (tiles A, C, G, T, T, G stacked upward). Each step is slightly imperfect,
+so errors and truncated products grow with length.
+2 Mix and react: a tube holds several designed strands at nanomolar to
+micromolar concentration in salt buffer; strands pair or displace one another,
+and enzymes cut, join or copy them. Temperature and time matter.
+3 Copy (PCR): one duplex becomes 2, 4 and 8 copies over three cycles; each
+cycle can double the chosen interval.
+4 Separate: a gel sorts molecules mainly by length (a ladder in one lane, a
+product band in another); a bead carrying a capture strand pulls out molecules
+by sequence.
+5 Read (fluorescence): a sigmoidal signal rises over time and crosses a
+threshold; this is a bulk average measured in real time.
+6 Read (sequencing): two reads of individual molecules are compared; one
+position differs (boxed), illustrating that reads carry substitution,
+insertion and deletion errors.

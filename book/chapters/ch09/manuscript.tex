@@ -19,7 +19,7 @@ For upper strand $5'$-TTACGATCGTACGG-$3'$, choose $a=2$, $b=12$, and $l_f=l_r=3$
 The helper imposes nonoverlapping primers and canonical uppercase bases. It returns sequences and the intended interval, not binding specificity, melting behavior, secondary structure, or amplification efficiency. The two strands are antiparallel; reversing the display direction is a geometric operation, not a second complementation.
 
 \subsection{What a thermal cycle changes}
-In the usual PCR cycle, denaturation separates paired strands, annealing makes primer--template complexes available, and extension creates new covalent strands. Newly made strands can be templates in subsequent cycles \cite{neb}. Denaturation does not intentionally cut the backbone or delete the template. Annealing alone does not make a copy. Extension consumes primer and nucleotide material.
+In the usual PCR cycle, denaturation separates paired strands, annealing makes primer--template complexes available, and extension creates new covalent strands. Newly made strands can be templates in subsequent cycles \cite{NEBPCR}. Denaturation does not intentionally cut the backbone or delete the template. Annealing alone does not make a copy. Extension consumes primer and nucleotide material.
 
 This ordering creates feedback: the output of one round becomes an eligible input of another. But a new first-round strand starts at one primer and can extend beyond the other primer's site along the original template. Only when this new strand is itself copied does its primer-defined end become a physical template endpoint for the opposing extension.
 
@@ -199,7 +199,7 @@ m=-\frac{\log 10}{\log(1+e)}.
 Here $\log_{10}N_0$ uses the numerical copy count relative to one copy. Solving yields $e=10^{-1/m}-1$. Ideal doubling has $m\approx-3.32193$. Our inverse rejects slopes implying efficiency outside $[0,1]$. That should trigger examination of calibration, background, or assumptions, not silent clipping.
 \Listing{efficiency_from_slope}
 
-Experimental estimation requires its own uncertainty analysis. Svec and colleagues studied effects of instrument choice, technical replication, and dilution handling on efficiency estimates \cite{svec}. Their measured values are not inputs to our examples. Calibration over one range does not establish validity outside that range or for another sample matrix.
+Experimental estimation requires its own uncertainty analysis. Svec and colleagues studied effects of instrument choice, technical replication, and dilution handling on efficiency estimates \cite{Svec2015}. Their measured values are not inputs to our examples. Calibration over one range does not establish validity outside that range or for another sample matrix.
 
 \section{What amplification contributes to computation}
 Amplification changes multiplicity. Ideally it preserves sequence identity. It does not generate every candidate answer, decide whether a sequence satisfies an arbitrary predicate, or make an absent solution present.

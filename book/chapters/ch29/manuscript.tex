@@ -242,7 +242,7 @@ variance; biased straight-through rules replace a discrete forward choice's
 backward map by a chosen surrogate. Neither is the ordinary derivative of
 argmax. Linder and Seelig's Fast SeqProp combines normalization with a
 straight-through approach; its results motivate the distinction between relaxed
-and discrete predictor inputs \cite{dnad29:seqprop}. Our reference is not a
+and discrete predictor inputs \cite{LinderSeelig2021}. Our reference is not a
 Fast SeqProp reproduction.
 
 An exact SSA path changes reaction choices and horizon event counts discontinuously
@@ -251,7 +251,7 @@ derivative while its expected count changes smoothly. Chapter 28's independent-
 molecule expectation gives an exact derivative oracle for this first-order case;
 it does not supply a differentiable exact SSA implementation.
 Rijal and Mehta smooth discrete operations in an approximate differentiable
-Gillespie method \cite{dnad29:dga}. Compare distributions, moments and task-relevant
+Gillespie method \cite{RijalMehta2025}. Compare distributions, moments and task-relevant
 tails to exact SSA, not only attractive gradients.
 
 \section{A design loop needs independent evidence}
@@ -266,9 +266,9 @@ be genuinely orthogonal evidence. Record all candidates, exclusions and selectio
 rules, not only the best predicted score.
 
 Abstract mass-action CRNs have been optimized using differentiable programming
-\cite{dnad29:crn}. Indexed CRNs provide a contemporary framework for families of
+\cite{Mordvintsev2023}. Indexed CRNs provide a contemporary framework for families of
 species and reactions, including well-mixed and reaction-diffusion settings
-\cite{dnad29:icrn}. These are research connections, not evidence that our two-state
+\cite{Lee2025}. These are research connections, not evidence that our two-state
 example implements those systems or produces realizable DNA kinetics.
 
 \Plate{06-failures}{Failure signatures distinguish graph errors, solver error,

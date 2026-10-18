@@ -1,0 +1,32 @@
+\begin{tikzpicture}[x=1cm,y=1cm,
+  itm/.style={font=\sffamily\fontsize{8.2}{9.6}\selectfont,align=left,anchor=north west,text width=4.55cm,inner sep=0pt,
+    execute at begin node={\hyphenpenalty=10000 \exhyphenpenalty=10000 }}]
+% \Card{x}{y}{colour}{title}{demonstrated}{open}
+\newcommand{\FCard}[6]{%
+ \begin{scope}[shift={(#1,#2)}]
+ \fill[#3!7,rounded corners=4pt] (0,0) rectangle (5.05,-5.25);
+ \fill[#3,rounded corners=4pt] (0,0) rectangle (5.05,-.62);
+ \fill[#3] (0,-.35) rectangle (5.05,-.62);
+ \node[anchor=west,text=white,font=\sffamily\bfseries\small] at (.15,-.31) {#4};
+ \node[anchor=west,font=\sffamily\bfseries\footnotesize,text=#3!75!black] at (.15,-.9) {Demonstrated};
+ \node[itm] at (.2,-1.15) {#5};
+ \draw[#3!50,line width=.6pt] (.15,-3.55)--(4.9,-3.55);
+ \node[anchor=west,font=\sffamily\bfseries\footnotesize,text=#3!75!black] at (.15,-3.8) {Open};
+ \node[itm] at (.2,-4.05) {#6};
+ \end{scope}}
+\FCard{0}{0}{StrandGreen}{1\enspace Molecular learning}
+ {$\bullet$ associative memory (2011)\\$\bullet$ digit classifier (2018)\\$\bullet$ convolutional networks (2022)\\$\bullet$ nucleation classifier (2024)\\$\bullet$ learning in vitro (2025)}
+ {$\bullet$ online, continual learning\\$\bullet$ stable weight memory\\$\bullet$ real biomolecular inputs}
+\FCard{5.45}{0}{StrandRose}{2\enspace Reprogrammable hardware}
+ {$\bullet$ one tile set, 21 algorithms (2019)\\$\bullet$ gate arrays (2023)\\$\bullet$ answer as favoured assembly (2026)}
+ {$\bullet$ a molecular instruction set\\$\bullet$ compilers from programs to strands\\$\bullet$ verifying population outputs}
+\FCard{10.9}{0}{StrandAmber}{3\enspace Energy, reuse, speed}
+ {$\bullet$ fuel-driven catalysis (2007)\\$\bullet$ leakless gate designs (2018)\\$\bullet$ heat-rechargeable circuits (2025)}
+ {$\bullet$ universal, waste-free fuels\\$\bullet$ fast localised circuits\\$\bullet$ speed--accuracy--energy limits}
+\FCard{2.72}{-5.6}{DNAblue}{4\enspace Storage and data}
+ {$\bullet$ megabit-scale encoding (2012)\\$\bullet$ fountain codes (2017)\\$\bullet$ random access by PCR (2018)\\$\bullet$ epigenetic-bit writing (2024)}
+ {$\bullet$ cheap, fast writing\\$\bullet$ non-destructive random access\\$\bullet$ computing on stored data}
+\FCard{8.17}{-5.6}{StrandViolet}{5\enspace In living systems}
+ {$\bullet$ recombinase memory (2013)\\$\bullet$ ribocomputing in bacteria (2017)\\$\bullet$ recording in human cells (2022)\\$\bullet$ classifier applied to serum (2020)}
+ {$\bullet$ delivery and nuclease stability\\$\bullet$ isolation from host regulation\\$\bullet$ safety and containment}
+\end{tikzpicture}

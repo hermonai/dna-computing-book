@@ -1,0 +1,24 @@
+Figure: the book's visual language (legend).
+
+Molecules: a DNA strand is a thick coloured line with a half-arrowhead (harpoon)
+at its 3' end, and its colour identifies which strand it is; an RNA strand is a
+wavy coral line, also with a 3' harpoon; a protein or enzyme is a shaded gold
+blob; a computational object is a teal box; an observation or measurement is a
+violet box with a dash-dot outline.
+
+Pairing, bonds and domains: a duplex is two antiparallel strands joined by grey
+rungs (base pairs). Two strands lying end to end on one template leave a nick,
+a missing backbone bond, marked in red. A solid line denotes a covalent bond and
+a dotted line a hydrogen bond. Labelled boxes on a strand are domains; the
+starred domain on the partner strand (t*, b*) is the complementary segment.
+
+Arrow meanings: a solid black arrow is a chemical reaction; a pair of
+half-arrows pointing in opposite directions is a reversible association; a
+dashed black arrow is a physical transfer of material; a teal arrow is a
+symbolic map or data flow; a violet dash-dot arrow with an open head is an
+observation supporting an inference; a red line ending in a bar is inhibition.
+
+Bases and objects: base tiles A (green), T (red), G (amber), C (blue) and
+U (purple, RNA only); a microcentrifuge tube; a bead carrying a capture probe
+strand; a fluorophore (six-pointed star, F) and quencher (black dot, Q); and a
+gel with wells at the top in which smaller fragments migrate further.

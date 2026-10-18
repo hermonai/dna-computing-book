@@ -18,10 +18,13 @@
 \newcommand{\PlateDirectory}{}
 \newcommand{\Plate}[3]{\par\medskip\noindent\begin{minipage}{\linewidth}\centering
 \resizebox{\linewidth}{!}{\input{\PlateDirectory/#1.tex}}
-\captionof{figure}{#2}\label{#3}\end{minipage}\par\medskip}
+\captionof{figure}{#2}\FigureLabel{#3}\end{minipage}\par\medskip}
 \newcommand{\Listing}[1]{\par\Needspace{5\baselineskip}
 \VerbatimInput[breaklines,breakanywhere,fontsize=\small,frame=single,numbers=left,numbersep=4pt]{\Generated/#1.py}\par\medskip}
 \let\OriginalBookLabel\label
+% Figure labels follow \captionof, which can locally restore the unscoped
+% \label; apply the chapter namespace explicitly so references always resolve.
+\newcommand{\FigureLabel}[1]{\edef\CurrentBookLabel{\noexpand\OriginalBookLabel{\ChapterNamespace#1}}\CurrentBookLabel}
 \let\OriginalBookRef\ref
 \let\OriginalBookAutoref\autoref
 \makeatletter

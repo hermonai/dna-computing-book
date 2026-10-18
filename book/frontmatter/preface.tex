@@ -1,0 +1,149 @@
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+\markboth{Preface}{Preface}
+
+In November 1994 Leonard Adleman reported that DNA in a test tube had found a
+route through a seven-city map of one-way roads that visits every city exactly
+once.\cite{Adleman1994} The instance was tiny and the laboratory work took
+about a week, but the idea was startling: a computation could be written
+in the language of molecules, carried out by the chemistry of base pairing and
+enzymes, and read back as evidence on a gel.
+
+Three decades later the idea has grown into a field. Designed DNA strands now
+implement logic circuits with hundreds of molecular species, chemical reaction
+networks that behave like programs, neural networks that classify patterns and
+even learn from molecular examples, self-assembling crystals that execute
+algorithms as they grow, nanoscale shapes folded from a single scaffold strand,
+archives that store digital files, and recorders that write the history of a
+living cell into its own genome. In September 2026 a scaffolded DNA computer
+whose correct answer is simply the most thermodynamically favoured assembly
+was reported to execute programs such as binary arithmetic and graph
+reachability.\cite{Sterin2026} This book explains how these systems work, why
+they work, and what it takes to know that they have worked.
+
+\section*{What is DNA computing?}
+\Term{DNA computing} uses designed molecular interactions to carry out a
+specified computation. Information is represented physically: by which
+sequences are present, how many copies exist, which strands are bound to which
+partners, and where molecules sit in space. Computation proceeds by physical
+processes: complementary strands recognise each other, enzymes cut, join and
+copy, strands displace one another, and tiles assemble. An answer is whatever
+we can measure about the final molecular state and interpret against the
+original question.
+
+That definition already contains the three habits of mind this book asks
+you to practise from the first page.
+\begin{enumerate}
+\item \textbf{Separate the specification, the mechanism and the evidence.}
+A formal problem says what a correct answer is; molecules implement an
+imperfect physical process; an instrument returns a signal that must be
+interpreted. Most mistakes in molecular computing come from collapsing these
+three levels into one.
+\item \textbf{Count copies, not just identities.} A tube holds a
+\emph{population}: many molecules, some identical, some missing, all finite.
+Ideal set-theoretic reasoning becomes probability, concentration and noise.
+\item \textbf{A model prediction is not a measurement.} We derive, simulate
+and test models carefully, and we label every computed number as a model
+output unless an experiment is cited.
+\end{enumerate}
+
+\section*{Why study it now?}
+DNA computing sits where several revolutions meet. DNA synthesis and
+sequencing have become cheap enough to write and read millions of designed
+sequences. Thermodynamic models and design software predict hybridisation well
+enough to engineer reliable interactions. Theoretical computer science has
+supplied precise models (chemical reaction networks, tile assembly, molecular
+automata) whose power and limits are now well understood. And biology itself
+is the deepest example of molecular information processing: every cell
+regulates, copies, repairs and records information encoded in nucleic acids.
+
+The motivation is not to replace silicon. Electronic computers will remain
+faster for almost every arithmetic task. Molecular computation matters where
+electronics cannot go: inside a test tube of patient sample, on the surface of
+a cell, within a nanostructure, or in an archive meant to last centuries. Its
+most important applications are likely to be molecular decisions made in
+molecular environments: diagnostics that compute on biomarkers, therapeutics
+that act only when a logical condition holds, nanofabrication programmed by
+sequence, and information storage at densities no tape can approach.
+
+\section*{Who this book is for}
+The book is written for undergraduates in biology, biochemistry,
+bioengineering, chemistry, physics, computer science and electrical
+engineering, and for graduate students and researchers entering molecular
+programming. We assume secondary-school biology, algebra and some comfort with
+reading a short program. Everything else (the chemistry of strands,
+thermodynamics, kinetics, probability, automata, complexity and simulation) is
+introduced where it is first needed. Two appendices provide compact primers:
+\hyperref[app:biology]{Appendix~\ref*{app:biology}} for readers arriving from
+computing, and \hyperref[app:math]{Appendix~\ref*{app:math}} for readers
+arriving from the life sciences.
+
+\section*{How the book teaches}
+Every chapter is built around a small, concrete object that you can inspect
+by hand: a six-vertex graph, a three-strand displacement reaction, a two-bit
+sticker register, a five-tile crystal. The pattern is always the same.
+\emph{Predict} what the object will do. \emph{Derive} the mechanism and its
+mathematics with every intermediate step visible. \emph{Implement} a small
+reference model. \emph{Check} it against an independent calculation.
+\emph{Break} an assumption and see what fails. Only then do we generalise.
+
+Illustrations are a principal teaching medium rather than decoration.
+Molecular plates show strands, domains, enzymes and reaction intermediates in
+successive states; algorithmic plates show graphs, state transitions and traces.
+Wherever the two meet, a molecular panel is paired with its symbolic
+representation so you can see what the abstraction keeps and what it discards.
+The conventions are summarised in \hyperref[sec:conventions]{the visual
+conventions} that follow this preface.
+
+The implementation-first progression was informed by build-from-scratch
+textbooks in other fields, notably Sebastian Raschka's \emph{Build a Large
+Language Model (From Scratch)}, whose companion overview describes the
+approach.\cite{RaschkaLLM} The prose, code, numerical examples, exercises and
+illustrations of this book are original.
+
+\section*{What is in the book}
+Thirty-two chapters are grouped into eight parts.
+\begin{description}
+\item[Part I: Computing with molecules.] Adleman's experiment, the logic of
+generate-filter-verify search, complexity, and the material cost of
+molecular parallelism.
+\item[Part II: The molecular toolkit.] DNA structure, hybridisation
+thermodynamics, reaction kinetics, enzymes, PCR amplification, and
+separation and measurement.
+\item[Part III: Encoding and molecular algorithms.] Sequence design, filtering
+algorithms, satisfiability constructions and sticker memories.
+\item[Part IV: Formal models.] Splicing systems, automata, Watson--Crick
+automata and universality.
+\item[Part V: Programming molecular dynamics.] Toehold-mediated strand
+displacement, chemical reaction networks as programs, digital, analog and
+neural DNA circuits, and algorithmic self-assembly and DNA origami.
+\item[Part VI: Reliability, scale and storage.] Noise and fault models,
+resource limits, DNA data storage with error-correcting codes, and
+reproducible laboratory evidence.
+\item[Part VII: Modelling and simulation.] Symbolic, kinetic, stochastic and
+differentiable models of molecular systems.
+\item[Part VIII: From molecules to genomes.] Gene regulation and development,
+modern molecular programming in realistic environments, and the bridge from
+molecular to genomic computation.
+\end{description}
+An Epilogue surveys the research frontier and the open problems that a reader
+of this book is now equipped to attack.
+
+\section*{Companion code}
+Each chapter has a small reference implementation in Python, with tests that
+compare it against independent calculations. Printed listings are extracted
+from those tested files, and numerical tables are generated from the same
+results, so the book and its code cannot silently disagree. Readers who do not
+program can skip the listings without losing the argument; readers who do
+should run, modify and break them.
+
+\section*{A note on scope and evidence}
+This is an introductory scientific textbook. Its laboratory discussions
+explain principles, controls and failure modes; they are not validated
+protocols and do not replace supervised training. Executable models establish
+results within their stated assumptions. Where the book reports experimental
+findings it cites the primary literature, and it states when a source was read
+only in part. The present text is a review edition: its technical content has
+been checked by its authors and by executable tests, but independent
+specialist review and classroom testing are still in progress. Corrections and
+suggestions are warmly welcome.

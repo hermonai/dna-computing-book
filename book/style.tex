@@ -11,6 +11,10 @@
 \captionsetup{hypcap=false,justification=raggedright,singlelinecheck=false}
 \usepackage{makeidx}
 \makeindex
+\usepackage[numbers,sort&compress]{natbib}
+\setlength{\bibsep}{3pt plus 1pt}
+\renewcommand{\bibfont}{\small}
+\renewcommand{\bibsection}{\chapter*{Bibliography}\addcontentsline{toc}{chapter}{Bibliography}\markboth{Bibliography}{Bibliography}}
 \usepackage{xurl,hyperref}
 \definecolor{BookBlue}{HTML}{173A55}
 \definecolor{BookPale}{HTML}{EDF5FA}
@@ -35,7 +39,7 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[chapter]
 \newcommand{\Callout}[2]{\par\medskip\noindent\colorbox{BookPale}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{\raggedright\vspace{5pt}\textbf{\sffamily\color{BookBlue}#1}\par\smallskip #2\par\vspace{5pt}}}\par\medskip}
-\newcommand{\DeepFigure}[3]{\par\medskip\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=\linewidth]{../build/figures/#1.pdf}\captionof{figure}{#2}\label{#3}\end{minipage}\par\medskip}
+\newcommand{\DeepFigure}[3]{\par\medskip\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=\linewidth]{../build/figures/#1.pdf}\captionof{figure}{#2}\FigureLabel{#3}\end{minipage}\par\medskip}
 \newcommand{\Term}[1]{\textbf{#1}\index{#1}}
 \newcommand{\Code}[1]{\VerbatimInput[fontsize=\footnotesize,numbers=left,numbersep=5pt,frame=single]{#1}}
 
@@ -45,6 +49,6 @@
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \providecommand{\passthrough}[1]{#1}
 \newcounter{none}
-\newcommand{\NativeFigure}[3]{\par\medskip\noindent\begin{minipage}{\linewidth}\centering\resizebox{\linewidth}{!}{\input{chapters/ch03/figures/#1.tex}}\captionof{figure}{#2}\label{#3}\end{minipage}\par\medskip}
+\newcommand{\NativeFigure}[3]{\par\medskip\noindent\begin{minipage}{\linewidth}\centering\resizebox{\linewidth}{!}{\input{chapters/ch03/figures/#1.tex}}\captionof{figure}{#2}\FigureLabel{#3}\end{minipage}\par\medskip}
 \fancyhead[R]{\small\sffamily Textbook review / Chapters 1--3}
 \setcounter{tocdepth}{1}

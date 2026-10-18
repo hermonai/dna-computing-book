@@ -1,0 +1,24 @@
+Figure: DNA as a molecule and as this book draws it.
+
+Panel A shows a short stretch of B-form double-stranded DNA seen from the side,
+drawn with approximately correct proportions (about 2 nm across, about 0.34 nm
+rise per base pair, about 10.5 base pairs per right-handed helical turn). Two
+sugar-phosphate backbones (blue and violet) wind around a shared axis in
+opposite 5'-to-3' directions. Paler backbone segments lie behind the helix axis.
+Coloured rungs are base pairs; each rung is split into two halves coloured by
+the base on each strand (A green, T red, G amber, C blue). The unequal gaps
+between successive front-facing backbone passes are the major and minor grooves.
+
+Panel B unwinds six base pairs into a flat ladder. Each strand is a covalent
+chain of sugars (pentagons) and phosphates (dots). Bases project inward and pair
+A with T (two dashed hydrogen bonds) and G with C (three). The upper strand reads
+5'-ACGTTG-3'; the lower strand, read in its own 5'-to-3' direction, is
+5'-CAACGT-3', the reverse complement. Stacking between neighbouring base pairs
+also stabilises the duplex; the flat drawing does not show stacking geometry.
+
+Panel C is the abstraction used throughout the book. Each strand is a thick
+line whose half-arrowhead (harpoon) marks the 3' end. Named domains (a, b) are
+sequence segments with one job; a starred domain (a*) is the complementary
+segment on the partner strand, drawn antiparallel. Grey rungs indicate pairing.
+The abstraction keeps orientation and complementarity but omits the actual
+sequence, its thermodynamics and its three-dimensional shape.

@@ -1,0 +1,18 @@
+Figure: the central dogma and the molecular machines that carry it out.
+
+Panel 1 (transcription). A double-stranded DNA gene runs left to right. The
+upper (coding) strand runs 5' to 3'; the lower (template) strand runs 3' to 5'.
+A green transcription factor sits on the promoter, a shaded region upstream of
+the gene. Further right, a gold RNA polymerase holds the two strands apart in a
+transcription bubble. Inside the bubble a short new RNA strand (coral, wavy) is
+paired with the template; the RNA leaves the polymerase upstream, so its 5' end
+is the oldest part. An arrow shows the polymerase moving downstream. Note: the
+template is read 3' to 5' and the RNA is made 5' to 3'.
+
+Panel 2 (translation). The messenger RNA, now in the cytoplasm, runs 5' to 3'
+with codons AUG, GCU, UUC, GGA, ACC and UAA marked beneath it. A two-subunit
+ribosome sits on the mRNA and moves 5' to 3'. A chain of amino-acid beads (the
+growing protein) emerges from the ribosome. A dashed arrow shows the mRNA
+travelling from the gene to the ribosome, and a green dashed arrow loops back
+from the protein to the transcription factor, indicating that some proteins
+regulate genes (feedback). Molecules are schematic and not to scale.

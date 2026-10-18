@@ -2,7 +2,7 @@
   "title": "DNA Computing",
   "subtitle": "Molecular mechanisms, algorithms and evidence",
   "main": "book/main.tex",
-  "status": "complete manuscript; publication review pending",
+  "status": "complete manuscript, undergraduate textbook revision in progress; publication review pending",
   "planned_chapters": 32,
   "legacy_root": "archive/legacy/dna-computing-book",
   "chapters": [
@@ -230,5 +230,67 @@
       "reference": "book/chapters/ch32/reference.py",
       "previous_source": "drafts/ch32/manuscript.tex"
     }
+  ],
+  "parts": [
+    {
+      "number": 1,
+      "title": "Computing with molecules",
+      "first_chapter": 1,
+      "source": "book/parts/part1.tex"
+    },
+    {
+      "number": 2,
+      "title": "The molecular toolkit",
+      "first_chapter": 5,
+      "source": "book/parts/part2.tex"
+    },
+    {
+      "number": 3,
+      "title": "Encoding and molecular algorithms",
+      "first_chapter": 11,
+      "source": "book/parts/part3.tex"
+    },
+    {
+      "number": 4,
+      "title": "Formal models of molecular computation",
+      "first_chapter": 15,
+      "source": "book/parts/part4.tex"
+    },
+    {
+      "number": 5,
+      "title": "Programming molecular dynamics",
+      "first_chapter": 19,
+      "source": "book/parts/part5.tex"
+    },
+    {
+      "number": 6,
+      "title": "Reliability, scale and storage",
+      "first_chapter": 23,
+      "source": "book/parts/part6.tex"
+    },
+    {
+      "number": 7,
+      "title": "Modelling and simulation",
+      "first_chapter": 27,
+      "source": "book/parts/part7.tex"
+    },
+    {
+      "number": 8,
+      "title": "From molecules to genomes",
+      "first_chapter": 30,
+      "source": "book/parts/part8.tex"
+    }
+  ],
+  "backmatter": [
+    "book/backmatter/epilogue.tex",
+    "book/backmatter/appendix-biology.tex",
+    "book/backmatter/appendix-math.tex",
+    "book/backmatter/appendix-timeline.tex",
+    "book/backmatter/glossary.tex",
+    "book/backmatter/references.bib"
+  ],
+  "frontmatter": [
+    "book/frontmatter/preface.tex",
+    "book/frontmatter/how-to-use.tex"
   ]
 }

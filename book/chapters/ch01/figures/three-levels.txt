@@ -1,0 +1,15 @@
+Figure: three levels of a DNA computation, drawn as three horizontal bands.
+
+Formal level (top, teal): the instance X is the six-vertex directed teaching
+graph with vertices A to F. The specification asks whether a route from A to F
+visits every vertex exactly once; a proposed witness such as ABCDEF can be
+checked in a number of steps proportional to the number of vertices.
+Physical level (middle, blue): an "encode" arrow leads down to a tube holding a
+population M with many copies of many routes. Reaction arrows lead through
+joining by ligase, copying by PCR, separation on a gel and capture on a bead.
+A red note warns that each step has finite yield and can keep wrong molecules.
+Interpretive level (bottom, violet): a "measure" arrow leads to an observation
+O, a staircase of gel bands. Observation arrows lead to a decoded order
+ABCDEF and then to a claim: a witness exists, checked against X; a missing band
+would not prove that none exists. An "interpret and verify" arrow returns to the
+formal level, closing the loop.

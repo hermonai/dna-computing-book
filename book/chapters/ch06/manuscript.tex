@@ -197,7 +197,7 @@ This is a sensitivity calculation, not a universal mismatch penalty.
 An isolated base-pair count ignores sequence order. A
 \Term{nearest-neighbor model} assigns contributions to adjacent paired
 layers, with additional end terms. SantaLucia's 1998 Table 2 gives a
-specific parameter convention at 1 M NaCl \cite{santalucia}.
+specific parameter convention at 1 M NaCl \cite{SantaLucia1998}.
 We use that table consistently rather than mixing initiation terms from
 one parameterization with step energies from another.
 
@@ -280,7 +280,7 @@ unattainable at strongly unequal totals. Always state the fraction being measure
 Salt conditions, mismatch identities, alternative structures, and parameter
 versions are part of a physical-model specification. NUPACK's documentation
 exposes material, temperature, ensemble, and ionic settings separately
-\cite{nupack}. Our implementation intentionally accepts only the declared
+\cite{NUPACKmodel}. Our implementation intentionally accepts only the declared
 1 M NaCl convention. Entering a different sodium concentration raises an
 error rather than applying an unreviewed correction.
 

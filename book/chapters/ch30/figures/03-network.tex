@@ -1,11 +1,11 @@
 \begin{tikzpicture}[font=\small\sffamily,>=Stealth]
 \path[use as bounding box] (0,-6.1) rectangle (14,5.5);
 \node[anchor=west,Blue] at (0,5.2) {A. Stipulated circuit and phase-plane consequences};
-\foreach \y/\label in {3.6/A,1.9/B} {
+\foreach \y/\plabel in {3.6/A,1.9/B} {
  \draw[Blue,very thick] (.3,\y)--(4.3,\y);
  \filldraw[Gold!60!black,fill=Gold] (.5,\y-.14) rectangle (1.3,\y+.14);
  \draw[->,Blue] (2,\y+.3)--(3,\y+.3);
- \node[smallnote] at (2.7,\y-.4) {locus \label};
+ \node[smallnote] at (2.7,\y-.4) {locus \plabel};
 }
 \node[circle,draw=Green,fill=Green!15] (A) at (4.5,3.6) {A};
 \node[circle,draw=Red,fill=Red!12] (B) at (4.5,1.9) {B};

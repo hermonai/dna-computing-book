@@ -1,0 +1,22 @@
+Figure: five research frontiers in DNA computing, as five coloured cards.
+Each card lists representative demonstrations (with year) above a rule and open
+problems below it.
+1 Molecular learning: associative memory (2011); winner-take-all digit
+classifier (2018); convolutional networks (2022); classification by nucleation
+(2024); supervised learning in vitro (2025). Open: online, continual learning;
+stable weight memory; real biomolecular inputs.
+2 Reprogrammable machines: one tile set running 21 algorithms (2019);
+programmable gate arrays (2023); a scaffolded computer whose answer is the
+favoured assembly (2026). Open: a molecular instruction set; compilers from
+programs to strands; verifying population outputs.
+3 Energy, reuse and speed: fuel-driven catalytic networks (2007); leakless gate
+designs (2018); heat-rechargeable circuits and networks (2025). Open:
+universal, waste-free fuels; fast localised circuits; speed-accuracy-energy
+limits.
+4 Storage and data: megabit-scale encoding (2012); fountain codes (2017);
+random access by PCR (2018); epigenetic-bit writing (2024). Open: cheap, fast
+writing; non-destructive random access; computing on stored data.
+5 Computing in living systems: recombinase logic and memory (2013);
+ribocomputing in bacteria (2017); classifier applied to serum (2020);
+sequential recording in human cells (2022). Open: delivery and nuclease
+stability; isolation from host regulation; safety and containment.

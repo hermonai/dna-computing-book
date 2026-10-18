@@ -1,0 +1,48 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+% three horizontal bands
+\fill[CompTeal!7,rounded corners=4pt] (0,0) rectangle (16,-2.55);
+\fill[DNAblue!6,rounded corners=4pt] (0,-2.8) rectangle (16,-5.75);
+\fill[EvidenceViolet!7,rounded corners=4pt] (0,-6.0) rectangle (16,-8.55);
+\node[anchor=north west,font=\sffamily\bfseries\small,text=CompTeal!70!black] at (.15,-.12) {FORMAL: what counts as an answer};
+\node[anchor=north west,font=\sffamily\bfseries\small,text=DNAblue!80!black] at (.15,-2.92) {PHYSICAL: what the molecules do};
+\node[anchor=north west,font=\sffamily\bfseries\small,text=EvidenceViolet!80!black] at (.15,-6.12) {INTERPRETIVE: what the evidence supports};
+% ---------------- formal: instance X and predicate
+\foreach \v/\x/\y in {A/.9/-1.45,B/1.75/-.85,C/1.75/-2.05,D/2.65/-1.45,E/3.5/-.85,F/4.35/-1.45}{
+  \node[circle,draw=Ink,fill=white,inner sep=0pt,minimum size=4.6mm,font=\sffamily\scriptsize] (f\v) at (\x,\y) {\v};}
+\foreach \a/\b in {A/B,A/C,B/D,C/D,D/E,D/F,E/F}{\draw[-{Stealth[length=1.3mm]},Ink,line width=.6pt] (f\a)--(f\b);}
+\draw[-{Stealth[length=1.3mm]},Ink,line width=.6pt] (fB) to[bend left=22] (fC);
+\draw[-{Stealth[length=1.3mm]},Ink,line width=.6pt] (fC) to[bend left=22] (fB);
+\node[slab,anchor=west] at (4.75,-1.95) {instance $X$: a directed graph};
+\node[compbox,anchor=west,text width=6.2cm,align=left,font=\sffamily\footnotesize] at (9.1,-1.12)
+  {specification: is there a route from $A$ to $F$ that visits every vertex exactly once? \\ a witness such as $ABCDEF$ can be checked in $O(n)$ steps};
+% ---------------- physical: population M -> observation O
+\begin{scope}[shift={(1.0,-5.6)},scale=.62]\Tube{(0,0)}{DNAsky}{}\end{scope}
+\foreach \k/\c in {0/DNAblue,1/StrandGreen,2/StrandRose}{\draw[DNAblue!50!\c,line width=1.3pt] (.84,-4.97-.12*\k)--(1.16,-4.97-.12*\k);}
+\node[slab,anchor=west,align=left] at (1.85,-4.0) {population $M$:\\many copies,\\many routes};
+\draw[react] (3.75,-4.35)--(4.55,-4.35);
+\Enzyme{(5.35,-4.3)}{.42}{\fontsize{6.5}{6.5}\selectfont ligase}
+\node[slab] at (5.35,-5.1) {join};
+\draw[react] (6.15,-4.35)--(6.95,-4.35);
+\node[slab,align=center] at (7.55,-4.35) {PCR\\copy};
+\draw[react] (8.15,-4.35)--(8.95,-4.35);
+\fill[GelBg,rounded corners=1pt] (9.15,-3.35) rectangle (10.35,-5.45);
+\fill[InkSoft] (9.35,-3.5) rectangle (10.15,-3.42);\fill[DNAblue] (9.35,-4.6) rectangle (10.15,-4.5);
+\node[slab] at (9.75,-5.62) {separate};
+\draw[react] (10.55,-4.35)--(11.35,-4.35);
+\Bead{(11.8,-4.35)}{.3}\draw[DNAblue,line width=1.4pt] (12.1,-4.35)--(12.65,-4.35);
+\node[slab] at (12.1,-5.0) {capture};
+\node[slab,anchor=west,align=left,text=RejectRed!80!black] at (13.0,-4.3) {each step has\\finite yield and\\can keep wrong\\molecules};
+% ---------------- interpretive: signal -> claim
+\fill[GelBg,rounded corners=1pt] (.6,-6.6) rectangle (3.0,-8.35);
+\foreach \k/\yy in {0/-8.0,1/-7.75,2/-7.45,3/-7.15,4/-6.85}{\fill[DNAblue] (.75+.45*\k,\yy) rectangle (1.05+.45*\k,\yy+.07);}
+\node[slab,anchor=west,align=left] at (3.2,-7.45) {observation $O$:\\band positions};
+\draw[observe] (5.0,-7.45)--(6.3,-7.45);
+\node[evbox,anchor=west] at (6.45,-7.45) {decoded order $ABCDEF$};
+\draw[observe] (9.85,-7.45)--(10.85,-7.45);
+\node[evbox,anchor=west,text width=4.15cm,align=left,execute at begin node={\hyphenpenalty=10000 }] at (11.0,-7.45) {claim: a witness exists, checked against $X$. A missing band would not prove there is none.};
+% ---------------- connecting arrows between levels
+\draw[data] (7.4,-2.3)--(7.4,-3.3) node[midway,right,slab,text=CompTeal!70!black] {encode};
+\draw[observe] (9.75,-5.8)--(9.75,-6.55) node[midway,right,slab,text=EvidenceViolet] {measure};
+\draw[data] (15.72,-6.75)--(15.72,-2.25);
+\node[slab,text=CompTeal!70!black,anchor=east] at (15.6,-2.32) {interpret and verify};
+\end{tikzpicture}

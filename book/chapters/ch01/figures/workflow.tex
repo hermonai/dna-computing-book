@@ -1,0 +1,79 @@
+\begin{tikzpicture}[x=1cm,y=1cm,
+  stp/.style={panel,minimum width=4.95cm,minimum height=4.35cm,anchor=north west},
+  logic/.style={compbox,font=\sffamily\footnotesize,minimum width=4.55cm,inner sep=3pt},
+  hd/.style={anchor=west,font=\sffamily\bfseries\small,text=Ink}]
+% ================================================================ row 1
+% ---- 1 encode
+\node[stp] at (0,0) {};
+\node[hd] at (.12,-.3) {\tikz[baseline=-.6ex]\node[stepbadge=DNAblue]{1};\ Encode};
+\foreach \v/\x/\y in {A/.55/-1.25,B/1.25/-.85,C/1.25/-1.65,D/1.95/-1.25}{\node[circle,draw=Ink,fill=white,inner sep=0pt,minimum size=4.2mm,font=\sffamily\scriptsize] (g\v) at (\x,\y) {\v};}
+\foreach \a/\b in {A/B,A/C,B/D,C/D}{\draw[-{Stealth[length=1.3mm]},Ink,line width=.6pt] (g\a)--(g\b);}
+\draw[-{Stealth[length=1.3mm]},Ink,line width=.6pt] (gB) to[bend left=25] (gC);
+\draw[data] (2.35,-1.25)--(2.85,-1.25);
+\node[dom=DNAblue,minimum width=7mm] at (3.35,-.95) {$a_R b_L$};
+\node[dom=DNAsky,minimum width=7mm] at (4.3,-.95) {$b_R c_L$};
+\node[dom=StrandViolet,minimum width=7mm] at (3.82,-1.6) {$\overline{b_L b_R}$};
+\node[slab,align=left,anchor=north west] at (2.95,-1.95) {edge strands,\\vertex splints};
+\node[slab,align=left,anchor=north west] at (.2,-2.05) {part of the\\graph $G$};
+\node[logic,anchor=south] at (2.48,-4.2) {graph $G\mapsto$ strand library};
+% ---- 2 anneal and ligate
+\node[stp] at (5.25,0) {};
+\node[hd] at (5.37,-.3) {\tikz[baseline=-.6ex]\node[stepbadge=DNAblue]{2};\ Anneal and ligate};
+\begin{scope}[shift={(6.0,-3.0)},scale=.78]\Tube{(0,0)}{DNAsky}{}\end{scope}
+\draw[backbone,DNAblue,line width=1.8pt] (6.95,-1.15)--(7.75,-1.15);
+\draw[backbone,DNAsky,line width=1.8pt] (7.83,-1.15)--(8.6,-1.15);
+\draw[strand,StrandGreen,line width=1.8pt] (8.68,-1.15)--(9.5,-1.15);
+\draw[strandL,StrandViolet,line width=1.6pt] (8.2,-1.45)--(7.3,-1.45);
+\draw[strandL,StrandViolet,line width=1.6pt] (9.15,-1.45)--(8.35,-1.45);
+\Enzyme{(9.25,-.95)}{.34}{\fontsize{6}{6}\selectfont L}
+\node[slab,align=left,anchor=north west] at (6.85,-1.85) {splints align edges;\\ligase (L) seals nicks;\\long random walks form};
+\node[logic,anchor=south] at (7.73,-4.2) {generate legal walks};
+% ---- 3 endpoint PCR
+\node[stp] at (10.5,0) {};
+\node[hd] at (10.62,-.3) {\tikz[baseline=-.6ex]\node[stepbadge=DNAblue]{3};\ Amplify ends};
+\draw[backbone,DNAblue,line width=1.8pt] (10.9,-1.35)--(14.9,-1.35);
+\draw[backbone,StrandViolet,line width=1.8pt] (10.9,-1.65)--(14.9,-1.65);
+\draw[strand,StrandRose,line width=1.8pt] (10.95,-1.05)--(11.75,-1.05);
+\draw[strandL,StrandRose,line width=1.8pt] (14.85,-1.95)--(14.05,-1.95);
+\node[slab,text=StrandRose,anchor=west] at (11.85,-1.0) {primer at $A$};
+\node[slab,text=StrandRose,anchor=east] at (13.95,-2.0) {primer at $F$};
+\node[slab,align=left,anchor=north west] at (10.9,-2.35) {only walks that start at $A$\\and end at $F$ grow\\exponentially};
+\node[logic,anchor=south] at (12.98,-4.2) {$\mathcal E$: endpoints are $A$, $F$};
+% ================================================================ row 2
+% ---- 4 size selection
+\node[stp] at (0,-4.75) {};
+\node[hd] at (.12,-5.05) {\tikz[baseline=-.6ex]\node[stepbadge=DNAblue]{4};\ Select by length};
+\fill[GelBg,rounded corners=1.5pt] (.4,-5.45) rectangle (2.6,-8.45);
+\foreach \lx in {.9,1.95}{\fill[InkSoft] (\lx-.32,-5.6) rectangle (\lx+.32,-5.5);}
+\foreach \yy/\t in {-6.0/200,-6.6/160,-7.2/120,-7.8/80}{\fill[InkSoft!70] (.6,\yy) rectangle (1.2,\yy+.07);\node[slab,anchor=east] at (.55,\yy+.03) {\scriptsize\t};}
+\fill[DNAblue!80] (1.63,-6.62) rectangle (2.27,-6.52);\fill[DNAblue] (1.63,-7.22) rectangle (2.27,-7.1);\fill[DNAblue!60] (1.63,-7.85) rectangle (2.27,-7.77);
+\draw[RejectRed,line width=1pt,rounded corners=1pt] (1.55,-7.32) rectangle (2.35,-7.0);
+\node[slab,align=left,anchor=west] at (2.75,-6.5) {cut out the\\120-base band\\($6\times20$ bases)};
+\node[logic,anchor=south] at (2.48,-8.95) {$\mathcal L$: exactly $n=6$ vertices};
+% ---- 5 affinity selection
+\node[stp] at (5.25,-4.75) {};
+\node[hd] at (5.37,-5.05) {\tikz[baseline=-.6ex]\node[stepbadge=DNAblue]{5};\ Select by content};
+\foreach \k/\v in {0/B,1/C,2/D,3/E}{
+  \Bead{(5.85+1.12*\k,-6.25)}{.27}
+  \draw[DNAblue,line width=1.5pt] (5.85+1.12*\k,-5.98)--(5.85+1.12*\k,-5.55);
+  \node[slab] at (5.85+1.12*\k,-6.8) {$\overline{\v}$};}
+\node[slab,align=left,anchor=north west] at (5.45,-7.05) {capture probes $\overline{B},\dots,\overline{E}$: keep\\strands that bind each in turn};
+\node[logic,anchor=south] at (7.73,-8.95) {$\mathcal C$: every vertex occurs};
+% ---- 6 read and verify
+\node[stp] at (10.5,-4.75) {};
+\node[hd] at (10.62,-5.05) {\tikz[baseline=-.6ex]\node[stepbadge=DNAblue]{6};\ Read and verify};
+\fill[GelBg,rounded corners=1.5pt] (10.75,-5.45) rectangle (13.1,-7.65);
+\foreach \k/\yy in {0/-7.25,1/-6.95,2/-6.6,3/-6.25,4/-5.9}{\fill[DNAblue] (10.95+.42*\k,\yy) rectangle (11.25+.42*\k,\yy+.07);}
+\node[slab,anchor=west,align=left] at (13.2,-5.85) {position $\Rightarrow$ order};
+\foreach \k/\v in {0/B,1/C,2/D,3/E,4/F}{\node[slab] at (11.1+.42*\k,-7.85) {\v};}
+\node[slab,anchor=west] at (13.2,-7.95) {lanes};
+\node[font=\sffamily\bfseries\small,text=Ink] at (14.55,-6.65) {$ABCDEF$};
+\node[evbox,anchor=west,font=\sffamily\footnotesize] at (13.25,-7.3) {edges legal $\checkmark$};
+\node[logic,anchor=south] at (12.98,-8.95) {independent check of the witness};
+% ================================================================ flow arrows (material transfer)
+\draw[move] (4.98,-2.0)--(5.22,-2.0);
+\draw[move] (10.23,-2.0)--(10.47,-2.0);
+\draw[move,rounded corners=6pt] (12.98,-4.38)--(12.98,-4.55)--(2.48,-4.55)--(2.48,-4.72);
+\draw[move] (4.98,-6.75)--(5.22,-6.75);
+\draw[move] (10.23,-6.75)--(10.47,-6.75);
+\end{tikzpicture}

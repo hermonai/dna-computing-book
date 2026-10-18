@@ -9,9 +9,9 @@
 \node[smallnote,anchor=west,text width=3.4cm,align=left] at (4.25,3.1) {$t=1$:\\left $z=.9$; right $z=.1$};
 \node[smallnote,Blue] at (2.1,2.25) {solid edges: recorded parent};
 \draw[->,Red,thick] (8.2,3.1)--(13.3,3.1);
-\foreach \x/\label/\z in {8.5/right/.1,10.65/root/.2,12.9/left/.9} {
+\foreach \x/\plabel/\z in {8.5/right/.1,10.65/root/.2,12.9/left/.9} {
  \draw[Red] (\x,2.9)--(\x,3.3);
- \node[smallnote] at (\x,3.7) {\label};
+ \node[smallnote] at (\x,3.7) {\plabel};
  \node[smallnote] at (\x,2.5) {$z=\z$};
 }
 \node[smallnote] at (10.7,4.9) {snapshot pseudotime axis};

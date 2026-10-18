@@ -1,0 +1,24 @@
+Figure: the molecular workflow of a generate-filter-verify computation, with
+each physical step paired with the logical predicate it is meant to implement.
+
+1 Encode: a small part of the teaching graph (vertices A, B, C, D) is mapped to
+a strand library: edge strands such as aR-bL and bR-cL and a complementary vertex
+splint for bL-bR. Logic: graph G maps to a strand library.
+2 Anneal and ligate: in a tube, splints align consecutive edge strands end to
+end and a ligase (L) seals the nicks, so long walks through the graph form at
+random. Logic: generate legal walks.
+3 Amplify ends: primers bound at the A code and at the F code make only walks
+that start at A and end at F grow exponentially by PCR. Logic: predicate E,
+endpoints are A and F.
+4 Select by length: a gel next to a size ladder (80-200 bases) shows several
+product bands; the 120-base band (six 20-base vertex codes) is cut out. Logic:
+predicate L, exactly six vertices.
+5 Select by content: beads carrying capture probes complementary to B, C, D and
+E retain strands that bind each probe in turn. Logic: predicate C, every vertex
+occurs.
+6 Read and verify: a graduated-PCR gel with lanes B to F shows bands whose
+positions reveal the vertex order ABCDEF; an independent verifier confirms that
+every consecutive pair is an edge. Logic: independent check of the witness.
+Dashed arrows indicate transfer of material from one step to the next. The
+mapping from physical step to predicate is approximate: each step has finite
+yield and can retain wrong molecules.

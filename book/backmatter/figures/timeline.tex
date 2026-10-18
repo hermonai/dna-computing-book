@@ -1,0 +1,59 @@
+\begin{tikzpicture}[x=1cm,y=1cm,
+  ev/.style={font=\sffamily\fontsize{8}{9}\selectfont,execute at begin node={\hyphenpenalty=10000 \exhyphenpenalty=10000 },align=left,anchor=west,text=Ink,inner sep=1pt,text width=2.62cm},
+  yr/.style={font=\sffamily\bfseries\fontsize{8}{9}\selectfont,text=InkSoft,anchor=east}]
+% lanes: x position of the dot; labels to its right
+\def\LA{1.1}\def\LB{4.12}\def\LC{7.14}\def\LD{10.16}\def\LE{13.18}
+\foreach \x/\c/\t in {\LA/DNAblue/{Molecules and\\physics},\LB/StrandRose/{Algorithms and\\formal models},\LC/StrandGreen/{Circuits and\\learning},\LD/StrandViolet/{Assembly and\\devices},\LE/StrandAmber/{Storage, cells\\and recording}}{
+  \fill[\c!7] (\x-.2,.55) rectangle (\x+2.85,-20.85);
+  \node[font=\sffamily\bfseries\footnotesize,text=\c!80!black,align=left,anchor=south west] at (\x-.15,.62) {\t};
+  \draw[\c,line width=1.4pt] (\x,.4)--(\x,-20.75);}
+% rows: \E{lane x}{row y}{colour}{text}
+\newcommand{\E}[4]{\fill[#3] (#1,#2) circle (.11);\node[ev] at (#1+.16,#2) {#4};}
+\newcommand{\Y}[2]{\node[yr] at (.85,#1) {#2};\draw[PanelEdge,line width=.4pt] (.9,#1)--(16.0,#1);}
+\begin{scope}[on background layer]
+\foreach \yy/\yt in {-0/1953,-0.7/1961,-1.4/1982,-2.1/1988,-2.8/1994,-3.5/1995,-4.2/1997,-4.9/1998,-5.6/2000,-6.3/2001,-7/2002,-7.7/2003,-8.4/2004,-9.1/2006,-9.8/2007,-10.5/2009,-11.2/2010,-11.9/2011,-12.6/2012,-13.3/2013,-14/2016,-14.7/2017,-15.4/2018,-16.1/2019,-16.8/2020,-17.5/2022,-18.2/2023,-18.9/2024,-19.6/2025,-20.3/2026}{\node[yr] at (.85,\yy) {\yt};}
+\end{scope}
+\E{\LA}{-0}{DNAblue}{double helix}
+\E{\LA}{-0.7}{DNAblue}{erasure costs heat (Landauer)}
+\E{\LA}{-1.4}{DNAblue}{reversible computing (Bennett)}
+\E{\LD}{-1.4}{StrandViolet}{DNA junctions and lattices}
+\E{\LA}{-2.1}{DNAblue}{PCR with heat-stable enzyme}
+\E{\LB}{-2.8}{StrandRose}{Hamiltonian path in a tube}
+\E{\LB}{-3.5}{StrandRose}{SAT by molecular filtering}
+\E{\LB}{-4.2}{StrandRose}{maximal clique}
+\E{\LA}{-4.9}{DNAblue}{nearest-neighbour thermodynamics}
+\E{\LB}{-4.9}{StrandRose}{sticker model}
+\E{\LD}{-4.9}{StrandViolet}{2D DNA tile crystals}
+\E{\LD}{-5.6}{StrandViolet}{DNA-fuelled tweezers}
+\E{\LE}{-5.6}{StrandAmber}{toggle switch; repressilator}
+\E{\LB}{-6.3}{StrandRose}{enzyme-driven automaton}
+\E{\LB}{-7}{StrandRose}{20-variable 3-SAT}
+\E{\LB}{-7.7}{StrandRose}{deoxyribozyme tic-tac-toe}
+\E{\LD}{-8.4}{StrandViolet}{Sierpinski triangles}
+\E{\LE}{-8.4}{StrandAmber}{automaton controls gene expression}
+\E{\LC}{-9.1}{StrandGreen}{enzyme-free logic circuits}
+\E{\LD}{-9.1}{StrandViolet}{DNA origami}
+\E{\LC}{-9.8}{StrandGreen}{entropy-driven catalysis}
+\E{\LC}{-10.5}{StrandGreen}{toehold exchange}
+\E{\LB}{-11.2}{StrandRose}{DNA implements any reaction network}
+\E{\LC}{-11.9}{StrandGreen}{seesaw circuits; Hopfield network}
+\E{\LD}{-12.6}{StrandViolet}{nanorobot; DNA bricks}
+\E{\LE}{-12.6}{StrandAmber}{digital data in DNA}
+\E{\LC}{-13.3}{StrandGreen}{chemical controllers}
+\E{\LE}{-13.3}{StrandAmber}{archival storage; recombinase logic}
+\E{\LE}{-14}{StrandAmber}{genetic circuit design automation}
+\E{\LC}{-14.7}{StrandGreen}{DNA oscillator}
+\E{\LD}{-14.7}{StrandViolet}{cargo-sorting robot}
+\E{\LE}{-14.7}{StrandAmber}{DNA Fountain; movie in bacteria}
+\E{\LC}{-15.4}{StrandGreen}{winner-take-all networks}
+\E{\LE}{-15.4}{StrandAmber}{random access storage}
+\E{\LD}{-16.1}{StrandViolet}{21 reprogrammable algorithms}
+\E{\LC}{-16.8}{StrandGreen}{DNA cancer classifier}
+\E{\LC}{-17.5}{StrandGreen}{convolutional network}
+\E{\LE}{-17.5}{StrandAmber}{DNA Typewriter recorder}
+\E{\LC}{-18.2}{StrandGreen}{programmable gate arrays}
+\E{\LD}{-18.9}{StrandViolet}{pattern recognition by nucleation}
+\E{\LE}{-18.9}{StrandAmber}{epigenetic-bit storage}
+\E{\LC}{-19.6}{StrandGreen}{learning in a tube; heat recharging}
+\E{\LB}{-20.3}{StrandRose}{thermodynamically favoured computer}
+\end{tikzpicture}

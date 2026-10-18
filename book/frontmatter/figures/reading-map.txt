@@ -1,0 +1,33 @@
+Figure: reading map of the book.
+
+Eight horizontal bands correspond to the eight parts of the book. Under each
+band, chapter cards appear in their suggested reading order from left to right,
+joined by small arrows. Each card shows the chapter number, a short title,
+badges for reading emphasis (C = core path for every reader, T = theory
+emphasis, L = laboratory and engineering emphasis), and, where relevant, the
+key prerequisites from earlier parts ("needs 6-7").
+
+Part I (Computing with molecules): 1 Computing with DNA (C), 2 Adleman's
+experiment (C), 3 Search and complexity (T), 4 Parallelism and resources (C).
+Part II (The molecular toolkit): 5 DNA chemistry and geometry (C), 6
+Hybridisation thermodynamics (C, L), 7 Kinetics and stochastics (C), 8 Enzymes
+as operators (C, L; needs 5), 9 Amplification by PCR (C, L), 10 Separation and
+readout (L).
+Part III (Encoding and molecular algorithms): 11 Sequence design and encoding
+(C, L; needs 5-6), 12 Generate, filter and verify (C; needs 2, 4), 13 SAT
+constructions (T; needs 3), 14 Sticker memory (T).
+Part IV (Formal models): 15 Splicing and insertion systems (T; needs 8), 16
+Languages and automata (T), 17 Watson-Crick automata (T), 18 Universality and
+complexity (T; needs 3).
+Part V (Programming molecular dynamics): 19 Strand displacement (C, L; needs
+6-7), 20 Reaction networks as programs (C, T; needs 7), 21 Circuits and neural
+networks (C, L), 22 Self-assembly and origami (C, T, L; needs 6).
+Part VI (Reliability, scale and storage): 23 Noise and fault models (L; needs
+12, 22), 24 Scaling and resource limits (L; needs 4), 25 DNA data storage (C,
+L; needs 9-11), 26 Workflows and reproducibility (L; needs 10).
+Part VII (Modelling and simulation): 27 Symbolic simulation (T; needs 20), 28
+Kinetic and stochastic simulation (L; needs 7, 20), 29 Differentiable models
+(T).
+Part VIII (From molecules to genomes): 30 Genomic regulation (C; needs 7, 21),
+31 Molecular programming today (C, L; needs 19-21), 32 Molecular to genomic
+computation (T), followed by the Epilogue on frontiers and open problems.

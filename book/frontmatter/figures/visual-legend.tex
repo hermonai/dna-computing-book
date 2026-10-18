@@ -1,0 +1,77 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\def\stringA{A}
+% ---------------------------------------------------------------- molecules
+\node[ptitle] at (0,0) {Molecules and their colours};
+\begin{scope}[shift={(0,-.9)}]
+ \draw[strand,DNAblue] (0,0)--(2.4,0);\EndLab{(-.22,0)}{5$'$}\EndLab{(2.62,0)}{3$'$}
+ \node[slab,align=center] at (1.2,-.55) {DNA strand\\(colour = strand identity)};
+ \draw[rna] (3.6,0)--(6.0,0);\EndLab{(3.38,0)}{5$'$}\EndLab{(6.22,0)}{3$'$}
+ \node[slab,align=center] at (4.8,-.55) {RNA strand};
+ \Enzyme{(7.75,.05)}{.55}{E}
+ \node[slab,align=center] at (7.75,-.8) {protein or\\enzyme};
+ \node[compbox,minimum width=1.9cm] at (10.55,0) {$f(x)$};
+ \node[slab,align=center] at (10.55,-.8) {computational\\object};
+ \node[evbox,minimum width=1.9cm] at (13.4,0) {signal $y$};
+ \node[slab,align=center] at (13.4,-.8) {observation or\\measurement};
+\end{scope}
+% ---------------------------------------------------------------- pairing
+\node[ptitle] at (0,-2.2) {Pairing, bonds and domains};
+\begin{scope}[shift={(0,-3.45)}]
+ \draw[strand,DNAblue] (0,.35)--(3.0,.35);
+ \draw[strandL,StrandViolet] (3.0,-.35)--(0,-.35);
+ \Rungs{.2}{2.8}{.25}{-.25}{.2}
+ \node[slab,align=center] at (1.5,-.95) {duplex: grey rungs are\\base pairs};
+ % nick
+ \draw[backbone,DNAblue] (4.0,.35)--(5.35,.35);
+ \draw[strand,StrandGreen] (5.65,.35)--(7.0,.35);
+ \draw[strandL,StrandViolet] (7.0,-.35)--(4.0,-.35);
+ \Rungs{4.2}{6.8}{.25}{-.25}{.2}
+ \draw[RejectRed,line width=.8pt] (5.5,.55)--(5.5,.75)--(6.0,.95) node[right,slab,text=RejectRed] {nick};
+ \node[slab,align=center] at (5.5,-.95) {two strands on one\\template: a nick};
+ % covalent vs hydrogen bond
+ \draw[Ink,line width=1.6pt] (8.0,.3)--(9.2,.3);
+ \node[slab,anchor=west] at (9.35,.3) {covalent bond};
+ \draw[hbond,line width=1.1pt] (8.0,-.3)--(9.2,-.3);
+ \node[slab,anchor=west] at (9.35,-.3) {hydrogen bond};
+ % domains
+ \draw[strand,DNAblue] (11.6,.35)--(14.6,.35);
+ \node[dom=DNAblue,minimum width=13mm] at (12.35,.78) {$t$};
+ \node[dom=DNAsky,minimum width=13mm] at (13.85,.78) {$b$};
+ \draw[strandL,StrandViolet] (14.6,-.35)--(11.6,-.35);
+ \node[dom=StrandViolet,minimum width=13mm] at (12.35,-.78) {$t^{*}$};
+ \node[dom=StrandViolet,minimum width=13mm] at (13.85,-.78) {$b^{*}$};
+ \node[slab,align=center] at (13.1,-1.35) {domain $x$ pairs with $x^{*}$};
+\end{scope}
+% ---------------------------------------------------------------- arrows
+\node[ptitle] at (0,-5.55) {Arrow meanings};
+\begin{scope}[shift={(0,-6.35)}]
+ \draw[react] (0,0)--(1.6,0);\node[slab,anchor=west] at (1.75,0) {chemical reaction};
+ \draw[Ink,line width=1.2pt,-{Straight Barb[harpoon,length=2mm]}] (0,-.58)--(1.6,-.58);
+ \draw[Ink,line width=1.2pt,-{Straight Barb[harpoon,length=2mm]}] (1.6,-.74)--(0,-.74);
+ \node[slab,anchor=west] at (1.75,-.65) {reversible association};
+ \draw[move] (5.6,0)--(7.2,0);\node[slab,anchor=west] at (7.35,0) {transfer of material};
+ \draw[data] (5.6,-.65)--(7.2,-.65);\node[slab,anchor=west] at (7.35,-.65) {symbolic map / data flow};
+ \draw[observe] (11.2,0)--(12.8,0);\node[slab,anchor=west] at (12.95,0) {observation, inference};
+ \draw[inhibit] (11.2,-.65)--(12.8,-.65);\node[slab,anchor=west] at (12.95,-.65) {inhibition, blocking};
+\end{scope}
+% ---------------------------------------------------------------- bases and objects
+\node[ptitle] at (0,-7.6) {Bases and laboratory objects};
+\begin{scope}[shift={(0,-8.95)}]
+ \foreach \b/\c/\x in {A/BaseA/0,T/BaseT/.85,G/BaseG/1.7,C/BaseC/2.55,U/BaseU/3.4}{
+   \node[draw=\c,fill=\c!22,rounded corners=1.5pt,minimum width=6.5mm,minimum height=6.5mm,
+     font=\sffamily\bfseries\small,text=Ink,inner sep=0pt] at (\x+.3,.2) {\b};}
+ \node[slab,align=center] at (1.95,-.55) {bases (U only in RNA)};
+ \begin{scope}[shift={(5.3,-.5)},scale=.62,transform shape]\Tube{(0,0)}{DNAsky}{}\end{scope}\node[slab] at (5.3,-.72) {tube};
+ \Bead{(7.2,.15)}{.32}\draw[strand,DNAblue] (7.5,.15)--(8.6,.15);
+ \node[slab,align=center] at (7.75,-.55) {bead with capture\\probe};
+ \node[star,star points=6,star point ratio=.5,fill=StrandAmber,draw=Ink,line width=.5pt,inner sep=2.6pt] at (9.85,.4) {};\node[slab] at (10.25,.4) {F};
+ \node[circle,fill=Ink,inner sep=2.8pt] at (9.85,-.05) {};\node[slab] at (10.25,-.05) {Q};
+ \node[slab,align=center] at (10.2,-.6) {fluorophore,\\quencher};
+ \fill[GelBg,rounded corners=1.5pt] (11.6,-.8) rectangle (14.4,1.0);
+ \foreach \lx in {12.1,13.0,13.9}{\fill[InkSoft] (\lx-.28,.82) rectangle (\lx+.28,.92);}
+ \fill[DNAblue] (11.82,.4) rectangle (12.38,.48);\fill[DNAblue] (11.82,0) rectangle (12.38,.08);\fill[DNAblue] (11.82,-.4) rectangle (12.38,-.32);
+ \fill[DNAblue] (12.72,.15) rectangle (13.28,.25);\fill[DNAblue!60] (13.62,-.2) rectangle (14.18,-.1);
+ \draw[-{Stealth[length=1.6mm]},InkSoft,line width=.6pt] (14.6,.8)--(14.6,-.6);
+ \node[slab,anchor=west,align=left] at (14.7,.1) {gel:\\small\\runs\\far};
+\end{scope}
+\end{tikzpicture}

@@ -1,7 +1,7 @@
 \begin{tikzpicture}[x=1cm,y=1cm]
 \node[note,font=\bfseries\sffamily,anchor=west] at (0,5.6) {A. CONTINUOUS TARGET \hspace{20mm} B. NUMERICAL-SOLVER TARGET};
-\foreach \y/\label in {4.5/{Analytical: equilibrium + transient},3.2/{Scalar FD: independent math.exp},1.9/{AD: original rate tensor on graph}}
- \node[draw,fill=Pale,note,text width=6cm,minimum height=.9cm] at (3.1,\y) {\label};
+\foreach \y/\plabel in {4.5/{Analytical: equilibrium + transient},3.2/{Scalar FD: independent math.exp},1.9/{AD: original rate tensor on graph}}
+ \node[draw,fill=Pale,note,text width=6cm,minimum height=.9cm] at (3.1,\y) {\plabel};
 \node[note] at (3.1,.6) {All three target $dJ/dk_f=477.5623$\\Sweep $\epsilon$: truncation versus cancellation};
 \node[draw,fill=Gold!35,note,text width=6.5cm,minimum height=1.5cm] (e) at (11.2,4.2)
  {Euler $h=.1$: $dJ_h/dk_f=532.9885$\\AD = manual sensitivity = geometric oracle};

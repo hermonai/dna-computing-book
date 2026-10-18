@@ -1,0 +1,164 @@
+\chapter{A molecular biology primer}\label{app:biology}
+\markboth{A molecular biology primer}{A molecular biology primer}
+
+This appendix gives a reader from computer science, mathematics or physics the
+biological vocabulary the book assumes. It is a map, not a substitute for the
+chapters: each section points to the chapter where the mechanism is developed
+properly. Figure~\ref{fig:primer-helix} in Chapter~1 shows the structures
+referred to here.
+
+\section{Nucleotides, strands and the double helix}
+DNA (deoxyribonucleic acid) is a polymer. Its repeating unit, the
+\Term{nucleotide}, has three parts: a five-carbon sugar (deoxyribose), a
+phosphate group and one of four \Term{bases}: adenine (A), cytosine (C),
+guanine (G) or thymine (T). Phosphates link the sugar of one nucleotide to the
+sugar of the next, forming a covalent \emph{sugar--phosphate backbone}. Because
+the link always joins the $3'$ carbon of one sugar to the $5'$ carbon of the
+next, a strand has two chemically different ends, called the $5'$ end and the
+$3'$ end, and therefore a direction. By convention sequences are written from
+$5'$ to $3'$.
+
+Two strands with complementary sequences can pair: A with T and G with C. The
+paired strands run in opposite directions (they are \Term{antiparallel}) and
+wind into the right-handed double helix described by Watson and Crick in
+1953.\cite{WatsonCrick1953} A base pair is held by hydrogen bonds (two for
+A$\cdot$T, three for G$\cdot$C), but much of the duplex's stability comes from
+\emph{stacking} between neighbouring base pairs. Pairing is reversible: heating
+separates the strands (\emph{melting}), and cooling lets complementary strands
+find each other again (\emph{annealing} or \emph{hybridisation}).
+
+Three distinctions matter throughout the book.
+\begin{itemize}
+\item A \emph{base} is a chemical group; a \emph{nucleotide} is base plus sugar
+plus phosphate; a \emph{strand} is a covalent chain of nucleotides; a
+\emph{duplex} is two strands held together by pairing.
+\item The \emph{complement} of a sequence replaces each base by its partner; the
+\emph{reverse complement} also reverses the order, so that the partner strand is
+again written $5'\to3'$. The partner of $5'$-ACGTTG-$3'$ is
+$5'$-CAACGT-$3'$ (Chapter~5).
+\item Pairing is not a covalent bond. Two strands lying end to end on a
+template are still two molecules until an enzyme (a ligase) joins them.
+\end{itemize}
+
+\section{DNA, RNA and proteins}
+Cells use three classes of information-carrying polymer
+(Figure~\ref{fig:central-dogma}). DNA stores genetic information. RNA
+(ribonucleic acid) differs from DNA by a hydroxyl group on its sugar and by
+using uracil (U) in place of thymine; it is usually single-stranded and often
+folds back on itself. Proteins are chains of amino acids; they fold into
+three-dimensional machines, including \Term{enzymes}, which catalyse chemical
+reactions.
+
+\TikzPlate{backmatter/figures/central-dogma}{Information flow in a cell and
+the molecular machines that carry it out. RNA polymerase (gold) reads a DNA
+template strand and synthesises an RNA copy in the $5'\to3'$ direction
+(transcription); a ribosome reads the RNA three bases at a time and joins
+amino acids into a protein (translation). A transcription factor binding near
+a gene can raise or lower how often that gene is transcribed, which is the
+basis of the regulatory circuits in Chapter~30. Molecules are drawn
+schematically and not to scale.}{fig:central-dogma}
+
+The flow DNA $\to$ RNA $\to$ protein is called the \Term{central dogma}.
+\emph{Transcription} copies a stretch of DNA (a gene) into RNA; \emph{translation}
+reads the RNA in three-letter codons to build a protein. Proteins called
+\Term{transcription factors} bind DNA near genes and switch transcription up or
+down. Gene regulation is therefore a natural information-processing system:
+inputs (signals, factor concentrations) change outputs (which proteins are
+made), and feedback can create memory. Chapter~30 develops this view
+quantitatively, and Chapter~32 asks where the computational analogy holds.
+
+\section{Enzymes that act on DNA}
+Most laboratory DNA manipulations use a small set of enzymes, each of which
+recognises a particular substrate and changes one specific chemical feature
+(Chapter~8).
+\begin{description}
+\item[Polymerases] extend a primer that is paired to a template, adding
+nucleotides only to the $3'$ end, so new DNA grows $5'\to3'$. Heat-stable
+polymerases make PCR possible (Chapter~9).
+\item[Ligases] seal a \emph{nick}, joining a $3'$ hydroxyl to an adjacent $5'$
+phosphate on the same template, so that two strands become one.
+\item[Restriction enzymes] (restriction endonucleases) recognise a short
+sequence such as GAATTC and cut both strands at defined positions, often leaving
+short single-stranded overhangs (``sticky ends'').
+\item[Exonucleases] remove nucleotides from strand ends; \emph{endonucleases}
+cut within a strand. Nucleases in serum and cells degrade unprotected DNA
+circuits (Chapter~31).
+\item[CRISPR-associated nucleases] such as Cas9 are guided by an RNA to a
+complementary DNA site and cut there; engineered variants write information into
+genomes and are used as molecular recorders (Chapter~32 and the Epilogue).
+\end{description}
+An enzyme is not a perfect logical operator. It must find its substrate,
+bind, react and release; it works at finite rate, sometimes acts on near-miss
+sequences, and depends on temperature, salt and cofactors such as ATP or
+Mg$^{2+}$.
+
+\section{The laboratory toolkit at a glance}
+Figure~\ref{fig:lab-toolkit} summarises the operations that recur throughout
+the book.
+
+\TikzPlate{backmatter/figures/lab-toolkit}{The molecular programmer's laboratory
+toolkit. \emph{Write}: short strands (oligonucleotides, typically 20--200
+nucleotides) are made by chemical synthesis. \emph{Mix and react}: strands are
+combined in buffer at controlled temperature, where they pair, displace one
+another or are acted on by enzymes. \emph{Copy}: PCR amplifies a chosen interval
+exponentially. \emph{Separate}: gel electrophoresis sorts molecules mainly by
+length; beads with capture probes pull out molecules carrying a sequence.
+\emph{Read}: fluorescence reports bulk changes in real time; sequencing reads
+individual molecules' sequences. Each arrow is an operation with a yield, an
+error rate and a cost, not an ideal function.}{fig:lab-toolkit}
+
+\begin{description}
+\item[Chemical synthesis] builds a strand one nucleotide at a time on a solid
+support. Each coupling step succeeds with high but imperfect probability, so
+long strands accumulate errors and truncated products; this is why designs
+favour many short strands. Enzymatic and array-based synthesis are lowering the
+cost of writing large libraries.\cite{Kosuri2014}
+\item[Annealing] is a heat-then-cool protocol that lets strands find their
+lowest-free-energy partners (Chapter~6).
+\item[PCR] (polymerase chain reaction) repeats denaturation, primer annealing and
+extension; each cycle can double the number of copies of the interval between
+two primers (Chapter~9).\cite{Saiki1988}
+\item[Gel electrophoresis] pulls negatively charged DNA through a gel; shorter
+fragments move further. A band reports a size class, not a sequence
+(Chapter~10).
+\item[Fluorescence] reports molecular events optically. A common trick in DNA
+circuits places a fluorophore and a quencher close together on a duplex, so
+that releasing an output strand separates them and the solution brightens.
+\item[Sequencing] reads the base order of individual molecules. Massively
+parallel short-read sequencing reads millions of fragments; nanopore sequencing
+reads long single molecules by the current changes they cause in a pore.
+Sequencing is the readout of DNA data storage (Chapter~25).
+\end{description}
+
+\section{Numbers worth remembering}
+Molecular computing is quantitative, and a feeling for magnitudes prevents
+many errors.
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.43\linewidth}p{0.5\linewidth}@{}}
+\toprule
+Quantity & Typical value\\
+\midrule
+Rise per base pair in B-DNA & 0.34 nm\\
+Base pairs per helical turn & about 10.5\\
+Duplex diameter & about 2 nm\\
+Mass of one nucleotide in a strand & about 330 g\,mol$^{-1}$ (Chapter~4)\\
+Molecules in 1\,\textmu L of a 1\,\textmu M solution & $6.0\times10^{11}$\\
+Typical circuit concentrations & 1\,nM--1\,\textmu M\\
+Hybridisation rate constant (good toehold) & about $10^{6}$\,M$^{-1}$s$^{-1}$ (Chapter~19)\\
+Free energy scale $RT$ at 25\,\textdegree C & 2.48\,kJ\,mol$^{-1}$ = 0.593\,kcal\,mol$^{-1}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The molecule count follows from $N = c\,V\,N_{\mathrm A}$:
+$10^{-6}\,\mathrm{mol\,L^{-1}}\times10^{-6}\,\mathrm{L}\times
+6.022\times10^{23}\,\mathrm{mol^{-1}}=6.0\times10^{11}$. Even a tiny volume holds
+an enormous number of molecules, which is the source of molecular parallelism;
+Chapter~4 shows why that number is nevertheless finite and quickly exhausted by
+exponential search.
+
+\section{Further reading}
+Any modern molecular biology textbook covers this material in depth; a
+freely accessible chapter on DNA structure is available in \emph{Molecular
+Biology of the Cell}.\cite{Alberts2002} The review by Seeman and Sleiman
+introduces DNA as an engineering material.\cite{SeemanSleiman2018}
