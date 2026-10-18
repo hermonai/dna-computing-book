@@ -15,9 +15,12 @@ publication or a demonstration of industrial or genomic capability.
 
 ## Read the book
 
-The earlier 397-page review candidate remains available from the
-[public review prerelease](https://github.com/hermonai/dna-computing-book/releases/tag/dna-review-2026-10-17).
-The current 442-page edition is built from this branch with `make pdf`.
+Download the 442-page undergraduate textbook review edition from the
+[public prerelease `dna-review-2026-10-18`](https://github.com/hermonai/dna-computing-book/releases/tag/dna-review-2026-10-18)
+([release notes](docs/releases/2026-10-18.md)). The earlier 397-page review
+candidate remains available from
+[`dna-review-2026-10-17`](https://github.com/hermonai/dna-computing-book/releases/tag/dna-review-2026-10-17).
+Neither is a final accepted publication.
 
 Build the current edition with `make pdf`. The only current full-book output is
 [`output/pdf/dna-computing.pdf`](output/pdf/dna-computing.pdf).

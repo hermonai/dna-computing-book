@@ -10,7 +10,7 @@ Date: 18 October 2026. Machine: macOS (Darwin 27.0.0).
 ## Commands and results
 | Command | Result |
 |---|---|
-| `make check PYTHON=~/.pyenv/shims/python3` | computed assets verified; **1303 passed, 2 skipped** |
+| `make check PYTHON=~/.pyenv/shims/python3` | computed assets verified; **1303 passed, 2 skipped** (rerun after the plate restyle and before release) |
 | `make pdf PYTHON=…` (from a clean `build/book`) | success; **442 pages**; `warning-audit.json` empty; no BibTeX warnings |
 | `make archive-check PYTHON=…` | `verified_entries: 1175`, `unavailable_local_only_pdfs: 0` |
 | `make review PYTHON=…` | 442 pages rendered at 90 dpi; 111 colour and 111 greyscale contact sheets |
@@ -20,7 +20,7 @@ The original base commit `5987341` fails `make pdf` from a clean build directory
 builds from clean.
 
 ## Identities
-- PDF `output/pdf/dna-computing.pdf`: SHA-256 `0775970c7aebf756b4d70e03828a79f1655b3b23804de9d2dce385f54da31987`
+- PDF `output/pdf/dna-computing.pdf` (released as `dna-review-2026-10-18`): SHA-256 `edc25b79e91eeec0ca1717eee68001353b7c8ff9a43f867c3a80cadac74d6ba4`
 - Build-record source set: 637 files; digest of the sorted
   `path:sha256` list `c7d901d2f77b7f821e727165d8a6756dd2b0daba113aa0be481b73be709394e9`
 - Bibliography: 123 cited works from `book/backmatter/references.bib`
