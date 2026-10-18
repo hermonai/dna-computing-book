@@ -1,5 +1,12 @@
 \chapter{Separation, readout, and measurement}
 \label{ch:readout}
+\ChapterGoals{%
+\item explain what gel electrophoresis separates and why migration is roughly linear in $\log L$;
+\item calibrate a size ladder by least squares and propagate distance uncertainty into size;
+\item model a band as a distribution integrated by a detector, with background and saturation;
+\item decide whether a mixture's composition is identifiable from a set of measurements;
+\item design an evidence chain that matches the claim being made.}
+{Chapters~8--9; linear equations and least squares are introduced as needed.}
 
 Two tubes give a single bright band at the position of a 500-base-pair standard. In the first tube, every molecule has the intended sequence. In the second, most molecules are a different 500-base-pair product. Can the image distinguish them?
 
@@ -8,6 +15,16 @@ Not necessarily. A band is an observation of material that migrated together and
 Chapter 9 counted amplification products under explicit copying assumptions. Here the question changes from how much material might exist to what an instrument can establish about it. The reference in \texttt{book/chapters/ch10/reference.py} uses small synthetic populations and assigned signal gains. Its output is neither a gel photograph nor a calibrated assay.
 
 \section{A gel changes position, not sequence identity}
+
+\Plate{00-apparatus}{Two ways of turning molecules into measurements.
+(A)~Gel electrophoresis: DNA is negatively charged and migrates through a gel
+towards the positive electrode; shorter fragments move further, roughly linearly
+in $\log L$. A ladder of known lengths (lane L) calibrates position against size;
+a smear or doublet (lane~3) signals more than one species. (B)~A fluorescence
+reporter: a fluorophore held next to a quencher is dark, and becomes bright when
+its strand is released. Both readouts report population averages, and both must
+be calibrated before they report sizes or concentrations.}{fig:apparatus}
+
 \index{electrophoresis}\index{migration}\index{molecular identity}
 DNA's phosphate backbone carries negative charge under ordinary electrophoresis conditions. In an electric field, the material migrates toward the positive electrode. The field direction itself is defined by the force on a positive test charge, so DNA migration and the field point in opposite directions. A porous agarose matrix makes migration depend on how a polymer moves through obstacles. Addgene's laboratory guide describes this size-separation mechanism and comparison with a DNA ladder \cite{AddgeneGel}.
 
@@ -204,6 +221,21 @@ For molecular computation, the readout is part of the algorithm's physical contr
 
 \textbf{Reproduce:} \texttt{make prepare}.
 \textbf{Test:} \texttt{python3 -m pytest tests/test\_ch10\_reference.py}.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A gel separates by migration, which depends mainly on length; a band
+position estimates size, not sequence identity.
+\item A ladder calibrates $x=a-b\log_{10}(L/\mathrm{bp})$; distance errors become
+\emph{relative} size errors of about $(\ln10/b)\,\sigma_x$.
+\item A detector integrates overlapping band shapes, background and noise; the
+forward model $y=b+An+\varepsilon$ makes these explicit.
+\item If two species have proportional signal columns, no amount of data can
+separate them: identifiability is a property of the measurement design.
+\item Collection windows trade recovery against purity; the right controls depend
+on the claim, and a bright band is not a verified witness.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked reasoning}
 \begin{enumerate}

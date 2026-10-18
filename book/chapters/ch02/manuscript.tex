@@ -1,5 +1,16 @@
 \chapter{Adleman's experiment: from graph to molecules}\label{ch:adleman}
-\Callout{The problem behind the picture}{A route is an ordered mathematical object. A tube contains physical strands, not routes as such. This chapter reconstructs the mapping closely enough to ask, at every stage: what property is represented, what operation acts on it, and what would make the resulting inference wrong?}
+\ChapterGoals{%
+\item transcribe Adleman's seven-vertex graph and prove that its Hamiltonian path is unique;
+\item read the published sequence codes and construct edge strands and splints with correct $5'/3'$ orientation;
+\item derive the length invariant that makes a gel band meaningful, and state when it fails;
+\item explain what PCR, size selection and bead capture each select, and why none is a perfect Boolean filter;
+\item separate soundness from completeness, and a positive witness from a negative result.}
+{Chapter~1 (walks, predicates, multisets, the vertex-splint encoding).}
+
+A route is an ordered mathematical object; a tube contains physical strands,
+not routes as such. This chapter reconstructs Adleman's 1994 experiment closely
+enough to ask, at every stage: what property is represented, what operation acts
+on it, and what would make the resulting inference wrong?
 
 \section{A reconstruction, not a replacement history}
 Chapter~\ref{ch:computing} used an original six-vertex teaching graph. We now change instances deliberately: the vertices in this chapter are the seven numbered vertices of Adleman's 1994 experiment. The point is to carry the correspondence all the way from directed edges to oriented sequence fragments, laboratory selection, and readable evidence.
@@ -123,7 +134,15 @@ The detailed affinity procedure has a preparatory step and a selection step. In 
 
 In vertex selection, the bead carries a biotinylated complementary vertex probe. A target strand containing the corresponding code can hybridize to this probe. Unbound material is washed away; denaturation releases retained target into solution for the next selection. The sequence-recognition role belongs to the probe, not to biotin.\cite{Adleman1994}
 
-\DeepFigure{DNAD-02-F8}{Preparation and selection retain different molecular relationships. First recover the unbiotinylated strand from an immobilized duplex. Then recognize a vertex through a complementary bead-bound probe, wash, and release the selected target. The diagram tracks which material remains attached and which returns to solution.}{fig:d2beads}
+\TikzPlate{chapters/ch02/figures/beads}{Two bead operations that retain different
+molecular relationships. (A)~A biotin on the strand made from the
+$\overline{O_6}$ primer anchors a duplex to a streptavidin-coated bead;
+denaturation releases the free partner strand, which is the material carried
+forward. (B)~For vertex selection the bead carries a probe complementary to
+$O_i$; strands containing $O_i$ pair and are retained, others are washed away.
+(C)~Denaturation releases the retained target for the next test. Biotin and
+streptavidin provide attachment; complementary pairing provides
+recognition.}{fig:d2beads}
 
 The distinction can be derived without memorizing an equipment list. Ask what is covalently attached to biotin, what is held only by hybridization, and which phase is retained after separation. During preparation, the free forward strand is wanted. During washing, a target must remain associated with the probe to avoid removal. During final release, that same association must be disrupted so the target can proceed.
 
@@ -132,7 +151,22 @@ Once endpoints are established, the internal vertices 1 through 5 can be tested 
 \[
 \mathcal F_i(S)=\{P\in S:i\in P\}.
 \]
-These ideal filters commute because intersections commute. Laboratory versions need not have order-independent yields: losses, concentrations, carryover and differing recognition properties can make the physical sequence matter.
+These ideal filters commute because intersections commute.
+
+\begin{Pitfall}
+``The order of the affinity steps does not matter, because set intersection is
+commutative.'' That is true of the ideal filters $\mathcal F_i$, but not of the
+laboratory operations that approximate them. Losses, changing concentrations,
+carryover and different recognition properties can make the physical order
+matter. Chapter~12 gives a capacity-limited counterexample.
+\end{Pitfall}
+
+\begin{TryThis}
+Of the 1,583 bounded legal walks, how many start at 0 and end at 6? How many of
+those contain exactly seven vertex occurrences? Which seven-occurrence walk will
+the test for vertex~1 remove? Commit to numbers, then compare with
+Figure~\ref{fig:d2capture}.
+\end{TryThis}
 
 \DeepFigure{DNAD-02-F9}{Exact counts from the bounded-walk program. The second column uses only graph-valid generation. The third injects one illegal-edge permutation. It survives coverage but fails final verification. These are digital candidate counts, not measured molecule yields.}{fig:d2capture}
 
@@ -141,7 +175,27 @@ The clean inventory narrows from 1,583 walks to nine endpoint-compatible walks, 
 Inject the pseudo-path $0,1,2,4,3,5,6$. The endpoint and length counts become ten and three; after testing vertex 1, two candidates remain. Both contain every required identity. Only the independent adjacency check rejects the pseudo-path. This controlled counterexample shows exactly where the soundness argument relies on generation.
 
 \section{One computation, three linked representations}
-\DeepFigure{DNAD-02-F10}{Aligned logical, molecular and laboratory descriptions. Read a row as a proposed implementation relation, not an equality of mathematical and physical operations. Sequence integrity, specificity, recovery and readout resolution are assumptions at those interfaces.}{fig:d2mapping}
+Table~\ref{tab:d2mapping} aligns the logical, molecular and laboratory
+descriptions of the experiment. Read each row as a proposed implementation
+relation, not an equality of mathematical and physical operations: sequence
+integrity, specificity, recovery and readout resolution are assumptions at each
+interface.
+
+\begin{table}[h]
+\centering\small
+\caption{One computation, three linked representations.}\label{tab:d2mapping}
+\begin{tabular}{@{}p{0.27\linewidth}p{0.3\linewidth}p{0.33\linewidth}@{}}
+\toprule
+Logical condition & Molecular property & Laboratory operation\\
+\midrule
+permitted adjacency & oriented code overlap on a splint & annealing and ligation\\
+correct endpoints & opposed primer sites at $O_0$ and $O_6$ & endpoint PCR\\
+seven occurrences & a 140-bp product & gel fraction recovery\\
+contains vertex $i$ & a site complementary to a probe & bead affinity selection\\
+valid witness & a resolved, ordered code & graduated PCR, decoding and graph check\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Let $\phi$ decode a well-formed molecule into a route, and extend it elementwise to a multiset decoder $\Phi$. For a molecular population $M$, an ideal implementation of a multiset filter $F$ would satisfy
 \[
@@ -232,11 +286,53 @@ The reported laboratory workflow took about seven days, not merely the time of o
 \section{What the experiment opened, and what changed later}
 The bounded achievement is already substantial: molecular representations and selective operations participated in solving a small combinatorial instance. This links an abstract problem to physical information processing. It does not require an unsupported general claim about competitive runtime.
 
-\DeepFigure{DNAD-02-F14}{A conceptual map of later research traditions, organized by state and operation. This is neither a causal genealogy nor a ranking of superiority. The mechanisms differ; subsequent chapters must derive their own correctness and resource arguments.}{fig:d2aftermath}
+Figure~\ref{fig:frontier} in Chapter~\ref{ch:computing} placed these traditions in
+four overlapping eras. Table~\ref{tab:d2traditions} summarises what each changed:
+the state being manipulated, the operation, and the question it opened. It is
+neither a genealogy nor a ranking; each mechanism needs its own correctness and
+resource argument.
+
+\begin{table}[h]
+\centering\small
+\caption{Research traditions that followed the founding experiment.}\label{tab:d2traditions}
+\begin{tabular}{@{}p{0.24\linewidth}p{0.32\linewidth}p{0.34\linewidth}@{}}
+\toprule
+Tradition & State and operation & Question opened\\
+\midrule
+SAT filtering & assignments; selection & which clauses hold? (Chapter~13)\\
+formal DNA systems & strings; formal operators & what can be computed? (Part~IV)\\
+molecular automata & state and input; transitions & can reactions follow rules? (Chapter~17)\\
+self-assembly & tiles; local attachment & can shape encode a program? (Chapter~22)\\
+strand displacement & signals; strand exchange & can chemistry compose gates? (Part~V)\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Lipton explored SAT-style molecular search as a proposal,\cite{Lipton1995} while formal work studied computational power under specified DNA operations.\cite{Boneh1996} Molecular automata used biochemical transitions;\cite{Benenson2001} self-assembly organized local interactions into structures;\cite{Winfree1998} strand-displacement circuits made recognition and exchange into composable signal operations.\cite{Seelig2006} These are not all variants of filtering a pre-existing factorial route pool.
 
 Chapter 3, \emph{Combinatorial search and complexity}, next separates instance difficulty, verification cost, reductions and physical resource accounting. The later thermodynamic and kinetic chapters then examine whether the symbolic operations assumed here are physically reliable. The separation is intentional: a correct combinatorial proof and a workable molecular implementation must both be earned.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item The historical graph has fourteen directed edges and a unique Hamiltonian
+path $0,1,2,3,4,5,6$; the final block $3,4,5,6$ is forced by in-degree.
+\item Edge strands carry half-codes $R_iL_j$; complementary vertex splints align
+them; ligase converts alignment into a continuous backbone. Orientation labels
+are information, not decoration.
+\item With complete endpoint codes, a $k$-vertex route is $20k$ bases long, so a
+140-bp band corresponds to seven code occurrences, not to seven distinct
+vertices.
+\item PCR enriches by orientation and priming, gels select by length, and beads
+select by complementary pairing; each is an imperfect approximation of an ideal
+predicate.
+\item Soundness (accepted candidates are witnesses) and completeness (witnesses
+survive and are detected) can move in opposite directions as purification
+becomes more stringent.
+\item Graduated PCR projects positions and discards molecular identity; a
+resolved, verified witness proves existence, but no band does not prove
+absence.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises}
 \begin{enumerate}
@@ -269,3 +365,15 @@ Chapter 3, \emph{Combinatorial search and complexity}, next separates instance d
 \item Nonspecific retention of a pseudo-path can give a false positive; losing the only witness during a transfer can give a false negative. A decoded witness checked against the graph rejects the former. It cannot establish that absent material was never generated or that a negative instance has been proved.
 \item Assign probabilities to outgoing transitions and an explicit stopping rule, then propagate probability mass over bounded walks. Exact dynamic programming can compute the resulting distribution and witness mass for that model. Transition probabilities, stopping behavior and their transferability to chemistry still need measurement; a convenient probability table is not experimental validation.
 \end{enumerate}
+
+\section*{Further reading}
+\addcontentsline{toc}{section}{Further reading}
+Read Adleman's original report alongside this chapter; its experimental notes
+contain the sequence codes, reagent amounts and readout reasoning reconstructed
+here.\cite{Adleman1994} For the physical chemistry that the domain model omits,
+see SantaLucia's unified nearest-neighbour parameters\cite{SantaLucia1998} and
+Chapter~6. Ouyang and colleagues solved a maximal-clique instance with a
+related filtering strategy,\cite{Ouyang1997} and Braich and colleagues later
+solved a 20-variable 3-SAT instance by sequential affinity
+separations,\cite{Braich2002} which makes an instructive comparison with the
+resource accounting of Chapter~4.

@@ -27,6 +27,9 @@
 \newcommand{\FigureLabel}[1]{\edef\CurrentBookLabel{\noexpand\OriginalBookLabel{\ChapterNamespace#1}}\CurrentBookLabel}
 \let\OriginalBookRef\ref
 \let\OriginalBookAutoref\autoref
+% \gref{label}: reference a book-level label (appendix, Part, Chapters 1--3)
+% from inside a namespaced chapter.
+\newcommand{\gref}[1]{\OriginalBookRef{#1}}
 \makeatletter
 \let\OriginalBookDisplayLabel\label@in@display
 \newcommand{\ChapterNamespace}{}

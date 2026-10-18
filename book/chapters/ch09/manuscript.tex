@@ -1,5 +1,12 @@
 \chapter{Amplification and copy-number evidence}
 \label{ch:amplification}
+\ChapterGoals{%
+\item explain how two primers define the interval that PCR amplifies;
+\item count single strands, duplexes and exact-length products cycle by cycle;
+\item model variable efficiency, sequence bias and the material limits that end exponential growth;
+\item quantify sampling noise at low starting copy number;
+\item interpret a quantification cycle $C_q$ as the solution of an inverse problem, and state its assumptions.}
+{Chapters~5, 7 and~8 (orientation, rates, polymerase extension); exponentials and logarithms (Appendix~\gref{app:math}).}
 
 Start with one long DNA duplex containing a shorter interval that we want to copy. After three ideal copying cycles, there can be eight duplexes. Are all eight copies of exactly the intended interval? No. Some strands still extend beyond a primer-defined boundary. The first question is therefore not how many times the amount doubled, but \emph{what molecular object are we counting?}
 
@@ -24,6 +31,15 @@ In the usual PCR cycle, denaturation separates paired strands, annealing makes p
 This ordering creates feedback: the output of one round becomes an eligible input of another. But a new first-round strand starts at one primer and can extend beyond the other primer's site along the original template. Only when this new strand is itself copied does its primer-defined end become a physical template endpoint for the opposing extension.
 
 \Plate{02-lineage}{A selected lineage through the first three cycles. One defined end appears in cycle 1; an exact-length strand appears in cycle 2; copying that strand creates an exact-length duplex in cycle 3. The complete population contains other lineages and all surviving originals. The diagram tracks geometry, not relative reaction speed.}{fig:lineage}
+
+\Plate{00-pcr-cycle}{One cycle of the polymerase chain reaction and its
+consequence over many cycles. (1)~Heating separates the strands. (2)~On
+cooling, two primers pair near the $3'$ end of each template. (3)~Polymerase
+extends each primer $5'\to3'$, giving two duplexes from one. Every product can
+serve as a template in the next cycle, so copy number can double each cycle;
+real reactions have efficiency below one and reach a plateau as reagents are
+depleted. The growth curves are illustrative model outputs, not
+measurements.}{fig:pcrcycle}
 
 \section{Count strands before counting exact duplexes}
 \index{strand count}\index{duplex count}
@@ -66,7 +82,7 @@ The exact-duplex fraction under the stated pairing convention is
 \end{equation}
 Its limit is one because exponential growth eventually dominates the linear number of long-product lineages. The simpler doubling model can describe a mature population well while being wrong about product identity in the first cycles. Approximation is justified by the quantity of interest and regime, not by convenience alone.
 
-\section{From perfect doubling to variable efficiency}
+\section{From perfect doubling to variable efficiency}\label{sec:efficiency}
 \index{amplification efficiency}
 For the next model, begin with a pool of \emph{mature target duplex equivalents}. We are no longer using $N_n$ to count all long-template intermediates. Let $e_n\in[0,1]$ be the mean fractional increase per cycle before resource limits. A value $e_n=1$ means a factor of two, not a factor of one:
 \begin{equation}
@@ -209,6 +225,23 @@ For species $s$ with abundance $n_s$, an unsaturated round acts as $n_s\mapsto(1
 An evidence plan separates four questions: did target enter the sample; did the intended interval amplify; did the signal specifically reflect that product; and did calibration support the numerical inference? A no-template control probes contamination or reagent-generated signal. Product identity evidence probes specificity. Positive references and dilution behavior probe different failures. No single observation replaces the others.
 
 Chapter 10 turns to separation and readout: what the instrument measures, what remains latent, and how controls constrain competing explanations.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item Two primers pointing inwards define an interval; exact-length duplexes
+appear only from cycle two and number $D_n=2^n-2n$ in the ideal model.
+\item With per-cycle efficiency $e_i$, $\log(N_n/N_0)=\sum_i\log(1+e_i)$; small
+efficiency differences compound into large biases between templates.
+\item Primers, nucleotides and enzyme are finite, so growth always ends in a
+plateau: amplification cannot copy without limit.
+\item At low starting copy number, which molecules happen to be copied early
+dominates the variance of the final count.
+\item A threshold cycle estimates $N_0$ only through an assumed efficiency:
+$C_q=\log(N_\star/N_0)/\log(1+e)$.
+\item Amplification multiplies existing information, including contaminants and
+errors; it creates no new candidates and solves no search by itself.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked reasoning}
 \begin{enumerate}

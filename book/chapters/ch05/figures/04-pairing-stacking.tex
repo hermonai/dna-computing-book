@@ -1,19 +1,119 @@
-\begin{tikzpicture}[font=\small\sffamily]
-\fill[Gold!35] (2,.5) rectangle (8,1.6);
-\fill[Gold!35] (2,2.3) rectangle (8,3.4);
-\draw[Blue,line width=2pt] (1.3,.1)--(1.3,3.9);
-\draw[Blue,line width=2pt] (8.7,.1)--(8.7,3.9);
-\foreach \y/\a/\b/\n in {0.2/A/T/2,2/G/C/3,3.8/T/A/2}{
-\draw[Blue] (1.3,\y)--(2.7,\y) (7.3,\y)--(8.7,\y);
-\node[draw=Green,fill=Green!10,minimum width=2cm,minimum height=.6cm] at (3,\y) {\a};
-\node[draw=Red,fill=Red!8,minimum width=2cm,minimum height=.6cm] at (7,\y) {\b};
-\foreach \i in {1,...,\n}{\pgfmathsetmacro{\dy}{\y+(.12*(\i-(\n+1)/2))}
-\draw[dashed] (4.1,\dy)--(5.9,\dy);}}
-\node[smallnote,anchor=west,text width=3.5cm] at (10,3.7) {Solid side paths:\\covalent backbone};
-\draw[flow] (10,3.4)--(8.8,3.4);
-\node[smallnote,anchor=west,text width=3.5cm] at (10,2) {Across one layer:\\base pairing};
-\draw[flow] (10,1.7)--(7.7,2);
-\node[smallnote,anchor=west,text width=3.5cm] at (10,.2) {Between layers:\\base stacking};
-\draw[flow] (10,-.1)--(8,.9);
-\node[smallnote] at (5,-.75) {Unwound conceptual view; layer spacing is not a measured distance.};
+% Watson-Crick base pairs drawn from regular ring geometry (bond length \b).
+% Purine: hexagon centred at the origin, rotated so N1 faces the partner,
+% fused pentagon at C4-C5. Pyrimidine: hexagon with N3 facing the purine N1.
+% Hydrogen-bond donor-acceptor distances are drawn about twice a covalent bond.
+\begin{tikzpicture}[x=1cm,y=1cm,
+  atm/.style={font=\sffamily\small,text=Ink,inner sep=1.1pt,fill=white},
+  hat/.style={font=\sffamily\small,text=Ink,inner sep=1pt,fill=white},
+  bd/.style={line width=1pt,Ink},
+  db/.style={line width=1pt,Ink,double,double distance=1.6pt},
+  hb/.style={line width=1.1pt,dash pattern=on 2pt off 1.6pt,StrandRose}]
+\def\b{.62}
+% \Purine{x-offset}{prefix}{colour}{6 substituent}{2 substituent}{N1 label}{double C6=?}
+% ------------------------------------------------------------ A . T
+\begin{scope}[shift={(0,0)}]
+ \fill[BaseA!14,rounded corners=8pt] (-2.45*\b,-1.25*\b) rectangle (1.35*\b,2.35*\b);
+ \fill[BaseT!12,rounded corners=8pt] (2.75*\b,-2.25*\b) rectangle (5.75*\b,2.3*\b);
+ % adenine ring (rotated -30 deg)
+ \coordinate (aC6) at (.5*\b,.866*\b);
+ \node[atm] (aN1) at (\b,0) {N};
+ \coordinate (aC2) at (.5*\b,-.866*\b);
+ \node[atm] (aN3) at (-.5*\b,-.866*\b) {N};
+ \coordinate (aC4) at (-\b,0);
+ \coordinate (aC5) at (-.5*\b,.866*\b);
+ \node[atm] (aN7) at (-1.169*\b,1.609*\b) {N};
+ \coordinate (aC8) at (-2.083*\b,1.203*\b);
+ \node[atm] (aN9) at (-1.978*\b,.208*\b) {N};
+ \node[atm] (aN6) at (\b,1.732*\b) {N};
+ \node[hat] (aH6) at (1.62*\b,1.732*\b) {H};
+ \node[hat] (aH6b) at (.69*\b,2.27*\b) {H};
+ \node[hat] (aH2) at (.82*\b,-1.42*\b) {H};
+ \draw[db] (aC6)--(aN1);\draw[bd] (aN1)--(aC2);\draw[db] (aC2)--(aN3);\draw[bd] (aN3)--(aC4);
+ \draw[db] (aC4)--(aC5);\draw[bd] (aC5)--(aC6);\draw[bd] (aC5)--(aN7);\draw[db] (aN7)--(aC8);
+ \draw[bd] (aC8)--(aN9);\draw[bd] (aN9)--(aC4);\draw[bd] (aC6)--(aN6);\draw[bd] (aN6)--(aH6);\draw[bd] (aN6)--(aH6b);
+ \draw[bd] (aC2)--(aH2);
+ \draw[bd] (aN9)--(-2.72*\b,-.46*\b) node[below left,slab,inner sep=1pt] {sugar};
+ % thymine ring, N3 at (3.07b,0)
+ \node[atm] (tN3) at (3.07*\b,0) {N};
+ \coordinate (tC4) at (3.57*\b,.866*\b);
+ \coordinate (tC5) at (4.57*\b,.866*\b);
+ \coordinate (tC6) at (5.07*\b,0);
+ \node[atm] (tN1) at (4.57*\b,-.866*\b) {N};
+ \coordinate (tC2) at (3.57*\b,-.866*\b);
+ \node[atm] (tO4) at (3.07*\b,1.732*\b) {O};
+ \node[atm] (tO2) at (3.07*\b,-1.732*\b) {O};
+ \node[atm] (tMe) at (5.12*\b,1.82*\b) {CH$_3$};
+ \node[hat] (tH3) at (2.45*\b,0) {H};
+ \node[hat] (tH6) at (5.69*\b,0) {H};
+ \draw[bd] (tN3)--(tC4);\draw[bd] (tC4)--(tC5);\draw[db] (tC5)--(tC6);\draw[bd] (tC6)--(tN1);
+ \draw[bd] (tN1)--(tC2);\draw[bd] (tC2)--(tN3);\draw[db] (tC4)--(tO4);\draw[db] (tC2)--(tO2);
+ \draw[bd] (tC5)--(tMe);\draw[bd] (tN3)--(tH3);\draw[bd] (tC6)--(tH6);
+ \draw[bd] (tN1)--(5.07*\b,-1.732*\b) node[below right,slab,inner sep=1pt] {sugar};
+ % hydrogen bonds
+ \draw[hb] (aH6)--(tO4);
+ \draw[hb] (aN1)--(tH3);
+ \node[font=\sffamily\bfseries\small,text=BaseA!70!black] at (-.6*\b,2.75*\b) {adenine (A)};
+ \node[font=\sffamily\bfseries\small,text=BaseT!80!black] at (4.3*\b,2.75*\b) {thymine (T)};
+ \node[font=\sffamily\bfseries\normalsize,text=Ink] at (1.6*\b,-2.85*\b) {A$\cdot$T: two hydrogen bonds};
+\end{scope}
+% ------------------------------------------------------------ G . C
+\begin{scope}[shift={(10.6*\b,0)}]
+ \fill[BaseG!14,rounded corners=8pt] (-2.45*\b,-2.3*\b) rectangle (1.35*\b,2.35*\b);
+ \fill[BaseC!12,rounded corners=8pt] (2.75*\b,-2.25*\b) rectangle (5.75*\b,2.3*\b);
+ \coordinate (gC6) at (.5*\b,.866*\b);
+ \node[atm] (gN1) at (\b,0) {N};
+ \coordinate (gC2) at (.5*\b,-.866*\b);
+ \node[atm] (gN3) at (-.5*\b,-.866*\b) {N};
+ \coordinate (gC4) at (-\b,0);
+ \coordinate (gC5) at (-.5*\b,.866*\b);
+ \node[atm] (gN7) at (-1.169*\b,1.609*\b) {N};
+ \coordinate (gC8) at (-2.083*\b,1.203*\b);
+ \node[atm] (gN9) at (-1.978*\b,.208*\b) {N};
+ \node[atm] (gO6) at (\b,1.732*\b) {O};
+ \node[hat] (gH1) at (1.62*\b,0) {H};
+ \node[atm] (gN2) at (\b,-1.732*\b) {N};
+ \node[hat] (gH2) at (1.62*\b,-1.732*\b) {H};
+ \node[hat] (gH2b) at (.69*\b,-2.27*\b) {H};
+ \draw[bd] (gC6)--(gN1);\draw[bd] (gN1)--(gC2);\draw[db] (gC2)--(gN3);\draw[bd] (gN3)--(gC4);
+ \draw[db] (gC4)--(gC5);\draw[bd] (gC5)--(gC6);\draw[bd] (gC5)--(gN7);\draw[db] (gN7)--(gC8);
+ \draw[bd] (gC8)--(gN9);\draw[bd] (gN9)--(gC4);\draw[db] (gC6)--(gO6);\draw[bd] (gN1)--(gH1);
+ \draw[bd] (gC2)--(gN2);\draw[bd] (gN2)--(gH2);\draw[bd] (gN2)--(gH2b);
+ \draw[bd] (gN9)--(-2.72*\b,-.46*\b) node[below left,slab,inner sep=1pt] {sugar};
+ % cytosine
+ \node[atm] (cN3) at (3.07*\b,0) {N};
+ \coordinate (cC4) at (3.57*\b,.866*\b);
+ \coordinate (cC5) at (4.57*\b,.866*\b);
+ \coordinate (cC6) at (5.07*\b,0);
+ \node[atm] (cN1) at (4.57*\b,-.866*\b) {N};
+ \coordinate (cC2) at (3.57*\b,-.866*\b);
+ \node[atm] (cN4) at (3.07*\b,1.732*\b) {N};
+ \node[hat] (cH4) at (2.45*\b,1.732*\b) {H};
+ \node[hat] (cH4b) at (3.38*\b,2.27*\b) {H};
+ \node[atm] (cO2) at (3.07*\b,-1.732*\b) {O};
+ \node[hat] (cH5) at (5.07*\b,1.732*\b) {H};
+ \node[hat] (cH6) at (5.69*\b,0) {H};
+ \draw[bd] (cN3)--(cC2);\draw[db] (cN3)--(cC4);\draw[bd] (cC4)--(cC5);\draw[db] (cC5)--(cC6);
+ \draw[bd] (cC6)--(cN1);\draw[bd] (cN1)--(cC2);\draw[db] (cC2)--(cO2);\draw[bd] (cC4)--(cN4);
+ \draw[bd] (cN4)--(cH4);\draw[bd] (cN4)--(cH4b);\draw[bd] (cC5)--(cH5);\draw[bd] (cC6)--(cH6);
+ \draw[bd] (cN1)--(5.07*\b,-1.732*\b) node[below right,slab,inner sep=1pt] {sugar};
+ \draw[hb] (gO6)--(cH4);
+ \draw[hb] (gH1)--(cN3);
+ \draw[hb] (gH2)--(cO2);
+ \node[font=\sffamily\bfseries\small,text=BaseG!75!black] at (-.6*\b,2.75*\b) {guanine (G)};
+ \node[font=\sffamily\bfseries\small,text=BaseC!85!black] at (4.3*\b,2.75*\b) {cytosine (C)};
+ \node[font=\sffamily\bfseries\normalsize,text=Ink] at (1.6*\b,-2.85*\b) {G$\cdot$C: three hydrogen bonds};
+\end{scope}
+% ------------------------------------------------------------ groove orientation and stacking inset
+\node[slab,text=InkSoft,anchor=west] at (-2.5*\b,3.45*\b) {major-groove edge \,$\uparrow$};
+\node[slab,text=InkSoft,anchor=west] at (-2.5*\b,-3.55*\b) {minor-groove edge \,$\downarrow$ (sugars attach on this side)};
+\begin{scope}[shift={(19.3*\b,-1.6*\b)}]
+ \foreach \k/\c/\d in {0/BaseA/BaseT,1/BaseG/BaseC,2/BaseC/BaseG,3/BaseT/BaseA}{
+   \fill[\c!55] (0,\k*.95*\b) -- (1.25*\b,\k*.95*\b+.12*\b) -- (1.25*\b,\k*.95*\b+.42*\b) -- (0,\k*.95*\b+.3*\b) -- cycle;
+   \fill[\d!55] (1.25*\b,\k*.95*\b+.12*\b) -- (2.5*\b,\k*.95*\b) -- (2.5*\b,\k*.95*\b+.3*\b) -- (1.25*\b,\k*.95*\b+.42*\b) -- cycle;}
+ \draw[DNAblue,line width=1.8pt] (-.1*\b,-.2*\b)--(-.1*\b,3.4*\b);
+ \draw[StrandViolet,line width=1.8pt] (2.6*\b,-.2*\b)--(2.6*\b,3.4*\b);
+ \draw[|-|,InkSoft,line width=.6pt] (3.0*\b,.15*\b)--(3.0*\b,1.1*\b);
+ \node[slab,anchor=west,align=left] at (3.1*\b,.62*\b) {0.34 nm};
+ \node[slab,align=center,anchor=north] at (1.25*\b,-.35*\b) {edge-on view:\\pairs stack};
+\end{scope}
 \end{tikzpicture}

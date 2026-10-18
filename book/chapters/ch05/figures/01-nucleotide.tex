@@ -1,15 +1,75 @@
-\begin{tikzpicture}[font=\small\sffamily,atom/.style={fill=white,inner sep=3pt},line width=1pt]
-\fill[Gold!35] (4,2.8)--(6,2.8)--(7,1.5)--(6,.1)--(4,.1)--cycle;
-\draw (4,2.8)--(6,2.8)--(7,1.5)--(6,.1)--(4,.1)--cycle;
-\node[atom] at (4,2.8) {$C4'$}; \node[atom] at (6,2.8) {$O4'$};
-\node[atom] at (7,1.5) {$C1'$}; \node[atom] at (6,.1) {$C2'$}; \node[atom] at (4,.1) {$C3'$};
-\draw (4,2.8)--(2.8,3.6)--(1.3,3.6)--(.2,2.7);
-\node[atom] at (2.8,3.6) {$C5'$}; \node[atom] at (1.3,3.6) {$O5'$};
-\node[draw,fill=Gold!50,rounded corners,align=center] at (.2,2.4) {Phosphate\\group};
-\draw[Blue] (7,1.5)--(9,1.5);
-\node[draw,fill=Blue!8,rounded corners,minimum width=3cm,minimum height=.9cm] at (10.5,1.5) {Base: A, C, G, or T};
-\draw (4,.1)--(4,-1); \node[atom] at (4,-1) {$3'$--OH};
-\draw[dashed,gray] (6,-.2)--(6,-.8); \node[atom] at (6,-1) {$CH_2$ at $C2'$};
-\node[smallnote,anchor=west,text width=3.4cm] at (8.8,-.5) {Base attaches at $C1'$;\\a sequence letter names\\this base identity.};
-\node[smallnote,anchor=west,text width=3.4cm] at (8.8,3.2) {Numbered connectivity,\\not a stereochemical\\or scale drawing};
+% 2'-deoxyadenosine 5'-monophosphate (dAMP) as a skeletal structure.
+% Ring atoms are placed on regular polygons with bond length \b; the purine is
+% a hexagon fused to a pentagon at C4-C5; the furanose is a pentagon with O4' up.
+\begin{tikzpicture}[x=1cm,y=1cm,
+  atm/.style={font=\sffamily\small,text=Ink,inner sep=1.2pt,fill=white},
+  hat/.style={font=\sffamily\small,text=Ink,inner sep=1.2pt},
+  bd/.style={line width=1.05pt,Ink},
+  db/.style={line width=1.05pt,Ink,double,double distance=1.7pt},
+  num/.style={font=\sffamily\scriptsize\bfseries,inner sep=.5pt}]
+\def\b{.72}
+% ---------------------------------------------------------------- coloured regions
+\begin{scope}[on background layer]
+ \fill[BaseA!13,rounded corners=10pt] (-2.75*\b,-1.25*\b) rectangle (1.45*\b,2.3*\b);
+ \fill[DNAblue!9,rounded corners=10pt] (-4.6*\b,-3.95*\b) rectangle (-1.65*\b,-.55*\b);
+ \fill[StrandAmber!14,rounded corners=10pt] (-6.75*\b,-1.1*\b) rectangle (-4.45*\b,2.05*\b);
+\end{scope}
+% ---------------------------------------------------------------- adenine
+\coordinate (C6) at (0,\b);
+\node[atm] (N1) at (.866*\b,.5*\b) {N};
+\coordinate (C2) at (.866*\b,-.5*\b);
+\node[atm] (N3) at (0,-\b) {N};
+\coordinate (C4) at (-.866*\b,-.5*\b);
+\coordinate (C5) at (-.866*\b,.5*\b);
+\node[atm] (N7) at (-1.817*\b,.809*\b) {N};
+\coordinate (C8) at (-2.405*\b,0);
+\node[atm] (N9) at (-1.817*\b,-.809*\b) {N};
+\node[atm] (N6) at (0,2*\b) {NH$_2$};
+\draw[db] (C6)--(N1); \draw[bd] (N1)--(C2); \draw[db] (C2)--(N3); \draw[bd] (N3)--(C4);
+\draw[db] (C4)--(C5); \draw[bd] (C5)--(C6); \draw[bd] (C5)--(N7); \draw[db] (N7)--(C8);
+\draw[bd] (C8)--(N9); \draw[bd] (N9)--(C4); \draw[bd] (C6)--(N6);
+\foreach \p/\t in {N1/1,N7/7,N9/9}{\node[num,text=BaseA!70!black,anchor=south west] at ($(\p)+(.06,.05)$) {\t};}
+\node[num,text=BaseA!70!black,anchor=north east] at ($(N3)+(-.08,-.06)$) {3};
+\node[num,text=BaseA!70!black] at ($(C6)+(.24,.05)$) {6};
+\node[num,text=BaseA!70!black] at ($(C2)+(.2,-.13)$) {2};
+\node[num,text=BaseA!70!black] at ($(C4)+(.22,.02)$) {4};
+\node[num,text=BaseA!70!black] at ($(C5)+(.22,.02)$) {5};
+\node[num,text=BaseA!70!black] at ($(C8)+(-.18,0)$) {8};
+% ---------------------------------------------------------------- deoxyribose
+\coordinate (C1p) at (-2.126*\b,-1.760*\b);
+\node[atm] (O4p) at (-2.935*\b,-1.172*\b) {O};
+\coordinate (C2p) at (-2.435*\b,-2.711*\b);
+\coordinate (C3p) at (-3.435*\b,-2.711*\b);
+\coordinate (C4p) at (-3.744*\b,-1.760*\b);
+\coordinate (C5p) at (-4.244*\b,-.894*\b);
+\draw[bd] (N9)--(C1p); \draw[bd] (C1p)--(O4p); \draw[bd] (O4p)--(C4p);
+\draw[bd] (C4p)--(C3p); \draw[bd] (C3p)--(C2p); \draw[bd] (C2p)--(C1p);
+\draw[bd] (C4p)--(C5p);
+\node[atm] (O3p) at (-4.02*\b,-3.52*\b) {OH};
+\draw[bd] (C3p)--(O3p);
+\node[hat] (H2a) at (-1.97*\b,-3.43*\b) {H};
+\node[hat] (H2b) at (-2.62*\b,-3.62*\b) {H};
+\draw[bd] (C2p)--(H2a); \draw[bd] (C2p)--(H2b);
+\foreach \p/\t/\dx/\dy in {C1p/1$'$/.05/.28,C2p/2$'$/.27/.05,C3p/3$'$/-.22/.12,C4p/4$'$/-.27/-.02,C5p/5$'$/.18/.17}{
+  \node[num,text=DNAblue!80!black] at ($(\p)+(\dx,\dy)$) {\t};}
+% ---------------------------------------------------------------- phosphate
+\node[atm] (O5p) at (-4.244*\b,.106*\b) {O};
+\draw[bd] (C5p)--(O5p);
+\node[atm] (P) at (-5.11*\b,.606*\b) {P};
+\draw[bd] (O5p)--(P);
+\node[atm] (Op1) at (-5.11*\b,1.66*\b) {O};
+\node[atm] (Op2) at (-6.15*\b,.606*\b) {O$^{-}$};
+\node[atm] (Op3) at (-5.11*\b,-.45*\b) {O$^{-}$};
+\draw[db] (P)--(Op1); \draw[bd] (P)--(Op2); \draw[bd] (P)--(Op3);
+% ---------------------------------------------------------------- annotations
+\node[slab,font=\sffamily\bfseries\footnotesize,text=StrandAmber!80!black,anchor=south] at (-5.6*\b,2.1*\b) {phosphate};
+\node[slab,font=\sffamily\bfseries\footnotesize,text=DNAblue!80!black,anchor=north] at (-3.1*\b,-4.0*\b) {2$'$-deoxyribose (sugar)};
+\node[slab,font=\sffamily\bfseries\footnotesize,text=BaseA!70!black,anchor=south] at (-.65*\b,2.35*\b) {adenine (base)};
+\draw[InkSoft,line width=.6pt,-{Stealth[length=1.6mm]}] (2.2*\b,-2.4*\b) node[right,slab,align=left]
+ {N-glycosidic bond:\\the base joins C1$'$} -- ($(N9)!.5!(C1p)+(.08,-.02)$);
+\draw[InkSoft,line width=.6pt,-{Stealth[length=1.6mm]}] (-.6*\b,-3.6*\b) node[right,slab,align=left]
+ {C2$'$ carries two H in DNA;\\RNA has an OH here} -- ($(C2p)+(.16,-.2)$);
+\node[slab,align=left,anchor=east] at (-6.85*\b,-2.3*\b) {the 3$'$ OH joins the\\next phosphate in a\\strand};
+\draw[InkSoft,line width=.6pt,-{Stealth[length=1.6mm]}] (-6.95*\b,-2.75*\b)--($(O3p)+(-.32,-.04)$);
+\node[slab,align=left,anchor=east] at (-6.85*\b,.0) {5$'$ end of\\the nucleotide};
 \end{tikzpicture}

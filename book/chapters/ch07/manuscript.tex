@@ -1,4 +1,11 @@
 \chapter{Reaction kinetics and stochastic chemistry}
+\ChapterGoals{%
+\item derive a reaction's stoichiometric matrix and its conservation laws;
+\item distinguish equilibrium (where), flux (how much per second) and relaxation (how fast);
+\item solve the association--dissociation ODE exactly and use it to test a numerical integrator;
+\item explain molecule-count propensities and implement Gillespie's stochastic simulation algorithm;
+\item decide when molecule-level noise matters and the deterministic model breaks down.}
+{Chapter~6; derivatives as rates and basic probability (Appendix~\gref{app:math}).}
 
 Two mixtures have the same predicted equilibrium: 80 nM of duplex from
 100 nM of each complementary strand. Must they produce the same signal
@@ -159,6 +166,15 @@ output changes slowly. This chapter supplies a small transparent oracle;
 Chapter 28 will address solver choice, error tolerances, stiffness, and
 parameter inference for networks.
 
+\begin{CSBridge}
+A \emph{propensity} is the probability per unit time that a particular reaction
+fires next, given the current molecule counts. If the total propensity is
+$\alpha_0$, the waiting time to the next event is exponentially distributed with
+mean $1/\alpha_0$, exactly as for radioactive decay. The simulation algorithm in
+this chapter draws that waiting time and then chooses which reaction fired, in
+proportion to its propensity.
+\end{CSBridge}
+
 \section{Replace concentrations with integer events}
 
 Let $N_A$ denote Avogadro's constant and $V$ the volume in liters.
@@ -306,6 +322,23 @@ seeded event integrity, detailed balance, and a distributional oracle.
 Next, Chapter 8 introduces enzymes as substrate-specific operators.
 The present inventory and timing discipline will remain necessary even
 when a diagram contains a recognizable protein.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A mechanism defines a stoichiometric matrix; its left null space gives the
+conserved totals that every correct simulation must preserve.
+\item Equilibrium, net flux and relaxation are different: two mixtures with the
+same equilibrium can differ by orders of magnitude in speed.
+\item Near equilibrium the deviation decays at rate
+$\lambda=k_{\rm on}(a+b-2x_*)+k_{\rm off}$; the full nonlinear ODE has an exact
+solution that serves as an oracle for numerical integrators.
+\item At low copy number, reactions are random events with propensities such as
+$\alpha_+=(k_{\rm on}/\Omega)(n_A-d)(n_B-d)$; the Gillespie algorithm samples exact
+trajectories.
+\item The stochastic description is a different model, not the deterministic one
+with noise added; compare whole distributions, not single runs.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked solutions}
 

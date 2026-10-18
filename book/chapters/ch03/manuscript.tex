@@ -1,6 +1,19 @@
 % Authoritative LaTeX revision; do not regenerate from Markdown.
-\chapter{Combinatorial search and complexity}
-\Callout{Revision boundary}{This chapter revises the standalone review candidate. The previously accepted Chapters 1--2 and their source hashes remain unchanged. This combined volume is a new review candidate, not a new acceptance record.}
+\chapter{Combinatorial search and complexity}\label{ch:complexity}
+\ChapterGoals{%
+\item distinguish decision, search and verification versions of the same problem;
+\item measure an algorithm's cost in the size of its encoded input, and explain P, NP and coNP;
+\item derive and prove the subset dynamic program for Hamiltonian path, and count its states;
+\item explain what a reduction transfers, and in which direction;
+\item separate work from parallel depth, and logical correctness from physical evidence.}
+{Chapters~1--2; the idea of an algorithm and of $O(\cdot)$ notation (Appendix~\ref{app:math}).}
+
+\begin{CSBridge}
+This is the book's computer-science chapter. Readers new to complexity can read
+it as a sequence of small, checkable examples: every definition is introduced on
+a four-vertex graph before it is used in general, and every claim about cost
+names the quantity being counted.
+\end{CSBridge}
 \input{chapters/ch03/bridge.tex}
 
 
@@ -55,7 +68,7 @@ but require different outputs. Rejecting \((0,1,3,2)\) does not answer
 the existence question for our graph; both valid paths above still
 exist.
 
-\DeepFigure{DNAD-03-F1}{\textbf{DNAD-03-F1.} A verified certificate establishes a yes-instance.
+\DeepFigure{DNAD-03-F1}{A verified certificate establishes a yes-instance.
 A rejected certificate only eliminates the submitted order. The
 distinction is the existential quantifier, not a difference in
 terminology.}{fig:DNAD-03-F1}
@@ -90,9 +103,7 @@ polynomial time. \textbf{NP} can be characterized by polynomial-length
 certificates whose validity is checked in polynomial time. The
 certificate definition does not prescribe enumerating all certificates,
 and it does not describe a physical machine creating every possibility
-for free. These are the conventions used in
-\href{https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/45e2fd621349cfd7c9faf93a6ba134a3_MIT18_404f20_lec14.pdf}{Sipser's
-lecture on P, NP and reducibility}.
+for free. These are standard conventions.\cite{Sipser2013,SipserLecture14}
 
 An important negative statement follows from logic alone: the definition
 supplies short certificates for yes-instances. It does not automatically
@@ -101,7 +112,7 @@ existence statement gives \(\forall P\,\neg R(G,s,t,P)\), not the
 rejection of one chosen \(P\). We should not confuse that distinction
 with a proof that no concise negative certificate could ever exist.
 
-\DeepFigure{DNAD-03-F5}{\textbf{DNAD-03-F5.} Our four-vertex matrix contains 16 adjacency bits,
+\DeepFigure{DNAD-03-F5}{Our four-vertex matrix contains 16 adjacency bits,
 not 16 bits for the entire instance: the representation must also supply
 its size and endpoints. The integer 1024 needs 11 binary digits. Six
 physical copies of one sequence are six molecules but only one distinct
@@ -117,10 +128,8 @@ representation changed.
 
 The class \textbf{coNP} is defined by complementing languages:
 \(L\in\mathrm{coNP}\) exactly when \(\overline L\in\mathrm{NP}\). It is
-not the collection of all problems outside NP. These conventions are
-stated in
-\href{https://www.cs.toronto.edu/~toni/Courses/Complexity2015/lectures/lecture3.pdf}{Toronto's
-complexity lecture, section 4}.
+not the collection of all problems outside NP. These conventions follow standard
+complexity-theory notes.\cite{TorontoLecture3}
 
 We can derive the inclusion \(P\subseteq NP\cap coNP\) without guessing
 which classes are equal. A deterministic polynomial-time decider is also
@@ -131,7 +140,7 @@ original language in coNP. Reversing the answer on just one
 nondeterministic branch does not perform this operation on the whole
 existence statement.
 
-\DeepFigure{DNAD-03-F7}{\textbf{DNAD-03-F7.} The four candidate slots are a schematic finite
+\DeepFigure{DNAD-03-F7}{The four candidate slots are a schematic finite
 universe, not the exhaustive orders of our running graph. The left panel
 needs one accepted candidate; the right panel needs all candidates
 rejected. Checking only the four drawn slots would not establish a
@@ -154,7 +163,7 @@ This motivates a Boolean state:
 D[S,v]=\text{a simple path from }s\text{ visits exactly }S\text{ and ends at }v.
 \end{equation}
 
-\DeepFigure{DNAD-03-F2}{\textbf{DNAD-03-F2.} This separate five-vertex illustration exposes a
+\DeepFigure{DNAD-03-F2}{This separate five-vertex illustration exposes a
 state equivalence before the final step. Equal visited sets alone are
 insufficient: different last vertices can have different outgoing edges.
 Equal last vertices alone are also insufficient: different used vertices
@@ -223,7 +232,7 @@ four-vertex graphs}. This is useful fault detection. The inductive
 invariant is what supports correctness for arbitrary finite graph size;
 exhaustive testing at size four cannot replace it.
 
-\DeepFigure{DNAD-03-F8}{\textbf{DNAD-03-F8.} The curve uses complete directed graphs, unlike our
+\DeepFigure{DNAD-03-F8}{The curve uses complete directed graphs, unlike our
 six-edge running graph. At \(n=4\), the complete graph has 15 neighbor
 scans while the running graph has ten. At \(n=8\), there are 720
 possible interior orders, 194 reachable states and 1,351 scans. These
@@ -269,11 +278,9 @@ other edges. A cycle through the pivot opens into a spanning
 \(s\)-to-\(t\) path. Conversely, identifying the endpoints of such a
 path closes a cycle through the original vertices. The construction adds
 one vertex and preserves the number of edges for our loop-free graph
-convention. This is the vertex-splitting reduction presented in
-\href{https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/1dee182d301235b901119a0ff57f05e2_MIT6_046JS15_Recitation8.pdf}{MIT's
-algorithms recitation}.
+convention. This is the standard vertex-splitting reduction.\cite{MIT6046Rec8}
 
-\DeepFigure{DNAD-03-F3}{\textbf{DNAD-03-F3.} The three-cycle is an illustration, not the proof
+\DeepFigure{DNAD-03-F3}{The three-cycle is an illustration, not the proof
 for every graph. The code checks all simple directed three-vertex graphs
 and every pivot, including graphs without cycles.}{fig:DNAD-03-F3}
 
@@ -302,7 +309,7 @@ clause for every pair that must not both be true. Add the unit clauses
 \neg x_{u,p}\lor\neg x_{v,p+1}.
 \end{equation}
 
-\DeepFigure{DNAD-03-F4}{\textbf{DNAD-03-F4.} A permutation matrix can still describe a
+\DeepFigure{DNAD-03-F4}{A permutation matrix can still describe a
 forbidden-edge route. The transition clauses implement the extra
 adjacency condition already exposed by Chapter 2's pseudo-path.}{fig:DNAD-03-F4}
 
@@ -353,7 +360,7 @@ witness \((0,2,1,3)\). This differs from the first witness returned by
 subset search, without any contradiction: the task requests a witness,
 not a unique canonical order.
 
-\DeepFigure{DNAD-03-F6}{\textbf{DNAD-03-F6.} A NO answer describes the trial graph without the
+\DeepFigure{DNAD-03-F6}{A NO answer describes the trial graph without the
 tested edge. It does not describe the retained graph: on NO, the
 algorithm keeps that edge and preserves a yes-instance. This distinction
 is visible at query 3, where deleting \(0\to2\) would remove the only
@@ -408,7 +415,7 @@ critical path. With enough workers, the tests at each level can overlap.
 That does not remove the other nine applications; it changes when and
 where they are carried out.
 
-\DeepFigure{DNAD-03-F9}{\textbf{DNAD-03-F9.} Every circle is one abstract test. Columns are
+\DeepFigure{DNAD-03-F9}{Every circle is one abstract test. Columns are
 dependency levels, not laboratory time points. Work is the total number
 of circles; depth is the length of the longest dependent chain. No
 reaction-rate calibration is implied.}{fig:DNAD-03-F9}
@@ -447,7 +454,7 @@ but does not survive the operations; a surviving copy does not produce a
 recorded signal. These alternatives concern physical completeness, not
 logical soundness.
 
-\DeepFigure{DNAD-03-F10}{\textbf{DNAD-03-F10.} The panels are alternative explanations, not a
+\DeepFigure{DNAD-03-F10}{The panels are alternative explanations, not a
 serial protocol. Curved marks denote schematic molecules, not counted
 microscopic observations. The probability formula below them is an
 explicit toy model, not a fitted assay.}{fig:DNAD-03-F10}
@@ -482,7 +489,7 @@ still requires decoding and the independent verifier.
 \section{What is proved, what is imported, what is
 measured}\label{what-is-proved-what-is-imported-what-is-measured}
 
-\DeepFigure{DNAD-03-F11}{\textbf{DNAD-03-F11.} Opening and closing a cycle are inverse witness
+\DeepFigure{DNAD-03-F11}{Opening and closing a cycle are inverse witness
 constructions under the stated loop-free, distinct-endpoint conventions.
 The drawing is one example; the argument and encoding-size account
 justify the general reduction.}{fig:DNAD-03-F11}
@@ -491,7 +498,7 @@ This chapter proves its subset recurrence, path-to-CNF equivalence and
 decision-to-search construction. It proves how directed cycle hardness
 would transfer to the fixed-endpoint path problem. The upstream
 NP-hardness result is an attributed theoretical premise, not a proof
-reconstructed from the original Cook and Karp papers here. Stating that
+reconstructed here from the original papers of Cook and Karp.\cite{Cook1971,Karp1972} Stating that
 boundary is more useful than presenting an incomplete satisfiability
 gadget as if its local arrows established a theorem.
 
@@ -506,7 +513,7 @@ separation.
 \section{The physical bridge the abstraction must
 preserve}\label{the-physical-bridge-the-abstraction-must-preserve}
 
-\DeepFigure{DNAD-03-F12}{\textbf{DNAD-03-F12.} A duplex illustrates that directed sequences have
+\DeepFigure{DNAD-03-F12}{A duplex illustrates that directed sequences have
 a physical realization, but the DP table is not an assay. One true
 Boolean entry does not distinguish one remaining molecule from many. The
 cartoon's four bases illustrate orientation; they are not a proposed
@@ -521,6 +528,28 @@ Therefore the implementer must provide a representation map and an
 error/resource contract, not just rename a molecule as a state. This is
 the precise handoff to molecular parallelism and resource accounting in
 Chapter 4.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item Decision, search and verification share one relation $R(G,s,t,P)$ but ask
+for different outputs; rejecting one candidate does not answer the existence
+question.
+\item Cost is measured in the length of the encoded input. P is polynomial-time
+decidability; NP is polynomial-time verifiability of short certificates for
+yes-instances; coNP is the class of complements of NP languages.
+\item The subset dynamic program keeps only the future-relevant state
+$(S,v)$ and decides Hamiltonian path in $O(n^2 2^n)$ time: far better than
+$(n-2)!$, but still exponential.
+\item A reduction transfers hardness in one direction only; vertex splitting maps
+directed Hamiltonian cycle to fixed-endpoint path.
+\item A decision oracle can be turned into a witness by self-reduction, at the
+cost of repeated calls.
+\item Parallel depth is not total work: molecular parallelism shortens the
+chain of dependent steps but pays for every candidate-test in material.
+\item A proof, a passing test and a laboratory measurement establish different
+things, and a missing signal has several explanations besides ``no solution''.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked
 reasoning}\label{exercises-with-worked-reasoning}
@@ -607,17 +636,6 @@ reasoning}\label{exercises-with-worked-reasoning}
   not a lower bound on every molecular algorithm.
 \end{enumerate}
 
-\section{Publication work still
-required}\label{publication-work-still-required}
-
-All twelve storyboard figures are now produced with semantic TXT
-companions. The standalone Chapter 3 review edition includes a source
-list, glossary and tested code appendix. It does not modify the accepted
-cumulative edition. Independent subject review and cumulative LaTeX
-index/bibliography integration remain release gates; the imported
-upstream hardness theorem is not claimed as a newly reconstructed full
-proof.
-
 \section{Selected glossary}\label{selected-glossary}
 
 \textbf{Certificate:} a proposed finite witness checked by a verifier.
@@ -633,7 +651,7 @@ predicate.
 existing witness is represented, retained and observed; not implied by
 predicate soundness.
 
-\section{Appendix A. Executable boundary
+\section{Companion code: boundary
 diagnostics}\label{appendix-a.-executable-boundary-diagnostics}
 
 These functions are reproduced from completion\_diagnostics.py and
@@ -663,126 +681,14 @@ def work_depth(candidates, stages):
             "work":candidates*stages,"depth":stages}
 \end{verbatim}
 
-\section{Appendix B. Sources and evidence
-boundaries}\label{appendix-b.-sources-and-evidence-boundaries}
-
-\subsection{Chapter 3 source ledger}\label{chapter-3-source-ledger}
-
-\subsubsection{Review-candidate extension, 12 September
-2026}\label{review-candidate-extension-12-september-2026}
-
-The earlier entries below retain the access record of the first two
-passes. The new work/depth and missing-signal examples are original
-derivations with explicit assumptions, not laboratory measurements. For
-the signal calculation, survival and detection are conditional
-probabilities in a per-copy chain; independence is assumed across
-candidate copies only when exponentiating the no-signal probability. The
-implementation is checked against explicit two-copy enumeration,
-boundary cases and a small-probability stability case.
-
-MIT 6.046J Recitation 8 was rechecked for the split-vertex reduction.
-This chapter proves that map and explicitly imports the hardness of
-directed Hamiltonian cycle as a premise. It does not claim to supply the
-entire Cook-Karp hardness chain. Figures F9-F12 separate abstract work,
-molecular population, observation and proof obligations. All twelve
-figures are produced; calibrated physical accounting and independent
-scientific review remain open.
-
-Consulted 9 September 2026. This ledger distinguishes directly read
-support from located-but-unread material. It is not a systematic review
-or independent approval.
-
-\subsubsection{Directly read support}\label{directly-read-support}
-
-\begin{itemize}
-\tightlist
-\item
-  Michael Sipser, MIT 18.404J (2020),
-  \href{https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/45e2fd621349cfd7c9faf93a6ba134a3_MIT18_404f20_lec14.pdf}{Lecture
-  14: P and NP, SAT, polynomial-time reducibility}. The certificate,
-  input-encoding and reduction discussion was read from the instructor's
-  notes. Used for class conventions, not a proof of a separation between
-  P and NP.
-\item
-  MIT 6.046J (2015),
-  \href{https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/1dee182d301235b901119a0ff57f05e2_MIT6_046JS15_Recitation8.pdf}{Recitation
-  8}, section 2, physical page 2. Read the directed-cycle-to-path
-  vertex-splitting construction and both existence implications. Our
-  original figure uses a three-cycle; the executable extension exposes
-  fixed endpoints and arbitrary pivot relabeling. The source's naive
-  verifier bounds are not substituted for our separately stated
-  representation-aware account.
-\item
-  Sipser,
-  \href{https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/resources/lecture-15-np-completeness/}{Lecture
-  15 resource and transcript}. Read the caution that directed
-  3SAT-to-HAMPATH gadgets require internal consistency details. No
-  incomplete gadget diagram was promoted to a complete proof in this
-  draft.
-\end{itemize}
-
-\subsubsection{Located but not used as a fully read
-proof}\label{located-but-not-used-as-a-fully-read-proof}
-
-\begin{itemize}
-\tightlist
-\item
-  Stephen Cook, \emph{The Complexity of Theorem-Proving Procedures}
-  (1971):
-  \href{https://www.cs.toronto.edu/~sacook/homepage/1971.pdf}{author-hosted
-  scan}, linked from the author's publication list. The bibliographic
-  record and abstract were read; the scan did not expose
-  machine-readable text in the browser. No claim that the whole paper
-  was read. Its original reduction formulation needs care before
-  attributing a modern many-one statement verbatim to it.
-\item
-  Richard Karp, \emph{Reducibility Among Combinatorial Problems} (1972):
-  bibliographic identification only in this pass. Obtain and read the
-  original relevant construction before expanding the full hardness
-  chain.
-\end{itemize}
-
-\subsubsection{Original derivations and
-computations}\label{original-derivations-and-computations}
-
-\paragraph{Second-pass source check}\label{second-pass-source-check}
-
-Toronto CS 2401 (Fall 2015), instructor Toniann Pitassi, lecturer Thomas
-Watson, scribe Benett Axtell:
-\href{https://www.cs.toronto.edu/~toni/Courses/Complexity2015/lectures/lecture3.pdf}{Lecture
-3}, section 4 on physical page 4. Read the definition of coNP through
-language complementation, its universal-certificate formulation, and the
-statement that P is closed under complementation. Used only for these
-class conventions. The manuscript supplies its own deterministic
-complement-closure argument. The scribe prose about ``flip the bits of
-the witness'' is imprecise and is not copied or used as a proof: it is
-the verifier predicate that must be negated under the changed
-quantifier. No interactive-proof theorem is invoked.
-
-Rechecked Sipser lecture 14's representation and complement question.
-The new figures show explicit counting units and quantifiers, without a
-separation diagram. The edge-deletion figure is generated from the
-actual retained-graph trace; its test replays every step against
-independent enumeration on all 4,096 four-vertex directed graphs.
-
-The four-vertex instance, subset recurrence proof, dense reachable-state
-count, elementary vertex-position CNF clause count and edge-deletion
-self-reduction explanation are derived explicitly in the manuscript and
-checked by the local reference. These are pedagogical reconstructions of
-standard ideas, not claims of novel algorithms.
-
-\texttt{reference.py} uses only Python's standard library. Its oracle
-enumerates interior permutations independently of the subset algorithm.
-Tests cover all 4,096 simple directed four-vertex graphs for existence
-agreement, all 64 three-vertex graphs with all three reduction pivots,
-and all 512 Boolean assignments per three-vertex CNF instance. Counts
-are algorithmic counters, not timing data.
-
-\subsubsection{Scope exclusions}\label{scope-exclusions}
-
-No P-versus-NP resolution, best-known exact-algorithm claim, universal
-molecular lower bound or new laboratory result. The full reduction
-chain, deeper work/depth treatment and physical accounting remain
-publication dependencies. Earlier historical/chemical details continue
-to rely on the preserved Chapter 2 source ledger; this draft does not
-re-report that work as new research.
+\section*{Further reading}
+\addcontentsline{toc}{section}{Further reading}
+Sipser's textbook is a clear introduction to computability and complexity,
+including P, NP and polynomial-time reductions.\cite{Sipser2013} Garey and
+Johnson remain the classic guide to NP-completeness, with an extensive catalogue
+of problems.\cite{GareyJohnson1979} The foundations are Cook's theorem on the
+complexity of theorem proving\cite{Cook1971} and Karp's demonstration that many
+combinatorial problems, including Hamiltonian path, reduce to one
+another.\cite{Karp1972} For the molecular side of the argument, Boneh and
+colleagues analysed what DNA filtering models can compute,\cite{Boneh1996} and
+Chapter~24 returns to physical resource limits.

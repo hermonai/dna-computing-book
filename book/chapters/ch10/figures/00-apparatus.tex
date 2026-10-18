@@ -1,0 +1,52 @@
+\begin{tikzpicture}[x=1cm,y=1cm,hd/.style={anchor=west,font=\sffamily\bfseries\small,text=Ink}]
+% =============================================================== A gel box
+\PanelTitle{(0,.35)}{A}{Gel electrophoresis: separation by size}
+% buffer tank and gel slab
+\fill[Water,rounded corners=3pt] (.2,-.25) rectangle (7.6,-6.6);
+\draw[InkSoft,line width=.8pt,rounded corners=3pt] (.2,-.25) rectangle (7.6,-6.6);
+\fill[GelBg!90!white,draw=PanelEdge] (1.0,-.85) rectangle (6.8,-6.0);
+% electrodes
+\draw[Ink,line width=2pt] (1.0,-.5)--(6.8,-.5);\node[font=\sffamily\bfseries,text=Ink] at (7.25,-.5) {$-$};
+\draw[RejectRed,line width=2pt] (1.0,-6.35)--(6.8,-6.35);\node[font=\sffamily\bfseries,text=RejectRed] at (7.25,-6.35) {$+$};
+% wells
+\foreach \k in {0,...,4}{\fill[InkSoft!80] (1.45+1.1*\k,-1.05) rectangle (2.15+1.1*\k,-1.18);}
+% ladder (lane 0): positions follow log(length)
+\foreach \L/\y in {1000/-2.0,500/-2.9,300/-3.6,200/-4.15,100/-5.05}{
+  \fill[InkSoft] (1.45,\y) rectangle (2.15,\y+.09);
+  \node[slab,anchor=east] at (1.0,\y+.04) {\L};}
+\node[slab,anchor=east,align=right] at (1.0,-1.25) {bp};
+% sample lanes
+\fill[DNAblue] (2.55,-3.6) rectangle (3.25,-3.49);
+\fill[DNAblue!85] (3.65,-2.9) rectangle (4.35,-2.8);\fill[DNAblue!45] (3.65,-4.15) rectangle (4.35,-4.07);
+\fill[DNAblue!22] (4.75,-3.95) rectangle (5.45,-3.25);\fill[DNAblue!75] (4.75,-3.62) rectangle (5.45,-3.5);\fill[DNAblue!60] (4.75,-3.84) rectangle (5.45,-3.75);
+\fill[DNAblue!90] (5.85,-5.05) rectangle (6.55,-4.94);
+\foreach \k/\t in {0/L,1/1,2/2,3/3,4/4}{\node[slab,font=\sffamily\bfseries\scriptsize] at (1.8+1.1*\k,-6.2) {\t};}
+% migration arrow
+\draw[-{Stealth[length=2.4mm]},Ink,line width=1pt] (7.25,-1.3)--(7.25,-5.6);
+\node[slab,anchor=west,align=left] at (7.75,-2.5) {DNA is negatively\\charged and moves\\towards $+$};
+\node[slab,anchor=west,align=left] at (7.75,-3.9) {short fragments\\travel further; distance\\$\approx a-b\log L$};
+\node[slab,anchor=west,align=left,text=StrandAmber!80!black] at (7.75,-5.35) {a smear or a doublet\\means more than one\\species (lane 3)};
+% =============================================================== B fluorescence readout
+\PanelTitle{(10.6,.35)}{B}{Fluorescence: a reporter strand}
+\begin{scope}[shift={(10.6,-1.1)}]
+ \node[slab,anchor=west] at (0,0) {before: quenched};
+ \draw[strand,DNAblue] (.2,-.55)--(4.6,-.55);
+ \draw[strandL,StrandViolet] (4.0,-1.0)--(.2,-1.0);
+ \Rungs{.4}{3.8}{-.63}{-.92}{.25}
+ \node[star,star points=6,star point ratio=.5,fill=StrandAmber!40,draw=Ink,line width=.4pt,inner sep=1.8pt] at (4.75,-.55) {};
+ \node[circle,fill=Ink,inner sep=2.2pt] at (4.2,-1.0) {};
+ \node[slab,anchor=west] at (4.95,-.75) {F next to Q};
+ \draw[react] (2.4,-1.35)--(2.4,-1.95) node[midway,right,slab] {output strand released};
+ \node[slab,anchor=west] at (0,-2.3) {after: fluorescent};
+ \draw[strandL,StrandViolet] (4.0,-2.85)--(.2,-2.85);
+ \node[circle,fill=Ink,inner sep=2.2pt] at (4.2,-2.85) {};
+ \draw[strand,DNAblue] (.9,-3.5)--(5.0,-3.5);
+ \node[star,star points=6,star point ratio=.5,fill=StrandAmber,draw=Ink,line width=.4pt,inner sep=2.6pt] at (5.15,-3.5) {};
+ \foreach \a in {20,50,80}{\draw[StrandAmber,line width=.8pt,-{Stealth[length=1.3mm]}] (5.15,-3.5)++(\a:.22)--++(\a:.38);}
+ \draw[InkSoft,line width=.6pt,->] (.2,-5.4)--(5.0,-5.4) node[below left,slab] {time};
+ \draw[InkSoft,line width=.6pt,->] (.2,-5.4)--(.2,-3.95);
+ \node[slab,anchor=west,align=left] at (.3,-4.05) {signal};
+ \draw[StrandAmber,line width=1.4pt,domain=0:4.6,samples=50,smooth] plot ({.2+\x},{-5.3+1.05*(1-exp(-1.1*\x))});
+ \node[slab,align=left,anchor=north west] at (0,-5.65) {reports a bulk average over\\many molecules; calibration\\turns signal into concentration};
+\end{scope}
+\end{tikzpicture}

@@ -1,4 +1,11 @@
 \chapter{Hybridization thermodynamics}
+\ChapterGoals{%
+\item write the species inventory and conservation laws for $A+B\rightleftharpoons D$;
+\item convert between a dissociation constant, a dimensionless equilibrium constant and a standard free energy;
+\item solve the finite-pool binding problem with a numerically stable formula, and recognise when the excess approximation fails;
+\item build a restricted nearest-neighbour model and derive the concentration dependence of $T_m$;
+\item state what the model omits: salt, mismatches, folding and competing structures.}
+{Chapter~5 (orientation and complementarity); logarithms and the exponential (Appendix~\gref{app:math}).}
 
 Two complementary DNA strands are mixed at 100 nM each. Their dissociation
 constant under the stated conditions is 5 nM. Predict the duplex concentration.
@@ -154,6 +161,14 @@ The solver accepts zero inventory and returns zero duplex. It also accepts
 $K_d=0$ as the mathematical complete-binding limit, returning $\min(a,b)$;
 that is not a claim of an exactly zero measured dissociation constant.
 Negative or nonfinite concentrations are rejected.
+
+\begin{Pitfall}
+``The strands are perfectly complementary, so essentially all of them pair.''
+Equilibrium binding depends on $K_d$ \emph{and} on the inventories. With
+100\,nM of each strand and $K_d=5$\,nM, one strand in five is still free at
+equilibrium. Using the excess-ligand formula when neither strand is in excess
+predicts more duplex than the strands can form.
+\end{Pitfall}
 
 \section{Separate enthalpy and entropy, then reunite their units}
 
@@ -319,6 +334,25 @@ The conceptual pipeline is now explicit: oriented sequence, specified
 energy model, equilibrium constant, conserved totals, and predicted population.
 Each arrow introduces an assumption. Extending the model means revisiting
 those assumptions and tests, not merely appending a more complicated formula.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item Draw the inventory first: $[A]=a-x$, $[B]=b-x$, $[D]=x$. Perfect
+complementarity does not mean complete binding.
+\item $K^\circ=c^\circ/K_d$ and $\Delta G^\circ=-RT\ln K^\circ$: logarithms act on
+dimensionless ratios, so a standard state $c^\circ=1$\,M is part of every
+free energy.
+\item The finite-pool duplex concentration is
+$x=2ab/(s+\sqrt{s^2-4ab})$ with $s=a+b+K_d$; at $a=b=100$\,nM and $K_d=5$\,nM it is
+80\,nM, not 95.2\,nM.
+\item $\Delta G^\circ=\Delta H^\circ-T\Delta S^\circ$: favourable enthalpy fights
+unfavourable entropy, which is why duplexes melt on heating.
+\item Nearest-neighbour models sum overlapping base-pair \emph{steps}, not
+independent bases; the melting temperature depends on strand concentration.
+\item A thermodynamic prediction says where a reaction is going, not how fast it
+gets there (Chapter~7).
+\end{itemize}
+\end{KeyIdeas}
 
 \Needspace{10\baselineskip}
 \section{Exercises with worked solutions}

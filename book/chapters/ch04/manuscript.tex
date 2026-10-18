@@ -1,9 +1,22 @@
 \chapter{Molecular parallelism and resource accounting}
 \label{ch:resources}
+\ChapterGoals{%
+\item distinguish multiplicity (copies) from diversity (identities) and from recovered answers;
+\item compute the minimum number of copies for a target recovery probability, and check minimality;
+\item explain why a shared failure sets a floor that more copies cannot lower;
+\item convert copies to moles, concentration, volume and mass with correct units;
+\item use Bayes' rule to show why a positive screening signal need not be a valid answer;
+\item build a resource ledger that keeps inventory, encoding, time, readout and energy separate.}
+{Chapters~1--3; probability of ``at least one success'', logarithms and first-order decay (Appendix~\gref{app:math}).}
 
 \section{Eight molecules are not eight different answers}
 
-Imagine a tube containing eight DNA molecules. Each molecule encodes a candidate answer to a small search problem. You are told that four candidate identities are possible. Before doing any calculation, predict: does the presence of eight molecules guarantee that all four identities occur?
+\begin{TryThis}
+Imagine a tube containing eight DNA molecules. Each molecule encodes a
+candidate answer to a small search problem, and four candidate identities are
+possible. Before doing any calculation, predict: does the presence of eight
+molecules guarantee that all four identities occur?
+\end{TryThis}
 
 It does not. A tube containing two copies of each identity covers the whole candidate set. A tube containing four copies of one identity and two copies of each of two others has the same molecule count but misses the fourth identity entirely. An assay that measures total DNA alone cannot distinguish these two coverage claims.
 
@@ -186,7 +199,15 @@ With $\pi=0.01$, $s=0.90$, and $f=0.05$, only about 0.15385 of positives are val
 
 The appropriate final check depends on the representation. For a path candidate, decoding its sequence should still be followed by checking the required vertices and edges. A fluorescence increase might establish a biochemical event without establishing every logical condition of the encoded problem.
 
-\section{A resource ledger rather than one impressive number}
+\begin{Pitfall}
+``Molecular computers are fast because all candidates react at once.''
+Parallelism shortens one part of the pipeline, the dependent reaction steps. It
+does not shorten synthesis, transfers, separations, readout or analysis, and it
+pays for every candidate in material. A fair comparison reports latency to one
+\emph{verified} answer, not the duration of the fastest central reaction.
+\end{Pitfall}
+
+\section{A resource ledger rather than one impressive number}\label{sec:ledger}
 
 An end-to-end comparison should keep several quantities separate:
 
@@ -213,6 +234,25 @@ E_{\mathrm{total}}=E_{\mathrm{synthesis}}^{\mathrm{allocated}}
 Every term is in joules; an instrument's power in watts must be integrated over time to contribute energy. The allocation rule for reusable equipment or shared synthesis must be stated. No numerical energy advantage follows from this equation alone, and this chapter supplies no measured energy benchmark.
 
 Return to the 113-copy example. Its conclusion is narrowly but usefully stated: under the independent-copy model and declared $p,r,d$, 113 copies achieve the requested miss probability. It says nothing yet about the cost of obtaining those probabilities, the correctness of the biochemical representation, or the cost of verifying the output. A professional design makes those additional obligations explicit.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item Multiplicity, diversity and recovered valid answers are three different
+quantities; total DNA cannot distinguish coverage claims.
+\item With per-copy success $q=p\,r\,d$ and independent copies, the minimum budget is
+$M_{\min}=\lceil\ln\delta/\ln(1-q)\rceil\approx\ln(1/\delta)/q$; check $M_{\min}-1$ to
+prove minimality.
+\item A preparation-wide failure probability $\rho$ is a floor:
+$P_{\mathrm{miss}}=\rho+(1-\rho)(1-q)^M\ge\rho$ for every $M$.
+\item $M=cVN_{\mathrm A}$: holding concentration fixed makes volume grow with
+inventory. A naive uniform factorial search at $n=25$ needs about
+$2\times10^{8}$ litres at 1\,nM.
+\item Concentration changes reaction time as well as storage:
+$t_{1/2}=\ln2/(kc_B)$ for a pseudo-first-order reaction.
+\item Sampling, capture and detection can lose a witness that the tube contained;
+when valid candidates are rare, most positive screening signals can be false.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked answers}
 

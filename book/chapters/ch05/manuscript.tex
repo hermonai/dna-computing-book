@@ -1,5 +1,12 @@
 \chapter{DNA chemistry and sequence geometry}
 \label{ch:chemistry}
+\ChapterGoals{%
+\item name the parts of a nucleotide and explain where a strand's $5'\to3'$ direction comes from;
+\item distinguish backbone bonds, base-pair hydrogen bonds and base stacking;
+\item compute a reverse complement and prove its algebraic properties;
+\item handle IUPAC ambiguity codes as sets, and map interval coordinates between strands;
+\item explain why sequence complementarity does not by itself predict binding.}
+{Chapter~1's DNA primer (Section~\gref{sec:primer}); strings, sets and zero-based indexing.}
 
 You receive two sequence files. One says \texttt{ACGTA}; the other says
 \texttt{TACGT}. Are they complementary? A comparison of letters at the same
@@ -41,7 +48,14 @@ base's numbering system. The base attaches at $C1'$; the ring also contains
 an oxygen, $O4'$. The $C5'$ carbon lies outside the five-membered sugar ring
 \cite{IUPAC1983,IUPAC1970}.
 
-\Plate{01-nucleotide}{Connectivity map of a DNA nucleotide. The sugar ring has four carbons and one oxygen; the fifth sugar carbon is outside it. The blue attachment is to a base, not another sugar. This is a topological projection: bond angles, stereochemistry, protonation, and most hydrogens are not specified.}{fig:nucleotide}
+\Plate{01-nucleotide}{The structure of one DNA nucleotide,
+2$'$-deoxyadenosine 5$'$-monophosphate. The sugar ring (blue) has four carbons
+and one oxygen; the fifth carbon, $C5'$, lies outside the ring and carries the
+phosphate (amber). The base (green) attaches to $C1'$ through nitrogen~9. $C3'$
+carries the hydroxyl that will join the next phosphate in a strand, and $C2'$
+carries two hydrogens where RNA has a hydroxyl. The drawing shows connectivity
+and conventional double bonds, not three-dimensional geometry, sugar pucker or
+every hydrogen.}{fig:nucleotide}
 
 The deoxy distinction is local: DNA's $C2'$ has hydrogen where RNA's
 corresponding position has a hydroxyl group. In unmodified DNA, $C2'$ is a
@@ -85,13 +99,24 @@ The two strands run antiparallel \cite{NHGRIDNA}. A mechanism drawing should
 distinguish covalent connectivity along each backbone, hydrogen-bond
 interactions across a base pair, and stacking between neighboring layers.
 
-\Plate{04-pairing-stacking}{Three interactions that a ladder drawing can blur. Solid side paths represent backbone connectivity; dashed cross-pair marks indicate pairing; shaded interlayer regions indicate stacking. Two A--T marks and three G--C marks recall canonical hydrogen-bond counts, but this plate does not resolve donor/acceptor atoms, helical twist, or free energies.}{fig:stacking}
+\Plate{04-pairing-stacking}{Watson--Crick base pairs and base stacking.
+Adenine pairs with thymine through two hydrogen bonds (dashed) and guanine with
+cytosine through three, each between a hydrogen-bond donor (an N--H group) and
+an acceptor (a ring N or a C$=$O oxygen). The bonds to the sugars leave from the
+same, minor-groove edge of each pair. The inset shows pairs stacked about
+0.34\,nm apart in the helix; stacking between neighbouring pairs contributes
+much of the duplex's stability. Hydrogen-bond lengths are drawn about twice a
+covalent bond, and the geometry is schematic. Counting hydrogen bonds does not
+predict a free energy (Chapter~6).}{fig:stacking}
 
-It is tempting to assign two stability points to A--T and three to G--C,
-add the points, and call the result a melting temperature. That calculation
-has no temperature units and ignores neighboring bases, salt conditions,
-strand concentration, and competing structures. It cannot deliver the
-quantity it claims to predict.
+\begin{Pitfall}
+It is tempting to assign two stability points to A--T and three to G--C, add
+the points, and call the result a melting temperature. That calculation has no
+temperature units and ignores neighbouring bases, salt conditions, strand
+concentration and competing structures. It cannot deliver the quantity it
+claims to predict. Chapter~6 replaces it with a nearest-neighbour free-energy
+model.
+\end{Pitfall}
 
 Experimental work separating stacking and pairing contributions reinforces
 why they should not be collapsed into a bond-count story
@@ -147,8 +172,9 @@ Concatenation exposes another relation:
 \label{eq:concat}
 \end{equation}
 Blocks change order as well as contents. Reverse-complementing each chunk
-while preserving chunk order violates this equation. This will matter when
-Evolutor groups bases into tokens.
+while preserving chunk order violates this equation. This matters whenever
+sequences are processed in blocks, for example as codons or as tokens for a
+sequence model (Chapter~29).
 
 Reversal preserves length; complementation swaps A/T counts and C/G counts.
 GC fraction is unchanged. But several incorrect operations also preserve
@@ -286,6 +312,24 @@ The practical lesson is to separate the molecule, its oriented representation,
 and the claims an algorithm supports. Failures then become local and
 testable. Chapter 6 can add physical parameters without silently changing
 what a sequence string means.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A nucleotide is phosphate, 2$'$-deoxyribose and a base; the repeating
+$C3'$--$O3'$--$P$--$O5'$--$C5'$ link gives every strand a chemical direction.
+\item Backbone bonds are covalent; base pairs are hydrogen-bonded (two for A$\cdot$T,
+three for G$\cdot$C); neighbouring pairs also stack. These are three different
+interactions.
+\item The partner of $s$, written $5'\to3'$, is
+$\mathrm{rc}(s)_j=c(s_{L-1-j})$; $\mathrm{rc}$ is an involution and reverses block
+order: $\mathrm{rc}(xy)=\mathrm{rc}(y)\mathrm{rc}(x)$.
+\item An ambiguity code is a set of bases, not a fifth base or a probability
+distribution; complementation acts element by element.
+\item Intervals map as $[a,b)\mapsto[L-b,L-a)$ under reverse complementation.
+\item Complementarity is a discrete relation. Whether strands bind, and how
+much, needs thermodynamics (Chapter~6) and kinetics (Chapter~7).
+\end{itemize}
+\end{KeyIdeas}
 
 \Needspace{10\baselineskip}
 \section{Exercises with worked solutions}

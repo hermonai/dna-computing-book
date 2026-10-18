@@ -1,0 +1,74 @@
+\begin{tikzpicture}[x=1cm,y=1cm,
+  seq/.style={font=\ttfamily\small,inner sep=0pt,text=Ink},
+  cut/.style={RejectRed,line width=1.3pt},
+  hd/.style={anchor=west,font=\sffamily\bfseries\small,text=Ink}]
+\tikzset{pnl/.style={panel,minimum width=5.05cm,minimum height=6.85cm,anchor=north west}}
+% =============================================================== A restriction
+\node[pnl] at (0,0) {};
+\node[hd] at (.12,-.32) {\tikz[baseline=-.6ex]\node[stepbadge=DNAblue]{A};\ Restriction: cut};
+% enzyme clamps the site
+\begin{scope}[shift={(2.5,-1.95)}]
+ \shade[ball color=ProteinGold!85,draw=ProteinEdge,line width=.8pt]
+   plot[smooth cycle,tension=.8] coordinates{(-1.75,.15)(-1.55,.75)(-.7,.95)(0,.7)(.7,.95)(1.55,.75)(1.75,.15)(1.2,-.05)(-1.2,-.05)};
+ \shade[ball color=ProteinGold!85,draw=ProteinEdge,line width=.8pt]
+   plot[smooth cycle,tension=.8] coordinates{(-1.75,-1.05)(-1.55,-1.65)(-.7,-1.85)(0,-1.6)(.7,-1.85)(1.55,-1.65)(1.75,-1.05)(1.2,-.85)(-1.2,-.85)};
+ \node[font=\sffamily\bfseries\scriptsize] at (0,.62) {EcoRI};
+\end{scope}
+\foreach \k/\t/\bb in {0/G/C,1/A/T,2/A/T,3/T/A,4/T/A,5/C/G}{
+  \node[seq] at (1.25+.5*\k,-2.05) {\t};
+  \node[seq] at (1.25+.5*\k,-2.75) {\bb};
+  \draw[rung] (1.25+.5*\k,-2.2)--(1.25+.5*\k,-2.6);}
+\draw[DNAblue,line width=1.6pt] (.3,-1.88)--(4.6,-1.88);\draw[strand,DNAblue] (4.5,-1.88)--(4.85,-1.88);
+\draw[StrandViolet,line width=1.6pt] (4.6,-2.92)--(.6,-2.92);\draw[strandL,StrandViolet] (.7,-2.92)--(.35,-2.92);
+\draw[cut] (1.5,-1.7)--(1.5,-2.05);\draw[cut] (3.5,-2.75)--(3.5,-3.1);
+\node[slab,text=RejectRed,fill=white,inner sep=.5pt] at (1.5,-1.58) {cut};\node[slab,text=RejectRed,fill=white,inner sep=.5pt] at (3.5,-3.22) {cut};
+% products with sticky ends: letters keep the x positions of the site above
+\draw[react] (2.5,-3.45)--(2.5,-3.85);
+% left fragment: top ...G-3', bottom 3'-...CTTAA-5' (5'-AATT overhang)
+\draw[DNAblue,line width=1.4pt] (.3,-4.15)--(1.3,-4.15);\draw[strand,DNAblue,line width=1.4pt] (1.2,-4.15)--(1.42,-4.15);
+\draw[StrandViolet,line width=1.4pt] (3.3,-4.85)--(.6,-4.85);\draw[strandL,StrandViolet,line width=1.4pt] (.7,-4.85)--(.35,-4.85);
+\node[seq,font=\ttfamily\scriptsize] at (1.25,-4.35) {G};
+\foreach \k/\bb in {0/C,1/T,2/T,3/A,4/A}{\node[seq,font=\ttfamily\scriptsize] at (1.25+.5*\k,-4.62) {\bb};}
+% right fragment, shifted right and down
+\begin{scope}[shift={(.55,-1.2)}]
+\draw[DNAblue,line width=1.4pt] (1.6,-4.15)--(4.2,-4.15);\draw[strand,DNAblue,line width=1.4pt] (4.1,-4.15)--(4.3,-4.15);
+\draw[StrandViolet,line width=1.4pt] (4.3,-4.85)--(3.7,-4.85);\draw[strandL,StrandViolet,line width=1.4pt] (3.75,-4.85)--(3.55,-4.85);
+\foreach \k/\t in {0/A,1/A,2/T,3/T,4/C}{\node[seq,font=\ttfamily\scriptsize] at (1.75+.5*\k,-4.35) {\t};}
+\node[seq,font=\ttfamily\scriptsize] at (3.75,-4.62) {G};
+\end{scope}
+\node[slab,align=center] at (2.5,-6.55) {sticky ends: 5$'$-AATT overhangs};
+% =============================================================== B ligation
+\node[pnl] at (5.35,0) {};
+\node[hd] at (5.47,-.32) {\tikz[baseline=-.6ex]\node[stepbadge=DNAblue]{B};\ Ligation: join};
+\draw[backbone,DNAblue] (5.65,-2.0)--(7.75,-2.0);
+\draw[strand,DNAsky] (7.95,-2.0)--(10.05,-2.0);
+\draw[strandL,StrandViolet] (10.05,-2.75)--(5.65,-2.75);
+\Rungs{5.85}{9.85}{-2.1}{-2.65}{.25}
+\node[slab,anchor=east] at (7.75,-1.75) {3$'$-OH};\node[slab,anchor=west] at (7.95,-1.75) {5$'$-P};
+\begin{scope}[shift={(7.85,-1.0)}]\Enzyme{(0,0)}{.65}{ligase}\end{scope}
+\node[slab,align=center] at (7.85,-.1) {};
+\draw[react] (7.85,-3.15)--(7.85,-3.75) node[midway,right,slab,align=left] {uses ATP;\\releases AMP};
+\draw[backbone,DNAblue] (5.65,-4.25)--(7.85,-4.25);\draw[backbone,DNAsky] (7.85,-4.25)--(9.9,-4.25);\draw[strand,DNAsky] (9.8,-4.25)--(10.05,-4.25);
+\fill[ProteinGold] (7.85,-4.25) circle (.09);
+\draw[strandL,StrandViolet] (10.05,-5.0)--(5.65,-5.0);
+\Rungs{5.85}{9.85}{-4.35}{-4.9}{.25}
+\node[slab,align=center] at (7.85,-5.75) {one new phosphodiester bond:\\two strands become one};
+% =============================================================== C extension
+\node[pnl] at (10.7,0) {};
+\node[hd] at (10.82,-.32) {\tikz[baseline=-.6ex]\node[stepbadge=DNAblue]{C};\ Extension: copy};
+\draw[strandL,StrandViolet] (15.55,-2.95)--(11.0,-2.95);
+\node[slab,text=StrandViolet,anchor=west] at (11.0,-3.25) {template 3$'$};
+\draw[strand,DNAblue] (11.0,-2.2)--(13.2,-2.2);
+\Rungs{11.2}{13.0}{-2.3}{-2.85}{.25}
+\node[slab,text=DNAblue,anchor=south] at (12.0,-2.15) {primer};
+\begin{scope}[shift={(13.6,-2.15)}]
+ \shade[ball color=ProteinGold!85,draw=ProteinEdge,line width=.8pt]
+   plot[smooth cycle,tension=.85] coordinates{(-.9,-.1)(-.75,.75)(0,1.05)(.85,.75)(1.15,.05)(.85,-.4)(.35,-.2)(-.2,-.45)(-.7,-.45)};
+ \node[font=\sffamily\bfseries\scriptsize] at (.1,.45) {polymerase};
+\end{scope}
+\node[draw=BaseG,fill=BaseG!25,rounded corners=1pt,font=\ttfamily\scriptsize,inner sep=1.5pt] (dn) at (14.9,-1.1) {dGTP};
+\draw[move] (dn.south west)--(13.75,-2.05);
+\draw[-{Stealth[length=2mm]},CompTeal,line width=1.1pt] (11.2,-3.7)--(15.3,-3.7);
+\node[slab,text=CompTeal!80!black,align=center] at (13.25,-4.05) {new DNA grows 5$'\!\to\!$3$'$ only};
+\node[slab,align=left,anchor=north west] at (10.85,-4.45) {each step adds one nucleotide\\complementary to the template\\and releases pyrophosphate (PP$_i$);\\without a primer there is no\\3$'$-OH to extend};
+\end{tikzpicture}

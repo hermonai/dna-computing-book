@@ -1,0 +1,20 @@
+Figure: three enzymes that act on DNA, each changing one specific feature.
+
+Panel A (restriction: cut). A gold EcoRI enzyme, drawn as two subunits above
+and below, clamps a duplex at its recognition site, top strand 5'-GAATTC-3'
+paired with bottom 3'-CTTAAG-5'. Red marks show the two cut positions: between
+G and A on the top strand and, symmetrically, between G and A on the bottom
+strand read in its own 5'-to-3' direction. Below, the products: a left
+fragment ending ...G on top with bottom ...CTTAA, and a right fragment
+beginning AATTC... on top with G on the bottom. Each fragment carries a
+four-base single-stranded 5'-AATT overhang (a sticky end).
+Panel B (ligation: join). Two upper strands lie end to end on one template; a
+3'-OH faces a 5'-phosphate across a nick. A gold ligase uses ATP and releases
+AMP to form one new phosphodiester bond (gold dot), so the two strands become
+one.
+Panel C (extension: copy). A primer is paired to a longer template. A gold
+polymerase sits at the primer's 3' end; an incoming dGTP is added opposite the
+next template base. New DNA grows only 5' to 3'; each step adds one
+complementary nucleotide and releases pyrophosphate, and without a primer
+there is no 3'-OH to extend.
+Shapes are schematic; enzyme sizes and footprints are not to scale.

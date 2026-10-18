@@ -896,3 +896,131 @@ Original fiber arguments, assigned scores, encodings and figures are teaching
 artifacts, not experimental results.
 \end{thebibliography}
 ```
+
+## Chapter 3 (in-chapter source ledger, archived 2026-10-18)
+
+```latex
+\section{Appendix B. Sources and evidence
+boundaries}\label{appendix-b.-sources-and-evidence-boundaries}
+
+\subsection{Chapter 3 source ledger}\label{chapter-3-source-ledger}
+
+\subsubsection{Review-candidate extension, 12 September
+2026}\label{review-candidate-extension-12-september-2026}
+
+The earlier entries below retain the access record of the first two
+passes. The new work/depth and missing-signal examples are original
+derivations with explicit assumptions, not laboratory measurements. For
+the signal calculation, survival and detection are conditional
+probabilities in a per-copy chain; independence is assumed across
+candidate copies only when exponentiating the no-signal probability. The
+implementation is checked against explicit two-copy enumeration,
+boundary cases and a small-probability stability case.
+
+MIT 6.046J Recitation 8 was rechecked for the split-vertex reduction.
+This chapter proves that map and explicitly imports the hardness of
+directed Hamiltonian cycle as a premise. It does not claim to supply the
+entire Cook-Karp hardness chain. Figures F9-F12 separate abstract work,
+molecular population, observation and proof obligations. All twelve
+figures are produced; calibrated physical accounting and independent
+scientific review remain open.
+
+Consulted 9 September 2026. This ledger distinguishes directly read
+support from located-but-unread material. It is not a systematic review
+or independent approval.
+
+\subsubsection{Directly read support}\label{directly-read-support}
+
+\begin{itemize}
+\tightlist
+\item
+  Michael Sipser, MIT 18.404J (2020),
+  \href{https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/45e2fd621349cfd7c9faf93a6ba134a3_MIT18_404f20_lec14.pdf}{Lecture
+  14: P and NP, SAT, polynomial-time reducibility}. The certificate,
+  input-encoding and reduction discussion was read from the instructor's
+  notes. Used for class conventions, not a proof of a separation between
+  P and NP.
+\item
+  MIT 6.046J (2015),
+  \href{https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/1dee182d301235b901119a0ff57f05e2_MIT6_046JS15_Recitation8.pdf}{Recitation
+  8}, section 2, physical page 2. Read the directed-cycle-to-path
+  vertex-splitting construction and both existence implications. Our
+  original figure uses a three-cycle; the executable extension exposes
+  fixed endpoints and arbitrary pivot relabeling. The source's naive
+  verifier bounds are not substituted for our separately stated
+  representation-aware account.
+\item
+  Sipser,
+  \href{https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/resources/lecture-15-np-completeness/}{Lecture
+  15 resource and transcript}. Read the caution that directed
+  3SAT-to-HAMPATH gadgets require internal consistency details. No
+  incomplete gadget diagram was promoted to a complete proof in this
+  draft.
+\end{itemize}
+
+\subsubsection{Located but not used as a fully read
+proof}\label{located-but-not-used-as-a-fully-read-proof}
+
+\begin{itemize}
+\tightlist
+\item
+  Stephen Cook, \emph{The Complexity of Theorem-Proving Procedures}
+  (1971):
+  \href{https://www.cs.toronto.edu/~sacook/homepage/1971.pdf}{author-hosted
+  scan}, linked from the author's publication list. The bibliographic
+  record and abstract were read; the scan did not expose
+  machine-readable text in the browser. No claim that the whole paper
+  was read. Its original reduction formulation needs care before
+  attributing a modern many-one statement verbatim to it.
+\item
+  Richard Karp, \emph{Reducibility Among Combinatorial Problems} (1972):
+  bibliographic identification only in this pass. Obtain and read the
+  original relevant construction before expanding the full hardness
+  chain.
+\end{itemize}
+
+\subsubsection{Original derivations and
+computations}\label{original-derivations-and-computations}
+
+\paragraph{Second-pass source check}\label{second-pass-source-check}
+
+Toronto CS 2401 (Fall 2015), instructor Toniann Pitassi, lecturer Thomas
+Watson, scribe Benett Axtell:
+\href{https://www.cs.toronto.edu/~toni/Courses/Complexity2015/lectures/lecture3.pdf}{Lecture
+3}, section 4 on physical page 4. Read the definition of coNP through
+language complementation, its universal-certificate formulation, and the
+statement that P is closed under complementation. Used only for these
+class conventions. The manuscript supplies its own deterministic
+complement-closure argument. The scribe prose about ``flip the bits of
+the witness'' is imprecise and is not copied or used as a proof: it is
+the verifier predicate that must be negated under the changed
+quantifier. No interactive-proof theorem is invoked.
+
+Rechecked Sipser lecture 14's representation and complement question.
+The new figures show explicit counting units and quantifiers, without a
+separation diagram. The edge-deletion figure is generated from the
+actual retained-graph trace; its test replays every step against
+independent enumeration on all 4,096 four-vertex directed graphs.
+
+The four-vertex instance, subset recurrence proof, dense reachable-state
+count, elementary vertex-position CNF clause count and edge-deletion
+self-reduction explanation are derived explicitly in the manuscript and
+checked by the local reference. These are pedagogical reconstructions of
+standard ideas, not claims of novel algorithms.
+
+\texttt{reference.py} uses only Python's standard library. Its oracle
+enumerates interior permutations independently of the subset algorithm.
+Tests cover all 4,096 simple directed four-vertex graphs for existence
+agreement, all 64 three-vertex graphs with all three reduction pivots,
+and all 512 Boolean assignments per three-vertex CNF instance. Counts
+are algorithmic counters, not timing data.
+
+\subsubsection{Scope exclusions}\label{scope-exclusions}
+
+No P-versus-NP resolution, best-known exact-algorithm claim, universal
+molecular lower bound or new laboratory result. The full reduction
+chain, deeper work/depth treatment and physical accounting remain
+publication dependencies. Earlier historical/chemical details continue
+to rely on the preserved Chapter 2 source ledger; this draft does not
+re-report that work as new research.
+```

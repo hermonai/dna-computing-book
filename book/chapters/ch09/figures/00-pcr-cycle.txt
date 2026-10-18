@@ -1,0 +1,19 @@
+Figure: one PCR cycle and the growth of copy number over many cycles.
+
+Top: a temperature trace runs across three shaded phases. Phase 1, denature
+(about 95 C): a duplex (blue top strand 5' to 3', violet bottom strand 3' to
+5') separates into two single-stranded templates as heat breaks base pairs.
+Phase 2, anneal (about 55 C): short primers pair near the 3' end of each
+template: a reverse primer (rose) on the blue strand, pointing left, and a
+forward primer (green) on the violet strand, pointing right. Phase 3, extend
+(about 72 C): gold polymerases extend each primer 5' to 3' (dashed growth),
+giving two duplexes. A looping arrow indicates repetition: every product can
+serve as a template in the next cycle.
+Bottom left: a log-scale plot of copies against cycle number from 10^3
+starting copies. A straight blue line shows ideal doubling; an amber dashed
+curve shows an assigned efficiency of 0.85 per cycle followed by a plateau
+near 10^10 copies as primers run out. Both are illustrative model curves, not
+data.
+Bottom right: PCR copies an interval set by two primers, amplifies whatever
+matches them, including contaminants and errors, and creates no new
+information; efficiency and plateau must be measured.

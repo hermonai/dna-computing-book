@@ -1,5 +1,12 @@
 \chapter{Enzymes as molecular operators}
 \label{ch:enzymes}
+\ChapterGoals{%
+\item write a \emph{substrate contract} for restriction, ligation and extension: what each requires and what it changes;
+\item compute the two cut coordinates of a restriction site on an oriented duplex;
+\item explain why ligation restores a bond but not a missing base, and why polymerase needs a primer;
+\item derive Michaelis--Menten kinetics from an explicit mechanism and find where the approximation fails;
+\item connect enzyme operations to computational operators without treating them as perfect functions.}
+{Chapters~5--7 (orientation, conservation, rate equations).}
 
 Take a duplex whose upper strand is $5'\text{-CCGAATTCTT-}3'$. A restriction enzyme can cut it into two fragments; a ligase can reconnect those fragments; a polymerase can extend an appropriately paired primer. These are not interchangeable ways to manipulate a string. Each recognizes a different physical substrate and changes a different part of its chemical structure.
 
@@ -27,6 +34,16 @@ Extension & Paired primer with an extendable $3'$ end & Strand length and nucleo
 \bottomrule
 \end{tabular}
 \end{center}
+
+\Plate{00-enzymes}{Three enzymes, three different operations. (A)~EcoRI
+recognises the palindromic site GAATTC and hydrolyses one backbone bond on each
+strand, between G and A, leaving fragments with complementary four-base
+$5'$-AATT overhangs (``sticky ends''). (B)~Ligase seals a nick between a $3'$
+hydroxyl and an adjacent $5'$ phosphate, using ATP and releasing AMP, so two
+strands become one. (C)~Polymerase extends a primer that is paired to a
+template, adding one complementary nucleotide at a time to the $3'$ end and
+releasing pyrophosphate; new DNA grows only $5'\to3'$. Enzyme shapes are
+schematic.}{fig:enzymes}
 
 The table is deliberately narrower than the full biochemical repertoire of these enzyme families. It is an executable specification, not a claim that every member of a family has the same substrate tolerance.
 
@@ -226,6 +243,23 @@ For example, \texttt{seal\_nick} returns the same letters as concatenating two u
 Run \texttt{python3 -m pytest tests/test\_ch08\_reference.py} and regenerate tables with \texttt{make prepare}. Extending this reference should begin by adding a missing state or contract and a failing test, not by assigning new meaning to an untested flag.
 
 Chapter 9 will build on extension to study amplification: how repeated cycles change copy number, bias, and the meaning of a molecular signal.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item An enzyme operation is specified by a substrate contract: the required
+pairing, orientation and end chemistry, and the single feature that changes.
+\item EcoRI recognises GAATTC and cuts both strands between G and A, at displayed
+coordinates $i+1$ (top) and $i+5$ (bottom), leaving four-base $5'$ overhangs.
+\item Ligase seals a nick ($3'$-OH beside $5'$-phosphate) using ATP; it cannot fill a
+gap. Polymerase adds nucleotides only to a paired $3'$ end, growing $5'\to3'$, and
+the length gained equals the pyrophosphate released.
+\item From $E+S\rightleftharpoons C\to E+P$ and conservation, the quasi-steady
+rate saturates; the approximation fails during the initial transient, when
+product grows quadratically.
+\item Recognition, binding, chemistry and release are separate steps, each with
+a rate and a failure mode; a named enzyme is not a perfect logical operator.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Exercises with worked reasoning}
 

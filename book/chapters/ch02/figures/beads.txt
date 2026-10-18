@@ -1,0 +1,17 @@
+Figure: the two bead operations in the historical workflow, in three panels.
+
+Panel A (prepare a single strand): a grey bead is coated with streptavidin
+(gold diamond). Biotin (black dot) sits on the 5' end of the strand made from
+the complementary-O6 primer, so that strand is attached to the bead. Its
+partner strand is paired with it. After denaturation, the attached strand stays
+on the bead and the partner strand is released into solution; the released free
+strand is the material carried into vertex selection.
+Panel B (recognise, then wash): a bead carries, through biotin and
+streptavidin, a probe strand complementary to a vertex code Oi. A target strand
+containing Oi pairs with the probe and is retained. A strand lacking Oi does not
+pair and is washed away (dashed arrow).
+Panel C (release): denaturation separates the retained target from the probe;
+the target returns to solution for the next vertex test while the bead keeps
+its probe.
+Legend: biotin-streptavidin binding provides attachment; complementary pairing
+with the probe provides recognition.

@@ -1,1 +1,17 @@
-Numbered deoxyribose connectivity. Ring order C4'-O4'-C1'-C2'-C3'-C4'. C5' branches from C4', then O5' and a phosphate group. Base branches from C1'. C3' bears hydroxyl; C2' is CH2. Topology only; stereochemistry and terminal chemistry outside the example are not inferred.
+Figure: skeletal structure of one DNA nucleotide, 2'-deoxyadenosine
+5'-monophosphate (dAMP), in three tinted regions.
+
+Phosphate (amber, left): a phosphorus atom with one double-bonded oxygen and
+two negatively charged oxygens, bonded through a bridging oxygen (O5') to
+carbon 5' of the sugar. This is the 5' end of the nucleotide.
+Sugar (blue, centre): 2'-deoxyribose drawn as a five-membered ring of four
+carbons (1', 2', 3', 4') and one ring oxygen; carbon 5' lies outside the ring
+attached to 4'. Carbon 3' carries a hydroxyl group (3'-OH), which in a strand
+joins the next nucleotide's phosphate. Carbon 2' carries two hydrogens; RNA has
+a hydroxyl group at this position.
+Base (green, right): adenine, a purine made of a six-membered ring fused to a
+five-membered ring, with ring nitrogens numbered 1, 3, 7 and 9 and an amino
+group (NH2) on carbon 6. Nitrogen 9 is bonded to sugar carbon 1' by the
+N-glycosidic bond.
+The drawing shows connectivity and conventional double bonds; it does not show
+three-dimensional shape, sugar pucker or every hydrogen.

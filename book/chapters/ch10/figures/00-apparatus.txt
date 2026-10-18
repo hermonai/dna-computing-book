@@ -1,0 +1,17 @@
+Figure: how DNA molecules become measurements, in two panels.
+
+Panel A (gel electrophoresis): a gel slab sits in a buffer tank between a
+negative electrode at the top and a positive electrode at the bottom. Samples
+are loaded in wells at the top. Because DNA is negatively charged it migrates
+towards the positive electrode, and shorter fragments travel further; migration
+distance is roughly linear in the logarithm of length. Lane L is a size ladder
+(1000, 500, 300, 200 and 100 base pairs). Lane 1 shows one band at about
+300 bp; lane 2 two bands at about 500 and 200 bp; lane 3 a doublet within a
+smear near 300 bp, indicating more than one species; lane 4 one band at about
+100 bp.
+Panel B (fluorescence reporter): before reaction, a fluorophore (star, F) on
+one strand sits next to a quencher (black dot, Q) on its partner, so the
+duplex is dark. When an output strand carrying F is released, F separates from
+Q and the solution brightens. A plot of signal against time rises and
+saturates. The signal is a bulk average over many molecules; calibration is
+needed to turn it into a concentration.

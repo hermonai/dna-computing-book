@@ -1,0 +1,51 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+\tikzset{
+ sa/.style={regular polygon,regular polygon sides=4,fill=ProteinGold,draw=ProteinEdge,line width=.6pt,inner sep=0pt,minimum size=3.6mm,rotate=45},
+ bio/.style={circle,fill=Ink,inner sep=0pt,minimum size=1.8mm}}
+% bead with streptavidin coat at position #1, returns attachment point at #1+(0.55,0)
+\newcommand{\SBead}[1]{\Bead{#1}{.42}\node[sa] at ($#1+(.48,0)$) {};}
+\newcommand{\stage}[3]{\fill[PanelBg,rounded corners=4pt] (#1,0) rectangle (#1+5.1,-5.3);
+ \node[anchor=west,font=\sffamily\bfseries\small] at (#1+.12,-.3) {\tikz[baseline=-.6ex]\node[stepbadge=DNAblue]{#2};\ #3};}
+% ---------------------------------------------------------------- A prepare
+\stage{0}{A}{Prepare a single strand}
+\SBead{(.7,-1.55)}
+\node[bio] at (1.4,-1.55) {};
+\draw[strand,StrandViolet] (1.48,-1.55)--(4.6,-1.55);
+\draw[strandL,DNAblue] (4.6,-1.85)--(1.5,-1.85);
+\Rungs{1.6}{4.4}{-1.62}{-1.78}{.2}
+\node[slab,anchor=west,align=left] at (1.3,-1.05) {biotin on the strand made\\from the $\overline{O_6}$ primer};
+\draw[react] (2.55,-2.25)--(2.55,-2.95) node[midway,right,slab] {denature};
+\SBead{(.7,-3.55)}
+\node[bio] at (1.4,-3.55) {};
+\draw[strand,StrandViolet] (1.48,-3.55)--(4.6,-3.55);
+\draw[strandL,DNAblue] (4.6,-4.35)--(1.5,-4.35);
+\node[slab,anchor=west,align=left,text=DNAblue!80!black] at (.25,-4.85) {the released free strand goes on\\to vertex selection};
+% ---------------------------------------------------------------- B capture
+\stage{5.45}{B}{Recognise, then wash}
+\SBead{(6.15,-1.9)}
+\node[bio] at (6.85,-1.9) {};
+\draw[strand,StrandGreen] (6.93,-1.9)--(8.25,-1.9);
+\node[slab,text=StrandGreen!70!black,anchor=south] at (7.6,-1.75) {probe $\overline{O_i}$};
+\draw[strandL,DNAblue] (10.35,-2.2)--(6.9,-2.2);
+\Rungs{7.0}{8.2}{-1.97}{-2.13}{.2}
+\node[slab,anchor=north,align=center,text=DNAblue!80!black] at (8.6,-2.35) {target contains $O_i$: retained};
+\draw[strandL,DNAblue!45,dash pattern=on 4pt off 2pt] (10.0,-3.4)--(7.0,-3.4);
+\node[slab,anchor=north,align=center,text=InkSoft] at (8.5,-3.5) {lacks $O_i$: washed away};
+\draw[move] (10.05,-3.3)--(10.45,-3.05);
+\node[slab,anchor=west,align=left] at (5.6,-4.35) {pairing with the probe is the\\\emph{recognition} step};
+% ---------------------------------------------------------------- C release
+\stage{10.9}{C}{Release the selected strand}
+\SBead{(11.6,-1.9)}
+\node[bio] at (12.3,-1.9) {};
+\draw[strand,StrandGreen] (12.38,-1.9)--(13.7,-1.9);
+\draw[react] (13.0,-2.35)--(13.0,-3.05) node[midway,right,slab] {denature};
+\draw[strandL,DNAblue] (15.75,-3.55)--(12.3,-3.55);
+\node[slab,anchor=west,align=left,text=DNAblue!80!black] at (11.05,-4.15) {target back in solution for the\\next vertex test; the bead keeps\\its probe};
+% ---------------------------------------------------------------- legend
+\begin{scope}[shift={(0,-5.75)}]
+\Bead{(.35,0)}{.22}\node[slab,anchor=west] at (.65,0) {bead};
+\node[sa] at (1.85,0) {};\node[slab,anchor=west] at (2.05,0) {streptavidin};
+\node[bio] at (3.85,0) {};\node[slab,anchor=west] at (4.0,0) {biotin};
+\node[slab,anchor=west,align=left] at (5.3,0) {biotin--streptavidin = \textbf{attachment};\quad complementary pairing = \textbf{recognition}};
+\end{scope}
+\end{tikzpicture}

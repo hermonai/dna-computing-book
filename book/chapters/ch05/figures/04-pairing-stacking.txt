@@ -1,1 +1,19 @@
-Three conceptual base-pair layers A-T, G-C, T-A. Solid outer paths show covalent backbones; two/three dashed cross-pair marks recall canonical hydrogen-bond counts without atom-level geometry. Gold regions between layers show stacking. This is an unwound schematic, not a quantitative energy or structure model.
+Figure: Watson-Crick base pairs as skeletal chemical structures, with an
+edge-on stacking inset.
+
+Left pair, A.T (two hydrogen bonds): adenine (green tint, a purine of fused six-
+and five-membered rings) faces thymine (red tint, a single six-membered
+pyrimidine ring with a methyl group). Dashed rose lines are hydrogen bonds: the
+amino hydrogen on adenine's N6 to thymine's O4, and adenine's N1 to the
+hydrogen on thymine's N3.
+Middle pair, G.C (three hydrogen bonds): guanine (amber tint) faces cytosine
+(blue tint). Hydrogen bonds join guanine's O6 to an amino hydrogen of
+cytosine's N4, the hydrogen on guanine's N1 to cytosine's N3, and an amino
+hydrogen of guanine's N2 to cytosine's O2.
+In both pairs the bonds to the sugars ("sugar" labels) leave from the lower,
+minor-groove edge; the upper edge faces the major groove.
+Right inset: four base pairs seen edge-on between two backbones, stacked about
+0.34 nm apart. Stacking between neighbouring pairs contributes substantially to
+duplex stability.
+Hydrogen-bond lengths are drawn about twice a covalent bond; geometry is
+schematic and planar.
