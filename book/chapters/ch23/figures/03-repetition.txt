@@ -1,1 +1,9 @@
-Five observations are 1,1,0,1,0. Their majority is one and two flips are corrected. A separate common-mode counterexample makes all copies flip together, leaving logical failure p no matter how many copies are added. The diagram is a statistical decoder, not an implemented DNA voting circuit.
+Figure: redundancy helps only when failures are independent.
+Panel A: five independent copies of logical bit 1 read 1, 1, 0, 1, 0. A majority
+vote returns 1: two flipped copies are outvoted, and for small per-copy error p
+the failure probability is about 10 p^3 (five choose three).
+Panel B: a common-mode fault flips all five copies at once, so the failure
+probability is still p, not of order p^3; five copies are not five independent
+trials. The vote is an external mathematical decoder; a molecular system must
+realise redundancy through its own assembly or proofreading pathways, such as
+proofreading tile sets.

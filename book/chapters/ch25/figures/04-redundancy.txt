@@ -1,5 +1,9 @@
-Question: What exactly does one XOR parity equation recover?
-Objects: equal-width binary vectors A=1010, B=0110 and P=A XOR B=1100. Arrows from both source vectors feed the parity vector, not one another.
-Erasure trace: when A is absent and B/P are valid, B XOR P=1010 reconstructs A. Any two correct distinct-address shards determine the third.
-Failure branches: three present shards with changed P=1101 have syndrome 0001, so the reference rejects without guessing which shard is wrong. Two erased shards leave one equation and multiple source pairs.
-Assumptions: known addresses, equal widths and independently validated available frames. Single parity has minimum distance two and is not an arbitrary error-correcting code.
+Figure: one parity shard repairs one located erasure.
+Panel A: three addressed shards each carry four bits: A = 1010, B = 0110 and the
+parity shard P = A xor B = 1100; in every column A xor B xor P = 0.
+Panel B: the address shows that shard A is missing (dashed); B and P are present,
+so A = P xor B = 1010 is recovered.
+Panel C: two cases parity cannot repair. If all three shards are present but P is
+corrupted to 1101, the syndrome 0001 shows that something is wrong but not where,
+so the group is rejected. If two shards are absent, one equation has two
+unknowns and recovery is underdetermined.

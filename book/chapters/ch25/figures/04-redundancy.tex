@@ -1,19 +1,31 @@
-\begin{tikzpicture}[every node/.style={font=\small\sffamily}]
-\node[draw,fill=Blue!12,minimum width=3cm] (a) at (1.5,0) {$A=1010$};
-\node[draw,fill=Green!15,minimum width=3cm] (b) at (6.5,0) {$B=0110$};
-\node[draw,fill=Gold!40,minimum width=3cm] (p) at (11.5,0) {$P=A\oplus B=1100$};
-\draw[flow] (a.north)--(1.5,.7)--(11.5,.7)--(p.north);
-\draw[flow] (b)--(p);
-\node[note] at (6.5,-.8) {One coordinate-wise parity relation: $A\oplus B\oplus P=0000$};
-\draw[gray!50] (0,-1.4)--(13,-1.4);
-\node[draw,fill=Red!12,align=center] (miss) at (1.5,-2.5) {$A$ absent\\located erasure};
-\node[draw,fill=Green!15] at (6.5,-2.5) {$B=0110$};
-\node[draw,fill=Gold!40] at (11.5,-2.5) {$P=1100$};
-\node[draw,fill=Blue!12] (rec) at (6.5,-3.8) {$P\oplus B=1010=A$};
-\draw[flow] (11.5,-2.9)--(rec.east);
-\draw[flow] (6.5,-2.9)--(rec.north);
-\node[note] at (6.5,-4.7) {Two correct, distinct-address shards determine the missing third.};
-\draw[gray!50] (0,-5.2)--(13,-5.2);
-\node[draw,fill=Red!12,align=center] at (3,-6.2) {All three present; $P'=1101$\\syndrome $0001$: reject\\parity alone cannot locate the error};
-\node[draw,fill=Red!12,align=center] at (10,-6.2) {Two shards absent\\one equation, multiple sources\\recovery is underdetermined};
+\begin{tikzpicture}[x=1cm,y=1cm]
+% \Shard{x}{y}{label}{bits}{colour}{style}: an addressed strand carrying four bits
+\newcommand{\Shard}[6]{\begin{scope}[shift={(#1,#2)}]
+ \draw[strand,#5,line width=1.6pt,#6] (0,0)--(2.75,0);
+ \node[slab,anchor=east] at (-.1,0) {#3};
+ \foreach \v [count=\k from 0] in {#4}{\ifnum\v=1 \fill[#5] ({.35+.55*\k},.12) rectangle +(.42,.42);\else
+   \draw[#5,line width=.7pt,fill=white] ({.35+.55*\k},.12) rectangle +(.42,.42);\fi
+   \ifnum\v=1 \def\bitc{white}\else\def\bitc{Ink}\fi
+   \node[font=\sffamily\bfseries\scriptsize,text=\bitc] at ({.56+.55*\k},.33) {\v};}
+ \end{scope}}
+\PanelTitle{(0,1.45)}{A}{Encode parity}
+\Shard{.9}{.55}{$A$}{1,0,1,0}{DNAblue}{}
+\Shard{.9}{-.25}{$B$}{0,1,1,0}{StrandGreen}{}
+\Shard{.9}{-1.05}{$P=A\oplus B$}{1,1,0,0}{StrandAmber}{}
+\node[slab,anchor=north,align=center] at (2.3,-1.25) {each column: $A\oplus B\oplus P=0$};
+\PanelTitle{(5.0,1.45)}{B}{Recover an erasure}
+\begin{scope}[shift={(5.4,0)}]
+\Shard{.9}{.55}{$A$ ?}{0,0,0,0}{RejectRed}{dash pattern=on 3pt off 2pt}
+\foreach \k in {0,...,3}{\fill[white] ({1.25+.55*\k},.67) rectangle +(.42,.42);\draw[RejectRed,dash pattern=on 2pt off 1.5pt] ({1.25+.55*\k},.67) rectangle +(.42,.42);}
+\Shard{.9}{-.25}{$B$}{0,1,1,0}{StrandGreen}{}
+\Shard{.9}{-1.05}{$P$}{1,1,0,0}{StrandAmber}{}
+\node[slab,anchor=north,align=center] at (2.3,-1.25) {address says $A$ is missing:\\$A=P\oplus B=1010$};
+\end{scope}
+\PanelTitle{(10.3,1.45)}{C}{When parity fails}
+\begin{scope}[shift={(10.4,0)}]
+\node[draw=RejectRed,fill=RejectRed!8,rounded corners=3pt,text width=4.4cm,align=left,font=\sffamily\footnotesize] at (2.3,.45)
+ {all three present but $P'=1101$: syndrome $0001$ says \emph{something} is wrong, not \emph{where}; reject};
+\node[draw=RejectRed,fill=RejectRed!8,rounded corners=3pt,text width=4.4cm,align=left,font=\sffamily\footnotesize] at (2.3,-1.0)
+ {two shards absent: one equation, two unknowns; recovery is underdetermined};
+\end{scope}
 \end{tikzpicture}

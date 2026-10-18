@@ -7,8 +7,9 @@ accepted edition. Open gates:
 - Full-resolution (150–300 dpi) review of every page in colour and greyscale.
   This pass inspected all new plates at 100–130 dpi and sampled built pages;
   contact sheets for all pages exist under `build/review/` (not tracked).
-- Bring the ~170 retained plates into the new visual language where they are
-  diagram-boxes rather than mechanisms (priority: Chapters 11–18, 23–24, 26–27).
+- Bring retained plates into the new visual language where they are
+  diagram-boxes rather than mechanisms. Done for 18 plates in Chapters 11–25
+  (see the atlas); remaining candidates are in Chapters 4–10 and 19–32.
 - Planned but not completed: a DNA-recorder plate for Chapter 30 and a redrawn
   synthesis map for Chapter 32.
 - Index: review term marks added by new sections; glossary/index consistency.

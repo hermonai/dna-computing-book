@@ -1,5 +1,10 @@
-Question: What separates DNA storage from molecular computation?
-Storage branch: an encoder sends source u through a noisy channel; the decoder must recover u exactly or fail. Integrity and retrieval cost are central.
-Computation branch: molecular state x undergoes designed dynamics F to yield y. Mechanism correctness and readout correctness both matter.
-Shared engineering: sequence constraints, molecular inventory, addressing, assembly and readout errors, and independent physical validation support both branches.
-Non-inference: storage density does not measure computation throughput. Logical bits per unique nucleotide and physical-copy rate use different denominators.
+Figure: storage and computation share engineering but have different goals.
+Left: storage preserves a message. A file u is encoded into strands, passes a
+noisy channel and is decoded to u-hat; success means u-hat equals u or a declared
+failure, and cost is counted per stored bit.
+Right: computation transforms a state. An input molecular state x is acted on by
+designed dynamics F and read out as an output state y; success means the correct
+output, read out correctly, and cost is counted per computation.
+Beneath: shared engineering (sequence constraints, molecule inventory,
+addressing, assembly and readout errors, independent physical validation).
+Storage density is not a computational throughput benchmark.

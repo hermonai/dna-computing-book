@@ -1,1 +1,5 @@
-Sequence design and graph encoding. A target word absent from either isolated domain appears across their concatenation seam. Enumerate full-construct windows. Risk: validating parts does not validate compositions. Representation: an original editable textbook mechanism plate; labels and geometry carry the meaning in grayscale as well as color. Solid backbones denote covalent continuity where molecular strands are drawn; dotted cross-strand marks denote pairing. Algorithm arrows denote the specific construction, data, or dependency relation named by the caption, not molecular reactions. Numerical curves, when present, use the companion results.json. Read alongside the numbered caption for model assumptions and limitations.
+Figure: a recognition word created at a seam.
+A strand built from a left domain AACG and a right domain TCAG reads AACGTCAG.
+The highlighted window of positions 2 to 5 reads CGTC and crosses the boundary
+between the domains. Each domain alone passes a screen for CGTC, but the joined
+construct does not, so screens must include junctions and terminal handles.

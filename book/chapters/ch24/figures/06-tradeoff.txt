@@ -1,1 +1,9 @@
-Freeze success event, failure tolerance, deadline and observation before comparing two complete resource vectors. A proposed species advantage can move cost into seed preparation, dependency depth or readout; dominance is not invented.
+Figure: comparing two designs under one fixed contract.
+A box at the top fixes the contract: input, correct-output event, failure
+tolerance, deadline and observation. Two designs, A and B, are shown as
+schematic resource profiles (bars for species S, copies N, depth d, readout and
+energy E; the heights are illustrative, not data). A is cheaper on some axes and
+B on others. A box beneath states the comparison rule: compare complete resource
+vectors, including auxiliary species and failed runs; A dominates B only if no
+cost is worse and at least one is better. Otherwise report the trade-off rather
+than inventing a single winner.

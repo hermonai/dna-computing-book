@@ -1,4 +1,10 @@
-Question: How do contextual cuts determine both recombinant products?
-Objects and arrow semantics: Two oriented parent strings, marked cut sites, and exchanged suffixes; solid strand backbones, dashed pairing only when duplex is explicit.
-Change/invariant and caption claim: The sum of both product lengths is conserved; one displayed product is not the entire material balance.
-Scientific risk: Do not equate this symbolic operation with RNA splicing or a specific enzyme protocol.
+Figure: a splicing rule exchanges the right-hand parts of two cut parents.
+Panel A: parent x is made of segments a, u1, u2 and b; parent y of c, v1, v2 and d.
+The contexts u1 u2 and v1 v2 fix the cuts (red dashed lines), between u1 and u2 and
+between v1 and v2. Exchanging the parts to the right of the cuts gives the first
+recombinant a u1 v2 d, which formal-language conventions record, and the
+complementary recombinant c v1 u2 b, kept here for material balance. Segment
+colours track which parent each part came from.
+Panel B: the symbolic example LA|BR and MC|DN gives LADN and MCBR. Nothing is
+copied: every symbol of both parents ends up in exactly one product. The letters
+are abstract symbols, not nucleotides.

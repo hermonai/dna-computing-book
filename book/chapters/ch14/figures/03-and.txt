@@ -1,3 +1,8 @@
-Chapter 14, figure 3: How is a scratch output computed without losing inputs?
-Four labeled occupancy registers move through disjoint a/b separations; only 11 gains output sticker c. Physical copies remain distinct even when computational branches merge. Caption: separation controls a write. Risk: output must start blank.
-See the numbered figure caption and reference.py for exact assumptions and computed values.
+Figure: a conditional write implements AND over a population.
+Each row starts with five copies of a three-address memory strand (addresses a,
+b and c from left to right; a green sticker marks a 1 on a or b). The four input
+registers are 000, 010, 100 and 110. The population is separated on a, then on b;
+only the tube with a = 1 and b = 1 receives an amber sticker on the output
+address c. After merging, the registers are 000, 010, 100 and 111, five copies
+each. The output address is cleared first; all twenty backbones return and none
+is copied.

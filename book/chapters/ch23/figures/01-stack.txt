@@ -1,1 +1,10 @@
-Reliability composes three declared conditional channels: design to physical assembly, assembly to instrument signal, and signal to defect label. Upstream faults change the system; downstream errors change its report. The red separator distinguishes these mechanisms and is not a causal inference from observed frequency alone.
+Figure: reliability is an end-to-end contract, from design to reported label.
+Four cards in a row: design C (tile set, sequences, rules); assembly A (a small
+tile lattice in which one tile is wrong); signal Y (an instrument image or
+trace); label D-hat (a classified decision, defect-free or defective). A
+reaction arrow labelled P(A | C) links design to assembly, an observation arrow
+labelled P(Y | A) links assembly to signal, and a data arrow labelled
+P(D-hat | Y) links signal to label. Error sources are listed beneath: synthesis,
+crosstalk, leak and growth faults change the molecules that exist; sampling,
+instrument resolution and classification errors change what is reported. A
+lower observed defect rate need not mean a lower molecular defect rate.

@@ -1,3 +1,7 @@
-Chapter 14, figure 4: Why is clear not invertible?
-Two occupancy states collapse into one output class; count sums shown; a retained history tag restores distinguishability. Caption: memory reuse and information loss are different questions. Risk: no energy claim without physical model.
-See the numbered figure caption and reference.py for exact assumptions and computed values.
+Figure: clearing is many-to-one.
+Panel A: three copies of register 000 and five copies of register 001 (a sticker
+on address 2) are both cleared at bit 2, giving eight copies of 000. All eight
+backbones remain, but which state each came from is lost.
+Panel B: keeping a history bit h in another address before clearing preserves
+the distinction: (b, h) = (0, 0) becomes (0, 0) and (b, h) = (1, 0) becomes
+(0, 1), at the cost of one more address and more operations.

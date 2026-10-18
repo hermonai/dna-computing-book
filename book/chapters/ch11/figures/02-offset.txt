@@ -1,1 +1,8 @@
-Sequence design and graph encoding. Two distinct equal-length words with high Hamming distance but a five-base shifted match to a reverse complement. Show the offset and paired segment; mismatch screen is not free energy. Representation: an original editable textbook mechanism plate; labels and geometry carry the meaning in grayscale as well as color. Solid backbones denote covalent continuity where molecular strands are drawn; dotted cross-strand marks denote pairing. Algorithm arrows denote the specific construction, data, or dependency relation named by the caption, not molecular reactions. Numerical curves, when present, use the companion results.json. Read alongside the numbered caption for model assumptions and limitations.
+Figure: a fixed comparison can hide a shifted pairing.
+Panel A: the expected partner rc(ACGTAC) = GTACGT is compared position by
+position with the given strand TACGTA, both written 5' to 3'; all six positions
+differ.
+Panel B: the same strands drawn as a duplex, with the given strand running 3' to
+5' and shifted by one position: five consecutive positions are complementary
+and one base overhangs at each end. The geometry is a warning, not a
+binding-yield prediction.

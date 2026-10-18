@@ -1,18 +1,20 @@
-\begin{tikzpicture}[x=1cm,y=1cm]
-\node[note,anchor=west] at (0,3.4) {\textbf{Recovered sequence: 101}};
-\foreach \x/\s in {0.8/1,2.2/0,3.6/1}{
- \draw[Blue,line width=2pt] (\x,2.5)--++(1,0);
- \node[note] at (\x+.5,2.9) {\s};
-}
-\draw[flow] (5,2.5)--node[above,smallnote]{decode}(7,2.5);
-\node[note,anchor=west,align=left] at (7.3,2.5) {$C_1:1\lor0=1$\\$C_2:0\lor1=1$\\$C_3:1\lor0=1$};
-\node[note,draw=Green,rounded corners] at (12.2,2.5) {SAT\\certificate};
-\draw[flow] (10.5,2.5)--(11.3,2.5);
-\draw[Blue!30] (0,1.1)--(14,1.1);
-\node[note] (none) at (2,0) {No detected\\product};
-\node[note,anchor=west] (unsat) at (7,.35) {No satisfying assignment exists};
-\node[note,anchor=west] (lost) at (7,-.65) {Witness absent, lost or undetected};
-\draw[flow,dashed] (none.east)--(unsat.west);
-\draw[flow,dashed] (none.east)--(lost.west);
-\node[smallnote] at (7,-1.5) {Dashed branches: alternative explanations, not established causes.};
+\begin{tikzpicture}[x=1cm,y=1cm,
+  ok/.style={circle,fill=AcceptGreen,text=white,inner sep=0pt,minimum size=4.6mm,font=\sffamily\bfseries\scriptsize}]
+\PanelTitle{(0,1.25)}{A}{A recovered molecule is checked against the whole formula}
+\draw[strand,DNAblue] (.1,0)--(4.55,0);
+\node[dom=DNAblue,minimum width=12mm] at (.85,.38) {$x_1{=}1$};
+\node[dom=DNAsky,minimum width=12mm] at (2.25,.38) {$x_2{=}0$};
+\node[dom=DNAblue,minimum width=12mm] at (3.65,.38) {$x_3{=}1$};
+\draw[data] (4.9,.2)--(5.9,.2) node[midway,above,slab] {decode};
+\node[anchor=west,align=left,font=\small] at (6.0,.2) {$C_1: x_1\lor x_2=1\lor0=1$\\$C_2: \lnot x_1\lor x_3=0\lor1=1$\\$C_3: \lnot x_2\lor\lnot x_3=1\lor0=1$};
+\foreach \y in {.62,.2,-.22}{\node[ok] at (10.65,\y) {$\checkmark$};}
+\draw[data] (11.05,.2)--(11.85,.2);
+\node[draw=AcceptGreen,fill=AcceptGreen!10,rounded corners=3pt,line width=.9pt,font=\sffamily\small,align=center] at (12.85,.2) {satisfying\\assignment};
+\draw[PanelEdge,line width=.8pt] (0,-1.0)--(14,-1.0);
+\PanelTitle{(0,-1.45)}{B}{No product is not the same as no solution}
+\node[evbox,minimum width=2.8cm] (none) at (1.7,-2.75) {no detected\\product};
+\node[compbox,anchor=west,text width=5.4cm,align=left] (u) at (5.6,-2.2) {the formula is unsatisfiable};
+\node[molbox,anchor=west,text width=5.4cm,align=left] (l) at (5.6,-3.3) {a witness was never made, was lost or was not detected};
+\draw[observe] (none.east)--(u.west);\draw[observe] (none.east)--(l.west);
+\node[slab,anchor=west,align=left] at (11.35,-2.75) {only positive controls,\\loss estimates and\\detection limits can\\separate these};
 \end{tikzpicture}

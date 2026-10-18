@@ -1,1 +1,9 @@
-Sequence design and graph encoding. A directed four-vertex graph and half-domain edge encodings. At the shared vertex, a complementary splint aligns adjacent edge oligos across one nick. Distinguish graph arrows, base pairing and ligation. Representation: an original editable textbook mechanism plate; labels and geometry carry the meaning in grayscale as well as color. Solid backbones denote covalent continuity where molecular strands are drawn; dotted cross-strand marks denote pairing. Algorithm arrows denote the specific construction, data, or dependency relation named by the caption, not molecular reactions. Numerical curves, when present, use the companion results.json. Read alongside the numbered caption for model assumptions and limitations.
+Figure: a shared vertex at an edge junction.
+Panel A: a graph with vertices A, B, C and D, edges A to B, A to C, B to D,
+C to D, and both B to C and C to B. B is shared by the edges A to B and B to C.
+Panel B: the molecules at B. The edge strand for A to B reads TCAG CCTA (R_A
+followed by L_B) and the edge strand for B to C reads GTCA GATC (R_B followed by
+L_C), both 5' to 3'. A splint complementary to the B code CCTA GTCA runs
+antiparallel underneath, pairing GGAT with CCTA and CAGT with GTCA, and holds the
+two edge strands end to end across a nick. Ligation, not pairing, would seal the
+backbone.

@@ -43,6 +43,38 @@ for overlaps, orientation and scientific geometry; then seen in the built PDF.
 `ch01/figures/DNAD-01-F1, F4, F6, F7, F10` and `ch02/figures/DNAD-02-F8, F10, F14`.
 F7, F10 (Ch 2) and F14 were tables drawn as figures; they are now LaTeX tables.
 
+## Restyled retained plates (branch `restyle-retained-plates`)
+
+Redrawn in the shared visual language with content, labels and captions kept;
+TXT companions rewritten to match. Each was rendered standalone at 90–100 dpi,
+checked for overlaps and geometry, and viewed in the built PDF; print scale
+0.97–1.15.
+
+| Plate | Change | Checks |
+|---|---|---|
+| `ch11/01-polarity` | base tiles, harpoon strands, stored-string panel | rc(AACG) = CGTT |
+| `ch11/02-offset` | fixed comparison vs shifted duplex | rc(ACGTAC) = GTACGT vs TACGTA: 6 mismatches; shift gives 5 pairs |
+| `ch11/03-hairpin` | inverted repeat and folded stem | GCG/CGC stem, AAA loop |
+| `ch11/04-graph` | graph plus base-level junction at B | R_A L_B = TCAG CCTA; R_B L_C = GTCA GATC; splint GGAT CAGT |
+| `ch11/05-seam` | domains and seam window | window [2:6] = CGTC spans the AACG/TCAG boundary |
+| `ch12/03-logic` | table-as-figure → candidate chips with pass/fail badges | edges per Ch 12 edge set |
+| `ch12/05-order` | boxes → capacity slots with molecules | F-then-G empty; G-then-F good |
+| `ch13/05-certificate` | decoded strand, clause checks, evidence branches | 101 satisfies all three clauses |
+| `ch14/03-and` | text arrows → register strands with stickers | only a=1, b=1 gains c |
+| `ch14/04-reset` | merging registers; history bit | 3 + 5 = 8 copies conserved |
+| `ch15/01-splice` | provenance-coloured segments; LA\|BR, MC\|DN example | products LADN, MCBR |
+| `ch17/04-cleavage` | three-stage restriction–ligation cycle with enzyme | staggered offset cut; offsets unspecified |
+| `ch23/01-stack` | flowchart → illustrated design/assembly/signal/label cards | arrow semantics per legend |
+| `ch23/03-repetition` | copies as tiles; common-mode panel | 10p^3 leading term for r = 5 |
+| `ch24/01-resource` | flowchart → illustrated resource path | n bits → 2^n identities → depth d → Q bits |
+| `ch24/06-tradeoff` | text boxes → schematic resource profiles | profiles labelled schematic, not data |
+| `ch25/04-redundancy` | text boxes → bit cells on addressed shards | 1010 ⊕ 0110 = 1100; syndrome 0001 |
+| `ch25/06-boundary` | storage vs computation comparison with icons | n/a |
+
+Not restyled (already clear plots, automata or recent designs): the remaining
+plates of Chapters 11–18 and 23–27, including all data plots, automaton and
+tree diagrams, and Chapter 26's plates.
+
 ## Retained plates
 
 About 170 earlier plates are retained unchanged in content. They inherit the

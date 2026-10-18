@@ -1,3 +1,9 @@
-Chapter 13, figure 5: What does a detected molecule prove?
-Assignment domains decoded to values; literal truth table compared against CNF. Separate positive witness verification from a no-signal result with two possible causes. Caption: existence is certifiable, absence requires coverage and assay guarantees. Risk: no-signal is not an UNSAT certificate.
-See the numbered figure caption and reference.py for exact assumptions and computed values.
+Figure: positive and negative evidence are asymmetric.
+Panel A: a recovered strand carries the domains x1 = 1, x2 = 0 and x3 = 1. Decoding
+it and evaluating every clause of the formula gives C1: x1 or x2 = 1 or 0 = 1;
+C2: not x1 or x3 = 0 or 1 = 1; C3: not x2 or not x3 = 1 or 0 = 1. All three clauses
+are satisfied, so the molecule certifies a satisfying assignment.
+Panel B: an observation of no detected product points to two alternative
+explanations: the formula is unsatisfiable, or a witness was never made, was
+lost or was not detected. Only positive controls, loss estimates and detection
+limits can separate these explanations.

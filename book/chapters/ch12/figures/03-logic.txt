@@ -1,1 +1,9 @@
-Generate--filter--verify algorithms. Truth table on four literal path witnesses, including wrong direction, repeated vertex and missing endpoint. Proof requires generation and filtering contracts independently. Representation: an original editable textbook mechanism plate; labels and geometry carry the meaning in grayscale as well as color. Solid backbones denote covalent continuity where molecular strands are drawn; dotted cross-strand marks denote pairing. Algorithm arrows denote the specific construction, data, or dependency relation named by the caption, not molecular reactions. Numerical curves, when present, use the companion results.json. Read alongside the numbered caption for model assumptions and limitations.
+Figure: four candidates and four tests.
+Rows show candidate walks as chains of vertex chips: ABCD, ABBD, ABDC and ABD.
+Columns test endpoints (start A, end D), length (four vertices), coverage (every
+vertex present) and edges (every step is an edge of the graph A to B, A to C,
+B to C, C to B, B to D, C to D). Green ticks pass and red crosses fail:
+ABCD passes all four; ABBD passes endpoints and length but fails coverage and
+edges (B to B is not an edge); ABDC fails endpoints and edges (D to C is not an
+edge) but passes length and coverage; ABD passes endpoints and edges but fails
+length and coverage. Only ABCD is a witness; no single column decides it.

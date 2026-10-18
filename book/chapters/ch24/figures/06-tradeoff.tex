@@ -1,14 +1,19 @@
-\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
-\node[draw=Blue,fill=Pale,align=center,text width=12.4cm] (contract) at (6,2)
-{Fixed scientific contract: input, correct-output event, failure tolerance, deadline, observation};
-\node[draw=Blue,align=left,text width=5cm] (a) at (2.7,-.1)
-{Design A\\fewer species\\larger prepared seed\\different dependency depth};
-\node[draw=Blue,align=left,text width=5cm] (b) at (9.4,-.1)
-{Design B\\more species\\smaller seed\\different readout demand};
-\draw[flow] (contract.south)--(a.north); \draw[flow] (contract.south)--(b.north);
-\node[draw=Green,fill=Green!8,align=center,text width=12.4cm] (ledger) at (6,-2.3)
-{Compare the complete resource vectors, including auxiliaries and failed runs.\\
-A dominates B only if no controlled cost is worse and at least one is better.};
-\draw[flow] (a.south)--(ledger.north -| a); \draw[flow] (b.south)--(ledger.north -| b);
-\node[Red] at (6,-3.6) {Otherwise report the tradeoff; do not invent a scalar winner.};
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[compbox,text width=13.2cm] (k) at (6.6,2.05) {fixed contract: input, correct-output event, failure tolerance, deadline, observation};
+% resource profiles as bar glyphs (schematic, no data)
+\newcommand{\Profile}[3]{\begin{scope}[shift={(#1,0)}]
+ \node[font=\sffamily\bfseries\small] at (2.0,1.1) {#2};
+ \foreach \k/\lab/\h in {#3}{
+   \fill[DNAblue!70] ({.35+.62*\k},-.9) rectangle +(.42,\h);
+   \node[slab,anchor=north] at ({.56+.62*\k},-.95) {\lab};}
+ \draw[InkSoft,line width=.6pt] (.2,-.9)--(3.6,-.9);
+ \end{scope}}
+\Profile{.4}{design A}{0/$S$/.45,1/$N$/1.25,2/$d$/1.0,3/read/.55,4/$E$/.7}
+\Profile{8.0}{design B}{0/$S$/1.15,1/$N$/.6,2/$d$/.7,3/read/1.2,4/$E$/.75}
+\draw[data] (k.south)--(2.4,1.35);\draw[data] (k.south)--(10.0,1.35);
+\node[slab,anchor=north,align=center] at (6.2,.35) {schematic resource\\profiles (not data)};
+\node[draw=AcceptGreen,fill=AcceptGreen!8,rounded corners=3pt,line width=.9pt,text width=13.2cm,align=center,font=\sffamily\small] (cmp) at (6.6,-2.05)
+ {compare complete resource vectors, including auxiliary species and failed runs: A dominates B only if no cost is worse and at least one is better};
+\draw[data] (2.4,-1.35)--(2.4,-1.65);\draw[data] (10.0,-1.35)--(10.0,-1.65);
+\node[slab,anchor=north,font=\sffamily\bfseries\footnotesize,text=RejectRed!85!black] at (6.6,-2.65) {here each design is cheaper on some axes: report the trade-off, do not invent a single winner};
 \end{tikzpicture}

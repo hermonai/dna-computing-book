@@ -1,10 +1,20 @@
-\begin{tikzpicture}[x=1.9cm,y=.65cm]
-\foreach \s/\x in {Candidate/0,Endpoints/1,Length/2,Coverage/3,Edges/4}
- \node[smallnote] at (\x,1) {\s};
-\foreach \s/\y/\e/\l/\c/\a in {ABCD/0/yes/yes/yes/yes,ABBD/-1/yes/yes/no/no,ABDC/-2/no/yes/yes/no,ABD/-3/yes/no/no/yes}{
- \node[font=\ttfamily] at (0,\y) {\s};
- \node at (1,\y) {\e}; \node at (2,\y) {\l};
- \node at (3,\y) {\c}; \node at (4,\y) {\a};}
-\draw[Blue] (-.5,.5)--(4.5,.5);
-\node[smallnote] at (2,-4) {Endpoints are fixed at A and D; target length is four.};
+\begin{tikzpicture}[x=1cm,y=1cm,
+  vtx/.style={circle,draw=Ink,fill=white,line width=.7pt,inner sep=0pt,minimum size=5mm,font=\sffamily\scriptsize\bfseries},
+  ok/.style={circle,fill=AcceptGreen,text=white,inner sep=0pt,minimum size=5mm,font=\sffamily\bfseries\small},
+  no/.style={circle,fill=RejectRed,text=white,inner sep=0pt,minimum size=5mm,font=\sffamily\bfseries\small},
+  hd/.style={font=\sffamily\bfseries\small,text=Ink,align=center}]
+\foreach \t/\x in {{candidate walk}/1.4,{endpoints\\$A\ldots D$}/4.6,{length\\$=4$}/6.3,{coverage\\all vertices}/8.0,{edges\\all legal}/9.7}{\node[hd] at (\x,.75) {\t};}
+\draw[PanelEdge,line width=.8pt] (0,.2)--(10.6,.2);
+% draw each candidate as a chain of vertex chips
+\newcommand{\Walk}[2]{\foreach \v [count=\k from 0] in {#2}{\node[vtx] (w\k) at ({.35+.62*\k},#1) {\v};}}
+\Walk{-.4}{A,B,C,D}\foreach \k/\j in {0/1,1/2,2/3}{\draw[-{Stealth[length=1.4mm]},DNAblue,line width=.8pt] (w\k)--(w\j);}
+\Walk{-1.15}{A,B,B,D}\foreach \k/\j in {0/1,2/3}{\draw[-{Stealth[length=1.4mm]},DNAblue,line width=.8pt] (w\k)--(w\j);}
+ \draw[-{Stealth[length=1.4mm]},RejectRed,line width=.9pt,dash pattern=on 2pt off 1.2pt] (w1)--(w2);
+\Walk{-1.9}{A,B,D,C}\foreach \k/\j in {0/1,1/2}{\draw[-{Stealth[length=1.4mm]},DNAblue,line width=.8pt] (w\k)--(w\j);}
+ \draw[-{Stealth[length=1.4mm]},RejectRed,line width=.9pt,dash pattern=on 2pt off 1.2pt] (w2)--(w3);
+\Walk{-2.65}{A,B,D}\foreach \k/\j in {0/1,1/2}{\draw[-{Stealth[length=1.4mm]},DNAblue,line width=.8pt] (w\k)--(w\j);}
+\foreach \y/\e/\l/\c/\a in {-.4/1/1/1/1,-1.15/1/1/0/0,-1.9/0/1/1/0,-2.65/1/0/0/1}{
+  \foreach \v/\x in {\e/4.6,\l/6.3,\c/8.0,\a/9.7}{\ifnum\v=1 \node[ok] at (\x,\y) {$\checkmark$};\else\node[no] at (\x,\y) {$\times$};\fi}}
+\node[slab,anchor=west,align=left] at (0,-3.35) {graph edges: $A\!\to\!B$, $A\!\to\!C$, $B\!\to\!C$, $C\!\to\!B$, $B\!\to\!D$, $C\!\to\!D$; red dashed arrows are not edges.\\
+only \texttt{ABCD} passes every test: no single column decides witness status.};
 \end{tikzpicture}

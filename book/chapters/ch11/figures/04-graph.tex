@@ -1,23 +1,25 @@
-\begin{tikzpicture}[x=.75cm,y=.75cm]
-\foreach \n/\x/\y in {A/0/4,B/2/5,C/2/3,D/4/4}
- \node[circle,draw=Blue,fill=Pale,minimum size=7mm] (\n) at (\x,\y) {\n};
-\foreach \a/\b in {A/B,A/C,B/D,C/D}\draw[flow] (\a)--(\b);
-\draw[flow,bend left=20] (B) to (C);
-\draw[flow,bend left=20] (C) to (B);
-\node[note,anchor=west] at (6,4) {B is shared by $A\to B$ and $B\to C$.\\Graph arrows denote allowed traversal.};
-\draw[Blue,very thick] (0,1.5)--(5.7,1.5);
-\draw[Blue,very thick] (6.3,1.5)--(12,1.5);
-\node[fill=white,font=\ttfamily] at (2,1.5) {TCAG};
-\node[fill=white,font=\ttfamily] at (4.5,1.5) {CCTA};
-\node[fill=white,font=\ttfamily] at (7.5,1.5) {GTCA};
-\node[fill=white,font=\ttfamily] at (10,1.5) {GATC};
-\node[smallnote] at (6,2.2) {nick: $3'$-OH / $5'$-phosphate};
-\draw[Green,very thick] (3,.2)--(9,.2);
-\node[fill=white,font=\ttfamily] at (4.5,.2) {GGAT};
-\node[fill=white,font=\ttfamily] at (7.5,.2) {CAGT};
-\foreach \x in {3.6,4.2,4.8,5.4,6.6,7.2,7.8,8.4}
- \draw[dotted] (\x,.45)--(\x,1.2);
-\node at (-.5,1.5) {$5'$}; \node at (12.5,1.5) {$3'$};
-\node at (2.5,.2) {$3'$}; \node at (9.5,.2) {$5'$};
-\node[smallnote] at (6,-.7) {B splint aligns the nick; ligase chemistry must seal it.};
+\begin{tikzpicture}[x=1cm,y=1cm]
+\PanelTitle{(0,2.95)}{A}{Graph}
+\foreach \n/\x/\y in {A/.3/1.2,B/1.5/1.9,C/1.5/.5,D/2.7/1.2}{
+  \node[circle,draw=Ink,fill=white,line width=.8pt,inner sep=0pt,minimum size=6mm,font=\sffamily\small] (\n) at (\x,\y) {\n};}
+\foreach \a/\b in {A/B,A/C,B/D,C/D}{\draw[-{Stealth[length=1.8mm]},Ink,line width=.7pt] (\a)--(\b);}
+\draw[-{Stealth[length=1.8mm]},Ink,line width=.7pt] (B) to[bend left=22] (C);
+\draw[-{Stealth[length=1.8mm]},Ink,line width=.7pt] (C) to[bend left=22] (B);
+\node[slab,align=left,anchor=north west] at (0,-.05) {$B$ is shared by the\\edges $A\to B$ and $B\to C$};
+\PanelTitle{(3.9,2.95)}{B}{Molecules at the $B$ junction}
+\begin{scope}[shift={(4.3,1.25)}]
+ \draw[backbone,DNAblue] (0,.5)--(5.45,.5);
+ \draw[strand,DNAsky] (5.75,.5)--(11.3,.5);
+ \foreach \k/\a in {0/T,1/C,2/A,3/G,4/C,5/C,6/T,7/A}{\BaseTile{({.35+.62*\k},.5)}{\a}}
+ \foreach \k/\a in {0/G,1/T,2/C,3/A,4/G,5/A,6/T,7/C}{\BaseTile{({6.12+.62*\k},.5)}{\a}}
+ \draw[strandL,StrandViolet] (10.75,-.55)--(2.65,-.55);
+ \foreach \k/\a in {0/G,1/G,2/A,3/T}{\BaseTile{({2.83+.62*\k},-.55)}{\a}}
+ \foreach \k/\a in {0/C,1/A,2/G,3/T}{\BaseTile{({6.12+.62*\k},-.55)}{\a}}
+ \foreach \k in {0,...,3}{\draw[rung] ({2.83+.62*\k},.22)--({2.83+.62*\k},-.27);\draw[rung] ({6.12+.62*\k},.22)--({6.12+.62*\k},-.27);}
+ \EndLab{(-.25,.5)}{5$'$}\EndLab{(11.55,.5)}{3$'$}\EndLab{(2.4,-.55)}{3$'$}\EndLab{(11.0,-.55)}{5$'$}
+ \draw[RejectRed,line width=.9pt] (5.6,.82)--(5.6,1.12) node[above,slab,text=RejectRed] {nick};
+ \draw[brace] (.05,1.0)--(4.7,1.0) node[midway,above=3pt,slab,text=DNAblue!80!black] {edge $A\to B$: $R_A L_B$};
+ \draw[brace] (6.5,1.0)--(11.0,1.0) node[midway,above=3pt,slab,text=DNAsky!80!black] {edge $B\to C$: $R_B L_C$};
+ \node[slab,anchor=north,align=center,text=StrandViolet] at (5.6,-.95) {splint complementary to $O_B=\texttt{CCTA}\,\texttt{GTCA}$};
+\end{scope}
 \end{tikzpicture}

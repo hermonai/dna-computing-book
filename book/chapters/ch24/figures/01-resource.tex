@@ -1,12 +1,28 @@
-\begin{tikzpicture}[x=1cm,y=1cm,font=\small\sffamily]
-\node[draw=Blue,fill=Pale,align=center,text width=2.7cm] (input) at (0,0) {Input $n$ bits\\representation rule};
-\node[draw=Blue,fill=Pale,align=center,text width=3cm] (pool) at (4,0) {Candidate pool\\$M=2^n$ identities};
-\node[draw=Blue,fill=Pale,align=center,text width=3cm] (react) at (8,0) {Dependent reactions\\serial depth $d$};
-\node[draw=Blue,fill=Gold!30,align=center,text width=2.7cm] (read) at (12,0) {Verified output\\$Q$ bits reported};
-\draw[flow] (input)--(pool); \draw[flow] (pool)--(react); \draw[flow] (react)--(read);
-\node[align=center,text width=3.2cm] at (4,-1.7) {species $S$, copies $N$\\volume $V$, concentration $c$};
-\node[align=center,text width=3.4cm] at (8,-1.7) {rates, competition, transport\\completion by deadline};
-\node[align=center,text width=3cm] at (12,-1.7) {sampling, sensitivity\\bandwidth $b$};
-\draw[Blue] (pool.south)--(4,-1); \draw[Blue] (react.south)--(8,-1); \draw[Blue] (read.south)--(12,-1);
-\node[Red,align=center] at (6,-3) {Parallel candidate processing does not make inventory, dependency or readout free.};
+\begin{tikzpicture}[x=1cm,y=1cm,
+  card/.style={rounded corners=4pt,draw=#1,fill=#1!8,line width=.9pt,minimum width=3.15cm,minimum height=2.45cm},
+  ct/.style={font=\sffamily\bfseries\small,text=Ink,anchor=north,align=center}]
+\node[card=CompTeal] (in) at (0,0) {};\node[ct] at (0,1.1) {input};
+\node[card=DNAblue] (pool) at (4.1,0) {};\node[ct] at (4.1,1.1) {candidate pool};
+\node[card=DNAblue] (rx) at (8.2,0) {};\node[ct] at (8.2,1.1) {dependent reactions};
+\node[card=EvidenceViolet] (out) at (12.3,0) {};\node[ct] at (12.3,1.1) {verified output};
+% input bits
+\foreach \k/\v in {0/1,1/0,2/1,3/1}{\node[draw=CompTeal,fill=white,minimum size=4.6mm,inner sep=0pt,font=\ttfamily\small] at ({-.6+.4*\k},.15) {\v};}
+\node[slab] at (0,-.55) {$n$ bits};
+% pool: tube with many strands
+\begin{scope}[shift={(3.6,-.95)},scale=.55,transform shape]\Tube{(0,0)}{DNAsky}{}\end{scope}
+\node[slab,anchor=west,align=left] at (4.0,-.1) {$M=2^n$\\identities};
+% chain of d steps
+\foreach \k in {0,1,2}{\node[circle,draw=DNAblue,fill=white,inner sep=0pt,minimum size=4.6mm,font=\sffamily\scriptsize] (s\k) at ({7.4+.75*\k},.1) {\the\numexpr\k+1\relax};}
+\node[slab] at (9.55,.1) {$\cdots d$};
+\draw[react] (s0)--(s1);\draw[react] (s1)--(s2);
+\node[slab] at (8.2,-.55) {serial depth $d$};
+% detector
+\fill[GelBg,rounded corners=1pt] (11.75,.45) rectangle (12.85,-.45);
+\foreach \yy in {.25,-.05,-.3}{\fill[DNAblue] (11.95,\yy) rectangle (12.65,\yy+.07);}
+\node[slab] at (12.3,-.75) {$Q$ bits};
+\draw[data] (in.east)--(pool.west);\draw[react] (pool.east)--(rx.west);\draw[observe] (rx.east)--(out.west);
+% costs
+\foreach \x/\t in {4.1/{species $S$, copies $N$,\\volume $V$, concentration $c$},8.2/{rates, competition,\\transport, deadline},12.3/{sampling, sensitivity,\\bandwidth $b$}}{
+  \node[slab,anchor=north,align=center] at (\x,-1.4) {\t};}
+\node[slab,anchor=north,font=\sffamily\bfseries\footnotesize,text=RejectRed!85!black] at (6.15,-2.35) {parallel processing of candidates does not make inventory, dependency or readout free};
 \end{tikzpicture}

@@ -1,13 +1,21 @@
-\begin{tikzpicture}[x=.7cm,y=.7cm]
-\node[note,anchor=west] at (-1,3.2) {Fixed strings: \texttt{ACGTAC} versus \texttt{TACGTA}; six mismatches};
-\foreach \i/\a in {0/A,1/C,2/G,3/T,4/A,5/C}
- \node[font=\ttfamily,Blue] at (\i,1.8) {\a};
-\foreach \i/\b in {-1/A,0/T,1/G,2/C,3/A,4/T}
- \node[font=\ttfamily,Green] at (\i,.7) {\b};
-\draw[Blue,thick] (-.35,2.12)--(5.35,2.12);
-\draw[Green,thick] (-1.35,.38)--(4.35,.38);
-\foreach \i in {0,...,4}\draw[densely dashed] (\i,1.5)--(\i,1.0);
-\node at (-1,1.8) {$5'$}; \node at (6,1.8) {$3'$};
-\node at (-2,.7) {$3'$}; \node at (5.4,.7) {$5'$};
-\node[note,align=left,anchor=west] at (7,1.2) {Five paired bases\\after shifting\\one position};
+\begin{tikzpicture}[x=1cm,y=1cm]
+\PanelTitle{(0,1.35)}{A}{Fixed comparison: six mismatches}
+\begin{scope}[shift={(.4,0)}]
+ \foreach \i/\a in {0/G,1/T,2/A,3/C,4/G,5/T}{\BaseTile{({.62*\i},.45)}{\a}}
+ \foreach \i/\b in {0/T,1/A,2/C,3/G,4/T,5/A}{\BaseTile{({.62*\i},-.45)}{\b}}
+ \foreach \i in {0,...,5}{\node[font=\sffamily\bfseries\scriptsize,text=RejectRed] at ({.62*\i},0) {$\neq$};}
+ \node[slab,anchor=west,align=left] at (3.55,.45) {$\mathrm{rc}(\texttt{ACGTAC})$};
+ \node[slab,anchor=west,align=left] at (3.55,-.45) {given \texttt{TACGTA}};
+ \node[slab,anchor=north,align=center] at (1.55,-.9) {both written $5'\to3'$, compared\\position by position};
+\end{scope}
+\PanelTitle{(8.0,1.35)}{B}{Slide the real partner by one position}
+\begin{scope}[shift={(9.4,0)}]
+ \draw[strand,DNAblue] (-.4,.45)--(3.75,.45);
+ \draw[strandL,StrandGreen] (3.1,-.45)--(-1.05,-.45);
+ \foreach \i/\a in {0/A,1/C,2/G,3/T,4/A,5/C}{\BaseTile{({.62*\i},.45)}{\a}}
+ \foreach \i/\b in {-1/A,0/T,1/G,2/C,3/A,4/T}{\BaseTile{({.62*\i},-.45)}{\b}}
+ \foreach \i in {0,...,4}{\draw[rung] ({.62*\i},.18)--({.62*\i},-.18);}
+ \EndLab{(-.65,.45)}{5$'$}\EndLab{(4.0,.45)}{3$'$}\EndLab{(-1.3,-.45)}{3$'$}\EndLab{(3.35,-.45)}{5$'$}
+ \node[slab,anchor=north,align=center] at (1.3,-.9) {five complementary pairs; one base\\overhangs at each end};
+\end{scope}
 \end{tikzpicture}

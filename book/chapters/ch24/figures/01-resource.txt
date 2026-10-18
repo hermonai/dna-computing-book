@@ -1,1 +1,8 @@
-Candidate inventory, serial reaction chain and finite readout each carry separately declared physical resource costs. Parallel processing does not erase those boundaries.
+Figure: the resource path of a molecular search.
+Four cards joined by arrows: input (n bits, here 1011), candidate pool (a tube
+holding M = 2^n identities), dependent reactions (a chain of steps 1, 2, 3 and so
+on to d, the serial depth) and verified output (a readout reporting Q bits).
+Beneath each card are its costs: species S, copies N, volume V and concentration
+c for the pool; rates, competition, transport and deadline for the reactions;
+sampling, sensitivity and bandwidth b for the readout. Parallel processing of
+candidates does not make inventory, dependency or readout free.

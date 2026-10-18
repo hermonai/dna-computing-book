@@ -1,11 +1,24 @@
-\begin{tikzpicture}
-\node[draw,rounded corners,fill=Pale,align=center,text width=4.7cm] (s) at (2.8,0) {\textbf{Storage contract}\\source $u$\\encode + noisy channel + decode};
-\node[draw,rounded corners,fill=Gold!30,align=center,text width=4.7cm] (c) at (10.2,0) {\textbf{Computation contract}\\input molecular state $x$\\designed dynamics $F$};
-\node[draw,fill=Green!15,align=center,text width=4.7cm] (so) at (2.8,-2.2) {recover $\widehat u=u$ or fail\\file integrity + retrieval cost};
-\node[draw,fill=Green!15,align=center,text width=4.7cm] (co) at (10.2,-2.2) {produce output state $y$\\mechanism + readout correctness};
-\draw[flow] (s)--(so);\draw[flow] (c)--(co);
-\node[draw,rounded corners,fill=Blue!10,text width=10cm,align=center] (common) at (6.5,-4.2) {\textbf{Shared engineering}\\sequence constraints; molecule inventory; addressing;\\assembly/readout errors; independent physical validation};
-\draw[flow] (so.south)--(common.north west);
-\draw[flow] (co.south)--(common.north east);
-\node[Red,note] at (6.5,-5.4) {Storage density is not a computational throughput benchmark.};
+\begin{tikzpicture}[x=1cm,y=1cm]
+\fill[DNAblue!6,rounded corners=4pt] (0,0) rectangle (6.5,-3.35);
+\fill[ProteinGold!10,rounded corners=4pt] (7.0,0) rectangle (13.5,-3.35);
+\node[anchor=north west,font=\sffamily\bfseries\small] at (.15,-.12) {Storage: preserve a message};
+\node[anchor=north west,font=\sffamily\bfseries\small] at (7.15,-.12) {Computation: transform a state};
+% storage chain
+\node[compbox,font=\sffamily\footnotesize] (u) at (.9,-1.3) {file $u$};
+\foreach \k in {0,1,2}{\draw[strand,DNAblue,line width=1.4pt] (2.25,{-1.05-.25*\k})--(3.45,{-1.05-.25*\k});}
+\node[compbox,font=\sffamily\footnotesize] (uh) at (5.55,-1.3) {$\widehat u$};
+\draw[data] (u.east)--(2.15,-1.3);\draw[observe] (3.6,-1.3)--(uh.west);
+\node[slab,anchor=north] at (2.85,-1.85) {encode, noisy channel, decode};
+\node[slab,anchor=north,align=center] at (3.25,-2.35) {success: $\widehat u=u$, or a declared failure;\\cost per stored bit};
+% computation chain
+\node[molbox,font=\sffamily\footnotesize] (x) at (7.9,-1.3) {state $x$};
+\Enzyme{(9.85,-1.25)}{.42}{\fontsize{6}{6}\selectfont $F$}
+\node[molbox,font=\sffamily\footnotesize] (y) at (12.55,-1.3) {state $y$};
+\draw[react] (x.east)--(9.3,-1.3);\draw[react] (10.4,-1.3)--(y.west);
+\node[slab,anchor=north] at (10.2,-1.85) {designed dynamics $F$, then readout};
+\node[slab,anchor=north,align=center] at (10.25,-2.35) {success: correct output state, read out\\correctly; cost per computation};
+% shared engineering
+\node[draw=Ink,fill=white,rounded corners=3pt,line width=.8pt,text width=13.1cm,align=center,font=\sffamily\footnotesize] at (6.75,-4.0)
+ {\textbf{shared engineering:} sequence constraints, molecule inventory, addressing, assembly and readout errors, independent physical validation};
+\node[slab,anchor=north,font=\sffamily\bfseries\footnotesize,text=RejectRed!85!black] at (6.75,-4.55) {storage density is not a computational throughput benchmark};
 \end{tikzpicture}

@@ -1,14 +1,46 @@
-\begin{tikzpicture}[x=1cm,y=1cm]
-\node[note,anchor=west] at (0,3.2) {Parents: context fixes the cut};
-\draw[Blue,very thick] (0,2.4)--(2.5,2.4);\draw[Green,very thick] (2.6,2.4)--(5,2.4);
-\node[note] at (1.2,2.7) {$a\,u_1$};\node[note] at (3.8,2.7) {$u_2\,b$};
-\draw[Red,dashed] (2.55,2.1)--(2.55,2.9);
-\draw[Green,very thick] (7,2.4)--(9.5,2.4);\draw[Blue,very thick] (9.6,2.4)--(12,2.4);
-\node[note] at (8.2,2.7) {$c\,v_1$};\node[note] at (10.8,2.7) {$v_2\,d$};
-\draw[Red,dashed] (9.55,2.1)--(9.55,2.9);
-\draw[flow] (3,1.9)--(3,1.1);\draw[flow] (9,1.9)--(9,1.1);
-\node[note] at (6,1.5) {exchange suffixes};
-\draw[Blue,very thick] (0,.6)--(5,.6);\node[note] at (2.5,.9) {$a\,u_1\,v_2\,d$};
-\draw[Green,very thick] (7,.6)--(12,.6);\node[note] at (9.5,.9) {$c\,v_1\,u_2\,b$};
-\node[note] at (6,-.1) {Example: LADN and MCBR. Both products retain parent material.};
+\begin{tikzpicture}[x=1cm,y=1cm,
+  seg/.style={draw=#1,fill=#1!16,line width=.9pt,rounded corners=2pt,minimum height=6mm,inner sep=2pt,font=\small},
+  sym/.style={draw=#1,fill=#1!16,line width=.8pt,rounded corners=1.2pt,minimum width=5.4mm,minimum height=5.4mm,inner sep=0pt,font=\sffamily\bfseries\small}]
+\newcommand{\Cut}[1]{\draw[RejectRed,line width=1.1pt,dash pattern=on 2.5pt off 1.5pt] ($#1+(0,-.45)$)--($#1+(0,.45)$);}
+\PanelTitle{(0,1.35)}{A}{The rule: cut both parents in context, exchange the right-hand parts}
+% parent x = a u1 | u2 b
+\node[seg=DNAblue,minimum width=13mm] (xa) at (.85,.35) {$a$};
+\node[seg=DNAsky,minimum width=11mm,right=0pt of xa] (xu1) {$u_1$};
+\node[seg=StrandAmber,minimum width=11mm,right=0pt of xu1] (xu2) {$u_2$};
+\node[seg=ProteinEdge,minimum width=13mm,right=0pt of xu2] (xb) {$b$};
+\Cut{(xu1.east)}
+\node[slab,anchor=east] at (.1,.35) {$x$};
+% parent y = c v1 | v2 d
+\node[seg=StrandGreen,minimum width=13mm] (yc) at (8.35,.35) {$c$};
+\node[seg=CompTeal,minimum width=11mm,right=0pt of yc] (yv1) {$v_1$};
+\node[seg=StrandRose,minimum width=11mm,right=0pt of yv1] (yv2) {$v_2$};
+\node[seg=RejectRed,minimum width=13mm,right=0pt of yv2] (yd) {$d$};
+\Cut{(yv1.east)}
+\node[slab,anchor=east] at (7.6,.35) {$y$};
+\draw[react] (3.0,-.15)--(3.0,-.75);\draw[react] (10.5,-.15)--(10.5,-.75);
+\node[slab] at (6.75,-.45) {exchange the parts to the right of the cuts};
+% products
+\node[seg=DNAblue,minimum width=13mm] (pa) at (.85,-1.25) {$a$};
+\node[seg=DNAsky,minimum width=11mm,right=0pt of pa] (pu1) {$u_1$};
+\node[seg=StrandRose,minimum width=11mm,right=0pt of pu1] (pv2) {$v_2$};
+\node[seg=RejectRed,minimum width=13mm,right=0pt of pv2] (pd) {$d$};
+\node[seg=StrandGreen,minimum width=13mm] (qc) at (8.35,-1.25) {$c$};
+\node[seg=CompTeal,minimum width=11mm,right=0pt of qc] (qv1) {$v_1$};
+\node[seg=StrandAmber,minimum width=11mm,right=0pt of qv1] (qu2) {$u_2$};
+\node[seg=ProteinEdge,minimum width=13mm,right=0pt of qu2] (qb) {$b$};
+\node[slab,anchor=north] at (3.0,-1.65) {first recombinant (the usual language output)};
+\node[slab,anchor=north] at (10.5,-1.65) {complementary recombinant (kept for material balance)};
+\draw[PanelEdge,line width=.8pt] (0,-2.35)--(14,-2.35);
+% example
+\PanelTitle{(0,-2.8)}{B}{Example with symbols: \texttt{LA|BR} and \texttt{MC|DN}}
+\begin{scope}[shift={(.6,-3.75)}]
+ \foreach \k/\t/\c in {0/L/DNAblue,1/A/DNAsky,2/B/StrandAmber,3/R/StrandAmber}{\node[sym=\c] at ({.62*\k},0) {\t};}
+ \Cut{(.93,0)}
+ \foreach \k/\t/\c in {0/M/StrandGreen,1/C/StrandGreen,2/D/StrandRose,3/N/StrandRose}{\node[sym=\c] at ({3.4+.62*\k},0) {\t};}
+ \Cut{(4.33,0)}
+ \draw[react] (5.75,0)--(7.1,0);
+ \foreach \k/\t/\c in {0/L/DNAblue,1/A/DNAsky,2/D/StrandRose,3/N/StrandRose}{\node[sym=\c] at ({7.6+.62*\k},0) {\t};}
+ \foreach \k/\t/\c in {0/M/StrandGreen,1/C/StrandGreen,2/B/StrandAmber,3/R/StrandAmber}{\node[sym=\c] at ({10.6+.62*\k},0) {\t};}
+ \node[slab,anchor=north,align=center] at (6.4,-.45) {nothing is copied: every symbol of both parents ends up in exactly one product};
+\end{scope}
 \end{tikzpicture}

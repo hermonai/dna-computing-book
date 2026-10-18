@@ -1,11 +1,34 @@
-\begin{tikzpicture}[x=1cm,y=.8cm]
-\node[note] at (0,2) {[bad, good]};
-\node[draw=Blue,fill=Gold,note] (f) at (3,2) {F: 1 slot\\bad};
-\node[draw=Blue,note] (g) at (6,2) {G: good only\\empty};
-\draw[flow] (1.2,2)--(f); \draw[flow] (f)--(g);
-\node[note] at (0,0) {[bad, good]};
-\node[draw=Blue,fill=Pale,note] (g2) at (3,0) {G: good only\\good};
-\node[draw=Blue,fill=Pale,note] (f2) at (6,0) {F: 1 slot\\good};
-\draw[flow] (1.2,0)--(g2); \draw[flow] (g2)--(f2);
-\node[smallnote,align=left] at (10,1) {Original copy order is fixed.\\F accepts either identity.\\G has capacity two.};
+\begin{tikzpicture}[x=1cm,y=1cm,
+  flt/.style={rounded corners=4pt,draw=#1,fill=#1!10,line width=.9pt,minimum width=3.3cm,minimum height=1.8cm,align=center,font=\sffamily\footnotesize},
+  slot/.style={circle,draw=InkSoft,fill=white,line width=.6pt,minimum size=6.2mm,inner sep=0pt}]
+\newcommand{\Good}[1]{\draw[strand,StrandGreen,line width=1.6pt] ($#1+(-.22,0)$)--($#1+(.22,0)$);}
+\newcommand{\Bad}[1]{\draw[strand,StrandRose,line width=1.6pt,dash pattern=on 2.5pt off 1.2pt] ($#1+(-.22,0)$)--($#1+(.22,0)$);}
+\foreach \y/\row in {0/1,-2.3/2}{
+  \node[slab,anchor=east,align=right] at (-.2,\y) {pool, in\\fixed order};
+  \Bad{(.45,\y+.18)}\Good{(.45,\y-.18)}
+}
+% row 1: F then G
+\node[flt=ProteinEdge] (f1) at (3.1,0) {};
+\node[font=\sffamily\bfseries\footnotesize,anchor=north,align=center] at (3.1,.8) {F: one slot,\\any identity};
+\node[slot] at (3.1,-.5) {};\Bad{(3.1,-.5)}
+\node[flt=CompTeal] (g1) at (7.0,0) {};
+\node[font=\sffamily\bfseries\footnotesize,anchor=north,align=center] at (7.0,.8) {G: good only,\\two slots};
+\node[slot] at (6.7,-.5) {};\node[slot] at (7.3,-.5) {};
+\draw[move] (1.0,0)--(f1.west);\draw[move] (f1.east)--(g1.west);\draw[move] (g1.east)--(9.5,0);
+\node[slab,anchor=west,align=left] at (9.6,0) {output: \textbf{empty}\\bad took F's slot};
+% row 2: G then F
+\node[flt=CompTeal] (g2) at (3.1,-2.3) {};
+\node[font=\sffamily\bfseries\footnotesize,anchor=north,align=center] at (3.1,-1.5) {G: good only,\\two slots};
+\node[slot] at (2.8,-2.8) {};\node[slot] at (3.4,-2.8) {};\Good{(2.8,-2.8)}
+\node[flt=ProteinEdge] (f2) at (7.0,-2.3) {};
+\node[font=\sffamily\bfseries\footnotesize,anchor=north,align=center] at (7.0,-1.5) {F: one slot,\\any identity};
+\node[slot] at (7.0,-2.8) {};\Good{(7.0,-2.8)}
+\draw[move] (1.0,-2.3)--(g2.west);\draw[move] (g2.east)--(f2.west);\draw[move] (f2.east)--(9.5,-2.3);
+\node[slab,anchor=west,align=left] at (9.6,-2.3) {output: \textbf{good}\\removing bad first\\freed F's slot};
+% legend
+\begin{scope}[shift={(.3,-3.95)}]
+\Good{(.3,0)}\node[slab,anchor=west] at (.75,0) {good (witness)};
+\Bad{(3.5,0)}\node[slab,anchor=west] at (3.85,0) {bad (non-witness)};
+\node[slab,anchor=west] at (6.9,0) {each filter keeps what it admits and passes it on};
+\end{scope}
 \end{tikzpicture}

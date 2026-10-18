@@ -150,3 +150,16 @@
 \newcommand{\TikzPlate}[3]{\par\medskip\noindent\begin{minipage}{\linewidth}\centering
  \adjustbox{scale=1.15,max width=\linewidth}{\input{#1.tex}}
  \captionof{figure}{#2}\FigureLabel{#3}\end{minipage}\par\medskip}
+
+% \BaseTile{(x,y)}{A}: a base letter in its fixed base colour (A, C, G, T, U; other
+% symbols such as N or R are drawn in grey). \BaseTile*{(x,y)}{A} marks the tile.
+\def\BTA{A}\def\BTC{C}\def\BTG{G}\def\BTT{T}\def\BTU{U}
+\newcommand{\BaseTileColour}[1]{\edef\btl{#1}\def\btc{InkSoft}%
+ \ifx\btl\BTA\def\btc{BaseA}\fi\ifx\btl\BTC\def\btc{BaseC}\fi\ifx\btl\BTG\def\btc{BaseG}\fi
+ \ifx\btl\BTT\def\btc{BaseT}\fi\ifx\btl\BTU\def\btc{BaseU}\fi}
+\makeatletter
+\newcommand{\BaseTile}{\@ifstar{\BaseTile@i{RejectRed}{1.3pt}}{\BaseTile@i{}{.8pt}}}
+\newcommand{\BaseTile@i}[4]{\BaseTileColour{#4}\def\btd{#1}\ifx\btd\@empty\let\btd\btc\fi
+ \node[draw=\btd,fill=\btc!22,line width=#2,rounded corners=1.2pt,
+   minimum width=5.4mm,minimum height=5.4mm,inner sep=0pt,font=\sffamily\bfseries\small,text=Ink] at #3 {#4};}
+\makeatother

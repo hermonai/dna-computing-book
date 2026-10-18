@@ -1,4 +1,13 @@
-Question: How a molecular transition consumes an interface
-Objects and arrow semantics: Polarity-correct duplex, transition recognition, enzyme-mediated cleavage and a newly exposed end.
-Change/invariant and caption claim: Separate current state/symbol interface from next-state interface and waste.
-Scientific risk: Conceptual restriction-based cycle; not a sequence or enzyme protocol.
+Figure: a conceptual restriction-ligation transition cycle, in three stages.
+Stage 1 (anneal): a double-stranded transition molecule (green) carries a
+single-stranded overhang complementary to the exposed single-stranded end of the
+remaining input molecule (blue). That exposed end (amber) encodes the current
+state and symbol (q, a).
+Stage 2 (ligate, then cut): the overhangs pair and ligase seals the two nicks,
+giving one continuous duplex. An enzyme (gold) binds a recognition site in the
+transition part and cuts both strands at a fixed offset downstream, in a
+staggered pattern (red marks), inside the input region.
+Stage 3 (expose the next end): a fragment is released as waste (grey), and the
+remaining input, now one symbol shorter, carries a newly exposed end (amber)
+encoding the next state and symbol. Lengths, sequences and enzyme-specific
+offsets are intentionally not specified; this is not a laboratory protocol.

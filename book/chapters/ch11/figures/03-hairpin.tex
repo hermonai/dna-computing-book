@@ -1,14 +1,19 @@
-\begin{tikzpicture}[x=.9cm,y=.7cm]
-\node[note,align=left] at (1,1.5) {$5'$--\texttt{GCGAAACGC}--$3'$\\one covalent strand};
-\draw[<->,thick,Blue] (4,1.5)--(5.1,1.5);
-\draw[very thick,Blue] (6,0)--(6,2) .. controls (6,4) and (8,4) .. (8,2)--(8,0);
-\foreach \y/\a/\b in {0/G/C,1/C/G,2/G/C}{
- \draw[dotted,thick] (6.3,\y)--(7.7,\y);
- \node[fill=white,font=\ttfamily] at (6,\y) {\a};
- \node[fill=white,font=\ttfamily] at (8,\y) {\b};}
-\node[fill=white,font=\ttfamily] at (6.15,2.95) {A};
-\node[fill=white,font=\ttfamily] at (7,3.5) {A};
-\node[fill=white,font=\ttfamily] at (7.85,2.95) {A};
-\node at (5.6,-.6) {$5'$}; \node at (8.4,-.6) {$3'$};
-\node[smallnote,anchor=west] at (9,1.5) {3 base pairs\\3 unpaired bases\\no energy estimate};
+\begin{tikzpicture}[x=1cm,y=1cm]
+\PanelTitle{(0,3.2)}{A}{One strand with an inverted repeat}
+\foreach \i/\a in {0/G,1/C,2/G,3/A,4/A,5/A,6/C,7/G,8/C}{\BaseTile{({.3+.6*\i},1.6)}{\a}}
+\draw[brace] (.0,2.0)--(1.8,2.0) node[midway,above=3pt,slab] {stem arm};
+\draw[brace] (3.6,2.0)--(5.4,2.0) node[midway,above=3pt,slab] {its reverse complement};
+\node[slab,anchor=west] at (.0,.95) {$5'$-\texttt{GCG}\,\texttt{AAA}\,\texttt{CGC}-$3'$};
+\draw[react] (6.0,1.6)--(7.1,1.6) node[midway,above,slab] {folds};
+\PanelTitle{(7.5,3.2)}{B}{A possible hairpin}
+\begin{scope}[shift={(8.6,-.35)}]
+ \draw[backbone,DNAblue] (0,-.2)--(0,1.95) .. controls (0,3.1) and (1.6,3.1) .. (1.6,1.95)--(1.6,.1);
+ \draw[strand,DNAblue] (1.6,.3)--(1.6,-.2);
+ \foreach \y/\a/\b in {0/G/C,1/C/G,2/G/C}{
+   \draw[rung] (.3,{.3+.65*\y})--(1.3,{.3+.65*\y});
+   \BaseTile{(0,{.3+.65*\y})}{\a}\BaseTile{(1.6,{.3+.65*\y})}{\b}}
+ \BaseTile{(.12,2.55)}{A}\BaseTile{(.8,2.95)}{A}\BaseTile{(1.48,2.55)}{A}
+ \EndLab{(-.35,-.15)}{5$'$}\EndLab{(1.95,-.15)}{3$'$}
+ \node[slab,anchor=west,align=left] at (2.35,1.25) {3 base pairs in the stem\\3 unpaired loop bases\\one continuous backbone\\(no energy estimate)};
+\end{scope}
 \end{tikzpicture}

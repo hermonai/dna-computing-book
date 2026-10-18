@@ -1,1 +1,8 @@
-Generate--filter--verify algorithms. Two finite-capacity filter orders have different retained identities; draw occupied slots and original molecule IDs. Contrast commuting ideal diagonal masks with order-dependent admission. Representation: an original editable textbook mechanism plate; labels and geometry carry the meaning in grayscale as well as color. Solid backbones denote covalent continuity where molecular strands are drawn; dotted cross-strand marks denote pairing. Algorithm arrows denote the specific construction, data, or dependency relation named by the caption, not molecular reactions. Numerical curves, when present, use the companion results.json. Read alongside the numbered caption for model assumptions and limitations.
+Figure: filter order matters when filters have capacity.
+A pool contains a bad molecule followed by a good one, in fixed order. Filter F
+has one slot and admits either identity; filter G admits only good molecules and
+has two slots. Each filter keeps what it admits and passes it on.
+Top row, F then G: the bad molecule takes F's single slot, G rejects it, and the
+output is empty. Bottom row, G then F: G keeps only the good molecule, F admits
+it, and the output is good. The rule is a deterministic counterexample, not a
+kinetic model of bead competition.

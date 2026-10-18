@@ -1,17 +1,20 @@
 \begin{tikzpicture}[x=1cm,y=1cm]
-\node[note] (a) at (1.7,2.3) {000\\3 copies};
-\node[note] (b) at (1.7,.7) {001\\5 copies};
-\node[note,draw=Blue,fill=Pale,minimum width=2cm,minimum height=1cm] (c) at (7,1.5) {000\\8 copies};
-\draw[flow] (a.east)--node[above,smallnote]{clear bit 2}(c.north west);
-\draw[flow] (b.east)--(c.south west);
-\node[note,anchor=west,align=left] at (9,1.5) {Copies conserved\\State distinctions lost};
-\draw[Blue!25] (0,-.1)--(14,-.1);
-\node[smallnote,anchor=west] at (0,-.8) {Retain history:};
-\node[note] at (4,-.8) {$(b,h)=(0,0)$};
-\node[note] at (4,-1.8) {$(b,h)=(1,0)$};
-\draw[flow] (6,-.8)--(8,-.8);
-\draw[flow] (6,-1.8)--(8,-1.8);
-\node[note] at (10,-.8) {$(0,0)$};
-\node[note] at (10,-1.8) {$(0,1)$};
-\node[smallnote] at (7,-2.6) {The larger transformation preserves the old bit in another address.};
+\newcommand{\Reg}[5]{\begin{scope}[shift={(#1,#2)}]
+ \foreach \k in {0,1,2}{\draw[DNAblue!45,fill=DNAblue!10,rounded corners=1pt] ({.12+.62*\k},-.13) rectangle ({.62+.62*\k},.13);}
+ \draw[strand,DNAblue,line width=1.7pt] (0,0)--(2.05,0);
+ \foreach \k/\v in {0/#3,1/#4,2/#5}{
+   \ifnum\v=1 \draw[strandL,StrandGreen,line width=1.6pt] ({.62+.62*\k},.3)--({.12+.62*\k},.3);\fi}
+ \end{scope}}
+\PanelTitle{(0,1.15)}{A}{Clearing bit 2 merges two states}
+\Reg{.2}{.35}{0}{0}{0}\node[slab,anchor=west] at (2.4,.35) {000, 3 copies};
+\Reg{.2}{-.55}{0}{0}{1}\node[slab,anchor=west] at (2.4,-.55) {001, 5 copies};
+\draw[react] (4.55,.35)--(6.2,-.05);\draw[react] (4.55,-.55)--(6.2,-.15);
+\node[slab,anchor=south] at (5.35,.3) {clear bit 2};
+\Reg{6.4}{-.1}{0}{0}{0}\node[slab,anchor=west] at (8.6,-.1) {000, 8 copies};
+\node[slab,anchor=west,align=left,text=RejectRed!85!black] at (10.6,-.1) {all 8 backbones remain;\\which state each came\\from is lost};
+\draw[PanelEdge,line width=.8pt] (0,-1.15)--(14,-1.15);
+\PanelTitle{(0,-1.55)}{B}{Keep a history bit $h$ in another address}
+\node[slab,anchor=west] at (.2,-2.4) {$(b,h)=(0,0)$};\draw[react] (2.1,-2.4)--(3.6,-2.4);\node[slab,anchor=west] at (3.7,-2.4) {$(0,0)$};
+\node[slab,anchor=west] at (.2,-3.15) {$(b,h)=(1,0)$};\draw[react] (2.1,-3.15)--(3.6,-3.15);\node[slab,anchor=west] at (3.7,-3.15) {$(0,1)$};
+\node[slab,anchor=west,align=left] at (5.3,-2.78) {copy the old bit into $h$ before clearing $b$: the final states stay distinct,\\at the cost of one more address and more operations};
 \end{tikzpicture}

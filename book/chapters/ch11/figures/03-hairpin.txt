@@ -1,1 +1,6 @@
-Sequence design and graph encoding. One strand folds to a paired stem and unpaired loop. Preserve covalent continuity and label terminal polarity. Exact inverted-repeat screen is a candidate warning, not a predicted equilibrium structure. Representation: an original editable textbook mechanism plate; labels and geometry carry the meaning in grayscale as well as color. Solid backbones denote covalent continuity where molecular strands are drawn; dotted cross-strand marks denote pairing. Algorithm arrows denote the specific construction, data, or dependency relation named by the caption, not molecular reactions. Numerical curves, when present, use the companion results.json. Read alongside the numbered caption for model assumptions and limitations.
+Figure: an inverted repeat allows a hairpin.
+Panel A: one strand 5'-GCG AAA CGC-3'; the first three bases (a stem arm) are the
+reverse complement of the last three.
+Panel B: the strand folds so that G pairs with C, C with G and G with C in a
+three-base-pair stem, with an unpaired AAA loop; one continuous backbone runs
+around the loop. No energy or population estimate is implied.

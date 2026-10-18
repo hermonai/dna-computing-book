@@ -1,16 +1,20 @@
 \begin{tikzpicture}[x=1cm,y=1cm]
-\node[note] at (2,4.2) {Initial $(a,b,c)$};
-\node[note] at (7,4.2) {Disjoint branch};
-\node[note] at (12,4.2) {Final $(a,b,c)$};
-\foreach \y/\bits/\branch/\out in {3.2/000/{a=0}/000,2.2/010/{a=0}/010,1.2/100/{a=1,b=0}/100,.2/110/{a=1,b=1}/111}{
- \node[note] at (2,\y) {\bits\quad$\times5$};
- \draw[flow] (3.5,\y)--(5.3,\y);
- \node[smallnote] at (7,\y) {$\branch$};
- \draw[flow] (8.6,\y)--(10.3,\y);
- \node[note] at (12,\y) {\out\quad$\times5$};
-}
-\draw[Green,rounded corners,thick] (10.8,-.15) rectangle (13.5,.55);
-\node[smallnote,Green] at (7,-.7) {Only this branch: set $c$};
-\draw[flow,Green] (9,-.7)--(11,-.15);
-\node[smallnote] at (7,-1.5) {Clear $c$ first. Separate, write, then merge without copying.};
+% \Reg{x}{y}{a}{b}{c}: a three-address memory strand; a sticker sits on each 1-bit
+\newcommand{\Reg}[5]{\begin{scope}[shift={(#1,#2)}]
+ \foreach \k in {0,1,2}{\draw[DNAblue!45,fill=DNAblue!10,rounded corners=1pt] ({.12+.62*\k},-.13) rectangle ({.62+.62*\k},.13);}
+ \draw[strand,DNAblue,line width=1.7pt] (0,0)--(2.05,0);
+ \foreach \k/\v/\c in {0/#3/StrandGreen,1/#4/StrandGreen,2/#5/StrandAmber}{
+   \ifnum\v=1 \draw[strandL,\c,line width=1.6pt] ({.62+.62*\k},.3)--({.12+.62*\k},.3);\fi}
+ \end{scope}}
+\node[font=\sffamily\bfseries\small] at (1.3,.95) {start $(a,b,c)$};
+\node[font=\sffamily\bfseries\small] at (5.6,.95) {separate on $a$, then $b$};
+\node[font=\sffamily\bfseries\small] at (10.3,.95) {after merging};
+\foreach \y/\a/\b/\out/\lab in {0/0/0/0/{$a=0$},-.85/0/1/0/{$a=0$},-1.7/1/0/0/{$a=1,\ b=0$},-2.55/1/1/1/{$a=1,\ b=1$: set $c$}}{
+  \Reg{.15}{\y}{\a}{\b}{0}\node[slab,anchor=west] at (2.35,\y) {$\times5$};
+  \draw[move] (3.0,\y)--(4.2,\y);
+  \node[slab,anchor=west] at (4.3,\y) {\lab};
+  \draw[move] (7.6,\y)--(8.8,\y);
+  \Reg{9.0}{\y}{\a}{\b}{\out}\node[slab,anchor=west] at (11.2,\y) {$\times5$};}
+\draw[AcceptGreen,line width=.9pt,rounded corners=3pt] (8.85,-2.9) rectangle (11.85,-2.15);
+\node[slab,anchor=north west,align=left] at (.1,-3.05) {stickers: green on $a$ or $b$, amber on the output address $c$. Clear $c$ first; separate, write $c$ only in the\\$a{=}1,b{=}1$ tube, then merge. Every one of the twenty backbones returns; none is copied.};
 \end{tikzpicture}
