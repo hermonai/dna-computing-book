@@ -1,4 +1,11 @@
 \chapter{Kinetic and stochastic simulation}
+\ChapterGoals{%
+\item derive the deterministic solution of a reversible first-order network and use it as an oracle;
+\item implement Euler's method and test conservation, positivity and accuracy;
+\item derive and implement Gillespie's direct method, and read a stochastic path correctly;
+\item compute an exact finite-copy distribution and compare simulated ensembles against it;
+\item handle bimolecular units and identical-reactant factors, and validate before calibrating.}
+{Chapters~7 and~20; exponential distributions and differential equations (Appendix~\gref{app:math}).}
 Chapter 27 determined which molecular-count states a symbolic reaction network
 could reach. A reaction edge did not specify a waiting time. This chapter adds
 time without confusing three objects: a concentration trajectory, one random
@@ -259,6 +266,24 @@ readout is claimed. Chapter 29's differentiable molecular and sequence models wi
 differentiate declared kinetics and discuss sensitivities. Passing today's
 simulation tests is a prerequisite for that work, not evidence that the chosen
 rates describe a real assay.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A concentration trajectory, one random count trajectory and a distribution
+over trajectories are three different objects.
+\item For $A\rightleftharpoons B$ the exact mean and binomial variance are
+oracles against which ODE solvers and stochastic simulators are tested.
+\item Euler's method can violate positivity and accuracy at large steps;
+conservation can hold while the answer is wrong.
+\item The direct method draws an exponential waiting time from the total
+propensity, then chooses a reaction in proportion to its propensity; a path is a
+right-continuous staircase.
+\item First moments close only for linear networks; bimolecular propensities need
+volume scaling and the factor $1/2$ for identical reactants.
+\item Validate the implementation against exact laws before fitting rates to
+data.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Worked exercises}
 \begin{enumerate}

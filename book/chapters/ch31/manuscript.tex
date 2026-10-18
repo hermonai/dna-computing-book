@@ -1,5 +1,12 @@
 \chapter{Modern molecular programming and evidence}
 \label{ch:dna31}
+\ChapterGoals{%
+\item state the refinement obligation between a formal reaction network and its DNA implementation;
+\item build and analyse a finite-fuel strand-displacement realisation and its reduced model;
+\item locate where a reduction fails and implement it without hiding the failure;
+\item design observations that test a mechanism rather than brightness alone;
+\item carry calibration uncertainty, count independent preparations, and keep evidence scopes separate.}
+{Chapters~19--21 and~26.}
 \section{The engineering question}
 A formal network can be mathematically correct while its DNA realization runs
 too slowly, consumes an unreported auxiliary species, or activates a reporter
@@ -268,6 +275,23 @@ output criterion and control panel. It requires raw data, calibrated observation
 and independent units. Numerical checks cannot establish that claim.
 This distinction keeps an implementation proof from becoming an unearned
 statement of cellular capability.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item An implementation refines a formal network only if its observable dynamics
+match within stated error over a stated range.
+\item A displacement mechanism adds intermediates and fuel; a finite fuel supply
+changes the reduced dynamics.
+\item Reductions have an initial layer where they fail; report it rather than
+clipping it away.
+\item A signal increase is consistent with many mechanisms; controls and
+perturbations distinguish them.
+\item Calibration uncertainty must be propagated before thresholding, and
+technical repeats are not independent preparations.
+\item Formal proofs, simulations, cell-free and cellular measurements answer
+different questions; they are not a single ranking.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Worked exercises}
 \begin{enumerate}

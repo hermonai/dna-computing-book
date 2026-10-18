@@ -1,4 +1,11 @@
 \chapter{Symbolic molecular simulation}
+\ChapterGoals{%
+\item decide what counts as a state of a molecular system, and canonicalise it;
+\item implement reactions with preconditions as well as count changes;
+\item use stoichiometry as a necessary (not sufficient) reachability test;
+\item explore the reachable state space by breadth-first search with an honest stopping contract;
+\item state what a found pathway proves, and test a simulator without letting it verify itself.}
+{Chapters~20 and~26; graphs and breadth-first search (Appendix~\gref{app:math}).}
 A simulator is an executable scientific claim. Before asking how fast a molecular
 device computes, ask which transitions its model permits, what it counts as a
 state, and what a successful search actually proves. This chapter builds a small,
@@ -246,6 +253,23 @@ dynamics under specified designs and scaling conditions \cite{Soloveichik2010}.
 Auxiliary species, rate rescaling, leakage, and implementation limitations do not
 vanish under that correspondence. Our $AB$ drawing is a conceptual assembly
 inventory, not a validated domain-level construction.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item Choosing the state (which species, counted how) is a modelling decision;
+canonicalisation makes equal states compare equal.
+\item A reaction has a precondition (enough reactants) as well as a change
+vector; the change vector alone permits impossible moves.
+\item Stoichiometric feasibility is necessary for reachability but not
+sufficient.
+\item Breadth-first search over a bounded state space finds shortest pathways;
+a cutoff must be reported as a cutoff, not as closure.
+\item A witness pathway proves that an outcome is possible in the model;
+acceptance, confluence and fairness are further properties.
+\item Formal possibility is not chemical realisability; rates, energies and
+geometry come next (Chapter~28).
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Worked problems and design exercises}
 \begin{enumerate}

@@ -1,4 +1,11 @@
 \chapter{Genomic organization, regulation and development}
+\ChapterGoals{%
+\item describe gene expression as a physical mechanism from DNA to RNA to protein;
+\item distinguish cis and trans regulation, and chromosome context from nearest-gene lookup;
+\item nondimensionalise a two-regulator model and derive its fixed points and their stability;
+\item explain how history-dependent states arise without new parameters;
+\item separate recorded lineage from inferred order, and within-cell regulation from population selection.}
+{Chapter~7 (rate equations); Appendix~\gref{app:biology} (central dogma).}
 Take two cells with the same inherited DNA. Why can one produce a regulator while
 the other does not? The DNA sequence is not the entire initial condition.
 Factor concentrations, chromatin, signals and history change the molecular
@@ -320,9 +327,26 @@ measurement; an analogy must expose its omitted mechanisms.}{dnad30:abstraction}
 If a model calls a gate a promoter, ask what formal operator changed relative to
 an established gated recurrence. If it calls hidden state epigenetic memory,
 identify persistence, reset and inheritance semantics rather than assuming molecular
-fidelity. Evolutor owns these computational hypotheses; this book owns the
-biological and molecular boundary. A useful analogy proposes a falsifiable
+fidelity. Testing such computational hypotheses belongs to software research; this
+chapter's task is the biological and molecular boundary. A useful analogy proposes a falsifiable
 dependency or intervention, not merely a new vocabulary.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item Gene expression is a chain of physical processes (binding, transcription,
+processing, translation, decay), each with its own rates and observables.
+\item Cis regulation acts through a locus's own sequence; trans regulation acts
+through diffusible factors. Spatial chromosome context matters.
+\item A mutual-repression model has symmetric and asymmetric fixed points;
+stability, not a plateau in a plot, decides which states can persist.
+\item The same parameters can give different outcomes from different histories:
+that is what memory means in a dynamical system.
+\item Recorded lineage and inferred pseudotime are different evidence; molecule
+partition at division is not DNA copying.
+\item Analogies between gene regulation and computation must state their
+carriers, assumptions and omitted processes.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Twenty worked exercises}
 \begin{enumerate}

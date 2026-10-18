@@ -2,19 +2,22 @@
 
 **Molecular mechanisms, algorithms and evidence**
 
-A 32-chapter manuscript connecting molecular biology, formal computation,
-reaction-network programming, simulation and genomic representations. Worked
-derivations, executable reference models, original vector illustrations and
-exercises accompany the theory.
+An undergraduate textbook in 32 chapters and eight parts, connecting molecular
+biology, formal computation, reaction-network programming, simulation and
+genomic representations. Each chapter opens with learning goals and closes with
+key ideas, exercises and worked solutions; tested reference code, original
+molecular and algorithmic illustrations, a unified bibliography, an epilogue on
+research frontiers and three appendices (molecular biology primer, mathematical
+toolkit, timeline 1953–2026) accompany the text.
 
-The complete manuscript is a **review candidate**, not an independently reviewed
-publication or a demonstration of industrial/genomic capability.
+The manuscript is a **review edition**, not an independently reviewed
+publication or a demonstration of industrial or genomic capability.
 
 ## Read the book
 
-Download the complete 397-page manuscript and its source-bound review record
-from the [public review prerelease](https://github.com/hermonai/dna-computing-book/releases/tag/dna-review-2026-10-17).
-This is a review candidate, not the final accepted publication.
+The earlier 397-page review candidate remains available from the
+[public review prerelease](https://github.com/hermonai/dna-computing-book/releases/tag/dna-review-2026-10-17).
+The current 442-page edition is built from this branch with `make pdf`.
 
 Build the current edition with `make pdf`. The only current full-book output is
 [`output/pdf/dna-computing.pdf`](output/pdf/dna-computing.pdf).
@@ -24,9 +27,10 @@ biochemical automata treatment.
 See the [chapter map](book/README.md), [authoring guide](docs/AUTHORING.md)
 and [editorial architecture](docs/EDITORIAL_ARCHITECTURE.md).
 
-For the next editorial pass, use the
-[Claude undergraduate textbook review and illustration prompt](docs/CLAUDE_PREPUBLICATION_REVIEW_PROMPT.md).
-It specifies the author's current teaching brief; it does not mark that revision complete.
+The October 2026 undergraduate revision followed the
+[textbook review and illustration brief](docs/CLAUDE_PREPUBLICATION_REVIEW_PROMPT.md).
+Its plan, findings, figure atlas, validation and remaining gates are in
+[`docs/prepublication/`](docs/prepublication/).
 
 ## Repository layout
 
@@ -35,9 +39,11 @@ book/
   main.tex                 Full-book LaTeX entry point
   style.tex, layout.tex    Shared typography, figure and reference conventions
   book.json                Ordered current chapter manifest
-  frontmatter/             Shared acknowledgment and evidence conventions
-  chapters/ch01–ch32/       Canonical prose, references, figures and companion code
-  backmatter/              Glossary and opening bibliography
+  visual.tex, pedagogy.tex Shared illustration language and teaching boxes
+  frontmatter/             Preface, how to use the book, reading map, conventions
+  parts/                   Eight part openers
+  chapters/ch01–ch32/       Canonical prose, further reading, figures and companion code
+  backmatter/              Epilogue, appendices, glossary and references.bib
 code/minidna/              Reusable executable teaching library and its tests
 docs/                     Authoring standards, architecture and provenance
 scripts/                  Current build and archive-verification tools

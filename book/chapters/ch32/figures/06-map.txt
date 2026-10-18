@@ -1,5 +1,7 @@
-Figure 32.6 — Closing map and release gates.
-Foundations/resources → formal computation → engineered circuits → modeling/evidence
-→ genomic handoff. The planned chapter spine reaches Chapter 32.
-Integrated content, executable checks, cumulative editorial review, independent
-scientific review and reader validation remain separately recorded conditions.
+Figure 32.6: a map of the book's layers.
+Four stacked bands: (A) molecular mechanism and resource accounting; (B)
+algorithms, formal languages and molecular programs; (C) reliability, readout,
+simulation and genomic organisation; (D) scoped evidence and abstraction.
+Arrows run downward from each band to the next. A note states that each layer
+depends on the one above it and that a claim made at the bottom must still be
+tested against molecules.

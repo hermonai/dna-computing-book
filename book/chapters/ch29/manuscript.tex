@@ -1,4 +1,11 @@
 \chapter{Differentiable molecular and sequence models}
+\ChapterGoals{%
+\item specify exactly which quantity is differentiated, with respect to which parameters;
+\item derive reaction sensitivities and check them by three independent routes;
+\item differentiate a discretised solver and detect a graph-breaking implementation bug;
+\item relax nucleotide sequences to a probability simplex and compute exact expected scores;
+\item recognise when a relaxation optimises a reward that no real sequence achieves, and why design needs independent evidence.}
+{Chapters~7 and~28; derivatives and the chain rule; basic PyTorch (introduced as needed).}
 Chapter 28 gave a reaction system a clock. Now ask a different question:
 if the modeled terminal population misses a target, which parameter should move?
 And if a sequence predictor assigns a low score, can a gradient suggest a better
@@ -254,6 +261,16 @@ Rijal and Mehta smooth discrete operations in an approximate differentiable
 Gillespie method \cite{RijalMehta2025}. Compare distributions, moments and task-relevant
 tails to exact SSA, not only attractive gradients.
 
+\begin{CSBridge}
+\emph{Automatic differentiation} records every arithmetic operation of a program
+in a graph and applies the chain rule backwards through it, giving exact
+derivatives of the computed output with respect to every input. Frameworks such
+as PyTorch do this automatically for tensors. The derivative is of the program
+that actually ran, including its discretisation and any accidental
+\texttt{detach}, which is why this chapter tests gradients against independent
+calculations.
+\end{CSBridge}
+
 \section{A design loop needs independent evidence}
 \Plate{05-design-loop}{Optimization creates proposals. Discretization, constraints,
 unused validation evidence and physical testing are separate gates; a failure
@@ -274,6 +291,24 @@ example implements those systems or produces realizable DNA kinetics.
 \Plate{06-failures}{Failure signatures distinguish graph errors, solver error,
 non-identifiability and relaxation mismatch. Each has a different remedy and
 a different falsifying test.}{dnad29:failures}
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item A gradient is only meaningful once the model, the parameters, the solver and
+the objective are declared.
+\item Analytic sensitivities, finite differences and automatic differentiation
+should agree on the same target; disagreement exposes bugs or step-size problems.
+\item Differentiating a discretised solver gives the derivative of the solver's
+output, which differs from the derivative of the exact solution.
+\item Detaching a tensor silently breaks the computational graph; tests must check
+gradients, not only values.
+\item Relaxing bases to probability vectors makes sequence scores differentiable,
+but the optimum of the relaxed problem may not correspond to any discrete
+sequence.
+\item A design loop proposes candidates; only independent physical evidence
+validates them.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Twenty worked exercises}
 \begin{enumerate}

@@ -1,5 +1,12 @@
 \chapter{From molecular computation to genomic computation}
 \label{ch:dna32}
+\ChapterGoals{%
+\item write the chain of representations from molecule to model output and state what each map keeps;
+\item prove when a discarded property cannot be recovered from a projection;
+\item judge whether a representation is sufficient for a given task;
+\item turn a biological inspiration into an explicit operator and a testable prediction;
+\item design ablation and transplant comparisons and explain what makes them causal.}
+{Chapters~29--31.}
 \section{Finish the conceptual arc without erasing boundaries}
 A DNA molecule can be a physical reactant, a sequence record, a formal string
 or an encoded tensor. These descriptions are useful precisely because they
@@ -14,10 +21,8 @@ examples are constructive information-loss witnesses, strict encodings and
 paired evaluation arithmetic. No molecular experiment or trained-model result
 is reported here.
 
-This is the final planned chapter of the 32-chapter DNA authoring spine.
-It is not a claim that the entire publication has passed independent review.
-Evolutor continues beyond this boundary with testable architectural and systems
-hypotheses.
+This is the last chapter of the book's main sequence; the Epilogue then
+surveys the research frontier.
 
 \section{A projection keeps a record, not the whole molecule}
 Write the representation chain
@@ -214,18 +219,36 @@ does not prove a software architecture; a neural benchmark does not validate a
 molecular rate. Listing more advanced environments cannot substitute for
 identifiability, controls or independent replication.
 
-\section{Close the authoring spine, not the publication gates}
-\Plate{06-map}{The book's closing map and separate release gates. Completed chapter authoring is not independent scientific acceptance.}{fig:dna32-map}
+\section{What the book has built}
+\Plate{06-map}{The book as four layers. Molecular mechanisms and resources
+support algorithms and formal models, which support reliability, readout and
+simulation, which in turn support scoped evidence and abstraction. Each layer
+relies on the assumptions of the one above it.}{fig:dna32-map}
 The manuscript now reaches the planned conceptual endpoint: physical resources
 and mechanisms; formal languages and algorithms; strand displacement and
 chemical networks; reliability and readout; symbolic, stochastic and
 differentiable models; genomic organization; evidence and abstraction contracts.
 
-The active continuous edition must still receive cumulative editorial review:
-notation, bibliography, glossary, index, cross-chapter assumptions and visual
-consistency. Independent scientific and reader review remain distinct gates.
-Legacy accepted material stays preserved; the word complete refers here to
-the planned chapter spine, not a certified publication.
+Each layer contributes a habit that the next one needs: count molecules and
+resources before claiming speed; state an algorithm's semantics before building
+it from molecules; budget errors and readout before scaling; and attach every
+claim to the evidence that supports it.
+
+\begin{KeyIdeas}
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item Molecule, sequence record, formal word, encoding and model output are
+different objects linked by maps that discard information.
+\item If two molecular states map to the same record, no function of the record
+can recover the property that distinguishes them.
+\item Whether a representation is sufficient depends on the task, not on the
+representation alone.
+\item A biologically inspired model component must be stated as an operator with
+a prediction that could fail.
+\item Ablation and transplant effects, with matched controls and held-out
+evaluation, are the minimum for a causal claim.
+\item Every claim about molecules must return to molecules for its evidence.
+\end{itemize}
+\end{KeyIdeas}
 
 \section{Twenty worked synthesis exercises}
 \begin{enumerate}
@@ -265,12 +288,13 @@ but not a trajectory? \emph{Answer:} yes; sufficiency is task-specific.
 \emph{Answer:} no; they demonstrate arithmetic only.
 \item \textbf{Taxonomy.} Which branch is Transformer-based?
 \emph{Answer:} HermonDNA, not DOGMA.
-\item \textbf{Completion.} Does Chapter 32 confer publication acceptance?
-\emph{Answer:} no; cumulative editorial, scientific and reader review remain.
+\item \textbf{Synthesis.} Name one quantity that is lost at each step from molecule
+to model output. \emph{Answer:} for example copy number, coordinate convention,
+chemistry and any feature the encoding omits.
 \end{enumerate}
 
 \section{Closing boundary}
 Computation is a representation, a mechanism, a resource budget and an
 observation contract, not only an equation. Genomic computation should inherit
-that discipline before it inherits biological names. That is the book's
-handoff to Evolutor.
+that discipline before it inherits biological names. The Epilogue turns from
+this boundary to the open problems of the field.

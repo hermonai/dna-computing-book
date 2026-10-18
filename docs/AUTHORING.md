@@ -22,8 +22,13 @@ Abstraction is welcome when its meaning and limits are explicit.
   review and tests, not silently regenerated expected values.
 - `build/generated/` holds computed assets.
 - `build/book/` holds citation-scoped derived TeX and compiler outputs.
-- Local bibliography keys are mapped into one bibliography with provenance.
-  Exact identifier merging is not full alias deduplication or a rights audit.
+- All references live in one BibTeX database, `book/backmatter/references.bib`,
+  with global keys; chapters cite it directly and end with annotated Further
+  reading in `sources.tex`. Source-access notes belong in
+  `docs/provenance/source-access-notes.md`, not in reader-facing entries.
+- New plates use the shared language in `book/visual.tex`; teaching boxes are
+  defined in `book/pedagogy.tex`. Inside Chapters 4–32 use `\gref` for
+  book-level labels (appendices, Parts, Chapters 1–3).
 
 The opening chapters retain reviewed snippets/tables. Their source closure is
 checked separately from historical byte-preservation. Shared pedagogy/evidence

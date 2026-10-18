@@ -1,6 +1,6 @@
 # Manuscript and release status
 
-Updated 17 October 2026.
+Updated 18 October 2026.
 
 DNA Computing has a complete 32-chapter authoring spine, one active manuscript
 and one full-book build. Reorganization changes locations and production
@@ -8,6 +8,14 @@ plumbing, not scientific claims.
 
 The complete manuscript is published as a public review prerelease, not a final
 accepted edition. See [release scope and verification](releases/2026-10-17.md).
+
+## October 2026 undergraduate revision
+
+Eight parts, new front matter, epilogue and appendices; one BibTeX bibliography;
+learning goals, key ideas and teaching boxes in every chapter; 21 new or redrawn
+plates; new sections on DNA neural networks (Ch 21) and algorithmic
+self-assembly at scale (Ch 22). Records: `docs/prepublication/`. This revision
+is author-agent work with executable checks, not independent review.
 
 ## Separate gates
 

@@ -1,5 +1,12 @@
 # Deep-edition chapter production standard
 
+> **Audience reconciliation (18 October 2026).** The author's undergraduate
+> teaching brief (`docs/CLAUDE_PREPUBLICATION_REVIEW_PROMPT.md`) takes precedence
+> where this standard assumes prior mathematics, programming or molecular
+> computing. Depth is retained and scaffolded: learning goals, prerequisites,
+> bridges for biology-first and computing-first readers, key ideas and appendices.
+> Source, testing, illustration and integrity requirements below still apply.
+
 Active from 7 September 2026. This adapts lessons from the two rendered undergraduate prototypes; the old standard remains in Git. The new target is depth with straightforward explanation, not prerequisite-free prose.
 
 ## Reasoning and content
